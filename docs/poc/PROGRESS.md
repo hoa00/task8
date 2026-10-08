@@ -16,7 +16,7 @@
 | Unit | Status | Checkpoint | Evidence / blocker |
 | --- | --- | --- | --- |
 | [WU-00](work-units/WU-00.md) | DONE | `8310612c8fc59f5e9b57940d06ee28b0220aa1c4` | [Runner](reference/CAPTURE.md), [repeatability](reference/repeatability.json), [inspection](reference/review/inspection.json); đã push repo private hoa00/task8, xem bổ sung bên dưới |
-| [WU-01](work-units/WU-01.md) | DONE | pending commit | [Clean gates](evidence/WU-01/clean-typecheck.log), [graph/bundle](evidence/WU-01/workspace-artifacts.json), [source smoke](evidence/WU-01/source-smoke.json) |
+| [WU-01](work-units/WU-01.md) | DONE | `8e672a666bd03e4318205163286be8d8c296e567` | [Clean gates](evidence/WU-01/clean-typecheck.log), [graph/bundle](evidence/WU-01/workspace-artifacts.json), [source smoke](evidence/WU-01/source-smoke.json) |
 | [WU-02](work-units/WU-02.md) | NOT_STARTED | — | — |
 | [WU-03](work-units/WU-03.md) | NOT_STARTED | — | — |
 | [WU-04](work-units/WU-04.md) | NOT_STARTED | — | — |
@@ -115,7 +115,7 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 
 ## WU-01 — 2026-10-08
 
-- Status: `DONE` — WU-01-AC1/2/3 và verification bắt buộc đạt; commit/push sẽ ghi SHA thực trong checkpoint bổ sung.
+- Status: `DONE` — WU-01-AC1/2/3 và verification bắt buộc đạt; implementation đã commit/push, SHA checkpoint thực bên dưới.
 - Started from: branch `work`, HEAD `7027697a3dcfab25e4c1513cab495453c5c389b7`, working tree sạch. Remote target `origin=https://github.com/hoa00/task8.git`, remote `main` cùng HEAD; không dùng remote reference. WU-00 DONE và 86 tracked source files tại SHA khóa đã xác minh lại.
 - Completed: pnpm workspace gồm `apps/web`, `apps/api`, `packages/ui`, `packages/contracts`, `packages/domain`; packages private với source TypeScript exports/types và build ESM/declarations thật. Turbo điều phối dependencies, cache build/typecheck outputs `dist/**`, không cache dev/test. React strict entry/Query provider/file router và Hono Module Worker skeleton chạy thật; entry chưa dựng màn hình, API chưa có business routes và trả 404 cho endpoint chưa triển khai.
 - AC1: clean copy từ **Git index** tại `/tmp/task8-wu01-clean`, không node_modules/dist/.turbo/.reference, đã chạy frozen install rồi typecheck **trước Vite build**, không phải dựa vào file sinh bởi dev server. `apps/web/src/routeTree.gen.ts` do plugin sinh và tracked; `apps/api/worker-configuration.d.ts` do Wrangler sinh và tracked. Cả hai excluded lint/format. Clean graph không có `.git` nên Turbo báo dirty-hash warning và dùng filesystem hashing; không ảnh hưởng kết quả hoặc cần file generated khác.
@@ -145,6 +145,6 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 
 - Not run/not applicable: full173 source raster verify trên Linux, target UI screenshot parity, business API/localD1/R2, migrations/seed, CI hoặc remote deployment. Các gate này không thuộc WU-01; baseline Darwin luôn giữ nguyên.
 - Blockers: không có blocker WU-01. Environment difference cần xử lý trước các unit screenshot parity bằng source-only Linux baseline riêng theo CAPTURE policy, không ghi đè baseline Darwin. Quyền phân phối app/design/logo lịch sử vẫn unconfirmed; unit này không publish/deploy.
-- Commit: pending — chỉ ghi SHA sau commit thành công.
-- Push: pending — sẽ push normal `origin HEAD:main` sau đối chiếu remote divergence và ghi SHA verified; user đã chỉ thị push repo đích.
+- Commit: `8e672a666bd03e4318205163286be8d8c296e567` — `chore: establish pnpm workspace and build foundation for WU-01`. Entry này ghi checkpoint/push đã xác minh trong commit documentation kế tiếp.
+- Push: `git push origin HEAD:main` exit 0 đến repo private `hoa00/task8`; remote `main` trước push bằng starting HEAD `7027697a3dcfab25e4c1513cab495453c5c389b7`, sau push `git ls-remote origin refs/heads/main` bằng checkpoint `8e672a666bd03e4318205163286be8d8c296e567`. Không force-push; branch local vẫn `work`. Commit documentation này cũng được push bình thường sau khi ghi evidence.
 - Next permitted unit: `WU-02`; dừng sau checkpoint/push WU-01, chưa thực hiện unit sau.
