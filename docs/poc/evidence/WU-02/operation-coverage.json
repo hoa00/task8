@@ -1,0 +1,849 @@
+{
+  "unit": "WU-02",
+  "source": "docs/poc/API_CONTRACT.md",
+  "status": "passed",
+  "expectedCount": 83,
+  "actualCount": 83,
+  "explicitOperationIds": [
+    "setTaskCompletion",
+    "bulkMutateTasks",
+    "deleteTeam",
+    "undoCommand",
+    "createTask",
+    "uploadProjectFile"
+  ],
+  "operations": [
+    {
+      "operationId": "getSession",
+      "method": "GET",
+      "path": "/api/v1/session",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listWorkspaces",
+      "method": "GET",
+      "path": "/api/v1/workspaces",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getBootstrap",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/bootstrap",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getWorkspace",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "updateWorkspace",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getProfile",
+      "method": "GET",
+      "path": "/api/v1/me/profile",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "updateProfile",
+      "method": "PATCH",
+      "path": "/api/v1/me/profile",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getPreferences",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/me/preferences",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "updatePreferences",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/me/preferences",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getNotificationPreferences",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/me/notification-preferences",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "updateNotificationPreferences",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/me/notification-preferences",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listProjects",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/projects",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "createProject",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/projects",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        201
+      ]
+    },
+    {
+      "operationId": "getProject",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "updateProject",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "duplicateProject",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/duplicate",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "archiveProject",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/archive",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "restoreProject",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/restore",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "restoreDeletedProject",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/restore-deleted",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "deleteProject",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listProjectMembers",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/members",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getProjectSummary",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/summary",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listMembers",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/members",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getMember",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/members/{memberId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getMemberSummary",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/members/{memberId}/summary",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listTeams",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/teams",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "createTeam",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/teams",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        201
+      ]
+    },
+    {
+      "operationId": "getTeam",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/teams/{teamId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "updateTeam",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/teams/{teamId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "deleteTeam",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/teams/{teamId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getTeamSummary",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/teams/{teamId}/summary",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listTasks",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getTaskSummary",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/summary",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getTask",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "resolveTaskKey",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/task-keys/{taskKey}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "createTask",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200,
+        201
+      ]
+    },
+    {
+      "operationId": "updateTask",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "setTaskCompletion",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/completion",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "moveTask",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/move",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "duplicateTask",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/duplicate",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "archiveTask",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/archive",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "restoreTask",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/restore",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "restoreDeletedTask",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/restore-deleted",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "deleteTask",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "bulkMutateTasks",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/bulk",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "createSubtask",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/subtasks",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        201
+      ]
+    },
+    {
+      "operationId": "updateSubtask",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/subtasks/{subtaskId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "deleteSubtask",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/subtasks/{subtaskId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "promoteSubtask",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/subtasks/{subtaskId}/promote",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "undoCommand",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/undo/{undoId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listComments",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/comments",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "createComment",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/tasks/{taskId}/comments",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        201
+      ]
+    },
+    {
+      "operationId": "deleteComment",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/comments/{commentId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "restoreDeletedComment",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/comments/{commentId}/restore-deleted",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "addCommentReaction",
+      "method": "PUT",
+      "path": "/api/v1/workspaces/{workspaceId}/comments/{commentId}/reactions/{reactionKey}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "removeCommentReaction",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/comments/{commentId}/reactions/{reactionKey}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listActivity",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/activity",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listNotifications",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/notifications",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "updateNotification",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/notifications/{notificationId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "readAllNotifications",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/notifications/read-all",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listSavedViews",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/views",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "createSavedView",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/views",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        201
+      ]
+    },
+    {
+      "operationId": "updateSavedView",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/views/{viewId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "deleteSavedView",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/views/{viewId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "addTaskFavorite",
+      "method": "PUT",
+      "path": "/api/v1/workspaces/{workspaceId}/me/task-favorites/{taskId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "removeTaskFavorite",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/me/task-favorites/{taskId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "addProjectFavorite",
+      "method": "PUT",
+      "path": "/api/v1/workspaces/{workspaceId}/me/project-favorites/{projectId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "removeProjectFavorite",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/me/project-favorites/{projectId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "updateProjectOrder",
+      "method": "PUT",
+      "path": "/api/v1/workspaces/{workspaceId}/me/project-order",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listProjectFiles",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/files",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getFile",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/files/{fileId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "renameFile",
+      "method": "PATCH",
+      "path": "/api/v1/workspaces/{workspaceId}/files/{fileId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "duplicateFile",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/files/{fileId}/duplicate",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "deleteFile",
+      "method": "DELETE",
+      "path": "/api/v1/workspaces/{workspaceId}/files/{fileId}",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "restoreDeletedFile",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/files/{fileId}/restore-deleted",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "uploadProjectFile",
+      "method": "POST",
+      "path": "/api/v1/workspaces/{workspaceId}/projects/{projectId}/files",
+      "transport": "json",
+      "requestMediaType": "multipart/form-data",
+      "successStatuses": [
+        200,
+        201
+      ]
+    },
+    {
+      "operationId": "getFileContent",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/files/{fileId}/content",
+      "transport": "bytes",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getHome",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/home",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "getOverview",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/overview",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "search",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/search",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listCalendarEvents",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/calendar-events",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listMilestones",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/milestones",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    },
+    {
+      "operationId": "listArchive",
+      "method": "GET",
+      "path": "/api/v1/workspaces/{workspaceId}/archive",
+      "transport": "json",
+      "requestMediaType": "application/json",
+      "successStatuses": [
+        200
+      ]
+    }
+  ]
+}

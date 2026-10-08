@@ -1,0 +1,91 @@
+{
+  "unit": "WU-02",
+  "date": "2026-10-08",
+  "status": "passed",
+  "startedFrom": "6b4d72e50d0962b0e24df8ba39e79a954d5691a8",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "commands": [
+    {
+      "command": "pnpm contracts:consumers && pnpm typecheck",
+      "exitStatus": 0,
+      "result": "Sample web/mock/Worker imports and 5 workspace packages pass",
+      "evidence": "typecheck.log"
+    },
+    {
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "result": "ESLint + shared package import boundaries pass",
+      "evidence": "lint.log"
+    },
+    {
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "result": "5 packages pass; Worker dry-run only",
+      "evidence": "build.log"
+    },
+    {
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "result": "93 contracts + 2 web env + 3 reference comparator + 1 package boundary tests pass; fixture generation drift check passes",
+      "evidence": "test.log"
+    },
+    {
+      "command": "pnpm contracts:coverage -- --write",
+      "exitStatus": 0,
+      "result": "83/83 canonical method/path pairs, 6 explicit operation IDs",
+      "evidence": "operation-coverage.json"
+    },
+    {
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "result": "86 tracked source files verified, working tree clean",
+      "evidence": "reference-check.log"
+    }
+  ],
+  "fixture": {
+    "sourceFixtureSha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "identityCount": 156,
+    "taskCount": 49,
+    "generatedSourceSha256": "0aa748895672d70f64dd6a23eb2d119529c67c06503f86a88a2c98375b774201"
+  },
+  "negativeChecks": [
+    "invalid Gregorian dates/leap dates",
+    "UTC-only instant",
+    "null vs omission vs explicit undefined PATCH",
+    "unknown server-owned mutation fields",
+    "UUIDv7 and positive safe entity versions",
+    "closed enums",
+    "cursor alphabet/size/page limit/query ranges",
+    "full summary pagination forbidden",
+    "duplicate/order/bulk target limits",
+    "required complete-column scope and done-only archive",
+    "restricted private DTO child rejection",
+    "external capabilities cannot be implemented",
+    "full view dedupe/count/cursor exhaustion",
+    "typed bounded errors and Undo",
+    "file metadata/10MiB upload"
+  ],
+  "failedAttemptsResolved": [
+    "Zod4 partial() on refined date-range object throws; construct optional milestone shape before adding range refinement",
+    "Identity count assertion was 135; locked fixture contains 156 IDs including profile/subtask/milestone identities",
+    "Lint rejected empty StudioApi interface; explicit typed session member plus inferred complete operations resolves"
+  ],
+  "nodeTestRunner": "Default child isolation reported file-level failure without individual assertion; isolation=none reports all 93 actual cases. This changes reporting/process isolation, not test inventory or assertions.",
+  "notRunOrNotApplicable": [
+    "UI/browser/pixel parity (contract-only work; Darwin baseline unchanged)",
+    "business HTTP endpoint/migration/localD1/R2 semantics (later units)",
+    "CI/remote deployment"
+  ],
+  "prePush": {
+    "remote": "https://github.com/hoa00/task8.git",
+    "localBranch": "work",
+    "targetRef": "main",
+    "localHead": "6b4d72e50d0962b0e24df8ba39e79a954d5691a8",
+    "remoteHead": "6b4d72e50d0962b0e24df8ba39e79a954d5691a8",
+    "leftRightCount": [
+      0,
+      0
+    ]
+  },
+  "blockers": []
+}

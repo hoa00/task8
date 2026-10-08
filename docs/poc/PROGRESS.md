@@ -2,8 +2,8 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-01` — **DONE**.
-- Last completed implementation unit: `WU-01`.
+- Current work unit: `WU-02` — **DONE**.
+- Last completed implementation unit: `WU-02`.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
 - Target React app: workspace/React entry và file router skeleton đã build/typecheck; chưa có UI nghiệp vụ.
@@ -17,7 +17,7 @@
 | --- | --- | --- | --- |
 | [WU-00](work-units/WU-00.md) | DONE | `8310612c8fc59f5e9b57940d06ee28b0220aa1c4` | [Runner](reference/CAPTURE.md), [repeatability](reference/repeatability.json), [inspection](reference/review/inspection.json); đã push repo private hoa00/task8, xem bổ sung bên dưới |
 | [WU-01](work-units/WU-01.md) | DONE | `8e672a666bd03e4318205163286be8d8c296e567` | [Clean gates](evidence/WU-01/clean-typecheck.log), [graph/bundle](evidence/WU-01/workspace-artifacts.json), [source smoke](evidence/WU-01/source-smoke.json) |
-| [WU-02](work-units/WU-02.md) | NOT_STARTED | — | — |
+| [WU-02](work-units/WU-02.md) | DONE | pending commit | [Verification](evidence/WU-02/verification.json), [83-operation coverage](evidence/WU-02/operation-coverage.json), [93 contract tests](evidence/WU-02/test.log) |
 | [WU-03](work-units/WU-03.md) | NOT_STARTED | — | — |
 | [WU-04](work-units/WU-04.md) | NOT_STARTED | — | — |
 | [WU-05](work-units/WU-05.md) | NOT_STARTED | — | — |
@@ -148,3 +148,23 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - Commit: `8e672a666bd03e4318205163286be8d8c296e567` — `chore: establish pnpm workspace and build foundation for WU-01`. Entry này ghi checkpoint/push đã xác minh trong commit documentation kế tiếp.
 - Push: `git push origin HEAD:main` exit 0 đến repo private `hoa00/task8`; remote `main` trước push bằng starting HEAD `7027697a3dcfab25e4c1513cab495453c5c389b7`, sau push `git ls-remote origin refs/heads/main` bằng checkpoint `8e672a666bd03e4318205163286be8d8c296e567`. Không force-push; branch local vẫn `work`. Commit documentation này cũng được push bình thường sau khi ghi evidence.
 - Next permitted unit: `WU-02`; dừng sau checkpoint/push WU-01, chưa thực hiện unit sau.
+
+
+## WU-02 — 2026-10-08
+
+- Status: `DONE` — WU-02-AC1/2/3/4 và verification bắt buộc đạt; chờ ghi SHA/push thực sau commit.
+- Started from: branch `work`, HEAD `6b4d72e50d0962b0e24df8ba39e79a954d5691a8`, working tree sạch; WU-00/01 DONE có code/evidence. Read-set AGENTS/PROGRESS/WU-02, API_CONTRACT, DATA_MODEL, DECISIONS, ARCHITECTURE và source constants/store/seed/view-engine tại SHA khóa đã đọc; đọc thêm template/popover/settings chỉ để xác minh catalogs/preferences/reactions hiện hữu.
+- Completed / AC1: `@studio/contracts` xuất Zod schemas và inferred DTO/enums/request/query/error/response; không Hono/Drizzle/React/Worker bindings. Sample consumers web, mock, Worker import chính `@studio/contracts`; build ESM/declarations thật, không endpoint/mock adapter/migration được triển khai sớm.
+- AC2: DateOnly kiểm tra Gregorian/leap year thật (2026-02-30 reject); Instant chỉ UTC Z; UUIDv7 IDs và version integer dương/safe. `assigneeId`/`leadId` là membership, khác profile user ID. PATCH strict, absent giữ/null xóa, explicit undefined không tính field thay đổi; client không ghi server fields. Nullable date/order và full-view complete/dedupe/exact-count/cursor exhaustion có schema rõ.
+- AC3: `StudioApi` và manifest đủ 83 HTTP method/path pairs (mở rộng GET/PATCH, PUT/DELETE; dedupe bảng Undo), 6 operation IDs được contract chỉ đích danh giữ nguyên. External provisioning/invitations/sharing/authentication/security/billing chỉ demoOnly/unavailable; không có live success contracts cho các dịch vụ này. Upload normalized binary input map tới multipart; content là binary response riêng, không JSON bytes giả.
+- AC4: 83 request/response example pairs parse; focused errors/Undo/bulk/column/order/restricted/full-view fixtures typed và closed. Ngoại lệ dictionary duy nhất là `fieldErrors` theo đúng API_CONTRACT với string-array values có giới hạn; DTO/bulk/order/Undo/activity payload không dùng any/free Record. Không xuất OpenAPI riêng để tạo nguồn enum thứ hai.
+- Contract/data evidence: [operation coverage](evidence/WU-02/operation-coverage.json), [verification summary](evidence/WU-02/verification.json), `tests/contracts/{fixtures,operation-samples,validation.test,operations.test,coverage}.ts`. Generated `packages/contracts/src/source-identities.ts` có 156 UUIDv7 identities từ SHA-256 namespace/collection/sourceId, epoch fixture cố định; 49 task keys/titles/relations nguyên vẹn, user/member namespace tách riêng. Source fixture hash `8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80`; generator `--check` pass. Không sửa fixture/identity map/baseline WU-00.
+- Files changed: `packages/contracts/src/{primitives,catalogs,queries,models,inputs,operations,source-identities,index}.ts`, package README/scripts/tsconfig; `tests/contracts/**`, `apps/web/tests/contracts.{web,mock}.ts`, `apps/api/tests/contracts.api.ts`; root test/coverage/consumer scripts và ESLint test scope; `docs/poc/evidence/WU-02/**`, PROGRESS. Dependencies/pnpm-lock không đổi.
+- Verification: `pnpm contracts:consumers && pnpm typecheck` exit 0, sample FE/mock/BE (có negative compile assertions) và 5 workspace packages ([log](evidence/WU-02/typecheck.log)); `pnpm lint` exit 0, package boundary pass ([log](evidence/WU-02/lint.log)); `pnpm build` exit 0/5 packages, Wrangler deploy --dry-run không deploy ([log](evidence/WU-02/build.log)); `pnpm test` exit 0, contracts 93/93 + env2 + comparator3 + boundary1 và generator drift check ([log](evidence/WU-02/test.log)); `pnpm contracts:coverage -- --write` exit 0/83 expected=83 actual từ markdown độc lập ([log](evidence/WU-02/coverage.log)); `pnpm reference:check` exit 0/86 files/source clean ([log](evidence/WU-02/reference-check.log)). `git diff --check` trước stage exit 0; staged check ban đầu phát hiện 2 log có blank line cuối; đã normalize log EOF và staged check cuối exit 0.
+- Decisions/conflicts: API chỉ định đầy đủ một số DTO; các projection còn mô tả bằng prose được chốt thành explicit schemas trong models/README, không DB rows/HTML presentation. Catalog label/template IDs là closed stable keys, entity IDs UUIDv7. Notification preferences dùng lowerCamelCase, source snake_case chỉ mapper chuyển. Date-only validation không thực thi recurrence/filter/order business algorithms của unit sau. Shape schema không chứng minh relationship scope/access, không sanitizer; adapter/service của WU tương ứng phải kiểm tra retained date counterpart, membership/authorization, opaque cursor fingerprint, sanitized HTML và atomic/version guards. TaskIdMap là typed source/target entry array, không arbitrary record.
+- Failed attempts resolved: Zod4 `.partial()` trên refined date-range schema gây import-time error → lấy strict shape rồi partial/refine; assertion identity count nhầm 135 → xác minh actual locked fixture 156; lint no-empty-object-type với interface rỗng → explicit typed session member trong interface kế thừa đầy đủ mapped operations. Default Node child isolation chỉ báo file-level results; `--test-isolation=none` hiển thị cả 93 cases và assertion chi tiết, không bỏ tests/thay semantics. Undefined-only PATCH concern từ review đã sửa và negative test pass.
+- Environment: Node24.13.0/pnpm11.19.0 trên Linux, giữ proxy/CA/XDG runtime config WU-01. Không chạy UI/interaction/pixel parity, business HTTP/localD1/R2/migration/CI/deployment vì không thuộc WU-02; Darwin raster baseline giữ nguyên.
+- Blockers: không có blocker WU-02. Source design/logo rights audit lịch sử không thay đổi; không publish. Environment parity constraint tiếp tục theo evidence WU-01.
+- Commit: chưa commit tại thời điểm ghi entry; sẽ thay bằng SHA thật sau thành công.
+- Push: trước commit đã fetch origin/main và kiểm tra target `https://github.com/hoa00/task8.git`, local `work`, target `main`; local/remote đều `6b4d72e50d0962b0e24df8ba39e79a954d5691a8`, divergence 0/0. Chưa push entry này; sẽ ghi kết quả thực sau normal HEAD:main push, không force.
+- Next permitted unit: `WU-03`; WU-02 dừng sau commit/push, chưa thực hiện unit sau.

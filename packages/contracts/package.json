@@ -11,7 +11,10 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test --test-isolation=none ../../tests/contracts/*.test.ts && node ../../tests/contracts/generate-source-identities.mjs --check",
+    "test:coverage": "node --experimental-strip-types ../../tests/contracts/coverage.ts",
+    "typecheck:consumers": "tsc -p ../../tests/contracts/tsconfig.json --noEmit"
   },
   "dependencies": {
     "zod": "4.6.5"

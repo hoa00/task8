@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "ES2022"
+    ],
+    "types": [
+      "node"
+    ],
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "./**/*.ts",
+    "../../packages/contracts/src/**/*.ts",
+    "../../apps/web/tests/contracts.*.ts",
+    "../../apps/api/tests/contracts.*.ts"
+  ]
+}

@@ -1,0 +1,23 @@
+$ pnpm --filter @studio/contracts typecheck:consumers
+$ tsc -p ../../tests/contracts/tsconfig.json --noEmit
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache miss, executing 3566ae24f5a30dee
+@studio/ui:typecheck: cache hit, replaying logs 637ad927051a6b0f
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache miss, executing 47785c3d4c56e74a
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache miss, executing b66ff4747ddd7d01
+@studio/web:typecheck: cache miss, executing f76579aa1b692532
+@studio/web:typecheck: $ tsc --noEmit
+@studio/api:typecheck: $ tsc --noEmit
+
+ Tasks:    5 successful, 5 total
+Cached:    1 cached, 5 total
+  Time:    3.951s
