@@ -17,7 +17,7 @@
 | --- | --- | --- | --- |
 | [WU-00](work-units/WU-00.md) | DONE | `8310612c8fc59f5e9b57940d06ee28b0220aa1c4` | [Runner](reference/CAPTURE.md), [repeatability](reference/repeatability.json), [inspection](reference/review/inspection.json); đã push repo private hoa00/task8, xem bổ sung bên dưới |
 | [WU-01](work-units/WU-01.md) | DONE | `8e672a666bd03e4318205163286be8d8c296e567` | [Clean gates](evidence/WU-01/clean-typecheck.log), [graph/bundle](evidence/WU-01/workspace-artifacts.json), [source smoke](evidence/WU-01/source-smoke.json) |
-| [WU-02](work-units/WU-02.md) | DONE | pending commit | [Verification](evidence/WU-02/verification.json), [83-operation coverage](evidence/WU-02/operation-coverage.json), [93 contract tests](evidence/WU-02/test.log) |
+| [WU-02](work-units/WU-02.md) | DONE | `cdd255d332b87a9e27ec84411ee853257a0d4009` | [Verification](evidence/WU-02/verification.json), [83-operation coverage](evidence/WU-02/operation-coverage.json), [93 contract tests](evidence/WU-02/test.log) |
 | [WU-03](work-units/WU-03.md) | NOT_STARTED | — | — |
 | [WU-04](work-units/WU-04.md) | NOT_STARTED | — | — |
 | [WU-05](work-units/WU-05.md) | NOT_STARTED | — | — |
@@ -152,7 +152,7 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 
 ## WU-02 — 2026-10-08
 
-- Status: `DONE` — WU-02-AC1/2/3/4 và verification bắt buộc đạt; chờ ghi SHA/push thực sau commit.
+- Status: `DONE` — WU-02-AC1/2/3/4 và verification bắt buộc đạt; implementation đã commit/push và SHA đã kiểm chứng.
 - Started from: branch `work`, HEAD `6b4d72e50d0962b0e24df8ba39e79a954d5691a8`, working tree sạch; WU-00/01 DONE có code/evidence. Read-set AGENTS/PROGRESS/WU-02, API_CONTRACT, DATA_MODEL, DECISIONS, ARCHITECTURE và source constants/store/seed/view-engine tại SHA khóa đã đọc; đọc thêm template/popover/settings chỉ để xác minh catalogs/preferences/reactions hiện hữu.
 - Completed / AC1: `@studio/contracts` xuất Zod schemas và inferred DTO/enums/request/query/error/response; không Hono/Drizzle/React/Worker bindings. Sample consumers web, mock, Worker import chính `@studio/contracts`; build ESM/declarations thật, không endpoint/mock adapter/migration được triển khai sớm.
 - AC2: DateOnly kiểm tra Gregorian/leap year thật (2026-02-30 reject); Instant chỉ UTC Z; UUIDv7 IDs và version integer dương/safe. `assigneeId`/`leadId` là membership, khác profile user ID. PATCH strict, absent giữ/null xóa, explicit undefined không tính field thay đổi; client không ghi server fields. Nullable date/order và full-view complete/dedupe/exact-count/cursor exhaustion có schema rõ.
@@ -165,6 +165,6 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - Failed attempts resolved: Zod4 `.partial()` trên refined date-range schema gây import-time error → lấy strict shape rồi partial/refine; assertion identity count nhầm 135 → xác minh actual locked fixture 156; lint no-empty-object-type với interface rỗng → explicit typed session member trong interface kế thừa đầy đủ mapped operations. Default Node child isolation chỉ báo file-level results; `--test-isolation=none` hiển thị cả 93 cases và assertion chi tiết, không bỏ tests/thay semantics. Undefined-only PATCH concern từ review đã sửa và negative test pass.
 - Environment: Node24.13.0/pnpm11.19.0 trên Linux, giữ proxy/CA/XDG runtime config WU-01. Không chạy UI/interaction/pixel parity, business HTTP/localD1/R2/migration/CI/deployment vì không thuộc WU-02; Darwin raster baseline giữ nguyên.
 - Blockers: không có blocker WU-02. Source design/logo rights audit lịch sử không thay đổi; không publish. Environment parity constraint tiếp tục theo evidence WU-01.
-- Commit: chưa commit tại thời điểm ghi entry; sẽ thay bằng SHA thật sau thành công.
-- Push: trước commit đã fetch origin/main và kiểm tra target `https://github.com/hoa00/task8.git`, local `work`, target `main`; local/remote đều `6b4d72e50d0962b0e24df8ba39e79a954d5691a8`, divergence 0/0. Chưa push entry này; sẽ ghi kết quả thực sau normal HEAD:main push, không force.
+- Commit: `cdd255d332b87a9e27ec84411ee853257a0d4009` — `feat: define runtime API contracts and locked fixture identities for WU-02`. Entry checkpoint này nằm trong documentation commit kế tiếp.
+- Push: target `https://github.com/hoa00/task8.git`, local `work`, target `main`. Preflight fetch có HEAD/origin/main cùng `6b4d72e50d0962b0e24df8ba39e79a954d5691a8`, divergence 0/0; trước implementation push có ahead1/behind0 và origin/main là ancestor. `git push origin HEAD:main` exit 0; `git ls-remote origin refs/heads/main` sau push đúng `cdd255d332b87a9e27ec84411ee853257a0d4009`, trùng local HEAD, worktree sạch. Không force-push. Documentation entry này tiếp tục được commit/push theo cùng quy tắc, kết quả final báo SHA head thực sau verify.
 - Next permitted unit: `WU-03`; WU-02 dừng sau commit/push, chưa thực hiện unit sau.

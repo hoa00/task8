@@ -40,6 +40,11 @@
       "exitStatus": 0,
       "result": "86 tracked source files verified, working tree clean",
       "evidence": "reference-check.log"
+    },
+    {
+      "command": "git diff --cached --check",
+      "exitStatus": 0,
+      "result": "Pass after normalizing log EOF"
     }
   ],
   "fixture": {
@@ -87,5 +92,17 @@
       0
     ]
   },
-  "blockers": []
+  "blockers": [],
+  "implementationCommit": "cdd255d332b87a9e27ec84411ee853257a0d4009",
+  "implementationPush": {
+    "command": "git push origin HEAD:main",
+    "exitStatus": 0,
+    "remoteSha": "cdd255d332b87a9e27ec84411ee853257a0d4009",
+    "verifiedBy": "git ls-remote origin refs/heads/main",
+    "divergenceBefore": [
+      1,
+      0
+    ],
+    "worktreeCleanAfter": true
+  }
 }
