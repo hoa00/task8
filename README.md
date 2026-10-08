@@ -1,0 +1,67 @@
+# Gr8r Studio → React: bộ handoff cho Codex
+
+**Ngày lập:** 08/10/2026. **Trạng thái:** tài liệu thiết kế và triển khai; ứng dụng React/backend chưa được viết trong bộ bàn giao này.
+
+Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương tác của Gr8r Studio sang **React + TypeScript + Vite + TanStack Router + Tailwind CSS**, tổ chức component dùng lại theo chức năng, và chuẩn bị contract để backend **Hono + Drizzle ORM + Cloudflare D1** thay mock mà không phải viết lại màn hình.
+
+## Các quyết định đã chốt
+
+| Nội dung | Quyết định |
+| --- | --- |
+| Fidelity | Giữ cấu trúc màn hình, thứ tự điều hướng, nội dung tiếng Anh, token, font, icon, spacing, responsive và tương tác hiện có. Baseline là source cố định, không phải ảnh tự tạo từ React. |
+| Tailwind | Dùng ngay từ component React đầu tiên. Chuyển style thành utilities/token chính xác; không nhập nguyên bộ CSS legacy vào target. CSS nền/token, pseudo-element, scrollbar, keyframes và tọa độ động vẫn được phép có phạm vi rõ ràng. |
+| Frontend | React SPA, TypeScript strict, Vite, TanStack Router file routing, TanStack Query cho server state. |
+| Workspace | pnpm + Turborepo; `apps/web`, `apps/api`, `packages/ui`, `packages/contracts`, `packages/domain`. Chưa publish npm package. |
+| API | Contract được triển khai trước tính năng. Mock và HTTP dùng cùng DTO, validation và operation semantics. Backend Hono + Drizzle SQLite/D1, R2 dành cho bytes tệp ở mốc backend. |
+| Mức sản phẩm | POC gọn về tính năng mở rộng, nhưng đầy đủ bề mặt giao diện nguồn. Module boundaries, contracts, data ownership phải sạch ngay từ đầu. |
+| Auth và dịch vụ ngoài | API POC dùng danh tính phát triển cấu hình ở server local. Màn auth/billing/security của source vẫn được giữ để demo; chưa có đăng nhập nhà cung cấp, email, 2FA hoặc thanh toán thật. |
+| Thứ tự | Chứng minh Task List → Drawer → Board trước; phủ toàn bộ UI; sau đó nối API/D1/R2 thật và nghiệm thu liên màn hình. |
+
+## Đọc bộ tài liệu theo vai trò
+
+**Hòa xem phạm vi và quyết định:** [GOAL.md](docs/poc/GOAL.md), [REFERENCE_AUDIT.md](docs/poc/REFERENCE_AUDIT.md), [ROADMAP.md](docs/poc/ROADMAP.md), [DECISIONS.md](docs/poc/DECISIONS.md).
+
+**Codex triển khai:** đọc [AGENTS.md](AGENTS.md), [PROGRESS.md](docs/poc/PROGRESS.md), [WORK_UNIT_PROMPT.md](docs/poc/WORK_UNIT_PROMPT.md), rồi đúng file `docs/poc/work-units/WU-NN.md` được giao. Read-set trong từng unit giới hạn tài liệu cần nạp; không đọc và thực hiện cả roadmap trong một session.
+
+**Thiết kế component:** [ARCHITECTURE.md](docs/poc/ARCHITECTURE.md), [COMPONENT_CATALOG.md](docs/poc/COMPONENT_CATALOG.md), [SCREEN_INVENTORY.md](docs/poc/SCREEN_INVENTORY.md), [TOOLCHAIN.md](docs/poc/TOOLCHAIN.md).
+
+**Backend và dữ liệu:** [API_CONTRACT.md](docs/poc/API_CONTRACT.md), [DATA_MODEL.md](docs/poc/DATA_MODEL.md), [BACKEND_SCOPE.md](docs/poc/BACKEND_SCOPE.md).
+
+**Kiểm chứng:** [VISUAL_PARITY.md](docs/poc/VISUAL_PARITY.md), [ACCEPTANCE.md](docs/poc/ACCEPTANCE.md), [reference/source-lock.json](docs/poc/reference/source-lock.json).
+
+**Tình trạng bộ bàn giao:** [HANDOFF_REVIEW.md](docs/poc/HANDOFF_REVIEW.md) ghi những gì đã kiểm tra và những gate ứng dụng vẫn chờ triển khai; [handoff-manifest.json](docs/poc/reference/handoff-manifest.json) chứa checksum của bộ tài liệu ban đầu.
+
+## Bắt đầu một session Codex
+
+Giải nén ZIP, rồi chép **nội dung bên trong thư mục `gr8r-react-handoff/`** vào root của repo đích do Hòa sở hữu, để `AGENTS.md` và `docs/poc/` nằm đúng vị trí. Nếu repo đã có `AGENTS.md` hoặc tài liệu cùng đường dẫn, đối chiếu và hợp nhất các quy tắc phù hợp với nhiệm vụ, không ghi đè nội dung hiện hữu một cách mù quáng. Repo nguồn dùng làm đối chiếu read-only ở thư mục `.reference/gr8r-studio`, không trở thành `origin` dùng để push.
+
+```text
+Implement WU-00 from docs/poc/work-units/WU-00.md.
+Read AGENTS.md and docs/poc/PROGRESS.md first.
+Inspect the current implementation and verify prerequisites.
+Give a concise 3–7 step plan, then implement immediately in this session.
+Run the required verification, update docs/poc/PROGRESS.md,
+report the result, commit the work-unit changes, push the configured
+user-owned target main branch when available, and stop.
+Do not implement later work units.
+Respond in Vietnamese.
+```
+
+Dùng một session mới cho unit kế tiếp. Nếu unit chưa đạt, tiếp tục chính unit đó; không tăng số unit chỉ vì session đã kết thúc.
+
+## Source và giới hạn bằng chứng hiện tại
+
+- Repo: [gr8rstudio/gr8r-studio](https://github.com/gr8rstudio/gr8r-studio).
+- Commit cố định: [`904205c626918ee96054eb35495c394a60c0c601`](https://github.com/gr8rstudio/gr8r-studio/commit/904205c626918ee96054eb35495c394a60c0c601), ngày commit 07/10/2026 UTC.
+- Đã clone, đọc source, kiểm tra cấu trúc và build source thành công bằng lockfile gốc. Đã xem ảnh preview trong repo.
+- Chưa có bộ screenshot runtime đầy đủ; chưa có target để so ảnh. **Không đánh dấu pixel-perfect đã đạt.** WU-00 phải tạo và kiểm tra baseline trước khi triển khai UI.
+- Source có 21 route key render, 8 tab project cố định, saved views List/Board/Table, 21 section Settings, 7 trạng thái auth và onboarding 6 bước. Chi tiết trong screen inventory.
+- Ở snapshot này không có khai báo license rõ trong README/package.json, không có LICENSE trong tree và metadata GitHub trả `license: null`. Đây là việc cần xác nhận về quyền sử dụng/phân phối, không phải giấy phép được bộ handoff tự cấp. Xem [UPSTREAM_NOTICE.md](UPSTREAM_NOTICE.md).
+
+## Mốc bàn giao
+
+1. **M1 — POC component và fidelity:** hoàn tất WU-00…WU-12, có shell, bộ UI, contract/mock, Task List, Task Drawer và Board dùng cùng dữ liệu/component.
+2. **M2 — Full UI parity:** hoàn tất WU-13…WU-29, toàn bộ screen/state inventory có đối chiếu nguồn và interaction evidence.
+3. **M3 — Backend POC:** hoàn tất WU-30…WU-36, cùng frontend chạy HTTP → Hono → D1, tệp R2 local và các kiểm tra dữ liệu cần thiết.
+
+Chưa có work unit triển khai nào được đánh dấu hoàn tất chỉ dựa vào hoạt động phân tích này.
