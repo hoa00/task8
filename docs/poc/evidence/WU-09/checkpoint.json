@@ -1,0 +1,52 @@
+{
+  "unit": "WU-09",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "startedFrom": "05df91179692c109969c3b8a797dcb76653e73a2",
+  "branch": "work",
+  "origin": "https://github.com/hoa00/task8.git",
+  "preflight": {
+    "fetchExitStatus": 0,
+    "startingDivergence": {
+      "ahead": 0,
+      "behind": 0
+    },
+    "preImplementationPushDivergence": {
+      "ahead": 1,
+      "behind": 0
+    },
+    "remoteMainIsAncestor": true
+  },
+  "implementationCommit": "1ec030c3966b5ce534880e196c00866e6b7adcf2",
+  "implementationCommitSubject": "feat: add shared task lists and canonical commands for WU-09",
+  "push": {
+    "command": "git push origin HEAD:main",
+    "exitStatus": 0,
+    "force": false,
+    "remoteMainVerifiedWith": "git ls-remote origin refs/heads/main",
+    "verifiedRemoteMain": "1ec030c3966b5ce534880e196c00866e6b7adcf2",
+    "localHead": "1ec030c3966b5ce534880e196c00866e6b7adcf2",
+    "workingTreeCleanAfterPush": true
+  },
+  "acceptance": {
+    "gates": 12,
+    "visualSamples": 96,
+    "changedPixels": 0,
+    "repeatabilityPixels": 0,
+    "listBrowserProbes": 10,
+    "affectedFieldProbes": 11,
+    "webTests": 41,
+    "contractTests": 93,
+    "httpGraphModules": 385,
+    "acceptedPngCount": 192,
+    "sourceReviewSheets": 24
+  },
+  "evidence": "docs/poc/evidence/WU-09/verification.json",
+  "documentationCheckpoint": "This record is committed after the verified implementation push; final docs HEAD/remote SHA are reported after the subsequent normal push.",
+  "pendingOwners": {
+    "WU-10": "Drawer content/full task form/description/context menu; reuse canonical intents, controlled fields and title-close seam",
+    "WU-11": "Full subtask CRUD/detail extends shared done-only parent-version aggregate",
+    "WU-16": "Full Project/saved wrappers; reuse existing List feature variants",
+    "laterChildMutations": "Retained relation/history/Undo require parent-version discipline"
+  },
+  "nextPermittedUnit": "WU-10"
+}
