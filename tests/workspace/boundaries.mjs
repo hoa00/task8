@@ -6,7 +6,7 @@ import ts from 'typescript';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const allowed = {
-  ui: new Set(['react']),
+  ui: new Set(['react', 'react-dom']),
   contracts: new Set(['zod']),
   domain: new Set(['@studio/contracts']),
 };

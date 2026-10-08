@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "typecheck.log"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "log": "build.log"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "log": "lint.log"
+    },
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "log": "test.log"
+    },
+    {
+      "command": "pnpm reference:check",
+      "exitCode": 0,
+      "log": "reference-check.log"
+    },
+    {
+      "command": "pnpm visual:overlays",
+      "exitCode": 0,
+      "log": "visual.log"
+    },
+    {
+      "command": "pnpm visual:overlays:motion",
+      "exitCode": 0,
+      "log": "motion.log"
+    },
+    {
+      "command": "pnpm test:overlays:lifecycle",
+      "exitCode": 0,
+      "log": "lifecycle.log"
+    },
+    {
+      "command": "pnpm visual:controls buttons",
+      "exitCode": 0,
+      "log": "buttons.log"
+    },
+    {
+      "command": "node tests/visual/overlays/review.mjs",
+      "exitCode": 0,
+      "log": "review.log"
+    }
+  ],
+  "scope": "WU-05 required gates and minimally reopened WU-04 Button only",
+  "wholeAppDarwinParity": false,
+  "deploy": false
+}

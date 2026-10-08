@@ -4,6 +4,7 @@ import { validateImport, checkBoundaries } from './boundaries.mjs';
 
 test('shared packages accept only their own dependency direction', () => {
   assert.doesNotThrow(() => validateImport('ui', 'react/jsx-runtime'));
+  assert.doesNotThrow(() => validateImport('ui', 'react-dom'));
   assert.doesNotThrow(() => validateImport('contracts', 'zod'));
   assert.doesNotThrow(() => validateImport('domain', '@studio/contracts'));
   for (const [owner, specifier] of [

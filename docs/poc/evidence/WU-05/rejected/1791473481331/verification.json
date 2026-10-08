@@ -1,0 +1,129 @@
+{
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "runtime": {
+    "node": "v24.13.0",
+    "os": "linux",
+    "arch": "x64",
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6",
+    "launchArgs": []
+  },
+  "samples": [
+    {
+      "id": "menu-light-indigo-1440",
+      "changedPixels": 3,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "3dccf97515f136a2fa2d54997b8ac634f47b02ed78c059c9f5fdb41704558ebf",
+      "targetSha256": "5bd4d7824a167dc51dccbf5aa9d9a00e7fe01f9a4c9adcb7141826d4e64c29e4"
+    },
+    {
+      "id": "menu-dark-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "468f25a6d632c469e862f798826828da1e7c59c72079273ee6205308bcafe53d",
+      "targetSha256": "468f25a6d632c469e862f798826828da1e7c59c72079273ee6205308bcafe53d"
+    },
+    {
+      "id": "modal-light-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "83ab7a3b93925b220ea76ce4dce2aff23684bd5d17715f1fa584bb173ed921c3",
+      "targetSha256": "83ab7a3b93925b220ea76ce4dce2aff23684bd5d17715f1fa584bb173ed921c3"
+    },
+    {
+      "id": "modal-dark-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "8ec09deb066710b95b2ac4bf913240affdc49a3f979742ce53ee6a1527e9a2e3",
+      "targetSha256": "8ec09deb066710b95b2ac4bf913240affdc49a3f979742ce53ee6a1527e9a2e3"
+    },
+    {
+      "id": "drawer-light-indigo-1440",
+      "changedPixels": 66,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "93970d6843bab0f5c65a482bf9bee4e00dde358541ad5336cacdf03bf22af94b",
+      "targetSha256": "4d8e74be6108fe644b85a8e219928661a3f522ebd49745221c4470fe13ee679e"
+    },
+    {
+      "id": "drawer-dark-indigo-1440",
+      "changedPixels": 66,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "c577f9e39b66e6cce8f5aa85a2d0dc6ebcd03080915418449934805a8b49580d",
+      "targetSha256": "5ea2a3bbaa4ad18f4357a8327f5b79d64211c3af4e96bad30ed79c13e35c6890"
+    }
+  ],
+  "probes": [
+    {
+      "id": "actual-source-opening-to-settled-render-motion",
+      "pass": true
+    }
+  ],
+  "immutableBefore": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "limitations": [
+    "Scoped Linux source-only overlay samples; immutable official Darwin173 baseline unchanged.",
+    "Source overlay responsive styles have no env safe-area offset; desktop mobile viewport cannot prove physical-device insets."
+  ],
+  "harnessAdjustments": [
+    "Settled-render source markup has no enter flags, matching actual source second render; opening timing is probed separately.",
+    "Independent generic content and shared sample geometry only; no source file/style/template edits.",
+    "Original source roots kept in hidden host; real overlays/toasts remain outside it.",
+    "Gallery QA visibility hidden only during viewport visual capture; restored before interactions.",
+    "Fresh contexts for every visual state; neutral pointer/layout flush/finite motion settlement; caret hide on both input focus samples."
+  ],
+  "sourceLifecycle": {
+    "modal": {
+      "opening": {
+        "className": "modal enter sm",
+        "animationName": "modalIn",
+        "duration": "0.26s",
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)"
+      },
+      "settled": {
+        "className": "modal sm",
+        "animationName": "none"
+      }
+    },
+    "popover": {
+      "opening": {
+        "className": "pop floating  enter",
+        "animationName": "popIn",
+        "duration": "0.16s",
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)"
+      },
+      "settled": {
+        "className": "pop floating  ",
+        "animationName": "none"
+      }
+    },
+    "drawer": {
+      "opening": {
+        "className": "drawer  enter ",
+        "animationName": "drawerIn",
+        "duration": "0.34s",
+        "easing": "cubic-bezier(0.32, 0.72, 0, 1)"
+      },
+      "settled": {
+        "className": "drawer   ",
+        "animationName": "none"
+      }
+    },
+    "reduced": {
+      "name": "fadeOnly",
+      "duration": "0.12s"
+    }
+  },
+  "status": "failed",
+  "error": "page.evaluate: Execution context was destroyed, most likely because of a navigation.\n    at ready (/workspace/task8/tests/visual/overlays/verify.mjs:20:39)\n    at capture (/workspace/task8/tests/visual/overlays/verify.mjs:22:82)\n    at async file:///workspace/task8/tests/visual/overlays/verify.mjs:58:5"
+}

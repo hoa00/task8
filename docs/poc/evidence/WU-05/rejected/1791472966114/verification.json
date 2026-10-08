@@ -1,0 +1,92 @@
+{
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "runtime": {
+    "node": "v24.13.0",
+    "os": "linux",
+    "arch": "x64",
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6",
+    "launchArgs": [
+      "--disable-gpu"
+    ]
+  },
+  "samples": [],
+  "probes": [
+    {
+      "id": "actual-source-opening-to-settled-render-motion",
+      "pass": true
+    },
+    {
+      "id": "menu-arrows-home-end-disabled-enter-once",
+      "pass": true
+    },
+    {
+      "id": "modal-popup-topmost-escape-return",
+      "pass": true
+    },
+    {
+      "id": "nested-confirm-escape-one-layer-z63-return",
+      "pass": true
+    },
+    {
+      "id": "draft-preserved-focus-trap-wrap",
+      "pass": true
+    }
+  ],
+  "immutableBefore": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "limitations": [
+    "Scoped Linux source-only overlay samples; immutable official Darwin173 baseline unchanged.",
+    "Source overlay responsive styles have no env safe-area offset; desktop mobile viewport cannot prove physical-device insets."
+  ],
+  "harnessAdjustments": [
+    "Settled-render source markup has no enter flags, matching actual source second render; opening timing is probed separately.",
+    "Independent generic content and shared sample geometry only; no source file/style/template edits.",
+    "Original source roots kept in hidden host; real overlays/toasts remain outside it.",
+    "Gallery QA visibility hidden only during viewport visual capture; restored before interactions.",
+    "Fresh contexts for every visual state; neutral pointer/layout flush/finite motion settlement; caret hide on both input focus samples."
+  ],
+  "sourceLifecycle": {
+    "modal": {
+      "opening": {
+        "className": "modal enter sm",
+        "animationName": "modalIn",
+        "duration": "0.26s",
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)"
+      },
+      "settled": {
+        "className": "modal sm",
+        "animationName": "none"
+      }
+    },
+    "popover": {
+      "opening": {
+        "className": "pop floating  enter",
+        "animationName": "popIn",
+        "duration": "0.16s",
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)"
+      },
+      "settled": {
+        "className": "pop floating  ",
+        "animationName": "none"
+      }
+    },
+    "reduced": {
+      "name": "fadeOnly",
+      "duration": "0.12s"
+    }
+  },
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   979.1709999990417\n-   null\n  ]\n\n    at file:///workspace/task8/tests/visual/overlays/verify.mjs:66:188"
+}

@@ -1,0 +1,552 @@
+{
+  "environment": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "control": "Web Animations API pause/currentTime only on the selected original overlay CSS animations; unrelated input focus transitions settle concurrently; no stylesheet/keyframe changes",
+  "cases": [
+    {
+      "id": "modal-full",
+      "source": {
+        "duration": 260,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "modalIn"
+      },
+      "target": {
+        "duration": 260,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "ui-modal-in"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "modal-full-0-source.png",
+          "target": "modal-full-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "matrix(0.97, 0, 0, 0.97, 0, 8)"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "modal-full-0.5-source.png",
+          "target": "modal-full-0.5-target.png",
+          "computed": {
+            "opacity": "0.965983",
+            "transform": "matrix(0.998979, 0, 0, 0.998979, 0, 0.27214)"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "modal-full-0.99-source.png",
+          "target": "modal-full-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 9.54476e-07)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "modal-system",
+      "source": {
+        "duration": 260,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "modalIn"
+      },
+      "target": {
+        "duration": 260,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "ui-modal-in"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "modal-system-0-source.png",
+          "target": "modal-system-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "matrix(0.97, 0, 0, 0.97, 0, 8)"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "modal-system-0.5-source.png",
+          "target": "modal-system-0.5-target.png",
+          "computed": {
+            "opacity": "0.965983",
+            "transform": "matrix(0.998979, 0, 0, 0.998979, 0, 0.27214)"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "modal-system-0.99-source.png",
+          "target": "modal-system-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, 9.54476e-07)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "modal-reduce",
+      "source": {
+        "duration": 120,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "fadeOnly"
+      },
+      "target": {
+        "duration": 120,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "fadeOnly"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "modal-reduce-0-source.png",
+          "target": "modal-reduce-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "none"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "modal-reduce-0.5-source.png",
+          "target": "modal-reduce-0.5-target.png",
+          "computed": {
+            "opacity": "0.965983",
+            "transform": "none"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "modal-reduce-0.99-source.png",
+          "target": "modal-reduce-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "none"
+          }
+        }
+      ]
+    },
+    {
+      "id": "menu-full",
+      "source": {
+        "duration": 160,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "popIn"
+      },
+      "target": {
+        "duration": 160,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "ui-pop-in"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "menu-full-0-source.png",
+          "target": "menu-full-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "matrix(0.97, 0, 0, 0.97, 0, -4)"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "menu-full-0.5-source.png",
+          "target": "menu-full-0.5-target.png",
+          "computed": {
+            "opacity": "0.965983",
+            "transform": "matrix(0.998979, 0, 0, 0.998979, 0, -0.13607)"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "menu-full-0.99-source.png",
+          "target": "menu-full-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -4.77238e-07)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "menu-system",
+      "source": {
+        "duration": 160,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "popIn"
+      },
+      "target": {
+        "duration": 160,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "ui-pop-in"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "menu-system-0-source.png",
+          "target": "menu-system-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "matrix(0.97, 0, 0, 0.97, 0, -4)"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "menu-system-0.5-source.png",
+          "target": "menu-system-0.5-target.png",
+          "computed": {
+            "opacity": "0.965983",
+            "transform": "matrix(0.998979, 0, 0, 0.998979, 0, -0.13607)"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "menu-system-0.99-source.png",
+          "target": "menu-system-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "matrix(1, 0, 0, 1, 0, -4.77238e-07)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "menu-reduce",
+      "source": {
+        "duration": 120,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "fadeOnly"
+      },
+      "target": {
+        "duration": 120,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "name": "fadeOnly"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "menu-reduce-0-source.png",
+          "target": "menu-reduce-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "none"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "menu-reduce-0.5-source.png",
+          "target": "menu-reduce-0.5-target.png",
+          "computed": {
+            "opacity": "0.965983",
+            "transform": "none"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "menu-reduce-0.99-source.png",
+          "target": "menu-reduce-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "none"
+          }
+        }
+      ]
+    },
+    {
+      "id": "drawer-full",
+      "source": {
+        "duration": 340,
+        "easing": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "name": "drawerIn"
+      },
+      "target": {
+        "duration": 340,
+        "easing": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "name": "ui-drawer-in"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "drawer-full-0-source.png",
+          "target": "drawer-full-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "matrix(1, 0, 0, 1, 48, 0)"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "drawer-full-0.5-source.png",
+          "target": "drawer-full-0.5-target.png",
+          "computed": {
+            "opacity": "0.954809",
+            "transform": "matrix(1, 0, 0, 1, 2.16915, 0)"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "drawer-full-0.99-source.png",
+          "target": "drawer-full-0.99-target.png",
+          "computed": {
+            "opacity": "0.999991",
+            "transform": "matrix(1, 0, 0, 1, 0.000452268, 0)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "drawer-system",
+      "source": {
+        "duration": 340,
+        "easing": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "name": "drawerIn"
+      },
+      "target": {
+        "duration": 340,
+        "easing": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "name": "ui-drawer-in"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "drawer-system-0-source.png",
+          "target": "drawer-system-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "matrix(1, 0, 0, 1, 48, 0)"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "drawer-system-0.5-source.png",
+          "target": "drawer-system-0.5-target.png",
+          "computed": {
+            "opacity": "0.954809",
+            "transform": "matrix(1, 0, 0, 1, 2.16915, 0)"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "drawer-system-0.99-source.png",
+          "target": "drawer-system-0.99-target.png",
+          "computed": {
+            "opacity": "0.999991",
+            "transform": "matrix(1, 0, 0, 1, 0.000452268, 0)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "drawer-reduce",
+      "source": {
+        "duration": 120,
+        "easing": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "name": "fadeOnly"
+      },
+      "target": {
+        "duration": 120,
+        "easing": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "name": "fadeOnly"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "drawer-reduce-0-source.png",
+          "target": "drawer-reduce-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "none"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "drawer-reduce-0.5-source.png",
+          "target": "drawer-reduce-0.5-target.png",
+          "computed": {
+            "opacity": "0.954809",
+            "transform": "none"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "drawer-reduce-0.99-source.png",
+          "target": "drawer-reduce-0.99-target.png",
+          "computed": {
+            "opacity": "0.999991",
+            "transform": "none"
+          }
+        }
+      ]
+    },
+    {
+      "id": "toast-full",
+      "source": {
+        "duration": 200,
+        "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "name": "toastIn"
+      },
+      "target": {
+        "duration": 200,
+        "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "name": "ui-toast-in"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "toast-full-0-source.png",
+          "target": "toast-full-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "matrix(0.96, 0, 0, 0.96, 0, 14)"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "toast-full-0.5-source.png",
+          "target": "toast-full-0.5-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "matrix(1.0035, 0, 0, 1.0035, 0, -1.22361)"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "toast-full-0.99-source.png",
+          "target": "toast-full-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "matrix(1.00001, 0, 0, 1.00001, 0, -0.00199275)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "toast-system",
+      "source": {
+        "duration": 200,
+        "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "name": "toastIn"
+      },
+      "target": {
+        "duration": 200,
+        "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "name": "ui-toast-in"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "toast-system-0-source.png",
+          "target": "toast-system-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "matrix(0.96, 0, 0, 0.96, 0, 14)"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "toast-system-0.5-source.png",
+          "target": "toast-system-0.5-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "matrix(1.0035, 0, 0, 1.0035, 0, -1.22361)"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "toast-system-0.99-source.png",
+          "target": "toast-system-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "matrix(1.00001, 0, 0, 1.00001, 0, -0.00199275)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "toast-reduce",
+      "source": {
+        "duration": 120,
+        "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "name": "fadeOnly"
+      },
+      "target": {
+        "duration": 120,
+        "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "name": "fadeOnly"
+      },
+      "frames": [
+        {
+          "phase": 0,
+          "source": "toast-reduce-0-source.png",
+          "target": "toast-reduce-0-target.png",
+          "computed": {
+            "opacity": "0",
+            "transform": "none"
+          }
+        },
+        {
+          "phase": 0.5,
+          "source": "toast-reduce-0.5-source.png",
+          "target": "toast-reduce-0.5-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "none"
+          }
+        },
+        {
+          "phase": 0.99,
+          "source": "toast-reduce-0.99-source.png",
+          "target": "toast-reduce-0.99-target.png",
+          "computed": {
+            "opacity": "1",
+            "transform": "none"
+          }
+        }
+      ]
+    }
+  ],
+  "buttonActive": [
+    {
+      "motion": "full",
+      "source": {
+        "scale": "none",
+        "transform": "matrix(0.975928, 0, 0, 0.975928, 0, 0)",
+        "duration": 140,
+        "easing": "ease"
+      },
+      "target": {
+        "scale": "none",
+        "transform": "matrix(0.975928, 0, 0, 0.975928, 0, 0)",
+        "duration": 140,
+        "easing": "ease"
+      }
+    },
+    {
+      "motion": "reduce",
+      "source": {
+        "scale": "none",
+        "transform": "none",
+        "duration": null,
+        "easing": null
+      },
+      "target": {
+        "scale": "none",
+        "transform": "none",
+        "duration": null,
+        "easing": null
+      }
+    }
+  ],
+  "status": "passed"
+}

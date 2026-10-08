@@ -1,0 +1,45 @@
+{
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "retainedRuns": "rejected/*/verification.json with matching run-specific PNG/computed artifacts",
+  "fullAudit": "rejected-full42-29zero-13fail.json",
+  "attempts": [
+    {
+      "finding": "Trusted pointer/keyboard captures retained small glyph/shadow residuals despite identical geometry and independent repeatability.",
+      "resolution": "Scoped settled snapshots use symmetric HTMLElement.click and original generic source fixture; trusted target actions have separate acceptance gates. Residual cause remains unproven; no full pointer raster/Darwin parity claim.",
+      "reviewer": "capture-review/probe.json and probe-exactclick.json; isolated4273/5273, read-only source86 clean, same-browser programmatic4 pairs exact-zero; later own fresh-browser42 matrix pass."
+    },
+    {
+      "finding": "One-shot source application actual render consumes fx and reconstructs overlay HTML; React retains nodes after animationend.",
+      "resolution": "Actual source opening/settled lifecycle is preserved in verification.json; React scrim/dialog/popover/drawer remove only completed entrance animation. No runtime glyph remount/paint toggle accepted."
+    },
+    {
+      "finding": "Sequential animation.finished awaits hung after animationend cleanup cancelled later finite animation.",
+      "resolution": "Concurrent finite promises, exclude idle animations; 2-second failure bound only detects unmet readiness."
+    },
+    {
+      "finding": "Full audit29zero/13fail found toast radius6 versus8; context coordinate dispatch mismatch; popup measured during ancestor entrance.",
+      "resolution": "Toast rounded-default8 and original inline Dismiss color; explicit MouseEvent coordinates; settle parent for samples and update production placement at ancestor motion end."
+    },
+    {
+      "finding": "Temporary rounded utility unmapped by explicit radius namespace resulted radius0/457px; then Dismiss inherited-color mismatch24px.",
+      "resolution": "Actual computed radius8 and color:inherit now identical; strict snapshots pass."
+    },
+    {
+      "finding": "New bottom-right test used fractional boundingBox height while source/target use integer offsetHeight.",
+      "resolution": "Expected offsetHeight165 instead of164.9375, preserving source4px collision gap."
+    },
+    {
+      "finding": "Button individual scale caused missing transform transition; new probe further found target cubic easing versus source default ease.",
+      "resolution": "Minimal WU04 reopening transform scale(.97),140ms/ease, reduce none; actual full/reduce probe and Buttons46 samples reverified. Not proven cause of trusted shadow residual.",
+      "failedLog": "rejected-button-easing.log"
+    },
+    {
+      "finding": "Early frame focus differed because global source pause also paused input focus transition.",
+      "resolution": "Final motion harness pauses selected original CSSAnimation only, lets input CSS transition settle; actual source/target modal frame focus now consistent."
+    },
+    {
+      "finding": "Final record edit had extra ] causing syntax/lint failure.",
+      "resolution": "Corrected and rerun strict/lint; no failed run reported as pass."
+    }
+  ]
+}

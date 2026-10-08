@@ -1,0 +1,215 @@
+{
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "runtime": {
+    "node": "v24.13.0",
+    "os": "linux",
+    "arch": "x64",
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6",
+    "launchArgs": []
+  },
+  "samples": [
+    {
+      "id": "menu-light-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "3dccf97515f136a2fa2d54997b8ac634f47b02ed78c059c9f5fdb41704558ebf",
+      "targetSha256": "3dccf97515f136a2fa2d54997b8ac634f47b02ed78c059c9f5fdb41704558ebf"
+    },
+    {
+      "id": "menu-dark-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "f71a7e66145f0dac865c7d21e652f610f156794a9effe8ea61a31f8452e08c76",
+      "targetSha256": "f71a7e66145f0dac865c7d21e652f610f156794a9effe8ea61a31f8452e08c76"
+    },
+    {
+      "id": "modal-light-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "83ab7a3b93925b220ea76ce4dce2aff23684bd5d17715f1fa584bb173ed921c3",
+      "targetSha256": "83ab7a3b93925b220ea76ce4dce2aff23684bd5d17715f1fa584bb173ed921c3"
+    },
+    {
+      "id": "modal-dark-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "8ec09deb066710b95b2ac4bf913240affdc49a3f979742ce53ee6a1527e9a2e3",
+      "targetSha256": "8ec09deb066710b95b2ac4bf913240affdc49a3f979742ce53ee6a1527e9a2e3"
+    },
+    {
+      "id": "drawer-light-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "e6f8f45d871e307dcea4180c855a76013b03c20e7b6020a53868896668631831",
+      "targetSha256": "e6f8f45d871e307dcea4180c855a76013b03c20e7b6020a53868896668631831"
+    },
+    {
+      "id": "drawer-dark-indigo-1440",
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "9f055e4c52d18279f63999565643a13c0a625ce3e118f53c52d6c78b34325b1e",
+      "targetSha256": "9f055e4c52d18279f63999565643a13c0a625ce3e118f53c52d6c78b34325b1e"
+    }
+  ],
+  "probes": [
+    {
+      "id": "actual-source-opening-to-settled-render-motion",
+      "pass": true
+    }
+  ],
+  "immutableBefore": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "limitations": [
+    "Scoped Linux source-only overlay samples; immutable official Darwin173 baseline unchanged.",
+    "Source overlay responsive styles have no env safe-area offset; desktop mobile viewport cannot prove physical-device insets."
+  ],
+  "harnessAdjustments": [
+    "Settled-render source markup has no enter flags, matching actual source second render; opening timing is probed separately.",
+    "Independent generic content and shared sample geometry only; no source file/style/template edits.",
+    "Original source roots kept in hidden host; real overlays/toasts remain outside it.",
+    "Gallery QA visibility hidden only during viewport visual capture; restored before interactions.",
+    "Fresh contexts for every visual state; neutral pointer/layout flush/finite motion settlement; caret hide on both input focus samples."
+  ],
+  "navigations": [
+    {
+      "name": "source",
+      "scenario": "menu",
+      "theme": "light",
+      "url": "http://127.0.0.1:4173/"
+    },
+    {
+      "name": "target",
+      "scenario": "menu",
+      "theme": "light",
+      "url": "http://127.0.0.1:5173/overlays.html"
+    },
+    {
+      "name": "source",
+      "scenario": "menu",
+      "theme": "dark",
+      "url": "http://127.0.0.1:4173/"
+    },
+    {
+      "name": "target",
+      "scenario": "menu",
+      "theme": "dark",
+      "url": "http://127.0.0.1:5173/overlays.html"
+    },
+    {
+      "name": "source",
+      "scenario": "modal",
+      "theme": "light",
+      "url": "http://127.0.0.1:4173/"
+    },
+    {
+      "name": "target",
+      "scenario": "modal",
+      "theme": "light",
+      "url": "http://127.0.0.1:5173/overlays.html"
+    },
+    {
+      "name": "source",
+      "scenario": "modal",
+      "theme": "dark",
+      "url": "http://127.0.0.1:4173/"
+    },
+    {
+      "name": "target",
+      "scenario": "modal",
+      "theme": "dark",
+      "url": "http://127.0.0.1:5173/overlays.html"
+    },
+    {
+      "name": "source",
+      "scenario": "drawer",
+      "theme": "light",
+      "url": "http://127.0.0.1:4173/"
+    },
+    {
+      "name": "target",
+      "scenario": "drawer",
+      "theme": "light",
+      "url": "http://127.0.0.1:5173/overlays.html"
+    },
+    {
+      "name": "source",
+      "scenario": "drawer",
+      "theme": "dark",
+      "url": "http://127.0.0.1:4173/"
+    },
+    {
+      "name": "target",
+      "scenario": "drawer",
+      "theme": "dark",
+      "url": "http://127.0.0.1:5173/overlays.html"
+    },
+    {
+      "name": "source",
+      "scenario": "nested",
+      "theme": "light",
+      "url": "http://127.0.0.1:4173/"
+    },
+    {
+      "name": "target",
+      "scenario": "nested",
+      "theme": "light",
+      "url": "http://127.0.0.1:5173/overlays.html"
+    }
+  ],
+  "sourceLifecycle": {
+    "modal": {
+      "opening": {
+        "className": "modal enter sm",
+        "animationName": "modalIn",
+        "duration": "0.26s",
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)"
+      },
+      "settled": {
+        "className": "modal sm",
+        "animationName": "none"
+      }
+    },
+    "popover": {
+      "opening": {
+        "className": "pop floating  enter",
+        "animationName": "popIn",
+        "duration": "0.16s",
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)"
+      },
+      "settled": {
+        "className": "pop floating  ",
+        "animationName": "none"
+      }
+    },
+    "drawer": {
+      "opening": {
+        "className": "drawer  enter ",
+        "animationName": "drawerIn",
+        "duration": "0.34s",
+        "easing": "cubic-bezier(0.32, 0.72, 0, 1)"
+      },
+      "settled": {
+        "className": "drawer   ",
+        "animationName": "none"
+      }
+    },
+    "reduced": {
+      "name": "fadeOnly",
+      "duration": "0.12s"
+    }
+  },
+  "status": "failed",
+  "error": "page.evaluate: Error: Finite animation did not settle: fadeOnly, state=idle, time=null\n    at eval (eval at evaluate (:290:30), <anonymous>:1:653)\n    at ready (/workspace/task8/tests/visual/overlays/verify.mjs:20:39)\n    at capture (/workspace/task8/tests/visual/overlays/verify.mjs:22:82)\n    at async file:///workspace/task8/tests/visual/overlays/verify.mjs:58:5"
+}

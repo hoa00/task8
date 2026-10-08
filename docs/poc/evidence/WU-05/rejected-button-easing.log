@@ -1,0 +1,39 @@
+$ node tests/visual/overlays/motion.mjs
+Owned source server: PID 41919, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
+    duration: 140,
++   easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+-   easing: 'ease',
+    scale: 'none',
++   transform: 'matrix(0.971021, 0, 0, 0.971021, 0, 0)'
+-   transform: 'matrix(0.975928, 0, 0, 0.975928, 0, 0)'
+  }
+
+    at file:///workspace/task8/tests/visual/overlays/motion.mjs:43:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: {
+    scale: 'none',
+    transform: 'matrix(0.971021, 0, 0, 0.971021, 0, 0)',
+    duration: 140,
+    easing: 'cubic-bezier(0.23, 1, 0.32, 1)'
+  },
+  expected: {
+    scale: 'none',
+    transform: 'matrix(0.975928, 0, 0, 0.975928, 0, 0)',
+    duration: 140,
+    easing: 'ease'
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0
+[ELIFECYCLE] Command failed with exit code 1.

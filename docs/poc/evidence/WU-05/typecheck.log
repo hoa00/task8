@@ -1,0 +1,21 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/ui:typecheck: cache miss, executing 6b40bfe374e6d8e5
+@studio/contracts:typecheck: cache hit, replaying logs 3566ae24f5a30dee
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 47785c3d4c56e74a
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs b66ff4747ddd7d01
+@studio/api:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 36985760e4ae3e63
+@studio/web:typecheck: $ tsc --noEmit
+
+ Tasks:    5 successful, 5 total
+Cached:    3 cached, 5 total
+  Time:    14.029s

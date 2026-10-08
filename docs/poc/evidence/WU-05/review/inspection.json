@@ -1,0 +1,30 @@
+{
+  "status": "technical-review-complete",
+  "userApproval": false,
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "runner": "Linux x64 Chromium145/revision1208",
+  "reviewedSourceSheets": [
+    "source-sheet-1.png",
+    "source-sheet-2.png",
+    "source-sheet-3.png",
+    "source-sheet-4.png"
+  ],
+  "sourceSamplesCovered": 42,
+  "fullSizeReviewed": [
+    "drawer-popup-dark-indigo source/target",
+    "modal-light-indigo-390 source",
+    "toast-dark-indigo-390 source",
+    "motion/modal-full-0.5 source/target with matched input focus"
+  ],
+  "parentTechnicalInspection": [
+    "menu-light-indigo source/target during rejected glyph capture",
+    "modal Close glyph rejected capture",
+    "drawer-dark-indigo source/target: nonmodal canvas, width620/header46/focused draft/options"
+  ],
+  "notes": [
+    "Scoped original CSS/SVG generic fixtures, not business source application overlays or Darwin parity.",
+    "Motion uses original controlled animation timing; no intermediate pixel-parity claim.",
+    "Earlier motion source focus transition was unintentionally paused with all animations; final harness pauses only selected overlay CSSAnimation and settles unrelated input CSSTransitions.",
+    "No source/CSS/fixture/font/baseline/tolerance/mask edits."
+  ]
+}
