@@ -199,3 +199,24 @@ Không báo “pixel-perfect” cho toàn ứng dụng nếu mới đạt một 
 [pw-assertions]: https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-screenshot-1
 [pw-clock]: https://playwright.dev/docs/clock
 
+
+## WU-03 — CSS exceptions và foundation verification
+
+Owner là `@studio/ui`; source vẫn khóa tại `904205c626918ee96054eb35495c394a60c0c601`.
+
+| File / ngoại lệ | Phạm vi và lý do |
+| --- | --- |
+| `packages/ui/src/styles/tokens.css` | Exact source light/dark/accent/density/custom properties; chỉ thêm root gutter/topbar/reduce overrides từ responsive source. Token definitions được phép; không có component layout selectors. |
+| `styles/fonts.css`, `src/assets/*.woff2` | 21 exact face descriptors/unicode ranges, 11 bytes assets theo manifest WU-00; fixed Geist 400/500/600 và Mono 400. Không mở variable range hoặc khai báo face450. OFL/ISC notices giữ nguyên bytes. |
+| `styles/theme.css` | `@theme inline` maps color/type/radius/size/easing/shadow to source properties; spacing base4px; exact inclusive1100/900/640, source-hover và source-reduce/source-dark variants. Shadow utility namespace `shadow-elevation-*` và `ease-panel` tránh self-reference với source properties. |
+| `styles/base.css` | Border-box/html/body/root; source body/font/form/button/link/caret/selection/focus; scrollbar10px/thumb border3px. Không Preflight hoặc reset heading/list/table/image. Icon display/shrink được component biểu đạt bằng utilities. |
+| `styles/motion.css` | 10 source keyframes (`riseIn`, `slideInR`, `growX`, `popCheck`, `strike`, `doneWash`, `doneRing`, `land`, `addWash`, `addRing`) và responsive `fadeOnly`; timing/stagger/state selectors thuộc component ở unit tương ứng, chưa port selectors legacy. |
+| `apps/web/vite.config.ts` | `cssMinify:false` giữ exact alpha thay vì lượng tử hóa rgba thành 8bit hex; `assetsInlineLimit:0` để mọi font subset có HTTP request/hash evidence. Không đổi token values. |
+
+ThemeProvider giữ source prefs-to-root behavior, gồm nuance `motion=full`: root bỏ data-motion, nên OS reduce vẫn áp dụng. `system` theme đổi qua CSS media query; `effectiveDark` subscribe media để React consumer nhận kết quả. Chỉ UI preferences lưu trong `task8.ui.theme.v1`; không mirror business state.
+
+`apps/web/foundation.html` và `@studio/ui/foundation-sample` là verification fixture riêng, không screen/gallery nghiệp vụ. Mọi static target sample style dùng literal Tailwind classes; không import source CSS vào target. Controls của harness nằm ngoài sample rectangle để không làm bẩn cạnh clip có chiều cao phân số.
+
+Lệnh thật: `pnpm build`, `pnpm foundation:audit`, `pnpm visual:foundation`. Audit so authored token declarations/descriptors/bytes và browser module graph. Visual runner chạy source gốc với một probe surface độc lập và production target trong cùng Chromium145/revision1208 trên Linux; source SVG helpers giữ nguyên. Reference sample chụp **chỉ từ source**, chụp lặp zero-diff trước so target. Threshold0/includeAA=true/maxDiffPixels0/không mask. Official Darwin baseline/manifest/threshold WU-00 luôn immutable.
+
+Computed comparison ghi cả raw token strings và CSSOM resolved values; chỉ canonical bỏ bốn transparent zero-size ring layers mà Tailwind shadow utility thêm. Các layer này không tạo pixel; raster comparison vẫn so nguyên ảnh với zero tolerance. Source/target SVG attributes/children/geometry được so trực tiếp. Technical review của sample Linux không phải user approval hoặc whole-page/Darwin parity.

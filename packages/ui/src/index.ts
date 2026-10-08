@@ -1,2 +1,3 @@
-// The public module is ready; business exports are introduced by their owning work units.
-export {};
+export { Icon, TaskStatusIcon, PriorityIcon, Logo, BrandMark } from './icons';
+export type { IconProps, TaskStatusIconProps, PriorityIconProps, StatusGlyph, PriorityGlyph, LogoProps, BrandMarkProps } from './icons';
+export type { IconName } from './icon-paths';

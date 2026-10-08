@@ -1,0 +1,29 @@
+{
+  "status": "technically-reviewed",
+  "sourceOnlySheets": [
+    "source-sheet-1.png",
+    "source-sheet-2.png",
+    "source-sheet-3.png",
+    "source-sheet-4.png"
+  ],
+  "coverage": "24 source sample combinations, 6 accents \u00d7 light/dark \u00d7 comfortable/compact; all source repeats and target raster comparisons zero-diff",
+  "fullImageInspection": [
+    "light-indigo-comfortable",
+    "dark-rose-compact"
+  ],
+  "parentReview": [
+    {
+      "source": "test-results/WU-03/light-indigo-comfortable-source.png",
+      "diff": "test-results/WU-03/light-indigo-comfortable-diff.png",
+      "finding": "Rejected 391-pixel diff confined to bottom edge from adjacent QA controls; harness fix accepted technically without changing sample rectangle or threshold"
+    },
+    {
+      "source": "test-results/WU-03/dark-rose-compact-source.png",
+      "target": "test-results/WU-03/dark-rose-compact-target.png",
+      "sha256": "c88850357181ff9e9ac81d3801eab1f33b0e331fb1e8b0a86c54fd15ddf17b01",
+      "finding": "Source and target image bytes equal; palette/type weights/glyphs/geometry inspected"
+    }
+  ],
+  "userApproval": false,
+  "scope": "Separate reviewed source-only Linux foundation sample reference; official Darwin whole-page baseline unchanged; no whole-page parity claim"
+}

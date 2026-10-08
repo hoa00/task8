@@ -1,0 +1,44 @@
+{
+  "attempts": [
+    {
+      "stage": "lint",
+      "reason": "Fast Refresh component declared in entry without export",
+      "fix": "move exported FoundationHarness to separate module"
+    },
+    {
+      "stage": "preview startup",
+      "reason": "Vite lookup at workspace root unavailable in pnpm layout",
+      "fix": "use apps/web/node_modules Vite executable; finally cleans owned source process"
+    },
+    {
+      "stage": "computed sample",
+      "reason": "CSS serialization and transparent-zero Tailwind ring layers",
+      "fix": "compare CSSOM resolved values; preserve alpha with cssMinify:false; raw values remain evidence; raster unchanged"
+    },
+    {
+      "stage": "raster",
+      "id": "light-indigo-comfortable",
+      "pixels": 391,
+      "reason": "QA controls row painted into last screenshot row at fractional sample edge",
+      "fix": "fixed controls outside sample rectangle; no mask/tolerance/crop change",
+      "technicalInspection": "Parent inspected source and failed diff; discrepancy confined to bottom row; not user approval"
+    },
+    {
+      "stage": "motion probe",
+      "reason": "data-motion locator also matched html root when reduce preference set",
+      "fix": "scope locator to foundation sample"
+    },
+    {
+      "stage": "font request gate",
+      "expected": 11,
+      "actual": 7,
+      "reason": "Vite inlined three small fonts; probe lacked Cyrillic-ext text",
+      "fix": "assetsInlineLimit:0; cover all subsets in font readiness probe"
+    },
+    {
+      "stage": "source runtime error gate",
+      "reason": "Source resize listener re-rendered after harness removed original #app/#layer roots",
+      "fix": "Keep original DOM roots in hidden source-only host; sample separate; never alter source renderer/styles"
+    }
+  ]
+}

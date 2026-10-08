@@ -1,0 +1,59 @@
+$ turbo run build
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running build in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:build: cache hit, replaying logs 9c8bb8d748ab8d31
+@studio/contracts:build: $ tsc -p tsconfig.build.json
+@studio/ui:build: cache hit, replaying logs 3d55b4a0131e6c16
+@studio/ui:build: $ tsc -p tsconfig.build.json
+@studio/domain:build: cache hit, replaying logs 98a5f6ed1468fdf2
+@studio/domain:build: $ tsc -p tsconfig.build.json
+@studio/web:build: cache miss, executing d8acfd4c89d42fe2
+@studio/api:build: cache hit, replaying logs b520d6b129465eb1
+@studio/api:build: $ wrangler deploy --dry-run --outdir dist
+@studio/api:build: [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:  ⛅️ wrangler 4.148.0
+@studio/api:build: ────────────────────
+@studio/api:build: Total Upload: 58.27 KiB / gzip: 14.61 KiB
+@studio/api:build: Your Worker has access to the following bindings:
+@studio/api:build: Binding                       Resource
+@studio/api:build: env.STUDIO_ENV ("local")      Environment Variable
+@studio/api:build:
+@studio/api:build: --dry-run: exiting now.
+@studio/web:build: $ vite build
+@studio/web:build: vite v8.3.3 building client environment for production...
+@studio/web:build: transforming...
+@studio/web:build: ✓ 260 modules transformed.
+@studio/web:build: rendering chunks...
+@studio/web:build: computing gzip size...
+@studio/web:build: dist/foundation.html                                                                           0.45 kB │ gzip:  0.29 kB
+@studio/web:build: dist/index.html                                                                                0.46 kB │ gzip:  0.28 kB
+@studio/web:build: dist/assets/aac11f1b5aa0f50c8942cadc063a95be964e87512812a8256a969b723fcfb00c-s0p6T-aD.woff2    2.78 kB
+@studio/web:build: dist/assets/545e79aa6acc61e9fce346ef373d3974cd47c81df0baf15d2f31a970dc9fd3ae-e7w4Pzot.woff2    3.34 kB
+@studio/web:build: dist/assets/55061797a3b3da1ad06271debea77df7007973ac0386d158618e00897af93eea-D5uBQblr.woff2    3.83 kB
+@studio/web:build: dist/assets/402a0f9709239ccdc5c4f9e6c0d8f787444272bb5615996d8fc8d140de65cc3b-CZJ7W5hq.woff2    5.58 kB
+@studio/web:build: dist/assets/b43bf733b5c29ddd375c6433efb74ecba545ad72b3d2572036e20f52cf7515ac-CCDHRFWI.woff2    7.01 kB
+@studio/web:build: dist/assets/b7a545bbb08256bd809f11cfe66d88da3e22d169ea4407737b1ef0ec1ed3d791-JguAV-SU.woff2    7.25 kB
+@studio/web:build: dist/assets/f689f638f29fff460a2d5749edb5d5c38d7bef0389f32032d871f23fc6ebb008-BOnPvxSZ.woff2    7.96 kB
+@studio/web:build: dist/assets/23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36-BCiuQ2Xg.woff2    9.87 kB
+@studio/web:build: dist/assets/6129fc8571c3e0cb0a4c41f5160c974a843b055009dc4ad8858bd808e18a2d86-D_Kiv5N3.woff2   14.90 kB
+@studio/web:build: dist/assets/58a6b173d5ca1dec92166ea3c6cb1a84a4144556d10928ac14e8e6b40e4787bd-Dr5IBr7O.woff2   16.54 kB
+@studio/web:build: dist/module-graph.json                                                                        26.41 kB │ gzip:  1.96 kB
+@studio/web:build: dist/assets/9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608-BGnTDqni.woff2   29.28 kB
+@studio/web:build: dist/assets/app-_6k8FIIU.css                                                                  26.17 kB │ gzip:  5.40 kB
+@studio/web:build: dist/assets/routes-D_wrkZPA.js                                                                 0.16 kB │ gzip:  0.16 kB
+@studio/web:build: dist/assets/foundation-3xv_R2uM.js                                                            37.02 kB │ gzip: 10.77 kB
+@studio/web:build: dist/assets/app-Dy3Evf34.js                                                                  180.51 kB │ gzip: 56.59 kB
+@studio/web:build: dist/assets/app-Cna7w9jQ.js                                                                  221.78 kB │ gzip: 69.46 kB
+@studio/web:build:
+@studio/web:build: ✓ built in 271ms
+
+ Tasks:    5 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    1.399s
