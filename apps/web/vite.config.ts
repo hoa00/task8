@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
       },
     },
   ],
-  build: { outDir: httpOnly ? 'dist-http' : 'dist', cssMinify: false, assetsInlineLimit: 0, rollupOptions: { input: httpOnly ? { app: fileURLToPath(new URL('./index.html', import.meta.url)) } : { app: fileURLToPath(new URL('./index.html', import.meta.url)), foundation: fileURLToPath(new URL('./foundation.html', import.meta.url)), controls: fileURLToPath(new URL('./controls.html', import.meta.url)), overlays: fileURLToPath(new URL('./overlays.html', import.meta.url)), shellHarness: fileURLToPath(new URL('./shell-harness.html', import.meta.url)) } } },
+  build: { outDir: httpOnly ? 'dist-http' : 'dist', cssMinify: false, assetsInlineLimit: 0, rollupOptions: { input: httpOnly ? { app: fileURLToPath(new URL('./index.html', import.meta.url)) } : { app: fileURLToPath(new URL('./index.html', import.meta.url)), foundation: fileURLToPath(new URL('./foundation.html', import.meta.url)), controls: fileURLToPath(new URL('./controls.html', import.meta.url)), overlays: fileURLToPath(new URL('./overlays.html', import.meta.url)), taskFields: fileURLToPath(new URL('./task-fields.html', import.meta.url)), shellHarness: fileURLToPath(new URL('./shell-harness.html', import.meta.url)) } } },
   server: { host: '127.0.0.1', port: 5173, strictPort: true, proxy: { '/api': 'http://127.0.0.1:8787' } },
   preview: { host: '127.0.0.1', port: 5173, strictPort: true, proxy: { '/api': 'http://127.0.0.1:8787' } },
   };

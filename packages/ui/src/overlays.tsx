@@ -95,7 +95,11 @@ function usePlacement(open: boolean, node: RefObject<HTMLElement | null>, anchor
     if (!open || !host || !node.current) return;
     const position = () => {
       const el = node.current; const r = anchor.current?.getBoundingClientRect(); if (!el || (!r && !point)) return;
-      const w = el.offsetWidth, h = el.offsetHeight, gap = tooltip ? 6 : 4;
+      const gap = tooltip ? 6 : 4;
+      // Source popHtml assigns the anchor coordinates before placePop measures
+      // shrink-to-fit content. Measuring at left:auto widens mobile builders.
+      if (!tooltip) setOverlayPosition(el, point?.x ?? r!.left, point?.y ?? r!.bottom + gap);
+      const w = el.offsetWidth, h = el.offsetHeight;
       let x = point?.x ?? r!.left; let y = point?.y ?? r!.bottom + gap;
       if (!point && r) {
         if (tooltip) x = r.left + (r.width - w) / 2;

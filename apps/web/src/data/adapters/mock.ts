@@ -8,6 +8,7 @@ import { readBootstrap, readSession } from '../mock/reads.ts';
 import { loadMockDataset, persistMockDataset } from '../mock/persistence.ts';
 import type { MockStorage } from '../mock/persistence.ts';
 import { mockScenarios, waitForScenario } from '../mock/scenarios.ts';
+import { runTaskFieldOperation, taskFieldOperations } from '../mock/task-fields.ts';
 import type { MockScenarioId } from '../mock/scenarios.ts';
 
 export const foundationReads = ['getSession', 'listWorkspaces', 'getBootstrap', 'getWorkspace', 'getProfile', 'getPreferences', 'getNotificationPreferences'] as const satisfies readonly OperationId[];
@@ -26,11 +27,12 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
   let dataset = scenario === 'populated' ? loadMockDataset(storage, seed.workspaceId) ?? seed : seed;
   if (scenario === 'populated') persistMockDataset(storage, dataset);
   const client = createStudioClient(async (id, input, { signal }) => {
-    if (!(shellReads as readonly string[]).includes(id)) throw unavailable(id);
+    if (![...shellReads, ...taskFieldOperations].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number])) throw unavailable(id);
     await wait(state.delayMs, signal);
     if (state.failure === 'offline') throw new StudioTransportError('offline', 'Mock scenario is offline');
     if (state.failure === 'error') throw new StudioApiError({ error: { code: 'INTERNAL_ERROR', message: 'Mock scenario request failed' } });
     if (input.workspaceId && input.workspaceId !== dataset.workspaceId) throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Workspace data is not available' } });
+    if ((taskFieldOperations as readonly string[]).includes(id)) { const result = await runTaskFieldOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     switch (id) {
       case 'getSession': return { data: readSession(dataset) };
       case 'listWorkspaces': return { data: Object.values(dataset.workspaces) };

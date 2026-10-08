@@ -9,8 +9,11 @@ server DTOs live only in TanStack Query. No feature imports seed/storage.
 Both factories expose all 83 `StudioApi` methods with contract validation.
 Mock currently implements session, workspaces, bootstrap, workspace, profile,
 preferences and notification preferences reads. Catalogs arrive with bootstrap.
-All other mock operations reject `CAPABILITY_UNAVAILABLE` (501); their owning
-feature WU adds handlers and updates capabilities. HTTP sends validated JSON
+WU-07 additionally implements saved-view identity reads. WU-08 adds scoped task
+reads and field/move/completion/Undo commands; see the task feature README for
+their bounded ownership. Remaining mock operations reject
+`CAPABILITY_UNAVAILABLE` (501); their owning feature WU adds handlers and updates
+capabilities. HTTP sends validated JSON
 operations, parses error/success envelopes, and never invokes mock on failure.
 Multipart and binary operations explicitly reject until the file WU adds their
 transport. HTTP capabilities come from the server session and must say `http`.

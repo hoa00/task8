@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "unit": "WU-08",
+  "commands": "commands.json",
+  "checks": {
+    "contracts": 93,
+    "web": 34,
+    "reference": 3,
+    "workspace": 1,
+    "packages": 5,
+    "taskToolbarVisual": 22,
+    "taskInteractionProbes": 11,
+    "overlayRegressionVisual": 42,
+    "overlayRegressionProbes": 17,
+    "httpGraphModules": 371
+  },
+  "reports": [
+    {
+      "file": "visual-verification.json",
+      "status": "passed"
+    },
+    {
+      "file": "interactions.json",
+      "status": "passed"
+    },
+    {
+      "file": "overlay-regression/verification.json",
+      "status": "passed"
+    },
+    {
+      "file": "http-bundle.json",
+      "status": "passed"
+    }
+  ],
+  "historicalEvidence": "WU-05/WU-06/WU-07 accepted reports unchanged; rerun outputs scoped to WU-08.",
+  "limitations": [
+    "Scoped Linux source-only images, not Darwin whole-page parity.",
+    "No real Worker business backend/D1/R2/deployment or later units."
+  ]
+}

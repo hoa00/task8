@@ -6,3 +6,12 @@
 
 @source "../";
 @source "../../../../packages/ui/src";
+/* Task-field/query presentation owns source inclusive mobile conditions. */
+@layer utilities {
+@media (max-width: 640px) {
+  .task-hide-mobile { display: none; }
+  .task-filter-builder { min-width: 0 !important; }
+  .task-filter-row { grid-template-columns: 1fr 1fr; }
+  .task-filter-conjunction { display: none; }
+}
+}

@@ -1,0 +1,17 @@
+status-reuse-keyboard-focus-no-implicit-Undo: passed
+assignee-search-unassigned-shared-identity-return-focus: passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('menuitemradio', { name: 'Backlog', exact: true })[22m
+
+    at /workspace/task8/tests/visual/tasks/interactions.mjs:16:341
+    at async probe (/workspace/task8/tests/visual/tasks/interactions.mjs:9:80)
+    at async file:///workspace/task8/tests/visual/tasks/interactions.mjs:16:2 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

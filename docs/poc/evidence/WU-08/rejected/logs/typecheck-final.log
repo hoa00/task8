@@ -1,0 +1,28 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs 465ff46f40bafc26
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: cache hit, replaying logs 07cafa084e9e2c63
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs b186045353067bb6
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs ba466479fc36af19
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 2317f10b78ce7115
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/features/tasks/TaskFields.tsx(6,249): error TS2365: Operator '>' cannot be applied to types 'string & $brand<"DateOnly">' and 'TaskFieldValues[K] & string'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    10.077s
+Failed:    @studio/web#typecheck
+
+ ERROR  run failed: command  exited (2)
+[ELIFECYCLE] Command failed with exit code 2.

@@ -37,7 +37,7 @@ safe-area CSS. Emulated viewport checks do not prove physical device insets.
 | Surface/action | Owner | Current behavior |
 |---|---|---|
 | Home / Workspace Overview content | WU-17 | Pending route outlet, excluded from shell crops |
-| Task fields/filter engine | WU-08 | Typed navigation/intent seam only |
+| Task fields/filter engine | WU-08 | Shared controlled fields/domain engine and standalone QA gallery implemented; page consumers remain with their owners |
 | Workspace/Project/My Tasks lists | WU-09 | Pending route outlet |
 | Task drawer/forms | WU-10/11 | Single overlay slot; no drawer business UI |
 | Board / Table / Calendar / Timeline | WU-12/13/14/15 | Fixed route hosts |

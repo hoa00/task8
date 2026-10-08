@@ -1,0 +1,75 @@
+$ turbo run build
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running build in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:build: cache hit, replaying logs 7f0a2a404548cd97
+@studio/contracts:build: $ tsc -p tsconfig.build.json
+@studio/ui:build: cache hit, replaying logs 77e0ca8e671d44d8
+@studio/ui:build: $ tsc -p tsconfig.build.json
+@studio/domain:build: cache miss, executing 8255bf02c74b095e
+@studio/domain:build: $ tsc -p tsconfig.build.json
+@studio/web:build: cache miss, executing dbf679fd301e0145
+@studio/api:build: cache miss, executing 27486a940b7ed411
+@studio/web:build: $ vite build
+@studio/api:build: $ wrangler deploy --dry-run --outdir dist
+@studio/web:build: vite v8.3.3 building client environment for production...
+@studio/web:build: transforming...
+@studio/api:build: [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:  ⛅️ wrangler 4.148.0
+@studio/api:build: ────────────────────
+@studio/api:build: [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mFailed to write to log file Error: ENOENT: no such file or directory, mkdir '/home/agent/.config/.wrangler'[0m
+@studio/api:build:
+@studio/api:build:       at async Object.mkdir (node:internal/fs/promises:856:10)
+@studio/api:build:       at async ensureDirectoryExists (/workspace/task8/node_modules/.pnpm/wrangler@4.148.0_@cloudflare+workers-types@5.20261006.1_@types+node@24.19.1/node_modules/wrangler/wrangler-dist/cli.js:65007:3)
+@studio/api:build:       at async /workspace/task8/node_modules/.pnpm/wrangler@4.148.0_@cloudflare+workers-types@5.20261006.1_@types+node@24.19.1/node_modules/wrangler/wrangler-dist/cli.js:65088:7
+@studio/api:build:       at async Mutex.runWith (/workspace/task8/node_modules/.pnpm/miniflare@5.20261006.0-alpha_@types+node@24.19.1/node_modules/miniflare/dist/src/index.js:70213:16)
+@studio/api:build:       at async appendToDebugLogFile (/workspace/task8/node_modules/.pnpm/wrangler@4.148.0_@cloudflare+workers-types@5.20261006.1_@types+node@24.19.1/node_modules/wrangler/wrangler-dist/cli.js:65086:3) {
+@studio/api:build:     errno: -2,
+@studio/api:build:     code: 'ENOENT',
+@studio/api:build:     syscall: 'mkdir',
+@studio/api:build:     path: '/home/agent/.config/.wrangler'
+@studio/api:build:   }
+@studio/api:build:
+@studio/api:build:
+@studio/api:build: [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mWould have written: [0m
+@studio/api:build:
+@studio/api:build:   --- 2026-10-08T17:25:14.059Z debug
+@studio/api:build:   🪵  Writing logs to "/home/agent/.config/.wrangler/logs/wrangler-2026-10-08_17-25-13_797.log"
+@studio/api:build:   ---
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:
+@studio/api:build: [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mA file or directory could not be found.[0m
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:   Missing file or directory: /home/agent/.config/.wrangler
+@studio/api:build:
+@studio/api:build:   This is typically caused by:
+@studio/api:build:     - The file or directory does not exist
+@studio/api:build:     - A typo in the file path
+@studio/api:build:     - The file was moved or deleted
+@studio/api:build:
+@studio/api:build:   Please check the file path and try again.
+@studio/api:build:
+@studio/api:build:
+@studio/api:build: 🪵  Logs were written to "/home/agent/.config/.wrangler/logs/wrangler-2026-10-08_17-25-13_797.log"
+@studio/api:build: [ELIFECYCLE] Command failed with exit code 1.
+@studio/web:build: ✓ 404 modules transformed.
+@studio/web:build: rendering chunks...
+@studio/web:build: [ELIFECYCLE] Command failed.
+@studio/api#build:  ERROR  command (/workspace/task8/apps/api) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run build exited (1)
+
+ Tasks:    3 successful, 5 total
+Cached:    2 cached, 5 total
+  Time:    4.088s
+Failed:    @studio/api#build
+
+ ERROR  run failed: command  exited (1)
+[ELIFECYCLE] Command failed with exit code 1.

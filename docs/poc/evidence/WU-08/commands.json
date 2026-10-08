@@ -1,0 +1,83 @@
+{
+  "environment": {
+    "node": "v24.13.0",
+    "pnpm": "11.19.0",
+    "runtimePath": "/tmp/task8-node-runtime/node_modules/node/bin",
+    "xdg": "/tmp/task8-xdg-*",
+    "network": "Session proxy/CA retained; required network commands use supplied network permission."
+  },
+  "commands": [
+    {
+      "id": "install",
+      "command": "pnpm install --frozen-lockfile --offline",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/install.log"
+    },
+    {
+      "id": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/typecheck.log"
+    },
+    {
+      "id": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/build.log"
+    },
+    {
+      "id": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/lint.log"
+    },
+    {
+      "id": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/test.log"
+    },
+    {
+      "id": "reference",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/reference.log"
+    },
+    {
+      "id": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/http-build.log"
+    },
+    {
+      "id": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-08",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/http-bundle.log"
+    },
+    {
+      "id": "overlay",
+      "command": "node tests/visual/overlays/verify.mjs full --wu08-regression",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/overlay.log"
+    },
+    {
+      "id": "visual",
+      "command": "node tests/visual/tasks/verify.mjs",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/visual.log"
+    },
+    {
+      "id": "interactions",
+      "command": "node tests/visual/tasks/interactions.mjs",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-08/interactions.log"
+    },
+    {
+      "id": "review",
+      "command": "node tests/visual/tasks/review.mjs",
+      "exitStatus": 0,
+      "result": "44 hash-checked PNGs, 6 source-only sheets"
+    }
+  ]
+}

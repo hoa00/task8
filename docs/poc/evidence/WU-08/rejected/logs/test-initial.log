@@ -1,0 +1,74 @@
+$ pnpm --filter @studio/web test
+$ node --experimental-strip-types --test --test-isolation=none src/app/env.test.ts tests/data/*.test.ts
+✔ public env defaults and explicit HTTP mode are stable (2.213423ms)
+✔ public env rejects unknown modes, external URLs and exposed secrets (1.244618ms)
+✔ normalized seed preserves all canonical identities, task content and relationships (10.168055ms)
+✔ clock seam is UTC, stable and does not mutate the locked fixture (11.192773ms)
+✔ all foundation responses parse and private project catalog excludes protected details (14.160619ms)
+✔ same 83-method StudioApi and truthful capabilities reject unimplemented mock mutations (6.450263ms)
+✔ input validation and unavailable workspace fail through contract errors (4.247507ms)
+✔ mock persistence, reload and reset are reproducible and namespace-isolated (30.525056ms)
+✔ production reset is forbidden; corrupt and foreign persisted state cannot enter mock reads (7.278757ms)
+✔ blocked storage stays operational in memory without changing other namespaces (10.672252ms)
+✔ empty, error and offline scenarios produce explicit data states without persistence leaks (9.461564ms)
+✔ loading exposes real pending Query state then resolves; cancellation clears the timer (7.889545ms)
+✔ HTTP uses typed JSON responses and advertises HTTP mode only from HTTP session (20.018102ms)
+✔ HTTP errors, network failures and malformed success never fall back to mock (5.623483ms)
+✔ HTTP normalizes validated filters with URLSearchParams and forwards abort signals (1.959222ms)
+✔ query keys canonicalize schema defaults and isolate every workspace read (0.462204ms)
+✔ mutation invalidation stays in its workspace and includes cross-view task projections (1.237868ms)
+✔ workspace query cancellation prevents a late old-workspace response entering cache (5.431134ms)
+✔ dev/test mock reset clears Query cache while production denial leaves cache untouched (10.559853ms)
+✔ shell aggregates are actual bootstrap data, empty counts and saved view ownership are truthful (6.507469ms)
+✔ legacy whitelist excludes prototype/project aliases and canonical links retain full prefix (0.743737ms)
+✔ navigation aggregates apply project authorization, archive and internal tombstone predicates (8.896225ms)
+✔ source DATA-08 due overlap, done past date, unassigned and AND/OR/NOT empty semantics (1.876237ms)
+✖ source null/string/date/priority sort rules with explicit canonical stable ID correction (1.25269ms)
+✔ normalization validates inputs, unique columns/values, current URL independent from saved filters (1.031558ms)
+✔ pure relation guard rejects foreign workspace/project/member/dependency, self and cycles (4.499205ms)
+✔ mock fields validate nullable/date/status/relation atomically and omitted fields stay unchanged (5.714079ms)
+✔ actual command cycle returns409 and keeps versions, tasks, recurrence slots unchanged; incoming links bump targets (6.023493ms)
+✔ completion Undo is bounded, replay stable and stale parent all-or-nothing (7.352318ms)
+✔ recurrence calendar correction, one slot and single Undo preserves successor with new subtask IDs (4.195338ms)
+✔ project field command scope/neighbor guards, move key+file integrity, full counts+opaque query cursors (12.58927ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 30
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 474.138642
+
+✖ failing tests:
+
+test at tests/data/task-fields.test.ts:32:1
+✖ source null/string/date/priority sort rules with explicit canonical stable ID correction (1.25269ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      2,
+  +   3,
+      1,
+  -   3
+    ]
+
+      at TestContext.<anonymous> (file:///workspace/task8/apps/web/tests/data/task-fields.test.ts:35:155)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Array],
+    expected: [Array],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+/workspace/task8/apps/web:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @studio/web@0.0.0 test: `node --experimental-strip-types --test --test-isolation=none src/app/env.test.ts tests/data/*.test.ts`
+Exit status 1
+[ELIFECYCLE] Command failed with exit code 1.

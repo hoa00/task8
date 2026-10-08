@@ -1,4 +1,5 @@
-import { BootstrapSchema, catalogs, SessionSchema, TaskSummarySchema } from '@studio/contracts/api';
+import { BootstrapSchema, catalogs, SessionSchema } from '@studio/contracts/api';
+import { summarizeTasks as summarizeTaskDomain } from '@studio/domain';
 import type { Clock } from '@studio/domain';
 import type { CapabilitiesDto, ProjectDto, ProjectListItemDto, TaskDto } from '@studio/contracts/api';
 import type { MockDataset } from './dataset.ts';
@@ -9,12 +10,7 @@ export const mockCapabilities: CapabilitiesDto = {
   limits: { taskPageSize: 50, maxTaskPageSize: 200, maxBulkItems: 20, maxUndoTargets: 128, maxUndoPayloadBytes: 65536, maxUploadBytes: 10485760 },
 };
 
-function summarizeTasks(tasks: TaskDto[], clock: Clock) {
-  const byStatus = { backlog: 0, todo: 0, progress: 0, review: 0, done: 0 };
-  const byPriority = { urgent: 0, high: 0, medium: 0, low: 0, none: 0 };
-  for (const task of tasks) { byStatus[task.status]++; byPriority[task.priority]++; }
-  return TaskSummarySchema.parse({ total: tasks.length, byStatus, byPriority, overdue: tasks.filter(task => task.status !== 'done' && task.dueDate && task.dueDate < clock.today()).length, completed: byStatus.done, completionRate: tasks.length ? Math.round(byStatus.done / tasks.length * 100) : 0, subtaskTotals: { total: tasks.reduce((total, task) => total + task.subtaskSummary.total, 0), completed: tasks.reduce((total, task) => total + task.subtaskSummary.completed, 0) } });
-}
+function summarizeTasks(tasks: TaskDto[], clock: Clock) { return summarizeTaskDomain(tasks, clock.today()); }
 
 function projectCatalogItem(data: MockDataset, project: ProjectDto, clock: Clock): ProjectListItemDto {
   if (project.visibility === 'private' && !project.memberIds.includes(data.currentMemberId)) {

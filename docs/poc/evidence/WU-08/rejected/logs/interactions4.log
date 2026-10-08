@@ -1,0 +1,26 @@
+status-reuse-keyboard-focus-no-implicit-Undo: passed
+assignee-search-unassigned-shared-identity-return-focus: passed
+mutation-error-keeps-attempt-popover-focus-rollback-retry: passed
+draft-status-assignee-kept-across-popover-record-untouched: passed
+date-real-calendar-validation-retained-input-range-error: passed
+date-record-invalidrange-server-error-retained-canonical-rollback: passed
+estimate-recurrence-labels-priority-controlled-patch: passed
+completion-canonical-descriptor-Undo-restore-no-snapshot: passed
+toolbar-controls-current-URL-saved-view-unchanged: passed
+rollback-race-earlierfailure-preserves-newer-success-even-refetch-fails: passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: TypeError: Cannot read properties of null (reading 'textContent')
+    at eval (eval at predicate (eval at evaluate (:290:30)), <anonymous>:1:55)
+    at predicate (eval at evaluate (:290:30), <anonymous>:7:23)
+    at next (eval at evaluate (:290:30), <anonymous>:29:29)
+    at eval (eval at evaluate (:290:30), <anonymous>:42:9)
+    at UtilityScript.evaluate (<anonymous>:292:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /workspace/task8/tests/visual/tasks/interactions.mjs:24:417
+    at async probe (/workspace/task8/tests/visual/tasks/interactions.mjs:9:80)
+    at async file:///workspace/task8/tests/visual/tasks/interactions.mjs:24:2
+
+Node.js v24.13.0

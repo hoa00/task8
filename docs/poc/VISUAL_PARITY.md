@@ -282,3 +282,36 @@ source/target hashes, geometry and exact threshold0/includeAA=true/no masks.
 Source review sheets and accepted PNGs are copied from those verified bytes.
 This is technical Linux source-only shell review; it does not establish official
 Darwin whole-page parity, full future-page parity or physical safe-area insets.
+
+## WU-08 — task toolbar/filter ownership and scoped evidence
+
+Task fields and toolbar compose WU-04/05 controls, icons and overlay primitives;
+feature styles use literal Tailwind source values. `apps/web/src/styles/app.css`
+owns only the inclusive640px toolbar label hiding and two-column filter-row
+geometry in the utilities layer. This layer preserves source min-width/max-width
+cascade. Field status/priority atoms use original static SVG geometry; identity
+adapters reuse AvatarBase/ColorDot. No source CSS is imported into the target.
+
+The WU-08 source-only harness invokes locked `viewToolbar`, `popHtml`, actual
+select enhancer and `placePop` with original styles/helpers/fonts and retained
+source roots. The22 cases cover light/dark desktop default/chips/filter empty/
+rows/expanded/sort/group/columns, mobile390 and639/640/641. Fresh contexts,
+neutral pointer/blur, fonts/layout flush, concurrent finite animation settlement,
+two RAF and symmetric warmup screenshots apply. All comparisons and repeats are
+exact0 at threshold0/includeAA=true/maxDiffPixels0, without masks. Actual pointer/
+keyboard probes are separate from deterministic visual setup.
+
+WU-05 reopening: shrink-to-fit popovers must start at their anchor coordinates
+before measuring width, as the original `popHtml`/`placePop` lifecycle does. This
+affects mobile filter rows: initial source left220 measures170px, collision
+places left144, and final width246px. Measuring target at left0 instead gave
+382px after collision. Shared placement now preserves that lifecycle. The
+original WU-05 accepted evidence remains untouched; a full42-image/17-probe
+regression is recorded under `evidence/WU-08/overlay-regression`.
+
+`evidence/WU-08/visual-verification.json` records source/target hashes, actual
+geometry, immutable manifest hashes and separate source/canonical query fixtures.
+44 verified PNGs and6 source-only review sheets accompany technical inspection.
+No full List/Board/Table, field-editor screenshot matrix, Darwin173 whole-page
+or physical-device parity is claimed. Current view URL changes do not persist a
+named saved view; equal-key row ordering follows the documented API ID correction.
