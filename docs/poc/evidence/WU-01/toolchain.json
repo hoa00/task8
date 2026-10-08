@@ -1,0 +1,179 @@
+{
+  "node": "v24.13.0",
+  "pnpm": "11.19.0",
+  "os": "linux",
+  "release": "6.18.44",
+  "arch": "x64",
+  "strictPeerDependencies": true,
+  "pnpmAllowBuilds": [
+    "esbuild",
+    "workerd"
+  ],
+  "lockfileSha256": "a8d91eba40e4b3a95ec3a3549c1c49980139b9b302b99ce04dc71c57859cbe8f",
+  "packages": [
+    {
+      "path": "package.json",
+      "name": "task8",
+      "private": true,
+      "type": "module",
+      "engines": {
+        "node": "24.13.0"
+      },
+      "packageManager": "pnpm@11.19.0",
+      "scripts": {
+        "dev": "turbo run dev",
+        "build": "turbo run build",
+        "typecheck": "turbo run typecheck",
+        "lint": "eslint apps packages tests/workspace eslint.config.mjs && node tests/workspace/boundaries.mjs",
+        "test": "turbo run test && pnpm test:reference && pnpm test:workspace",
+        "test:reference": "node --test tests/visual/reference/*.test.mjs",
+        "test:workspace": "node --test tests/workspace/*.test.mjs",
+        "reference:check": "node tests/visual/reference/source-check.mjs",
+        "reference:bootstrap-assets": "node tests/visual/reference/bootstrap-assets.mjs",
+        "visual:reference:capture": "node tests/visual/reference/capture.mjs capture",
+        "visual:reference:verify": "node tests/visual/reference/capture.mjs verify",
+        "visual:reference:probes": "node tests/visual/reference/interaction-probes.mjs",
+        "visual:reference:review": "node tests/visual/reference/review-sheets.mjs",
+        "visual:compare": "node tests/visual/reference/compare.mjs",
+        "visual:reference:smoke": "node tests/visual/reference/capture.mjs smoke",
+        "workspace:graph": "turbo run build --dry=json",
+        "api:types": "pnpm --filter @studio/api types",
+        "workspace:verify": "node tests/workspace/artifacts.mjs"
+      },
+      "devDependencies": {
+        "@playwright/test": "1.58.2",
+        "pixelmatch": "7.1.0",
+        "pngjs": "7.0.0",
+        "@eslint/js": "10.0.1",
+        "@types/node": "24.19.1",
+        "eslint": "10.12.0",
+        "eslint-plugin-react-hooks": "7.1.1",
+        "eslint-plugin-react-refresh": "0.5.7",
+        "globals": "17.13.0",
+        "turbo": "2.11.7",
+        "typescript": "6.0.3",
+        "typescript-eslint": "8.71.1"
+      }
+    },
+    {
+      "path": "apps/web/package.json",
+      "name": "@studio/web",
+      "version": "0.0.0",
+      "private": true,
+      "type": "module",
+      "scripts": {
+        "dev": "vite --host 127.0.0.1",
+        "build": "vite build",
+        "preview": "vite preview --host 127.0.0.1",
+        "typecheck": "tsc --noEmit",
+        "test": "node --experimental-strip-types --test src/app/env.test.ts"
+      },
+      "dependencies": {
+        "@studio/ui": "workspace:*",
+        "@studio/contracts": "workspace:*",
+        "@studio/domain": "workspace:*",
+        "@tanstack/react-query": "5.104.1",
+        "@tanstack/react-router": "1.170.41",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "zod": "4.6.5"
+      },
+      "devDependencies": {
+        "@tailwindcss/vite": "4.3.3",
+        "@tanstack/router-plugin": "1.168.42",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "@vitejs/plugin-react": "6.1.2",
+        "tailwindcss": "4.3.3",
+        "vite": "8.3.3"
+      }
+    },
+    {
+      "path": "apps/api/package.json",
+      "name": "@studio/api",
+      "version": "0.0.0",
+      "private": true,
+      "type": "module",
+      "scripts": {
+        "dev": "wrangler dev --local --ip 127.0.0.1 --port 8787",
+        "build": "wrangler deploy --dry-run --outdir dist",
+        "typecheck": "tsc --noEmit",
+        "types": "wrangler types --include-runtime=false --env-interface CloudflareBindings"
+      },
+      "dependencies": {
+        "@studio/contracts": "workspace:*",
+        "@studio/domain": "workspace:*",
+        "hono": "4.13.13",
+        "drizzle-orm": "0.45.3"
+      },
+      "devDependencies": {
+        "@cloudflare/workers-types": "5.20261006.1",
+        "drizzle-kit": "0.31.11",
+        "wrangler": "4.148.0"
+      }
+    },
+    {
+      "path": "packages/ui/package.json",
+      "name": "@studio/ui",
+      "version": "0.0.0",
+      "private": true,
+      "type": "module",
+      "exports": {
+        ".": {
+          "types": "./src/index.ts",
+          "import": "./src/index.ts"
+        }
+      },
+      "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "typecheck": "tsc --noEmit"
+      },
+      "peerDependencies": {
+        "react": "^19.3.0"
+      },
+      "devDependencies": {
+        "@types/react": "19.3.0"
+      }
+    },
+    {
+      "path": "packages/contracts/package.json",
+      "name": "@studio/contracts",
+      "version": "0.0.0",
+      "private": true,
+      "type": "module",
+      "exports": {
+        ".": {
+          "types": "./src/index.ts",
+          "import": "./src/index.ts"
+        }
+      },
+      "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "typecheck": "tsc --noEmit"
+      },
+      "dependencies": {
+        "zod": "4.6.5"
+      }
+    },
+    {
+      "path": "packages/domain/package.json",
+      "name": "@studio/domain",
+      "version": "0.0.0",
+      "private": true,
+      "type": "module",
+      "exports": {
+        ".": {
+          "types": "./src/index.ts",
+          "import": "./src/index.ts"
+        }
+      },
+      "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "typecheck": "tsc --noEmit"
+      },
+      "dependencies": {
+        "@studio/contracts": "workspace:*"
+      }
+    }
+  ]
+}

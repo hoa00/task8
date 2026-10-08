@@ -1,0 +1,23 @@
+{
+  "name": "@studio/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local --ip 127.0.0.1 --port 8787",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "typecheck": "tsc --noEmit",
+    "types": "wrangler types --include-runtime=false --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "@studio/contracts": "workspace:*",
+    "@studio/domain": "workspace:*",
+    "hono": "4.13.13",
+    "drizzle-orm": "0.45.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261006.1",
+    "drizzle-kit": "0.31.11",
+    "wrangler": "4.148.0"
+  }
+}

@@ -1,0 +1,44 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running build in 5 packages
+   • Remote caching disabled
+
+@studio/ui:build: cache miss, executing 25cedeadb8d742d2
+@studio/contracts:build: cache miss, executing 62e3dd619701000b
+@studio/ui:build: $ tsc -p tsconfig.build.json
+@studio/contracts:build: $ tsc -p tsconfig.build.json
+@studio/domain:build: cache miss, executing 211aadc435679675
+@studio/domain:build: $ tsc -p tsconfig.build.json
+@studio/api:build: cache miss, executing fe6ea42af3eb724b
+@studio/web:build: cache miss, executing 7aee9d625f39288b
+@studio/web:build: $ vite build
+@studio/api:build: $ wrangler deploy --dry-run --outdir dist
+@studio/web:build: vite v8.3.3 building client environment for production...
+@studio/web:build: transforming...
+@studio/web:build: ✓ 250 modules transformed.
+@studio/web:build: rendering chunks...
+@studio/web:build: computing gzip size...
+@studio/web:build: dist/index.html                   0.39 kB │ gzip:   0.26 kB
+@studio/web:build: dist/module-graph.json           26.02 kB │ gzip:   1.85 kB
+@studio/web:build: dist/assets/index-CmTP1elu.css    0.14 kB │ gzip:   0.14 kB
+@studio/web:build: dist/assets/routes-oymGTbLv.js    0.16 kB │ gzip:   0.16 kB
+@studio/web:build: dist/assets/index-eTFs4qHE.js   400.59 kB │ gzip: 124.77 kB
+@studio/web:build:
+@studio/web:build: ✓ built in 219ms
+@studio/api:build: [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:
+@studio/api:build:  ⛅️ wrangler 4.148.0
+@studio/api:build: ────────────────────
+@studio/api:build: Total Upload: 58.27 KiB / gzip: 14.61 KiB
+@studio/api:build: Your Worker has access to the following bindings:
+@studio/api:build: Binding                       Resource
+@studio/api:build: env.STUDIO_ENV ("local")      Environment Variable
+@studio/api:build:
+@studio/api:build: --dry-run: exiting now.
+
+ Tasks:    5 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    8.494s

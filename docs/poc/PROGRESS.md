@@ -2,21 +2,21 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-00` — **DONE**.
-- Last completed implementation unit: `WU-00`.
+- Current work unit: `WU-01` — **DONE**.
+- Last completed implementation unit: `WU-01`.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
-- Target React app: chưa triển khai.
-- Backend/D1/R2: chưa triển khai.
+- Target React app: workspace/React entry và file router skeleton đã build/typecheck; chưa có UI nghiệp vụ.
+- Backend: Hono Worker skeleton local/404 đã chạy; D1/R2 và business routes chưa triển khai.
 - Source SHA: `904205c626918ee96054eb35495c394a60c0c601`.
-- Target project: `task8`; repository private [hoa00/task8](https://github.com/hoa00/task8), `origin=https://github.com/hoa00/task8.git`, branch/default branch `main`, tracking `origin/main`. Push đầu đã thành công; SHA local/remote khớp `2ca0191918a3c3dae5dd7fa5a6c711f0a164dd00`.
+- Target project: `task8`; repository private [hoa00/task8](https://github.com/hoa00/task8), `origin=https://github.com/hoa00/task8.git`, default branch `main`; implementation hiện dùng branch `work`, push normal `HEAD:main`. Kết quả WU-01 ở entry bên dưới; lịch sử push WU-00 giữ nguyên.
 
 ## Work unit ledger
 
 | Unit | Status | Checkpoint | Evidence / blocker |
 | --- | --- | --- | --- |
 | [WU-00](work-units/WU-00.md) | DONE | `8310612c8fc59f5e9b57940d06ee28b0220aa1c4` | [Runner](reference/CAPTURE.md), [repeatability](reference/repeatability.json), [inspection](reference/review/inspection.json); đã push repo private hoa00/task8, xem bổ sung bên dưới |
-| [WU-01](work-units/WU-01.md) | NOT_STARTED | — | — |
+| [WU-01](work-units/WU-01.md) | DONE | pending commit | [Clean gates](evidence/WU-01/clean-typecheck.log), [graph/bundle](evidence/WU-01/workspace-artifacts.json), [source smoke](evidence/WU-01/source-smoke.json) |
 | [WU-02](work-units/WU-02.md) | NOT_STARTED | — | — |
 | [WU-03](work-units/WU-03.md) | NOT_STARTED | — | — |
 | [WU-04](work-units/WU-04.md) | NOT_STARTED | — | — |
@@ -111,3 +111,40 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - Push: `git push -u origin main` exit 0, tạo branch `main` và tracking `origin/main`. `gh repo view hoa00/task8 --json nameWithOwner,visibility,defaultBranchRef,url` xác nhận `PRIVATE`, default branch `main`; `gh api repos/hoa00/task8/git/ref/heads/main --jq .object.sha` bằng `git rev-parse HEAD`: `2ca0191918a3c3dae5dd7fa5a6c711f0a164dd00`. Bao gồm toàn bộ các commit/evidence WU-00 trước đó.
 - Blockers: blocker thiếu remote đã gỡ; chưa có blocker mới. Không đổi kết luận audit quyền phân phối nguồn.
 - Next: `WU-01` vẫn NOT_STARTED; dừng sau hoàn tất push.
+
+
+## WU-01 — 2026-10-08
+
+- Status: `DONE` — WU-01-AC1/2/3 và verification bắt buộc đạt; commit/push sẽ ghi SHA thực trong checkpoint bổ sung.
+- Started from: branch `work`, HEAD `7027697a3dcfab25e4c1513cab495453c5c389b7`, working tree sạch. Remote target `origin=https://github.com/hoa00/task8.git`, remote `main` cùng HEAD; không dùng remote reference. WU-00 DONE và 86 tracked source files tại SHA khóa đã xác minh lại.
+- Completed: pnpm workspace gồm `apps/web`, `apps/api`, `packages/ui`, `packages/contracts`, `packages/domain`; packages private với source TypeScript exports/types và build ESM/declarations thật. Turbo điều phối dependencies, cache build/typecheck outputs `dist/**`, không cache dev/test. React strict entry/Query provider/file router và Hono Module Worker skeleton chạy thật; entry chưa dựng màn hình, API chưa có business routes và trả 404 cho endpoint chưa triển khai.
+- AC1: clean copy từ **Git index** tại `/tmp/task8-wu01-clean`, không node_modules/dist/.turbo/.reference, đã chạy frozen install rồi typecheck **trước Vite build**, không phải dựa vào file sinh bởi dev server. `apps/web/src/routeTree.gen.ts` do plugin sinh và tracked; `apps/api/worker-configuration.d.ts` do Wrangler sinh và tracked. Cả hai excluded lint/format. Clean graph không có `.git` nên Turbo báo dirty-hash warning và dùng filesystem hashing; không ảnh hưởng kết quả hoặc cần file generated khác.
+- AC2: lint kiểm tra package manifests/import AST và test negative chiều phụ thuộc. `contracts` chỉ Zod, `domain` chỉ contracts, `ui` React peer; không Worker/Hono/Drizzle/app imports trong packages/browser. [Browser modules](evidence/WU-01/browser-modules.json) ghi 250 module thực, zero reference/legacy renderer/server/DB modules. API artifact `apps/api/dist/index.js`; web artifact `apps/web/dist/`, shared package artifacts `packages/*/dist` đều ignored.
+- AC3: [Turbo graph và bundle audit](evidence/WU-01/workspace-artifacts.json) kiểm tra 5 build task: domain → contracts; api → contracts/domain; web → contracts/domain/ui. Runner WU-00 giữ nguyên, `pnpm reference:check` exit 0/86 files, `pnpm visual:reference:smoke` exit 0/11 pass/0 failed. Smoke manifest giữ status `incomplete` vì đây là 11/173 scenario, không nhận thành baseline đầy đủ.
+- Env: `PublicEnv` runtime Zod/schema typed cho `VITE_DATA_MODE=mock|http` và URL origin-relative `/api/v1`; reject unknown mode, external/protocol-relative/traversal URL và unsupported `VITE_*`. Bootstrap parse một lần; chưa dựng business adapters. Private Worker env là Wrangler-generated `CloudflareBindings`, hiện `STUDIO_ENV=local`; `.env.local`/`.dev.vars` ignored, examples không chứa secrets. Turbo giữ inherited proxy và CA trust; không tắt TLS verification. Tailwind scan explicit web/ui, không Preflight/legacy CSS; tokens/fonts/reset thuộc unit thiết kế kế tiếp.
+- Files changed: `.gitignore`, `.prettierignore`, `README.md`, `package.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, `turbo.json`, `tsconfig.base.json`, `eslint.config.mjs`; `apps/web/**`, `apps/api/**`, `packages/{ui,contracts,domain}/**` skeleton/config/source/exports; `tests/workspace/{boundaries.mjs,boundaries.test.mjs,artifacts.mjs}`; `docs/poc/evidence/WU-01/**` và PROGRESS. Source checkout/harness/assets/baseline/fixture không sửa; không migration/CI/deployment hoặc unit sau.
+- Verification: clean `pnpm install --frozen-lockfile` exit 0 ([log](evidence/WU-01/clean-install.log)); `pnpm typecheck` exit 0/5 packages trước build ([log](evidence/WU-01/clean-typecheck.log)); `pnpm build` exit 0/5 packages, Wrangler `deploy --dry-run --outdir dist` **không deploy** ([log](evidence/WU-01/clean-build.log)); `pnpm lint` exit 0 ([log](evidence/WU-01/clean-lint.log)); `pnpm test` exit 0/2 env + 3 reference comparator + 1 boundary tests ([log](evidence/WU-01/clean-test.log)); `pnpm workspace:verify` exit 0/5 graph tasks/250 browser modules/zero forbidden. `pnpm api:types` và Vite generation exit 0; lint cuối sau sửa CA/config exit 0; `git diff --check` exit 0.
+- Interaction/runtime: `pnpm dev` thực sự chạy Vite 5173 + Wrangler local 8787; [browser report](evidence/WU-01/local-runtime.json) chứng minh React mount, Tailwind min-height 1000px ở viewport 1440×1000, reload, zero page errors, direct Worker và Vite-proxy unknown API đều 404/text/plain/`Not found`, không HTML fallback hoặc success giả. Các dev/source process do unit tạo đã dừng; [cleanup](evidence/WU-01/process-cleanup.json): 4173/5173/8787 đều ECONNREFUSED.
+- Visual evidence: [source smoke](evidence/WU-01/source-smoke.json), ảnh/metadata thật ở ignored `test-results/smoke/`; source SHA không đổi. Runner WU-01 Node24.13.0/pnpm11.19.0/Playwright1.58.2/Chromium1208/145.0.7632.6 trên Linux x64, trong khi baseline WU-00 Darwin arm64. **Không chạy/không claim raster parity hoặc full repeatability Darwin trên Linux**, không cập nhật baseline/tolerance/mask. WU-01 không có UI design để nghiệm thu target screen parity.
+- Contract/data evidence: unit này chỉ env/package boundaries, chưa canonical DTO/UUIDv7/fixture mapper/domain behavior hoặc D1/R2; dành đúng unit tiếp theo/backend.
+- Decisions/conflicts: Node runtime host 24.19.0 khác pin WU-00, dùng Node24.13.0 riêng ở `/tmp/task8-node-runtime`, không sửa `.node-version` hoặc harness. Resolve registry stable/peer ranges, không giả định Router/plugin cùng patch. TypeScript latest7 không đáp ứng typescript-eslint `<6.1`, chọn stable6.0.3. Vite8.3.4/Drizzle0.45.4 mới quá age cutoff mặc định pnpm; chọn8.3.3/0.45.3, bỏ exclusions installer tự thêm. pnpm11 dùng `allowBuilds` cho esbuild/workerd. React-refresh0.5.7 nhận TanStack route factories qua `extraHOCs`; không tắt rule cả app. Internal source exports được chọn theo TOOLCHAIN, chưa pipeline publish package.
+- Failed attempts đã sửa: npm/pnpm cache/log default ngoài sandbox → task-specific XDG/store/cache trong `/tmp`; wrapper pnpm host Node24.19 → gọi pnpm11.19 bằng Node pin. Default restricted subprocess khiến source git spawn EPERM; chạy gate cuối với supported network permission (không đổi source code). First build bị Turbo strict env loại XDG/log config → passthrough đúng; lint route factory false positive → extraHOCs. Dev warning `Request.cf` TLS do CA env bị Turbo lọc → giữ `NODE_EXTRA_CA_CERTS`/SSL cert env, rerun không warning. Ctrl-C wrapper để lại dev descendants gây port5173 collision → stop đúng process tree sở hữu, rerun successful và cleanup kiểm chứng. Không coi các attempt này là pass; logs/evidence cuối là kết quả nghiệm thu; log lưu được normalize trailing whitespace, không đổi kết quả/command.
+- Environment/toolchain: [manifest resolved](evidence/WU-01/toolchain.json); bảng bên dưới là exact versions cài thực, strictPeerDependencies=true, lockfile committed, không force/legacy peer bypass.
+
+| Nhóm | Resolved versions |
+| --- | --- |
+| Node / pnpm / Turbo | 24.13.0 / 11.19.0 / 2.11.7 |
+| React / React DOM / types | 19.3.0 / 19.3.0 / @types/react19.3.0 + @types/react-dom19.3.0; một React version |
+| Vite / React plugin / TypeScript / Node types | 8.3.3 / 6.1.2 / 6.0.3 / @types/node24.19.1 |
+| Router / Router plugin / Query | 1.170.41 / 1.168.42 / 5.104.1 |
+| Tailwind / Vite plugin | 4.3.3 / 4.3.3 |
+| Hono / Drizzle ORM / Drizzle Kit / Wrangler / Worker types / Zod | 4.13.13 / 0.45.3 / 0.31.11 / 4.148.0 / 5.20261006.1 / 4.6.5 |
+| ESLint / JS config / TS ESLint / React hooks / refresh / globals | 10.12.0 / 10.0.1 / 8.71.1 / 7.1.1 / 0.5.7 / 17.13.0 |
+| Playwright / Chromium / pixelmatch / pngjs | 1.58.2 / revision1208,145.0.7632.6 / 7.1.0 / 7.0.0 |
+| Lucide/fonts | Không thêm/nâng; manifest nguồn WU-00 giữ nguyên |
+
+- Not run/not applicable: full173 source raster verify trên Linux, target UI screenshot parity, business API/localD1/R2, migrations/seed, CI hoặc remote deployment. Các gate này không thuộc WU-01; baseline Darwin luôn giữ nguyên.
+- Blockers: không có blocker WU-01. Environment difference cần xử lý trước các unit screenshot parity bằng source-only Linux baseline riêng theo CAPTURE policy, không ghi đè baseline Darwin. Quyền phân phối app/design/logo lịch sử vẫn unconfirmed; unit này không publish/deploy.
+- Commit: pending — chỉ ghi SHA sau commit thành công.
+- Push: pending — sẽ push normal `origin HEAD:main` sau đối chiếu remote divergence và ghi SHA verified; user đã chỉ thị push repo đích.
+- Next permitted unit: `WU-02`; dừng sau checkpoint/push WU-01, chưa thực hiện unit sau.

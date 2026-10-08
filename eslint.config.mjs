@@ -1,0 +1,16 @@
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+
+export default tseslint.config(
+  { ignores: ['.reference/**', 'docs/**', '**/dist/**', '**/node_modules/**', '**/.turbo/**', '**/.wrangler/**', 'test-results/**', '**/routeTree.gen.ts', '**/worker-configuration.d.ts'] },
+  js.configs.recommended,
+  { files: ['**/*.mjs'], languageOptions: { globals: globals.node } },
+  { files: ['tests/visual/reference/**/*.mjs'], languageOptions: { globals: { ...globals.node, ...globals.browser } } },
+  ...tseslint.configs.recommended.map(config => ({ ...config, files: ['apps/**/*.ts', 'apps/**/*.tsx', 'packages/**/*.ts', 'packages/**/*.tsx'] })),
+  { files: ['apps/**/*.ts', 'apps/**/*.tsx', 'packages/**/*.ts', 'packages/**/*.tsx'], rules: { '@typescript-eslint/consistent-type-imports': 'error' } },
+  { files: ['apps/web/src/**/*.ts', 'apps/web/src/**/*.tsx', 'packages/ui/src/**/*.ts', 'packages/ui/src/**/*.tsx'], languageOptions: { globals: globals.browser }, plugins: { 'react-hooks': reactHooks, 'react-refresh': reactRefresh }, rules: { ...reactHooks.configs.recommended.rules, ...reactRefresh.configs.vite.rules } },
+  { files: ['apps/web/src/routes/**/*.tsx'], rules: { 'react-refresh/only-export-components': ['error', { extraHOCs: ['createFileRoute', 'createRootRoute'] }] } },
+);

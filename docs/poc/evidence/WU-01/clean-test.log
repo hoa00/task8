@@ -1,0 +1,49 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running test in 5 packages
+   • Remote caching disabled
+
+@studio/ui:build: cache hit, replaying logs 25cedeadb8d742d2
+@studio/ui:build: $ tsc -p tsconfig.build.json
+@studio/contracts:build: cache hit, replaying logs 62e3dd619701000b
+@studio/contracts:build: $ tsc -p tsconfig.build.json
+@studio/domain:build: cache hit, replaying logs 211aadc435679675
+@studio/domain:build: $ tsc -p tsconfig.build.json
+@studio/web:test: cache bypass, force executing 4ee2cf5b0e753125
+@studio/web:test: $ node --experimental-strip-types --test src/app/env.test.ts
+@studio/web:test: ✔ public env defaults and explicit HTTP mode are stable (2.163687ms)
+@studio/web:test: ✔ public env rejects unknown modes, external URLs and exposed secrets (0.798728ms)
+@studio/web:test: ℹ tests 2
+@studio/web:test: ℹ suites 0
+@studio/web:test: ℹ pass 2
+@studio/web:test: ℹ fail 0
+@studio/web:test: ℹ cancelled 0
+@studio/web:test: ℹ skipped 0
+@studio/web:test: ℹ todo 0
+@studio/web:test: ℹ duration_ms 117.401701
+
+ Tasks:    4 successful, 4 total
+Cached:    3 cached, 4 total
+  Time:    623ms
+
+✔ missing reference fails without creating a golden (1.403046ms)
+✔ one changed pixel fails the exact comparison including antialiasing (5.186342ms)
+✔ comparison CLI rejects snapshot update flags before touching a reference (38.850661ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 113.647007
+✔ shared packages accept only their own dependency direction (6.89717ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 331.780288

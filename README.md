@@ -2,7 +2,7 @@
 
 Tên package là `task8`; repository đích là [hoa00/task8](https://github.com/hoa00/task8) (private). Tiến độ triển khai và evidence hiện tại nằm trong [PROGRESS.md](docs/poc/PROGRESS.md).
 
-**Ngày lập:** 08/10/2026. **Trạng thái:** tài liệu thiết kế và triển khai; ứng dụng React/backend chưa được viết trong bộ bàn giao này.
+**Ngày lập:** 08/10/2026. **Trạng thái:** WU-00 có baseline nguồn; WU-01 có workspace/build và entry React/API skeleton. UI và nghiệp vụ backend chưa triển khai.
 
 Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương tác của Gr8r Studio sang **React + TypeScript + Vite + TanStack Router + Tailwind CSS**, tổ chức component dùng lại theo chức năng, và chuẩn bị contract để backend **Hono + Drizzle ORM + Cloudflare D1** thay mock mà không phải viết lại màn hình.
 
@@ -66,4 +66,35 @@ Dùng một session mới cho unit kế tiếp. Nếu unit chưa đạt, tiếp 
 2. **M2 — Full UI parity:** hoàn tất WU-13…WU-29, toàn bộ screen/state inventory có đối chiếu nguồn và interaction evidence.
 3. **M3 — Backend POC:** hoàn tất WU-30…WU-36, cùng frontend chạy HTTP → Hono → D1, tệp R2 local và các kiểm tra dữ liệu cần thiết.
 
-WU-00 đã hoàn tất theo verification thực tế; các unit sau chưa triển khai. Theo dõi trạng thái trong [PROGRESS.md](docs/poc/PROGRESS.md).
+WU-00 và WU-01 đã hoàn tất theo verification thực tế; các unit sau chưa triển khai. Theo dõi trạng thái trong [PROGRESS.md](docs/poc/PROGRESS.md).
+
+## Chạy workspace local (WU-01)
+
+Dùng Node `24.13.0` trong `.node-version` và pnpm `11.19.0` trong `packageManager`:
+
+```sh
+pnpm install --frozen-lockfile
+cp apps/web/.env.example apps/web/.env.local
+pnpm dev
+```
+
+Turbo chạy Vite tại `http://127.0.0.1:5173` và Wrangler local tại `http://127.0.0.1:8787`. Vite dev/preview proxy `/api` sang Worker; mọi URL API của web phải là đường dẫn tương đối cùng origin. `VITE_DATA_MODE=mock|http`, `VITE_API_BASE_URL=/api/v1`; bootstrap validate một lần, không tự fallback khi HTTP lỗi. WU-01 chỉ tạo entry rỗng và API 404: chưa có adapter nghiệp vụ, màn hình hoặc database.
+
+Biến `VITE_*` được gửi vào browser, chỉ dùng hai biến công khai trong `.env.example`. Biến Worker riêng nằm trong `wrangler.jsonc`/`.dev.vars` hoặc binding phía server; không đưa secrets vào `VITE_*`. File `.env.local` và `.dev.vars` được ignore.
+
+```sh
+pnpm typecheck
+pnpm build
+pnpm lint
+pnpm test
+pnpm workspace:graph
+pnpm api:types
+pnpm reference:check
+pnpm visual:reference:smoke
+```
+
+`build` chỉ tạo `apps/web/dist`, `apps/api/dist` (Wrangler dry run, không deploy) và `packages/*/dist`. Package nội bộ export source TypeScript với types rõ ràng, tất cả private. `apps/web/dist/module-graph.json` liệt kê module thực của bundle để kiểm tra cách ly nguồn/server. Script `test` chạy kiểm tra env, chiều phụ thuộc và các negative tests của comparator nguồn.
+
+Plugin TanStack Router đứng trước React; Vite sinh và sở hữu `apps/web/src/routeTree.gen.ts`. File này được commit để clean clone chạy typecheck trước build; không sửa tay hoặc lint/format generated file. Khi đổi routes, chạy `pnpm --filter @studio/web build` và commit route tree mới. Wrangler sinh `apps/api/worker-configuration.d.ts` qua `pnpm api:types`; generated bindings cũng được commit, cấu hình Worker hiện chỉ có `STUDIO_ENV=local`.
+
+Tailwind 4 dùng scan explicit cho web và ui, không Preflight và không CSS legacy. Tokens/fonts/reset/components sẽ do unit thiết kế kế tiếp sở hữu. Source reference ngoài workspace tiếp tục dùng lockfile riêng; `visual:reference:smoke` kiểm tra chức năng runner, không thay baseline. Raster baseline Darwin chỉ được compare trên môi trường đã pin theo [CAPTURE.md](docs/poc/reference/CAPTURE.md).

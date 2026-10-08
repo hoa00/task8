@@ -2,9 +2,18 @@
   "name": "task8",
   "private": true,
   "type": "module",
-  "engines": { "node": "24.13.0" },
+  "engines": {
+    "node": "24.13.0"
+  },
   "packageManager": "pnpm@11.19.0",
   "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "eslint apps packages tests/workspace eslint.config.mjs && node tests/workspace/boundaries.mjs",
+    "test": "turbo run test && pnpm test:reference && pnpm test:workspace",
+    "test:reference": "node --test tests/visual/reference/*.test.mjs",
+    "test:workspace": "node --test tests/workspace/*.test.mjs",
     "reference:check": "node tests/visual/reference/source-check.mjs",
     "reference:bootstrap-assets": "node tests/visual/reference/bootstrap-assets.mjs",
     "visual:reference:capture": "node tests/visual/reference/capture.mjs capture",
@@ -12,11 +21,23 @@
     "visual:reference:probes": "node tests/visual/reference/interaction-probes.mjs",
     "visual:reference:review": "node tests/visual/reference/review-sheets.mjs",
     "visual:compare": "node tests/visual/reference/compare.mjs",
-    "test": "node --test tests/visual/reference/*.test.mjs"
+    "visual:reference:smoke": "node tests/visual/reference/capture.mjs smoke",
+    "workspace:graph": "turbo run build --dry=json",
+    "api:types": "pnpm --filter @studio/api types",
+    "workspace:verify": "node tests/workspace/artifacts.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",
     "pixelmatch": "7.1.0",
-    "pngjs": "7.0.0"
+    "pngjs": "7.0.0",
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.19.1",
+    "eslint": "10.12.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.13.0",
+    "turbo": "2.11.7",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.1"
   }
 }
