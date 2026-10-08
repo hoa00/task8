@@ -1,0 +1,34 @@
+{
+  "unit": "WU-07",
+  "status": "implementation-pushed-and-verified",
+  "baseSha": "424e139183efa497729d2d67d788548ea2b5d2ab",
+  "implementationSha": "ec24c13c6b05d617f5f1b0b59a0369435015328d",
+  "implementationMessage": "feat: add canonical routes and shared app shell for WU-07",
+  "remote": "https://github.com/hoa00/task8.git",
+  "localBranch": "work",
+  "targetRef": "refs/heads/main",
+  "preflight": {
+    "fetchExit": 0,
+    "ahead": 0,
+    "behind": 0,
+    "originMainAncestor": true
+  },
+  "beforePush": {
+    "ahead": 1,
+    "behind": 0
+  },
+  "push": {
+    "command": "git push origin HEAD:main",
+    "exitStatus": 0
+  },
+  "remoteVerification": {
+    "command": "git ls-remote origin refs/heads/main",
+    "exitStatus": 0,
+    "remoteSha": "ec24c13c6b05d617f5f1b0b59a0369435015328d",
+    "localHead": "ec24c13c6b05d617f5f1b0b59a0369435015328d",
+    "match": true,
+    "workingTreeClean": true
+  },
+  "gates": "docs/poc/evidence/WU-07/verification.json",
+  "documentationCheckpoint": "This file and actual implementation SHA/push are recorded in the following normal documentation commit. Its own final SHA/push is reported after verification."
+}
