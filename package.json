@@ -1,0 +1,22 @@
+{
+  "name": "gr8r-react-poc",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "24.13.0" },
+  "packageManager": "pnpm@11.19.0",
+  "scripts": {
+    "reference:check": "node tests/visual/reference/source-check.mjs",
+    "reference:bootstrap-assets": "node tests/visual/reference/bootstrap-assets.mjs",
+    "visual:reference:capture": "node tests/visual/reference/capture.mjs capture",
+    "visual:reference:verify": "node tests/visual/reference/capture.mjs verify",
+    "visual:reference:probes": "node tests/visual/reference/interaction-probes.mjs",
+    "visual:reference:review": "node tests/visual/reference/review-sheets.mjs",
+    "visual:compare": "node tests/visual/reference/compare.mjs",
+    "test": "node --test tests/visual/reference/*.test.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "pixelmatch": "7.1.0",
+    "pngjs": "7.0.0"
+  }
+}

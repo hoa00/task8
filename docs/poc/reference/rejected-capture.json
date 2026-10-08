@@ -1,0 +1,2279 @@
+{
+  "status": "rejected-before-acceptance",
+  "sourceCommit": "904205c626918ee96054eb35495c394a60c0c601",
+  "rejectedManifestSha256": "94dcd64d080803094a9cf1f17f4b888da6c51b793b85b4d9757993b30131c314",
+  "reasons": [
+    "Review found hidden fallback anchors in several popover scenarios; now use real visible source openers and source A.pop/A.ctxBtn.",
+    "Drawer activity/comments were below viewport; add recorded scroll setup.",
+    "Repeatability found 103 changed pixels; diagnose before final capture, keep threshold/maxDiffPixels at zero."
+  ],
+  "originalRepeatability": {
+    "baselineManifestSha256": "94dcd64d080803094a9cf1f17f4b888da6c51b793b85b4d9757993b30131c314",
+    "runner": {
+      "node": "v24.13.0",
+      "pnpm": "11.19.0",
+      "playwright": "1.58.2",
+      "chromiumRevision": "1208",
+      "browser": "145.0.7632.6",
+      "os": "darwin",
+      "release": "27.0.0",
+      "arch": "arm64"
+    },
+    "comparedCases": 173,
+    "maxDiffPixels": 0,
+    "totalDiffPixels": 103,
+    "results": [
+      {
+        "id": "SC-01-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-02-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-03-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-04-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-05-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-06-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-07-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-08-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-09-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-10-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-11-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-12-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-13-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-14-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-15-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-16-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-17-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-18-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-19-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SC-20-base",
+        "diffPixels": 2,
+        "totalPixels": 1440000,
+        "status": "failed"
+      },
+      {
+        "id": "SC-21-base",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-01-overview",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-02-board",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-03-list",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-04-table",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-05-calendar",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-06-timeline",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-07-files",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-08-activity",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PR-SV-v1",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-01-workspace",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-02-appearance",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-03-language",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-04-datetime",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-05-members",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-06-teams",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-07-projects",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-08-permissions",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-09-notif-email",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-10-notif-push",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-11-notif-mentions",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-12-notif-assign",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-13-profile",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-14-preferences",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-15-shortcuts",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-16-password",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-17-sessions",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-18-2fa",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-19-plan",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-20-payment",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SE-21-invoices",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "AU-01-login",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "AU-02-signup",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "AU-03-forgot",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "AU-04-forgot-sent",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "AU-05-reset",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "AU-06-reset-done",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "AU-07-verify",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ON-01-step-0",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ON-02-step-1",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ON-03-step-2",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ON-04-step-3",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ON-05-step-4",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ON-06-step-5",
+        "diffPixels": 6,
+        "totalPixels": 1440000,
+        "status": "failed"
+      },
+      {
+        "id": "MD-01-task",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MD-02-project",
+        "diffPixels": 95,
+        "totalPixels": 1440000,
+        "status": "failed"
+      },
+      {
+        "id": "MD-03-share",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MD-04-invite",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MD-05-confirm",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MD-06-prompt",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MD-07-shortcuts",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MD-08-team",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MD-09-filePreview",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MD-10-saveView",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-create",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-ws",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-user",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-help",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-status",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-priority",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-assignee",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-labels",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-project",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-recur",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-estimate",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-deps",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-date",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-subassignee",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-pstatus",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-role",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-sort",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-group",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-cols",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-filter",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-fvals",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-daylist",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-event",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-emoji",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-ctx",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-bulk-status",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-bulk-priority",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "PO-bulk-assignee",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DR-01-side",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DR-02-full",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DR-03-activity",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DR-04-rich-text",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DR-05-subtask",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DR-06-attachment",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DR-07-comment",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DR-08-nested-modal",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "VW-board",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "VW-table",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "VW-calendar-week",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "VW-mytasks-calendar",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "VW-files-list",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "VW-projects-table",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "VW-inbox-selected",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-search-results",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-search-empty",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-project-denied",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-project-missing",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-loading",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-offline",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-bulk",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-palette",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-palette-search",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-toast",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-auth-validation",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-task-validation",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "ST-2fa-setup",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-home",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-inbox",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-tasks",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-calendar",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-timeline",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-settings",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-board",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-table",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-files",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-drawer",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-modal",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-nav",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "MOBILE-auth",
+        "diffPixels": 0,
+        "totalPixels": 329160,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-639",
+        "diffPixels": 0,
+        "totalPixels": 539316,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-640",
+        "diffPixels": 0,
+        "totalPixels": 540160,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-641",
+        "diffPixels": 0,
+        "totalPixels": 541004,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-899",
+        "diffPixels": 0,
+        "totalPixels": 899000,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-900",
+        "diffPixels": 0,
+        "totalPixels": 900000,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-901",
+        "diffPixels": 0,
+        "totalPixels": 901000,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-1099",
+        "diffPixels": 0,
+        "totalPixels": 1099000,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-1100",
+        "diffPixels": 0,
+        "totalPixels": 1100000,
+        "status": "passed"
+      },
+      {
+        "id": "BOUNDARY-1101",
+        "diffPixels": 0,
+        "totalPixels": 1101000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-light-indigo",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-light-blue",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-light-violet",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-light-teal",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-light-rose",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-light-graphite",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-dark-indigo",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-dark-blue",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-dark-violet",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-dark-teal",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-dark-rose",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-dark-graphite",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-system-light",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "THEME-system-dark",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DENSITY-content",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DENSITY-sidebar",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "DENSITY-board",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "SIDEBAR-collapsed",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MOTION-system",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MOTION-reduce",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      },
+      {
+        "id": "MOTION-full",
+        "diffPixels": 0,
+        "totalPixels": 1440000,
+        "status": "passed"
+      }
+    ],
+    "status": "failed"
+  },
+  "harnessChanges": [
+    "scenarios.mjs",
+    "source-driver.mjs"
+  ],
+  "sourceChanged": false,
+  "fontChanged": false,
+  "toleranceChanged": false,
+  "secondCapture": {
+    "manifestSha256": "a7040f47eee389e700e05788f0c4278c79fdfb0226154b33143ed681320c7c40",
+    "capturedCases": 173,
+    "status": "superseded-before-acceptance",
+    "reason": "Finalize proven settled-render setup for the three cases with raster noise; preserve original source, font bytes and zero tolerance.",
+    "affectedScenarios": [
+      "SC-20-base",
+      "ON-06-step-5",
+      "MD-02-project"
+    ],
+    "evidence": "settled-render-probes.json"
+  },
+  "thirdCapture": {
+    "manifestSha256": "0c4d234598d1414284dde71efc241136a10c963532a004d75ce5615f985dfcd8",
+    "status": "rejected-before-acceptance",
+    "repeatability": {
+      "baselineManifestSha256": "0c4d234598d1414284dde71efc241136a10c963532a004d75ce5615f985dfcd8",
+      "runner": {
+        "node": "v24.13.0",
+        "pnpm": "11.19.0",
+        "playwright": "1.58.2",
+        "chromiumRevision": "1208",
+        "browser": "145.0.7632.6",
+        "os": "darwin",
+        "release": "27.0.0",
+        "arch": "arm64"
+      },
+      "comparedCases": 173,
+      "maxDiffPixels": 0,
+      "totalDiffPixels": 493,
+      "results": [
+        {
+          "id": "SC-01-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-02-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-03-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-04-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-05-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-06-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-07-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-08-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-09-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-10-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-11-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-12-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-13-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-14-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-15-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-16-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-17-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-18-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-19-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-20-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SC-21-base",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-01-overview",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-02-board",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-03-list",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-04-table",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-05-calendar",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-06-timeline",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-07-files",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-08-activity",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PR-SV-v1",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-01-workspace",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-02-appearance",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-03-language",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-04-datetime",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-05-members",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-06-teams",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-07-projects",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-08-permissions",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-09-notif-email",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-10-notif-push",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-11-notif-mentions",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-12-notif-assign",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-13-profile",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-14-preferences",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-15-shortcuts",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-16-password",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-17-sessions",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-18-2fa",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-19-plan",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-20-payment",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SE-21-invoices",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "AU-01-login",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "AU-02-signup",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "AU-03-forgot",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "AU-04-forgot-sent",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "AU-05-reset",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "AU-06-reset-done",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "AU-07-verify",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ON-01-step-0",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ON-02-step-1",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ON-03-step-2",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ON-04-step-3",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ON-05-step-4",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ON-06-step-5",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MD-01-task",
+          "diffPixels": 38,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "MD-02-project",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MD-03-share",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MD-04-invite",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MD-05-confirm",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MD-06-prompt",
+          "diffPixels": 2,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "MD-07-shortcuts",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MD-08-team",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MD-09-filePreview",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MD-10-saveView",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-create",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-ws",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-user",
+          "diffPixels": 141,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "PO-help",
+          "diffPixels": 18,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "PO-status",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-priority",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-assignee",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-labels",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-project",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-recur",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-estimate",
+          "diffPixels": 92,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "PO-deps",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-date",
+          "diffPixels": 1,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "PO-subassignee",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-pstatus",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-role",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-sort",
+          "diffPixels": 38,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "PO-group",
+          "diffPixels": 41,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "PO-cols",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-filter",
+          "diffPixels": 83,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "PO-fvals",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-daylist",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-event",
+          "diffPixels": 8,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "PO-emoji",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-ctx",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-bulk-status",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-bulk-priority",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "PO-bulk-assignee",
+          "diffPixels": 31,
+          "totalPixels": 1440000,
+          "status": "failed"
+        },
+        {
+          "id": "DR-01-side",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DR-02-full",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DR-03-activity",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DR-04-rich-text",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DR-05-subtask",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DR-06-attachment",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DR-07-comment",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DR-08-nested-modal",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "VW-board",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "VW-table",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "VW-calendar-week",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "VW-mytasks-calendar",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "VW-files-list",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "VW-projects-table",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "VW-inbox-selected",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-search-results",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-search-empty",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-project-denied",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-project-missing",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-loading",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-offline",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-bulk",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-palette",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-palette-search",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-toast",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-auth-validation",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-task-validation",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "ST-2fa-setup",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-home",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-inbox",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-tasks",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-calendar",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-timeline",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-settings",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-board",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-table",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-files",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-drawer",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-modal",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-nav",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "MOBILE-auth",
+          "diffPixels": 0,
+          "totalPixels": 329160,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-639",
+          "diffPixels": 0,
+          "totalPixels": 539316,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-640",
+          "diffPixels": 0,
+          "totalPixels": 540160,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-641",
+          "diffPixels": 0,
+          "totalPixels": 541004,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-899",
+          "diffPixels": 0,
+          "totalPixels": 899000,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-900",
+          "diffPixels": 0,
+          "totalPixels": 900000,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-901",
+          "diffPixels": 0,
+          "totalPixels": 901000,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-1099",
+          "diffPixels": 0,
+          "totalPixels": 1099000,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-1100",
+          "diffPixels": 0,
+          "totalPixels": 1100000,
+          "status": "passed"
+        },
+        {
+          "id": "BOUNDARY-1101",
+          "diffPixels": 0,
+          "totalPixels": 1101000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-light-indigo",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-light-blue",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-light-violet",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-light-teal",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-light-rose",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-light-graphite",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-dark-indigo",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-dark-blue",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-dark-violet",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-dark-teal",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-dark-rose",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-dark-graphite",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-system-light",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "THEME-system-dark",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DENSITY-content",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DENSITY-sidebar",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "DENSITY-board",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "SIDEBAR-collapsed",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MOTION-system",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MOTION-reduce",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        },
+        {
+          "id": "MOTION-full",
+          "diffPixels": 0,
+          "totalPixels": 1440000,
+          "status": "passed"
+        }
+      ],
+      "status": "failed"
+    },
+    "settledProbe": [
+      {
+        "id": "SC-20-base",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          2
+        ]
+      },
+      {
+        "id": "ON-06-step-5",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "MD-02-project",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "MD-01-task",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "MD-06-prompt",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-user",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-help",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-estimate",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-date",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-sort",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-group",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-filter",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-event",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "PO-bulk-assignee",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "DR-03-activity",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "MOBILE-modal",
+        "independentContexts": 3,
+        "diffs": [
+          0,
+          0
+        ]
+      }
+    ],
+    "reason": "Whole-matrix verification exposed 493 SVG pixels in twelve other overlays; expanded settled probe passed those overlays but still measured two shimmer edge pixels. Pin animation phase in readiness, without changing source or tolerance.",
+    "diffDirectory": "test-results/rejected-third/diffs"
+  }
+}

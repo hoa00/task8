@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "sourceValidation": {
+    "commit": "904205c626918ee96054eb35495c394a60c0c601",
+    "tree": "5db5f992886b2345881946cf85fac098307953a5",
+    "verifiedFiles": 86,
+    "clean": true
+  },
+  "assets": [
+    {
+      "path": "docs/preview.png",
+      "role": "upstream-preview",
+      "gitMode": "100644",
+      "gitBlobSha1": "aa44e9fc53c904842eabb31b7f4510c33f7f97db",
+      "sizeBytes": 540922,
+      "sha256": "291959bad9cfd30c2b2be5a15386758dc890508de2a8f87743b5817f358ba13b",
+      "sourceUrl": "https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/docs/preview.png"
+    },
+    {
+      "path": "public/favicon.svg",
+      "role": "repository-support",
+      "gitMode": "100644",
+      "gitBlobSha1": "63189cfd46922e25e168d8e31b7c31d511112b9e",
+      "sizeBytes": 2419,
+      "sha256": "46a06abf3e6b03a79d5455adc1f7392336d69769b5d09fb81b301959021e47cb",
+      "sourceUrl": "https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/public/favicon.svg"
+    }
+  ],
+  "upstreamLicense": {
+    "declared": false,
+    "distributionPermission": "unconfirmed",
+    "evidence": "No LICENSE/COPYING/NOTICE in tracked source, no license field in source package.json; see UPSTREAM_NOTICE.md. No author contact was made."
+  },
+  "fonts": {
+    "manifest": "font-assets.json",
+    "sha256": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "requestedWeights": {
+      "Geist": [
+        400,
+        500,
+        600
+      ],
+      "Geist Mono": [
+        400
+      ]
+    },
+    "descriptorPolicy": "Original Google Fonts stylesheet; no rewritten variable-weight declaration; 450 keeps original font matching.",
+    "licenses": [
+      {
+        "family": "geist",
+        "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/geist/OFL.txt",
+        "path": "assets/geist-OFL.txt",
+        "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+        "note": "Notice from Google Fonts distribution; does not grant a license to upstream app/design/logo."
+      },
+      {
+        "family": "geistmono",
+        "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/geistmono/OFL.txt",
+        "path": "assets/geistmono-OFL.txt",
+        "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+        "note": "Notice from Google Fonts distribution; does not grant a license to upstream app/design/logo."
+      }
+    ]
+  },
+  "icons": {
+    "version": "0.460.0",
+    "licenseDeclaration": "ISC",
+    "notice": "assets/lucide-LICENSE",
+    "source": "src/core/icons.js",
+    "virtualSubsetGenerator": "vite.config.js",
+    "strokeWidth": 1.8,
+    "size": 16,
+    "viewBox": "0 0 24 24",
+    "paths": "Original Lucide subset is emitted by unchanged reference Vite plugin; per-scenario metadata preserves a rendered SVG sample."
+  },
+  "build": {
+    "install": "npm ci --ignore-scripts --no-audit --no-fund",
+    "installExit": 0,
+    "command": "npm run build",
+    "exit": 0,
+    "node": "v24.13.0",
+    "vite": "6.4.4",
+    "modules": 56,
+    "output": {
+      "cssBytes": 75210,
+      "jsBytes": 358110,
+      "note": "Rounded values from Vite output; exact output hashes below"
+    },
+    "artifacts": [
+      {
+        "path": "dist/index.html",
+        "sha256": "96d4360c685a690ca5acc745cb2f9d7d57832f2a88e4ab9052410756d06f906b",
+        "sizeBytes": 1009
+      },
+      {
+        "path": "dist/assets/index-BAaun9PB.css",
+        "sha256": "181797773710fa8db652d2963c0a7fce8256b1adcfe0a3104c5f55480523f7e9",
+        "sizeBytes": 75206
+      },
+      {
+        "path": "dist/assets/index-BhWzXQlV.js",
+        "sha256": "df84605cc73f78c8a870fccbae2fb288beb49e893d30090d3300a9fd24c1645b",
+        "sizeBytes": 358113
+      }
+    ]
+  }
+}
