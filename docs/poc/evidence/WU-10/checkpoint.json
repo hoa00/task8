@@ -1,0 +1,91 @@
+{
+  "unit": "WU-10",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "startedFrom": "2a619243c188f5bbaf839f51acb5b0a0a2f95af4",
+  "branch": "work",
+  "origin": "https://github.com/hoa00/task8.git",
+  "preflight": {
+    "branch": "work",
+    "origin": "https://github.com/hoa00/task8.git",
+    "localHead": "2a619243c188f5bbaf839f51acb5b0a0a2f95af4",
+    "originMain": "2a619243c188f5bbaf839f51acb5b0a0a2f95af4",
+    "fetchExitStatus": 0,
+    "divergence": {
+      "ahead": 0,
+      "behind": 0
+    },
+    "referenceHead": "904205c626918ee96054eb35495c394a60c0c601",
+    "referenceWorkingTreeClean": true
+  },
+  "implementationCommit": "29ac418fd13a039d31707bf615700ab128d7f089",
+  "implementationCommitSubject": "feat: add shared task drawer form and attachments for WU-10",
+  "implementationPush": {
+    "implementationCommit": "29ac418fd13a039d31707bf615700ab128d7f089",
+    "subject": "feat: add shared task drawer form and attachments for WU-10",
+    "pushCommand": "git push origin HEAD:main",
+    "pushExitStatus": 0,
+    "force": false,
+    "verifiedRemoteMain": "29ac418fd13a039d31707bf615700ab128d7f089",
+    "verificationCommand": "git ls-remote origin refs/heads/main",
+    "verificationFetchExitStatus": 0,
+    "localTree": "1fa87a53207751501c953c655580ca62493277a8",
+    "remoteTree": "1fa87a53207751501c953c655580ca62493277a8",
+    "shaEqual": true,
+    "treeEqual": true,
+    "workingTreeCleanAfterPush": true,
+    "prePush": {
+      "localHead": "29ac418fd13a039d31707bf615700ab128d7f089",
+      "localTree": "1fa87a53207751501c953c655580ca62493277a8",
+      "originMainBeforePush": "2a619243c188f5bbaf839f51acb5b0a0a2f95af4",
+      "divergence": {
+        "ahead": 1,
+        "behind": 0
+      },
+      "remoteMainIsAncestor": true,
+      "workingTreeClean": true,
+      "fetchExitStatus": 0
+    }
+  },
+  "acceptance": {
+    "gates": 15,
+    "contractTests": 93,
+    "webTests": 50,
+    "referenceTests": 3,
+    "workspaceTests": 1,
+    "httpGraphModules": 412,
+    "detailVisualSamples": 32,
+    "detailVisualChangedPixels": 0,
+    "detailRepeatabilityPixels": 0,
+    "detailBrowserProbes": 11,
+    "listVisualRegressions": 96,
+    "listBrowserRegressions": 10,
+    "fieldRegressions": 11,
+    "overlayStrictModeRegressions": 3,
+    "overlayVisualRegressions": 42,
+    "overlayBrowserRegressions": 17,
+    "acceptedDetailPngCount": 64,
+    "rootTechnicalInspectionImages": 9
+  },
+  "evidence": "docs/poc/evidence/WU-10/verification.json",
+  "visualManifest": "docs/poc/evidence/WU-10/review.json",
+  "visualLimits": {
+    "report": "docs/poc/evidence/WU-10/visual-verification.json",
+    "manifest": "docs/poc/evidence/WU-10/review.json",
+    "accepted": "Original owned Drawer chrome/title/properties with original complete panel geometry and exact before/after markup/rect/all-computed-style invariance; separate form/attachment/art samples",
+    "fullDefaultMobileContextDiagnosticChangedPixels": {
+      "light": 17,
+      "dark": 14
+    },
+    "fullDefaultDrawerParity": false,
+    "userApproval": false,
+    "pendingWU11": "Full-body Comments AND Activity, rich editor and scoped child CRUD"
+  },
+  "documentationCheckpoint": "This record is committed after the verified implementation push; final documentation HEAD/remote SHA and tree are reported after its subsequent normal push.",
+  "pendingOwners": {
+    "WU-11": "Rich editor/full subtask CRUD/detail/Comments and Activity; connect same edit form to scoped parent child operations (no Task PATCH subtasks). Full-body Comments AND Activity comparisons mandatory; retain default mobile17/14 diagnostic until resolved with evidence.",
+    "WU-22": "Project Files catalogue/file deep link, reuse exact FileFoundation/preview/canonical links/ID-version operations",
+    "WU-35": "Actual HTTP/R2 upload bytes and transport progress; mock10 remains sample/contentAvailable:false metadata flow"
+  },
+  "nextPermittedUnit": "WU-11",
+  "agentStopsAfterUnit": true
+}
