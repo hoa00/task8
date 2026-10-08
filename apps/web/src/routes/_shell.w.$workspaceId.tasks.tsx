@@ -1,3 +1,3 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { PendingPage } from '../app/shell/PendingPage';
-export const Route=createFileRoute('/_shell/w/$workspaceId/tasks')({component:PendingPage});
+import { WorkspaceTasks } from '../features/tasks/TaskListPages';
+export const Route=createFileRoute('/_shell/w/$workspaceId/tasks')({component:WorkspaceTasks});

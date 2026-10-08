@@ -34,7 +34,7 @@ export const BulkMutateTasksInputSchema = z.discriminatedUnion('operation', [
   z.strictObject({ operation: z.literal('archive'), items: bulkItems, columnScope: ColumnScopeSchema.refine(scope => scope.status === 'done', 'Archive requires done column') }),
 ]);
 export const CreateSubtaskInputSchema = CreateSubtaskDraftSchema.extend({ expectedTaskVersion: p.VersionSchema });
-export const UpdateSubtaskInputSchema = CreateSubtaskDraftSchema.partial().extend({ expectedTaskVersion: p.VersionSchema }).refine(p.nonEmptyPatch, 'Empty PATCH');
+export const UpdateSubtaskInputSchema = z.strictObject({ title: p.NameSchema.optional(), done: z.boolean().optional(), assigneeId: p.MemberIdSchema.nullable().optional(), dueDate: p.DateOnlySchema.nullable().optional(), note: z.string().max(10000).optional(), expectedTaskVersion: p.VersionSchema }).refine(p.nonEmptyPatch, 'Empty PATCH');
 export const CreateCommentInputSchema = z.strictObject({ bodyText: z.string().trim().min(1).max(10000), mentionedMemberIds: p.uniqueIds.default([]) });
 export const UpdateNotificationInputSchema = z.strictObject({ read: z.boolean() });
 export const CreateSavedViewInputSchema = z.strictObject({ name: p.NameSchema, type: m.SavedViewSchema.shape.type, filters: q.TaskFiltersSchema.default([]) });

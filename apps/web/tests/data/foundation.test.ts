@@ -79,7 +79,7 @@ test('same 83-method StudioApi and truthful capabilities reject unimplemented mo
   assert.equal(data.capabilities.dataMode, 'mock');
   assert.equal(data.capabilities.features.tasks, 'unavailable');
   assert.equal(data.capabilities.features.authentication, 'demoOnly');
-  await assert.rejects(mock.updateTask({ workspaceId, taskId: sourceId('tasks', 't3'), body: { expectedVersion: 1, title: 'Edit' } }), isApiError('CAPABILITY_UNAVAILABLE'));
+  await assert.rejects(mock.updateTask({ workspaceId, taskId: sourceId('tasks', 't3'), body: { expectedVersion: 1, descriptionHtml: 'Edit' } }), isApiError('CAPABILITY_UNAVAILABLE'));
 });
 
 test('input validation and unavailable workspace fail through contract errors', async () => {
@@ -208,7 +208,7 @@ test('mutation invalidation stays in its workspace and includes cross-view task 
   for (const key of keys) cache.setQueryData(key, 'cached');
   const otherKey = [...queryKeys.workspace(otherWorkspaceId), 'tasks'];
   cache.setQueryData(otherKey, 'other');
-  const input = { workspaceId, taskId: sourceId('tasks', 't3'), body: { expectedVersion: 1, title: 'Edit' } };
+  const input = { workspaceId, taskId: sourceId('tasks', 't3'), body: { expectedVersion: 1, descriptionHtml: 'Edit' } };
   const invalidated = invalidationKeys('updateTask', input);
   assert(invalidated.every(key => key[1] === workspaceId));
   await invalidateOperation(cache, 'updateTask', input);

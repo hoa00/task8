@@ -1,0 +1,31 @@
+composer-create-retry-focus-caret-scroll-cancel: passed
+title-edit-error-retry-enter-and-canonical-open-close-intent: passed
+selection-partial-selectall-clear-due-overlap-unique: passed
+bulk-status-assignee-priority-no-Undo-exact-targets: passed
+bulk-delete-confirm-cancel-error-rollback-atomic-Undo: passed
+expanded-subrows-completion-parent-version-and-error-rollback: passed
+mytasks-fixed-empty-completed-group-completion-no-selection-no-drag: passed
+real-row-drag-nonmanual-sort-group-patch-cancel-and-error: passed
+toolbar-search-keeps-mounted-focus-and-typed-query: passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'' !== 'WEB-130'
+
+    at file:///workspace/task8/tests/visual/task-list/interactions.mjs:43:698
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:472:9)
+    at async probe (file:///workspace/task8/tests/visual/task-list/interactions.mjs:10:103)
+    at async file:///workspace/task8/tests/visual/task-list/interactions.mjs:42:2 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '',
+  expected: 'WEB-130',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

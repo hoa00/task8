@@ -10,7 +10,8 @@ Both factories expose all 83 `StudioApi` methods with contract validation.
 Mock currently implements session, workspaces, bootstrap, workspace, profile,
 preferences and notification preferences reads. Catalogs arrive with bootstrap.
 WU-07 additionally implements saved-view identity reads. WU-08 adds scoped task
-reads and field/move/completion/Undo commands; see the task feature README for
+reads and field/move/completion/Undo commands; WU-09 adds create/title, bulk
+patch/Delete and subtask done-only aggregate completion; see the task feature README for
 their bounded ownership. Remaining mock operations reject
 `CAPABILITY_UNAVAILABLE` (501); their owning feature WU adds handlers and updates
 capabilities. HTTP sends validated JSON
@@ -57,3 +58,11 @@ workspace queries when switching scope; the request signal reaches both adapters
 build uses the actual app entry in `dist-http`, checks its production module
 graph and emitted JS bytes, and records bundle hashes. Contracts expose `/api`
 without source identity side effects so HTTP does not import fixture code.
+
+WU-09 retained task tombstones and command inverses are strict internal metadata,
+not public TaskDto lifecycle fields. Active reads/counts omit deleted tasks and
+inactive dependency targets. Canonical Delete/Undo retains child associations
+without exposing inactive rows; explicit dependency replacement cannot resurrect
+a deleted target. Command validation/staging plus the per-dataset mutation queue
+make bulk operations and concurrent create retries atomic. Full entity CRUD and
+backend persistence remain with later owners.

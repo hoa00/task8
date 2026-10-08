@@ -56,3 +56,8 @@ The latter supplies a synthetic empty second workspace and delayed old response
 through the same validated StudioClient/Query/Router. They do not change the
 ordinary mock adapter, which returns404 for catalog workspaces lacking data.
 The harness HTML is excluded from the main/HTTP-only entry graph.
+
+WU-09 List pages preserve their feature-owned normalized `view` search string
+through canonical task-open/close navigation. The shell validates its bounded
+string shape; task features own decoding. Title edit closes the task intent before
+focusing the inline input. Drawer contents remain pending WU-10.

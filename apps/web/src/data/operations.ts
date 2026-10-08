@@ -16,6 +16,9 @@ export function createStudioClient(executor: OperationExecutor): StudioClient {
     const operation = operations[id];
     const parsed = operation.request.safeParse(input);
     if (!parsed.success) {
+      if (id === 'bulkMutateTasks' && parsed.error.issues.some(issue => issue.code === 'too_big' && issue.path.join('.') === 'body.items')) {
+        throw new StudioApiError({ error: { code: 'PAYLOAD_TOO_LARGE', message: 'Select at most 20 tasks for one bulk command.' } });
+      }
       throw new StudioApiError({ error: { code: 'VALIDATION_ERROR', message: 'Invalid operation input', fieldErrors: Object.fromEntries(parsed.error.issues.map(issue => [issue.path.join('.'), [issue.message]])) } });
     }
     options.signal?.throwIfAborted();

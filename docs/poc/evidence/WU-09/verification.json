@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "commands": [
+    {
+      "name": "install",
+      "command": "pnpm install --frozen-lockfile --offline",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/install.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/build.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/test.log"
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/reference-check.log"
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/http-build.log"
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-09",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/http-bundle.log"
+    },
+    {
+      "name": "input-lifecycle",
+      "command": "node tests/visual/task-list/paint-probe.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/input-lifecycle.log"
+    },
+    {
+      "name": "visual",
+      "command": "node tests/visual/task-list/verify.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/visual.log"
+    },
+    {
+      "name": "interactions",
+      "command": "node tests/visual/task-list/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/interactions.log"
+    },
+    {
+      "name": "field-regression",
+      "command": "node tests/visual/tasks/interactions.mjs --wu09-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-09/field-regression.log"
+    }
+  ],
+  "acceptance": {
+    "AC1": "One shared TaskList/Row/GroupHeader/MiniRow/BulkActionBar; Workspace/MyTasks canonical page integration and Project/saved feature harness",
+    "AC2": "Actual create/title/select/clear/allbulk/Deleteconfirm/Undo/subrowcompletion/drag/error probes plus atomic command tests",
+    "AC3": "Source-only zero pixel matrix desktop/mobile/density40/34, expanded/composer coverage assertions, symmetric settled native input lifecycle",
+    "AC4": "Actual canonical taskId/workspace intent route probe; drawer content explicitly pending WU10"
+  },
+  "notRun": [
+    "Worker business APIs/localD1/R2: later units",
+    "Full Project wrapper WU16",
+    "Drawer content WU10/subtaskCRUD WU11",
+    "Original173Darwin wholepage or physicaldevice parity"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "runtime": {
+    "node": "v24.13.0",
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6"
+  },
+  "probes": [
+    {
+      "id": "composer-create-retry-focus-caret-scroll-cancel",
+      "status": "passed"
+    },
+    {
+      "id": "title-edit-error-retry-enter-and-canonical-open-close-intent",
+      "status": "passed"
+    },
+    {
+      "id": "selection-partial-selectall-clear-due-overlap-unique",
+      "status": "passed"
+    },
+    {
+      "id": "bulk-status-assignee-priority-no-Undo-exact-targets",
+      "status": "passed"
+    },
+    {
+      "id": "bulk-delete-confirm-cancel-error-rollback-atomic-Undo",
+      "status": "passed"
+    },
+    {
+      "id": "expanded-subrows-completion-parent-version-and-error-rollback",
+      "status": "passed"
+    }
+  ],
+  "pageErrors": [],
+  "status": "failed",
+  "error": "locator.check: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-task-group=overdue] [data-task-row]').first().getByRole('checkbox')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\" aria-checked=\"false\" aria-label=\"Mark Budget approval complete\" class=\"m-0 inline-grid shrink-0 appearance-none place-content-center border-[1.5px] border-solid border-border-strong bg-surface transition-[background,border-color] source-hover:not-checked:not-indeterminate:border-faint checked:border-accent checked:bg-accent indeterminate:border-accent indeterminate:bg-accent disabled:cursor-not-allowed size-4 rounded-[50%] ui-checkbox \"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n\u001b[2m    - navigations have finished\u001b[22m\n\n    at /workspace/task8/tests/visual/task-list/interactions.mjs:36:481\n    at async probe (/workspace/task8/tests/visual/task-list/interactions.mjs:10:103)\n    at async file:///workspace/task8/tests/visual/task-list/interactions.mjs:35:2"
+}

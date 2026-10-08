@@ -1,0 +1,13 @@
+typecheck: exit0
+build: exit0
+lint: exit1
+
+/workspace/task8/apps/web/src/task-list.tsx
+  31:328  error  `import()` type annotations are forbidden  @typescript-eslint/consistent-type-imports
+  32:196  error  `import()` type annotations are forbidden  @typescript-eslint/consistent-type-imports
+  34:94   error  `import()` type annotations are forbidden  @typescript-eslint/consistent-type-imports
+
+✖ 3 problems (3 errors, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.
+$ eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list eslint.config.mjs && node tests/workspace/boundaries.mjs

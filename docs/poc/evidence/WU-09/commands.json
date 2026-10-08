@@ -1,0 +1,86 @@
+[
+  {
+    "name": "install",
+    "command": "pnpm install --frozen-lockfile --offline",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/install.log"
+  },
+  {
+    "name": "typecheck",
+    "command": "pnpm typecheck",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/typecheck.log"
+  },
+  {
+    "name": "build",
+    "command": "pnpm build",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/build.log"
+  },
+  {
+    "name": "lint",
+    "command": "pnpm lint",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/lint.log"
+  },
+  {
+    "name": "test",
+    "command": "pnpm test",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/test.log"
+  },
+  {
+    "name": "reference-check",
+    "command": "pnpm reference:check",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/reference-check.log"
+  },
+  {
+    "name": "http-build",
+    "command": "pnpm --filter @studio/web build:http",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/http-build.log"
+  },
+  {
+    "name": "http-bundle",
+    "command": "node tests/data/http-bundle.mjs WU-09",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/http-bundle.log"
+  },
+  {
+    "name": "input-lifecycle",
+    "command": "node tests/visual/task-list/paint-probe.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/input-lifecycle.log"
+  },
+  {
+    "name": "visual",
+    "command": "node tests/visual/task-list/verify.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/visual.log"
+  },
+  {
+    "name": "interactions",
+    "command": "node tests/visual/task-list/interactions.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/interactions.log"
+  },
+  {
+    "name": "field-regression",
+    "command": "node tests/visual/tasks/interactions.mjs --wu09-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-09/field-regression.log"
+  }
+]

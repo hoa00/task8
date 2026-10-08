@@ -1,16 +1,19 @@
 import { z } from 'zod';
-import { ActivitySchema, CalendarEventSchema, CommentSchema, EntityIdSchema, FileSchema, MemberPreferencesSchema, MemberSchema, NotificationPreferencesSchema, NotificationSchema, ProjectSchema, SavedViewSchema, SubtaskSchema, TaskSchema, TeamSchema, UserProfileSchema, WorkspaceSchema, CountSchema, TaskStatusSchema, VersionSchema, UndoResultSchema } from '@studio/contracts/api';
+import { ActivitySchema, CalendarEventSchema, CommentSchema, EntityIdSchema, FileSchema, MemberPreferencesSchema, MemberSchema, NotificationPreferencesSchema, NotificationSchema, ProjectSchema, SavedViewSchema, SubtaskSchema, TaskSchema, TeamSchema, UserProfileSchema, WorkspaceSchema, CountSchema, TaskStatusSchema, VersionSchema, UndoResultSchema, InstantSchema, ClientRequestIdSchema } from '@studio/contracts/api';
 
 const table = <T extends z.ZodType>(schema: T) => z.record(EntityIdSchema, schema).refine(rows => Object.entries(rows).every(([id, row]) => typeof row === 'object' && row !== null && 'id' in row && row.id === id), 'Entity table key differs from ID');
 export const MockDatasetSchema = z.strictObject({
   workspaceId: EntityIdSchema, currentMemberId: EntityIdSchema,
   workspaces: table(WorkspaceSchema), users: table(UserProfileSchema), members: table(MemberSchema), teams: table(TeamSchema), projects: table(ProjectSchema), tasks: table(TaskSchema), subtasks: table(SubtaskSchema), comments: table(CommentSchema), files: table(FileSchema), activity: table(ActivitySchema), notifications: table(NotificationSchema), events: table(CalendarEventSchema), savedViews: table(SavedViewSchema),
   taskCommands: z.strictObject({
+    deletedTasks: z.record(EntityIdSchema, InstantSchema).default(() => ({})),
+    createRequests: z.record(EntityIdSchema, z.record(ClientRequestIdSchema, z.strictObject({ fingerprint: z.string().regex(/^[a-f0-9]{64}$/), taskId: EntityIdSchema }))).default(() => ({})),
+    deleteUndoRecords: z.record(EntityIdSchema, z.strictObject({ actorId: EntityIdSchema, targets: z.array(z.strictObject({ taskId: EntityIdSchema, postVersion: VersionSchema, deletedAt: InstantSchema })).max(20), activityIds: z.array(EntityIdSchema).max(20), result: UndoResultSchema.nullable() })).default(() => ({})),
     projectSequences: z.record(EntityIdSchema, CountSchema).default(() => ({})),
     previousStatuses: z.record(EntityIdSchema, TaskStatusSchema).default(() => ({})),
     recurrenceSlots: z.record(EntityIdSchema, EntityIdSchema).default(() => ({})),
     undoRecords: z.record(EntityIdSchema, z.strictObject({ taskId: EntityIdSchema, actorId: EntityIdSchema, postVersion: VersionSchema, previousStatus: TaskStatusSchema, result: UndoResultSchema.nullable() })).default(() => ({})),
-  }).default(() => ({ projectSequences: {}, previousStatuses: {}, recurrenceSlots: {}, undoRecords: {} })),
+  }).default(() => ({ deletedTasks: {}, createRequests: {}, deleteUndoRecords: {}, projectSequences: {}, previousStatuses: {}, recurrenceSlots: {}, undoRecords: {} })),
   projectOrder: z.array(EntityIdSchema), preferences: MemberPreferencesSchema, notificationPreferences: NotificationPreferencesSchema,
 });
 export type MockDataset = z.infer<typeof MockDatasetSchema>;

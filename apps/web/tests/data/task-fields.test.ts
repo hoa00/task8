@@ -41,7 +41,7 @@ test('normalization validates inputs, unique columns/values, current URL indepen
   assert.throws(() => normalizeTaskView({ query: { filters: [{ field: 'unknown', op: 'is', values: [] }] } }));
   assert.throws(() => normalizeTaskView({ query: { rangeFrom: '2026-02-30' } })); assert.throws(() => normalizeTaskView({ hiddenColumns: ['title'] })); assert.throws(() => normalizeTaskView({ columnWidths: { status: NaN } }));
   const named = [{ field: 'status' as const, op: 'is' as const, values: ['progress' as const] }]; const state = normalizeTaskView({ query: { filters: named } }); const changed = { ...state, query: { ...state.query, filters: [] }, groupBy: 'due' as const };
-  assert.deepEqual(named[0]!.values, ['progress']); assert.deepEqual(decodeCurrentTaskView(`?${encodeCurrentTaskView(changed)}`), changed); assert.deepEqual(decodeCurrentTaskView('?view=bad'), normalizeTaskView());
+  assert.deepEqual(named[0]!.values, ['progress']); assert.deepEqual(decodeCurrentTaskView(`?${encodeCurrentTaskView(changed)}`), changed); assert.deepEqual(decodeCurrentTaskView('?view=bad'), normalizeTaskView()); assert.deepEqual(decodeCurrentTaskView(`?view=${encodeURIComponent(JSON.stringify(JSON.stringify(changed)))}`), changed);
 });
 test('pure relation guard rejects foreign workspace/project/member/dependency, self and cycles', () => {
   const local = createSeedDataset();

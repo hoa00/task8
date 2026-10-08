@@ -1,0 +1,46 @@
+$ node tests/visual/task-list/gates.mjs --from=typecheck
+typecheck: exit2
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs ed8e9b733b13d6b7
+@studio/ui:typecheck: cache hit, replaying logs 07cafa084e9e2c63
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 1200ba8d178e5d9a
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs 7ce70a927d82e86d
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 34a43b0296281176
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(30,37): error TS2345: Argument of type '{}' is not assignable to parameter of type 'readonly { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; projectId: string & $brand<"EntityId">; key: string; title: string; descriptionHtml: string; ... 18 more ...; commentCount: number; }[]'.
+@studio/web:typecheck:   Type '{}' is missing the following properties from type 'readonly { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; projectId: string & $brand<"EntityId">; key: string; title: string; descriptionHtml: string; ... 18 more ...; commentCount: number; }[]': length, concat, join, slice, and 20 more.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(32,52): error TS2339: Property 'filter' does not exist on type '{}'.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(32,59): error TS7006: Parameter 'task' implicitly has an 'any' type.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(32,143): error TS7006: Parameter 'task' implicitly has an 'any' type.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(33,48): error TS2339: Property 'filter' does not exist on type '{}'.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(33,55): error TS7006: Parameter 'task' implicitly has an 'any' type.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(33,125): error TS7006: Parameter 'task' implicitly has an 'any' type.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(34,54): error TS2339: Property 'filter' does not exist on type '{}'.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(34,61): error TS7006: Parameter 'task' implicitly has an 'any' type.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(34,148): error TS7006: Parameter 'task' implicitly has an 'any' type.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(35,56): error TS2339: Property 'filter' does not exist on type '{}'.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(35,63): error TS7006: Parameter 'task' implicitly has an 'any' type.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(35,99): error TS7006: Parameter 'task' implicitly has an 'any' type.
+@studio/web:typecheck: src/features/tasks/TaskListPages.tsx(41,113): error TS2740: Type '{}' is missing the following properties from type 'readonly { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; projectId: string & $brand<"EntityId">; key: string; title: string; descriptionHtml: string; ... 18 more ...; commentCount: number; }[]': length, concat, join, slice, and 20 more.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    8.453s
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.
+$ turbo run typecheck
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+ ERROR  run failed: command  exited (2)
+
+[ELIFECYCLE] Command failed with exit code 2.

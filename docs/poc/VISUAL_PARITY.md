@@ -315,3 +315,41 @@ geometry, immutable manifest hashes and separate source/canonical query fixtures
 No full List/Board/Table, field-editor screenshot matrix, Darwin173 whole-page
 or physical-device parity is claimed. Current view URL changes do not persist a
 named saved view; equal-key row ordering follows the documented API ID correction.
+
+## WU-09 — shared TaskList and actual page evidence
+
+TaskList owns utility-layer responsive/pseudo-state rules in feature list.css;
+static source dimensions remain literal Tailwind declarations. One row/group/
+composer/mini/bulk implementation receives typed context/columns/selection.
+Source label overflow/gap, weekday date display, mobile cards and mini inline
+span baselines are preserved. Canonical page headings/toolbars allow the source
+default flex shrink, including min-height44 when a long list fills the page.
+No legacy CSS/renderer is imported into product code.
+
+The96 exact source-only comparisons comprise80 List context/state cases across
+desktop/mobile and both40/34 densities,8 canonical Workspace/My Tasks content
+crops and8 mini optional-project/avatar variants. Expanded-subtask and composer
+fixtures explicitly query the same visible source task; required child/input
+rectangles must be inside the accepted clip. Full Project/saved wrappers remain
+WU-16, Drawer contents WU-10 and full subtask CRUD/detail WU-11.
+
+Original locked pageTasks/pageMyTasks/listHtml/miniRow/viewToolbar, helpers, styles,
+fonts and source #app/#layer remain unchanged. Source fixture input is prepared
+in mapped UUID order for DATA-10 canonical ascending tie-breakers; this is
+explicit post-state setup, not an edited source renderer or original golden.
+Both renderers start cold in the same post-state; target QA initial props and
+expanded-aggregate prefetch remove measured native Input paint lifecycle
+asymmetry. Isolated target QA root auto-height matches the source section parent;
+actual canonical pages retain normal AppShell sizing. Rejected compositing and
+partial focus/blur experiments are recorded but never used to pass comparisons.
+
+Fresh contexts/clock/locale/fonts/layout flush/neutral pointer/concurrent finite
+animation settlement plus2RAF/symmetric warmup apply. Threshold0/includeAA=true/
+maxDiffPixels0/no masks and repeated screenshots all give zero. Official173
+Darwin baseline/font/fixture/lock hashes are unchanged. Accepted192 PNG bytes
+and24 source-only sheets accompany technical inspection under evidence/WU-09.
+Actual mouse/keyboard behavior and explicit focus/caret/scroll retention are
+separate probes; deterministic snapshot setup is not reported as user action.
+The report claims Linux scoped parity, not Darwin whole-page or physical-device
+parity. Previous accepted evidence remains immutable; affected WU-08 field
+interaction reruns use the WU-09 destination.

@@ -17,7 +17,7 @@ function projectCatalogItem(data: MockDataset, project: ProjectDto, clock: Clock
     const lead = data.members[project.leadId]!;
     return { access: 'restricted', project: { id: project.id, workspaceId: project.workspaceId, key: project.key, name: project.name, icon: project.icon, color: project.color, status: project.status, dueDate: project.dueDate, lead: { id: lead.id, name: lead.name, avatarColor: lead.avatarColor }, catalogSummary: project.description } };
   }
-  const taskSummary = summarizeTasks(Object.values(data.tasks).filter(task => task.projectId === project.id && !task.archivedAt), clock);
+  const taskSummary = summarizeTasks(Object.values(data.tasks).filter(task => task.projectId === project.id && !task.archivedAt && !data.taskCommands.deletedTasks[task.id]), clock);
   return { access: 'allowed', project, summary: { projectId: project.id, taskSummary, progress: taskSummary.completionRate } };
 }
 
@@ -27,7 +27,7 @@ function projectCatalogItem(data: MockDataset, project: ProjectDto, clock: Clock
 function notDeleted(record: { id: string; deletedAt?: string | null }): boolean { return !record.deletedAt; }
 export function readNavigationCounts(data: MockDataset, clock: Clock) {
   const authorized = (project: ProjectDto | undefined): project is ProjectDto => !!project && project.workspaceId === data.workspaceId && (project.visibility !== 'private' || project.memberIds.includes(data.currentMemberId));
-  const tasks = Object.values(data.tasks).filter(task => { const project = data.projects[task.projectId]; return task.workspaceId === data.workspaceId && notDeleted(task) && authorized(project) && notDeleted(project); });
+  const tasks = Object.values(data.tasks).filter(task => { const project = data.projects[task.projectId]; return task.workspaceId === data.workspaceId && !data.taskCommands.deletedTasks[task.id] && notDeleted(task) && authorized(project) && notDeleted(project); });
   const inbox = Object.values(data.notifications).filter(notification => { const projectId = notification.projectId ?? (notification.taskId ? data.tasks[notification.taskId]?.projectId : null); const project = projectId ? data.projects[projectId] : null; return notification.recipientId === data.currentMemberId && !notification.readAt && notification.type !== 'update' && (!projectId || (authorized(project ?? undefined) && notDeleted(project!))); }).length;
   return { inbox, myTasks: tasks.filter(task => !task.archivedAt && !data.projects[task.projectId]!.archivedAt && task.assigneeId === data.currentMemberId && task.status !== 'done' && task.dueDate && task.dueDate <= clock.today()).length,
     archive: tasks.filter(task => task.archivedAt).length + Object.values(data.projects).filter(project => project.archivedAt && authorized(project) && notDeleted(project)).length };
