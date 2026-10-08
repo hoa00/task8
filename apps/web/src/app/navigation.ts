@@ -11,6 +11,7 @@ export const links = {
   project: (workspaceId: string, projectId: string, view: ProjectTab = 'board') => `/w/${EntityIdSchema.parse(workspaceId)}/projects/${EntityIdSchema.parse(projectId)}/${view}`,
   savedView: (workspaceId: string, projectId: string, savedViewId: string) => `/w/${EntityIdSchema.parse(workspaceId)}/projects/${EntityIdSchema.parse(projectId)}/views/${EntityIdSchema.parse(savedViewId)}`,
   settings: (workspaceId: string, section: typeof settingsSections[number] = 'appearance') => `/w/${EntityIdSchema.parse(workspaceId)}/settings/${section}`,
+  file: (workspaceId: string, projectId: string, fileId: string) => `${links.project(workspaceId, projectId, 'files')}?fileId=${EntityIdSchema.parse(fileId)}`,
   task: (workspaceId: string, taskId: string, page: WorkspacePage = 'tasks') => `${links.workspace(workspaceId, page)}?taskId=${EntityIdSchema.parse(taskId)}`,
 };
 // Exactly the startup keys present in source ROUTE_NAMES/main.js. No project alias.

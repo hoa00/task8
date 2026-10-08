@@ -1,0 +1,31 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs ed8e9b733b13d6b7
+@studio/ui:typecheck: cache miss, executing 13b3b5ea99286321
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs b0f880fc32fa4710
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs e1c2468b0b00005c
+@studio/api:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 79a6cb15dc94a260
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/task-detail.tsx(21,155): error TS2379: Argument of type '{ environment: "test"; storage: MockStorage | undefined; }' is not assignable to parameter of type 'MockApiOptions' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+@studio/web:typecheck:   Types of property 'storage' are incompatible.
+@studio/web:typecheck:     Type 'MockStorage | undefined' is not assignable to type 'MockStorage'.
+@studio/web:typecheck:       Type 'undefined' is not assignable to type 'MockStorage'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    3 cached, 5 total
+  Time:    13.919s
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.
+$ turbo run typecheck
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+ ERROR  run failed: command  exited (2)

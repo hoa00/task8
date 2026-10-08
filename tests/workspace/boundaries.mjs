@@ -8,7 +8,7 @@ const root = fileURLToPath(new URL('../../', import.meta.url));
 const allowed = {
   ui: new Set(['react', 'react-dom']),
   contracts: new Set(['zod']),
-  domain: new Set(['@studio/contracts']),
+  domain: new Set(['@studio/contracts', 'parse5']),
 };
 const walk = directory => readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
   const filename = path.join(directory, entry.name);

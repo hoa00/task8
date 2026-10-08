@@ -6,7 +6,7 @@ import type { OverlayController, OverlayDismissReason, OverlayLayer } from './ov
 import { IconButton } from './controls';
 import { Icon } from './icons';
 
-function createController(host: HTMLElement | null): OverlayController {
+function createController(host: HTMLElement | null, initiallySettled: boolean): OverlayController {
     const layers: OverlayLayer[] = []; const returns = new Map<string, number>();
     let savedOverflow: string | null = null; let savedPadding = '';
     const lock = () => {
@@ -20,23 +20,29 @@ function createController(host: HTMLElement | null): OverlayController {
         document.body.style.overflow = savedOverflow; document.body.style.paddingRight = savedPadding; savedOverflow = null;
       }
     };
-    return { host, layers, register(layer, focus, initial, restore) {
+    return { initiallySettled, host, layers, register(layer, focus, initial, restore) {
       const pending = returns.get(layer.id); if (pending !== undefined) { cancelAnimationFrame(pending); returns.delete(layer.id); }
       // React mounts descendant layout effects first; parents must precede already registered children.
       const childIndex = layers.findIndex(child => child.parentId === layer.id);
       if (childIndex === -1) layers.push(layer); else layers.splice(childIndex, 0, layer);
       lock();
-      if (focus && layers.at(-1) === layer) (initial ?? layer.node.querySelector<HTMLElement>('[autofocus],[aria-checked="true"]:not(:disabled)') ?? focusables(layer.node)[0] ?? layer.node).focus({ preventScroll: true });
+      if (focus && !initiallySettled && layers.at(-1) === layer) (initial ?? layer.node.querySelector<HTMLElement>('[autofocus],[aria-checked="true"]:not(:disabled)') ?? focusables(layer.node)[0] ?? layer.node).focus({ preventScroll: true });
       return () => {
         const wasTop = layers.at(-1)?.id === layer.id; const index = layers.indexOf(layer); if (index !== -1) layers.splice(index, 1); lock();
-        if (focus && wasTop && restore) returns.set(layer.id, requestAnimationFrame(() => { returns.delete(layer.id); if (restore.isConnected) restore.focus({ preventScroll: true }); }));
+        if (focus && wasTop && restore) returns.set(layer.id, requestAnimationFrame(() => {
+          returns.delete(layer.id);
+          const active = document.activeElement;
+          // A newer editor or overlay may have deliberately taken focus since dismissal.
+          const hasNewFocus = active instanceof HTMLElement && active.isConnected && active !== document.body && active !== document.documentElement && !layer.node.contains(active);
+          if (!hasNewFocus && restore.isConnected) restore.focus({ preventScroll: true });
+        }));
       };
     } };
 }
-export interface OverlayProviderProps { children: ReactNode }
-export function OverlayProvider({ children }: OverlayProviderProps) {
+export interface OverlayProviderProps { children: ReactNode; initialState?: 'settled' }
+export function OverlayProvider({ children, initialState }: OverlayProviderProps) {
   const [host, setHost] = useState<HTMLDivElement | null>(null);
-  const controller = useMemo(() => createController(host), [host]);
+  const controller = useMemo(() => createController(host, initialState === 'settled'), [host, initialState]);
   useEffect(() => {
     const descendant = (child: OverlayLayer, parent: OverlayLayer): boolean => {
       let parentId = child.parentId;
@@ -55,7 +61,7 @@ export function OverlayProvider({ children }: OverlayProviderProps) {
       else if (event.shiftKey && index <= 0) { event.preventDefault(); items.at(-1)?.focus(); }
       else if (!event.shiftKey && (index === items.length - 1 || index === -1)) { event.preventDefault(); items[0]?.focus(); }
     };
-    const outside = (event: PointerEvent) => { const top = controller.layers.at(-1); if (top && event.target instanceof Node && !top.node.contains(event.target) && !top.anchor?.contains(event.target)) top.dismiss('outside'); };
+    const outside = (event: PointerEvent) => { if (event.target instanceof Element && event.target.closest('[data-overlay-notification]')) return; const top = controller.layers.at(-1); if (top && event.target instanceof Node && !top.node.contains(event.target) && !top.anchor?.contains(event.target)) top.dismiss('outside'); };
     const focusin = (event: FocusEvent) => {
       const scope = modalScope(); if (scope.length && event.target instanceof Node && !scope.some(layer => layer.node.contains(event.target as Node))) (focusables(scope[0]!.node)[0] ?? scope[0]!.node).focus({ preventScroll: true });
     };
@@ -74,10 +80,11 @@ const dialogSizes = { sm: 'max-w-[420px]', md: 'max-w-[560px]', lg: 'max-w-[720p
 export function Dialog({ open, onOpenChange, size = 'md', mode = 'modal', modal = mode === 'modal', initialFocus, returnFocus, ref, children, className = '', ...props }: DialogProps) {
   const node = useRef<HTMLElement>(null); const { scope, id } = useOverlayLayer({ open, node, modal, initialFocus, returnFocus, onOpenChange });
   useImperativeHandle(ref, () => node.current!);
+  const initiallySettled = useOverlayController().initiallySettled;
   const depth = mode === 'drawer' ? scope.dialogDepth : scope.dialogDepth + 1; const z = mode === 'drawer' ? 50 : 61 + 2 * depth;
   if (!open) return null;
-  const content = <section {...props} ref={node} role="dialog" aria-modal={modal || undefined} tabIndex={-1} data-overlay-kind={mode} onAnimationEnd={event => { props.onAnimationEnd?.(event); if (event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className={`${mode === 'drawer' ? 'ui-drawer fixed inset-y-0 right-0 flex w-[min(620px,100vw)] flex-col border-0 border-l border-solid border-border bg-surface [box-shadow:-18px_0_40px_-24px_rgba(0,0,0,0.25)]' : `ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] ${dialogSizes[size]}`} ${className}`} style={{ ...props.style, ...(mode === 'drawer' ? { zIndex: z } : {}) }}>{children}</section>;
-  return <Portal><OverlayScopeContext value={{ id, dialogDepth: depth }}>{(modal || mode === 'modal') && <div data-overlay-scrim="" onAnimationEnd={event => { if (event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className="ui-overlay-scrim fixed inset-0 bg-overlay" style={{ zIndex: z - 1 }} />}{mode === 'drawer' ? content : <div className="ui-dialog-wrap fixed inset-0 flex items-start justify-center overflow-y-auto px-4 pb-4 pt-[10vh]" style={{ zIndex: z }}>{content}</div>}</OverlayScopeContext></Portal>;
+  const content = <section {...props} ref={node} role="dialog" aria-modal={modal || undefined} tabIndex={-1} data-overlay-kind={mode} data-overlay-initial-state={initiallySettled ? 'settled' : undefined} data-entered={initiallySettled ? '' : undefined} onAnimationEnd={event => { props.onAnimationEnd?.(event); if (event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className={`${mode === 'drawer' ? 'ui-drawer fixed inset-y-0 right-0 flex w-[min(620px,100vw)] flex-col border-0 border-l border-solid border-border bg-surface [box-shadow:-18px_0_40px_-24px_rgba(0,0,0,0.25)]' : `ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] ${dialogSizes[size]}`} ${className}`} style={{ ...props.style, ...(mode === 'drawer' ? { zIndex: z } : {}) }}>{children}</section>;
+  return <Portal><OverlayScopeContext value={{ id, dialogDepth: depth }}>{(modal || mode === 'modal') && <div data-overlay-scrim="" data-entered={initiallySettled ? '' : undefined} onAnimationEnd={event => { if (event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className="ui-overlay-scrim fixed inset-0 bg-overlay" style={{ zIndex: z - 1 }} />}{mode === 'drawer' ? content : <div className="ui-dialog-wrap fixed inset-0 flex items-start justify-center overflow-y-auto px-4 pb-4 pt-[10vh]" style={{ zIndex: z }}>{content}</div>}</OverlayScopeContext></Portal>;
 }
 export interface DialogHeaderProps extends Omit<ComponentPropsWithRef<'div'>, 'title'> { title: ReactNode; titleId: string; onClose: () => void }
 export function DialogHeader({ title, titleId, onClose, className = '', ...props }: DialogHeaderProps) { return <div {...props} className={`flex items-center gap-2 px-4 pt-[14px] ${className}`}><h2 id={titleId} className="m-0 text-md font-semibold">{title}</h2><IconButton size="sm" aria-label="Close" className="ml-auto" onClick={onClose}><Icon name="x" size={16} /></IconButton></div>; }

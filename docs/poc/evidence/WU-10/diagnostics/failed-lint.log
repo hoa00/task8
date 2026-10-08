@@ -1,0 +1,36 @@
+
+/workspace/task8/apps/web/src/features/tasks/detail/TaskFormDialog.tsx
+  17:31  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+/workspace/task8/apps/web/src/features/tasks/detail/TaskFormDialog.tsx:17:31
+  15 |  const { client } = useDataRuntime(), cache = useQueryClient(), titleRef = useRef<HTMLInputElement>(null), busy = useRef<Promise<void> | null>(null), editSaved = useRef<EditTaskCommit | null>(null);
+  16 |  const [submission] = useState(() => new TaskSubmission(data.workspace.id, data.currentMember.id, detail ? undefined : sessionStorage));
+> 17 |  const opened = useRef(open); opened.current = open;
+     |                               ^^^^^^^^^^^^^^ Cannot update ref during render
+  18 |  const draftGeneration = useRef(0), mounted = useRef(true); useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  19 |  const previous = submission.state?.payload, task = detail?.task;
+  20 |  const [title, setTitle] = useState(previous?.title ?? task?.title ?? (initialState === 'filled' ? 'Prepare launch checklist' : ''));  react-hooks/refs
+
+/workspace/task8/apps/web/src/task-detail.tsx
+  31:2  error  Error: This value cannot be modified
+
+Modifying a variable defined outside a component or hook is not allowed. Consider using an effect.
+
+/workspace/task8/apps/web/src/task-detail.tsx:31:2
+  29 |  const bootstrap=useStudioQuery('getBootstrap',{workspaceId}), detail=useStudioQuery('getTask',{workspaceId,taskId:targetId}),list=useStudioQuery('listTasks',{workspaceId,query:{limit:200}});
+  30 |  const opener=useRef<HTMLElement|null>(null),[opened,setOpened]=useState(params.get('kind')==='drawer'?targetId:''),[form,setForm]=useState<TaskFormIntent>({open:false,generation:0}),[menu,setMenu]=useState<TaskMenuIntent|null>(null),[preview,setPreview]=useState(false),[owned,setOwned]=useState(false);
+> 31 |  window.__taskDetailQA.isolateDrawer=()=>setOwned(true);
+     |  ^^^^^^^^^^^^^^^^^^^^^ value cannot be modified
+  32 |  if(!bootstrap.data||!detail.data||!list.data)return <div>Loading…</div>;
+  33 |  const data={...bootstrap.data.data,preferences:{...bootstrap.data.data.preferences,openTasks:params.get('full')==='1'?'full' as const:'drawer' as const}},tasks=list.data.data.items,file=detail.data.data.attachments[0]!;
+  34 |  if(params.get('kind')==='form')return <TaskFormDialog open data={data} tasks={tasks} {...(params.get('edit')==='1'?{detail:detail.data.data}:{})} {...(params.get('state')?{initialState:params.get('state') as 'filled'|'error'|'loading'}:{})} onClose={()=>{}} onSuccess={()=>{}}/>;  react-hooks/immutability
+
+/workspace/task8/tests/visual/task-detail/inspect-styles.mjs
+  12:2520  error  Empty block statement  no-empty
+
+✖ 3 problems (3 errors, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.
+$ eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail eslint.config.mjs && node tests/workspace/boundaries.mjs

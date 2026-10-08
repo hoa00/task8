@@ -1,0 +1,30 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "canonical-list-url-close-back-direct-and-focus",
+      "status": "passed",
+      "canonicalUrl": "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?view=%7B%22query%22%3A%7B%22q%22%3A%22WEB-109%22%7D%7D&taskId=01a11abd-aa80-75fa-877e-0c56eef0ad59",
+      "directReload": true,
+      "returnFocus": true
+    }
+  ],
+  "notes": [
+    "Mouse/keyboard and native file chooser used for primary interactions. QA failure/hold commands and sibling mutation are explicitly programmatic. Mock attachment records carry sample metadata, contentAvailable:false; no HTTP/R2 bytes claim."
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'linear'\n- 'cubic-bezier(0.23, 1, 0.32, 1)'\n\n    at file:///workspace/task8/tests/visual/task-detail/interactions.mjs:14:793\n    at async probe (file:///workspace/task8/tests/visual/task-detail/interactions.mjs:11:44)\n    at async file:///workspace/task8/tests/visual/task-detail/interactions.mjs:14:1",
+  "visibleAlerts": [],
+  "qa": {
+    "events": [
+      "getBootstrap:begin",
+      "getBootstrap:confirmed",
+      "getTask:begin",
+      "getTask:confirmed",
+      "listTasks:begin",
+      "listTasks:confirmed",
+      "listTasks:begin",
+      "listTasks:confirmed"
+    ],
+    "pending": []
+  }
+}

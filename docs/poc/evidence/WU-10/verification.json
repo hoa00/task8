@@ -1,0 +1,156 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "commands": [
+    {
+      "name": "install",
+      "command": "pnpm install --frozen-lockfile --offline",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/install.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/build.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/test.log"
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/reference-check.log"
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/http-build.log"
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-10",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/http-bundle.log"
+    },
+    {
+      "name": "visual",
+      "command": "node tests/visual/task-detail/verify.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/visual.log"
+    },
+    {
+      "name": "interactions",
+      "command": "node tests/visual/task-detail/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/interactions.log"
+    },
+    {
+      "name": "list-visual-regression",
+      "command": "node tests/visual/task-list/verify.mjs --wu10-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/list-visual-regression.log"
+    },
+    {
+      "name": "list-interaction-regression",
+      "command": "node tests/visual/task-list/interactions.mjs --wu10-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/list-interaction-regression.log"
+    },
+    {
+      "name": "field-regression",
+      "command": "node tests/visual/tasks/interactions.mjs --wu10-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/field-regression.log"
+    },
+    {
+      "name": "overlay-lifecycle-regression",
+      "command": "node tests/visual/overlays/lifecycle.mjs --wu10-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/overlay-lifecycle-regression.log"
+    },
+    {
+      "name": "overlay-visual-interaction-regression",
+      "command": "node tests/visual/overlays/verify.mjs --wu10-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-10/overlay-visual-interaction-regression.log"
+    }
+  ],
+  "acceptance": {
+    "AC1": "One canonical task controller; actual List URL/Close/Back/reload/focus and retained draft/selection/scroll across sibling patch",
+    "AC2": "Shared controlled fields and typed completion/favorite/duplicate/archive/delete confirmation/Undo with parent version guards",
+    "AC3": "Tree sanitizer/canonical descriptionText, atomic create children, full plain form/Create more/frozen logical submit+file intents/partial retry/reload and edit move phases",
+    "AC4": "Source file SVG/CSS art, real mock attachment IDs, chooser/drop/preview/canonical clipboard links/remove/Undo"
+  },
+  "limitations": [
+    "Linux source-only component crops, original173Darwin goldens unchanged; no user visual approval",
+    "Edit existing subtasks read-only until WU11 canonical scoped CRUD; source edit replacement conflicts with PATCH contract",
+    "Rich editor/subtask detail/Comments/Activity WU11; Files catalogue/deeplink WU22; HTTP/R2 bytes WU35",
+    "Mock pending upload0/sample metadata contentAvailable:false; source percent42 upload bar inherits missing --p scaleX0",
+    "Original full-body default mobile context17light/14dark pixels remains an explicit diagnostic, outside scoped owner-component acceptance; WU11 full-body integration mandatory."
+  ],
+  "counts": {
+    "gates": 15,
+    "contractTests": 93,
+    "webTests": 50,
+    "referenceTests": 3,
+    "workspaceTests": 1,
+    "httpGraphModules": 412,
+    "detailVisualSamples": 32,
+    "detailVisualChangedPixels": 0,
+    "detailRepeatabilityPixels": 0,
+    "detailBrowserProbes": 11,
+    "listVisualRegressions": 96,
+    "listBrowserRegressions": 10,
+    "fieldRegressions": 11,
+    "overlayStrictModeRegressions": 3,
+    "overlayVisualRegressions": 42,
+    "overlayBrowserRegressions": 17,
+    "acceptedDetailPngCount": 64,
+    "rootTechnicalInspectionImages": 9
+  },
+  "visualScope": {
+    "report": "docs/poc/evidence/WU-10/visual-verification.json",
+    "manifest": "docs/poc/evidence/WU-10/review.json",
+    "accepted": "Original owned Drawer chrome/title/properties with original complete panel geometry and exact before/after markup/rect/all-computed-style invariance; separate form/attachment/art samples",
+    "fullDefaultMobileContextDiagnosticChangedPixels": {
+      "light": 17,
+      "dark": 14
+    },
+    "fullDefaultDrawerParity": false,
+    "userApproval": false,
+    "pendingWU11": "Full-body Comments AND Activity, rich editor and scoped child CRUD"
+  }
+}

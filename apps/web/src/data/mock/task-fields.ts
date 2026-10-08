@@ -1,12 +1,12 @@
-import { BulkMutateTasksInputSchema, CreateTaskInputSchema, UpdateSubtaskInputSchema, ActivitySchema, CursorPayloadSchema, EntityIdSchema, MoveTaskInputSchema, SetTaskCompletionInputSchema, TaskSchema, UpdateTaskInputSchema, UndoResultSchema } from '@studio/contracts/api';
+import { BulkMutateTasksInputSchema, CreateTaskInputSchema, UpdateSubtaskInputSchema, ActivitySchema, CursorPayloadSchema, EntityIdSchema, MoveTaskInputSchema, SetTaskCompletionInputSchema, TaskSchema, UpdateTaskInputSchema, UndoResultSchema, SubtaskSchema, DuplicateTaskInputSchema, VersionInputSchema, FileSchema, UploadProjectFileInputSchema } from '@studio/contracts/api';
 import type { OperationId, TaskDto, TaskMutationDto } from '@studio/contracts/api';
-import { changedDependencyTargets, canReadProject, compareTaskTuple, taskSortValue, evaluateTaskView, normalizeTaskView, nextRecurrenceDate, summarizeTasks, TaskRelationError, validateTaskRelations } from '@studio/domain';
+import { changedDependencyTargets, canReadProject, compareTaskTuple, taskSortValue, evaluateTaskView, normalizeTaskView, nextRecurrenceDate, summarizeTasks, TaskRelationError, validateTaskRelations, normalizeDescription, sourceFileType, displayFileSize } from '@studio/domain';
 import type { Clock } from '@studio/domain';
 import { StudioApiError, unavailable } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
 
-export const taskFieldOperations = ['createTask', 'bulkMutateTasks', 'updateSubtask', 'getTask', 'listTasks', 'getTaskSummary', 'updateTask', 'moveTask', 'setTaskCompletion', 'undoCommand'] as const satisfies readonly OperationId[];
-const fail = (code: 'NOT_FOUND' | 'CONFLICT' | 'VALIDATION_ERROR', message: string, field?: string): never => { throw new StudioApiError({ error: { code, message, ...(field ? { fieldErrors: { [field]: [message] } } : {}) } }); };
+export const taskFieldOperations = ['createTask', 'bulkMutateTasks', 'updateSubtask', 'getTask', 'listTasks', 'getTaskSummary', 'updateTask', 'moveTask', 'setTaskCompletion', 'undoCommand', 'duplicateTask', 'archiveTask', 'deleteTask', 'addTaskFavorite', 'removeTaskFavorite', 'getFile', 'uploadProjectFile', 'deleteFile'] as const satisfies readonly OperationId[];
+const fail = (code: 'NOT_FOUND' | 'CONFLICT' | 'VALIDATION_ERROR' | 'PAYLOAD_TOO_LARGE', message: string, field?: string): never => { throw new StudioApiError({ error: { code, message, ...(field ? { fieldErrors: { [field]: [message] } } : {}) } }); };
 export function newMockId(clock: Clock) { const time = Date.parse(clock.now()).toString(16).padStart(12, '0'); const random = crypto.randomUUID(); return EntityIdSchema.parse(`${time.slice(0, 8)}-${time.slice(8)}-7${random.slice(15, 18)}-${random.slice(19)}`); }
 function getTask(data: MockDataset, id: string): TaskDto {
   const task = data.tasks[EntityIdSchema.parse(id)];
@@ -20,7 +20,7 @@ function editable(data: MockDataset, id: string, version: number): TaskDto {
   return task;
 }
 function projectTask(task: TaskDto, data: MockDataset): TaskDto {
-  return { ...task, dependencyIds: task.dependencyIds.filter(id => { const target = data.tasks[id]; return !!target && !data.taskCommands.deletedTasks[id] && !target.archivedAt && canReadProject(data.projects[target.projectId], data) && !data.projects[target.projectId]!.archivedAt; }) };
+  return { ...task, isFavorite: (data.taskCommands.taskFavorites[data.currentMemberId] ?? []).includes(task.id), dependencyIds: task.dependencyIds.filter(id => { const target = data.tasks[id]; return !!target && !data.taskCommands.deletedTasks[id] && !target.archivedAt && canReadProject(data.projects[target.projectId], data) && !data.projects[target.projectId]!.archivedAt; }) };
 }
 function validate(task: TaskDto, data: MockDataset, explicitDependencies = false) {
   const parsed = TaskSchema.safeParse(task);
@@ -42,7 +42,7 @@ function transition(data: MockDataset, original: TaskDto, next: TaskDto, clock: 
       const dueDate = nextRecurrenceDate(next.dueDate, next.recurrence), project = data.projects[next.projectId]!;
       const successor = TaskSchema.parse({ ...next, dependencyIds: projectTask(next, data).dependencyIds, id: newMockId(clock), key: allocateTaskKey(data, project.id), status: 'todo', completedAt: null, startDate: dueDate, dueDate, createdAt: clock.now(), updatedAt: clock.now(), version: 1, isFavorite: false, attachmentCount: 0, commentCount: 0, position: Math.max(0, ...Object.values(data.tasks).filter(task => task.projectId === project.id).map(task => task.position)) + 100, subtaskSummary: { ...next.subtaskSummary, completed: 0 } });
       const subtasks = Object.values(data.subtasks).filter(row => row.taskId === original.id).map(row => ({ ...row, id: newMockId(clock), taskId: successor.id, done: false }));
-      data.tasks[successor.id] = successor; subtasks.forEach(row => { data.subtasks[row.id] = row; });
+      data.tasks[successor.id] = successor; data.taskCommands.descriptionTexts[successor.id] = normalizeDescription(successor.descriptionHtml).text; subtasks.forEach(row => { data.subtasks[row.id] = row; });
       data.taskCommands.recurrenceSlots[original.id] = successor.id; created.push(successor);
     }
   }
@@ -57,11 +57,39 @@ function patchTask(data: MockDataset, original: TaskDto, patch: Partial<TaskDto>
   const createdTasks = transition(data, original, next, clock);
   for (const id of new Set([...changedDependencyTargets(original.dependencyIds, next.dependencyIds), ...createdTasks.flatMap(task => task.dependencyIds)])) { const target = data.tasks[id]!; data.tasks[id] = { ...target, version: target.version + 1 }; }
   data.tasks[next.id] = next;
+  if (patch.descriptionHtml !== undefined) data.taskCommands.descriptionTexts[next.id] = normalizeDescription(next.descriptionHtml).text;
   const eventType = next.status !== original.status && next.status === 'done' ? 'task.completed' : next.projectId !== original.projectId ? 'task.moved' : next.assigneeId !== original.assigneeId ? 'task.assigned' : next.priority !== original.priority ? 'task.priorityChanged' : 'task.updated';
   const activity = ActivitySchema.parse({ id: newMockId(clock), actorId: data.currentMemberId, eventType, taskId: next.id, projectId: next.projectId, createdAt: clock.now(), payload: { taskKey: next.key, taskTitle: next.title, previousStatus: original.status, status: next.status, priority: next.priority, assigneeId: next.assigneeId } });
   data.activity[activity.id] = activity;
   for (const task of createdTasks) { const event = ActivitySchema.parse({ ...activity, id: newMockId(clock), eventType: 'task.created', taskId: task.id, payload: { taskKey: task.key, taskTitle: task.title } }); data.activity[event.id] = event; }
   return { task: projectTask(next, data), createdTasks: createdTasks.map(task => projectTask(task, data)), affectedProjectIds: [...new Set([original.projectId, next.projectId])], undo: null };
+}
+function addActivity(data: MockDataset, task: TaskDto, eventType: string, clock: Clock): TaskDto['id'] {
+  const event = ActivitySchema.parse({ id: newMockId(clock), actorId: data.currentMemberId, eventType, taskId: task.id, projectId: task.projectId, createdAt: clock.now(), payload: { taskKey: task.key, taskTitle: task.title } }); data.activity[event.id] = event; return event.id;
+}
+function accessibleFile(data: MockDataset, id: string) {
+  const file = data.files[EntityIdSchema.parse(id)];
+  if (!file || data.taskCommands.deletedFiles[file.id] || !canReadProject(data.projects[file.projectId], data) || data.projects[file.projectId]!.archivedAt || (file.taskId && (data.taskCommands.deletedTasks[file.taskId] || data.tasks[file.taskId]?.archivedAt))) return fail('NOT_FOUND', 'File not found');
+  return file;
+}
+function touchAttachments(data: MockDataset, task: TaskDto, clock: Clock) { data.tasks[task.id] = { ...task, version: task.version + 1, updatedAt: clock.now(), attachmentCount: Object.values(data.files).filter(file => file.taskId === task.id && !data.taskCommands.deletedFiles[file.id]).length }; }
+function undoLifecycle(data: MockDataset, undoId: string, record: MockDataset['taskCommands']['lifecycleUndoRecords'][TaskDto['id']], clock: Clock) {
+  if (record.actorId !== data.currentMemberId) return fail('NOT_FOUND', 'Undo command not found');
+  const file = record.kind === 'file.delete' ? data.files[record.entityId] : null, task = record.kind === 'file.delete' ? record.taskId ? data.tasks[record.taskId] : null : data.tasks[record.entityId];
+  const projectId = file?.projectId ?? task?.projectId;
+  if (!projectId || !canReadProject(data.projects[projectId], data)) return fail('NOT_FOUND', 'Undo target not found');
+  if (record.result) return record.result;
+  if (data.projects[projectId]!.archivedAt) return fail('CONFLICT', 'The project changed. Undo cannot be applied.');
+  if (record.kind === 'file.delete') {
+    if (!file || file.version !== record.postVersion || data.taskCommands.deletedFiles[file.id] !== record.lifecycleAt || (record.taskId && (!task || task.version !== record.taskPostVersion || task.archivedAt || data.taskCommands.deletedTasks[task.id] || task.projectId !== file.projectId))) return fail('CONFLICT', 'The file or attached task changed. Undo cannot be applied.');
+    delete data.taskCommands.deletedFiles[file.id]; data.files[file.id] = { ...file, version: file.version + 1 }; if (task) touchAttachments(data, task, clock);
+  } else {
+    if (!task || task.version !== record.postVersion || (record.kind === 'task.archive' ? task.archivedAt !== record.lifecycleAt || !!data.taskCommands.deletedTasks[task.id] : data.taskCommands.deletedTasks[task.id] !== record.lifecycleAt || task.archivedAt !== record.previousArchivedAt)) return fail('CONFLICT', 'The task changed. Undo cannot be applied.');
+    if (record.kind === 'task.delete') delete data.taskCommands.deletedTasks[task.id];
+    data.tasks[task.id] = { ...task, archivedAt: record.previousArchivedAt, version: task.version + 1 };
+  }
+  record.activityIds.forEach(id => { delete data.activity[id]; });
+  record.result = UndoResultSchema.parse({ undoId, kind: record.kind, appliedAt: clock.now(), affected: { taskIds: task ? [task.id] : [], projectIds: [projectId], memberIds: [], teamIds: [], commentIds: [], fileIds: file ? [file.id] : [] } }); return record.result;
 }
 export async function fingerprint(query: object): Promise<string> { const bytes = new TextEncoder().encode(JSON.stringify(query)); const digest = await crypto.subtle.digest('SHA-256', bytes); return [...new Uint8Array(digest)].map(value => value.toString(16).padStart(2, '0')).join(''); }
 const encode = (data: unknown) => btoa(JSON.stringify(data)).replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
@@ -70,16 +98,67 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
   switch (id) {
     case 'createTask': {
       const body = CreateTaskInputSchema.parse(input.body);
-      if (body.descriptionHtml || body.subtasks.length) throw unavailable('Task form fields');
+      const normalized = normalizeDescription(body.descriptionHtml); body.descriptionHtml = normalized.html;
+      for (const child of body.subtasks) if (child.assigneeId && (!data.members[child.assigneeId] || data.members[child.assigneeId]!.workspaceId !== data.workspaceId)) return fail('VALIDATION_ERROR', 'Choose a member in this workspace', 'subtasks');
       const signature = await fingerprint(body), prior = data.taskCommands.createRequests[data.currentMemberId]?.[body.clientRequestId];
       if (prior) { if (prior.fingerprint !== signature) return fail('CONFLICT', 'Create request ID was reused with different values'); const task = getTask(data, prior.taskId); return { data: { task: projectTask(task, data), createdTasks: [], affectedProjectIds: [task.projectId], undo: null } }; }
       const fields = Object.fromEntries(Object.entries(body).filter(([key]) => !['clientRequestId', 'subtasks'].includes(key)));
-      const task = TaskSchema.parse({ ...fields, id: newMockId(clock), workspaceId: data.workspaceId, key: 'NEW-0', createdAt: clock.now(), updatedAt: clock.now(), completedAt: body.status === 'done' ? clock.now() : null, archivedAt: null, position: Math.max(0, ...Object.values(data.tasks).map(row => row.position)) + 100, version: 1, isFavorite: false, attachmentCount: 0, commentCount: 0, subtaskSummary: { total: 0, completed: 0 } });
+      const task = TaskSchema.parse({ ...fields, id: newMockId(clock), workspaceId: data.workspaceId, key: 'NEW-0', createdAt: clock.now(), updatedAt: clock.now(), completedAt: body.status === 'done' ? clock.now() : null, archivedAt: null, position: Math.max(0, ...Object.values(data.tasks).map(row => row.position)) + 100, version: 1, isFavorite: false, attachmentCount: 0, commentCount: 0, subtaskSummary: { total: body.subtasks.length, completed: body.subtasks.filter(row => row.done).length } });
       validate(task, data, true); task.key = allocateTaskKey(data, task.projectId); data.tasks[task.id] = task;
+      data.taskCommands.descriptionTexts[task.id] = normalized.text;
+      body.subtasks.forEach((draft, index) => { const row = SubtaskSchema.parse({ ...draft, id: newMockId(clock), taskId: task.id, position: index * 100 }); data.subtasks[row.id] = row; });
       for (const targetId of task.dependencyIds) data.tasks[targetId] = { ...data.tasks[targetId]!, version: data.tasks[targetId]!.version + 1 };
       const event = ActivitySchema.parse({ id: newMockId(clock), actorId: data.currentMemberId, eventType: 'task.created', taskId: task.id, projectId: task.projectId, createdAt: clock.now(), payload: { taskKey: task.key, taskTitle: task.title } }); data.activity[event.id] = event;
       const requests = data.taskCommands.createRequests[data.currentMemberId] ?? {}; requests[body.clientRequestId] = { fingerprint: signature, taskId: task.id }; data.taskCommands.createRequests[data.currentMemberId] = requests;
       return { data: { task: projectTask(task, data), createdTasks: [], affectedProjectIds: [task.projectId], undo: null } };
+    }
+    case 'duplicateTask': {
+      const body = DuplicateTaskInputSchema.parse(input.body), original = editable(data, taskId, body.expectedVersion);
+      const task = TaskSchema.parse({ ...original, id: newMockId(clock), key: allocateTaskKey(data, original.projectId), title: body.title ?? `${original.title} (copy)`, status: 'todo', completedAt: null, archivedAt: null, version: 1, isFavorite: false, attachmentCount: 0, commentCount: 0, createdAt: clock.now(), updatedAt: clock.now(), position: Math.max(0, ...Object.values(data.tasks).map(row => row.position)) + 100, dependencyIds: projectTask(original, data).dependencyIds, subtaskSummary: { ...original.subtaskSummary, completed: 0 } });
+      validate(task, data, true); data.tasks[task.id] = task; data.taskCommands.descriptionTexts[task.id] = normalizeDescription(task.descriptionHtml).text;
+      Object.values(data.subtasks).filter(row => row.taskId === original.id).forEach(row => { const child = { ...row, id: newMockId(clock), taskId: task.id, done: false }; data.subtasks[child.id] = child; });
+      task.dependencyIds.forEach(id => { data.tasks[id] = { ...data.tasks[id]!, version: data.tasks[id]!.version + 1 }; });
+      addActivity(data, task, 'task.created', clock);
+      return { data: { task: projectTask(task, data), createdTasks: [], affectedProjectIds: [task.projectId], undo: null } };
+    }
+    case 'addTaskFavorite': case 'removeTaskFavorite': {
+      const task = getTask(data, taskId), favorites = new Set(data.taskCommands.taskFavorites[data.currentMemberId] ?? []), before = favorites.has(task.id);
+      if (id === 'addTaskFavorite') favorites.add(task.id); else favorites.delete(task.id);
+      data.taskCommands.taskFavorites[data.currentMemberId] = [...favorites];
+      if (before !== favorites.has(task.id)) data.tasks[task.id] = { ...task, version: task.version + 1 };
+      return { data: { taskId: task.id, isFavorite: favorites.has(task.id) } };
+    }
+    case 'archiveTask': case 'deleteTask': {
+      const body = VersionInputSchema.parse(input.body), task = editable(data, taskId, body.expectedVersion), lifecycleAt = clock.now();
+      const next = { ...task, version: task.version + 1, updatedAt: lifecycleAt, ...(id === 'archiveTask' ? { archivedAt: lifecycleAt } : {}) };
+      data.tasks[task.id] = next; if (id === 'deleteTask') data.taskCommands.deletedTasks[task.id] = lifecycleAt;
+      const activity = addActivity(data, next, id === 'archiveTask' ? 'task.archived' : 'task.deleted', clock), undoId = newMockId(clock);
+      data.taskCommands.lifecycleUndoRecords[undoId] = { actorId: data.currentMemberId, kind: id === 'archiveTask' ? 'task.archive' : 'task.delete', entityId: task.id, postVersion: next.version, lifecycleAt, previousArchivedAt: task.archivedAt, taskId: null, taskPostVersion: null, activityIds: [activity], result: null };
+      return { data: { task: projectTask(next, data), createdTasks: [], affectedProjectIds: [task.projectId], undo: { id: undoId, kind: id === 'archiveTask' ? 'task.archive' : 'task.delete' } } };
+    }
+    case 'getFile': { return { data: accessibleFile(data, String(input.fileId)) }; }
+    case 'uploadProjectFile': {
+      const body = UploadProjectFileInputSchema.parse(input.body), projectId = EntityIdSchema.parse(input.projectId), project = data.projects[projectId];
+      if (!canReadProject(project, data) || project.archivedAt) return fail('NOT_FOUND', 'Project not found');
+      const task = body.taskId ? getTask(data, body.taskId) : null;
+      if (task && (task.projectId !== projectId || task.archivedAt)) return fail('VALIDATION_ERROR', 'File target must be an active task in this project', 'taskId');
+      const contentHash = await crypto.subtle.digest('SHA-256', body.file.bytes as Uint8Array<ArrayBuffer>);
+      const signature = await fingerprint({ projectId, taskId: body.taskId ?? null, name: body.file.name, mimeType: body.file.mimeType, size: body.file.bytes.byteLength, contentHash: [...new Uint8Array(contentHash)] });
+      const requests = data.taskCommands.uploadRequests[data.currentMemberId] ?? {}, prior = requests[body.clientRequestId];
+      if (prior) { if (prior.fingerprint !== signature) return fail('CONFLICT', 'Upload request ID was reused with different content'); const file = accessibleFile(data, prior.fileId); if (file.projectId !== projectId || file.taskId !== (body.taskId ?? null)) return fail('CONFLICT', 'The file target changed'); return { data: file }; }
+      const file = FileSchema.parse({ id: newMockId(clock), workspaceId: data.workspaceId, projectId, taskId: task?.id ?? null, name: body.file.name, fileType: sourceFileType(body.file.name), mimeType: body.file.mimeType, sizeBytes: body.file.bytes.byteLength, displaySize: displayFileSize(body.file.bytes.byteLength), storageMode: 'sample', contentAvailable: false, createdBy: data.currentMemberId, createdAt: clock.now(), version: 1 });
+      data.files[file.id] = file; requests[body.clientRequestId] = { fingerprint: signature, fileId: file.id }; data.taskCommands.uploadRequests[data.currentMemberId] = requests;
+      if (task) { touchAttachments(data, task, clock); addActivity(data, data.tasks[task.id]!, 'file.created', clock); }
+      return { data: file };
+    }
+    case 'deleteFile': {
+      const body = VersionInputSchema.parse(input.body), file = accessibleFile(data, String(input.fileId));
+      if (file.version !== body.expectedVersion) return fail('CONFLICT', 'The file changed. Refresh and try again.');
+      const task = file.taskId ? editable(data, file.taskId, data.tasks[file.taskId]!.version) : null, lifecycleAt = clock.now(), next = { ...file, version: file.version + 1 };
+      data.files[file.id] = next; data.taskCommands.deletedFiles[file.id] = lifecycleAt; if (task) touchAttachments(data, task, clock);
+      const undoId = newMockId(clock), activityIds = task ? [addActivity(data, data.tasks[task.id]!, 'file.deleted', clock)] : [];
+      data.taskCommands.lifecycleUndoRecords[undoId] = { actorId: data.currentMemberId, kind: 'file.delete', entityId: file.id, postVersion: next.version, lifecycleAt, previousArchivedAt: null, taskId: task?.id ?? null, taskPostVersion: task ? data.tasks[task.id]!.version : null, activityIds, result: null };
+      return { data: { file: next, undo: { id: undoId, kind: 'file.delete' } } };
     }
     case 'updateSubtask': {
       const body = UpdateSubtaskInputSchema.parse(input.body), task = editable(data, taskId, body.expectedTaskVersion);
@@ -89,7 +168,7 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       data.subtasks[subtaskId] = { ...subtask, done: body.done ?? subtask.done };
       const subtasks = Object.values(data.subtasks).filter(row => row.taskId === task.id);
       data.tasks[task.id] = { ...task, version: task.version + 1, updatedAt: clock.now(), subtaskSummary: { total: subtasks.length, completed: subtasks.filter(row => row.done).length } };
-      return { data: { task: projectTask(data.tasks[task.id]!, data), subtasks, attachments: Object.values(data.files).filter(row => row.taskId === task.id) } };
+      return { data: { task: projectTask(data.tasks[task.id]!, data), subtasks, attachments: Object.values(data.files).filter(row => row.taskId === task.id && !data.taskCommands.deletedFiles[row.id]) } };
     }
     case 'bulkMutateTasks': {
       const body = BulkMutateTasksInputSchema.parse(input.body);
@@ -107,12 +186,12 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       data.taskCommands.deleteUndoRecords[undoId] = { actorId: data.currentMemberId, targets: tasks.map(task => ({ taskId: task.id, postVersion: task.version, deletedAt })), activityIds, result: null };
       return { data: { tasks: tasks.map(task => projectTask(task, data)), createdTasks: [], affectedProjectIds: [...new Set(tasks.map(task => task.projectId))], undo: { id: undoId, kind: 'tasks.bulkDelete' } } };
     }
-    case 'getTask': { const task = getTask(data, taskId); return { data: { task: projectTask(task, data), subtasks: Object.values(data.subtasks).filter(row => row.taskId === task.id), attachments: Object.values(data.files).filter(row => row.taskId === task.id) } }; }
+    case 'getTask': { const task = getTask(data, taskId); return { data: { task: projectTask(task, data), subtasks: Object.values(data.subtasks).filter(row => row.taskId === task.id), attachments: Object.values(data.files).filter(row => row.taskId === task.id && !data.taskCommands.deletedFiles[row.id]) } }; }
     case 'listTasks': case 'getTaskSummary': {
       const query = normalizeTaskView({ query: input.query }).query, { cursor, limit, ...scope } = query;
       const available = Object.values(data.tasks).filter(task => task.workspaceId === data.workspaceId && !data.taskCommands.deletedTasks[task.id] && canReadProject(data.projects[task.projectId], data) && !data.projects[task.projectId]!.archivedAt);
       const env = { today: clock.today(), now: Date.parse(clock.now()), lookups: { members: Object.values(data.members), projects: Object.values(data.projects).filter(project => canReadProject(project, data)) } };
-      const view = evaluateTaskView(available, normalizeTaskView({ query }), env), tasks = view.taskIds.map(value => data.tasks[value]!);
+      const view = evaluateTaskView(available.map(task => projectTask(task, data)), normalizeTaskView({ query }), env), tasks = view.taskIds.map(value => data.tasks[value]!);
       if (id === 'getTaskSummary') return { data: summarizeTasks(tasks, clock.today()) };
       const queryFingerprint = await fingerprint(scope); let start = 0;
       if (cursor) {
@@ -121,7 +200,7 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       const items = tasks.slice(start, start + limit).map(task => projectTask(task, data)), last = items.at(-1);
       return { data: { items, total: tasks.length, nextCursor: last && start + items.length < tasks.length ? encode({ formatVersion: 1, queryFingerprint, sortField: query.sortField, sortDirection: query.sortDirection, sortValue: taskSortValue(last, query.sortField, env.lookups), id: last.id }) : null } };
     }
-    case 'updateTask': { const { expectedVersion, ...patch } = UpdateTaskInputSchema.parse(input.body); if (patch.descriptionHtml !== undefined) throw unavailable('Task text editing'); const task = editable(data, taskId, expectedVersion); return { data: patchTask(data, task, definedPatch(patch), clock) }; }
+    case 'updateTask': { const { expectedVersion, ...patch } = UpdateTaskInputSchema.parse(input.body); if (patch.descriptionHtml !== undefined) patch.descriptionHtml = normalizeDescription(patch.descriptionHtml).html; const task = editable(data, taskId, expectedVersion); return { data: patchTask(data, task, definedPatch(patch), clock) }; }
     case 'moveTask': {
       const body = MoveTaskInputSchema.parse(input.body), task = editable(data, taskId, body.expectedVersion);
       const projectId = body.targetProjectId ?? task.projectId;
@@ -152,7 +231,10 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       return { data: result };
     }
     case 'undoCommand': {
-      const undoId = EntityIdSchema.parse(input.undoId), deleted = data.taskCommands.deleteUndoRecords[undoId];
+      const undoId = EntityIdSchema.parse(input.undoId);
+      const lifecycle = data.taskCommands.lifecycleUndoRecords[undoId];
+      if (lifecycle) return { data: undoLifecycle(data, undoId, lifecycle, clock) };
+      const deleted = data.taskCommands.deleteUndoRecords[undoId];
       if (deleted) {
         if (deleted.actorId !== data.currentMemberId) return fail('NOT_FOUND', 'Undo command not found');
         const tasks = deleted.targets.map(target => { const task = data.tasks[target.taskId]; if (!task || !canReadProject(data.projects[task.projectId], data)) return fail('NOT_FOUND', 'Task not found'); return task; });
@@ -179,7 +261,7 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
 // This is a transaction boundary, never an Undo workspace snapshot.
 const commands = new WeakMap<MockDataset, Promise<unknown>>();
 export async function runTaskFieldOperation(id: OperationId, input: Record<string, unknown>, data: MockDataset, clock: Clock): Promise<unknown> {
-  if (['getTask', 'listTasks', 'getTaskSummary'].includes(id)) return executeTaskOperation(id, input, data, clock);
+  if (['getTask', 'listTasks', 'getTaskSummary', 'getFile'].includes(id)) return executeTaskOperation(id, input, data, clock);
   const previous = commands.get(data) ?? Promise.resolve();
   const command = previous.catch(() => {}).then(async () => { const staged = structuredClone(data); const result = await executeTaskOperation(id, input, staged, clock); Object.assign(data, staged); return result; });
   commands.set(data, command); try { return await command; } finally { if (commands.get(data) === command) commands.delete(data); }

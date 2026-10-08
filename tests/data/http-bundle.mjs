@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
 const root = new URL('../../', import.meta.url);
-const unit = ['WU-07', 'WU-08', 'WU-09'].includes(process.argv.at(-1)) ? process.argv.at(-1) : 'WU-06';
+const unit = ['WU-07', 'WU-08', 'WU-09', 'WU-10'].includes(process.argv.at(-1)) ? process.argv.at(-1) : 'WU-06';
 const dist = new URL('apps/web/dist-http/', root);
 const graph = JSON.parse(readFileSync(new URL('module-graph.json', dist), 'utf8'));
 const forbidden = /\/data\/mock\/|\/adapters\/mock(?:-entry)?\.ts|source-identities\.ts|source-fixture\.json|\/\.reference\//;

@@ -26,4 +26,4 @@ export function Toast({ toast, onDismiss }: ToastProps) {
   </div>;
 }
 export interface ToastViewportProps { items: readonly ToastMessage[]; onDismiss: (id: string) => void; maxVisible?: number }
-export function ToastViewport({ items, onDismiss, maxVisible = 3 }: ToastViewportProps) { return <Portal><div aria-label="Notifications" className="ui-toast-viewport pointer-events-none fixed bottom-5 right-5 z-[100] flex flex-col items-end gap-2">{items.slice(0, maxVisible).map(toast => <Toast key={toast.id} toast={toast} onDismiss={onDismiss} />)}</div></Portal>; }
+export function ToastViewport({ items, onDismiss, maxVisible = 3 }: ToastViewportProps) { return <Portal><div data-overlay-notification="" aria-label="Notifications" className="ui-toast-viewport pointer-events-none fixed bottom-5 right-5 z-[100] flex flex-col items-end gap-2">{items.slice(0, maxVisible).map(toast => <Toast key={toast.id} toast={toast} onDismiss={onDismiss} />)}</div></Portal>; }

@@ -6,6 +6,11 @@ export const MockDatasetSchema = z.strictObject({
   workspaceId: EntityIdSchema, currentMemberId: EntityIdSchema,
   workspaces: table(WorkspaceSchema), users: table(UserProfileSchema), members: table(MemberSchema), teams: table(TeamSchema), projects: table(ProjectSchema), tasks: table(TaskSchema), subtasks: table(SubtaskSchema), comments: table(CommentSchema), files: table(FileSchema), activity: table(ActivitySchema), notifications: table(NotificationSchema), events: table(CalendarEventSchema), savedViews: table(SavedViewSchema),
   taskCommands: z.strictObject({
+    descriptionTexts: z.record(EntityIdSchema, z.string()).default(() => ({})),
+    taskFavorites: z.record(EntityIdSchema, z.array(EntityIdSchema)).default(() => ({})),
+    deletedFiles: z.record(EntityIdSchema, InstantSchema).default(() => ({})),
+    uploadRequests: z.record(EntityIdSchema, z.record(ClientRequestIdSchema, z.strictObject({ fingerprint: z.string().regex(/^[a-f0-9]{64}$/), fileId: EntityIdSchema }))).default(() => ({})),
+    lifecycleUndoRecords: z.record(EntityIdSchema, z.strictObject({ actorId: EntityIdSchema, kind: z.enum(['task.archive', 'task.delete', 'file.delete']), entityId: EntityIdSchema, postVersion: VersionSchema, lifecycleAt: InstantSchema, previousArchivedAt: InstantSchema.nullable(), taskId: EntityIdSchema.nullable(), taskPostVersion: VersionSchema.nullable(), activityIds: z.array(EntityIdSchema).max(128), result: UndoResultSchema.nullable() })).default(() => ({})),
     deletedTasks: z.record(EntityIdSchema, InstantSchema).default(() => ({})),
     createRequests: z.record(EntityIdSchema, z.record(ClientRequestIdSchema, z.strictObject({ fingerprint: z.string().regex(/^[a-f0-9]{64}$/), taskId: EntityIdSchema }))).default(() => ({})),
     deleteUndoRecords: z.record(EntityIdSchema, z.strictObject({ actorId: EntityIdSchema, targets: z.array(z.strictObject({ taskId: EntityIdSchema, postVersion: VersionSchema, deletedAt: InstantSchema })).max(20), activityIds: z.array(EntityIdSchema).max(20), result: UndoResultSchema.nullable() })).default(() => ({})),
@@ -13,7 +18,7 @@ export const MockDatasetSchema = z.strictObject({
     previousStatuses: z.record(EntityIdSchema, TaskStatusSchema).default(() => ({})),
     recurrenceSlots: z.record(EntityIdSchema, EntityIdSchema).default(() => ({})),
     undoRecords: z.record(EntityIdSchema, z.strictObject({ taskId: EntityIdSchema, actorId: EntityIdSchema, postVersion: VersionSchema, previousStatus: TaskStatusSchema, result: UndoResultSchema.nullable() })).default(() => ({})),
-  }).default(() => ({ deletedTasks: {}, createRequests: {}, deleteUndoRecords: {}, projectSequences: {}, previousStatuses: {}, recurrenceSlots: {}, undoRecords: {} })),
+  }).default(() => ({ descriptionTexts: {}, taskFavorites: {}, deletedFiles: {}, uploadRequests: {}, lifecycleUndoRecords: {}, deletedTasks: {}, createRequests: {}, deleteUndoRecords: {}, projectSequences: {}, previousStatuses: {}, recurrenceSlots: {}, undoRecords: {} })),
   projectOrder: z.array(EntityIdSchema), preferences: MemberPreferencesSchema, notificationPreferences: NotificationPreferencesSchema,
 });
 export type MockDataset = z.infer<typeof MockDatasetSchema>;

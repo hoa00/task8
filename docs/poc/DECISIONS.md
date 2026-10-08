@@ -61,3 +61,42 @@ Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn
 - Repo đích, package public name và deployment: xác định khi Hòa muốn bắt đầu môi trường/publish tương ứng.
 - Auth provider production, real invitation delivery, subscription/payment và quản trị ACL đầy đủ: ngoài M3.
 - Sửa due-group overlap/Board toolbar sorting và thêm thư mục, custom fields, calendar event CRUD: cần yêu cầu sản phẩm mới.
+
+## WU-10 implementation decisions và handoff
+
+- TaskForm source edit submit replaces `base.subtasks` (`actions.js submitTask`),
+  nhưng API_CONTRACT6.4/6.6 chỉ atomic draft subtasks ở create. Task PATCH không nhận
+  subtasks. Phase10 create add/remove draft children hoạt động atomic; edit existing
+  children read-only/unavailable và giữ IDs/content. WU11 nối cùng form vào scoped
+  parent child operations; đây là integration pending, không loại tính năng khỏi dự án.
+- Description normalization dùng HTML5 parse5 tree allowlist trong pure domain,
+  không DOM/regex sanitizer. `descriptionText` được derive từ final sanitized tree;
+  internal mock map giữ canonical text, DTO contract không thêm field. Edit chỉ đổi
+  plain description khi text thay đổi; save other fields preserves rich seed HTML.
+- Single lifecycle commands dùng internal tombstones/actor-owned bounded inverse,
+  UUIDv7/key monotonic, file ID/version và parent-version touches. Upload actor/request
+  dedupe hashes actual bytes+metadata; duplicate filename không có nghĩa same identity.
+- DATA09 form flow freezes payload/request/file intents; metadata sessionStorage
+  scoped workspace/member, File bytes chỉ memory. Prepared:false giữ draft file rows
+  visible lúc hashing, failure làm editable draft và zero-create. Partial task/file
+  commit giữ successes, retry unconfirmed keys; reset/late response không redirect
+  target. Confirmed edit move/version survives later PATCH/refetch failure.
+- New uploads giới hạn canonical10MiB, source Files catalogue text250MB thuộc source
+  simulation/parity owner22; không đổi capability hay claim HTTP/R2 bytes tại10.
+- Pure domain boundary mở tối thiểu cho `parse5@8.0.0` (DOM-less HTML5 parser) để cùng
+  sanitizer chạy trong browser/Worker modules; vẫn cấm Node/React/app/storage/network.
+
+- WU10 visual acceptance is scoped original chrome/title/properties plus full panel
+  geometry and separate form/file component samples. Original full default mobile
+  context17/14 raster differences remain diagnostics pending WU11 full-body integration.
+  Symmetric owner-component composition removes only out-of-crop unowned sections,
+  with exact owned markup/rect/styles invariant; no production content, source CSS,
+  comparator, tolerance or masks are changed to force that diagnostic to pass.
+- Late file reselection captures state/files/intents before hash and checks identity
+  afterwards. Reset cannot queue a new same-file failed intent or apply old UI errors.
+  A hidden but mounted create form cannot dismiss/focus a later edit form after success.
+- WU05 deferred return-focus respects a newer connected meaningful focus target
+  outside the closing layer. Canonical List double-click creates an inline editor
+  before the closing Drawer RAF; unconditional restore stole focus and blur closed
+  that editor. Preserve that new focus; ordinary Close/Escape/nested return still
+  follows existing opener semantics and is covered by scoped42/17 regression.

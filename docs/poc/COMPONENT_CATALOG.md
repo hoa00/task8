@@ -465,3 +465,27 @@ Source có one-shot route/tab/drawer/popover/completion/add/drop animations; Rea
 [c-styleindex]: https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/styles/index.css#L1-L18
 [c-theme]: https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/core/theme.js#L5-L22
 [c-motion]: https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/styles/motion.css
+
+### WU-10 ownership checkpoint
+
+`features/tasks/detail/TaskOverlayHost` owns global task URL/render intents (AppShell
+provides canonical route intent), per-task transient draft/scroll, shared form/context
+menu/confirmation/preview orchestration. TaskDrawer + TaskDetailsBody +
+TaskPropertyGrid are single controlled owners using WU08 fields. TaskFormDialog uses
+TaskSubmission metadata+File intents and EditTaskCommit confirmed move/PATCH phases;
+TanStack Query remains the only DTO cache. Header Newtask opens this form, inline
+Addtask remains WU09 shared composer.
+
+`features/files/FileFoundation.tsx` exports named Props and FileTypeIcon,
+FilePreviewArt, AttachmentCard, Dropzone, UploadProgress, FilePreviewDialog. Files
+catalogue22 reuses these exports; bytes35 implements transport behind typed operation.
+WU11 extends the existing detail/form boundary for rich description, child CRUD and
+Comments/Activity; existing edit children currently read-only, create drafts atomic.
+No future owner should replace these forms or duplicate the Drawer controller.
+
+TaskDetailsBody owns chrome/title/properties and exposes controlled section composition;
+production defaults remain its existing sections. WU11 extends this owner and same
+TaskFormDialog via canonical scoped child operations, rich editor and Comments/Activity,
+including full-body comparison in both source collaboration states. Do not duplicate
+Drawer/controller/properties/file foundation. Snapshot-only initial settled overlay
+state is independent of default motion/focus verification.

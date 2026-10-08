@@ -144,3 +144,11 @@ Gate M1 chứng minh cùng TaskStatusField/AssigneeField và cùng task mutation
 Chiến lược ảnh/geometry trong VISUAL_PARITY là bắt buộc ở mỗi UI WU. Typecheck/build không thay bằng chứng visual. API contract test và D1 local integration test không thay nhau: fake DB không chứng minh binding, FK hay batch rollback thật.
 
 Handoff này chưa quyết định provider auth production hoặc topology deployment. Vite proxy local `/api` → Hono Worker dev đủ cho M3. Mở rộng Cloudflare sau có thể dùng Worker static assets/R2 production; không phải nhiệm vụ platform của POC.
+
+WU-10 controller checkpoint: AppShell mounts one TaskOverlayHost, passes canonical
+Router taskId/form/menu intents and opener ref. Controller queries details/files,
+invalidates shared workspace/task keys and stores only UI draft/scroll/File intents;
+DTOs remain Query cache. Serialized staged mock command owner from WU09 continues
+with create children, description canonicalization, lifecycle/file metadata operations
+and guarded bounded inverse. Pure domain adds DOM-less parse5 allowlist normalization;
+web and later Worker owners share this helper, without React/DOM/storage dependencies.

@@ -1,5 +1,6 @@
 import { EntityIdSchema } from '@studio/contracts/api';
 import type { OperationId } from '@studio/contracts/api';
+import { normalizeDescription } from '@studio/domain';
 import type { Clock } from '@studio/domain';
 import { StudioApiError, StudioTransportError, unavailable } from '../errors.ts';
 import { createStudioClient } from '../operations.ts';
@@ -25,6 +26,8 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
   const seed = fresh();
   // System scenarios always start from their fixture and never overwrite the populated demo.
   let dataset = scenario === 'populated' ? loadMockDataset(storage, seed.workspaceId) ?? seed : seed;
+  if (!dataset.taskCommands.taskFavorites[dataset.currentMemberId]) dataset.taskCommands.taskFavorites[dataset.currentMemberId] = Object.values(dataset.tasks).filter(task => task.isFavorite).map(task => task.id);
+  for (const task of Object.values(dataset.tasks)) { const normalized = normalizeDescription(task.descriptionHtml); task.descriptionHtml = normalized.html; dataset.taskCommands.descriptionTexts[task.id] = normalized.text; }
   if (scenario === 'populated') persistMockDataset(storage, dataset);
   const client = createStudioClient(async (id, input, { signal }) => {
     if (![...shellReads, ...taskFieldOperations].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number])) throw unavailable(id);

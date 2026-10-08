@@ -8,7 +8,7 @@ export interface OverlayLayer {
 }
 export interface OverlayScope { id: string | null; dialogDepth: number }
 export const OverlayScopeContext = createContext<OverlayScope>({ id: null, dialogDepth: -1 });
-export interface OverlayController { host: HTMLElement | null; layers: OverlayLayer[]; register: (layer: OverlayLayer, focus: boolean, initial: HTMLElement | null, restore: HTMLElement | null) => () => void }
+export interface OverlayController { initiallySettled: boolean; host: HTMLElement | null; layers: OverlayLayer[]; register: (layer: OverlayLayer, focus: boolean, initial: HTMLElement | null, restore: HTMLElement | null) => () => void }
 export const OverlayContext = createContext<OverlayController | null>(null);
 export function useOverlayController() {
   const controller = useContext(OverlayContext);

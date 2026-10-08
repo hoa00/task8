@@ -353,3 +353,64 @@ separate probes; deterministic snapshot setup is not reported as user action.
 The report claims Linux scoped parity, not Darwin whole-page or physical-device
 parity. Previous accepted evidence remains immutable; affected WU-08 field
 interaction reruns use the WU-09 destination.
+
+## WU-10 Task Drawer, form và file foundation
+
+Owner: `apps/web/src/features/tasks/detail` và `features/files/FileFoundation.tsx`.
+Static layout dùng Tailwind; `detail.css` giữ source full positioning620/980,
+inclusive640 mobile, rich-text allowed descendants; `files.css` giữ exact source
+filePrev artwork descendants (inset/padding/gap/heading). SVG/file colors/helpers
+được port từ source helpers, không dùng generated/stock art. Unqualified Tailwind
+`rounded` không emit với reset radius palette; các card dùng `rounded-default`.
+
+`tests/visual/task-detail/verify.mjs` luôn chạy toàn ma trận32. Đây là source-only
+Linux technical component samples, không thay173Darwin goldens hoặc user approval.
+Drawer comparison là header/properties cộng actual side/full/mobile panel geometry;
+edit form comparison title/plain description/properties, vì scoped child CRUD owner11.
+Attachments empty/existing/uploading/preview và8file arts được so ngay tại10.
+Threshold0/includeAAtrue/maxDiffPixels0/masks[]. Fixtureclock/font/source SHA giữ khóa.
+Source giữ `#app/#layer`; hidden unrelated app host và target hidden QA opener host
+cho cùng isolated background, không sửa source template/CSS. Source finite animations
+settle rồi gọi originalrender để bỏ entrance flags. Loading disabled attrs phải cùng originalrender transaction trước first paint.
+
+Source drawer upload markup ghi width42% nhưng source `.prog > i` còn
+`transform: scaleX(var(--p, 0))` và không đặt `--p`, nên bar paintzero. Foundation
+preserve exact inherited CSS presentation; actual mock pending percentage0,
+metadata-confirmed completion, không claim byte transport. HTTP/R2 progress owner35.
+QA42 là source simulation riêng, không file upload success. FileDto storageMode sample /
+contentAvailable:false và screen-reader note nói bytes unavailable; no fake HTTP success.
+
+Scoped reopening: WU08 controlled fields nhận custom trigger seams cho form/Drawer,
+WU09 header Newtask nối full form trong AppShell, More/context menu nối sharedhost;
+inline Addtask vẫn reusable. WU05 outside-pointer handler bỏ qua global notification
+viewport để source-eligible Undo không dismiss Drawer; notification marker thuộc UI
+primitive, không app/domain coupling. Historical accepted reports giữ nguyên; regressions
+được ghi dưới WU10 field/list/overlay-regression.
+
+Drawer component samples isolate only original chrome/title/kv after measuring the
+complete original panel. `renderLayer`/original settled DOM supplies exact cloned
+owned markup; `#app/#layer` remain connected/hidden. Each source/target before/after
+check asserts root/body/header/title/grid rectangles and all computed owned descendant
+styles unchanged; every omitted section begins below the accepted clip. Target uses
+the same controlled TaskDrawer/TaskDetailsBody section composition, without production
+remounts or paint transforms. Attachments have independent six-state samples using
+actual original body content widths571/358 and card widths185/175, measured before
+isolation. The original full-body default source diagnostic still differs17/14 pixels
+on mobile within this crop; it is retained, not reported as fixed production parity.
+WU11 must compare full body in Comments AND Activity states. The scoped32 technical
+matrix does not claim whole default Drawer or child/collaboration parity.
+
+Source cold finalrender replaces focused/animated nodes. Snapshot OverlayProvider
+`initialState='settled'` starts with the same settled/no-focus state and data already
+prefetched; normal production defaults retain motion/focus. This resolves native edit
+input raster history; independent actual default browser probes verify focus/motion.
+Drawer parent side .34s and full modalIn .26s plus body riseIn .38s delays0/.04/.07/.1
+are source-owned; independent body settlement does not postpone full parent geometry.
+Explicit/OS reduced motion uses source fadeOnly .12s. Native input title keeps source
+padding0 and ease timing; property MemberIdentity uses source static position.
+
+WU05 focus reopening: deferred returnOpener preserves a newer connected meaningful
+focus target outside the closing layer. This prevents Drawer-close RAF from stealing
+new List title editor focus. Real canonical editor-after-two-RAF assertion and scoped
+42/17 overlay nested/trap/return plus StrictMode checks cover this change; source CSS
+and production motion are unchanged.
