@@ -18,7 +18,7 @@
 | [WU-00](work-units/WU-00.md) | DONE | `8310612c8fc59f5e9b57940d06ee28b0220aa1c4` | [Runner](reference/CAPTURE.md), [repeatability](reference/repeatability.json), [inspection](reference/review/inspection.json); đã push repo private hoa00/task8, xem bổ sung bên dưới |
 | [WU-01](work-units/WU-01.md) | DONE | `8e672a666bd03e4318205163286be8d8c296e567` | [Clean gates](evidence/WU-01/clean-typecheck.log), [graph/bundle](evidence/WU-01/workspace-artifacts.json), [source smoke](evidence/WU-01/source-smoke.json) |
 | [WU-02](work-units/WU-02.md) | DONE | `cdd255d332b87a9e27ec84411ee853257a0d4009` | [Verification](evidence/WU-02/verification.json), [83-operation coverage](evidence/WU-02/operation-coverage.json), [93 contract tests](evidence/WU-02/test.log) |
-| [WU-03](work-units/WU-03.md) | DONE | pending commit checkpoint | [24 samples / 27 probes](evidence/WU-03/verification.json), [asset audit](evidence/WU-03/asset-audit.json), [technical inspection](evidence/WU-03/review/inspection.json) |
+| [WU-03](work-units/WU-03.md) | DONE | `4aab7b4f4b76f8df9c50c475a475b396aabc9f74` | [24 samples / 27 probes](evidence/WU-03/verification.json), [asset audit](evidence/WU-03/asset-audit.json), [technical inspection](evidence/WU-03/review/inspection.json) |
 | [WU-04](work-units/WU-04.md) | NOT_STARTED | — | — |
 | [WU-05](work-units/WU-05.md) | NOT_STARTED | — | — |
 | [WU-06](work-units/WU-06.md) | NOT_STARTED | — | — |
@@ -172,7 +172,7 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 
 ## WU-03 — 2026-10-08 (Asia/Saigon)
 
-- Status: `DONE` — WU-03-AC1/2/3 và verification bắt buộc đạt; implementation commit/push được ghi bằng SHA thật trong checkpoint kế tiếp.
+- Status: `DONE` — WU-03-AC1/2/3 và verification bắt buộc đạt; implementation đã commit/push và SHA remote được kiểm chứng.
 - Started from: branch `work`, HEAD/origin-main `36876c4a4a01cf90a0fd9b6519d2f8b376cc2075`, worktree sạch; WU-00/01/02 DONE có code/evidence. Đã đọc AGENTS/PROGRESS/WU-03, TOOLCHAIN/VISUAL_PARITY/COMPONENT_CATALOG liên quan và toàn bộ source read-set khóa; đọc thêm helpers/responsive/vite chỉ để giữ glyph/import-order/breakpoint/font evidence.
 - Completed / AC1: UI sở hữu exact token declarations và normalized base, không Preflight/legacy component CSS. Self-host 11 locked font bytes/21 exact descriptors (Geist400/500/600, Mono400); browser loaded21 faces, 11 distinct HTTP hashes đều khớp WU-00. CDP xác nhận Geist450 và Mono là custom font, không fallback; missing-font negative probe fail đúng. Same-text measured widths400=223,450=225,500=225,600=241px bằng nhau source/target; không khai báo face450 hoặc variable range mới.
 - AC2: Tailwind inline mapping đầy đủ light/dark/accent/spacing/type/radius/sizes/shadow/easing; source values13.5/12.5/14.5px, side252/topbar46px, stroke1.8 giữ nguyên. 24 sample combinations light/dark × 6 accents × 2 density; source chụp lặp zero-diff và target zero-diff ở threshold0/includeAA=true/maxDiffPixels0, không mask. So82 computed custom tokens, type/body/base/geometry, all4 source shadows và184 SVG (173 Lucide0.460.0, 5 status + 5 priority custom, logo path nguồn).
@@ -187,6 +187,6 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - Files changed: `packages/ui/src/{styles.css,styles/*,assets/*,icon-paths,logo-path,icons,index,foundation-sample}`, UI README/package exports; `apps/web/src/theme/*`, main/styles, separate foundation HTML/entry, Vite build inputs; `tests/visual/foundation/*`, actual root audit/visual scripts và lint scope; VISUAL_PARITY/PROGRESS và `evidence/WU-03/*`. pnpm-lock/dependencies không đổi; không WU-04 primitives hoặc whole-page UI.
 - Not run/not applicable: full173 official Darwin raster parity, business API/localD1/R2/migrations, CI/remote deployment; ngoài unit. Historical app/design/logo rights chưa xác nhận vẫn giữ nguyên; private repo push không publish/deploy.
 - Blockers: không có blocker WU-03.
-- Commit: pending implementation checkpoint; SHA thật ghi ở documentation checkpoint sau commit.
-- Push: preflight `git fetch origin main` exit0; HEAD/origin-main đều `36876c4a4a01cf90a0fd9b6519d2f8b376cc2075`, divergence0/0. Origin `https://github.com/hoa00/task8.git`, branch local `work`, target `main`; normal push và remote SHA sẽ kiểm chứng sau commit, không force/source remote.
+- Commit: `4aab7b4f4b76f8df9c50c475a475b396aabc9f74` — `feat: establish exact visual foundations for WU-03`. Entry này ghi implementation checkpoint/push thật trong documentation commit kế tiếp.
+- Push: preflight `git fetch origin main` exit0; HEAD/origin-main đều `36876c4a4a01cf90a0fd9b6519d2f8b376cc2075`, divergence0/0. Trước implementation push ahead1/behind0, origin/main là ancestor. `git push origin HEAD:main` exit0 đến `https://github.com/hoa00/task8.git`; `git ls-remote origin refs/heads/main` bằng `4aab7b4f4b76f8df9c50c475a475b396aabc9f74`, trùng local HEAD, worktree sạch. Branch local `work`, target `main`, không force/source remote. Documentation checkpoint này tiếp tục commit/push theo cùng quy tắc; final báo SHA head/remote thật sau verify.
 - Next permitted unit: `WU-04`; dừng WU-03 sau commit/push/checkpoint, chưa triển khai unit sau.
