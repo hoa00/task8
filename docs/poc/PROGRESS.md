@@ -9,13 +9,13 @@
 - Target React app: chưa triển khai.
 - Backend/D1/R2: chưa triển khai.
 - Source SHA: `904205c626918ee96054eb35495c394a60c0c601`.
-- Target project: `task8`; repository private [hoa00/task8](https://github.com/hoa00/task8), `origin=https://github.com/hoa00/task8.git`, branch `main`. Remote đã tạo theo yêu cầu bổ sung của Hòa; push đầu đang thực hiện.
+- Target project: `task8`; repository private [hoa00/task8](https://github.com/hoa00/task8), `origin=https://github.com/hoa00/task8.git`, branch/default branch `main`, tracking `origin/main`. Push đầu đã thành công; SHA local/remote khớp `2ca0191918a3c3dae5dd7fa5a6c711f0a164dd00`.
 
 ## Work unit ledger
 
 | Unit | Status | Checkpoint | Evidence / blocker |
 | --- | --- | --- | --- |
-| [WU-00](work-units/WU-00.md) | DONE | `8310612c8fc59f5e9b57940d06ee28b0220aa1c4` | [Runner](reference/CAPTURE.md), [repeatability](reference/repeatability.json), [inspection](reference/review/inspection.json); target private đã tạo, xem bổ sung bên dưới |
+| [WU-00](work-units/WU-00.md) | DONE | `8310612c8fc59f5e9b57940d06ee28b0220aa1c4` | [Runner](reference/CAPTURE.md), [repeatability](reference/repeatability.json), [inspection](reference/review/inspection.json); đã push repo private hoa00/task8, xem bổ sung bên dưới |
 | [WU-01](work-units/WU-01.md) | NOT_STARTED | — | — |
 | [WU-02](work-units/WU-02.md) | NOT_STARTED | — | — |
 | [WU-03](work-units/WU-03.md) | NOT_STARTED | — | — |
@@ -107,6 +107,7 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - Files changed: `package.json`, `README.md`, `docs/poc/PROGRESS.md`; lockfile dependency không đổi. Không đổi source/fixture/font/screenshot/harness hoặc triển khai unit sau.
 - Verification: `pnpm install --frozen-lockfile` exit 0, pnpm 11.19.0/Node v24.13.0; `pnpm test` exit 0, 3 tests pass; `git diff --check` exit 0. Baseline WU-00 không đổi, matrix visual trước đó vẫn là evidence; không capture lại vì đổi tên package/docs không tác động renderer hoặc inputs.
 - Decisions/conflicts: tên dự án đích là `task8`; nội dung/design của Gr8r Studio và source SHA vẫn giữ nguyên. Các ghi nhận “chưa có remote/chưa push” trong entry ban đầu là lịch sử trước yêu cầu bổ sung này.
-- Commit/Push: đang thực hiện commit đổi tên và push đầu lên `origin/main`; chỉ ghi thành công sau đối chiếu SHA local/remote.
+- Commit: `2ca0191918a3c3dae5dd7fa5a6c711f0a164dd00` — `chore: rename target project to task8`. Kết quả push được ghi trong commit documentation kế tiếp.
+- Push: `git push -u origin main` exit 0, tạo branch `main` và tracking `origin/main`. `gh repo view hoa00/task8 --json nameWithOwner,visibility,defaultBranchRef,url` xác nhận `PRIVATE`, default branch `main`; `gh api repos/hoa00/task8/git/ref/heads/main --jq .object.sha` bằng `git rev-parse HEAD`: `2ca0191918a3c3dae5dd7fa5a6c711f0a164dd00`. Bao gồm toàn bộ các commit/evidence WU-00 trước đó.
 - Blockers: blocker thiếu remote đã gỡ; chưa có blocker mới. Không đổi kết luận audit quyền phân phối nguồn.
 - Next: `WU-01` vẫn NOT_STARTED; dừng sau hoàn tất push.
