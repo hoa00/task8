@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
 const root = new URL('../../', import.meta.url);
+const unit = process.argv.at(-1) === 'WU-07' ? 'WU-07' : 'WU-06';
 const dist = new URL('apps/web/dist-http/', root);
 const graph = JSON.parse(readFileSync(new URL('module-graph.json', dist), 'utf8'));
 const forbidden = /\/data\/mock\/|\/adapters\/mock(?:-entry)?\.ts|source-identities\.ts|source-fixture\.json|\/\.reference\//;
@@ -17,6 +18,6 @@ const files = assets.map(name => {
   return { path: `apps/web/dist-http/assets/${name}`, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') };
 });
 const report = { status: 'passed', graphModules: graph.length, forbiddenModules: [], files, mode: 'http', entry: 'apps/web/index.html', graphPath: 'apps/web/dist-http/module-graph.json' };
-writeFileSync(new URL('docs/poc/evidence/WU-06/http-bundle.json', root), JSON.stringify(report, null, 2) + '\n');
-writeFileSync(new URL('docs/poc/evidence/WU-06/http-module-graph.json', root), JSON.stringify(graph, null, 2) + '\n');
+writeFileSync(new URL(`docs/poc/evidence/${unit}/http-bundle.json`, root), JSON.stringify(report, null, 2) + '\n');
+writeFileSync(new URL(`docs/poc/evidence/${unit}/http-module-graph.json`, root), JSON.stringify(graph, null, 2) + '\n');
 console.log(JSON.stringify(report));

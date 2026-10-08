@@ -1,0 +1,32 @@
+[
+  {
+    "command": "pnpm install --frozen-lockfile --offline",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-07/install.log"
+  },
+  {
+    "command": "pnpm typecheck",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-07/typecheck.log"
+  },
+  {
+    "command": "pnpm build",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-07/build.log"
+  },
+  {
+    "command": "pnpm lint",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-07/lint.log"
+  },
+  {
+    "command": "pnpm test",
+    "exitStatus": 1,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-07/test.log"
+  }
+]

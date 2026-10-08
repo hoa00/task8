@@ -1,0 +1,50 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {sourceId} from '@studio/contracts/source-identities';
+import {createMockApi} from '../../src/data/adapters/mock.ts';
+import {StudioApiError} from '../../src/data/errors.ts';
+import {createSeedDataset,fixtureClock} from '../../src/data/mock/seed.ts';
+import {readNavigationCounts} from '../../src/data/mock/reads.ts';
+import {legacyAliases,legacyDestination,links,validateRouteSearch,projectTabs} from '../../src/app/navigation.ts';
+const workspaceId=sourceId('workspaces','w1');
+test('shell aggregates are actual bootstrap data, empty counts and saved view ownership are truthful',async()=>{
+ const api=createMockApi();const bootstrap=(await api.getBootstrap({workspaceId})).data;
+ assert.deepEqual(bootstrap.navigationCounts,{inbox:4,myTasks:2,archive:0});
+ const empty=(await createMockApi({scenario:'empty'}).getBootstrap({workspaceId})).data;
+ assert.deepEqual(empty.navigationCounts,{inbox:0,myTasks:0,archive:0});
+ const views=(await api.listSavedViews({workspaceId,projectId:sourceId('projects','p1')})).data;
+ assert.equal(views.length,1);assert.equal(views[0]?.projectId,sourceId('projects','p1'));
+ assert.deepEqual((await api.listSavedViews({workspaceId,projectId:sourceId('projects','p2')})).data,[]);
+ for(const [input,status] of [[{workspaceId,projectId:sourceId('projects','p6')},404],[{workspaceId,projectId:sourceId('tasks','t1')},404],[{workspaceId:sourceId('workspaces','w2'),projectId:sourceId('projects','p1')},404]] as const)await assert.rejects(api.listSavedViews(input),error=>error instanceof StudioApiError&&error.status===status);
+ assert.equal((await api.getSession({})).data.capabilities.features.projects,'unavailable');
+});
+test('legacy whitelist excludes prototype/project aliases and canonical links retain full prefix',()=>{
+ for(const hash of ['#project/p1','#project','#__proto__','#constructor','#toString','#unknown','#home/extra'])assert.equal(legacyDestination(hash,workspaceId),undefined);
+ assert.equal(Object.keys(legacyAliases).length,26);
+ assert.equal(legacyDestination('#mytasks',workspaceId),links.workspace(workspaceId,'my-tasks'));
+ assert.equal(legacyDestination('#settings',workspaceId),links.settings(workspaceId));
+ assert.equal(legacyDestination('#member',workspaceId),links.workspace(workspaceId,'members'));
+ assert.equal(legacyDestination('#system',workspaceId),'/dev/design-system');
+ for(const tab of projectTabs)assert.match(links.project(workspaceId,sourceId('projects','p1'),tab),new RegExp(`^/w/${workspaceId}/projects/.+/${tab}$`));
+ assert.match(links.savedView(workspaceId,sourceId('projects','p1'),sourceId('savedViews','v1')),/\/views\//);
+ assert.throws(()=>links.project('invalid',sourceId('projects','p1')));
+ assert.deepEqual(validateRouteSearch({taskId:'bad',mode:'random',category:'bad',password:'secret',q:'a'.repeat(501)}),{q:'a'.repeat(500)});
+ assert.deepEqual(validateRouteSearch({taskId:sourceId('tasks','t1'),mode:'board',category:'tasks'}),{taskId:sourceId('tasks','t1'),mode:'board',category:'tasks'});
+});
+
+test('navigation aggregates apply project authorization, archive and internal tombstone predicates',()=>{
+ const data=createSeedDataset();const privateProject=data.projects[sourceId('projects','p6')]!;
+ const privateTask=Object.values(data.tasks).find(task=>task.projectId===privateProject.id)!;
+ privateProject.archivedAt=fixtureClock.now();privateTask.archivedAt=fixtureClock.now();
+ assert.equal(readNavigationCounts(data,fixtureClock).archive,0);
+ const accessibleProject=data.projects[sourceId('projects','p1')]!;
+ const accessibleTask=data.tasks[sourceId('tasks','t1')]!;
+ accessibleProject.archivedAt=fixtureClock.now();accessibleTask.archivedAt=fixtureClock.now();
+ assert.equal(readNavigationCounts(data,fixtureClock).archive,2);
+ Object.assign(accessibleTask,{deletedAt:fixtureClock.now()});assert.equal(readNavigationCounts(data,fixtureClock).archive,1);
+ Object.assign(accessibleProject,{deletedAt:fixtureClock.now()});assert.equal(readNavigationCounts(data,fixtureClock).archive,0);
+ const active=createSeedDataset();const mine=Object.values(active.tasks).filter(task=>task.assigneeId===active.currentMemberId && task.status!=='done' && task.dueDate && task.dueDate<=fixtureClock.today());
+ assert.equal(readNavigationCounts(active,fixtureClock).myTasks,2);
+ Object.assign(mine[0]!,{deletedAt:fixtureClock.now()});assert.equal(readNavigationCounts(active,fixtureClock).myTasks,1);
+ Object.assign(active.projects[mine[1]!.projectId]!,{deletedAt:fixtureClock.now()});assert.equal(readNavigationCounts(active,fixtureClock).myTasks,0);
+});

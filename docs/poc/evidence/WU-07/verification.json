@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "acceptance": {
+    "AC1": "23 source-only shell crops,13states exact0; pending content excluded",
+    "AC2": "canonical routes/26aliases/static saved views/invalid entities/history browser probes",
+    "AC3": "same shell, scoped selection/task intent cleanup, signal cancellation/late response isolation",
+    "AC4": "Help and direct dev galleries resolve workspace and share shell"
+  },
+  "commands": [
+    {
+      "command": "pnpm install --frozen-lockfile --offline",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/install.log"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/typecheck.log"
+    },
+    {
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/build.log"
+    },
+    {
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/lint.log"
+    },
+    {
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/test.log"
+    },
+    {
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/reference-check.log"
+    },
+    {
+      "command": "pnpm verify:data:http-bundle -- WU-07",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/http-bundle.log"
+    },
+    {
+      "command": "pnpm test:shell:routes",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/routes.log"
+    },
+    {
+      "command": "pnpm visual:shell",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-07/visual.log"
+    }
+  ],
+  "visual": {
+    "samples": 23,
+    "states": 13,
+    "changedPixels": 0,
+    "repeatabilityPixels": 0
+  },
+  "routes": {
+    "probes": 26,
+    "pageErrors": []
+  },
+  "limitations": [
+    "Shell-only source crops exclude Home, ProjectHeader/tabs and all future page content.",
+    "Scoped Linux evidence does not establish official Darwin173 whole-page parity or physical safe-area insets.",
+    "Symmetric programmatic state setup; trusted keyboard/mouse/navigation checked by routes.mjs.",
+    "Second workspace is an explicitly synthetic empty browser harness through the same typed client/router/query shell. Ordinary mock catalog workspaces without business data still return404.",
+    "No TaskDrawer content/lifecycle, feature CRUD, production rewrite or future gallery content accepted."
+  ]
+}

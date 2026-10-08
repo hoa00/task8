@@ -32,7 +32,7 @@ export const notification = { id: ids.notificationId, workspaceId: ids.workspace
 export const view = { id: ids.viewId, workspaceId: ids.workspaceId, projectId: ids.projectId, name: 'High priority', type: 'list', filters: [{ field: 'priority', op: 'is', values: ['urgent', 'high'] }], createdBy: ids.memberId, position: 0, version: 1 };
 export const event = { id: sourceId('events', 'e1'), workspaceId: ids.workspaceId, projectId: ids.projectId, title: 'Design review', date: '2026-10-09', localTime: '10:00', timezone: 'UTC' };
 export const undoResult = { undoId: ids.undoId, kind: 'task.archive', appliedAt: instant, affected: { taskIds: [ids.taskId], projectIds: [ids.projectId], teamIds: [], memberIds: [], commentIds: [], fileIds: [] } };
-export const bootstrap = { workspace, currentMember: member, members: [displayMember], teams: [team], projects: [allowedProject, restrictedProject], catalogs, preferences, notificationPreferences, unreadCount: 1 };
+export const bootstrap = { workspace, currentMember: member, members: [displayMember], teams: [team], projects: [allowedProject, restrictedProject], catalogs, preferences, notificationPreferences, unreadCount: 1, navigationCounts: { inbox: 1, myTasks: 0, archive: 0 } };
 export const page = <T>(item: T) => ({ items: [item], nextCursor: null, total: 1 });
 export const home = { counters: { totalTasks: 1, completedThisWeek: 0, overdue: 0, activeProjects: 1 }, myTasks: { items: [task], total: 1 }, deadlines: { items: [task], total: 1 }, projects: { items: [allowedProject], total: 1 }, recentActivity: { items: [activity], total: 1 } };
 export const overview = { taskSummary: summary, projects: [allowedProject], workload: [{ member: displayMember, openTasks: 1 }], milestones: [milestone] };

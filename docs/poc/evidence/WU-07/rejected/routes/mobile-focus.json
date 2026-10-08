@@ -1,0 +1,81 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "root-current-workspace-launch",
+      "pass": true
+    },
+    {
+      "id": "index-full-prefix-01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "pass": true
+    },
+    {
+      "id": "index-full-prefix-01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "pass": true
+    },
+    {
+      "id": "index-full-prefix-settings",
+      "pass": true
+    },
+    {
+      "id": "all-15-workspace-page-direct-routes",
+      "pass": true
+    },
+    {
+      "id": "exact-eight-project-tabs",
+      "pass": true
+    },
+    {
+      "id": "static-saved-view-refresh",
+      "pass": true
+    },
+    {
+      "id": "invalid-id-entity-tab-setting-and-static-ownership",
+      "pass": true,
+      "cases": 12
+    },
+    {
+      "id": "restricted-project",
+      "pass": true
+    },
+    {
+      "id": "all26-verified-startup-hash-aliases-replace",
+      "pass": true
+    },
+    {
+      "id": "unknown-prototype-project-hashes-preserved-not-interpreted",
+      "pass": true
+    },
+    {
+      "id": "same-shell-active-title-live-back-forward",
+      "pass": true
+    },
+    {
+      "id": "help-galleries-same-shell-current-workspace",
+      "pass": true
+    },
+    {
+      "id": "both-direct-galleries-resolve-session-shell-overlay",
+      "pass": true
+    },
+    {
+      "id": "validated-shareable-search-and-task-intent-refresh",
+      "pass": true
+    },
+    {
+      "id": "keyboard-skip-and-navigation-focus",
+      "pass": true
+    },
+    {
+      "id": "collapsed-preference-reload",
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "limitations": [
+    "Second workspace is an explicitly synthetic empty browser harness through the same typed client/router/query shell. Ordinary mock catalog workspaces without business data still return404.",
+    "No TaskDrawer content/lifecycle, feature CRUD, production rewrite or future gallery content accepted."
+  ],
+  "browser": "145.0.7632.6",
+  "error": "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('button', { name: 'Open navigation', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.be.focused\" with timeout 5000ms\n  - waiting for getByRole('button', { name: 'Open navigation', exact: true })\n    9 × locator resolved to <button type=\"button\" aria-label=\"Open navigation\" class=\"relative inline-flex shrink-0 items-center justify-center text-secondary transition-[background,color] source-hover:bg-surface-2 source-hover:text-foreground active:bg-surface-3 active:text-foreground aria-pressed:bg-surface-3 aria-pressed:text-foreground disabled:opacity-40 disabled:pointer-events-none size-control-md rounded-sm shell-navigation-opener\">…</button>\n      - unexpected value \"inactive\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/visual/shell/routes.mjs:41:545"
+}

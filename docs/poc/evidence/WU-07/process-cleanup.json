@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "listeningSockets": {
+    "4173": [],
+    "5173": []
+  },
+  "method": "Read actual /proc/net/tcp and tcp6 listening sockets after browser runners stopped their owned servers.",
+  "runnerCleanup": "Both browser scripts await Chromium.close and own preview/source process SIGTERM/exits in finally."
+}

@@ -129,7 +129,7 @@ HTTP `fileBytes` chuyển từ `unavailable` sang `implemented` tại WU-35; tr�
 | --- | --- | --- | --- |
 | `GET /api/v1/session` | Không | `SessionDto` | Dev identity cố định, current workspace ID, capabilities; không password/session giả |
 | `GET /api/v1/workspaces` | Không | `WorkspaceDto[]` | HTTP POC có một workspace seed; chooser demo có bộ fixture riêng |
-| `GET W/bootstrap` | Không | `BootstrapDto` | Workspace, current member, members nhẹ, teams, project navigation summaries, catalogs, preferences, unread count |
+| `GET W/bootstrap` | Không | `BootstrapDto` | Workspace, current member, members nhẹ, teams, project navigation summaries, catalogs, preferences, unread count và `navigationCounts:{inbox,myTasks,archive}` |
 | `GET W` | Không | `WorkspaceDto` | Không tải toàn bộ tasks/comments/files |
 | `PATCH W` | `UpdateWorkspaceInput` | `WorkspaceDto` | name/slug/iconColor; expectedVersion; không provision workspace mới |
 | `GET /api/v1/me/profile` | Không | `UserProfileDto` | Một nguồn truth cho name/title/color; không bản sao trong prefs |

@@ -10,33 +10,517 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShellRouteImport } from './routes/_shell'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as VerifyEmailRouteImport } from './routes/verify-email'
+import { Route as ShellDevDesignSystemRouteImport } from './routes/_shell.dev.design-system'
+import { Route as ShellDevShellHarnessRouteImport } from './routes/_shell.dev.shell-harness'
+import { Route as ShellDevSystemStatesRouteImport } from './routes/_shell.dev.system-states'
+import { Route as ShellWWorkspaceIdRouteImport } from './routes/_shell.w.$workspaceId'
+import { Route as ShellWWorkspaceIdIndexRouteImport } from './routes/_shell.w.$workspaceId.index'
+import { Route as ShellWWorkspaceIdActivityRouteImport } from './routes/_shell.w.$workspaceId.activity'
+import { Route as ShellWWorkspaceIdArchiveRouteImport } from './routes/_shell.w.$workspaceId.archive'
+import { Route as ShellWWorkspaceIdCalendarRouteImport } from './routes/_shell.w.$workspaceId.calendar'
+import { Route as ShellWWorkspaceIdFavoritesRouteImport } from './routes/_shell.w.$workspaceId.favorites'
+import { Route as ShellWWorkspaceIdHomeRouteImport } from './routes/_shell.w.$workspaceId.home'
+import { Route as ShellWWorkspaceIdInboxRouteImport } from './routes/_shell.w.$workspaceId.inbox'
+import { Route as ShellWWorkspaceIdMembersRouteImport } from './routes/_shell.w.$workspaceId.members'
+import { Route as ShellWWorkspaceIdMyTasksRouteImport } from './routes/_shell.w.$workspaceId.my-tasks'
+import { Route as ShellWWorkspaceIdNotificationsRouteImport } from './routes/_shell.w.$workspaceId.notifications'
+import { Route as ShellWWorkspaceIdOverviewRouteImport } from './routes/_shell.w.$workspaceId.overview'
+import { Route as ShellWWorkspaceIdProjectsRouteImport } from './routes/_shell.w.$workspaceId.projects'
+import { Route as ShellWWorkspaceIdSearchRouteImport } from './routes/_shell.w.$workspaceId.search'
+import { Route as ShellWWorkspaceIdSettingsRouteImport } from './routes/_shell.w.$workspaceId.settings'
+import { Route as ShellWWorkspaceIdTasksRouteImport } from './routes/_shell.w.$workspaceId.tasks'
+import { Route as ShellWWorkspaceIdTeamsRouteImport } from './routes/_shell.w.$workspaceId.teams'
+import { Route as ShellWWorkspaceIdTimelineRouteImport } from './routes/_shell.w.$workspaceId.timeline'
+import { Route as ShellWWorkspaceIdMembersIndexRouteImport } from './routes/_shell.w.$workspaceId.members.index'
+import { Route as ShellWWorkspaceIdMembersMemberIdRouteImport } from './routes/_shell.w.$workspaceId.members.$memberId'
+import { Route as ShellWWorkspaceIdProjectsIndexRouteImport } from './routes/_shell.w.$workspaceId.projects.index'
+import { Route as ShellWWorkspaceIdProjectsProjectIdRouteImport } from './routes/_shell.w.$workspaceId.projects.$projectId'
+import { Route as ShellWWorkspaceIdSettingsIndexRouteImport } from './routes/_shell.w.$workspaceId.settings.index'
+import { Route as ShellWWorkspaceIdSettingsSectionRouteImport } from './routes/_shell.w.$workspaceId.settings.$section'
+import { Route as ShellWWorkspaceIdTeamsIndexRouteImport } from './routes/_shell.w.$workspaceId.teams.index'
+import { Route as ShellWWorkspaceIdTeamsTeamIdRouteImport } from './routes/_shell.w.$workspaceId.teams.$teamId'
+import { Route as ShellWWorkspaceIdProjectsProjectIdIndexRouteImport } from './routes/_shell.w.$workspaceId.projects.$projectId.index'
+import { Route as ShellWWorkspaceIdProjectsProjectIdViewRouteImport } from './routes/_shell.w.$workspaceId.projects.$projectId.$view'
+import { Route as ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRouteImport } from './routes/_shell.w.$workspaceId.projects.$projectId.views.$savedViewId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShellRoute = ShellRouteImport.update({
+  id: '/_shell',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyEmailRoute = VerifyEmailRouteImport.update({
+  id: '/verify-email',
+  path: '/verify-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShellDevDesignSystemRoute = ShellDevDesignSystemRouteImport.update({
+  id: '/dev/design-system',
+  path: '/dev/design-system',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellDevShellHarnessRoute = ShellDevShellHarnessRouteImport.update({
+  id: '/dev/shell-harness',
+  path: '/dev/shell-harness',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellDevSystemStatesRoute = ShellDevSystemStatesRouteImport.update({
+  id: '/dev/system-states',
+  path: '/dev/system-states',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellWWorkspaceIdRoute = ShellWWorkspaceIdRouteImport.update({
+  id: '/w/$workspaceId',
+  path: '/w/$workspaceId',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellWWorkspaceIdIndexRoute = ShellWWorkspaceIdIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ShellWWorkspaceIdRoute,
+} as any)
+const ShellWWorkspaceIdActivityRoute =
+  ShellWWorkspaceIdActivityRouteImport.update({
+    id: '/activity',
+    path: '/activity',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdArchiveRoute =
+  ShellWWorkspaceIdArchiveRouteImport.update({
+    id: '/archive',
+    path: '/archive',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdCalendarRoute =
+  ShellWWorkspaceIdCalendarRouteImport.update({
+    id: '/calendar',
+    path: '/calendar',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdFavoritesRoute =
+  ShellWWorkspaceIdFavoritesRouteImport.update({
+    id: '/favorites',
+    path: '/favorites',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdHomeRoute = ShellWWorkspaceIdHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => ShellWWorkspaceIdRoute,
+} as any)
+const ShellWWorkspaceIdInboxRoute = ShellWWorkspaceIdInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => ShellWWorkspaceIdRoute,
+} as any)
+const ShellWWorkspaceIdMembersRoute =
+  ShellWWorkspaceIdMembersRouteImport.update({
+    id: '/members',
+    path: '/members',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdMyTasksRoute =
+  ShellWWorkspaceIdMyTasksRouteImport.update({
+    id: '/my-tasks',
+    path: '/my-tasks',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdNotificationsRoute =
+  ShellWWorkspaceIdNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdOverviewRoute =
+  ShellWWorkspaceIdOverviewRouteImport.update({
+    id: '/overview',
+    path: '/overview',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdProjectsRoute =
+  ShellWWorkspaceIdProjectsRouteImport.update({
+    id: '/projects',
+    path: '/projects',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdSearchRoute = ShellWWorkspaceIdSearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => ShellWWorkspaceIdRoute,
+} as any)
+const ShellWWorkspaceIdSettingsRoute =
+  ShellWWorkspaceIdSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdTasksRoute = ShellWWorkspaceIdTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => ShellWWorkspaceIdRoute,
+} as any)
+const ShellWWorkspaceIdTeamsRoute = ShellWWorkspaceIdTeamsRouteImport.update({
+  id: '/teams',
+  path: '/teams',
+  getParentRoute: () => ShellWWorkspaceIdRoute,
+} as any)
+const ShellWWorkspaceIdTimelineRoute =
+  ShellWWorkspaceIdTimelineRouteImport.update({
+    id: '/timeline',
+    path: '/timeline',
+    getParentRoute: () => ShellWWorkspaceIdRoute,
+  } as any)
+const ShellWWorkspaceIdMembersIndexRoute =
+  ShellWWorkspaceIdMembersIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ShellWWorkspaceIdMembersRoute,
+  } as any)
+const ShellWWorkspaceIdMembersMemberIdRoute =
+  ShellWWorkspaceIdMembersMemberIdRouteImport.update({
+    id: '/$memberId',
+    path: '/$memberId',
+    getParentRoute: () => ShellWWorkspaceIdMembersRoute,
+  } as any)
+const ShellWWorkspaceIdProjectsIndexRoute =
+  ShellWWorkspaceIdProjectsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ShellWWorkspaceIdProjectsRoute,
+  } as any)
+const ShellWWorkspaceIdProjectsProjectIdRoute =
+  ShellWWorkspaceIdProjectsProjectIdRouteImport.update({
+    id: '/$projectId',
+    path: '/$projectId',
+    getParentRoute: () => ShellWWorkspaceIdProjectsRoute,
+  } as any)
+const ShellWWorkspaceIdSettingsIndexRoute =
+  ShellWWorkspaceIdSettingsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ShellWWorkspaceIdSettingsRoute,
+  } as any)
+const ShellWWorkspaceIdSettingsSectionRoute =
+  ShellWWorkspaceIdSettingsSectionRouteImport.update({
+    id: '/$section',
+    path: '/$section',
+    getParentRoute: () => ShellWWorkspaceIdSettingsRoute,
+  } as any)
+const ShellWWorkspaceIdTeamsIndexRoute =
+  ShellWWorkspaceIdTeamsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ShellWWorkspaceIdTeamsRoute,
+  } as any)
+const ShellWWorkspaceIdTeamsTeamIdRoute =
+  ShellWWorkspaceIdTeamsTeamIdRouteImport.update({
+    id: '/$teamId',
+    path: '/$teamId',
+    getParentRoute: () => ShellWWorkspaceIdTeamsRoute,
+  } as any)
+const ShellWWorkspaceIdProjectsProjectIdIndexRoute =
+  ShellWWorkspaceIdProjectsProjectIdIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ShellWWorkspaceIdProjectsProjectIdRoute,
+  } as any)
+const ShellWWorkspaceIdProjectsProjectIdViewRoute =
+  ShellWWorkspaceIdProjectsProjectIdViewRouteImport.update({
+    id: '/$view',
+    path: '/$view',
+    getParentRoute: () => ShellWWorkspaceIdProjectsProjectIdRoute,
+  } as any)
+const ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRoute =
+  ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRouteImport.update({
+    id: '/views/$savedViewId',
+    path: '/views/$savedViewId',
+    getParentRoute: () => ShellWWorkspaceIdProjectsProjectIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/verify-email': typeof VerifyEmailRoute
+  '/dev/design-system': typeof ShellDevDesignSystemRoute
+  '/dev/shell-harness': typeof ShellDevShellHarnessRoute
+  '/dev/system-states': typeof ShellDevSystemStatesRoute
+  '/w/$workspaceId': typeof ShellWWorkspaceIdRouteWithChildren
+  '/w/$workspaceId/activity': typeof ShellWWorkspaceIdActivityRoute
+  '/w/$workspaceId/archive': typeof ShellWWorkspaceIdArchiveRoute
+  '/w/$workspaceId/calendar': typeof ShellWWorkspaceIdCalendarRoute
+  '/w/$workspaceId/favorites': typeof ShellWWorkspaceIdFavoritesRoute
+  '/w/$workspaceId/home': typeof ShellWWorkspaceIdHomeRoute
+  '/w/$workspaceId/inbox': typeof ShellWWorkspaceIdInboxRoute
+  '/w/$workspaceId/members': typeof ShellWWorkspaceIdMembersRouteWithChildren
+  '/w/$workspaceId/my-tasks': typeof ShellWWorkspaceIdMyTasksRoute
+  '/w/$workspaceId/notifications': typeof ShellWWorkspaceIdNotificationsRoute
+  '/w/$workspaceId/overview': typeof ShellWWorkspaceIdOverviewRoute
+  '/w/$workspaceId/projects': typeof ShellWWorkspaceIdProjectsRouteWithChildren
+  '/w/$workspaceId/search': typeof ShellWWorkspaceIdSearchRoute
+  '/w/$workspaceId/settings': typeof ShellWWorkspaceIdSettingsRouteWithChildren
+  '/w/$workspaceId/tasks': typeof ShellWWorkspaceIdTasksRoute
+  '/w/$workspaceId/teams': typeof ShellWWorkspaceIdTeamsRouteWithChildren
+  '/w/$workspaceId/timeline': typeof ShellWWorkspaceIdTimelineRoute
+  '/w/$workspaceId/': typeof ShellWWorkspaceIdIndexRoute
+  '/w/$workspaceId/members/$memberId': typeof ShellWWorkspaceIdMembersMemberIdRoute
+  '/w/$workspaceId/projects/$projectId': typeof ShellWWorkspaceIdProjectsProjectIdRouteWithChildren
+  '/w/$workspaceId/settings/$section': typeof ShellWWorkspaceIdSettingsSectionRoute
+  '/w/$workspaceId/teams/$teamId': typeof ShellWWorkspaceIdTeamsTeamIdRoute
+  '/w/$workspaceId/members/': typeof ShellWWorkspaceIdMembersIndexRoute
+  '/w/$workspaceId/projects/': typeof ShellWWorkspaceIdProjectsIndexRoute
+  '/w/$workspaceId/settings/': typeof ShellWWorkspaceIdSettingsIndexRoute
+  '/w/$workspaceId/teams/': typeof ShellWWorkspaceIdTeamsIndexRoute
+  '/w/$workspaceId/projects/$projectId/$view': typeof ShellWWorkspaceIdProjectsProjectIdViewRoute
+  '/w/$workspaceId/projects/$projectId/': typeof ShellWWorkspaceIdProjectsProjectIdIndexRoute
+  '/w/$workspaceId/projects/$projectId/views/$savedViewId': typeof ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/verify-email': typeof VerifyEmailRoute
+  '/dev/design-system': typeof ShellDevDesignSystemRoute
+  '/dev/shell-harness': typeof ShellDevShellHarnessRoute
+  '/dev/system-states': typeof ShellDevSystemStatesRoute
+  '/w/$workspaceId/activity': typeof ShellWWorkspaceIdActivityRoute
+  '/w/$workspaceId/archive': typeof ShellWWorkspaceIdArchiveRoute
+  '/w/$workspaceId/calendar': typeof ShellWWorkspaceIdCalendarRoute
+  '/w/$workspaceId/favorites': typeof ShellWWorkspaceIdFavoritesRoute
+  '/w/$workspaceId/home': typeof ShellWWorkspaceIdHomeRoute
+  '/w/$workspaceId/inbox': typeof ShellWWorkspaceIdInboxRoute
+  '/w/$workspaceId/my-tasks': typeof ShellWWorkspaceIdMyTasksRoute
+  '/w/$workspaceId/notifications': typeof ShellWWorkspaceIdNotificationsRoute
+  '/w/$workspaceId/overview': typeof ShellWWorkspaceIdOverviewRoute
+  '/w/$workspaceId/search': typeof ShellWWorkspaceIdSearchRoute
+  '/w/$workspaceId/tasks': typeof ShellWWorkspaceIdTasksRoute
+  '/w/$workspaceId/timeline': typeof ShellWWorkspaceIdTimelineRoute
+  '/w/$workspaceId': typeof ShellWWorkspaceIdIndexRoute
+  '/w/$workspaceId/members/$memberId': typeof ShellWWorkspaceIdMembersMemberIdRoute
+  '/w/$workspaceId/settings/$section': typeof ShellWWorkspaceIdSettingsSectionRoute
+  '/w/$workspaceId/teams/$teamId': typeof ShellWWorkspaceIdTeamsTeamIdRoute
+  '/w/$workspaceId/members': typeof ShellWWorkspaceIdMembersIndexRoute
+  '/w/$workspaceId/projects': typeof ShellWWorkspaceIdProjectsIndexRoute
+  '/w/$workspaceId/settings': typeof ShellWWorkspaceIdSettingsIndexRoute
+  '/w/$workspaceId/teams': typeof ShellWWorkspaceIdTeamsIndexRoute
+  '/w/$workspaceId/projects/$projectId/$view': typeof ShellWWorkspaceIdProjectsProjectIdViewRoute
+  '/w/$workspaceId/projects/$projectId': typeof ShellWWorkspaceIdProjectsProjectIdIndexRoute
+  '/w/$workspaceId/projects/$projectId/views/$savedViewId': typeof ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_shell': typeof ShellRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/verify-email': typeof VerifyEmailRoute
+  '/_shell/dev/design-system': typeof ShellDevDesignSystemRoute
+  '/_shell/dev/shell-harness': typeof ShellDevShellHarnessRoute
+  '/_shell/dev/system-states': typeof ShellDevSystemStatesRoute
+  '/_shell/w/$workspaceId': typeof ShellWWorkspaceIdRouteWithChildren
+  '/_shell/w/$workspaceId/activity': typeof ShellWWorkspaceIdActivityRoute
+  '/_shell/w/$workspaceId/archive': typeof ShellWWorkspaceIdArchiveRoute
+  '/_shell/w/$workspaceId/calendar': typeof ShellWWorkspaceIdCalendarRoute
+  '/_shell/w/$workspaceId/favorites': typeof ShellWWorkspaceIdFavoritesRoute
+  '/_shell/w/$workspaceId/home': typeof ShellWWorkspaceIdHomeRoute
+  '/_shell/w/$workspaceId/inbox': typeof ShellWWorkspaceIdInboxRoute
+  '/_shell/w/$workspaceId/members': typeof ShellWWorkspaceIdMembersRouteWithChildren
+  '/_shell/w/$workspaceId/my-tasks': typeof ShellWWorkspaceIdMyTasksRoute
+  '/_shell/w/$workspaceId/notifications': typeof ShellWWorkspaceIdNotificationsRoute
+  '/_shell/w/$workspaceId/overview': typeof ShellWWorkspaceIdOverviewRoute
+  '/_shell/w/$workspaceId/projects': typeof ShellWWorkspaceIdProjectsRouteWithChildren
+  '/_shell/w/$workspaceId/search': typeof ShellWWorkspaceIdSearchRoute
+  '/_shell/w/$workspaceId/settings': typeof ShellWWorkspaceIdSettingsRouteWithChildren
+  '/_shell/w/$workspaceId/tasks': typeof ShellWWorkspaceIdTasksRoute
+  '/_shell/w/$workspaceId/teams': typeof ShellWWorkspaceIdTeamsRouteWithChildren
+  '/_shell/w/$workspaceId/timeline': typeof ShellWWorkspaceIdTimelineRoute
+  '/_shell/w/$workspaceId/': typeof ShellWWorkspaceIdIndexRoute
+  '/_shell/w/$workspaceId/members/$memberId': typeof ShellWWorkspaceIdMembersMemberIdRoute
+  '/_shell/w/$workspaceId/projects/$projectId': typeof ShellWWorkspaceIdProjectsProjectIdRouteWithChildren
+  '/_shell/w/$workspaceId/settings/$section': typeof ShellWWorkspaceIdSettingsSectionRoute
+  '/_shell/w/$workspaceId/teams/$teamId': typeof ShellWWorkspaceIdTeamsTeamIdRoute
+  '/_shell/w/$workspaceId/members/': typeof ShellWWorkspaceIdMembersIndexRoute
+  '/_shell/w/$workspaceId/projects/': typeof ShellWWorkspaceIdProjectsIndexRoute
+  '/_shell/w/$workspaceId/settings/': typeof ShellWWorkspaceIdSettingsIndexRoute
+  '/_shell/w/$workspaceId/teams/': typeof ShellWWorkspaceIdTeamsIndexRoute
+  '/_shell/w/$workspaceId/projects/$projectId/$view': typeof ShellWWorkspaceIdProjectsProjectIdViewRoute
+  '/_shell/w/$workspaceId/projects/$projectId/': typeof ShellWWorkspaceIdProjectsProjectIdIndexRoute
+  '/_shell/w/$workspaceId/projects/$projectId/views/$savedViewId': typeof ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/onboarding'
+    | '/reset-password'
+    | '/signup'
+    | '/verify-email'
+    | '/dev/design-system'
+    | '/dev/shell-harness'
+    | '/dev/system-states'
+    | '/w/$workspaceId'
+    | '/w/$workspaceId/activity'
+    | '/w/$workspaceId/archive'
+    | '/w/$workspaceId/calendar'
+    | '/w/$workspaceId/favorites'
+    | '/w/$workspaceId/home'
+    | '/w/$workspaceId/inbox'
+    | '/w/$workspaceId/members'
+    | '/w/$workspaceId/my-tasks'
+    | '/w/$workspaceId/notifications'
+    | '/w/$workspaceId/overview'
+    | '/w/$workspaceId/projects'
+    | '/w/$workspaceId/search'
+    | '/w/$workspaceId/settings'
+    | '/w/$workspaceId/tasks'
+    | '/w/$workspaceId/teams'
+    | '/w/$workspaceId/timeline'
+    | '/w/$workspaceId/'
+    | '/w/$workspaceId/members/$memberId'
+    | '/w/$workspaceId/projects/$projectId'
+    | '/w/$workspaceId/settings/$section'
+    | '/w/$workspaceId/teams/$teamId'
+    | '/w/$workspaceId/members/'
+    | '/w/$workspaceId/projects/'
+    | '/w/$workspaceId/settings/'
+    | '/w/$workspaceId/teams/'
+    | '/w/$workspaceId/projects/$projectId/$view'
+    | '/w/$workspaceId/projects/$projectId/'
+    | '/w/$workspaceId/projects/$projectId/views/$savedViewId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/onboarding'
+    | '/reset-password'
+    | '/signup'
+    | '/verify-email'
+    | '/dev/design-system'
+    | '/dev/shell-harness'
+    | '/dev/system-states'
+    | '/w/$workspaceId/activity'
+    | '/w/$workspaceId/archive'
+    | '/w/$workspaceId/calendar'
+    | '/w/$workspaceId/favorites'
+    | '/w/$workspaceId/home'
+    | '/w/$workspaceId/inbox'
+    | '/w/$workspaceId/my-tasks'
+    | '/w/$workspaceId/notifications'
+    | '/w/$workspaceId/overview'
+    | '/w/$workspaceId/search'
+    | '/w/$workspaceId/tasks'
+    | '/w/$workspaceId/timeline'
+    | '/w/$workspaceId'
+    | '/w/$workspaceId/members/$memberId'
+    | '/w/$workspaceId/settings/$section'
+    | '/w/$workspaceId/teams/$teamId'
+    | '/w/$workspaceId/members'
+    | '/w/$workspaceId/projects'
+    | '/w/$workspaceId/settings'
+    | '/w/$workspaceId/teams'
+    | '/w/$workspaceId/projects/$projectId/$view'
+    | '/w/$workspaceId/projects/$projectId'
+    | '/w/$workspaceId/projects/$projectId/views/$savedViewId'
+  id:
+    | '__root__'
+    | '/'
+    | '/_shell'
+    | '/forgot-password'
+    | '/login'
+    | '/onboarding'
+    | '/reset-password'
+    | '/signup'
+    | '/verify-email'
+    | '/_shell/dev/design-system'
+    | '/_shell/dev/shell-harness'
+    | '/_shell/dev/system-states'
+    | '/_shell/w/$workspaceId'
+    | '/_shell/w/$workspaceId/activity'
+    | '/_shell/w/$workspaceId/archive'
+    | '/_shell/w/$workspaceId/calendar'
+    | '/_shell/w/$workspaceId/favorites'
+    | '/_shell/w/$workspaceId/home'
+    | '/_shell/w/$workspaceId/inbox'
+    | '/_shell/w/$workspaceId/members'
+    | '/_shell/w/$workspaceId/my-tasks'
+    | '/_shell/w/$workspaceId/notifications'
+    | '/_shell/w/$workspaceId/overview'
+    | '/_shell/w/$workspaceId/projects'
+    | '/_shell/w/$workspaceId/search'
+    | '/_shell/w/$workspaceId/settings'
+    | '/_shell/w/$workspaceId/tasks'
+    | '/_shell/w/$workspaceId/teams'
+    | '/_shell/w/$workspaceId/timeline'
+    | '/_shell/w/$workspaceId/'
+    | '/_shell/w/$workspaceId/members/$memberId'
+    | '/_shell/w/$workspaceId/projects/$projectId'
+    | '/_shell/w/$workspaceId/settings/$section'
+    | '/_shell/w/$workspaceId/teams/$teamId'
+    | '/_shell/w/$workspaceId/members/'
+    | '/_shell/w/$workspaceId/projects/'
+    | '/_shell/w/$workspaceId/settings/'
+    | '/_shell/w/$workspaceId/teams/'
+    | '/_shell/w/$workspaceId/projects/$projectId/$view'
+    | '/_shell/w/$workspaceId/projects/$projectId/'
+    | '/_shell/w/$workspaceId/projects/$projectId/views/$savedViewId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ShellRoute: typeof ShellRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
+  OnboardingRoute: typeof OnboardingRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SignupRoute: typeof SignupRoute
+  VerifyEmailRoute: typeof VerifyEmailRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +532,438 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_shell': {
+      id: '/_shell'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ShellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify-email': {
+      id: '/verify-email'
+      path: '/verify-email'
+      fullPath: '/verify-email'
+      preLoaderRoute: typeof VerifyEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_shell/dev/design-system': {
+      id: '/_shell/dev/design-system'
+      path: '/dev/design-system'
+      fullPath: '/dev/design-system'
+      preLoaderRoute: typeof ShellDevDesignSystemRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/dev/shell-harness': {
+      id: '/_shell/dev/shell-harness'
+      path: '/dev/shell-harness'
+      fullPath: '/dev/shell-harness'
+      preLoaderRoute: typeof ShellDevShellHarnessRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/dev/system-states': {
+      id: '/_shell/dev/system-states'
+      path: '/dev/system-states'
+      fullPath: '/dev/system-states'
+      preLoaderRoute: typeof ShellDevSystemStatesRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/w/$workspaceId': {
+      id: '/_shell/w/$workspaceId'
+      path: '/w/$workspaceId'
+      fullPath: '/w/$workspaceId'
+      preLoaderRoute: typeof ShellWWorkspaceIdRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/w/$workspaceId/': {
+      id: '/_shell/w/$workspaceId/'
+      path: '/'
+      fullPath: '/w/$workspaceId/'
+      preLoaderRoute: typeof ShellWWorkspaceIdIndexRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/activity': {
+      id: '/_shell/w/$workspaceId/activity'
+      path: '/activity'
+      fullPath: '/w/$workspaceId/activity'
+      preLoaderRoute: typeof ShellWWorkspaceIdActivityRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/archive': {
+      id: '/_shell/w/$workspaceId/archive'
+      path: '/archive'
+      fullPath: '/w/$workspaceId/archive'
+      preLoaderRoute: typeof ShellWWorkspaceIdArchiveRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/calendar': {
+      id: '/_shell/w/$workspaceId/calendar'
+      path: '/calendar'
+      fullPath: '/w/$workspaceId/calendar'
+      preLoaderRoute: typeof ShellWWorkspaceIdCalendarRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/favorites': {
+      id: '/_shell/w/$workspaceId/favorites'
+      path: '/favorites'
+      fullPath: '/w/$workspaceId/favorites'
+      preLoaderRoute: typeof ShellWWorkspaceIdFavoritesRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/home': {
+      id: '/_shell/w/$workspaceId/home'
+      path: '/home'
+      fullPath: '/w/$workspaceId/home'
+      preLoaderRoute: typeof ShellWWorkspaceIdHomeRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/inbox': {
+      id: '/_shell/w/$workspaceId/inbox'
+      path: '/inbox'
+      fullPath: '/w/$workspaceId/inbox'
+      preLoaderRoute: typeof ShellWWorkspaceIdInboxRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/members': {
+      id: '/_shell/w/$workspaceId/members'
+      path: '/members'
+      fullPath: '/w/$workspaceId/members'
+      preLoaderRoute: typeof ShellWWorkspaceIdMembersRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/my-tasks': {
+      id: '/_shell/w/$workspaceId/my-tasks'
+      path: '/my-tasks'
+      fullPath: '/w/$workspaceId/my-tasks'
+      preLoaderRoute: typeof ShellWWorkspaceIdMyTasksRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/notifications': {
+      id: '/_shell/w/$workspaceId/notifications'
+      path: '/notifications'
+      fullPath: '/w/$workspaceId/notifications'
+      preLoaderRoute: typeof ShellWWorkspaceIdNotificationsRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/overview': {
+      id: '/_shell/w/$workspaceId/overview'
+      path: '/overview'
+      fullPath: '/w/$workspaceId/overview'
+      preLoaderRoute: typeof ShellWWorkspaceIdOverviewRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/projects': {
+      id: '/_shell/w/$workspaceId/projects'
+      path: '/projects'
+      fullPath: '/w/$workspaceId/projects'
+      preLoaderRoute: typeof ShellWWorkspaceIdProjectsRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/search': {
+      id: '/_shell/w/$workspaceId/search'
+      path: '/search'
+      fullPath: '/w/$workspaceId/search'
+      preLoaderRoute: typeof ShellWWorkspaceIdSearchRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/settings': {
+      id: '/_shell/w/$workspaceId/settings'
+      path: '/settings'
+      fullPath: '/w/$workspaceId/settings'
+      preLoaderRoute: typeof ShellWWorkspaceIdSettingsRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/tasks': {
+      id: '/_shell/w/$workspaceId/tasks'
+      path: '/tasks'
+      fullPath: '/w/$workspaceId/tasks'
+      preLoaderRoute: typeof ShellWWorkspaceIdTasksRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/teams': {
+      id: '/_shell/w/$workspaceId/teams'
+      path: '/teams'
+      fullPath: '/w/$workspaceId/teams'
+      preLoaderRoute: typeof ShellWWorkspaceIdTeamsRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/timeline': {
+      id: '/_shell/w/$workspaceId/timeline'
+      path: '/timeline'
+      fullPath: '/w/$workspaceId/timeline'
+      preLoaderRoute: typeof ShellWWorkspaceIdTimelineRouteImport
+      parentRoute: typeof ShellWWorkspaceIdRoute
+    }
+    '/_shell/w/$workspaceId/members/': {
+      id: '/_shell/w/$workspaceId/members/'
+      path: '/'
+      fullPath: '/w/$workspaceId/members/'
+      preLoaderRoute: typeof ShellWWorkspaceIdMembersIndexRouteImport
+      parentRoute: typeof ShellWWorkspaceIdMembersRoute
+    }
+    '/_shell/w/$workspaceId/members/$memberId': {
+      id: '/_shell/w/$workspaceId/members/$memberId'
+      path: '/$memberId'
+      fullPath: '/w/$workspaceId/members/$memberId'
+      preLoaderRoute: typeof ShellWWorkspaceIdMembersMemberIdRouteImport
+      parentRoute: typeof ShellWWorkspaceIdMembersRoute
+    }
+    '/_shell/w/$workspaceId/projects/': {
+      id: '/_shell/w/$workspaceId/projects/'
+      path: '/'
+      fullPath: '/w/$workspaceId/projects/'
+      preLoaderRoute: typeof ShellWWorkspaceIdProjectsIndexRouteImport
+      parentRoute: typeof ShellWWorkspaceIdProjectsRoute
+    }
+    '/_shell/w/$workspaceId/projects/$projectId': {
+      id: '/_shell/w/$workspaceId/projects/$projectId'
+      path: '/$projectId'
+      fullPath: '/w/$workspaceId/projects/$projectId'
+      preLoaderRoute: typeof ShellWWorkspaceIdProjectsProjectIdRouteImport
+      parentRoute: typeof ShellWWorkspaceIdProjectsRoute
+    }
+    '/_shell/w/$workspaceId/settings/': {
+      id: '/_shell/w/$workspaceId/settings/'
+      path: '/'
+      fullPath: '/w/$workspaceId/settings/'
+      preLoaderRoute: typeof ShellWWorkspaceIdSettingsIndexRouteImport
+      parentRoute: typeof ShellWWorkspaceIdSettingsRoute
+    }
+    '/_shell/w/$workspaceId/settings/$section': {
+      id: '/_shell/w/$workspaceId/settings/$section'
+      path: '/$section'
+      fullPath: '/w/$workspaceId/settings/$section'
+      preLoaderRoute: typeof ShellWWorkspaceIdSettingsSectionRouteImport
+      parentRoute: typeof ShellWWorkspaceIdSettingsRoute
+    }
+    '/_shell/w/$workspaceId/teams/': {
+      id: '/_shell/w/$workspaceId/teams/'
+      path: '/'
+      fullPath: '/w/$workspaceId/teams/'
+      preLoaderRoute: typeof ShellWWorkspaceIdTeamsIndexRouteImport
+      parentRoute: typeof ShellWWorkspaceIdTeamsRoute
+    }
+    '/_shell/w/$workspaceId/teams/$teamId': {
+      id: '/_shell/w/$workspaceId/teams/$teamId'
+      path: '/$teamId'
+      fullPath: '/w/$workspaceId/teams/$teamId'
+      preLoaderRoute: typeof ShellWWorkspaceIdTeamsTeamIdRouteImport
+      parentRoute: typeof ShellWWorkspaceIdTeamsRoute
+    }
+    '/_shell/w/$workspaceId/projects/$projectId/': {
+      id: '/_shell/w/$workspaceId/projects/$projectId/'
+      path: '/'
+      fullPath: '/w/$workspaceId/projects/$projectId/'
+      preLoaderRoute: typeof ShellWWorkspaceIdProjectsProjectIdIndexRouteImport
+      parentRoute: typeof ShellWWorkspaceIdProjectsProjectIdRoute
+    }
+    '/_shell/w/$workspaceId/projects/$projectId/$view': {
+      id: '/_shell/w/$workspaceId/projects/$projectId/$view'
+      path: '/$view'
+      fullPath: '/w/$workspaceId/projects/$projectId/$view'
+      preLoaderRoute: typeof ShellWWorkspaceIdProjectsProjectIdViewRouteImport
+      parentRoute: typeof ShellWWorkspaceIdProjectsProjectIdRoute
+    }
+    '/_shell/w/$workspaceId/projects/$projectId/views/$savedViewId': {
+      id: '/_shell/w/$workspaceId/projects/$projectId/views/$savedViewId'
+      path: '/views/$savedViewId'
+      fullPath: '/w/$workspaceId/projects/$projectId/views/$savedViewId'
+      preLoaderRoute: typeof ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRouteImport
+      parentRoute: typeof ShellWWorkspaceIdProjectsProjectIdRoute
+    }
   }
 }
 
+interface ShellWWorkspaceIdMembersRouteChildren {
+  ShellWWorkspaceIdMembersMemberIdRoute: typeof ShellWWorkspaceIdMembersMemberIdRoute
+  ShellWWorkspaceIdMembersIndexRoute: typeof ShellWWorkspaceIdMembersIndexRoute
+}
+
+const ShellWWorkspaceIdMembersRouteChildren: ShellWWorkspaceIdMembersRouteChildren =
+  {
+    ShellWWorkspaceIdMembersMemberIdRoute:
+      ShellWWorkspaceIdMembersMemberIdRoute,
+    ShellWWorkspaceIdMembersIndexRoute: ShellWWorkspaceIdMembersIndexRoute,
+  }
+
+const ShellWWorkspaceIdMembersRouteWithChildren =
+  ShellWWorkspaceIdMembersRoute._addFileChildren(
+    ShellWWorkspaceIdMembersRouteChildren,
+  )
+
+interface ShellWWorkspaceIdProjectsProjectIdRouteChildren {
+  ShellWWorkspaceIdProjectsProjectIdViewRoute: typeof ShellWWorkspaceIdProjectsProjectIdViewRoute
+  ShellWWorkspaceIdProjectsProjectIdIndexRoute: typeof ShellWWorkspaceIdProjectsProjectIdIndexRoute
+  ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRoute: typeof ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRoute
+}
+
+const ShellWWorkspaceIdProjectsProjectIdRouteChildren: ShellWWorkspaceIdProjectsProjectIdRouteChildren =
+  {
+    ShellWWorkspaceIdProjectsProjectIdViewRoute:
+      ShellWWorkspaceIdProjectsProjectIdViewRoute,
+    ShellWWorkspaceIdProjectsProjectIdIndexRoute:
+      ShellWWorkspaceIdProjectsProjectIdIndexRoute,
+    ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRoute:
+      ShellWWorkspaceIdProjectsProjectIdViewsSavedViewIdRoute,
+  }
+
+const ShellWWorkspaceIdProjectsProjectIdRouteWithChildren =
+  ShellWWorkspaceIdProjectsProjectIdRoute._addFileChildren(
+    ShellWWorkspaceIdProjectsProjectIdRouteChildren,
+  )
+
+interface ShellWWorkspaceIdProjectsRouteChildren {
+  ShellWWorkspaceIdProjectsProjectIdRoute: typeof ShellWWorkspaceIdProjectsProjectIdRouteWithChildren
+  ShellWWorkspaceIdProjectsIndexRoute: typeof ShellWWorkspaceIdProjectsIndexRoute
+}
+
+const ShellWWorkspaceIdProjectsRouteChildren: ShellWWorkspaceIdProjectsRouteChildren =
+  {
+    ShellWWorkspaceIdProjectsProjectIdRoute:
+      ShellWWorkspaceIdProjectsProjectIdRouteWithChildren,
+    ShellWWorkspaceIdProjectsIndexRoute: ShellWWorkspaceIdProjectsIndexRoute,
+  }
+
+const ShellWWorkspaceIdProjectsRouteWithChildren =
+  ShellWWorkspaceIdProjectsRoute._addFileChildren(
+    ShellWWorkspaceIdProjectsRouteChildren,
+  )
+
+interface ShellWWorkspaceIdSettingsRouteChildren {
+  ShellWWorkspaceIdSettingsSectionRoute: typeof ShellWWorkspaceIdSettingsSectionRoute
+  ShellWWorkspaceIdSettingsIndexRoute: typeof ShellWWorkspaceIdSettingsIndexRoute
+}
+
+const ShellWWorkspaceIdSettingsRouteChildren: ShellWWorkspaceIdSettingsRouteChildren =
+  {
+    ShellWWorkspaceIdSettingsSectionRoute:
+      ShellWWorkspaceIdSettingsSectionRoute,
+    ShellWWorkspaceIdSettingsIndexRoute: ShellWWorkspaceIdSettingsIndexRoute,
+  }
+
+const ShellWWorkspaceIdSettingsRouteWithChildren =
+  ShellWWorkspaceIdSettingsRoute._addFileChildren(
+    ShellWWorkspaceIdSettingsRouteChildren,
+  )
+
+interface ShellWWorkspaceIdTeamsRouteChildren {
+  ShellWWorkspaceIdTeamsTeamIdRoute: typeof ShellWWorkspaceIdTeamsTeamIdRoute
+  ShellWWorkspaceIdTeamsIndexRoute: typeof ShellWWorkspaceIdTeamsIndexRoute
+}
+
+const ShellWWorkspaceIdTeamsRouteChildren: ShellWWorkspaceIdTeamsRouteChildren =
+  {
+    ShellWWorkspaceIdTeamsTeamIdRoute: ShellWWorkspaceIdTeamsTeamIdRoute,
+    ShellWWorkspaceIdTeamsIndexRoute: ShellWWorkspaceIdTeamsIndexRoute,
+  }
+
+const ShellWWorkspaceIdTeamsRouteWithChildren =
+  ShellWWorkspaceIdTeamsRoute._addFileChildren(
+    ShellWWorkspaceIdTeamsRouteChildren,
+  )
+
+interface ShellWWorkspaceIdRouteChildren {
+  ShellWWorkspaceIdActivityRoute: typeof ShellWWorkspaceIdActivityRoute
+  ShellWWorkspaceIdArchiveRoute: typeof ShellWWorkspaceIdArchiveRoute
+  ShellWWorkspaceIdCalendarRoute: typeof ShellWWorkspaceIdCalendarRoute
+  ShellWWorkspaceIdFavoritesRoute: typeof ShellWWorkspaceIdFavoritesRoute
+  ShellWWorkspaceIdHomeRoute: typeof ShellWWorkspaceIdHomeRoute
+  ShellWWorkspaceIdInboxRoute: typeof ShellWWorkspaceIdInboxRoute
+  ShellWWorkspaceIdMembersRoute: typeof ShellWWorkspaceIdMembersRouteWithChildren
+  ShellWWorkspaceIdMyTasksRoute: typeof ShellWWorkspaceIdMyTasksRoute
+  ShellWWorkspaceIdNotificationsRoute: typeof ShellWWorkspaceIdNotificationsRoute
+  ShellWWorkspaceIdOverviewRoute: typeof ShellWWorkspaceIdOverviewRoute
+  ShellWWorkspaceIdProjectsRoute: typeof ShellWWorkspaceIdProjectsRouteWithChildren
+  ShellWWorkspaceIdSearchRoute: typeof ShellWWorkspaceIdSearchRoute
+  ShellWWorkspaceIdSettingsRoute: typeof ShellWWorkspaceIdSettingsRouteWithChildren
+  ShellWWorkspaceIdTasksRoute: typeof ShellWWorkspaceIdTasksRoute
+  ShellWWorkspaceIdTeamsRoute: typeof ShellWWorkspaceIdTeamsRouteWithChildren
+  ShellWWorkspaceIdTimelineRoute: typeof ShellWWorkspaceIdTimelineRoute
+  ShellWWorkspaceIdIndexRoute: typeof ShellWWorkspaceIdIndexRoute
+}
+
+const ShellWWorkspaceIdRouteChildren: ShellWWorkspaceIdRouteChildren = {
+  ShellWWorkspaceIdActivityRoute: ShellWWorkspaceIdActivityRoute,
+  ShellWWorkspaceIdArchiveRoute: ShellWWorkspaceIdArchiveRoute,
+  ShellWWorkspaceIdCalendarRoute: ShellWWorkspaceIdCalendarRoute,
+  ShellWWorkspaceIdFavoritesRoute: ShellWWorkspaceIdFavoritesRoute,
+  ShellWWorkspaceIdHomeRoute: ShellWWorkspaceIdHomeRoute,
+  ShellWWorkspaceIdInboxRoute: ShellWWorkspaceIdInboxRoute,
+  ShellWWorkspaceIdMembersRoute: ShellWWorkspaceIdMembersRouteWithChildren,
+  ShellWWorkspaceIdMyTasksRoute: ShellWWorkspaceIdMyTasksRoute,
+  ShellWWorkspaceIdNotificationsRoute: ShellWWorkspaceIdNotificationsRoute,
+  ShellWWorkspaceIdOverviewRoute: ShellWWorkspaceIdOverviewRoute,
+  ShellWWorkspaceIdProjectsRoute: ShellWWorkspaceIdProjectsRouteWithChildren,
+  ShellWWorkspaceIdSearchRoute: ShellWWorkspaceIdSearchRoute,
+  ShellWWorkspaceIdSettingsRoute: ShellWWorkspaceIdSettingsRouteWithChildren,
+  ShellWWorkspaceIdTasksRoute: ShellWWorkspaceIdTasksRoute,
+  ShellWWorkspaceIdTeamsRoute: ShellWWorkspaceIdTeamsRouteWithChildren,
+  ShellWWorkspaceIdTimelineRoute: ShellWWorkspaceIdTimelineRoute,
+  ShellWWorkspaceIdIndexRoute: ShellWWorkspaceIdIndexRoute,
+}
+
+const ShellWWorkspaceIdRouteWithChildren =
+  ShellWWorkspaceIdRoute._addFileChildren(ShellWWorkspaceIdRouteChildren)
+
+interface ShellRouteChildren {
+  ShellDevDesignSystemRoute: typeof ShellDevDesignSystemRoute
+  ShellDevShellHarnessRoute: typeof ShellDevShellHarnessRoute
+  ShellDevSystemStatesRoute: typeof ShellDevSystemStatesRoute
+  ShellWWorkspaceIdRoute: typeof ShellWWorkspaceIdRouteWithChildren
+}
+
+const ShellRouteChildren: ShellRouteChildren = {
+  ShellDevDesignSystemRoute: ShellDevDesignSystemRoute,
+  ShellDevShellHarnessRoute: ShellDevShellHarnessRoute,
+  ShellDevSystemStatesRoute: ShellDevSystemStatesRoute,
+  ShellWWorkspaceIdRoute: ShellWWorkspaceIdRouteWithChildren,
+}
+
+const ShellRouteWithChildren = ShellRoute._addFileChildren(ShellRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ShellRoute: ShellRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
+  OnboardingRoute: OnboardingRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SignupRoute: SignupRoute,
+  VerifyEmailRoute: VerifyEmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

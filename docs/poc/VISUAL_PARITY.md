@@ -247,3 +247,38 @@ Source-only generic sample content is independent of the React gallery and uses 
 WU-05 settled raster setup uses HTMLElement.click symmetrically to avoid active pseudo-state: target opens through React callbacks, while source is an independent generic source CSS/SVG fixture using real placePop/toast helpers; actual source application opening/render lifecycle is verified separately; pointer/key interaction gates remain trusted input. Context setup dispatches an explicit MouseEvent with source clientX/clientY/top semantics. Child popup setup waits for the parent entrance; production placement also updates at ancestor animation/transition end with cleanup. Finite animation promises are attached concurrently and skip idle cancellations. Snapshots disable animations symmetrically after normal settlement, with two warmup captures. Full/system/reduce animations remain intact and are inspected using original controlled animation frames. Trusted pointer/Enter captures had small shadow/glyph residuals despite equal computed geometry and repeats; rejected artifacts preserve this unresolved raster limitation. No tolerance/mask/source CSS changes or glyph remount workarounds were accepted.
 
 WU-04 Button was minimally reopened: replace individual scale with the original active transform scale(.97), preserving transform140ms/default ease transition and reduce transform:none. Reviewer proved the timing mismatch, but this correction alone did not prove the cause of the trusted-input raster residual. Only affected Buttons and WU-05 runtime/visual gates are reverified.
+
+## WU-07 — shell crop ownership / Linux source-only evidence
+
+`apps/web/src/app/shell/shell.css` owns only shell state/pseudo-state selectors,
+source inclusive 1100/900/640 media queries, safe-area padding and scrim/skip
+motion. Static shell geometry is literal Tailwind; source shell/responsive CSS
+is never imported into the target. The stylesheet uses the utilities layer so
+collapsed/media selectors can correctly override component utility geometry.
+
+Source-specific computed details retained: first project expanded at initial
+entry; project-favorite SVG resolves text-4 through the source `.sitem .i`
+cascade; source collapsed sidebar also hides the profile avatar span. Brand tile
+requires its original black background beneath the clipped SVG (double edge
+coverage), and project subpage label ink remains unclipped. These are source
+behaviors, not a redesign or a tolerance exception.
+
+The scoped runner `pnpm visual:shell` uses the immutable source application's
+real `render()`/`renderShell`, original foundation/fonts/helpers and locked
+fixture. Each state has fresh source and target contexts; both receive the same
+preferences, neutral pointer/blur, font readiness, computed-layout flush,
+concurrent finite-animation `.finished` settlement and two RAF. Original source
+`#app`/`#layer` hosts stay intact. Source is not edited and the official Darwin173
+baseline is neither regenerated nor overwritten.
+
+Crops include only sidebar, topbar and bottom navigation. Home content (WU-17),
+ProjectHeader/tabs/full ProjectPage (WU-16), future business pages and task drawer
+(WU-10) remain pending outside accepted pixels. Snapshots use programmatic state
+setup; actual mouse/key navigation, focus, history, async workspace isolation,
+loading/error boundaries and scroll restoration have a separate browser suite.
+
+Evidence `evidence/WU-07/visual-verification.json` pins crop rectangles,
+source/target hashes, geometry and exact threshold0/includeAA=true/no masks.
+Source review sheets and accepted PNGs are copied from those verified bytes.
+This is technical Linux source-only shell review; it does not establish official
+Darwin whole-page parity, full future-page parity or physical safe-area insets.

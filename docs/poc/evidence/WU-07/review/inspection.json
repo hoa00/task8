@@ -1,0 +1,24 @@
+{
+  "reviewer": "WU-07 implementation agent, technical self-review; parent root read-only review of two original source crops",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "reviewedSourceSheets": [
+    "docs/poc/evidence/WU-07/review/source-sidebar-sheet.png",
+    "docs/poc/evidence/WU-07/review/source-topbar-sheet.png",
+    "docs/poc/evidence/WU-07/review/source-bottomnav-sheet.png"
+  ],
+  "coveredSourceCrops": 23,
+  "sourceRuntime": "actual locked renderShell/render, intact #app/#layer; Linux Chromium145 revision1208",
+  "findings": [
+    "Sidebar initial expanded project, active/count/project/favorite/footer/dark/collapsed source structure retained.",
+    "Topbars match46/50px, full/collapsed/source search breakpoint geometry.",
+    "Bottomnav57px source composite under open sidebar/scrim retained, safe-area CSS unchanged.",
+    "Home/ProjectHeader/tabs/content excluded with owners in shell README."
+  ],
+  "result": "technical review passed",
+  "userApproval": false,
+  "limitations": [
+    "Scoped Linux shell crops only; official Darwin173 unchanged.",
+    "No physical-device safe-area claim.",
+    "Snapshots use deterministic programmatic state creation;26real browser interaction/navigation probes separate."
+  ]
+}

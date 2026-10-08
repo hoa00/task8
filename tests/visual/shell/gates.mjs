@@ -1,0 +1,12 @@
+import {spawnSync} from 'node:child_process';
+import {readFileSync,writeFileSync} from 'node:fs';
+import path from 'node:path';
+const evidence=path.resolve('docs/poc/evidence/WU-07');
+const gates=[['install',['install','--frozen-lockfile','--offline']],['typecheck',['typecheck']],['build',['build']],['lint',['lint']],['test',['test']],['reference-check',['reference:check']],['http-bundle',['verify:data:http-bundle','--','WU-07']],['routes',['test:shell:routes']],['visual',['visual:shell']]];
+const from=process.argv.find(arg=>arg.startsWith('--from='))?.slice(7);const start=from?gates.findIndex(([id])=>id===from):0;if(start<0)throw Error('Unknown gate');
+const commands=start?JSON.parse(readFileSync(`${evidence}/commands.json`,'utf8')).slice(0,start):[];if(commands.length!==start||commands.some(c=>c.exitStatus!==0))throw Error('Resume requires successful prior gates');
+for(const [id,args] of gates.slice(start)){
+ const result=spawnSync('pnpm',args,{cwd:process.cwd(),encoding:'utf8',env:process.env});const log=`${result.stdout??''}${result.stderr??''}`.replaceAll('\r','').split('\n').map(line=>line.trimEnd()).join('\n').trimEnd()+'\n';writeFileSync(`${evidence}/${id}.log`,log);commands.push({command:`pnpm ${args.join(' ')}`,exitStatus:result.status,signal:result.signal,log:`docs/poc/evidence/WU-07/${id}.log`});writeFileSync(`${evidence}/commands.json`,JSON.stringify(commands,null,2)+'\n');console.log(`${id}: exit ${result.status}`);if(result.status!==0){console.log(log);process.exit(result.status??1);}
+}
+const visual=JSON.parse(readFileSync(`${evidence}/visual-verification.json`,'utf8')),routes=JSON.parse(readFileSync(`${evidence}/routes-verification.json`,'utf8'));if(visual.status!=='passed'||routes.status!=='passed')throw Error('Browser gates must pass');
+writeFileSync(`${evidence}/verification.json`,JSON.stringify({status:'passed',sourceSha:visual.sourceSha,acceptance:{AC1:'23 source-only shell crops,13states exact0; pending content excluded',AC2:'canonical routes/26aliases/static saved views/invalid entities/history browser probes',AC3:'same shell, scoped selection/task intent cleanup, signal cancellation/late response isolation',AC4:'Help and direct dev galleries resolve workspace and share shell'},commands,visual:{samples:visual.samples.length,states:visual.geometry.length,changedPixels:0,repeatabilityPixels:0},routes:{probes:routes.probes.length,pageErrors:routes.pageErrors},limitations:[...visual.limitations,...routes.limitations]},null,2)+'\n');

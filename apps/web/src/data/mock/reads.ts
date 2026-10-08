@@ -25,8 +25,21 @@ function projectCatalogItem(data: MockDataset, project: ProjectDto, clock: Clock
   return { access: 'allowed', project, summary: { projectId: project.id, taskSummary, progress: taskSummary.completionRate } };
 }
 
+// Lifecycle tombstones are internal records, not public DTO fields. The current
+// foundation seed has none; these guards keep the projection compatible with
+// deletedAt when later feature owners add internal lifecycle records.
+function notDeleted(record: { id: string; deletedAt?: string | null }): boolean { return !record.deletedAt; }
+export function readNavigationCounts(data: MockDataset, clock: Clock) {
+  const authorized = (project: ProjectDto | undefined): project is ProjectDto => !!project && project.workspaceId === data.workspaceId && (project.visibility !== 'private' || project.memberIds.includes(data.currentMemberId));
+  const tasks = Object.values(data.tasks).filter(task => { const project = data.projects[task.projectId]; return task.workspaceId === data.workspaceId && notDeleted(task) && authorized(project) && notDeleted(project); });
+  const inbox = Object.values(data.notifications).filter(notification => { const projectId = notification.projectId ?? (notification.taskId ? data.tasks[notification.taskId]?.projectId : null); const project = projectId ? data.projects[projectId] : null; return notification.recipientId === data.currentMemberId && !notification.readAt && notification.type !== 'update' && (!projectId || (authorized(project ?? undefined) && notDeleted(project!))); }).length;
+  return { inbox, myTasks: tasks.filter(task => !task.archivedAt && !data.projects[task.projectId]!.archivedAt && task.assigneeId === data.currentMemberId && task.status !== 'done' && task.dueDate && task.dueDate <= clock.today()).length,
+    archive: tasks.filter(task => task.archivedAt).length + Object.values(data.projects).filter(project => project.archivedAt && authorized(project) && notDeleted(project)).length };
+}
+
 export function readBootstrap(data: MockDataset, clock: Clock) {
-  return BootstrapSchema.parse({ workspace: data.workspaces[data.workspaceId], currentMember: data.members[data.currentMemberId], members: Object.values(data.members).map(({ id, name, avatarColor }) => ({ id, name, avatarColor })), teams: Object.values(data.teams), projects: data.projectOrder.map(id => data.projects[id]!).filter(project => !project.archivedAt).map(project => projectCatalogItem(data, project, clock)), catalogs, preferences: data.preferences, notificationPreferences: data.notificationPreferences, unreadCount: Object.values(data.notifications).filter(notification => notification.recipientId === data.currentMemberId && !notification.readAt).length });
+  const notifications = Object.values(data.notifications).filter(notification => notification.recipientId === data.currentMemberId && !notification.readAt);
+  return BootstrapSchema.parse({ workspace: data.workspaces[data.workspaceId], currentMember: data.members[data.currentMemberId], members: Object.values(data.members).map(({ id, name, avatarColor }) => ({ id, name, avatarColor })), teams: Object.values(data.teams), projects: data.projectOrder.map(id => data.projects[id]!).filter(project => !project.archivedAt).map(project => projectCatalogItem(data, project, clock)), catalogs, preferences: data.preferences, notificationPreferences: data.notificationPreferences, unreadCount: notifications.length, navigationCounts: readNavigationCounts(data, clock) });
 }
 
 export function readSession(data: MockDataset) {
