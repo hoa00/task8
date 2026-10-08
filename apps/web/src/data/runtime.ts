@@ -1,0 +1,5 @@
+import type { Clock } from '@studio/domain';
+import type { StudioClient } from './operations.ts';
+
+// Services only. Server state stays in TanStack Query, never in this context.
+export interface DataRuntime { client: StudioClient; clock: Clock }

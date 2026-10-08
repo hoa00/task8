@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/app/env.test.ts"
+    "test": "node --experimental-strip-types --test --test-isolation=none src/app/env.test.ts tests/data/*.test.ts",
+    "build:http": "VITE_DATA_MODE=http vite build --mode http-only"
   },
   "dependencies": {
     "@studio/ui": "workspace:*",

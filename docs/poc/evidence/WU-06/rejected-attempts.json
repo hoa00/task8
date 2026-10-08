@@ -1,0 +1,38 @@
+[
+  {
+    "gate": "initial web typecheck",
+    "exitStatus": 2,
+    "finding": "Status default inferred literal union, Object.fromEntries method-key type erasure and nonexistent scope field in test inputs",
+    "resolution": "Explicit number status; documented manifest cast; tests use current TaskQuery schema"
+  },
+  {
+    "gate": "initial default isolated node test",
+    "exitStatus": 1,
+    "finding": "Only file-level failure was reported",
+    "resolution": "Use existing contracts convention --test-isolation=none; detailed executable test failures then available; no claimed root cause"
+  },
+  {
+    "gate": "detailed data tests",
+    "exitStatus": 1,
+    "finding": "Source recurrence Weekly is display label, not contract weekly; 13 failures shared mapper cause",
+    "resolution": "Normalize source recurrence code; valid empty Response construction in negative HTTP test"
+  },
+  {
+    "gate": "data tests after mapper normalization",
+    "exitStatus": 1,
+    "finding": "17 pass/1 fail: hardcoded expected WEB-109 dueDate2026-10-10 disagreed with locked fixture2026-10-09",
+    "resolution": "Correct test expectation to actual locked date"
+  },
+  {
+    "gate": "root typecheck",
+    "exitStatus": 2,
+    "finding": "TS5097 in new domain contract consumer",
+    "resolution": "Adopt contracts rewriteRelativeImportExtensions setting; final root typecheck/build pass"
+  },
+  {
+    "gate": "root lint",
+    "exitStatus": 1,
+    "finding": "433 errors from generated dist-http JavaScript scanned by ESLint",
+    "resolution": "Ignore dist-http build output alongside dist; final source lint pass"
+  }
+]

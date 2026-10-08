@@ -1,0 +1,85 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "acceptance": {
+    "AC1": "normalized DTO fixture and 7 foundation reads via StudioApi",
+    "AC2": "static bootstrap adapter selection; HTTP errors and mode mismatch reject; no fallback",
+    "AC3": "workspace query keys, cancellation/invalidation, namespace reload/reset and production reset denial"
+  },
+  "dataTests": {
+    "total": 19,
+    "foundation": 17,
+    "env": 2,
+    "scenarios": [
+      "populated",
+      "empty",
+      "loading",
+      "error",
+      "offline"
+    ],
+    "identities": 156,
+    "taskKeys": 49
+  },
+  "httpBundle": {
+    "status": "passed",
+    "graphModules": 269,
+    "forbiddenModules": [],
+    "files": [
+      {
+        "path": "apps/web/dist-http/assets/app-BzD1WoFw.js",
+        "bytes": 449514,
+        "sha256": "8097145028416a82abdd9aed9ee402c09c4a184d5082e53b05b6e5c27b439b6e"
+      },
+      {
+        "path": "apps/web/dist-http/assets/routes-D1zgRyWD.js",
+        "bytes": 166,
+        "sha256": "8db0d8adc3735c7f781981a4ea505846c3c5933277f6abae1ed0f270aed10405"
+      }
+    ],
+    "mode": "http",
+    "entry": "apps/web/index.html",
+    "graphPath": "apps/web/dist-http/module-graph.json"
+  },
+  "commands": [
+    {
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-06/typecheck.log"
+    },
+    {
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-06/build.log"
+    },
+    {
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-06/lint.log"
+    },
+    {
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-06/test.log"
+    },
+    {
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-06/reference-check.log"
+    },
+    {
+      "command": "pnpm verify:data:http-bundle",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-06/http-bundle.log"
+    }
+  ],
+  "notRun": [
+    "UI pixel suites: no UI changed",
+    "D1/R2/backend business routes: later work units"
+  ]
+}

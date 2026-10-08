@@ -1,0 +1,28 @@
+import { z } from 'zod';
+import { ActivitySchema, CalendarEventSchema, CommentSchema, EntityIdSchema, FileSchema, MemberPreferencesSchema, MemberSchema, NotificationPreferencesSchema, NotificationSchema, ProjectSchema, SavedViewSchema, SubtaskSchema, TaskSchema, TeamSchema, UserProfileSchema, WorkspaceSchema } from '@studio/contracts/api';
+
+const table = <T extends z.ZodType>(schema: T) => z.record(EntityIdSchema, schema).refine(rows => Object.entries(rows).every(([id, row]) => typeof row === 'object' && row !== null && 'id' in row && row.id === id), 'Entity table key differs from ID');
+export const MockDatasetSchema = z.strictObject({
+  workspaceId: EntityIdSchema, currentMemberId: EntityIdSchema,
+  workspaces: table(WorkspaceSchema), users: table(UserProfileSchema), members: table(MemberSchema), teams: table(TeamSchema), projects: table(ProjectSchema), tasks: table(TaskSchema), subtasks: table(SubtaskSchema), comments: table(CommentSchema), files: table(FileSchema), activity: table(ActivitySchema), notifications: table(NotificationSchema), events: table(CalendarEventSchema), savedViews: table(SavedViewSchema),
+  projectOrder: z.array(EntityIdSchema), preferences: MemberPreferencesSchema, notificationPreferences: NotificationPreferencesSchema,
+});
+export type MockDataset = z.infer<typeof MockDatasetSchema>;
+
+export function assertDatasetRelations(data: MockDataset): void {
+  const requireId = (rows: Record<string, unknown>, id: string | null) => { if (id !== null && !rows[id]) throw new TypeError('Broken mock entity relationship'); };
+  requireId(data.workspaces, data.workspaceId);
+  requireId(data.members, data.currentMemberId);
+  const scope = (row: { workspaceId: string }) => { if (row.workspaceId !== data.workspaceId) throw new TypeError('Cross-workspace mock entity'); };
+  for (const member of Object.values(data.members)) { scope(member); requireId(data.users, member.userId); requireId(data.teams, member.teamId); }
+  for (const team of Object.values(data.teams)) { scope(team); for (const id of team.memberIds) requireId(data.members, id); }
+  for (const project of Object.values(data.projects)) { scope(project); requireId(data.teams, project.teamId); requireId(data.members, project.leadId); for (const id of project.memberIds) requireId(data.members, id); }
+  for (const task of Object.values(data.tasks)) { scope(task); requireId(data.projects, task.projectId); requireId(data.members, task.assigneeId); for (const id of task.dependencyIds) requireId(data.tasks, id); }
+  for (const subtask of Object.values(data.subtasks)) { requireId(data.tasks, subtask.taskId); requireId(data.members, subtask.assigneeId); }
+  for (const comment of Object.values(data.comments)) { scope(comment); requireId(data.tasks, comment.taskId); requireId(data.members, comment.authorId); for (const id of comment.mentionedMemberIds) requireId(data.members, id); for (const reaction of comment.reactions) for (const id of reaction.memberIds) requireId(data.members, id); }
+  for (const file of Object.values(data.files)) { scope(file); requireId(data.projects, file.projectId); requireId(data.tasks, file.taskId); requireId(data.members, file.createdBy); if (file.taskId && data.tasks[file.taskId]?.projectId !== file.projectId) throw new TypeError('File project differs from task'); }
+  for (const row of Object.values(data.activity)) { requireId(data.members, row.actorId); requireId(data.projects, row.projectId); requireId(data.tasks, row.taskId); }
+  for (const row of Object.values(data.notifications)) { scope(row); requireId(data.members, row.recipientId); requireId(data.members, row.actorId); requireId(data.tasks, row.taskId); requireId(data.projects, row.projectId); }
+  for (const row of [...Object.values(data.events), ...Object.values(data.savedViews)]) { scope(row); requireId(data.projects, row.projectId); }
+  for (const id of data.projectOrder) requireId(data.projects, id);
+}

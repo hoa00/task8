@@ -4,7 +4,7 @@ import * as i from './inputs.ts';
 import * as q from './queries.ts';
 import * as m from './models.ts';
 
-function operation<I extends z.ZodType, O extends z.ZodType>(method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE', path: string, request: I, data: O, successStatuses: readonly number[] = [200], requestMediaType: 'application/json' | 'multipart/form-data' = 'application/json') {
+function operation<M extends 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE', I extends z.ZodType, O extends z.ZodType>(method: M, path: string, request: I, data: O, successStatuses: readonly number[] = [200], requestMediaType: 'application/json' | 'multipart/form-data' = 'application/json') {
   return { method, path, request, data, response: p.apiSuccessSchema(data), successStatuses, transport: 'json' as const, requestMediaType };
 }
 function binaryOperation<I extends z.ZodType>(path: string, request: I) {

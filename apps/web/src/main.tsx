@@ -1,7 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from '@tanstack/react-router';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createDataRuntime } from '#studio-adapter';
+import { StudioDataProvider } from './data/StudioDataProvider';
+import { createStudioQueryClient } from './data/queries';
 import { parsePublicEnv } from './app/env';
 import { router } from './app/router';
 import { ThemeProvider } from './theme/ThemeProvider';
@@ -10,7 +12,8 @@ import './styles/app.css';
 
 applyRootPreferences(readThemePreferences());
 const publicEnv = parsePublicEnv(import.meta.env);
-const queryClient = new QueryClient();
+const runtime = createDataRuntime(publicEnv);
+const queryClient = createStudioQueryClient();
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Missing React root element');
 rootElement.dataset.dataMode = publicEnv.dataMode;
@@ -18,9 +21,9 @@ rootElement.dataset.dataMode = publicEnv.dataMode;
 createRoot(rootElement).render(
   <StrictMode>
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
+      <StudioDataProvider runtime={runtime} queryClient={queryClient}>
         <RouterProvider router={router} />
-      </QueryClientProvider>
+      </StudioDataProvider>
     </ThemeProvider>
   </StrictMode>,
 );

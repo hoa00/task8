@@ -5,7 +5,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default tseslint.config(
-  { ignores: ['.reference/**', 'docs/**', '**/dist/**', '**/node_modules/**', '**/.turbo/**', '**/.wrangler/**', 'test-results/**', '**/routeTree.gen.ts', '**/worker-configuration.d.ts'] },
+  { ignores: ['.reference/**', 'docs/**', '**/dist/**', '**/dist-http/**', '**/node_modules/**', '**/.turbo/**', '**/.wrangler/**', 'test-results/**', '**/routeTree.gen.ts', '**/worker-configuration.d.ts'] },
   js.configs.recommended,
   { files: ['**/*.mjs'], languageOptions: { globals: globals.node } },
   { files: ['tests/contracts/**/*.ts'], languageOptions: { globals: globals.node } },

@@ -12,10 +12,12 @@
       "node"
     ],
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": { "#studio-adapter": ["./src/data/adapters/mock-entry.ts"] }
   },
   "include": [
     "src",
-    "vite.config.ts"
+    "vite.config.ts",
+    "tests/data"
   ]
 }

@@ -1,12 +1,19 @@
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import tailwindcss from '@tailwindcss/vite';
 
 const workspaceRoot = fileURLToPath(new URL('../../', import.meta.url)).replace(/\/$/, '');
 
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  const env = { ...loadEnv(mode, fileURLToPath(new URL('./', import.meta.url)), 'VITE_'), ...process.env };
+  const dataMode = env.VITE_DATA_MODE ?? 'mock';
+  if (dataMode !== 'mock' && dataMode !== 'http') throw new TypeError('Invalid data mode');
+  const httpOnly = mode === 'http-only';
+  if (httpOnly && dataMode !== 'http') throw new TypeError('HTTP-only bundle must use HTTP data mode');
+  return {
+  resolve: { alias: { '#studio-adapter': fileURLToPath(new URL(`./src/data/adapters/${dataMode}-entry.ts`, import.meta.url)) } },
   plugins: [
     tanstackRouter({ target: 'react', autoCodeSplitting: true }),
     react(),
@@ -19,7 +26,8 @@ export default defineConfig({
       },
     },
   ],
-  build: { cssMinify: false, assetsInlineLimit: 0, rollupOptions: { input: { app: fileURLToPath(new URL('./index.html', import.meta.url)), foundation: fileURLToPath(new URL('./foundation.html', import.meta.url)), controls: fileURLToPath(new URL('./controls.html', import.meta.url)), overlays: fileURLToPath(new URL('./overlays.html', import.meta.url)) } } },
+  build: { outDir: httpOnly ? 'dist-http' : 'dist', cssMinify: false, assetsInlineLimit: 0, rollupOptions: { input: httpOnly ? { app: fileURLToPath(new URL('./index.html', import.meta.url)) } : { app: fileURLToPath(new URL('./index.html', import.meta.url)), foundation: fileURLToPath(new URL('./foundation.html', import.meta.url)), controls: fileURLToPath(new URL('./controls.html', import.meta.url)), overlays: fileURLToPath(new URL('./overlays.html', import.meta.url)) } } },
   server: { host: '127.0.0.1', port: 5173, strictPort: true, proxy: { '/api': 'http://127.0.0.1:8787' } },
   preview: { host: '127.0.0.1', port: 5173, strictPort: true, proxy: { '/api': 'http://127.0.0.1:8787' } },
+  };
 });
