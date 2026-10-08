@@ -1,4 +1,6 @@
-# Gr8r Studio → React: bộ handoff cho Codex
+# task8 — Gr8r Studio → React
+
+Tên package là `task8`; repository đích là [hoa00/task8](https://github.com/hoa00/task8) (private). Tiến độ triển khai và evidence hiện tại nằm trong [PROGRESS.md](docs/poc/PROGRESS.md).
 
 **Ngày lập:** 08/10/2026. **Trạng thái:** tài liệu thiết kế và triển khai; ứng dụng React/backend chưa được viết trong bộ bàn giao này.
 
@@ -54,7 +56,7 @@ Dùng một session mới cho unit kế tiếp. Nếu unit chưa đạt, tiếp 
 - Repo: [gr8rstudio/gr8r-studio](https://github.com/gr8rstudio/gr8r-studio).
 - Commit cố định: [`904205c626918ee96054eb35495c394a60c0c601`](https://github.com/gr8rstudio/gr8r-studio/commit/904205c626918ee96054eb35495c394a60c0c601), ngày commit 07/10/2026 UTC.
 - Đã clone, đọc source, kiểm tra cấu trúc và build source thành công bằng lockfile gốc. Đã xem ảnh preview trong repo.
-- Chưa có bộ screenshot runtime đầy đủ; chưa có target để so ảnh. **Không đánh dấu pixel-perfect đã đạt.** WU-00 phải tạo và kiểm tra baseline trước khi triển khai UI.
+- WU-00 đã tạo baseline nguồn thực gồm 173 scenario, kiểm tra lặp zero-diff và inspect ảnh; xem [runner](docs/poc/reference/CAPTURE.md) và [evidence](docs/poc/PROGRESS.md). Chưa có React target để nghiệm thu pixel parity.
 - Source có 21 route key render, 8 tab project cố định, saved views List/Board/Table, 21 section Settings, 7 trạng thái auth và onboarding 6 bước. Chi tiết trong screen inventory.
 - Ở snapshot này không có khai báo license rõ trong README/package.json, không có LICENSE trong tree và metadata GitHub trả `license: null`. Đây là việc cần xác nhận về quyền sử dụng/phân phối, không phải giấy phép được bộ handoff tự cấp. Xem [UPSTREAM_NOTICE.md](UPSTREAM_NOTICE.md).
 
@@ -64,4 +66,4 @@ Dùng một session mới cho unit kế tiếp. Nếu unit chưa đạt, tiếp 
 2. **M2 — Full UI parity:** hoàn tất WU-13…WU-29, toàn bộ screen/state inventory có đối chiếu nguồn và interaction evidence.
 3. **M3 — Backend POC:** hoàn tất WU-30…WU-36, cùng frontend chạy HTTP → Hono → D1, tệp R2 local và các kiểm tra dữ liệu cần thiết.
 
-Chưa có work unit triển khai nào được đánh dấu hoàn tất chỉ dựa vào hoạt động phân tích này.
+WU-00 đã hoàn tất theo verification thực tế; các unit sau chưa triển khai. Theo dõi trạng thái trong [PROGRESS.md](docs/poc/PROGRESS.md).
