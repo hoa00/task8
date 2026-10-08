@@ -1,0 +1,38 @@
+/* Independent source-only markup uses locked source controls/styles/helpers.
+ * Geometry shared with the target gallery is harness-only. No source file is edited. */
+export async function sourceControls(page, group) {
+  await page.waitForFunction(() => window.__gr8r);
+  await page.evaluate(async group => {
+    const { ic } = await import('/src/core/icons.js');
+    const { enhanceSelects } = await import('/src/ui/select.js');
+    const { empty, progBar } = await import('/src/ui/helpers.js');
+    const section = document.createElement('section'); section.id='controls-sample';section.dataset.group=group;
+    section.style.cssText='display:flex;width:802px;flex-direction:column;gap:16px;background:var(--bg);padding:24px;color:var(--text)';
+    const row = inner => `<div style="display:flex;align-items:center;gap:12px">${inner}</div>`;
+    const btn = (variant,label,extra='') => `<button class="btn btn-${variant}" ${extra}>${label}</button>`;
+    const field = (label,inner,hint='')=>`<div class="field"><label class="label">${label}</label>${inner}${hint}</div>`;
+    const av = (size,ini,color,extra='')=>`<span class="av ${size}" style="--c:${color}" ${extra}>${ini}</span>`;
+    const items=['Overview','Board','Locked','List'];
+    const samples = {
+      buttons: ['primary','secondary','ghost','danger','danger-ghost'].map(variant=>row(btn(variant,'Create item',`data-probe="button-${variant==='danger-ghost'?'dangerGhost':variant}"`)+btn(variant,'Disabled','disabled')+btn(variant,'Saving','data-loading'))).join(''),
+      fields: `<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">${field('Text','<input data-probe="input" class="input" value="Homepage wireframes">','<span class="hint">A helpful hint</span>')}${field('Error','<input data-probe="input-error" type="email" class="input is-error" value="alex@">',`<span class="err">${ic('circle-alert',12)}Enter a valid email</span>`)}${field('Disabled','<input class="input" value="hello@example.com" disabled>')}${field('Password',`<div class="inwrap"><input class="input input-lg" value="secret123" type="password" style="padding-right:38px"><button class="ibtn ibtn-sm" style="position:absolute;right:5px">${ic('eye',15)}</button></div>`)}${field('Textarea','<textarea data-probe="textarea" class="textarea" rows="2">Add a description…</textarea>')}${field('Search',`<div class="inwrap">${ic('search',13)}<input class="input" placeholder="Search items"><kbd style="position:absolute;right:7px">/</kbd></div>`)}<div style="display:flex;flex-direction:column;gap:8px">${['xs','sm','md','lg'].map(size=>`<input class="input" value="${size}" style="height:var(--h-${size});${size==='sm'?'font-size:var(--fs-sm)':''}">`).join('')}</div>${field('Validation','<input class="input" value="Homepage wireframes">','<span class="hint">Required value</span>')}</div>`,
+      choices: `<div style="display:flex;align-items:center;gap:14px"><input data-probe="checkbox" class="check" type="checkbox" checked><input class="check" type="checkbox"><input class="check" type="checkbox" data-mixed><input class="check round" type="checkbox" checked><input class="check" type="checkbox" checked disabled><input data-probe="toggle" class="toggle" type="checkbox" checked><input class="toggle" type="checkbox"><input class="toggle" type="checkbox" checked disabled></div><div class="tabs">${items.map((label,index)=>`<button class="tab ${index===1?'on':''}" ${index===2?'disabled':''}>${label}${index===1?'<span class="cnt">3</span>':''}</button>`).join('')}</div><div class="seg">${items.map((label,index)=>`<button class="${index===1?'on':''}" ${index===2?'disabled':''}>${label}</button>`).join('')}</div>`,
+      display: row(['neutral','accent','green','amber','red','violet'].map(tone=>`<span class="badge ${tone==='neutral'?'':tone}"><span class="dot"></span>${tone}</span>`).join('')+'<span style="display:inline-block;width:6px;height:6px;flex-shrink:0;border-radius:50%;background:var(--teal)"></span><kbd>⌘ K</kbd>')+row(['sm','','md','lg','xl'].map(size=>av(size,'AC','#8662C9')).join('')+`<span class="av empty">${ic('user',11)}</span>`+av('presence','JL','#23918A')+`<span class="avs">${av('md','AC','#8662C9')}${av('md','JL','#23918A')}${av('md','SW','#C4473A')}${av('md more','+1','var(--gray)')}</span>`)+`<section class="panel"><div class="panel-h"><h2>Overview</h2><div class="acts">${btn('secondary btn-sm','Action')}</div></div><div class="panel-b"><div style="display:flex;gap:12px">${progBar(64)}${progBar(100,'green')}${progBar(30,'red')}</div><span class="stackbar" style="margin-top:12px"><i style="width:30%;background:var(--green)"></i><i style="width:40%;background:var(--amber)"></i><i style="width:30%;background:var(--red)"></i></span><span class="meter" style="display:block;margin-top:12px"><i style="width:45%"></i></span></div></section>`,
+      feedback: `<div class="alert info">${ic('info',15)}<span><b>Heads up.</b> Your draft is ready.</span></div><div class="alert ok">${ic('circle-check',15)}Changes saved.</div><div class="alert warn">${ic('triangle-alert',15)}Check these values.</div><div class="alert danger">${ic('circle-alert',15)}Your changes couldn't be saved.</div><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px"><section class="panel">${empty('search','No results found','Try a broader term.',btn('secondary btn-sm','Clear search'),'sm')}</section><section class="panel">${empty('wifi-off',"You're offline",'Check your connection.','','sm err')}</section></div><div style="display:flex;flex-direction:column;gap:8px"><span class="sk" style="width:60%;height:12px"></span><span class="sk" style="width:90%;height:9px"></span><span class="sk" style="width:28px;height:28px;border-radius:50%"></span></div>`,
+      select: '<div style="display:flex;height:180px;flex-direction:column;gap:12px"><div style="width:240px"><select class="select" aria-label="Status"><option selected>In Progress</option><option>Review</option><option>Done</option></select></div><div style="width:240px"><select class="select" disabled aria-label="Disabled select"><option selected>In Progress</option></select></div></div>',
+    };
+    section.innerHTML=samples[group];
+    if(group==='buttons'){
+      section.querySelectorAll('[data-loading]').forEach(el=>el.classList.add('is-loading'));
+      const sizes=document.createElement('div');sizes.style.cssText='display:flex;align-items:center;gap:12px';
+      sizes.innerHTML=['xs','sm','md','lg'].map(size=>`<button class="btn btn-secondary ${size==='sm'?'btn-sm':size==='lg'?'btn-lg':''}" data-size="${size}" ${size==='xs'?'style="height:22px;padding:0 8px;font-size:var(--fs-xs)"':''}>Size ${size}</button>`).join('')+['xs','sm','md','lg'].map(size=>`<button data-probe="icon-${size}" class="ibtn ${size==='xs'?'ibtn-xs':size==='sm'?'ibtn-sm':''}" ${size==='lg'?'style="width:36px;height:36px"':''}>${ic('plus')}</button>`).join('')+`<button class="ibtn" disabled>${ic('trash-2')}</button><button class="ibtn on">${ic('star')}</button>`;section.append(sizes);
+    }
+    const sourceHost=document.createElement('div');sourceHost.hidden=true;sourceHost.append(...document.body.childNodes);document.body.append(section,sourceHost);
+    if(group==='choices')section.querySelector('[data-mixed]').indeterminate=true;
+    if(group==='select'){
+      enhanceSelects(section);
+      // Source enhancer omits disabled on its trigger; harness mirrors the native attribute to preserve the intended disabled state in this sample.
+      section.querySelectorAll('select:disabled').forEach(sel=>sel.nextElementSibling.disabled=true);
+    }
+  },group);
+}
