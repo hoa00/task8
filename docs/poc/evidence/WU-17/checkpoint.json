@@ -1,0 +1,57 @@
+{
+  "unit": "WU-17",
+  "status": "Implementation committed and normal push verified; documentation-only exact-SHA checkpoint",
+  "implementationCommit": "c9f64699d6a2ef75e6cfb4b3fa3b8a4e36cd8416",
+  "implementationTree": "00326baeb7eac1badcf887cb92d4ceaa8efc7d54",
+  "implementationParent": "221b04ad4d124dde8139c6f9b8f1a00a5f27c33f",
+  "branch": "work",
+  "remote": "origin",
+  "remoteUrl": "https://github.com/hoa00/task8.git",
+  "targetBranch": "main",
+  "push": {
+    "command": "git push origin HEAD:main",
+    "exitStatus": 0,
+    "verifiedHead": "c9f64699d6a2ef75e6cfb4b3fa3b8a4e36cd8416",
+    "verifiedOriginMain": "c9f64699d6a2ef75e6cfb4b3fa3b8a4e36cd8416",
+    "actualLsRemoteMain": "c9f64699d6a2ef75e6cfb4b3fa3b8a4e36cd8416",
+    "divergence": [
+      0,
+      0
+    ],
+    "workingTreeCleanAfterPush": true,
+    "force": false,
+    "ancestorCheckExitStatus": 0
+  },
+  "postPushVerifiedAtUtc": "2026-10-09 19:34:06 UTC",
+  "source": {
+    "checkCommand": "pnpm reference:check",
+    "exitStatus": 0,
+    "commit": "904205c626918ee96054eb35495c394a60c0c601",
+    "tree": "5db5f992886b2345881946cf85fac098307953a5",
+    "verifiedFiles": 86,
+    "clean": true,
+    "log": "docs/poc/evidence/WU-17/post-push-source.log"
+  },
+  "cleanup": {
+    "command": "ss -ltnp '( sport = :4173 or sport = :5173 )'",
+    "exitStatus": 0,
+    "listeners": []
+  },
+  "evidenceSha256": {
+    "visual-verification.json": "671bca93b9b87135126e192ee272f5b76a03717bebac5f021dfe1dc41818ede4",
+    "mini-regression/full-raster-linux-candidate.json": "66c928b4512c19cbec53d715a9d1e0a5e3f644215db1fd433f5270ddab10f5ea",
+    "review.json": "c3ce6605e8735c0375d0023521911b1bf816dead1432828b795a7d5c5df02c67",
+    "verification.json": "69d4b1e3e65e33023a08b4c5f83ee7e5d54de0d486b4734a6287b33b6b06a153",
+    "mini-regression/review.json": "520692e21783224221a81fa95bcfffbdefe516f01f89fda0356023af6aeae763",
+    "commands.json": "cbc661e7d206d74f37c2b2d5239f1fa9c010f9ed452b5caeab3ff97fc5bd0fb2"
+  },
+  "finalHashChecks": {
+    "frozenDashboardPng": 52,
+    "frozenMiniPng": 12,
+    "allVerified": true,
+    "originalHistoricalLogGzipShaVerified": true
+  },
+  "scope": "Root technical PASS for named matched BOTH Source+Target Chromium145 managed Linux --disable-partial-raster WU17 dashboard content+six affected shared-mini consumers only. All recorded limits and inherited UNPROVED_UNACCEPTED debts retained.",
+  "documentationCheckpoint": "Own final SHA/tree/actual normal-push state verified after this documentation-only commit and reported to root; no recursive self-SHA invented.",
+  "next": "Owner17 STOP; root may assign WU18 after independent final checkpoint/main/clean verification. No later work implemented."
+}
