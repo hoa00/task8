@@ -1,0 +1,641 @@
+{
+  "status": "DIAGNOSTIC_ONLY_UNACCEPTED",
+  "actualCommand": "node tests/visual/projects/verify.mjs --inspect-share-raster",
+  "actualExitStatus": 1,
+  "liveChangedPixels": 2,
+  "repeatabilityPixels": 0,
+  "reportSha256": "5165a8bc771b38b7d27dd2f9b7d08192196a157f0509073e2f660dfbc8c43593",
+  "browserProfile": {
+    "name": "matched-full-raster-share-diagnostic",
+    "requestedLaunchArguments": [
+      "--disable-partial-raster"
+    ],
+    "actualLaunchArguments": [
+      "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+      "--disable-field-trial-config",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--disable-backgrounding-occluded-windows",
+      "--disable-back-forward-cache",
+      "--disable-breakpad",
+      "--disable-client-side-phishing-detection",
+      "--disable-component-extensions-with-background-pages",
+      "--disable-component-update",
+      "--no-default-browser-check",
+      "--disable-default-apps",
+      "--disable-dev-shm-usage",
+      "--disable-extensions",
+      "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+      "--enable-features=CDPScreenshotNewSurface",
+      "--allow-pre-commit-input",
+      "--disable-hang-monitor",
+      "--disable-ipc-flooding-protection",
+      "--disable-popup-blocking",
+      "--disable-prompt-on-repost",
+      "--disable-renderer-backgrounding",
+      "--force-color-profile=srgb",
+      "--metrics-recording-only",
+      "--no-first-run",
+      "--password-store=basic",
+      "--use-mock-keychain",
+      "--no-service-autorun",
+      "--export-tagged-pdf",
+      "--disable-search-engine-choice-screen",
+      "--unsafely-disable-devtools-self-xss-warnings",
+      "--edge-skip-compat-layer-relaunch",
+      "--enable-automation",
+      "--disable-infobars",
+      "--disable-search-engine-choice-screen",
+      "--disable-sync",
+      "--enable-unsafe-swiftshader",
+      "--headless",
+      "--hide-scrollbars",
+      "--mute-audio",
+      "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+      "--no-sandbox",
+      "--disable-partial-raster",
+      "--user-data-dir=/tmp/playwright_chromiumdev_profile-gyNECP",
+      "--remote-debugging-pipe",
+      "--no-startup-window",
+      "--use-gl=angle",
+      "--use-angle=swiftshader-webgl",
+      "--ozone-platform=headless",
+      "--allow-pre-commit-input"
+    ],
+    "appliesTo": "Both Source and Target; separate supplement only"
+  },
+  "images": [
+    {
+      "side": "source",
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-raster-samples/overview-default-share-light-1440-share-raster-drawing-layer-source.png",
+      "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c"
+    },
+    {
+      "side": "target",
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-raster-samples/overview-default-share-light-1440-share-raster-drawing-layer-target.png",
+      "sha256": "22251d6540c4881d21e271aa27b7cefcf8888721b105abce4d50501626eeb3e6"
+    }
+  ],
+  "closeControls": [
+    {
+      "key": "share-close",
+      "nonCustomCSSCount": 413,
+      "allNonCustomCSSEqual": true,
+      "rectEqual": true,
+      "pseudosEqual": true,
+      "logicalAncestors": [
+        [
+          {
+            "tag": "BUTTON",
+            "rect": {
+              "x": 958,
+              "y": 114,
+              "width": 26,
+              "height": 26,
+              "top": 114,
+              "right": 984,
+              "bottom": 140,
+              "left": 958
+            },
+            "offset": [
+              518,
+              14,
+              26,
+              26
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 40,
+              "top": 100,
+              "right": 1000,
+              "bottom": 140,
+              "left": 440
+            },
+            "offset": [
+              0,
+              0,
+              560,
+              40
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 590.546875,
+              "top": 100,
+              "right": 1000,
+              "bottom": 690.546875,
+              "left": 440
+            },
+            "offset": [
+              440,
+              100,
+              560,
+              591
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 1000,
+              "top": 0,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 0
+            },
+            "offset": [
+              0,
+              0,
+              1440,
+              1000
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 0,
+              "y": 1000,
+              "width": 1440,
+              "height": 0,
+              "top": 1000,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 0
+            },
+            "offset": [
+              0,
+              1000,
+              1440,
+              0
+            ]
+          }
+        ],
+        [
+          {
+            "tag": "BUTTON",
+            "rect": {
+              "x": 958,
+              "y": 114,
+              "width": 26,
+              "height": 26,
+              "top": 114,
+              "right": 984,
+              "bottom": 140,
+              "left": 958
+            },
+            "offset": [
+              518,
+              14,
+              26,
+              26
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 40,
+              "top": 100,
+              "right": 1000,
+              "bottom": 140,
+              "left": 440
+            },
+            "offset": [
+              0,
+              0,
+              560,
+              40
+            ]
+          },
+          {
+            "tag": "SECTION",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 590.546875,
+              "top": 100,
+              "right": 1000,
+              "bottom": 690.546875,
+              "left": 440
+            },
+            "offset": [
+              440,
+              100,
+              560,
+              591
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 1000,
+              "top": 0,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 0
+            },
+            "offset": [
+              0,
+              0,
+              1440,
+              1000
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 0,
+              "y": 1000,
+              "width": 1440,
+              "height": 0,
+              "top": 1000,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 0
+            },
+            "offset": [
+              0,
+              1000,
+              1440,
+              0
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "key": "share-close-svg",
+      "nonCustomCSSCount": 413,
+      "allNonCustomCSSEqual": true,
+      "rectEqual": true,
+      "pseudosEqual": true,
+      "logicalAncestors": [
+        [
+          {
+            "tag": "svg",
+            "rect": {
+              "x": 963,
+              "y": 119,
+              "width": 16,
+              "height": 16,
+              "top": 119,
+              "right": 979,
+              "bottom": 135,
+              "left": 963
+            },
+            "offset": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "rect": {
+              "x": 958,
+              "y": 114,
+              "width": 26,
+              "height": 26,
+              "top": 114,
+              "right": 984,
+              "bottom": 140,
+              "left": 958
+            },
+            "offset": [
+              518,
+              14,
+              26,
+              26
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 40,
+              "top": 100,
+              "right": 1000,
+              "bottom": 140,
+              "left": 440
+            },
+            "offset": [
+              0,
+              0,
+              560,
+              40
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 590.546875,
+              "top": 100,
+              "right": 1000,
+              "bottom": 690.546875,
+              "left": 440
+            },
+            "offset": [
+              440,
+              100,
+              560,
+              591
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 1000,
+              "top": 0,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 0
+            },
+            "offset": [
+              0,
+              0,
+              1440,
+              1000
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 0,
+              "y": 1000,
+              "width": 1440,
+              "height": 0,
+              "top": 1000,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 0
+            },
+            "offset": [
+              0,
+              1000,
+              1440,
+              0
+            ]
+          }
+        ],
+        [
+          {
+            "tag": "svg",
+            "rect": {
+              "x": 963,
+              "y": 119,
+              "width": 16,
+              "height": 16,
+              "top": 119,
+              "right": 979,
+              "bottom": 135,
+              "left": 963
+            },
+            "offset": [
+              null,
+              null,
+              null,
+              null
+            ]
+          },
+          {
+            "tag": "BUTTON",
+            "rect": {
+              "x": 958,
+              "y": 114,
+              "width": 26,
+              "height": 26,
+              "top": 114,
+              "right": 984,
+              "bottom": 140,
+              "left": 958
+            },
+            "offset": [
+              518,
+              14,
+              26,
+              26
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 40,
+              "top": 100,
+              "right": 1000,
+              "bottom": 140,
+              "left": 440
+            },
+            "offset": [
+              0,
+              0,
+              560,
+              40
+            ]
+          },
+          {
+            "tag": "SECTION",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 590.546875,
+              "top": 100,
+              "right": 1000,
+              "bottom": 690.546875,
+              "left": 440
+            },
+            "offset": [
+              440,
+              100,
+              560,
+              591
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 1000,
+              "top": 0,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 0
+            },
+            "offset": [
+              0,
+              0,
+              1440,
+              1000
+            ]
+          },
+          {
+            "tag": "DIV",
+            "rect": {
+              "x": 0,
+              "y": 1000,
+              "width": 1440,
+              "height": 0,
+              "top": 1000,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 0
+            },
+            "offset": [
+              0,
+              1000,
+              1440,
+              0
+            ]
+          }
+        ]
+      ]
+    }
+  ],
+  "first49CommandsEqual": true,
+  "wholeCommandCounts": [
+    332,
+    333
+  ],
+  "wholeCommandsEqual": false,
+  "drawingLayers": [
+    {
+      "layerId": "27",
+      "width": 640,
+      "height": 671,
+      "transform": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        400,
+        72,
+        0,
+        1
+      ],
+      "scrollRects": [
+        {
+          "rect": {
+            "x": 40,
+            "y": 28,
+            "width": 560,
+            "height": 591
+          },
+          "type": "TouchEventHandler"
+        }
+      ],
+      "reasons": {
+        "compositingReasons": [
+          "Has an active accelerated transform animation or transition.",
+          "Has an active accelerated opacity animation or transition."
+        ],
+        "compositingReasonIds": [
+          "ActiveTransformAnimation",
+          "ActiveOpacityAnimation"
+        ]
+      },
+      "paintCount": 26
+    },
+    {
+      "layerId": "25",
+      "width": 640,
+      "height": 671,
+      "transform": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        400,
+        72,
+        0,
+        1
+      ],
+      "scrollRects": [
+        {
+          "rect": {
+            "x": 40,
+            "y": 28,
+            "width": 560,
+            "height": 591
+          },
+          "type": "TouchEventHandler"
+        }
+      ],
+      "reasons": {
+        "compositingReasons": [
+          "Has an active accelerated transform animation or transition.",
+          "Has an active accelerated opacity animation or transition."
+        ],
+        "compositingReasonIds": [
+          "ActiveTransformAnimation",
+          "ActiveOpacityAnimation"
+        ]
+      },
+      "paintCount": 31
+    }
+  ],
+  "replays": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-raster-drawing-layer-source-snapshot-replay.png",
+      "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+      "scale": 1
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-raster-drawing-layer-target-snapshot-replay.png",
+      "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+      "scale": 1
+    }
+  ],
+  "offscreenReplayBytesEqual": true,
+  "limitations": [
+    "Whole serialized commands differ later around member paint order; Close/Header first49commands equal.",
+    "Button/SVG/heading/modal/wrap/overlay-host CSS and logical geometry equal except equivalent owned animation names; extra React App-root ancestor retained, not flattened or claimed identical.",
+    "Offscreen replay0/live2 under full-raster is unresolved; not acceptance or permission for paint/layer control."
+  ]
+}

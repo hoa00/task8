@@ -1,0 +1,40 @@
+typecheck: exit0
+build: exit0
+lint: exit0
+test: exit0
+reference-check: exit0
+http-build: exit0
+http-bundle: exit0
+choices-regression: exit0
+overlay-regression: exit0
+overlay-lifecycle: exit0
+overlay-motion: exit0
+interactions: exit0
+task-detail-regression: exit1
+canonical-list-url-close-back-direct-and-focus
+full-drawer-source-motion-geometry-and-focus
+drawer-draft-scroll-selection-survive-sibling-patch-and-title-error
+drawer-favorite-completion-and-undo
+attachment-preview-canonical-links-and-identity-remove-undo
+drawer-upload-drop-progress-failure-retry
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+false !== true
+
+    at file:///workspace/task8/tests/visual/task-detail/interactions.mjs:22:2747
+    at async probe (file:///workspace/task8/tests/visual/task-detail/interactions.mjs:12:44)
+    at async file:///workspace/task8/tests/visual/task-detail/interactions.mjs:22:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0
+

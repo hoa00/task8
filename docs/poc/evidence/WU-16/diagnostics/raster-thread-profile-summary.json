@@ -1,0 +1,640 @@
+{
+  "status": "MECHANISM_CHANGED_NEGATIVE_RASTER_UNACCEPTED",
+  "actualExitStatus": 1,
+  "actualCommand": "node tests/visual/projects/verify.mjs --inspect-raster-thread-profile",
+  "profiles": [
+    {
+      "profile": {
+        "name": "full-raster",
+        "requestedLaunchArguments": [
+          "--disable-partial-raster"
+        ],
+        "actualLaunchArguments": [
+          "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+          "--disable-field-trial-config",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--disable-backgrounding-occluded-windows",
+          "--disable-back-forward-cache",
+          "--disable-breakpad",
+          "--disable-client-side-phishing-detection",
+          "--disable-component-extensions-with-background-pages",
+          "--disable-component-update",
+          "--no-default-browser-check",
+          "--disable-default-apps",
+          "--disable-dev-shm-usage",
+          "--disable-extensions",
+          "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+          "--enable-features=CDPScreenshotNewSurface",
+          "--allow-pre-commit-input",
+          "--disable-hang-monitor",
+          "--disable-ipc-flooding-protection",
+          "--disable-popup-blocking",
+          "--disable-prompt-on-repost",
+          "--disable-renderer-backgrounding",
+          "--force-color-profile=srgb",
+          "--metrics-recording-only",
+          "--no-first-run",
+          "--password-store=basic",
+          "--use-mock-keychain",
+          "--no-service-autorun",
+          "--export-tagged-pdf",
+          "--disable-search-engine-choice-screen",
+          "--unsafely-disable-devtools-self-xss-warnings",
+          "--edge-skip-compat-layer-relaunch",
+          "--enable-automation",
+          "--disable-infobars",
+          "--disable-search-engine-choice-screen",
+          "--disable-sync",
+          "--enable-unsafe-swiftshader",
+          "--headless",
+          "--hide-scrollbars",
+          "--mute-audio",
+          "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+          "--no-sandbox",
+          "--disable-partial-raster",
+          "--user-data-dir=/tmp/playwright_chromiumdev_profile-aSJ7W1",
+          "--remote-debugging-pipe",
+          "--no-startup-window",
+          "--use-gl=angle",
+          "--use-angle=swiftshader-webgl",
+          "--ozone-platform=headless",
+          "--allow-pre-commit-input"
+        ],
+        "gpuFeatureStatus": {
+          "2d_canvas": "unavailable_software",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "disabled_software",
+          "multiple_raster_threads": "enabled_on",
+          "opengl": "disabled_off",
+          "rasterization": "disabled_software",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "disabled_software",
+          "video_encode": "disabled_software",
+          "vulkan": "disabled_off",
+          "webgl": "unavailable_software",
+          "webgpu": "unavailable_software",
+          "webnn": "unavailable_software"
+        },
+        "glRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+        "appliesTo": "Both Source and Target in this isolated diagnostic",
+        "diagnosticOnly": true
+      },
+      "liveChangedPixels": 2,
+      "repeatabilityPixels": 0,
+      "trace": {
+        "path": "docs/poc/evidence/WU-16/diagnostics/share-raster-threads-full-raster-trace.json.gz",
+        "sha256": "04f2d797e3d58ed1e43354f5fafd0eedab0689ca95735cd329f1882e52025485",
+        "categories": "cc,disabled-by-default-cc.debug,disabled-by-default-cc.debug.scheduler,blink.user_timing,loading",
+        "passiveAPIs": [
+          "Tracing.start",
+          "Tracing.end",
+          "IO.read",
+          "IO.close"
+        ],
+        "capturePolicy": "Same native actions/ready/warm2/capture2/repeat2/clip/fonts/clock; no layer/paint control.",
+        "eventCount": 72539,
+        "profile": "full-raster"
+      },
+      "workers": [
+        {
+          "side": "source",
+          "rendererPids": [
+            353239
+          ],
+          "completeTaskCount": 346,
+          "historicalThreadIds": [
+            353242,
+            353244,
+            353256
+          ],
+          "maxCompleteTaskOverlap": 2,
+          "excludedBeginEventCount": 6
+        },
+        {
+          "side": "target",
+          "rendererPids": [
+            353248
+          ],
+          "completeTaskCount": 297,
+          "historicalThreadIds": [
+            353251,
+            353253,
+            353261
+          ],
+          "maxCompleteTaskOverlap": 2,
+          "excludedBeginEventCount": 14
+        }
+      ],
+      "images": [
+        {
+          "path": "docs/poc/evidence/WU-16/diagnostics/raster-thread-profile-samples/overview-default-share-light-1440-raster-threads-full-raster-source.png",
+          "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-16/diagnostics/raster-thread-profile-samples/overview-default-share-light-1440-raster-threads-full-raster-target.png",
+          "sha256": "22251d6540c4881d21e271aa27b7cefcf8888721b105abce4d50501626eeb3e6"
+        }
+      ],
+      "paintCommands": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-raster-threads-full-raster-source-paint-commands.json.gz",
+          "sha256": "f6674e263957be228d2fe3bf0ba0019f61232b3c70d3a8b9ee21989c7c08bb63",
+          "replay": {
+            "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-raster-threads-full-raster-source-snapshot-replay.png",
+            "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+            "scale": 1
+          },
+          "commandCount": 332,
+          "layer": {
+            "layerId": "27",
+            "parentLayerId": "5",
+            "backendNodeId": 3823,
+            "offsetX": 0,
+            "offsetY": 0,
+            "width": 640,
+            "height": 671,
+            "transform": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              400,
+              72,
+              0,
+              1
+            ],
+            "anchorX": 0,
+            "anchorY": 0,
+            "anchorZ": 0,
+            "paintCount": 26,
+            "drawsContent": true,
+            "scrollRects": [
+              {
+                "rect": {
+                  "x": 40,
+                  "y": 28,
+                  "width": 560,
+                  "height": 591
+                },
+                "type": "TouchEventHandler"
+              }
+            ],
+            "reasons": {
+              "compositingReasons": [
+                "Has an active accelerated transform animation or transition.",
+                "Has an active accelerated opacity animation or transition."
+              ],
+              "compositingReasonIds": [
+                "ActiveTransformAnimation",
+                "ActiveOpacityAnimation"
+              ]
+            },
+            "node": {
+              "name": "DIV",
+              "id": 0,
+              "backendNodeId": 3823,
+              "attributes": [
+                "class",
+                "modal enter ",
+                "role",
+                "dialog",
+                "aria-modal",
+                "true",
+                "aria-labelledby",
+                "mt-share"
+              ]
+            }
+          },
+          "passiveAPI": [
+            "LayerTree.makeSnapshot",
+            "LayerTree.snapshotCommandLog",
+            "LayerTree.releaseSnapshot"
+          ],
+          "timing": "After all existing warm/capture/repeat screenshots; no DOM/style/layer control or capture delay."
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-raster-threads-full-raster-target-paint-commands.json.gz",
+          "sha256": "9694f46b22fb9e801ab9965dc31a8df2b11b97bf5ba33cb5017cb42aeb347dd2",
+          "replay": {
+            "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-raster-threads-full-raster-target-snapshot-replay.png",
+            "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+            "scale": 1
+          },
+          "commandCount": 333,
+          "layer": {
+            "layerId": "25",
+            "parentLayerId": "5",
+            "backendNodeId": 1659,
+            "offsetX": 0,
+            "offsetY": 0,
+            "width": 640,
+            "height": 671,
+            "transform": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              400,
+              72,
+              0,
+              1
+            ],
+            "anchorX": 0,
+            "anchorY": 0,
+            "anchorZ": 0,
+            "paintCount": 31,
+            "drawsContent": true,
+            "scrollRects": [
+              {
+                "rect": {
+                  "x": 40,
+                  "y": 28,
+                  "width": 560,
+                  "height": 591
+                },
+                "type": "TouchEventHandler"
+              }
+            ],
+            "reasons": {
+              "compositingReasons": [
+                "Has an active accelerated transform animation or transition.",
+                "Has an active accelerated opacity animation or transition."
+              ],
+              "compositingReasonIds": [
+                "ActiveTransformAnimation",
+                "ActiveOpacityAnimation"
+              ]
+            },
+            "node": {
+              "name": "SECTION",
+              "id": 0,
+              "backendNodeId": 1659,
+              "attributes": [
+                "aria-labelledby",
+                "share-title",
+                "data-project-share",
+                "true",
+                "role",
+                "dialog",
+                "aria-modal",
+                "true",
+                "tabindex",
+                "-1",
+                "data-overlay-kind",
+                "modal",
+                "class",
+                "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] "
+              ]
+            }
+          },
+          "passiveAPI": [
+            "LayerTree.makeSnapshot",
+            "LayerTree.snapshotCommandLog",
+            "LayerTree.releaseSnapshot"
+          ],
+          "timing": "After all existing warm/capture/repeat screenshots; no DOM/style/layer control or capture delay."
+        }
+      ]
+    },
+    {
+      "profile": {
+        "name": "full-raster-one-thread",
+        "requestedLaunchArguments": [
+          "--disable-partial-raster",
+          "--num-raster-threads=1"
+        ],
+        "actualLaunchArguments": [
+          "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+          "--disable-field-trial-config",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--disable-backgrounding-occluded-windows",
+          "--disable-back-forward-cache",
+          "--disable-breakpad",
+          "--disable-client-side-phishing-detection",
+          "--disable-component-extensions-with-background-pages",
+          "--disable-component-update",
+          "--no-default-browser-check",
+          "--disable-default-apps",
+          "--disable-dev-shm-usage",
+          "--disable-extensions",
+          "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+          "--enable-features=CDPScreenshotNewSurface",
+          "--allow-pre-commit-input",
+          "--disable-hang-monitor",
+          "--disable-ipc-flooding-protection",
+          "--disable-popup-blocking",
+          "--disable-prompt-on-repost",
+          "--disable-renderer-backgrounding",
+          "--force-color-profile=srgb",
+          "--metrics-recording-only",
+          "--no-first-run",
+          "--password-store=basic",
+          "--use-mock-keychain",
+          "--no-service-autorun",
+          "--export-tagged-pdf",
+          "--disable-search-engine-choice-screen",
+          "--unsafely-disable-devtools-self-xss-warnings",
+          "--edge-skip-compat-layer-relaunch",
+          "--enable-automation",
+          "--disable-infobars",
+          "--disable-search-engine-choice-screen",
+          "--disable-sync",
+          "--enable-unsafe-swiftshader",
+          "--headless",
+          "--hide-scrollbars",
+          "--mute-audio",
+          "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+          "--no-sandbox",
+          "--disable-partial-raster",
+          "--num-raster-threads=1",
+          "--user-data-dir=/tmp/playwright_chromiumdev_profile-YLPc04",
+          "--remote-debugging-pipe",
+          "--no-startup-window",
+          "--use-gl=angle",
+          "--use-angle=swiftshader-webgl",
+          "--ozone-platform=headless",
+          "--allow-pre-commit-input"
+        ],
+        "gpuFeatureStatus": {
+          "2d_canvas": "unavailable_software",
+          "direct_rendering_display_compositor": "disabled_off_ok",
+          "gpu_compositing": "disabled_software",
+          "multiple_raster_threads": "disabled_off",
+          "opengl": "disabled_off",
+          "rasterization": "disabled_software",
+          "raw_draw": "disabled_off_ok",
+          "skia_graphite": "disabled_off",
+          "trees_in_viz": "disabled_off",
+          "video_decode": "disabled_software",
+          "video_encode": "disabled_software",
+          "vulkan": "disabled_off",
+          "webgl": "unavailable_software",
+          "webgpu": "unavailable_software",
+          "webnn": "unavailable_software"
+        },
+        "glRenderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)",
+        "appliesTo": "Both Source and Target in this isolated diagnostic",
+        "diagnosticOnly": true
+      },
+      "liveChangedPixels": 2,
+      "repeatabilityPixels": 0,
+      "trace": {
+        "path": "docs/poc/evidence/WU-16/diagnostics/share-raster-threads-full-raster-one-thread-trace.json.gz",
+        "sha256": "155a4c2a374a6bbb1360a8f061de8bc8df653057b516174f345f7032464fd327",
+        "categories": "cc,disabled-by-default-cc.debug,disabled-by-default-cc.debug.scheduler,blink.user_timing,loading",
+        "passiveAPIs": [
+          "Tracing.start",
+          "Tracing.end",
+          "IO.read",
+          "IO.close"
+        ],
+        "capturePolicy": "Same native actions/ready/warm2/capture2/repeat2/clip/fonts/clock; no layer/paint control.",
+        "eventCount": 72059,
+        "profile": "full-raster-one-thread"
+      },
+      "workers": [
+        {
+          "side": "source",
+          "rendererPids": [
+            353328
+          ],
+          "completeTaskCount": 346,
+          "historicalThreadIds": [
+            353331
+          ],
+          "maxCompleteTaskOverlap": 1,
+          "excludedBeginEventCount": 6
+        },
+        {
+          "side": "target",
+          "rendererPids": [
+            353337
+          ],
+          "completeTaskCount": 297,
+          "historicalThreadIds": [
+            353340,
+            353342
+          ],
+          "maxCompleteTaskOverlap": 1,
+          "excludedBeginEventCount": 14
+        }
+      ],
+      "images": [
+        {
+          "path": "docs/poc/evidence/WU-16/diagnostics/raster-thread-profile-samples/overview-default-share-light-1440-raster-threads-full-raster-one-thread-source.png",
+          "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-16/diagnostics/raster-thread-profile-samples/overview-default-share-light-1440-raster-threads-full-raster-one-thread-target.png",
+          "sha256": "22251d6540c4881d21e271aa27b7cefcf8888721b105abce4d50501626eeb3e6"
+        }
+      ],
+      "paintCommands": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-raster-threads-full-raster-one-thread-source-paint-commands.json.gz",
+          "sha256": "68e4cdb0530bedd55c350101fcecda005681cc020dc90ab8b979554637ebca56",
+          "replay": {
+            "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-raster-threads-full-raster-one-thread-source-snapshot-replay.png",
+            "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+            "scale": 1
+          },
+          "commandCount": 332,
+          "layer": {
+            "layerId": "27",
+            "parentLayerId": "5",
+            "backendNodeId": 3822,
+            "offsetX": 0,
+            "offsetY": 0,
+            "width": 640,
+            "height": 671,
+            "transform": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              400,
+              72,
+              0,
+              1
+            ],
+            "anchorX": 0,
+            "anchorY": 0,
+            "anchorZ": 0,
+            "paintCount": 26,
+            "drawsContent": true,
+            "scrollRects": [
+              {
+                "rect": {
+                  "x": 40,
+                  "y": 28,
+                  "width": 560,
+                  "height": 591
+                },
+                "type": "TouchEventHandler"
+              }
+            ],
+            "reasons": {
+              "compositingReasons": [
+                "Has an active accelerated transform animation or transition.",
+                "Has an active accelerated opacity animation or transition."
+              ],
+              "compositingReasonIds": [
+                "ActiveTransformAnimation",
+                "ActiveOpacityAnimation"
+              ]
+            },
+            "node": {
+              "name": "DIV",
+              "id": 0,
+              "backendNodeId": 3822,
+              "attributes": [
+                "class",
+                "modal enter ",
+                "role",
+                "dialog",
+                "aria-modal",
+                "true",
+                "aria-labelledby",
+                "mt-share"
+              ]
+            }
+          },
+          "passiveAPI": [
+            "LayerTree.makeSnapshot",
+            "LayerTree.snapshotCommandLog",
+            "LayerTree.releaseSnapshot"
+          ],
+          "timing": "After all existing warm/capture/repeat screenshots; no DOM/style/layer control or capture delay."
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-raster-threads-full-raster-one-thread-target-paint-commands.json.gz",
+          "sha256": "9694f46b22fb9e801ab9965dc31a8df2b11b97bf5ba33cb5017cb42aeb347dd2",
+          "replay": {
+            "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-raster-threads-full-raster-one-thread-target-snapshot-replay.png",
+            "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+            "scale": 1
+          },
+          "commandCount": 333,
+          "layer": {
+            "layerId": "25",
+            "parentLayerId": "5",
+            "backendNodeId": 1659,
+            "offsetX": 0,
+            "offsetY": 0,
+            "width": 640,
+            "height": 671,
+            "transform": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              400,
+              72,
+              0,
+              1
+            ],
+            "anchorX": 0,
+            "anchorY": 0,
+            "anchorZ": 0,
+            "paintCount": 31,
+            "drawsContent": true,
+            "scrollRects": [
+              {
+                "rect": {
+                  "x": 40,
+                  "y": 28,
+                  "width": 560,
+                  "height": 591
+                },
+                "type": "TouchEventHandler"
+              }
+            ],
+            "reasons": {
+              "compositingReasons": [
+                "Has an active accelerated transform animation or transition.",
+                "Has an active accelerated opacity animation or transition."
+              ],
+              "compositingReasonIds": [
+                "ActiveTransformAnimation",
+                "ActiveOpacityAnimation"
+              ]
+            },
+            "node": {
+              "name": "SECTION",
+              "id": 0,
+              "backendNodeId": 1659,
+              "attributes": [
+                "aria-labelledby",
+                "share-title",
+                "data-project-share",
+                "true",
+                "role",
+                "dialog",
+                "aria-modal",
+                "true",
+                "tabindex",
+                "-1",
+                "data-overlay-kind",
+                "modal",
+                "class",
+                "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] "
+              ]
+            }
+          },
+          "passiveAPI": [
+            "LayerTree.makeSnapshot",
+            "LayerTree.snapshotCommandLog",
+            "LayerTree.releaseSnapshot"
+          ],
+          "timing": "After all existing warm/capture/repeat screenshots; no DOM/style/layer control or capture delay."
+        }
+      ]
+    }
+  ],
+  "reportSha256": "1e5a5fd0487e8a6345fc4c8e9bbd13e511cf69abeb46ac853882fe0829d67608",
+  "limitations": [
+    "Complete X-task concurrency2\u21921 is measured, but live2\u21922 negative; no raster-concurrency causal repair or profile acceptance.",
+    "Begin-only events excluded; historical worker IDs are not simultaneous concurrency.",
+    "Default and full-raster failed matrices remain retained; no source/product/paint/layer control."
+  ]
+}

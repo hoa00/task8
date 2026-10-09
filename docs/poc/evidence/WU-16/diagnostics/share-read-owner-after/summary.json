@@ -1,0 +1,362 @@
+{
+  "status": "CANONICAL_READ_OWNERSHIP_REPAIR_DIAGNOSTIC_ONLY",
+  "actualCommands": [
+    {
+      "command": "pnpm --filter @studio/web typecheck",
+      "exit": 0
+    },
+    {
+      "command": "pnpm --filter @studio/web build",
+      "exit": 0
+    },
+    {
+      "command": "pnpm exec eslint (six affected files)",
+      "exit": 0
+    },
+    {
+      "command": "node tests/visual/projects/verify.mjs --inspect-share-projection",
+      "exit": 0
+    }
+  ],
+  "changedPixels": 0,
+  "repeatabilityPixels": 0,
+  "chronology": [
+    [
+      {
+        "type": "share-projection",
+        "at": 2531,
+        "rows": [
+          "Tanjim Islam",
+          "Sarah Chen",
+          "John Carter",
+          "Emma Wilson",
+          "Priya Patel",
+          "Marcus Lee",
+          "Lena Fischer"
+        ],
+        "height": 591,
+        "inviteDisabled": false,
+        "animation": "modalIn",
+        "entered": null,
+        "class": "modal enter "
+      },
+      {
+        "type": "animationstart",
+        "at": 2557.2000000029802,
+        "animation": "fade",
+        "elapsedTime": 0,
+        "target": {
+          "tag": "DIV",
+          "class": "scrim enter",
+          "id": ""
+        },
+        "path": "/",
+        "fontStatus": "loaded"
+      },
+      {
+        "type": "animationstart",
+        "at": 2557.2000000029802,
+        "animation": "modalIn",
+        "elapsedTime": 0,
+        "target": {
+          "tag": "DIV",
+          "class": "modal enter ",
+          "id": ""
+        },
+        "path": "/",
+        "fontStatus": "loaded"
+      },
+      {
+        "type": "animationend",
+        "at": 2724.3999999910593,
+        "animation": "fade",
+        "elapsedTime": 0.18,
+        "target": {
+          "tag": "DIV",
+          "class": "scrim enter",
+          "id": ""
+        },
+        "path": "/",
+        "fontStatus": "loaded"
+      },
+      {
+        "type": "animationend",
+        "at": 2807.7999999970198,
+        "animation": "modalIn",
+        "elapsedTime": 0.26,
+        "target": {
+          "tag": "DIV",
+          "class": "modal enter ",
+          "id": ""
+        },
+        "path": "/",
+        "fontStatus": "loaded"
+      }
+    ],
+    [
+      {
+        "type": "share-projection",
+        "at": 2118.1000000089407,
+        "rows": [
+          "Tanjim Islam",
+          "Sarah Chen",
+          "John Carter",
+          "Emma Wilson",
+          "Priya Patel",
+          "Marcus Lee",
+          "Lena Fischer"
+        ],
+        "height": 591,
+        "inviteDisabled": false,
+        "animation": "ui-modal-in",
+        "entered": null,
+        "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] "
+      },
+      {
+        "type": "animationstart",
+        "at": 2138.6000000089407,
+        "animation": "fadeOnly",
+        "elapsedTime": 0,
+        "target": {
+          "tag": "DIV",
+          "class": "ui-overlay-scrim fixed inset-0 bg-overlay",
+          "id": ""
+        },
+        "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/overview",
+        "fontStatus": "loaded"
+      },
+      {
+        "type": "animationend",
+        "at": 2304.4000000059605,
+        "animation": "fadeOnly",
+        "elapsedTime": 0.18,
+        "target": {
+          "tag": "DIV",
+          "class": "ui-overlay-scrim fixed inset-0 bg-overlay",
+          "id": ""
+        },
+        "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/overview",
+        "fontStatus": "loaded"
+      }
+    ]
+  ],
+  "layers": [
+    {
+      "side": "source",
+      "layer": {
+        "layerId": "27",
+        "parentLayerId": "5",
+        "backendNodeId": 3806,
+        "offsetX": 0,
+        "offsetY": 0,
+        "width": 640,
+        "height": 671,
+        "transform": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          400,
+          72,
+          0,
+          1
+        ],
+        "anchorX": 0,
+        "anchorY": 0,
+        "anchorZ": 0,
+        "paintCount": 24,
+        "drawsContent": true,
+        "scrollRects": [
+          {
+            "rect": {
+              "x": 40,
+              "y": 28,
+              "width": 560,
+              "height": 591
+            },
+            "type": "TouchEventHandler"
+          }
+        ],
+        "reasons": {
+          "compositingReasons": [
+            "Has an active accelerated transform animation or transition.",
+            "Has an active accelerated opacity animation or transition."
+          ],
+          "compositingReasonIds": [
+            "ActiveTransformAnimation",
+            "ActiveOpacityAnimation"
+          ]
+        },
+        "node": {
+          "name": "DIV",
+          "id": 0,
+          "backendNodeId": 3806,
+          "attributes": [
+            "class",
+            "modal enter ",
+            "role",
+            "dialog",
+            "aria-modal",
+            "true",
+            "aria-labelledby",
+            "mt-share"
+          ]
+        }
+      },
+      "commands": 332,
+      "replay": {
+        "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-read-owner-after-source-snapshot-replay.png",
+        "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+        "scale": 1
+      }
+    },
+    {
+      "side": "target",
+      "layer": {
+        "layerId": "25",
+        "parentLayerId": "5",
+        "backendNodeId": 1637,
+        "offsetX": 0,
+        "offsetY": 0,
+        "width": 640,
+        "height": 671,
+        "transform": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          400,
+          72,
+          0,
+          1
+        ],
+        "anchorX": 0,
+        "anchorY": 0,
+        "anchorZ": 0,
+        "paintCount": 30,
+        "drawsContent": true,
+        "scrollRects": [
+          {
+            "rect": {
+              "x": 40,
+              "y": 28,
+              "width": 560,
+              "height": 591
+            },
+            "type": "TouchEventHandler"
+          }
+        ],
+        "reasons": {
+          "compositingReasons": [
+            "Has an active accelerated transform animation or transition.",
+            "Has an active accelerated opacity animation or transition."
+          ],
+          "compositingReasonIds": [
+            "ActiveTransformAnimation",
+            "ActiveOpacityAnimation"
+          ]
+        },
+        "node": {
+          "name": "SECTION",
+          "id": 0,
+          "backendNodeId": 1637,
+          "attributes": [
+            "aria-labelledby",
+            "share-title",
+            "data-project-share",
+            "true",
+            "role",
+            "dialog",
+            "aria-modal",
+            "true",
+            "tabindex",
+            "-1",
+            "data-overlay-kind",
+            "modal",
+            "class",
+            "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] "
+          ]
+        }
+      },
+      "commands": 333,
+      "replay": {
+        "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-read-owner-after-target-snapshot-replay.png",
+        "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+        "scale": 1
+      }
+    }
+  ],
+  "first49Equal": true,
+  "wholeCommandsEqual": false,
+  "replayByteEqual": true,
+  "assetsEqual": true,
+  "immutableEqual": true,
+  "files": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/overview-default-share-light-1440-share-read-owner-after-source-paint-commands.json.gz",
+      "sha256": "885ee6140c565c5a96c26d89fe56d937f8028277037fc803a2076a7c48831ea5"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/overview-default-share-light-1440-share-read-owner-after-source-snapshot-replay.png",
+      "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/overview-default-share-light-1440-share-read-owner-after-target-paint-commands.json.gz",
+      "sha256": "005e67e91148fbd921f91c1f724cd0444cacdffead0f9a16213ce5120369bc6c"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/overview-default-share-light-1440-share-read-owner-after-target-snapshot-replay.png",
+      "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/report.json",
+      "sha256": "b75b0580fe0d31f0fb06833a81df7f2c3740dd5d7f8681e5eeda1610b1187cea"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/share-read-ownership-after.log",
+      "sha256": "0fa2e32b23f0c39a399e8d5531052ef8c183b0ea82733005c4f01e2d26d137d7"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/share-read-ownership-build.log",
+      "sha256": "04b4bfa7e55ca2b205c67924f8213debe8df5748221d46927214f03927a21c3f"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/share-read-ownership-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/share-read-ownership-typecheck.log",
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/source.png",
+      "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-read-owner-after/target.png",
+      "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c"
+    }
+  ],
+  "limitations": [
+    "Single existing Share1440 full-raster diagnostic only; no mandatory matrix/profile adoption or default-browser parity.",
+    "Header/menu starts same canonical queries before Dialog exposure; slow/held/error opens remain truthful without delaying opener. Complete catalogue and demo ready required for Invite/Enter.",
+    "Visible projection revision retained; no async exclusion, remount, paint control or extra readiness.",
+    "Passive animation chronology records observed events; do not infer complete start/end event coverage when an event is absent."
+  ]
+}

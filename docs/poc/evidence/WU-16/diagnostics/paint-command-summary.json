@@ -1,0 +1,67 @@
+{
+  "status": "DIAGNOSTIC_ONLY_UNACCEPTED",
+  "actualCommand": "node tests/visual/projects/verify.mjs --inspect-paint-commands",
+  "actualExitStatus": 1,
+  "changedPixels": 28,
+  "repeatabilityPixels": 0,
+  "serializedCommandCount": [
+    477,
+    477
+  ],
+  "serializedCommandsDeepEqual": true,
+  "serializedCommandsCanonicalSha256": [
+    "4eb60846f3645fecc38c2e26e2bab84c7c747ad5b739d639fec7abed4b197755",
+    "4eb60846f3645fecc38c2e26e2bab84c7c747ad5b739d639fec7abed4b197755"
+  ],
+  "methodCounts": {
+    "drawPaint": 1,
+    "save": 89,
+    "clipRect": 38,
+    "clipRRect": 18,
+    "drawRRect": 50,
+    "translate": 31,
+    "restore": 90,
+    "drawTextBlob": 35,
+    "concat44": 32,
+    "drawPath": 63,
+    "drawOval": 24,
+    "drawRect": 4,
+    "saveLayer": 1,
+    "drawDRRect": 1
+  },
+  "passiveAPIs": [
+    "LayerTree.makeSnapshot",
+    "LayerTree.snapshotCommandLog",
+    "LayerTree.releaseSnapshot"
+  ],
+  "inspectionTiming": "After all existing warm/capture/repeat screenshots; no DOM/style/layer control or capture delay.",
+  "fullLogs": [
+    {
+      "side": "source",
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-create-light-1440-paint-commands-source-paint-commands.json.gz",
+      "sha256": "d0e24232dd41b7b9347f4e9aff1116bfc67c28220038f9bcfb078a4887b220e4"
+    },
+    {
+      "side": "target",
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-create-light-1440-paint-commands-target-paint-commands.json.gz",
+      "sha256": "c66e1c9397da0c823556d049751f61199bb59a55612ba59ce6b1d8a4c964a12f"
+    }
+  ],
+  "images": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/paint-command-samples/overview-default-create-light-1440-paint-commands-source.png",
+      "sha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/paint-command-samples/overview-default-create-light-1440-paint-commands-target.png",
+      "sha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a"
+    }
+  ],
+  "reportSha256": "3c74d92e2845ba0b569fee55feb3bcee6d92fc4eb917c6ce6159bcdb88f5465a",
+  "implementationAssetsEqual": true,
+  "limitations": [
+    "JSON command-log serialization is equal; binary SkPicture/font resources/GPU tiles and internal unexposed paint state are not established equal.",
+    "One real modal consumer only; this does not prove all45 samples or identify a browser defect.",
+    "No Source/product/style/clock/font/layer/repaint/capture-policy intervention; no primary acceptance and no justified CSS/layout/remount fix."
+  ]
+}

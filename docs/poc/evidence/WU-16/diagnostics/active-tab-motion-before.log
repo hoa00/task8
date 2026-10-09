@@ -1,0 +1,24 @@
+Owned source server: PID 318962, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   6,
+-   4,
+    0
+  ]
+
+    at file:///workspace/task8/tests/visual/projects/tab-motion.mjs:45:12 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [ 6, 0 ],
+  expected: [ 4, 0 ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

@@ -1,0 +1,46 @@
+typecheck: exit0
+build: exit0
+lint: exit0
+test: exit0
+reference-check: exit0
+http-build: exit0
+http-bundle: exit0
+choices-regression: exit0
+overlay-regression: exit0
+overlay-lifecycle: exit0
+overlay-motion: exit0
+calendar-regression: exit0
+timeline-regression: exit1
+trusted-week-drag-duration-canonical-no-cascade-suppress-click-Drawer-reload
+trusted-threshold-zero-offset-and-signed-rounding
+trusted-Months-rounding-due-only-PATCH-omits-start
+trusted-horizontal-wheel-during-pointer-drag-includes-scroll-delta
+trusted-Escape-and-supplemental-pointercancel-cleanup-zero-writes
+actual-CAS-conflict-atomic-no-stale-preview-and-retry
+injected-error-rollback-and-held-command-no-duplicate-pointer-write
+trusted-zoom-scroll-retention-filter-refetch-group-count-Today
+Project-shared-renderer-scope-rail-bar-open-and-empty-full-form-seed
+231record-canonical-two-page-coverage-no-truncation
+actualWorkspace-URL-current-view-native-Back-Forward-completion-Undo-and-route-cleanup
+trusted-640-rail-breakpoint-and-horizontal-wheel
+trusted-641-rail-breakpoint-and-horizontal-wheel
+trusted-900-rail-breakpoint-and-horizontal-wheel
+trusted-901-rail-breakpoint-and-horizontal-wheel
+milestone-collision-merged-diamond-truncation-native-focus-tooltip
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('button', { name: 'New task', exact: true }) resolved to 2 elements:
+    1) <button type="button" data-variant="primary" class="relative inline-flex items-center justify-center gap-[6px] rounded-sm border border-solid font-medium whitespace-nowrap select-none transition-[background,border-color,color,box-shadow,transform] ease-[ease] enabled:active:[transform:scale(0.97)] source-reduce:enabled:active:transform-none [&_svg]:opacity-90 h-control-sm px-2 text-xs border-transparent bg-accent text-on-accent [box-shadow:inset_0_-1px_0_rgba(0,0,0,0.12)] source-hover:bg-[color-mix(in…>…</button> aka getByRole('toolbar').getByRole('button', { name: 'New task' })
+    2) <button type="button" data-variant="primary" class="relative inline-flex items-center justify-center gap-[6px] rounded-sm border border-solid font-medium whitespace-nowrap select-none transition-[background,border-color,color,box-shadow,transform] ease-[ease] enabled:active:[transform:scale(0.97)] source-reduce:enabled:active:transform-none [&_svg]:opacity-90 h-control-sm px-2 text-xs border-transparent bg-accent text-on-accent [box-shadow:inset_0_-1px_0_rgba(0,0,0,0.12)] source-hover:bg-[color-mix(in…>…</button> aka getByRole('button', { name: 'New task' }).nth(1)
+
+Call log:
+[2m  - waiting for getByRole('button', { name: 'New task', exact: true })[22m
+
+    at probe.scope (/workspace/task8/tests/visual/timeline/interactions.mjs:76:233)
+    at async probe (/workspace/task8/tests/visual/timeline/interactions.mjs:27:17)
+    at async file:///workspace/task8/tests/visual/timeline/interactions.mjs:76:2
+
+Node.js v24.13.0
+

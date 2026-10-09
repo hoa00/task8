@@ -322,3 +322,55 @@ Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn
   native actually asserts Weeks900/180 restoration after Months450/72 setup; it
   does not assert a subsequent Months return. No runtime/PNG/fixture change.
   See evidence/WU-15/root-source-zoom-observation.json for reviewer provenance.
+
+## WU-16 bounded source/contract decisions
+
+- API5.1/WU16-AC5 common RestrictedProjectDto takes precedence over source
+  catalogue private-field leaks. Original private p6 CustomerPortal and all seven
+  catalogue identities remain unchanged. Raw default three-layout images remain
+  separate from strict allowed-project native Website-search states. Public lead
+  is permitted; private membership/progress/count/team/start/last fields are not.
+- API §8 canonical activity newest-first takes precedence over Overview source
+  unsorted array slice. Raw p1 Overview/source first-six and target latest-six
+  IDs/order/times are retained; strict full Overview uses genuine p2 original
+  three activities and empty p7 without fixture activity reordering. Activity
+  remains combined records and preserves source live comment+activity two rows.
+- Source editing lead appends member grants; typed PATCH explicitly preserves
+  grants. Source Save from a saved tab reads `p:` filters; target explicit save
+  uses the active current filters under the saved-view contract. Personal view
+  edits do not autosave definitions. Only List/Board/Table are saveable.
+- Source Share unknown email claims an invitation was sent. Target explicitly
+  adds a local demo guest and says no invitation was sent; canonical grants and
+  API principal remain unchanged. Remove Undo is CAS-bounded local demo state.
+- Source mobile Sidebar z70 obscures first modal z61. Unit-local project overlay
+  opening closes navigation without stealing initial focus and returns to its
+  visible opener; generic overlay defaults stay unchanged.
+- Source Card `.pcard .more` matches its overflow avatar. Preserve full seven
+  memberships and genuine +4 DOM while reproducing scoped position/opacity/
+  hover/Options-front hit behavior; normal avatars retain source relative
+  position and overflow-only stacks are static. No data truncation was used.
+- Source Project nav is replaced/reset by real go/openModal. The owned Project
+  nav resets after router onRendered restoration on genuine path changes and
+  saved-dialog lifecycle; global router restoration is unchanged.
+
+These are explicit bounded WU16 choices, not acceptance of inherited raster debts
+or permission to modify locked source templates/styles/fixture/baselines. Files
+PR-07 remains pending WU22. Managed Linux evidence does not replace173Darwin or
+physical-device/user acceptance.
+
+WU-16 terminal child reads take precedence over cached data only for actual
+403/404 at existing overlay controllers. Missing active-navigation project is
+not evidence of revoked access because Bootstrap omits archived projects;
+Drawer resolves that identity with canonical getProject. This bounded correction
+prevents a reproduced route crash on project delete while preserving archived
+and transient-cache behavior. It does not broaden the authorization model.
+
+WU-16 embedded Calendar/Timeline tab motion follows the original Project taskViewBody: toolbar and view are two independently animated visual siblings. Their controlled Project compositions use display:contents; owned selectors animate the real boxes, and completion ignores hidden/non-box wrappers. Generic external renderers retain their default composition. Actual Source and native Target owner/lifecycle evidence is in WU16/source-interactions and interactions. Source/Target native app-ready navigation corrects the demonstrated capture setup mismatch, while cold-link raster evidence remains unaccepted. This decision does not assert a cause for every rounded border/SVG residue. Actual Project Select transition shorthand/ease differs from generic route easing and is owned locally; Input already matched via the earlier local override.
+
+- WU16 final runtime decision by independent root technical review: accept only
+  the named matched Source+Target Chromium145 Linux full-raster profile for the
+ 45 strict content/dialog workflows (24actual gates0,45pairs0), after causal real
+ consumer partial-raster evidence and source-faithful Share read-owner repair.
+  Keep default31/45, oldfull44/45 and every inherited/new raster debt unaccepted
+ for WU29; do not modify Source/baseline/tolerance/masks or claim Darwin/fullshell/
+ physical/userapproval. Files body remains WU22. See WU16 qualified review JSON.

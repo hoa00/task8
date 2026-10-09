@@ -1,0 +1,28 @@
+typecheck: exit0
+build: exit0
+lint: exit0
+test: exit0
+reference-check: exit0
+http-build: exit0
+http-bundle: exit0
+choices-regression: exit0
+overlay-regression: exit0
+overlay-lifecycle: exit0
+overlay-motion: exit0
+interactions: exit0
+source-interactions: exit1
+Owned source server: PID 278982, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.content').getByRole('button', { name: 'Project status', exact: true }).nth(1)[22m
+
+    at /workspace/task8/tests/visual/projects/source-interactions.mjs:15:3978 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0
+

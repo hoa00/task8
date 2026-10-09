@@ -1,0 +1,245 @@
+{
+  "status": "DIAGNOSTIC_ONLY_UNACCEPTED",
+  "actualCommand": "node tests/visual/projects/verify.mjs --inspect-partial-raster",
+  "actualExitStatus": 1,
+  "report": {
+    "path": "docs/poc/evidence/WU-16/partial-raster-diagnostic.json",
+    "sha256": "1e31d3fb728e3a7d333a434d6ebbeb44da990e6eae24b1e296cee8ab7ba3a863"
+  },
+  "runtime": {
+    "node": "v24.13.0",
+    "os": "linux",
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6"
+  },
+  "profiles": [
+    {
+      "browserProfile": {
+        "name": "default",
+        "requestedLaunchArguments": [],
+        "actualLaunchArguments": [
+          "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+          "--disable-field-trial-config",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--disable-backgrounding-occluded-windows",
+          "--disable-back-forward-cache",
+          "--disable-breakpad",
+          "--disable-client-side-phishing-detection",
+          "--disable-component-extensions-with-background-pages",
+          "--disable-component-update",
+          "--no-default-browser-check",
+          "--disable-default-apps",
+          "--disable-dev-shm-usage",
+          "--disable-extensions",
+          "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+          "--enable-features=CDPScreenshotNewSurface",
+          "--allow-pre-commit-input",
+          "--disable-hang-monitor",
+          "--disable-ipc-flooding-protection",
+          "--disable-popup-blocking",
+          "--disable-prompt-on-repost",
+          "--disable-renderer-backgrounding",
+          "--force-color-profile=srgb",
+          "--metrics-recording-only",
+          "--no-first-run",
+          "--password-store=basic",
+          "--use-mock-keychain",
+          "--no-service-autorun",
+          "--export-tagged-pdf",
+          "--disable-search-engine-choice-screen",
+          "--unsafely-disable-devtools-self-xss-warnings",
+          "--edge-skip-compat-layer-relaunch",
+          "--enable-automation",
+          "--disable-infobars",
+          "--disable-search-engine-choice-screen",
+          "--disable-sync",
+          "--enable-unsafe-swiftshader",
+          "--headless",
+          "--hide-scrollbars",
+          "--mute-audio",
+          "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+          "--no-sandbox",
+          "--user-data-dir=/tmp/playwright_chromiumdev_profile-hBvl6i",
+          "--remote-debugging-pipe",
+          "--no-startup-window",
+          "--use-gl=angle",
+          "--use-angle=swiftshader-webgl",
+          "--ozone-platform=headless",
+          "--allow-pre-commit-input"
+        ],
+        "appliesTo": "Both Source and Target in this isolated profile",
+        "diagnosticOnly": true
+      },
+      "sourceTargetChangedPixels": 28,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730",
+      "targetSha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a",
+      "clips": [
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 800
+        },
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 800
+        }
+      ],
+      "pictureCommandCount": [
+        477,
+        477
+      ],
+      "replaySha256": [
+        "632dfca52b7a9878eba913af9d10219a1d57b7cf2dee2618565614c4a8528715",
+        "632dfca52b7a9878eba913af9d10219a1d57b7cf2dee2618565614c4a8528715"
+      ]
+    },
+    {
+      "browserProfile": {
+        "name": "disable-partial-raster",
+        "requestedLaunchArguments": [
+          "--disable-partial-raster"
+        ],
+        "actualLaunchArguments": [
+          "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+          "--disable-field-trial-config",
+          "--disable-background-networking",
+          "--disable-background-timer-throttling",
+          "--disable-backgrounding-occluded-windows",
+          "--disable-back-forward-cache",
+          "--disable-breakpad",
+          "--disable-client-side-phishing-detection",
+          "--disable-component-extensions-with-background-pages",
+          "--disable-component-update",
+          "--no-default-browser-check",
+          "--disable-default-apps",
+          "--disable-dev-shm-usage",
+          "--disable-extensions",
+          "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+          "--enable-features=CDPScreenshotNewSurface",
+          "--allow-pre-commit-input",
+          "--disable-hang-monitor",
+          "--disable-ipc-flooding-protection",
+          "--disable-popup-blocking",
+          "--disable-prompt-on-repost",
+          "--disable-renderer-backgrounding",
+          "--force-color-profile=srgb",
+          "--metrics-recording-only",
+          "--no-first-run",
+          "--password-store=basic",
+          "--use-mock-keychain",
+          "--no-service-autorun",
+          "--export-tagged-pdf",
+          "--disable-search-engine-choice-screen",
+          "--unsafely-disable-devtools-self-xss-warnings",
+          "--edge-skip-compat-layer-relaunch",
+          "--enable-automation",
+          "--disable-infobars",
+          "--disable-search-engine-choice-screen",
+          "--disable-sync",
+          "--enable-unsafe-swiftshader",
+          "--headless",
+          "--hide-scrollbars",
+          "--mute-audio",
+          "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+          "--no-sandbox",
+          "--disable-partial-raster",
+          "--user-data-dir=/tmp/playwright_chromiumdev_profile-UyIdkU",
+          "--remote-debugging-pipe",
+          "--no-startup-window",
+          "--use-gl=angle",
+          "--use-angle=swiftshader-webgl",
+          "--ozone-platform=headless",
+          "--allow-pre-commit-input"
+        ],
+        "appliesTo": "Both Source and Target in this isolated profile",
+        "diagnosticOnly": true
+      },
+      "sourceTargetChangedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "bf6f1dec7717a49cb8294719c0a2348e5ab576d9dce90b3f4f46e8bcec88bea6",
+      "targetSha256": "bf6f1dec7717a49cb8294719c0a2348e5ab576d9dce90b3f4f46e8bcec88bea6",
+      "clips": [
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 800
+        },
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 800
+        }
+      ],
+      "pictureCommandCount": [
+        477,
+        477
+      ],
+      "replaySha256": [
+        "632dfca52b7a9878eba913af9d10219a1d57b7cf2dee2618565614c4a8528715",
+        "632dfca52b7a9878eba913af9d10219a1d57b7cf2dee2618565614c4a8528715"
+      ]
+    }
+  ],
+  "crossProfileChangedPixels": {
+    "source": 13,
+    "target": 41
+  },
+  "allFourPictureCommandsDeepEqual": true,
+  "pictureCommandCount": 477,
+  "allFourReplayBytesEqual": true,
+  "cssAndGeometryDifferences": {
+    "ownedControls": [],
+    "paintOwnership": [],
+    "clips": [],
+    "geometry": [],
+    "servedAssets": []
+  },
+  "implementationAssetsUnchanged": true,
+  "immutableUnchanged": true,
+  "images": [
+    {
+      "profile": "default",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-16/diagnostics/partial-raster-samples/overview-default-create-light-1440-partial-raster-default-source.png",
+      "sha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730"
+    },
+    {
+      "profile": "default",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-16/diagnostics/partial-raster-samples/overview-default-create-light-1440-partial-raster-default-target.png",
+      "sha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a"
+    },
+    {
+      "profile": "disable-partial-raster",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-16/diagnostics/partial-raster-samples/overview-default-create-light-1440-partial-raster-disable-partial-raster-source.png",
+      "sha256": "bf6f1dec7717a49cb8294719c0a2348e5ab576d9dce90b3f4f46e8bcec88bea6"
+    },
+    {
+      "profile": "disable-partial-raster",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-16/diagnostics/partial-raster-samples/overview-default-create-light-1440-partial-raster-disable-partial-raster-target.png",
+      "sha256": "bf6f1dec7717a49cb8294719c0a2348e5ab576d9dce90b3f4f46e8bcec88bea6"
+    }
+  ],
+  "limitations": [
+    "Single matched real Create1440 diagnostic. Browser flag changes BOTH Source and Target live raster; original primary default-browser gates remain failed.",
+    "No source/template/fixture/font bytes/clock/styles/actions/ready/clip or product layer controls changed.",
+    "Flag presence is verified through effective Browser.getBrowserCommandLine; underlying internal partial-raster damage/cache details remain unexposed.",
+    "Zero under this diagnostic profile is not primary acceptance or permission to change default capture/browser policy."
+  ]
+}

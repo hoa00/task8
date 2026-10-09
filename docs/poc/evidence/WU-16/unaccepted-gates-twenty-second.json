@@ -1,0 +1,2584 @@
+{
+  "status": "UNPROVED_UNACCEPTED",
+  "report": "docs/poc/evidence/WU-16/diagnostics/visual-verification-gates-twenty-second.json",
+  "reportSha256": "bc5d79f4777a60e623766bcaf39a336140cbae53d61ae749f1a79070f3f0e9b9",
+  "commands": "docs/poc/evidence/WU-16/diagnostics/commands-gates-twenty-second.json",
+  "commandsSha256": "e5f9f4122bd7cacb5b3adbc0249bbc65bab4d7437291bb1d288acb4cfd3e2871",
+  "actualSuccessfulCommandCount": 20,
+  "actualFailedVisualCommand": {
+    "name": "visual",
+    "command": "node tests/visual/projects/verify.mjs",
+    "exitStatus": 1,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/visual.log"
+  },
+  "finalGatesNotRun": [
+    22,
+    23,
+    24
+  ],
+  "strictZeroCount": 31,
+  "strictPairCount": 45,
+  "sourceChangedVsGates21": [],
+  "samples": [
+    {
+      "id": "catalogue-grid-default-light-390",
+      "sample": {
+        "page": "catalogue",
+        "mode": "grid",
+        "width": 390,
+        "q": "Website"
+      },
+      "changedPixels": 11,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page wide",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 671.640625,
+              "top": 50,
+              "right": 390,
+              "bottom": 721.640625,
+              "left": 0
+            }
+          },
+          {
+            "class": "ph",
+            "rect": {
+              "x": 16,
+              "y": 70,
+              "width": 358,
+              "height": 88.359375,
+              "top": 70,
+              "right": 374,
+              "bottom": 158.359375,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 256.359375,
+              "width": 358,
+              "height": 178.640625,
+              "top": 256.359375,
+              "right": 374,
+              "bottom": 435,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 447,
+              "width": 358,
+              "height": 178.640625,
+              "top": 447,
+              "right": 374,
+              "bottom": 625.640625,
+              "left": 16
+            }
+          }
+        ],
+        [
+          {
+            "class": "project-grid",
+            "rect": {
+              "x": 16,
+              "y": 256.359375,
+              "width": 358,
+              "height": 369.28125,
+              "top": 256.359375,
+              "right": 374,
+              "bottom": 625.640625,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 256.359375,
+              "width": 358,
+              "height": 178.640625,
+              "top": 256.359375,
+              "right": 374,
+              "bottom": 435,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 447,
+              "width": 358,
+              "height": 178.640625,
+              "top": 447,
+              "right": 374,
+              "bottom": 625.640625,
+              "left": 16
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Open navigation on both",
+          "native Sidebar Projects",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": [
+        "native layout selection",
+        "native Website search if present",
+        "normal blur/motion settlement"
+      ],
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/catalogue-grid-default-light-390-source.png",
+          "sha256": "e1d200b1b867569865929dba3612855a5b8b4e636a93e521860da99756b6aa70"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/catalogue-grid-default-light-390-target.png",
+          "sha256": "771d5adeeec058e9575b81e8ccc1376fc4283cc8440faa07a70a47bcf98d315f"
+        }
+      ]
+    },
+    {
+      "id": "catalogue-list-default-light-1440",
+      "sample": {
+        "page": "catalogue",
+        "mode": "list",
+        "width": 1440,
+        "q": "Website"
+      },
+      "changedPixels": 7,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page wide",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 321.15625,
+              "top": 46,
+              "right": 1440,
+              "bottom": 367.15625,
+              "left": 252
+            }
+          },
+          {
+            "class": "ph",
+            "rect": {
+              "x": 276,
+              "y": 74,
+              "width": 1140,
+              "height": 51.15625,
+              "top": 74,
+              "right": 1416,
+              "bottom": 125.15625,
+              "left": 276
+            }
+          }
+        ],
+        []
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Sidebar Projects",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": [
+        "native layout selection",
+        "native Website search if present",
+        "normal blur/motion settlement"
+      ],
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/catalogue-list-default-light-1440-source.png",
+          "sha256": "e6c1866190bd01d94f6993179b4394acad88ac2effbbb2ecceddbf1485536b58"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/catalogue-list-default-light-1440-target.png",
+          "sha256": "87ec4976285ecb28ae5aedd2193c4acc6d0b5b0ff10b70f7713a48c20801ecba"
+        }
+      ]
+    },
+    {
+      "id": "catalogue-table-default-light-1440",
+      "sample": {
+        "page": "catalogue",
+        "mode": "table",
+        "width": 1440,
+        "q": "Website"
+      },
+      "changedPixels": 7,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page wide",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 347.546875,
+              "top": 46,
+              "right": 1440,
+              "bottom": 393.546875,
+              "left": 252
+            }
+          },
+          {
+            "class": "ph",
+            "rect": {
+              "x": 276,
+              "y": 74,
+              "width": 1140,
+              "height": 51.15625,
+              "top": 74,
+              "right": 1416,
+              "bottom": 125.15625,
+              "left": 276
+            }
+          }
+        ],
+        []
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Sidebar Projects",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": [
+        "native layout selection",
+        "native Website search if present",
+        "normal blur/motion settlement"
+      ],
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/catalogue-table-default-light-1440-source.png",
+          "sha256": "c1dc8a3ae221055d99be4dbbf1f04ffdd83cab767523ce4802f3a3d1764cf9e6"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/catalogue-table-default-light-1440-target.png",
+          "sha256": "9e243566d401f5a8dd5d14cf2a3f91d2127c6085b9a360b0a517f5c26b11a5dd"
+        }
+      ]
+    },
+    {
+      "id": "board-default-default-light-390",
+      "sample": {
+        "page": "board",
+        "width": 390
+      },
+      "changedPixels": 65,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 175,
+              "top": 50,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "pbody",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 0,
+              "y": 188,
+              "width": 390,
+              "height": 37,
+              "top": 188,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Open navigation on both",
+          "native Sidebar project (Board)",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": null,
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/board-default-default-light-390-source.png",
+          "sha256": "1c19aa10e7d7c56f288b78ed906d5ff0d0b19defb67c584964fbf23fcc9134a4"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/board-default-default-light-390-target.png",
+          "sha256": "926edfd0e872e939493a8f4d6f94f200f7e14626f1a00a707212440f60245f6f"
+        }
+      ]
+    },
+    {
+      "id": "list-default-default-light-390",
+      "sample": {
+        "page": "list",
+        "width": 390
+      },
+      "changedPixels": 46,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 175,
+              "top": 50,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "pbody fx-tab",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 0,
+              "y": 188,
+              "width": 390,
+              "height": 37,
+              "top": 188,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Open navigation on both",
+          "native Sidebar project (Board)",
+          "native Header list",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": null,
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/list-default-default-light-390-source.png",
+          "sha256": "656cbc34dd8897620aa31c4e5810d2115c2f8270feb46470800146e8a5652103"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/list-default-default-light-390-target.png",
+          "sha256": "ef964950b50e8ab8574b22e9e33dfa4f59d5d84a4b121e22496961d6daed3250"
+        }
+      ]
+    },
+    {
+      "id": "table-default-default-light-1440",
+      "sample": {
+        "page": "table",
+        "width": 1440
+      },
+      "changedPixels": 13,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 954,
+              "top": 46,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 105,
+              "top": 46,
+              "right": 1440,
+              "bottom": 151,
+              "left": 252
+            }
+          },
+          {
+            "class": "pbody fx-tab",
+            "rect": {
+              "x": 252,
+              "y": 151,
+              "width": 1188,
+              "height": 849,
+              "top": 151,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 954,
+              "top": 46,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 252,
+              "y": 114,
+              "width": 1188,
+              "height": 37,
+              "top": 114,
+              "right": 1440,
+              "bottom": 151,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 252,
+              "y": 151,
+              "width": 1188,
+              "height": 849,
+              "top": 151,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Sidebar project (Board)",
+          "native Header table",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": null,
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/table-default-default-light-1440-source.png",
+          "sha256": "a358b0adb87771751ecde7ed9780c3cf1bd68f3e3254a27035d7fd6d7e0ec05f"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/table-default-default-light-1440-target.png",
+          "sha256": "e5fddb537bce38a4ec2755837c7ebd0cec809959d1199fd01f7aa33bc4e3c79f"
+        }
+      ]
+    },
+    {
+      "id": "timeline-default-default-light-390",
+      "sample": {
+        "page": "timeline",
+        "width": 390
+      },
+      "changedPixels": 4,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 175,
+              "top": 50,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "pbody fx-tab",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 0,
+              "y": 188,
+              "width": 390,
+              "height": 37,
+              "top": 188,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Open navigation on both",
+          "native Sidebar project (Board)",
+          "native Header timeline",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": null,
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/timeline-default-default-light-390-source.png",
+          "sha256": "c669f1474fbfdf4de859407a7f8386f1e553cc5df14e9b72fd0838ef6f695b11"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/timeline-default-default-light-390-target.png",
+          "sha256": "911bb46ccf977c88973fbed244f058932cd696dae2a101a749aef7831d17e2f0"
+        }
+      ]
+    },
+    {
+      "id": "overview-default-create-light-1440",
+      "sample": {
+        "page": "overview",
+        "modal": "create",
+        "width": 1440,
+        "configured": true
+      },
+      "changedPixels": 28,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 800
+        },
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 800
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page wide",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 775.078125,
+              "top": 46,
+              "right": 1440,
+              "bottom": 821.078125,
+              "left": 252
+            }
+          },
+          {
+            "class": "ph",
+            "rect": {
+              "x": 276,
+              "y": 74,
+              "width": 1140,
+              "height": 51.15625,
+              "top": 74,
+              "right": 1416,
+              "bottom": 125.15625,
+              "left": 276
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 276,
+              "y": 189.15625,
+              "width": 372,
+              "height": 178.640625,
+              "top": 189.15625,
+              "right": 648,
+              "bottom": 367.796875,
+              "left": 276
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 660,
+              "y": 189.15625,
+              "width": 372,
+              "height": 178.640625,
+              "top": 189.15625,
+              "right": 1032,
+              "bottom": 367.796875,
+              "left": 660
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 1044,
+              "y": 189.15625,
+              "width": 372,
+              "height": 178.640625,
+              "top": 189.15625,
+              "right": 1416,
+              "bottom": 367.796875,
+              "left": 1044
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 276,
+              "y": 379.796875,
+              "width": 372,
+              "height": 178.640625,
+              "top": 379.796875,
+              "right": 648,
+              "bottom": 558.4375,
+              "left": 276
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 660,
+              "y": 379.796875,
+              "width": 372,
+              "height": 178.640625,
+              "top": 379.796875,
+              "right": 1032,
+              "bottom": 558.4375,
+              "left": 660
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 1044,
+              "y": 379.796875,
+              "width": 372,
+              "height": 178.640625,
+              "top": 379.796875,
+              "right": 1416,
+              "bottom": 558.4375,
+              "left": 1044
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 276,
+              "y": 570.4375,
+              "width": 372,
+              "height": 178.640625,
+              "top": 570.4375,
+              "right": 648,
+              "bottom": 749.078125,
+              "left": 276
+            }
+          },
+          {
+            "class": "modal ",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 800,
+              "top": 100,
+              "right": 1000,
+              "bottom": 900,
+              "left": 440
+            }
+          }
+        ],
+        [
+          {
+            "class": "project-grid",
+            "rect": {
+              "x": 276,
+              "y": 189.15625,
+              "width": 1140,
+              "height": 557.3125,
+              "top": 189.15625,
+              "right": 1416,
+              "bottom": 746.46875,
+              "left": 276
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 276,
+              "y": 189.15625,
+              "width": 372,
+              "height": 178.640625,
+              "top": 189.15625,
+              "right": 648,
+              "bottom": 367.796875,
+              "left": 276
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 660,
+              "y": 189.15625,
+              "width": 372,
+              "height": 178.640625,
+              "top": 189.15625,
+              "right": 1032,
+              "bottom": 367.796875,
+              "left": 660
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 1044,
+              "y": 189.15625,
+              "width": 372,
+              "height": 178.640625,
+              "top": 189.15625,
+              "right": 1416,
+              "bottom": 367.796875,
+              "left": 1044
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 276,
+              "y": 379.796875,
+              "width": 372,
+              "height": 178.640625,
+              "top": 379.796875,
+              "right": 648,
+              "bottom": 558.4375,
+              "left": 276
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 660,
+              "y": 379.796875,
+              "width": 372,
+              "height": 178.640625,
+              "top": 379.796875,
+              "right": 1032,
+              "bottom": 558.4375,
+              "left": 660
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 1044,
+              "y": 379.796875,
+              "width": 372,
+              "height": 178.640625,
+              "top": 379.796875,
+              "right": 1416,
+              "bottom": 558.4375,
+              "left": 1044
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 276,
+              "y": 570.4375,
+              "width": 372,
+              "height": 176.03125,
+              "top": 570.4375,
+              "right": 648,
+              "bottom": 746.46875,
+              "left": 276
+            }
+          },
+          {
+            "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] ",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 800,
+              "top": 100,
+              "right": 1000,
+              "bottom": 900,
+              "left": 440
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Sidebar Projects",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": [
+        "native modal opener",
+        "native Website template",
+        "native icon selection",
+        "native color selection",
+        "normal blur/motion settlement"
+      ],
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-create-light-1440-source.png",
+          "sha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-create-light-1440-target.png",
+          "sha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a"
+        }
+      ]
+    },
+    {
+      "id": "overview-default-create-light-390",
+      "sample": {
+        "page": "overview",
+        "modal": "create",
+        "width": 390,
+        "configured": true
+      },
+      "changedPixels": 43,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 67,
+          "width": 390,
+          "height": 777
+        },
+        {
+          "x": 0,
+          "y": 67,
+          "width": 390,
+          "height": 777
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page wide",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 1624.84375,
+              "top": 50,
+              "right": 390,
+              "bottom": 1674.84375,
+              "left": 0
+            }
+          },
+          {
+            "class": "ph",
+            "rect": {
+              "x": 16,
+              "y": 70,
+              "width": 358,
+              "height": 88.359375,
+              "top": 70,
+              "right": 374,
+              "bottom": 158.359375,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 256.359375,
+              "width": 358,
+              "height": 178.640625,
+              "top": 256.359375,
+              "right": 374,
+              "bottom": 435,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 447,
+              "width": 358,
+              "height": 178.640625,
+              "top": 447,
+              "right": 374,
+              "bottom": 625.640625,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 637.640625,
+              "width": 358,
+              "height": 178.640625,
+              "top": 637.640625,
+              "right": 374,
+              "bottom": 816.28125,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 828.28125,
+              "width": 358,
+              "height": 178.640625,
+              "top": 828.28125,
+              "right": 374,
+              "bottom": 1006.921875,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 1018.921875,
+              "width": 358,
+              "height": 178.640625,
+              "top": 1018.921875,
+              "right": 374,
+              "bottom": 1197.5625,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 1209.5625,
+              "width": 358,
+              "height": 178.640625,
+              "top": 1209.5625,
+              "right": 374,
+              "bottom": 1388.203125,
+              "left": 16
+            }
+          },
+          {
+            "class": "pcard",
+            "rect": {
+              "x": 16,
+              "y": 1400.203125,
+              "width": 358,
+              "height": 178.640625,
+              "top": 1400.203125,
+              "right": 374,
+              "bottom": 1578.84375,
+              "left": 16
+            }
+          },
+          {
+            "class": "modal ",
+            "rect": {
+              "x": 0,
+              "y": 67.53125,
+              "width": 390,
+              "height": 776.46875,
+              "top": 67.53125,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ],
+        [
+          {
+            "class": "project-grid",
+            "rect": {
+              "x": 16,
+              "y": 256.359375,
+              "width": 358,
+              "height": 1319.875,
+              "top": 256.359375,
+              "right": 374,
+              "bottom": 1576.234375,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 256.359375,
+              "width": 358,
+              "height": 178.640625,
+              "top": 256.359375,
+              "right": 374,
+              "bottom": 435,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 447,
+              "width": 358,
+              "height": 178.640625,
+              "top": 447,
+              "right": 374,
+              "bottom": 625.640625,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 637.640625,
+              "width": 358,
+              "height": 178.640625,
+              "top": 637.640625,
+              "right": 374,
+              "bottom": 816.28125,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 828.28125,
+              "width": 358,
+              "height": 178.640625,
+              "top": 828.28125,
+              "right": 374,
+              "bottom": 1006.921875,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 1018.921875,
+              "width": 358,
+              "height": 178.640625,
+              "top": 1018.921875,
+              "right": 374,
+              "bottom": 1197.5625,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 1209.5625,
+              "width": 358,
+              "height": 178.640625,
+              "top": 1209.5625,
+              "right": 374,
+              "bottom": 1388.203125,
+              "left": 16
+            }
+          },
+          {
+            "class": "group/project relative flex cursor-pointer flex-col gap-3 rounded-lg border border-solid border-border bg-surface p-[14px] text-left transition-[border-color,box-shadow,transform] [transition-duration:var(--dur),.2s,.2s] [transition-timing-function:ease,var(--ease),var(--ease)] source-hover:[transform:translateY(-2px)] source-reduce:source-hover:transform-none source-hover:border-border-strong source-hover:[box-shadow:0_4px_12px_-6px_rgba(0,0,0,.1)]",
+            "rect": {
+              "x": 16,
+              "y": 1400.203125,
+              "width": 358,
+              "height": 176.03125,
+              "top": 1400.203125,
+              "right": 374,
+              "bottom": 1576.234375,
+              "left": 16
+            }
+          },
+          {
+            "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] ",
+            "rect": {
+              "x": 0,
+              "y": 67.53125,
+              "width": 390,
+              "height": 776.46875,
+              "top": 67.53125,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Open navigation on both",
+          "native Sidebar Projects",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": [
+        "native modal opener",
+        "native Website template",
+        "native icon selection",
+        "native color selection",
+        "normal blur/motion settlement"
+      ],
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-create-light-390-source.png",
+          "sha256": "64649abf050e7cdca2b1baa355e25dcfdb96aad44176eef99d214e7bad395631"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-create-light-390-target.png",
+          "sha256": "98868f203ef554a3b55c9cdac3eeb5f01c2c08c97f9e684ec28d0f3f76a048b6"
+        }
+      ]
+    },
+    {
+      "id": "overview-default-edit-light-1440",
+      "sample": {
+        "page": "overview",
+        "modal": "edit",
+        "width": 1440,
+        "configured": true
+      },
+      "changedPixels": 5,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 466
+        },
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 466
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 954,
+              "top": 46,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 105,
+              "top": 46,
+              "right": 1440,
+              "bottom": 151,
+              "left": 252
+            }
+          },
+          {
+            "class": "pbody",
+            "rect": {
+              "x": 252,
+              "y": 151,
+              "width": 1188,
+              "height": 849,
+              "top": 151,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "page",
+            "rect": {
+              "x": 266,
+              "y": 151,
+              "width": 1160,
+              "height": 926.375,
+              "top": 151,
+              "right": 1426,
+              "bottom": 1077.375,
+              "left": 266
+            }
+          },
+          {
+            "class": "modal ",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 465.375,
+              "top": 100,
+              "right": 1000,
+              "bottom": 565.375,
+              "left": 440
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 954,
+              "top": 46,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 252,
+              "y": 114,
+              "width": 1188,
+              "height": 37,
+              "top": 114,
+              "right": 1440,
+              "bottom": 151,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 252,
+              "y": 151,
+              "width": 1188,
+              "height": 849,
+              "top": 151,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-overview-grid",
+            "rect": {
+              "x": 290,
+              "y": 173,
+              "width": 1112,
+              "height": 832.375,
+              "top": 173,
+              "right": 1402,
+              "bottom": 1005.375,
+              "left": 290
+            }
+          },
+          {
+            "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] ",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 465.375,
+              "top": 100,
+              "right": 1000,
+              "bottom": 565.375,
+              "left": 440
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Sidebar project (Board)",
+          "native Header overview",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": [
+        "native modal opener",
+        "native icon selection",
+        "native color selection",
+        "normal blur/motion settlement"
+      ],
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-edit-light-1440-source.png",
+          "sha256": "f348a117ffce1882eeba84c5514e347feb2b3cde8bb31c17f319b85bf54d7f96"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-edit-light-1440-target.png",
+          "sha256": "f2bf2bad8bce8d835e0ddda8fa00b06b8dab73d78b92487afaaaf6247ad44cdc"
+        }
+      ]
+    },
+    {
+      "id": "overview-default-edit-light-390",
+      "sample": {
+        "page": "overview",
+        "modal": "edit",
+        "width": 390,
+        "configured": true
+      },
+      "changedPixels": 5,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 220,
+          "width": 390,
+          "height": 624
+        },
+        {
+          "x": 0,
+          "y": 220,
+          "width": 390,
+          "height": 624
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 175,
+              "top": 50,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "pbody",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "page",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 1604.109375,
+              "top": 225,
+              "right": 390,
+              "bottom": 1829.109375,
+              "left": 0
+            }
+          },
+          {
+            "class": "modal ",
+            "rect": {
+              "x": 0,
+              "y": 220.375,
+              "width": 390,
+              "height": 623.625,
+              "top": 220.375,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 0,
+              "y": 188,
+              "width": 390,
+              "height": 37,
+              "top": 188,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-overview-grid",
+            "rect": {
+              "x": 16,
+              "y": 247,
+              "width": 358,
+              "height": 1486.109375,
+              "top": 247,
+              "right": 374,
+              "bottom": 1733.109375,
+              "left": 16
+            }
+          },
+          {
+            "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] ",
+            "rect": {
+              "x": 0,
+              "y": 220.375,
+              "width": 390,
+              "height": 623.625,
+              "top": 220.375,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Open navigation on both",
+          "native Sidebar project (Board)",
+          "native Header overview",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": [
+        "native modal opener",
+        "native icon selection",
+        "native color selection",
+        "normal blur/motion settlement"
+      ],
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-edit-light-390-source.png",
+          "sha256": "ea0f47375cbdb98d47de727470744c53f500255770e4bf62150667c29438b61d"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-edit-light-390-target.png",
+          "sha256": "9d5d363948ffe0248f3197a3887a7814850524fd1b8503b68af8b71bf63091a3"
+        }
+      ]
+    },
+    {
+      "id": "overview-default-share-light-1440",
+      "sample": {
+        "page": "overview",
+        "modal": "share",
+        "width": 1440
+      },
+      "changedPixels": 2,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 591
+        },
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 591
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 954,
+              "top": 46,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 105,
+              "top": 46,
+              "right": 1440,
+              "bottom": 151,
+              "left": 252
+            }
+          },
+          {
+            "class": "pbody",
+            "rect": {
+              "x": 252,
+              "y": 151,
+              "width": 1188,
+              "height": 849,
+              "top": 151,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "page",
+            "rect": {
+              "x": 266,
+              "y": 151,
+              "width": 1160,
+              "height": 926.375,
+              "top": 151,
+              "right": 1426,
+              "bottom": 1077.375,
+              "left": 266
+            }
+          },
+          {
+            "class": "modal enter ",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 590.546875,
+              "top": 100,
+              "right": 1000,
+              "bottom": 690.546875,
+              "left": 440
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 954,
+              "top": 46,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 252,
+              "y": 114,
+              "width": 1188,
+              "height": 37,
+              "top": 114,
+              "right": 1440,
+              "bottom": 151,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 252,
+              "y": 151,
+              "width": 1188,
+              "height": 849,
+              "top": 151,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-overview-grid",
+            "rect": {
+              "x": 290,
+              "y": 173,
+              "width": 1112,
+              "height": 832.375,
+              "top": 173,
+              "right": 1402,
+              "bottom": 1005.375,
+              "left": 290
+            }
+          },
+          {
+            "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] ",
+            "rect": {
+              "x": 440,
+              "y": 100,
+              "width": 560,
+              "height": 590.546875,
+              "top": 100,
+              "right": 1000,
+              "bottom": 690.546875,
+              "left": 440
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Sidebar project (Board)",
+          "native Header overview",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": null,
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-share-light-1440-source.png",
+          "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-share-light-1440-target.png",
+          "sha256": "22251d6540c4881d21e271aa27b7cefcf8888721b105abce4d50501626eeb3e6"
+        }
+      ]
+    },
+    {
+      "id": "overview-default-save-light-1440",
+      "sample": {
+        "page": "overview",
+        "modal": "save",
+        "width": 1440
+      },
+      "changedPixels": 13,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 510,
+          "y": 100,
+          "width": 420,
+          "height": 333
+        },
+        {
+          "x": 510,
+          "y": 100,
+          "width": 420,
+          "height": 333
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 954,
+              "top": 46,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 105,
+              "top": 46,
+              "right": 1440,
+              "bottom": 151,
+              "left": 252
+            }
+          },
+          {
+            "class": "pbody",
+            "rect": {
+              "x": 252,
+              "y": 151,
+              "width": 1188,
+              "height": 849,
+              "top": 151,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "page",
+            "rect": {
+              "x": 266,
+              "y": 151,
+              "width": 1160,
+              "height": 926.375,
+              "top": 151,
+              "right": 1426,
+              "bottom": 1077.375,
+              "left": 266
+            }
+          },
+          {
+            "class": "modal enter sm",
+            "rect": {
+              "x": 510,
+              "y": 100,
+              "width": 420,
+              "height": 332.640625,
+              "top": 100,
+              "right": 930,
+              "bottom": 432.640625,
+              "left": 510
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 252,
+              "y": 46,
+              "width": 1188,
+              "height": 954,
+              "top": 46,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 252,
+              "y": 114,
+              "width": 1188,
+              "height": 37,
+              "top": 114,
+              "right": 1440,
+              "bottom": 151,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 252,
+              "y": 151,
+              "width": 1188,
+              "height": 849,
+              "top": 151,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 252
+            }
+          },
+          {
+            "class": "project-overview-grid",
+            "rect": {
+              "x": 290,
+              "y": 173,
+              "width": 1112,
+              "height": 832.375,
+              "top": 173,
+              "right": 1402,
+              "bottom": 1005.375,
+              "left": 290
+            }
+          },
+          {
+            "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[420px] ",
+            "rect": {
+              "x": 510,
+              "y": 100,
+              "width": 420,
+              "height": 332.640625,
+              "top": 100,
+              "right": 930,
+              "bottom": 432.640625,
+              "left": 510
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Sidebar project (Board)",
+          "native Header overview",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": null,
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-save-light-1440-source.png",
+          "sha256": "04f6f4d2adc80ae30a9dde39ff6742d7f7056444feebecaff8e5aa3918f34f86"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-save-light-1440-target.png",
+          "sha256": "e9ce0a211dc15e074bc34f61a194f97ad77c629fbcd8c11a1636d694c715fad9"
+        }
+      ]
+    },
+    {
+      "id": "overview-default-save-light-390",
+      "sample": {
+        "page": "overview",
+        "modal": "save",
+        "width": 390
+      },
+      "changedPixels": 11,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 511,
+          "width": 390,
+          "height": 333
+        },
+        {
+          "x": 0,
+          "y": 511,
+          "width": 390,
+          "height": 333
+        }
+      ],
+      "geometry": [
+        [
+          {
+            "class": "page flush",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "proj-h",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 175,
+              "top": 50,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "pbody",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "page",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 1604.109375,
+              "top": 225,
+              "right": 390,
+              "bottom": 1829.109375,
+              "left": 0
+            }
+          },
+          {
+            "class": "modal enter sm",
+            "rect": {
+              "x": 0,
+              "y": 511.359375,
+              "width": 390,
+              "height": 332.640625,
+              "top": 511.359375,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ],
+        [
+          {
+            "class": "flex h-full max-w-none flex-col p-0",
+            "rect": {
+              "x": 0,
+              "y": 50,
+              "width": 390,
+              "height": 794,
+              "top": 50,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-header-tabs flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            "rect": {
+              "x": 0,
+              "y": 188,
+              "width": 390,
+              "height": 37,
+              "top": 188,
+              "right": 390,
+              "bottom": 225,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-body flex min-h-0 flex-1 flex-col",
+            "rect": {
+              "x": 0,
+              "y": 225,
+              "width": 390,
+              "height": 619,
+              "top": 225,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "class": "project-overview-grid",
+            "rect": {
+              "x": 16,
+              "y": 247,
+              "width": 358,
+              "height": 1486.109375,
+              "top": 247,
+              "right": 374,
+              "bottom": 1733.109375,
+              "left": 16
+            }
+          },
+          {
+            "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[420px] ",
+            "rect": {
+              "x": 0,
+              "y": 511.359375,
+              "width": 390,
+              "height": 332.640625,
+              "top": 511.359375,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          }
+        ]
+      ],
+      "consumerNavigation": {
+        "policy": "symmetric-app-ready-native-navigation",
+        "startup": [
+          {
+            "path": "/",
+            "fontStatus": "loaded",
+            "heading": "Good morning, Tanjim"
+          },
+          {
+            "path": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+            "fontStatus": "loaded",
+            "heading": "Home"
+          }
+        ],
+        "actions": [
+          "Home startup on both applications",
+          "existing font/finite-motion readiness on both",
+          "native Open navigation on both",
+          "native Sidebar project (Board)",
+          "native Header overview",
+          "actual canonical consumer body readiness before subsequent actions"
+        ],
+        "coldDeepLink": "Separate native functional regression and unaccepted-cold-setup.json; no cold-route visual parity claim."
+      },
+      "actionOrder": null,
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-save-light-390-source.png",
+          "sha256": "518c70f38d76eac588248ac18e730cc78841e3506e03f8818b97345ca0ae4157"
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/unaccepted-gates-twenty-second-samples/overview-default-save-light-390-target.png",
+          "sha256": "0115afad61fe08160196bf2dc421851a1e171e8ac22ed90e2b9a6a5738411bfd"
+        }
+      ]
+    }
+  ]
+}

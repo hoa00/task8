@@ -1,3 +1,3 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { PendingPage } from '../app/shell/PendingPage';
-export const Route=createFileRoute('/_shell/w/$workspaceId/projects/')({component:PendingPage});
+import { ProjectCatalogue } from '../features/projects/ProjectCatalogue';
+export const Route=createFileRoute('/_shell/w/$workspaceId/projects/')({component:ProjectCatalogue});

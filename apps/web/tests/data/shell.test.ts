@@ -16,7 +16,7 @@ test('shell aggregates are actual bootstrap data, empty counts and saved view ow
  assert.equal(views.length,1);assert.equal(views[0]?.projectId,sourceId('projects','p1'));
  assert.deepEqual((await api.listSavedViews({workspaceId,projectId:sourceId('projects','p2')})).data,[]);
  for(const [input,status] of [[{workspaceId,projectId:sourceId('projects','p6')},404],[{workspaceId,projectId:sourceId('tasks','t1')},404],[{workspaceId:sourceId('workspaces','w2'),projectId:sourceId('projects','p1')},404]] as const)await assert.rejects(api.listSavedViews(input),error=>error instanceof StudioApiError&&error.status===status);
- assert.equal((await api.getSession({})).data.capabilities.features.projects,'unavailable');
+ assert.equal((await api.getSession({})).data.capabilities.features.projects,'implemented');
 });
 test('legacy whitelist excludes prototype/project aliases and canonical links retain full prefix',()=>{
  for(const hash of ['#project/p1','#project','#__proto__','#constructor','#toString','#unknown','#home/extra'])assert.equal(legacyDestination(hash,workspaceId),undefined);

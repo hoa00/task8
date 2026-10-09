@@ -1,0 +1,93 @@
+[
+  {
+    "name": "typecheck",
+    "command": "pnpm typecheck",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/typecheck.log"
+  },
+  {
+    "name": "build",
+    "command": "pnpm build",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/build.log"
+  },
+  {
+    "name": "lint",
+    "command": "pnpm lint",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/lint.log"
+  },
+  {
+    "name": "test",
+    "command": "pnpm test",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/test.log"
+  },
+  {
+    "name": "reference-check",
+    "command": "pnpm reference:check",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/reference-check.log"
+  },
+  {
+    "name": "http-build",
+    "command": "pnpm --filter @studio/web build:http",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/http-build.log"
+  },
+  {
+    "name": "http-bundle",
+    "command": "node tests/data/http-bundle.mjs WU-16",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/http-bundle.log"
+  },
+  {
+    "name": "choices-regression",
+    "command": "node tests/visual/controls/verify.mjs choices --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/choices-regression.log"
+  },
+  {
+    "name": "overlay-regression",
+    "command": "node tests/visual/overlays/verify.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/overlay-regression.log"
+  },
+  {
+    "name": "overlay-lifecycle",
+    "command": "node tests/visual/overlays/lifecycle.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/overlay-lifecycle.log"
+  },
+  {
+    "name": "overlay-motion",
+    "command": "node tests/visual/overlays/motion.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/overlay-motion.log"
+  },
+  {
+    "name": "calendar-regression",
+    "command": "node tests/visual/calendar/interactions.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/calendar-regression.log"
+  },
+  {
+    "name": "timeline-regression",
+    "command": "node tests/visual/timeline/interactions.mjs --wu16-regression",
+    "exitStatus": 1,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/timeline-regression.log"
+  }
+]

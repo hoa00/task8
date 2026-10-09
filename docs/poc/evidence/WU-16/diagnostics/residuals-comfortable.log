@@ -1,0 +1,17 @@
+file:///workspace/task8/tests/visual/projects/residuals.mjs:15
+else{await settle(a,b);report[width][scenario]={status:await Promise.all([inspect(a.page.locator('.proj-h').getByRole('button',{name:'Project status',exact:true})),inspect(b.page.getByRole('button',{name:'Project status',exact:true}).first())]),cards:await Promise.all([inspect(a.page.locator('.only-m>.panel'),6),inspect(b.page.locator('.task-table-mobile-card'),6)]),rightHit:await Promise.all([a.page,b.page].map(p=>p.evaluate(()=>[482,509,573,600,664,691].map(y=>({point:[373,y+50],stack:document.elementsFromPoint(373,y+50).slice(0,4).map(el=>({tag:el.tagName,class:el.className,html:el.outerHTML.slice(0,600),rect:el.getBoundingClientRect().toJSON()}))}))))};}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+
+SyntaxError: missing ) after argument list
+    at compileSourceTextModule (node:internal/modules/esm/utils:318:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:111:18)
+    at #translate (node:internal/modules/esm/loader:473:20)
+    at afterLoad (node:internal/modules/esm/loader:529:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:534:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:571:36)
+    at afterResolve (node:internal/modules/esm/loader:624:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:630:12)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:649:32)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+
+Node.js v24.13.0

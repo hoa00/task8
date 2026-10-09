@@ -573,3 +573,24 @@ dots belong to this field owner, not a Table-only copy or global ColorDot change
   query loader and canonical commands are reused from their existing owners.
   Custom Timeline CSS owns source milestone tooltip/keyframes and bar progress
   effect; static geometry uses Tailwind and typed dynamic style/SVG coordinates.
+
+## WU-16 delivered ownership
+
+PJ-01/02: `features/projects/ProjectComponents.tsx` exports ProjectIcon,
+ProjectStatus, ProjectMemberStack, ProjectCard, catalogue ProjectRow/ProjectTable
+and controlled CompactProjectRow. Full membership remains in Query records; the
+Card owns the original overflow-avatar/Options CSS collision through the optional
+AvatarStack overflow slot, with other consumers preserving their default slot.
+PJ-03/04: ProjectOverview and separate ProjectActivity compose shared Panel/
+ActivityFeed/TaskMiniRow; Recent uses activities only, Activity includes comments.
+PJ-05/06: ProjectFormDialog, ProjectOverlayHost and ShareDialog compose shared
+Dialog/fields, typed operations and the capability-controlled demo service.
+ProjectHeader/Layout hosts eight fixed tabs plus explicit saved List/Board/Table
+views and reuses the five existing feature renderers on actual routes. Files body
+PR-07 remains pending WU-22. AC-01 shared ActivityItem/ActivityFeed exports its
+record type and actor/entity/day formatting; no later consumer page is implemented.
+
+- `useProjectSharing`: ProjectHeader/menu exposure and ShareDialog share canonical
+  project-member, complete member-catalogue, session and local demo query keys.
+  Query remains authoritative; Bootstrap display DTO is a pending identity
+  fallback only. It does not delay dialog opening or copy server state.

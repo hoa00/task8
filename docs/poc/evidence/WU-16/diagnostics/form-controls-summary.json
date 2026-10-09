@@ -1,0 +1,57 @@
+{
+  "status": "UNPROVED_UNACCEPTED",
+  "actualCommand": "node tests/visual/projects/verify.mjs --inspect-form-controls",
+  "actualExitStatus": 1,
+  "changedPixels": 28,
+  "repeatabilityPixels": 0,
+  "controls": {
+    "form-team": {
+      "rectEqual": true,
+      "noncustomCSSDiff": [],
+      "sixAncestorCSSDiffCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "form-lead": {
+      "rectEqual": true,
+      "noncustomCSSDiff": [],
+      "sixAncestorCSSDiffCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "form-date": {
+      "rectEqual": true,
+      "noncustomCSSDiff": [],
+      "sixAncestorCSSDiffCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "images": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/form-controls-samples/overview-default-create-light-1440-form-controls-source.png",
+      "sha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/form-controls-samples/overview-default-create-light-1440-form-controls-target.png",
+      "sha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a"
+    }
+  ],
+  "reportSha256": "24039eb7381d7182dc0510c5cb1f39150d70bc4010f767f67f2b317164ba306f",
+  "limitations": "Negative CSS/rect/pseudo observation in exact existing Create1440. Hidden native SELECT versus hidden input DOM differs without proven visible or semantic defect; no invisible geometry/remount correction."
+}

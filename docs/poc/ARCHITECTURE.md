@@ -228,3 +228,47 @@ store, cascade dependent dates or add drag Undo. Failed CAS invalidates the
 existing projections before retry. Router search controls the actual mounted
 Workspace view on Back/Forward. Shared loader, API comparators, commands and
 Drawer/form/field components are reused without modification.
+
+## WU-16 Project consumers and canonical commands
+
+Catalogue/Favorites and actual Project routes compose shared `ProjectCard`,
+`ProjectRow`, `ProjectTable`, `CompactProjectRow`, Project identity/status/progress
+and existing Task List/Board/Table/Calendar/Timeline renderers. `ProjectLayout`
+owns route tabs plus personal `p:<project>`/`sv:<saved>` view keys; server saved
+definitions remain explicit List/Board/Table commands. Query owns complete
+canonical pages; Project Activity merges full activity and comment pages and
+Overview consumes activities only. Shared `features/activity/ActivityFeed` exports
+actor/entity formatting and day grouping for later Home/Activity consumers.
+
+Mock Project commands and existing Task commands share a per-client atomic staged
+transaction queue. CAS failure discards the staged clone; Project Undo stores
+bounded inverse fields and actor/postcondition data, never a whole-store snapshot.
+Project tombstones hide implemented child projections while retaining independent
+task/comment/file tombstones. Project edit intent remains edit when its canonical
+projection disappears, and local command failure refreshes versions without
+replacing drafts. Overlay host keys workspace and guards late completion.
+
+`SharingDemoAdapter` is a separate optional local service, available only with
+`projectSharing:demoOnly`. Search, guest/permission/access changes and remove Undo
+do not alter principal or canonical membership grants. HTTP remains unavailable
+for sharing; no invitation or public link service is implied. Files route/header
+slot is PR-07 pending WU-22. Teams/Profile and later business pages are untouched.
+
+### WU-16 parent lifecycle at existing task overlay boundaries
+
+Existing Task Drawer/Edit/Menu/Delete/Preview controllers treat a proven terminal
+StudioApiError403/404 as unavailable even when Query retains older child data.
+Transient errors may still render that cached data. Drawer needs a project
+identity; when the active-only Bootstrap navigation has no allowed parent, it
+queries the existing canonical getProject and supplies the controlled identity
+prop to TaskDrawer. An archived project is still readable and does not imply an
+ACL failure. No second task store, copied query cache or global authorization
+inference is introduced. The mounted Drawer parent-delete/late-response/Undo
+probe and existing task success-path regression are part of WU-16 evidence.
+
+WU16 Share data dependency is owned by the Project consumer: Header/menu exposure
+starts the same project-member/full catalogue/demo query keys that the Dialog
+reads. This avoids a dialog-only waterfall without await-opener, artificial
+readiness or server-state replication. Cold/held reads compose permitted Bootstrap
+display identities only; authoritative coverage plus demo capability gates Invite
+and Enter. Real displayed-projection changes retain owned finite-entry consumption.

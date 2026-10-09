@@ -1,0 +1,19 @@
+Owned source server: PID 294679, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+overview-default-create-consumer-context-light-1440: 192 repeat0
+overview-default-create-consumer-context-light-390: 50 repeat0
+overview-default-edit-consumer-context-light-1440: 136 repeat0
+overview-default-edit-consumer-context-light-390: 1346 repeat0
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('button', { name: 'Members', exact: true }) resolved to 2 elements:
+    1) <button data-a="go" class="sitem " data-r="members">…</button> aka getByLabel('Main').getByRole('button', { name: 'Members' })
+    2) <button class="row" data-id="p2" data-a="share" aria-label="Members">…</button> aka getByLabel('Members')
+
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Members', exact: true })[22m
+
+    at /workspace/task8/tests/visual/projects/verify.mjs:55:270
+
+Node.js v24.13.0

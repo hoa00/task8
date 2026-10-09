@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
 const root = new URL('../../', import.meta.url);
-const unit = process.argv.find(arg => ['WU-07', 'WU-08', 'WU-09', 'WU-10', 'WU-11', 'WU-12', 'WU-13', 'WU-14', 'WU-15'].includes(arg)) ?? 'WU-06';
+const unit = process.argv.find(arg => ['WU-07', 'WU-08', 'WU-09', 'WU-10', 'WU-11', 'WU-12', 'WU-13', 'WU-14', 'WU-15', 'WU-16'].includes(arg)) ?? 'WU-06';
 const evidence = `docs/poc/evidence/${unit}${process.argv.includes('--table-popovers') ? '/table-popovers' : ''}`;
 const dist = new URL('apps/web/dist-http/', root);
 const graph = JSON.parse(readFileSync(new URL('module-graph.json', dist), 'utf8'));

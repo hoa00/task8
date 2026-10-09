@@ -1,0 +1,137 @@
+{
+  "pageErrors": [],
+  "before": "Create homepage wireframes",
+  "deleted": {
+    "project": {
+      "id": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "key": "WEB",
+      "name": "Website Redesign",
+      "description": "Rebuild gr8rstudio.com with a clearer information architecture, a responsive component library, and a faster CMS-driven blog.",
+      "icon": "globe",
+      "color": "#5A67D8",
+      "status": "active",
+      "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+      "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+      "startDate": "2026-09-08",
+      "dueDate": "2026-11-01",
+      "visibility": "workspace",
+      "memberIds": [
+        "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+        "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+        "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+        "01a11abd-aa80-7470-803a-d8637be26509",
+        "01a11abd-aa80-7567-80df-64683f5c3572",
+        "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+      ],
+      "milestones": [
+        {
+          "id": "01a11abd-aa80-7311-8fd4-d485e62a5f45",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "name": "Wireframes signed off",
+          "date": "2026-10-10",
+          "position": 0
+        },
+        {
+          "id": "01a11abd-aa80-7282-82b9-12bf7f3694c0",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "name": "Dev handoff",
+          "date": "2026-10-22",
+          "position": 100
+        },
+        {
+          "id": "01a11abd-aa80-77d3-8551-ab806d5c3f55",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "name": "Public launch",
+          "date": "2026-11-01",
+          "position": 200
+        }
+      ],
+      "isFavorite": true,
+      "archivedAt": null,
+      "createdAt": "2026-10-08T09:00:00Z",
+      "updatedAt": "2026-10-08T09:00:00Z",
+      "lastActivityAt": "2026-10-08T08:48:00.000Z",
+      "version": 2
+    },
+    "createdTasks": [],
+    "affectedProjectIds": [
+      "01a11abd-aa80-7d11-86d8-e6545859cd14"
+    ],
+    "taskIdMap": [],
+    "undo": {
+      "id": "01a11abd-aa80-7d20-a070-299947110ed6",
+      "kind": "project.delete"
+    }
+  },
+  "after": {
+    "shellCount": 0,
+    "bodyText": "Something went wrong\n\nWe couldn't load this page. Try again.\n\nTry again",
+    "privateTitleCount": 0,
+    "queries": [
+      {
+        "key": [
+          "workspace",
+          "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "task",
+          "01a11abd-aa80-75fa-877e-0c56eef0ad59"
+        ],
+        "status": "error",
+        "hasData": true,
+        "error": {
+          "code": "NOT_FOUND",
+          "status": 404,
+          "message": "Task not found"
+        }
+      },
+      {
+        "key": [
+          "workspace",
+          "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "comments",
+          {
+            "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+            "query": {
+              "limit": 200
+            }
+          },
+          "pages"
+        ],
+        "status": "error",
+        "hasData": true,
+        "error": {
+          "code": "NOT_FOUND",
+          "status": 404,
+          "message": "Task not found"
+        }
+      },
+      {
+        "key": [
+          "workspace",
+          "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "activity",
+          {
+            "query": {
+              "limit": 200,
+              "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59"
+            }
+          },
+          "pages"
+        ],
+        "status": "error",
+        "hasData": true,
+        "error": {
+          "code": "NOT_FOUND",
+          "status": 404,
+          "message": "Task not found"
+        }
+      }
+    ]
+  },
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1\n\n    at file:///workspace/task8/tests/visual/projects/tombstone-drawer.mjs:8:1549"
+}

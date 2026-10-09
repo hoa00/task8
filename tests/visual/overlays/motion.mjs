@@ -7,7 +7,7 @@ import { sourceServer } from '../reference/source-server.mjs';
 import { newPage, environment } from '../reference/environment.mjs';
 import { sourcePreferences } from '../foundation/source-sample.mjs';
 import { sourceOverlays } from './source-sample.mjs';
-const base='docs/poc/evidence/WU-05/motion';fs.mkdirSync(base,{recursive:true});const stop=await sourceServer();
+const base=process.argv.includes('--wu16-regression')?'docs/poc/evidence/WU-16/overlay-regression/motion':'docs/poc/evidence/WU-05/motion';fs.mkdirSync(base,{recursive:true});const stop=await sourceServer();
 const child=spawn(process.execPath,['./node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5173','--strictPort'],{cwd:path.resolve('apps/web'),stdio:'pipe'});let logs='';child.stdout.on('data',v=>logs+=v);child.stderr.on('data',v=>logs+=v);let browser;
 const report={environment,control:'Web Animations API pause/currentTime only on the selected original overlay CSS animations; unrelated input focus transitions settle concurrently; no stylesheet/keyframe changes',cases:[]};
 try{

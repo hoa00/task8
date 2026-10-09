@@ -1,0 +1,59 @@
+Owned source server: PID 233891, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+catalogue-grid-default-light-1440: 15 repeat0
+catalogue-grid-default-light-390: 0 repeat0
+catalogue-list-default-light-1440: 915 repeat0
+catalogue-list-default-light-390: 110 repeat0
+catalogue-table-default-light-1440: 17 repeat0
+catalogue-table-default-light-390: 0 repeat0
+catalogue-grid-raw-private-light-1440: 20184 repeat0
+catalogue-list-raw-private-light-1440: 17156 repeat0
+catalogue-table-raw-private-light-1440: 31777 repeat0
+list-default-saved-light-1440: 2336 repeat0
+list-default-saved-light-390: 3709 repeat0
+board-default-saved-light-1440: 2190 repeat0
+board-default-saved-light-390: 3867 repeat0
+table-default-saved-light-1440: 2110 repeat0
+table-default-saved-light-390: 5068 repeat0
+favorites-default-default-light-1440: 367 repeat0
+favorites-default-default-light-390: 367 repeat0
+overview-default-default-light-1440: 53906 repeat0
+overview-default-default-light-390: 2700 repeat0
+activity-default-default-light-1440: 52317 repeat0
+activity-default-default-light-390: 15679 repeat0
+board-default-default-light-1440: 1240 repeat0
+board-default-default-light-390: 1123 repeat0
+list-default-default-light-1440: 1240 repeat0
+list-default-default-light-390: 1123 repeat0
+table-default-default-light-1440: 1240 repeat0
+table-default-default-light-390: 1179 repeat0
+calendar-default-default-light-1440: 1240 repeat0
+calendar-default-default-light-390: 1123 repeat0
+timeline-default-default-light-1440: 1242 repeat0
+timeline-default-default-light-390: 1123 repeat0
+catalogue-grid-default-dark-1440: 283 repeat0
+favorites-grid-default-dark-1440: 591 repeat0
+overview-grid-default-dark-1440: 55706 repeat0
+activity-grid-default-dark-1440: 54695 repeat0
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    560,
++   800
+-   799
+  ]
+
+    at file:///workspace/task8/tests/visual/projects/verify.mjs:55:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [ 560, 800 ],
+  expected: [ 560, 799 ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

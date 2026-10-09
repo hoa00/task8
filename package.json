@@ -10,7 +10,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
-    "lint": "eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration eslint.config.mjs && node tests/workspace/boundaries.mjs",
+    "lint": "eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects eslint.config.mjs && node tests/workspace/boundaries.mjs",
     "test": "turbo run test && pnpm test:reference && pnpm test:workspace",
     "test:reference": "node --test tests/visual/reference/*.test.mjs",
     "test:workspace": "node --test tests/workspace/*.test.mjs",
@@ -65,7 +65,8 @@
     "verify:calendar": "node tests/visual/calendar/gates.mjs",
     "visual:timeline": "node tests/visual/timeline/verify.mjs",
     "test:timeline:interactions": "node tests/visual/timeline/interactions.mjs",
-    "verify:timeline": "node tests/visual/timeline/gates.mjs"
+    "verify:timeline": "node tests/visual/timeline/gates.mjs",
+    "verify:projects": "node tests/visual/projects/gates.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

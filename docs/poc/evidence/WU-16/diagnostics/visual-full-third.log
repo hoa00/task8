@@ -1,0 +1,17 @@
+Owned source server: PID 236732, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+catalogue-grid-default-light-1440: 21 repeat0
+catalogue-grid-default-light-390: 0 repeat0
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('button', { name: 'List', exact: true }) resolved to 2 elements:
+    1) <button data-a="go" data-id="p1" class="sitem " data-tab="list" data-r="project">…</button> aka getByLabel('Main').getByRole('button', { name: 'List' })
+    2) <button class="" data-a="set" data-v="list" data-k="projView" aria-label="List">…</button> aka getByLabel('List')
+
+Call log:
+[2m  - waiting for getByRole('button', { name: 'List', exact: true })[22m
+
+    at /workspace/task8/tests/visual/projects/verify.mjs:41:394
+
+Node.js v24.13.0

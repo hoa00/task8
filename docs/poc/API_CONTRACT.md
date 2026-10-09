@@ -624,3 +624,28 @@ invalid drops perform no write. Source drag-drop.js returns a plain 2200ms
 Rescheduled toast and no Undo; the existing §7.2 field-PATCH whitelist stays null.
 Date-only values never become UTC timestamps. No new operation/binding/schema,
 event CRUD, scheduling or Timeline implementation is introduced.
+
+## WU-16 implementation evidence
+
+Mock capability `projects:implemented` corresponds to all 18 typed Project,
+favorite/order and Saved View operations; `projectSharing:demoOnly` is a separate
+local adapter and HTTP sharing stays unavailable. Restricted catalogue DTOs apply
+the same allowed public fields across all three layouts; private task counts,
+progress, memberships, team/start/last activity fields do not leak into the UI.
+
+New template/duplicate children use the canonical global appended task position
+and persisted project sequence beginning201, with fresh per-task creation
+activity. PATCH lead does not grant membership. Saved PATCH is strictly optional
+for name/type/filters, so rename preserves omitted filters. Project deletion
+records deleting actor; restore clears timestamp and actor together. Undo checks
+current authorization before consumed replay, verifies deleting actor and CAS,
+and retains independently deleted child tombstones. Both command families use
+the same atomic queue, with rollback and cross-family concurrency checks.
+
+Source Overview first-six array order conflicts with §8 GET/activity newest-first;
+the target uses canonical latest-six activities. Project Activity retains both a
+comment record and its separately emitted activity, including the live two-row
+source quirk. Share remove Undo checks its actual demo post-version and cannot
+overwrite a later permission/access/member change. No real grant or invitation
+operation is invented. Source blank Save view uses the nonempty fallback
+`Untitled view` before the validated create command.

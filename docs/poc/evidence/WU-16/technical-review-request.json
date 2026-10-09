@@ -1,0 +1,257 @@
+{
+  "status": "REQUIRED_VISUAL_GATE_FAILED",
+  "workUnit": "WU-16",
+  "implementationStatus": "IN_PROGRESS",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "immutableBefore": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "immutableAfter": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "requiredGateCount": 19,
+  "executed": [
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/build.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/test.log"
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/reference-check.log"
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/http-build.log"
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-16",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/http-bundle.log"
+    },
+    {
+      "name": "choices-regression",
+      "command": "node tests/visual/controls/verify.mjs choices --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/choices-regression.log"
+    },
+    {
+      "name": "overlay-regression",
+      "command": "node tests/visual/overlays/verify.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/overlay-regression.log"
+    },
+    {
+      "name": "overlay-lifecycle",
+      "command": "node tests/visual/overlays/lifecycle.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/overlay-lifecycle.log"
+    },
+    {
+      "name": "overlay-motion",
+      "command": "node tests/visual/overlays/motion.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/overlay-motion.log"
+    },
+    {
+      "name": "interactions",
+      "command": "node tests/visual/projects/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/interactions.log"
+    },
+    {
+      "name": "task-detail-regression",
+      "command": "node tests/visual/task-detail/interactions.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/task-detail-regression.log"
+    },
+    {
+      "name": "source-interactions",
+      "command": "node tests/visual/projects/source-interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/source-interactions.log"
+    },
+    {
+      "name": "raw-contexts",
+      "command": "node tests/visual/projects/raw-contexts.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/raw-contexts.log"
+    },
+    {
+      "name": "visual",
+      "command": "node tests/visual/projects/verify.mjs",
+      "exitStatus": 1,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/visual.log"
+    }
+  ],
+  "executedPassCount": 15,
+  "notExecuted": [
+    "freeze",
+    "final-qa-lint",
+    "final-reference-check"
+  ],
+  "supplementalActualCommands": [
+    {
+      "command": "pnpm exec eslint tests/visual/projects tests/visual/task-detail/interactions.mjs",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-16/diagnostics/latest-qa-eslint.log"
+    },
+    {
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-16/diagnostics/latest-reference-check.log"
+    },
+    {
+      "command": "ss -ltnp 'sport = :4173 or sport = :5173'",
+      "exitStatus": 0,
+      "result": "No owned listeners after cleanup."
+    }
+  ],
+  "strictCount": 45,
+  "strictZeroCount": 37,
+  "strictFailures": [
+    {
+      "id": "catalogue-list-default-light-390",
+      "changedPixels": 10,
+      "repeatabilityPixels": 0
+    },
+    {
+      "id": "catalogue-table-default-light-390",
+      "changedPixels": 10,
+      "repeatabilityPixels": 0
+    },
+    {
+      "id": "timeline-default-default-light-1440",
+      "changedPixels": 15,
+      "repeatabilityPixels": 0
+    },
+    {
+      "id": "overview-default-create-light-1440",
+      "changedPixels": 192,
+      "repeatabilityPixels": 0
+    },
+    {
+      "id": "overview-default-create-light-390",
+      "changedPixels": 77,
+      "repeatabilityPixels": 0
+    },
+    {
+      "id": "overview-default-edit-light-1440",
+      "changedPixels": 135,
+      "repeatabilityPixels": 0
+    },
+    {
+      "id": "overview-default-edit-light-390",
+      "changedPixels": 24,
+      "repeatabilityPixels": 0
+    },
+    {
+      "id": "overview-default-share-light-1440",
+      "changedPixels": 2,
+      "repeatabilityPixels": 0
+    }
+  ],
+  "rawCount": 5,
+  "allRepeatabilityZero": true,
+  "nativeCount": 25,
+  "taskDetailRegressionCount": 11,
+  "sourceCount": 11,
+  "rawRecentCount": 2,
+  "reportSha256": {
+    "commands.json": "dc3440e69be2936acb96694fcbc1f87dd3165196ce8bf3be317f2c4af01c8c04",
+    "visual-verification.json": "bb6537ea0733ba593e34aa411b6ee55023b492497d6dedba50884d53fa74bd4e",
+    "interactions.json": "8bf58d74debd6dc0341e23117d3301953194690d63df7da6a0f0ded622fcae74",
+    "detail-regression/interactions.json": "246362b18a6505ed15a0ea1f61171111064b9d4d2144b00d376981f2b2e0b312",
+    "source-interactions.json": "491f247fc296ef6a67388fb8dab41bdd0f739c12cddb83eff14766d78b42b079",
+    "raw-contexts.json": "641bfb18b4b31b20bd6df1f7e4b230bb8a6650d6eaf21bef935dfa7e7c28679b",
+    "unaccepted-gates-twelfth.json": "ead032e74cf35e4f537db652395acee31dfd8d25ad4e49e1eb9bf00b1b1ac739"
+  },
+  "representativeSourceIds": {
+    "projects": [
+      {
+        "sourceId": "p1",
+        "name": "Website Redesign"
+      },
+      {
+        "sourceId": "p2",
+        "name": "Mobile App"
+      },
+      {
+        "sourceId": "p6",
+        "name": "Customer Portal"
+      },
+      {
+        "sourceId": "p7",
+        "name": "Marketing Website"
+      }
+    ],
+    "tasks": [
+      {
+        "sourceId": "t3",
+        "title": "Create homepage wireframes",
+        "key": "WEB-109"
+      }
+    ]
+  },
+  "changedScope": [
+    "WU16 Project/Favorites/Header/Layout/Overview/Activity/forms/templates/Saved/demoShare/personalorder typed operations.",
+    "Minimal existing Task overlay terminal child read guards and canonical archived parent Drawer identity.",
+    "Optional controlled sharedUI slots; generic defaults preserved and affected regressions executed."
+  ],
+  "limitations": [
+    "Current required strict45matrix failed. No accepted final freeze/rootPASS/DONE/commit/push.",
+    "Files header/route/slot only PR07 body pendingWU22.",
+    "All inherited WU10/13/14 and new frozen WU16 raster debts remain UNPROVED_UNACCEPTED forWU29.",
+    "Raw restricted catalogue/common DTO and canonical newest-first Recent correction separate from strictpairs.",
+    "Focus success tracing does not explain earlier two failed regression attempts; no production race-fix claim.",
+    "Managed Linux supplementary only; original173Darwin immutable, no fullshell/physicaldevice/userapproval claim.",
+    "No source/fixture/style/baseline/clock/font/mask/tolerance/paint/remount modification."
+  ],
+  "reviewRequest": "Read-only technical inspection of current failed required matrix and exact retained evidence; no request to markDONE or accept unknown pixels."
+}

@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { createElement, Fragment } from 'react';
 import type { ComponentPropsWithRef, CSSProperties, ReactNode } from 'react';
 import { Icon } from './icons';
 import type { IconName } from './icon-paths';
@@ -20,10 +20,10 @@ export function AvatarBase({ label, initials, color = 'var(--gray)', size = 'bas
   const pixels = avatarSizes[size];
   return <span {...props} role="img" aria-label={label} className={`relative inline-grid shrink-0 select-none place-items-center rounded-[50%] font-semibold leading-none tracking-[0.01em] ${empty ? 'border-[1.3px] border-dashed border-border-strong bg-transparent text-faint' : 'bg-[color-mix(in_srgb,var(--avatar-color)_17%,var(--surface))] text-[color-mix(in_srgb,var(--avatar-color)_55%,var(--text))] [box-shadow:0_0_0_1.5px_var(--surface)]'} ${className}`} style={{ ...style, '--avatar-color': color, width: pixels, height: pixels, fontSize: pixels * .4 } as CSSProperties}>{empty ? <Icon name="user" size={11} /> : initials}{presence && <span className="absolute -right-px -bottom-px size-[30%] rounded-[50%] bg-green [box-shadow:0_0_0_2px_var(--surface)]" />}</span>;
 }
-export interface AvatarStackBaseProps extends ComponentPropsWithRef<'span'> { avatars: readonly AvatarBaseProps[]; max?: number; size?: AvatarBaseProps['size'] }
-export function AvatarStackBase({ avatars, max = 4, size = 'sm', className = '', ...props }: AvatarStackBaseProps) {
+export interface AvatarStackBaseProps extends ComponentPropsWithRef<'span'> { avatars: readonly AvatarBaseProps[]; max?: number; size?: AvatarBaseProps['size']; overflowClassName?: string; renderAvatar?: (avatar: AvatarBaseProps) => ReactNode }
+export function AvatarStackBase({ avatars, max = 4, size = 'sm', overflowClassName, renderAvatar, className = '', ...props }: AvatarStackBaseProps) {
   const limit = Math.max(0, Math.floor(max));
-  return <span {...props} className={`inline-flex [&_span[role=img]+span[role=img]]:-ml-[5px] ${className}`}>{avatars.slice(0, limit).map((avatar, index) => <AvatarBase key={index} {...avatar} size={size} />)}{avatars.length > limit && <AvatarBase label={`${avatars.length - limit} more`} initials={`+${avatars.length - limit}`} size={size} />}</span>;
+  return <span {...props} className={`inline-flex [&_span[role=img]+span[role=img]]:-ml-[5px] ${className}`}>{avatars.slice(0, limit).map((avatar, index) => <Fragment key={index}>{renderAvatar ? renderAvatar({ ...avatar, size }) : <AvatarBase {...avatar} size={size} />}</Fragment>)}{avatars.length > limit && <AvatarBase label={`${avatars.length - limit} more`} initials={`+${avatars.length - limit}`} size={size} className={overflowClassName} />}</span>;
 }
 export type PanelProps = ComponentPropsWithRef<'section'>;
 export function Panel({ className = '', ...props }: PanelProps) { return <section {...props} className={`rounded-lg border border-solid border-border bg-surface ${className}`} />; }

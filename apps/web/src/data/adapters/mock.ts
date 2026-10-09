@@ -1,6 +1,7 @@
 import { DateRangeQuerySchema, EntityIdSchema } from '@studio/contracts/api';
 import type { OperationId } from '@studio/contracts/api';
-import { canReadProject, normalizeDescription } from '@studio/domain';
+import { normalizeDescription } from '@studio/domain';
+import { canReadMockProject as canReadProject, projectOperations, runProjectOperation, hasProjectUndo } from '../mock/projects.ts';
 import type { Clock } from '@studio/domain';
 import { StudioApiError, StudioTransportError, unavailable } from '../errors.ts';
 import { createStudioClient } from '../operations.ts';
@@ -26,15 +27,17 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
   const seed = fresh();
   // System scenarios always start from their fixture and never overwrite the populated demo.
   let dataset = scenario === 'populated' ? loadMockDataset(storage, seed.workspaceId) ?? seed : seed;
-  if (!dataset.taskCommands.taskFavorites[dataset.currentMemberId]) dataset.taskCommands.taskFavorites[dataset.currentMemberId] = Object.values(dataset.tasks).filter(task => task.isFavorite).map(task => task.id);
+  if (!dataset.taskCommands.taskFavorites[dataset.currentMemberId]) dataset.taskCommands.taskFavorites[dataset.currentMemberId] = (dataset.currentMemberId === seed.currentMemberId ? seed.taskCommands.taskFavorites[seed.currentMemberId] ?? [] : []);
+  if (!dataset.projectCommands.favorites[dataset.currentMemberId]) dataset.projectCommands.favorites[dataset.currentMemberId] = (dataset.currentMemberId === seed.currentMemberId ? seed.projectCommands.favorites[seed.currentMemberId] ?? [] : []);
   for (const task of Object.values(dataset.tasks)) { const normalized = normalizeDescription(task.descriptionHtml); task.descriptionHtml = normalized.html; dataset.taskCommands.descriptionTexts[task.id] = normalized.text; }
   if (scenario === 'populated') persistMockDataset(storage, dataset);
   const client = createStudioClient(async (id, input, { signal }) => {
-    if (![...shellReads, ...taskFieldOperations].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number])) throw unavailable(id);
+    if (![...shellReads, ...taskFieldOperations, ...projectOperations].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number] | (typeof projectOperations)[number])) throw unavailable(id);
     await wait(state.delayMs, signal);
     if (state.failure === 'offline') throw new StudioTransportError('offline', 'Mock scenario is offline');
     if (state.failure === 'error') throw new StudioApiError({ error: { code: 'INTERNAL_ERROR', message: 'Mock scenario request failed' } });
     if (input.workspaceId && input.workspaceId !== dataset.workspaceId) throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Workspace data is not available' } });
+    if ((projectOperations as readonly string[]).includes(id) || id === 'undoCommand' && hasProjectUndo(dataset, input.undoId)) { const result = await runProjectOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     if ((taskFieldOperations as readonly string[]).includes(id)) { const result = await runTaskFieldOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     switch (id) {
       case 'listCalendarEvents': {

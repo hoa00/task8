@@ -4,7 +4,7 @@ import { chromium } from '@playwright/test';
 import { sourceIdentities } from '../../../packages/contracts/src/source-identities.ts';
 import { newPage, environment } from '../reference/environment.mjs';
 import { ready, targetServer } from '../tasks/verify.mjs';
-const evidence = 'docs/poc/evidence/WU-14', workspaceId = sourceIdentities.find(row => row.collection === 'workspaces' && row.sourceId === 'w1').id, projectId = sourceIdentities.find(row => row.collection === 'projects' && row.sourceId === 'p1').id;
+const evidence = process.argv.includes('--wu16-regression') ? 'docs/poc/evidence/WU-16/calendar-regression' : 'docs/poc/evidence/WU-14', workspaceId = sourceIdentities.find(row => row.collection === 'workspaces' && row.sourceId === 'w1').id, projectId = sourceIdentities.find(row => row.collection === 'projects' && row.sourceId === 'p1').id;
 fs.mkdirSync(evidence, { recursive: true }); const report = { runtime: environment, probes: [], fixturePreparation: 'Native gestures are primary. Explicit canonical API fixture setup is recorded per probe and does not substitute for native interaction.', limitations: ['Project feature harness only; full wrapper WU16.', 'Date PATCH has no source-visible Undo; native existing completion Undo is verified separately.'] }; const stop = await targetServer(); let browser, page;
 async function api(name, input) { return page.evaluate(async ({ name, input }) => (await window.__calendarQA.client.api[name](input)).data, { name, input }); }
 const current = id => api('getTask', { workspaceId, taskId: id }).then(result => result.task);

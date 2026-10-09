@@ -1,0 +1,142 @@
+[
+  {
+    "name": "typecheck",
+    "command": "pnpm typecheck",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/typecheck.log"
+  },
+  {
+    "name": "build",
+    "command": "pnpm build",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/build.log"
+  },
+  {
+    "name": "lint",
+    "command": "pnpm lint",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/lint.log"
+  },
+  {
+    "name": "test",
+    "command": "pnpm test",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/test.log"
+  },
+  {
+    "name": "reference-check",
+    "command": "pnpm reference:check",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/reference-check.log"
+  },
+  {
+    "name": "http-build",
+    "command": "pnpm --filter @studio/web build:http",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/http-build.log"
+  },
+  {
+    "name": "http-bundle",
+    "command": "node tests/data/http-bundle.mjs WU-16",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/http-bundle.log"
+  },
+  {
+    "name": "choices-regression",
+    "command": "node tests/visual/controls/verify.mjs choices --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/choices-regression.log"
+  },
+  {
+    "name": "overlay-regression",
+    "command": "node tests/visual/overlays/verify.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/overlay-regression.log"
+  },
+  {
+    "name": "overlay-lifecycle",
+    "command": "node tests/visual/overlays/lifecycle.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/overlay-lifecycle.log"
+  },
+  {
+    "name": "overlay-motion",
+    "command": "node tests/visual/overlays/motion.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/overlay-motion.log"
+  },
+  {
+    "name": "calendar-regression",
+    "command": "node tests/visual/calendar/interactions.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/calendar-regression.log"
+  },
+  {
+    "name": "timeline-regression",
+    "command": "node tests/visual/timeline/interactions.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/timeline-regression.log"
+  },
+  {
+    "name": "interactions",
+    "command": "node tests/visual/projects/interactions.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/interactions.log"
+  },
+  {
+    "name": "task-detail-regression",
+    "command": "node tests/visual/task-detail/interactions.mjs --wu16-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/task-detail-regression.log"
+  },
+  {
+    "name": "source-interactions",
+    "command": "node tests/visual/projects/source-interactions.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/source-interactions.log"
+  },
+  {
+    "name": "active-tab-motion",
+    "command": "node tests/visual/projects/tab-motion.mjs --verify",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/active-tab-motion.log"
+  },
+  {
+    "name": "owner-motion",
+    "command": "node tests/visual/projects/owner-motion.mjs --verify",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/owner-motion.log"
+  },
+  {
+    "name": "raw-contexts",
+    "command": "node tests/visual/projects/raw-contexts.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/raw-contexts.log"
+  },
+  {
+    "name": "visual",
+    "command": "node tests/visual/projects/verify.mjs",
+    "exitStatus": 1,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-16/visual.log"
+  }
+]

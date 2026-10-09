@@ -29,7 +29,7 @@ export function legacyDestination(hash: string, workspaceId: string): string | u
   const auth: Record<string, string> = { login: '/login', signup: '/signup', forgot: '/forgot-password', reset: '/reset-password', verify: '/verify-email', onboarding: '/onboarding' };
   return auth[alias] ?? links.workspace(workspaceId, alias as WorkspacePage);
 }
-export interface RouteSearch { taskId?: string; fileId?: string; q?: string; category?: 'all' | 'tasks' | 'projects' | 'people' | 'files' | 'comments'; mode?: 'list' | 'board' | 'table' | 'calendar' | 'grid'; workspaceId?: string; view?: string }
+export interface RouteSearch { taskId?: string; fileId?: string; q?: string; category?: 'all' | 'tasks' | 'projects' | 'people' | 'files' | 'comments'; mode?: 'list' | 'board' | 'table' | 'calendar' | 'grid'; workspaceId?: string; view?: string; projectStatus?: 'planning' | 'active' | 'risk' | 'hold' | 'complete'; projectSort?: 'recent' | 'name' | 'due' | 'progress' }
 export function validateRouteSearch(input: Record<string, unknown>): RouteSearch {
   const output: RouteSearch = {};
   for (const key of ['taskId', 'fileId', 'workspaceId'] as const) if (EntityIdSchema.safeParse(input[key]).success) output[key] = input[key] as string;
@@ -37,5 +37,7 @@ export function validateRouteSearch(input: Record<string, unknown>): RouteSearch
   if (typeof input.q === 'string') output.q = input.q.slice(0, 500);
   if (['all', 'tasks', 'projects', 'people', 'files', 'comments'].includes(String(input.category))) output.category = input.category as NonNullable<RouteSearch['category']>;
   if (['list', 'board', 'table', 'calendar', 'grid'].includes(String(input.mode))) output.mode = input.mode as NonNullable<RouteSearch['mode']>;
+  if (['planning','active','risk','hold','complete'].includes(String(input.projectStatus))) output.projectStatus = input.projectStatus as NonNullable<RouteSearch['projectStatus']>;
+  if (['recent','name','due','progress'].includes(String(input.projectSort))) output.projectSort = input.projectSort as NonNullable<RouteSearch['projectSort']>;
   return output;
 }

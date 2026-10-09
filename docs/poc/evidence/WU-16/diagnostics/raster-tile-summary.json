@@ -1,0 +1,1094 @@
+{
+  "status": "DIAGNOSTIC_ONLY_UNACCEPTED",
+  "actualCommand": "node tests/visual/projects/verify.mjs --inspect-raster-tiles",
+  "actualExitStatus": 1,
+  "liveChangedPixels": 28,
+  "liveRepeatabilityPixels": 0,
+  "trace": {
+    "path": "docs/poc/evidence/WU-16/diagnostics/raster-tile-trace.json.gz",
+    "sha256": "32e775c77abf102182ba5b439609ee3443ce0896cf6e3fcf6e6d5a35b72d46cf",
+    "categories": "cc,disabled-by-default-cc.debug,disabled-by-default-cc.debug.scheduler,blink.user_timing,loading",
+    "passiveAPIs": [
+      "Tracing.start",
+      "Tracing.end",
+      "IO.read",
+      "IO.close"
+    ],
+    "capturePolicy": "Same native actions/ready/warm2/capture2/repeat2/clip/fonts/clock; no layer/paint control.",
+    "eventCount": 75758
+  },
+  "reportSha256": "f95eab66d7f5c725b613e4d7520e61aac20dd0ce26fcea79ae43b8db91e9fcd7",
+  "liveImages": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/raster-tile-samples/overview-default-create-light-1440-raster-tiles-source.png",
+      "sha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/raster-tile-samples/overview-default-create-light-1440-raster-tiles-target.png",
+      "sha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a"
+    }
+  ],
+  "finalGeometryEqual": true,
+  "snapshots": [
+    {
+      "side": "source",
+      "rendererPid": 348998,
+      "layerId": 34,
+      "snapshotCount": 34,
+      "lastFrame": {
+        "has_no_damage": false
+      },
+      "normalizedFinalGeometry": {
+        "bounds": {
+          "height": 1000.0,
+          "width": 1440.0
+        },
+        "position": [
+          0.0,
+          0.0
+        ],
+        "layer_quad": [
+          0.0,
+          0.0,
+          1440.0,
+          0.0,
+          1440.0,
+          1000.0,
+          0.0,
+          1000.0
+        ],
+        "raster_scales": {
+          "contents_scale": [
+            1.0,
+            1.0
+          ],
+          "device_scale": 1.0,
+          "page_scale": 1.0,
+          "source_scale": [
+            1.0,
+            1.0
+          ]
+        },
+        "ideal_scales": {
+          "contents_scale": [
+            1.0,
+            1.0
+          ],
+          "device_scale": 1.0,
+          "page_scale": 1.0,
+          "source_scale": [
+            1.0,
+            1.0
+          ]
+        },
+        "contents_opaque": false,
+        "lcd_text_disallowed_reason": "background-color-not-opaque",
+        "invalidation": [
+          513,
+          199,
+          137,
+          18,
+          467,
+          275,
+          166,
+          18,
+          828,
+          487,
+          9,
+          18,
+          838,
+          487,
+          6,
+          18,
+          845,
+          487,
+          16,
+          18,
+          862,
+          487,
+          6,
+          18,
+          869,
+          487,
+          36,
+          18
+        ],
+        "tiling": {
+          "content_scale": 1.0,
+          "raster_transform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "tiling_rect": [
+            384,
+            0,
+            656,
+            1000
+          ],
+          "num_tiles": 12
+        },
+        "coverageRects": [
+          [
+            384,
+            0,
+            255,
+            255
+          ],
+          [
+            639,
+            0,
+            254,
+            255
+          ],
+          [
+            893,
+            0,
+            147,
+            255
+          ],
+          [
+            384,
+            255,
+            255,
+            254
+          ],
+          [
+            639,
+            255,
+            254,
+            254
+          ],
+          [
+            893,
+            255,
+            147,
+            254
+          ],
+          [
+            384,
+            509,
+            255,
+            254
+          ],
+          [
+            639,
+            509,
+            254,
+            254
+          ],
+          [
+            893,
+            509,
+            147,
+            254
+          ],
+          [
+            384,
+            763,
+            255,
+            237
+          ],
+          [
+            639,
+            763,
+            254,
+            237
+          ],
+          [
+            893,
+            763,
+            147,
+            237
+          ]
+        ]
+      },
+      "tiles": [
+        {
+          "contentRect": [
+            384,
+            0,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            38,
+            61,
+            80,
+            84,
+            88,
+            92
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 11,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            638,
+            0,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            64,
+            76,
+            80,
+            84,
+            88,
+            92
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 11,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            384,
+            254,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            38,
+            61,
+            71,
+            76,
+            80,
+            84,
+            88,
+            92
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 8,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            638,
+            254,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            88,
+            92
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 19,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            892,
+            254,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            3,
+            40,
+            42,
+            44,
+            46,
+            48,
+            50,
+            52,
+            54,
+            61,
+            92
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 11,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            384,
+            508,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            38,
+            61,
+            71
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 94,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            638,
+            508,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            38,
+            61,
+            71
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 112,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            892,
+            508,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            38,
+            61,
+            71
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 19,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            638,
+            762,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            3,
+            40,
+            42,
+            44,
+            46,
+            48,
+            50,
+            52,
+            54,
+            64
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 577,
+            "total_op_count": 537
+          }
+        },
+        {
+          "contentRect": [
+            892,
+            0,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            4,
+            19,
+            58,
+            64
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 3,
+            "total_op_count": 537
+          }
+        },
+        {
+          "contentRect": [
+            892,
+            762,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            10,
+            40,
+            42,
+            44,
+            46,
+            48,
+            50,
+            52,
+            54,
+            64
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 568,
+            "total_op_count": 537
+          }
+        },
+        {
+          "contentRect": [
+            384,
+            762,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            4,
+            27,
+            58,
+            64
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 16,
+            "total_op_count": 537
+          }
+        }
+      ]
+    },
+    {
+      "side": "target",
+      "rendererPid": 349007,
+      "layerId": 27,
+      "snapshotCount": 50,
+      "lastFrame": {
+        "has_no_damage": false
+      },
+      "normalizedFinalGeometry": {
+        "bounds": {
+          "height": 1000.0,
+          "width": 1440.0
+        },
+        "position": [
+          0.0,
+          0.0
+        ],
+        "layer_quad": [
+          0.0,
+          0.0,
+          1440.0,
+          0.0,
+          1440.0,
+          1000.0,
+          0.0,
+          1000.0
+        ],
+        "raster_scales": {
+          "contents_scale": [
+            1.0,
+            1.0
+          ],
+          "device_scale": 1.0,
+          "page_scale": 1.0,
+          "source_scale": [
+            1.0,
+            1.0
+          ]
+        },
+        "ideal_scales": {
+          "contents_scale": [
+            1.0,
+            1.0
+          ],
+          "device_scale": 1.0,
+          "page_scale": 1.0,
+          "source_scale": [
+            1.0,
+            1.0
+          ]
+        },
+        "contents_opaque": false,
+        "lcd_text_disallowed_reason": "background-color-not-opaque",
+        "invalidation": [
+          513,
+          199,
+          137,
+          18,
+          467,
+          275,
+          166,
+          18,
+          828,
+          487,
+          9,
+          18,
+          838,
+          487,
+          6,
+          18,
+          845,
+          487,
+          16,
+          18,
+          862,
+          487,
+          6,
+          18,
+          869,
+          487,
+          36,
+          18
+        ],
+        "tiling": {
+          "content_scale": 1.0,
+          "raster_transform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "tiling_rect": [
+            384,
+            0,
+            656,
+            1000
+          ],
+          "num_tiles": 12
+        },
+        "coverageRects": [
+          [
+            384,
+            0,
+            255,
+            255
+          ],
+          [
+            639,
+            0,
+            254,
+            255
+          ],
+          [
+            893,
+            0,
+            147,
+            255
+          ],
+          [
+            384,
+            255,
+            255,
+            254
+          ],
+          [
+            639,
+            255,
+            254,
+            254
+          ],
+          [
+            893,
+            255,
+            147,
+            254
+          ],
+          [
+            384,
+            509,
+            255,
+            254
+          ],
+          [
+            639,
+            509,
+            254,
+            254
+          ],
+          [
+            893,
+            509,
+            147,
+            254
+          ],
+          [
+            384,
+            763,
+            255,
+            237
+          ],
+          [
+            639,
+            763,
+            254,
+            237
+          ],
+          [
+            893,
+            763,
+            147,
+            237
+          ]
+        ]
+      },
+      "tiles": [
+        {
+          "contentRect": [
+            384,
+            0,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            16,
+            40,
+            86,
+            91,
+            95,
+            99,
+            103,
+            108
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 11,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            638,
+            0,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            35,
+            71,
+            75,
+            91,
+            95,
+            99,
+            103,
+            108
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 11,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            384,
+            254,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            108
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 8,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            638,
+            254,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            108
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 19,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            892,
+            254,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            108
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 11,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            384,
+            508,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            8,
+            14,
+            16,
+            86
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 38,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            638,
+            508,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            13,
+            16,
+            40,
+            86
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 22,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            892,
+            508,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            16,
+            86
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 3,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            892,
+            0,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            44,
+            64,
+            66,
+            68,
+            70,
+            72
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 3,
+            "total_op_count": 553
+          }
+        },
+        {
+          "contentRect": [
+            638,
+            762,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            35,
+            63
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 595,
+            "total_op_count": 555
+          }
+        },
+        {
+          "contentRect": [
+            892,
+            762,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            35,
+            63
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 586,
+            "total_op_count": 555
+          }
+        },
+        {
+          "contentRect": [
+            384,
+            762,
+            256,
+            256
+          ],
+          "rasterTransform": {
+            "scale": [
+              1.0,
+              1.0
+            ],
+            "translation": [
+              0.0,
+              0.0
+            ]
+          },
+          "sourceFrames": [
+            35,
+            63
+          ],
+          "lastRasterOps": {
+            "rastered_op_count": 16,
+            "total_op_count": 555
+          }
+        }
+      ]
+    }
+  ],
+  "remainingPixelGlobalY": [
+    509,
+    510,
+    511
+  ],
+  "tileCoverageBoundaryY": 509,
+  "limitations": [
+    "Final exposed geometry/scales/translation are equal; different partial-raster histories are an association, not proven pixel causality.",
+    "Trace does not expose precise partial-raster damage/scissor, cached tile pixels or internal per-op live state.",
+    "No source/product/fonts/clock/browser flags/capture readiness changed; diagnostic is not mandatory acceptance."
+  ]
+}

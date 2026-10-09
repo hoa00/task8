@@ -1,6 +1,8 @@
 import { BulkMutateTasksInputSchema, CreateTaskInputSchema, UpdateSubtaskInputSchema, ActivitySchema, CursorPayloadSchema, EntityIdSchema, MoveTaskInputSchema, SetTaskCompletionInputSchema, TaskSchema, UpdateTaskInputSchema, UndoResultSchema, SubtaskSchema, DuplicateTaskInputSchema, VersionInputSchema, FileSchema, UploadProjectFileInputSchema, priorities, CreateSubtaskInputSchema, TaskVersionInputSchema, CreateCommentInputSchema, CommentSchema, ReactionKeySchema, CursorQuerySchema, ActivityQuerySchema, MemberQuerySchema } from '@studio/contracts/api';
 import type { OperationId, TaskDto, TaskMutationDto } from '@studio/contracts/api';
-import { changedDependencyTargets, canReadProject, compareTaskTuple, taskSortValue, evaluateTaskView, normalizeTaskView, nextRecurrenceDate, summarizeTasks, TaskRelationError, validateTaskRelations, normalizeDescription, plainDescriptionHtml, sourceFileType, displayFileSize } from '@studio/domain';
+import { changedDependencyTargets, compareTaskTuple, taskSortValue, evaluateTaskView, normalizeTaskView, nextRecurrenceDate, summarizeTasks, TaskRelationError, validateTaskRelations, normalizeDescription, plainDescriptionHtml, sourceFileType, displayFileSize } from '@studio/domain';
+import { canReadMockProject as canReadProject } from './project-access.ts';
+import { transactMock } from './transaction.ts';
 import type { Clock } from '@studio/domain';
 import { StudioApiError } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
@@ -25,7 +27,7 @@ function projectTask(task: TaskDto, data: MockDataset): TaskDto {
 function validate(task: TaskDto, data: MockDataset, explicitDependencies = false) {
   const parsed = TaskSchema.safeParse(task);
   if (!parsed.success) return fail('VALIDATION_ERROR', 'Start date must be on or before due date', 'startDate');
-  try { const activeTasks = Object.fromEntries(Object.entries(data.tasks).filter(([, row]) => !data.taskCommands.deletedTasks[row.id])); validateTaskRelations(explicitDependencies ? task : projectTask(task, data), { ...data, tasks: activeTasks }); } catch (error) { if (error instanceof TaskRelationError) return fail(error.reason === 'cycle' ? 'CONFLICT' : 'VALIDATION_ERROR', error.message, error.field); throw error; }
+  try { const activeProjects = Object.fromEntries(Object.entries(data.projects).filter(([, row]) => !data.projectCommands.deletedProjects[row.id])); const activeTasks = Object.fromEntries(Object.entries(data.tasks).filter(([, row]) => !data.taskCommands.deletedTasks[row.id] && !!activeProjects[row.projectId])); validateTaskRelations(explicitDependencies ? task : projectTask(task, data), { ...data, projects: activeProjects, tasks: activeTasks }); } catch (error) { if (error instanceof TaskRelationError) return fail(error.reason === 'cycle' ? 'CONFLICT' : 'VALIDATION_ERROR', error.message, error.field); throw error; }
 }
 function allocateTaskKey(data: MockDataset, projectId: TaskDto['projectId']): string {
   const number = (data.taskCommands.projectSequences[projectId] ?? Math.max(200, ...Object.values(data.tasks).filter(task => task.projectId === projectId).map(task => Number(task.key.split('-').at(-1))))) + 1;
@@ -397,10 +399,7 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
 
 // Stage a command on an isolated aggregate; only a successful command commits.
 // This is a transaction boundary, never an Undo workspace snapshot.
-const commands = new WeakMap<MockDataset, Promise<unknown>>();
 export async function runTaskFieldOperation(id: OperationId, input: Record<string, unknown>, data: MockDataset, clock: Clock): Promise<unknown> {
   if (['getTask', 'listTasks', 'getTaskSummary', 'getFile', 'listComments', 'listActivity', 'listMembers'].includes(id)) return executeTaskOperation(id, input, data, clock);
-  const previous = commands.get(data) ?? Promise.resolve();
-  const command = previous.catch(() => {}).then(async () => { const staged = structuredClone(data); const result = await executeTaskOperation(id, input, staged, clock); Object.assign(data, staged); return result; });
-  commands.set(data, command); try { return await command; } finally { if (commands.get(data) === command) commands.delete(data); }
+  return transactMock(data, staged => executeTaskOperation(id, input, staged, clock));
 }

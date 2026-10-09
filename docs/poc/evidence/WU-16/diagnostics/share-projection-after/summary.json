@@ -1,0 +1,752 @@
+{
+  "status": "INITIAL_IDENTITY_REPAIR_PROVEN_FINAL_MOTION_MISMATCH_UNACCEPTED",
+  "actualCommands": [
+    {
+      "command": "pnpm --filter @studio/web typecheck (first)",
+      "exit": 2
+    },
+    {
+      "command": "pnpm --filter @studio/web typecheck (fixed)",
+      "exit": 0
+    },
+    {
+      "command": "pnpm --filter @studio/web build",
+      "exit": 0
+    },
+    {
+      "command": "node tests/visual/projects/verify.mjs --inspect-share-projection",
+      "exit": 1
+    }
+  ],
+  "changedPixels": 28,
+  "repeatabilityPixels": 0,
+  "chronology": [
+    [
+      {
+        "type": "share-projection",
+        "at": 2571.2999999970198,
+        "rows": [
+          "Tanjim Islam",
+          "Sarah Chen",
+          "John Carter",
+          "Emma Wilson",
+          "Priya Patel",
+          "Marcus Lee",
+          "Lena Fischer"
+        ],
+        "height": 591,
+        "inviteDisabled": false,
+        "animation": "modalIn",
+        "entered": null,
+        "class": "modal enter "
+      }
+    ],
+    [
+      {
+        "type": "share-projection",
+        "at": 2158.2000000029802,
+        "rows": [
+          "Tanjim Islam",
+          "Sarah Chen",
+          "John Carter",
+          "Emma Wilson",
+          "Priya Patel",
+          "Marcus Lee",
+          "Lena Fischer"
+        ],
+        "height": 591,
+        "inviteDisabled": true,
+        "animation": "ui-modal-in",
+        "entered": null,
+        "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] "
+      },
+      {
+        "type": "share-projection",
+        "at": 2174.7000000029802,
+        "rows": [
+          "Tanjim Islam",
+          "Sarah Chen",
+          "John Carter",
+          "Emma Wilson",
+          "Priya Patel",
+          "Marcus Lee",
+          "Lena Fischer"
+        ],
+        "height": 591,
+        "inviteDisabled": true,
+        "animation": "none",
+        "entered": "",
+        "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] "
+      },
+      {
+        "type": "share-projection",
+        "at": 2177.7999999970198,
+        "rows": [
+          "Tanjim Islam",
+          "Sarah Chen",
+          "John Carter",
+          "Emma Wilson",
+          "Priya Patel",
+          "Marcus Lee",
+          "Lena Fischer"
+        ],
+        "height": 591,
+        "inviteDisabled": false,
+        "animation": "none",
+        "entered": "",
+        "class": "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] "
+      }
+    ]
+  ],
+  "layers": [
+    {
+      "side": "source",
+      "layer": {
+        "layerId": "27",
+        "parentLayerId": "5",
+        "backendNodeId": 3806,
+        "offsetX": 0,
+        "offsetY": 0,
+        "width": 640,
+        "height": 671,
+        "transform": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          400,
+          72,
+          0,
+          1
+        ],
+        "anchorX": 0,
+        "anchorY": 0,
+        "anchorZ": 0,
+        "paintCount": 26,
+        "drawsContent": true,
+        "scrollRects": [
+          {
+            "rect": {
+              "x": 40,
+              "y": 28,
+              "width": 560,
+              "height": 591
+            },
+            "type": "TouchEventHandler"
+          }
+        ],
+        "reasons": {
+          "compositingReasons": [
+            "Has an active accelerated transform animation or transition.",
+            "Has an active accelerated opacity animation or transition."
+          ],
+          "compositingReasonIds": [
+            "ActiveTransformAnimation",
+            "ActiveOpacityAnimation"
+          ]
+        },
+        "node": {
+          "name": "DIV",
+          "id": 0,
+          "backendNodeId": 3806,
+          "attributes": [
+            "class",
+            "modal enter ",
+            "role",
+            "dialog",
+            "aria-modal",
+            "true",
+            "aria-labelledby",
+            "mt-share"
+          ]
+        }
+      },
+      "commands": 332,
+      "replay": {
+        "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-projection-after-source-snapshot-replay.png",
+        "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+        "scale": 1
+      }
+    },
+    {
+      "side": "target",
+      "layer": {
+        "layerId": "24",
+        "parentLayerId": "5",
+        "backendNodeId": 1636,
+        "offsetX": 0,
+        "offsetY": 0,
+        "width": 1440,
+        "height": 1000,
+        "paintCount": 30,
+        "drawsContent": true,
+        "scrollRects": [
+          {
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 1440,
+              "height": 1000
+            },
+            "type": "TouchEventHandler"
+          }
+        ],
+        "reasons": {
+          "compositingReasons": [
+            "Is fixed position in a scrollable view."
+          ],
+          "compositingReasonIds": [
+            "FixedPosition"
+          ]
+        },
+        "node": {
+          "name": "DIV",
+          "id": 0,
+          "backendNodeId": 1636,
+          "attributes": [
+            "class",
+            "ui-dialog-wrap fixed inset-0 flex items-start justify-center overflow-y-auto px-4 pb-4 pt-[10vh]",
+            "style",
+            "z-index: 61;"
+          ]
+        }
+      },
+      "commands": 333,
+      "replay": {
+        "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-projection-after-target-snapshot-replay.png",
+        "sha256": "108a77f1e95f97500727f7ce645f0551892c24f1db70be4a71a9341c31836376",
+        "scale": 1
+      }
+    }
+  ],
+  "ownedFinalControls": {
+    "share-member-avatar": {
+      "noncustomCssDiff": {},
+      "rectEqual": true,
+      "pseudoNoncustomEqual": true
+    },
+    "share-close": {
+      "noncustomCssDiff": {},
+      "rectEqual": true,
+      "pseudoNoncustomEqual": true
+    },
+    "share-close-svg": {
+      "noncustomCssDiff": {},
+      "rectEqual": true,
+      "pseudoNoncustomEqual": true
+    }
+  },
+  "rawFirst49Equal": false,
+  "coordinateLimit": "Source picture640x671 with translate40,28; Target fixed-wrap1440x1000 with clip+translate440,100. Raw commands/replay byte equality cannot be reused across these spaces.",
+  "rgbaDifferences": [
+    {
+      "x": 559,
+      "y": 9,
+      "source": [
+        249,
+        248,
+        247,
+        255
+      ],
+      "target": [
+        248,
+        247,
+        246,
+        255
+      ]
+    },
+    {
+      "x": 16,
+      "y": 227,
+      "source": [
+        222,
+        234,
+        245,
+        255
+      ],
+      "target": [
+        223,
+        235,
+        245,
+        255
+      ]
+    },
+    {
+      "x": 41,
+      "y": 227,
+      "source": [
+        222,
+        234,
+        245,
+        255
+      ],
+      "target": [
+        223,
+        235,
+        245,
+        255
+      ]
+    },
+    {
+      "x": 530,
+      "y": 227,
+      "source": [
+        206,
+        204,
+        200,
+        255
+      ],
+      "target": [
+        207,
+        205,
+        200,
+        255
+      ]
+    },
+    {
+      "x": 529,
+      "y": 228,
+      "source": [
+        206,
+        204,
+        199,
+        255
+      ],
+      "target": [
+        206,
+        204,
+        200,
+        255
+      ]
+    },
+    {
+      "x": 527,
+      "y": 229,
+      "source": [
+        213,
+        211,
+        206,
+        255
+      ],
+      "target": [
+        213,
+        211,
+        207,
+        255
+      ]
+    },
+    {
+      "x": 528,
+      "y": 229,
+      "source": [
+        211,
+        209,
+        206,
+        255
+      ],
+      "target": [
+        212,
+        210,
+        206,
+        255
+      ]
+    },
+    {
+      "x": 16,
+      "y": 404,
+      "source": [
+        222,
+        236,
+        228,
+        255
+      ],
+      "target": [
+        223,
+        237,
+        229,
+        255
+      ]
+    },
+    {
+      "x": 16,
+      "y": 405,
+      "source": [
+        226,
+        238,
+        231,
+        255
+      ],
+      "target": [
+        228,
+        239,
+        233,
+        255
+      ]
+    },
+    {
+      "x": 41,
+      "y": 405,
+      "source": [
+        227,
+        239,
+        232,
+        255
+      ],
+      "target": [
+        228,
+        239,
+        233,
+        255
+      ]
+    },
+    {
+      "x": 16,
+      "y": 406,
+      "source": [
+        229,
+        240,
+        234,
+        255
+      ],
+      "target": [
+        231,
+        241,
+        235,
+        255
+      ]
+    },
+    {
+      "x": 41,
+      "y": 406,
+      "source": [
+        230,
+        240,
+        234,
+        255
+      ],
+      "target": [
+        231,
+        241,
+        235,
+        255
+      ]
+    },
+    {
+      "x": 16,
+      "y": 407,
+      "source": [
+        236,
+        244,
+        240,
+        255
+      ],
+      "target": [
+        238,
+        245,
+        241,
+        255
+      ]
+    },
+    {
+      "x": 41,
+      "y": 407,
+      "source": [
+        236,
+        244,
+        240,
+        255
+      ],
+      "target": [
+        238,
+        245,
+        241,
+        255
+      ]
+    },
+    {
+      "x": 16,
+      "y": 408,
+      "source": [
+        248,
+        251,
+        249,
+        255
+      ],
+      "target": [
+        251,
+        253,
+        251,
+        255
+      ]
+    },
+    {
+      "x": 41,
+      "y": 408,
+      "source": [
+        249,
+        252,
+        250,
+        255
+      ],
+      "target": [
+        251,
+        253,
+        252,
+        255
+      ]
+    },
+    {
+      "x": 17,
+      "y": 409,
+      "source": [
+        229,
+        240,
+        234,
+        255
+      ],
+      "target": [
+        231,
+        241,
+        235,
+        255
+      ]
+    },
+    {
+      "x": 40,
+      "y": 409,
+      "source": [
+        229,
+        240,
+        234,
+        255
+      ],
+      "target": [
+        231,
+        241,
+        235,
+        255
+      ]
+    },
+    {
+      "x": 17,
+      "y": 410,
+      "source": [
+        247,
+        250,
+        248,
+        255
+      ],
+      "target": [
+        246,
+        250,
+        248,
+        255
+      ]
+    },
+    {
+      "x": 40,
+      "y": 410,
+      "source": [
+        248,
+        251,
+        249,
+        255
+      ],
+      "target": [
+        247,
+        250,
+        248,
+        255
+      ]
+    },
+    {
+      "x": 18,
+      "y": 411,
+      "source": [
+        236,
+        244,
+        240,
+        255
+      ],
+      "target": [
+        233,
+        243,
+        237,
+        255
+      ]
+    },
+    {
+      "x": 39,
+      "y": 411,
+      "source": [
+        236,
+        244,
+        240,
+        255
+      ],
+      "target": [
+        235,
+        244,
+        239,
+        255
+      ]
+    },
+    {
+      "x": 18,
+      "y": 412,
+      "source": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "target": [
+        254,
+        255,
+        254,
+        255
+      ]
+    },
+    {
+      "x": 19,
+      "y": 412,
+      "source": [
+        230,
+        240,
+        234,
+        255
+      ],
+      "target": [
+        228,
+        239,
+        233,
+        255
+      ]
+    },
+    {
+      "x": 38,
+      "y": 412,
+      "source": [
+        230,
+        240,
+        234,
+        255
+      ],
+      "target": [
+        229,
+        240,
+        234,
+        255
+      ]
+    },
+    {
+      "x": 19,
+      "y": 413,
+      "source": [
+        252,
+        254,
+        253,
+        255
+      ],
+      "target": [
+        251,
+        253,
+        252,
+        255
+      ]
+    },
+    {
+      "x": 38,
+      "y": 413,
+      "source": [
+        252,
+        254,
+        253,
+        255
+      ],
+      "target": [
+        253,
+        254,
+        253,
+        255
+      ]
+    },
+    {
+      "x": 556,
+      "y": 587,
+      "source": [
+        236,
+        235,
+        232,
+        255
+      ],
+      "target": [
+        238,
+        237,
+        234,
+        255
+      ]
+    }
+  ],
+  "assetsEqual": true,
+  "immutableEqual": true,
+  "files": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/overview-default-share-light-1440-share-projection-after-source-paint-commands.json.gz",
+      "sha256": "f474342457936b2b26beee6b7ad9bc2d2bb7d965a59e93a8cd932fa4da727cad"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/overview-default-share-light-1440-share-projection-after-source-snapshot-replay.png",
+      "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/overview-default-share-light-1440-share-projection-after-target-paint-commands.json.gz",
+      "sha256": "8549f7ce8aed8b4468943a2a26ad34221f0d6b995200d904ca4ec663a8ef2c9c"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/overview-default-share-light-1440-share-projection-after-target-snapshot-replay.png",
+      "sha256": "108a77f1e95f97500727f7ce645f0551892c24f1db70be4a71a9341c31836376"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/report.json",
+      "sha256": "4a6c488a3c49b88e6ee41a91062ad18529a0fe8ce1ee654533c02483092c5bb6"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/share-projection-after.log",
+      "sha256": "6d1d2d3c30186be661f88e459a8954d88ff0bf422ef26363e891e0751f6f146b"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/share-projection-build.log",
+      "sha256": "e2347787e7d05f5a802035886f4975674a9a38f17519692d1dcc471a4eeeb247"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/share-projection-typecheck-fixed.log",
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/share-projection-typecheck.log",
+      "sha256": "f631d8548e19ea7875dc05724a6ac4a1849b7f5c6a733aea78eb49b161957b1f"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/source.png",
+      "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-projection-after/target.png",
+      "sha256": "9699071c93216d4de842800a5384203f377be920d2ef5183bddf93e2e0b0588b"
+    }
+  ],
+  "limitations": [
+    "First7 identities/591px from permitted Bootstrap display DTO; email/role not invented. Invite guarded until complete canonical catalogue+demo capability.",
+    "Initial authoritative hydration currently consumes entrance; Source first modal retains finite modalIn. Observed ownership difference, no Close-pixel causal claim.",
+    "Live28 unaccepted; prior offscreen equality does not apply to different-sized after pictures. No mandatory gate/profile adoption."
+  ]
+}

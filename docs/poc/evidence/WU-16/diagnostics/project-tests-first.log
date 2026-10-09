@@ -1,0 +1,79 @@
+✖ Project create all seven templates atomic IDs/keys/global append/activity; edit CAS preserves grants, failed merged date range zero writes (85.897966ms)
+✔ Duplicate remaps only internal dependencies/new children, resets metadata/favorites, creates fresh history and source201 keys (9.319462ms)
+✔ Project lifecycle/Undo bounds, consumed replay reauthorizes, deleting actor restore, independent child tombstones survive; shared task/project staging races (18.096692ms)
+✖ Deleted project is absent from every implemented child projection; restricted catalog has only allowed DTO fields and all private child reads fail (13.300946ms)
+✖ Favorites and personal order persist per member/reload; catalogue complete pages/filter/count and saved three-layout explicit definitions/CAS (34.059841ms)
+✔ Sharing demo is separate persistent state, guarded local inverses cannot overwrite later changes or grant real private access (4.308404ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 3
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 346.281264
+
+✖ failing tests:
+
+test at apps/web/tests/data/projects.test.ts:17:1
+✖ Project create all seven templates atomic IDs/keys/global append/activity; edit CAS preserves grants, failed merged date range zero writes (85.897966ms)
+  StudioApiError: Choose an active project lead
+      at fail (file:///workspace/task8/apps/web/src/data/mock/projects.ts:12:114)
+      at validate (file:///workspace/task8/apps/web/src/data/mock/projects.ts:15:156)
+      at execute (file:///workspace/task8/apps/web/src/data/mock/projects.ts:39:271)
+      at file:///workspace/task8/apps/web/src/data/mock/projects.ts:51:298
+      at file:///workspace/task8/apps/web/src/data/mock/transaction.ts:7:122
+      at async transactMock (file:///workspace/task8/apps/web/src/data/mock/transaction.ts:9:16)
+      at async file:///workspace/task8/apps/web/src/data/adapters/mock.ts:40:146
+      at async execute (file:///workspace/task8/apps/web/src/data/operations.ts:25:20)
+      at async TestContext.<anonymous> (file:///workspace/task8/apps/web/tests/data/projects.test.ts:20:134)
+      at async Test.run (node:internal/test_runner/test:1113:7) {
+    detail: { code: 'VALIDATION_ERROR', message: 'Choose an active project lead' },
+    status: 400
+  }
+
+test at apps/web/tests/data/projects.test.ts:42:1
+✖ Deleted project is absent from every implemented child projection; restricted catalog has only allowed DTO fields and all private child reads fail (13.300946ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'allowed'
+  - 'restricted'
+  
+      at TestContext.<anonymous> (file:///workspace/task8/apps/web/tests/data/projects.test.ts:44:163)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'allowed',
+    expected: 'restricted',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/web/tests/data/projects.test.ts:46:1
+✖ Favorites and personal order persist per member/reload; catalogue complete pages/filter/count and saved three-layout explicit definitions/CAS (34.059841ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   {
+  -     field: 'status',
+  -     op: 'is',
+  -     values: [
+  -       'review'
+  -     ]
+  -   }
+  - ]
+  
+      at TestContext.<anonymous> (file:///workspace/task8/apps/web/tests/data/projects.test.ts:48:428)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [Array],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

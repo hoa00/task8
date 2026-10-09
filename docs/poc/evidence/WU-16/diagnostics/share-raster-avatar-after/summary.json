@@ -1,0 +1,203 @@
+{
+  "status": "OWNERSHIP_FIXED_RASTER_UNACCEPTED",
+  "actualExitStatus": 1,
+  "noncustomCSSDifferences": [],
+  "staticBoth": true,
+  "rectEqual": true,
+  "beforeAfterTargetRectEqual": true,
+  "changedPixels": 2,
+  "repeatabilityPixels": 0,
+  "images": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-raster-avatar-after/source.png",
+      "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/share-raster-avatar-after/target.png",
+      "sha256": "22251d6540c4881d21e271aa27b7cefcf8888721b105abce4d50501626eeb3e6"
+    }
+  ],
+  "replays": [
+    {
+      "side": "source",
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-raster-avatar-after-source-paint-commands.json.gz",
+      "sha256": "cd9a070ccdfa4d91482e673dd7c8f6afcc319dad0218cd17e3ed4cc3da857a08",
+      "replay": {
+        "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-raster-avatar-after-source-snapshot-replay.png",
+        "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+        "scale": 1
+      },
+      "commandCount": 332,
+      "layer": {
+        "layerId": "27",
+        "parentLayerId": "5",
+        "backendNodeId": 3805,
+        "offsetX": 0,
+        "offsetY": 0,
+        "width": 640,
+        "height": 671,
+        "transform": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          400,
+          72,
+          0,
+          1
+        ],
+        "anchorX": 0,
+        "anchorY": 0,
+        "anchorZ": 0,
+        "paintCount": 26,
+        "drawsContent": true,
+        "scrollRects": [
+          {
+            "rect": {
+              "x": 40,
+              "y": 28,
+              "width": 560,
+              "height": 591
+            },
+            "type": "TouchEventHandler"
+          }
+        ],
+        "reasons": {
+          "compositingReasons": [
+            "Has an active accelerated transform animation or transition.",
+            "Has an active accelerated opacity animation or transition."
+          ],
+          "compositingReasonIds": [
+            "ActiveTransformAnimation",
+            "ActiveOpacityAnimation"
+          ]
+        },
+        "node": {
+          "name": "DIV",
+          "id": 0,
+          "backendNodeId": 3805,
+          "attributes": [
+            "class",
+            "modal enter ",
+            "role",
+            "dialog",
+            "aria-modal",
+            "true",
+            "aria-labelledby",
+            "mt-share"
+          ]
+        }
+      },
+      "passiveAPI": [
+        "LayerTree.makeSnapshot",
+        "LayerTree.snapshotCommandLog",
+        "LayerTree.releaseSnapshot"
+      ],
+      "timing": "After all existing warm/capture/repeat screenshots; no DOM/style/layer control or capture delay."
+    },
+    {
+      "side": "target",
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-raster-avatar-after-target-paint-commands.json.gz",
+      "sha256": "89b0500f118e5e71258c72f5f9bd609b87eff41d66c7d17742cd4106b1161458",
+      "replay": {
+        "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-share-light-1440-share-raster-avatar-after-target-snapshot-replay.png",
+        "sha256": "6a13a444d09f4146bb3ac65456261f7e9b68c4e69988b1b6966541425a27980f",
+        "scale": 1
+      },
+      "commandCount": 333,
+      "layer": {
+        "layerId": "25",
+        "parentLayerId": "5",
+        "backendNodeId": 1637,
+        "offsetX": 0,
+        "offsetY": 0,
+        "width": 640,
+        "height": 671,
+        "transform": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          400,
+          72,
+          0,
+          1
+        ],
+        "anchorX": 0,
+        "anchorY": 0,
+        "anchorZ": 0,
+        "paintCount": 31,
+        "drawsContent": true,
+        "scrollRects": [
+          {
+            "rect": {
+              "x": 40,
+              "y": 28,
+              "width": 560,
+              "height": 591
+            },
+            "type": "TouchEventHandler"
+          }
+        ],
+        "reasons": {
+          "compositingReasons": [
+            "Has an active accelerated transform animation or transition.",
+            "Has an active accelerated opacity animation or transition."
+          ],
+          "compositingReasonIds": [
+            "ActiveTransformAnimation",
+            "ActiveOpacityAnimation"
+          ]
+        },
+        "node": {
+          "name": "SECTION",
+          "id": 0,
+          "backendNodeId": 1637,
+          "attributes": [
+            "aria-labelledby",
+            "share-title",
+            "data-project-share",
+            "true",
+            "role",
+            "dialog",
+            "aria-modal",
+            "true",
+            "tabindex",
+            "-1",
+            "data-overlay-kind",
+            "modal",
+            "class",
+            "ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] "
+          ]
+        }
+      },
+      "passiveAPI": [
+        "LayerTree.makeSnapshot",
+        "LayerTree.snapshotCommandLog",
+        "LayerTree.releaseSnapshot"
+      ],
+      "timing": "After all existing warm/capture/repeat screenshots; no DOM/style/layer control or capture delay."
+    }
+  ],
+  "limitations": [
+    "ActualSource-faithful Share-only static avatar repair; no shared default change.",
+    "Livebefore1/liveafter2 and initial2 are variability, not evidence that avatar positioning caused Close residual.",
+    "Close style/geometry/first49paintcommands/offscreen replay remain equal; live-only2 is unresolved."
+  ]
+}

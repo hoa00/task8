@@ -1,0 +1,53 @@
+{
+  "status": "DIAGNOSTIC_ONLY_UNACCEPTED",
+  "actualCommand": "node tests/visual/projects/verify.mjs --inspect-raster-replay",
+  "actualExitStatus": 1,
+  "liveChangedPixels": 28,
+  "liveRepeatabilityPixels": 0,
+  "snapshotReplayScale": 1,
+  "snapshotReplaySize": [
+    1440,
+    1000
+  ],
+  "snapshotReplayBytesEqual": true,
+  "snapshotReplayChangedPixels": 0,
+  "replayImages": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-create-light-1440-raster-replay-source-snapshot-replay.png",
+      "sha256": "632dfca52b7a9878eba913af9d10219a1d57b7cf2dee2618565614c4a8528715",
+      "scale": 1
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-create-light-1440-raster-replay-target-snapshot-replay.png",
+      "sha256": "632dfca52b7a9878eba913af9d10219a1d57b7cf2dee2618565614c4a8528715",
+      "scale": 1
+    }
+  ],
+  "serializedCommandsDeepEqual": true,
+  "serializedCommandCount": 477,
+  "immutablePictureLogs": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-create-light-1440-raster-replay-source-paint-commands.json.gz",
+      "sha256": "d0e24232dd41b7b9347f4e9aff1116bfc67c28220038f9bcfb078a4887b220e4"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/overview-default-create-light-1440-raster-replay-target-paint-commands.json.gz",
+      "sha256": "0723a0c51a2c66e0c0d0db0bdd97f62236f06bd8d5c92614ecb7c2cf4c572e7b"
+    }
+  ],
+  "liveImages": [
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/raster-replay-samples/overview-default-create-light-1440-raster-replay-source.png",
+      "sha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730"
+    },
+    {
+      "path": "docs/poc/evidence/WU-16/diagnostics/raster-replay-samples/overview-default-create-light-1440-raster-replay-target.png",
+      "sha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a"
+    }
+  ],
+  "APIBoundary": "After all existing live/warm/repeat captures; makeSnapshot/snapshotCommandLog/replaySnapshot(scale1)/releaseSnapshot only on immutable captured layer. No live DOM/style/layer/paint control.",
+  "limitations": [
+    "Offscreen replay is diagnostic, not Source baseline or primary acceptance.",
+    "One real consumer; equality narrows beyond recorded paint and replay output toward live raster/composition/unexposed state, not an exact GPU/tile/browser cause."
+  ]
+}

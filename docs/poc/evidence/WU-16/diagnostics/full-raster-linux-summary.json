@@ -1,0 +1,2627 @@
+{
+  "status": "SUPPLEMENT_FAILED_UNACCEPTED",
+  "actualCommand": "node tests/visual/projects/verify.mjs --full-raster-linux-supplement",
+  "actualExitStatus": 1,
+  "report": {
+    "path": "docs/poc/evidence/WU-16/full-raster-linux-supplement.json",
+    "sha256": "80aebcd82c10665a114e755cde33ad5c8f7b53334a77ce10895e6fa1ae8068af"
+  },
+  "runtime": {
+    "node": "v24.13.0",
+    "os": "linux",
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6",
+    "browserProfile": {
+      "name": "matched-full-raster-linux-supplement",
+      "requestedLaunchArguments": [
+        "--disable-partial-raster"
+      ],
+      "actualLaunchArguments": [
+        "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+        "--disable-field-trial-config",
+        "--disable-background-networking",
+        "--disable-background-timer-throttling",
+        "--disable-backgrounding-occluded-windows",
+        "--disable-back-forward-cache",
+        "--disable-breakpad",
+        "--disable-client-side-phishing-detection",
+        "--disable-component-extensions-with-background-pages",
+        "--disable-component-update",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-dev-shm-usage",
+        "--disable-extensions",
+        "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+        "--enable-features=CDPScreenshotNewSurface",
+        "--allow-pre-commit-input",
+        "--disable-hang-monitor",
+        "--disable-ipc-flooding-protection",
+        "--disable-popup-blocking",
+        "--disable-prompt-on-repost",
+        "--disable-renderer-backgrounding",
+        "--force-color-profile=srgb",
+        "--metrics-recording-only",
+        "--no-first-run",
+        "--password-store=basic",
+        "--use-mock-keychain",
+        "--no-service-autorun",
+        "--export-tagged-pdf",
+        "--disable-search-engine-choice-screen",
+        "--unsafely-disable-devtools-self-xss-warnings",
+        "--edge-skip-compat-layer-relaunch",
+        "--enable-automation",
+        "--disable-infobars",
+        "--disable-search-engine-choice-screen",
+        "--disable-sync",
+        "--enable-unsafe-swiftshader",
+        "--headless",
+        "--hide-scrollbars",
+        "--mute-audio",
+        "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+        "--no-sandbox",
+        "--disable-partial-raster",
+        "--user-data-dir=/tmp/playwright_chromiumdev_profile-hpdcDx",
+        "--remote-debugging-pipe",
+        "--no-startup-window",
+        "--use-gl=angle",
+        "--use-angle=swiftshader-webgl",
+        "--ozone-platform=headless",
+        "--allow-pre-commit-input"
+      ],
+      "appliesTo": "Both Source and Target; separate supplement only"
+    }
+  },
+  "strictPairCount": 45,
+  "strictZeroCount": 44,
+  "rawPairCount": 5,
+  "pngCount": 100,
+  "sourceHashDeltaStrictCount": 14,
+  "immutableBefore": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "immutableAfter": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "implementationAssetsUnchanged": true,
+  "defaultReference": {
+    "path": "docs/poc/evidence/WU-16/diagnostics/visual-verification-gates-twenty-second.json",
+    "sha256": "bc5d79f4777a60e623766bcaf39a336140cbae53d61ae749f1a79070f3f0e9b9",
+    "status": "UNPROVED_UNACCEPTED",
+    "strictZeroCount": 31,
+    "strictPairCount": 45
+  },
+  "samples": [
+    {
+      "id": "catalogue-grid-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "catalogue",
+        "mode": "grid",
+        "width": 1440,
+        "q": "Website"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "f37d286669ed04e41a4b450355f1fa5c7e98a1d03813b440630d5c906de1631f",
+        "targetSha256": "f37d286669ed04e41a4b450355f1fa5c7e98a1d03813b440630d5c906de1631f",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-grid-default-light-1440-source.png",
+          "sha256": "7eda19ce4dfe558138549f9b3a3c168c545898c420142818a610044e440fc6db",
+          "defaultSha256": "f37d286669ed04e41a4b450355f1fa5c7e98a1d03813b440630d5c906de1631f",
+          "changedPixelsVsDefault": 11
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-grid-default-light-1440-target.png",
+          "sha256": "7eda19ce4dfe558138549f9b3a3c168c545898c420142818a610044e440fc6db",
+          "defaultSha256": "f37d286669ed04e41a4b450355f1fa5c7e98a1d03813b440630d5c906de1631f",
+          "changedPixelsVsDefault": 11
+        }
+      ]
+    },
+    {
+      "id": "catalogue-grid-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "catalogue",
+        "mode": "grid",
+        "width": 390,
+        "q": "Website"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "e1d200b1b867569865929dba3612855a5b8b4e636a93e521860da99756b6aa70",
+        "targetSha256": "771d5adeeec058e9575b81e8ccc1376fc4283cc8440faa07a70a47bcf98d315f",
+        "sourceHashChanged": false,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 11,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-grid-default-light-390-source.png",
+          "sha256": "e1d200b1b867569865929dba3612855a5b8b4e636a93e521860da99756b6aa70",
+          "defaultSha256": "e1d200b1b867569865929dba3612855a5b8b4e636a93e521860da99756b6aa70",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-grid-default-light-390-target.png",
+          "sha256": "e1d200b1b867569865929dba3612855a5b8b4e636a93e521860da99756b6aa70",
+          "defaultSha256": "771d5adeeec058e9575b81e8ccc1376fc4283cc8440faa07a70a47bcf98d315f",
+          "changedPixelsVsDefault": 11
+        }
+      ]
+    },
+    {
+      "id": "catalogue-list-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "catalogue",
+        "mode": "list",
+        "width": 1440,
+        "q": "Website"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "e6c1866190bd01d94f6993179b4394acad88ac2effbbb2ecceddbf1485536b58",
+        "targetSha256": "87ec4976285ecb28ae5aedd2193c4acc6d0b5b0ff10b70f7713a48c20801ecba",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 7,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-list-default-light-1440-source.png",
+          "sha256": "3668214dd0f657084a5fe81fdc1d9461f3caf71a04a7261801bb1b33108ec767",
+          "defaultSha256": "e6c1866190bd01d94f6993179b4394acad88ac2effbbb2ecceddbf1485536b58",
+          "changedPixelsVsDefault": 11
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-list-default-light-1440-target.png",
+          "sha256": "3668214dd0f657084a5fe81fdc1d9461f3caf71a04a7261801bb1b33108ec767",
+          "defaultSha256": "87ec4976285ecb28ae5aedd2193c4acc6d0b5b0ff10b70f7713a48c20801ecba",
+          "changedPixelsVsDefault": 18
+        }
+      ]
+    },
+    {
+      "id": "catalogue-list-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "catalogue",
+        "mode": "list",
+        "width": 390,
+        "q": "Website"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "7cebcb9c07b925f110b615988310677bc6e19bc281d3f3ebd5156f850bae7f23",
+        "targetSha256": "7cebcb9c07b925f110b615988310677bc6e19bc281d3f3ebd5156f850bae7f23",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-list-default-light-390-source.png",
+          "sha256": "c8aafe256701fff6a1580e00d9202115864ae540237a6cda8f9854be08fd30a7",
+          "defaultSha256": "7cebcb9c07b925f110b615988310677bc6e19bc281d3f3ebd5156f850bae7f23",
+          "changedPixelsVsDefault": 11
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-list-default-light-390-target.png",
+          "sha256": "c8aafe256701fff6a1580e00d9202115864ae540237a6cda8f9854be08fd30a7",
+          "defaultSha256": "7cebcb9c07b925f110b615988310677bc6e19bc281d3f3ebd5156f850bae7f23",
+          "changedPixelsVsDefault": 11
+        }
+      ]
+    },
+    {
+      "id": "catalogue-table-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "catalogue",
+        "mode": "table",
+        "width": 1440,
+        "q": "Website"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "c1dc8a3ae221055d99be4dbbf1f04ffdd83cab767523ce4802f3a3d1764cf9e6",
+        "targetSha256": "9e243566d401f5a8dd5d14cf2a3f91d2127c6085b9a360b0a517f5c26b11a5dd",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 7,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-table-default-light-1440-source.png",
+          "sha256": "a8b8f4851be14803f5441501a86f99f062ebb5c49aa1d2f6d273fd4fe1b992de",
+          "defaultSha256": "c1dc8a3ae221055d99be4dbbf1f04ffdd83cab767523ce4802f3a3d1764cf9e6",
+          "changedPixelsVsDefault": 11
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-table-default-light-1440-target.png",
+          "sha256": "a8b8f4851be14803f5441501a86f99f062ebb5c49aa1d2f6d273fd4fe1b992de",
+          "defaultSha256": "9e243566d401f5a8dd5d14cf2a3f91d2127c6085b9a360b0a517f5c26b11a5dd",
+          "changedPixelsVsDefault": 18
+        }
+      ]
+    },
+    {
+      "id": "catalogue-table-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "catalogue",
+        "mode": "table",
+        "width": 390,
+        "q": "Website"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "83b8f4091d11f66df9e92ba8029a07e7c15d98e86128e2bbdf28325e95025b61",
+        "targetSha256": "83b8f4091d11f66df9e92ba8029a07e7c15d98e86128e2bbdf28325e95025b61",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-table-default-light-390-source.png",
+          "sha256": "1abc48e6718080a865f3ec9974156d79f0c4b5c4a4916c86613d164bce2c4378",
+          "defaultSha256": "83b8f4091d11f66df9e92ba8029a07e7c15d98e86128e2bbdf28325e95025b61",
+          "changedPixelsVsDefault": 11
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-table-default-light-390-target.png",
+          "sha256": "1abc48e6718080a865f3ec9974156d79f0c4b5c4a4916c86613d164bce2c4378",
+          "defaultSha256": "83b8f4091d11f66df9e92ba8029a07e7c15d98e86128e2bbdf28325e95025b61",
+          "changedPixelsVsDefault": 11
+        }
+      ]
+    },
+    {
+      "id": "catalogue-grid-hover-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "catalogue",
+        "mode": "grid",
+        "width": 1440,
+        "q": "Website",
+        "state": "hover",
+        "hover": true
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "4285a5174e6693f0076a5eab8e3aba67f60f286ed7a24f4a1ac69b27eb9824c1",
+        "targetSha256": "4285a5174e6693f0076a5eab8e3aba67f60f286ed7a24f4a1ac69b27eb9824c1",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-grid-hover-light-1440-source.png",
+          "sha256": "85a650b7f558730ec718fa2521efe05fdcb870e6f14950637fdbb5df96bc6676",
+          "defaultSha256": "4285a5174e6693f0076a5eab8e3aba67f60f286ed7a24f4a1ac69b27eb9824c1",
+          "changedPixelsVsDefault": 32
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-grid-hover-light-1440-target.png",
+          "sha256": "85a650b7f558730ec718fa2521efe05fdcb870e6f14950637fdbb5df96bc6676",
+          "defaultSha256": "4285a5174e6693f0076a5eab8e3aba67f60f286ed7a24f4a1ac69b27eb9824c1",
+          "changedPixelsVsDefault": 32
+        }
+      ]
+    },
+    {
+      "id": "list-default-native-workflow-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "list",
+        "saved": "list",
+        "width": 1440,
+        "workflow": "rename-open",
+        "state": "native-workflow"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "3f583e307201b2c8d1fc096726615bf78df82c0329845c3f3278769c69da8b68",
+        "targetSha256": "3f583e307201b2c8d1fc096726615bf78df82c0329845c3f3278769c69da8b68",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/list-default-native-workflow-light-1440-source.png",
+          "sha256": "0fdac3c2c9eda561f5f8c7193ee1a361e86e304f404100aa5db589ff4fad1afa",
+          "defaultSha256": "3f583e307201b2c8d1fc096726615bf78df82c0329845c3f3278769c69da8b68",
+          "changedPixelsVsDefault": 17
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/list-default-native-workflow-light-1440-target.png",
+          "sha256": "0fdac3c2c9eda561f5f8c7193ee1a361e86e304f404100aa5db589ff4fad1afa",
+          "defaultSha256": "3f583e307201b2c8d1fc096726615bf78df82c0329845c3f3278769c69da8b68",
+          "changedPixelsVsDefault": 17
+        }
+      ]
+    },
+    {
+      "id": "list-default-native-workflow-light-390",
+      "raw": false,
+      "sample": {
+        "page": "list",
+        "saved": "list",
+        "width": 390,
+        "workflow": "rename-open",
+        "state": "native-workflow"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "e7c2553732727b32468c15b491bd585ea0184b869cc41d469b62b0b20b1b6bff",
+        "targetSha256": "e7c2553732727b32468c15b491bd585ea0184b869cc41d469b62b0b20b1b6bff",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/list-default-native-workflow-light-390-source.png",
+          "sha256": "e7c2553732727b32468c15b491bd585ea0184b869cc41d469b62b0b20b1b6bff",
+          "defaultSha256": "e7c2553732727b32468c15b491bd585ea0184b869cc41d469b62b0b20b1b6bff",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/list-default-native-workflow-light-390-target.png",
+          "sha256": "e7c2553732727b32468c15b491bd585ea0184b869cc41d469b62b0b20b1b6bff",
+          "defaultSha256": "e7c2553732727b32468c15b491bd585ea0184b869cc41d469b62b0b20b1b6bff",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "board-default-native-workflow-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "board",
+        "saved": "board",
+        "width": 1440,
+        "workflow": "rename-open",
+        "state": "native-workflow"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "690eec290d77eaf094f84dbadac98e486ef316b547c0f55072e780807c4ff82f",
+        "targetSha256": "690eec290d77eaf094f84dbadac98e486ef316b547c0f55072e780807c4ff82f",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/board-default-native-workflow-light-1440-source.png",
+          "sha256": "690eec290d77eaf094f84dbadac98e486ef316b547c0f55072e780807c4ff82f",
+          "defaultSha256": "690eec290d77eaf094f84dbadac98e486ef316b547c0f55072e780807c4ff82f",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/board-default-native-workflow-light-1440-target.png",
+          "sha256": "690eec290d77eaf094f84dbadac98e486ef316b547c0f55072e780807c4ff82f",
+          "defaultSha256": "690eec290d77eaf094f84dbadac98e486ef316b547c0f55072e780807c4ff82f",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "board-default-native-workflow-light-390",
+      "raw": false,
+      "sample": {
+        "page": "board",
+        "saved": "board",
+        "width": 390,
+        "workflow": "rename-open",
+        "state": "native-workflow"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "47d50933979d555cf282378a88af238c864b16e3e51329fb39ce78de532022b2",
+        "targetSha256": "47d50933979d555cf282378a88af238c864b16e3e51329fb39ce78de532022b2",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/board-default-native-workflow-light-390-source.png",
+          "sha256": "47d50933979d555cf282378a88af238c864b16e3e51329fb39ce78de532022b2",
+          "defaultSha256": "47d50933979d555cf282378a88af238c864b16e3e51329fb39ce78de532022b2",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/board-default-native-workflow-light-390-target.png",
+          "sha256": "47d50933979d555cf282378a88af238c864b16e3e51329fb39ce78de532022b2",
+          "defaultSha256": "47d50933979d555cf282378a88af238c864b16e3e51329fb39ce78de532022b2",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "table-default-native-workflow-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "table",
+        "saved": "table",
+        "width": 1440,
+        "workflow": "rename-open",
+        "state": "native-workflow"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "c5b502ce945ee574619892e0ab4a4122958a7746945447379cf20aa79d3a3947",
+        "targetSha256": "c5b502ce945ee574619892e0ab4a4122958a7746945447379cf20aa79d3a3947",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/table-default-native-workflow-light-1440-source.png",
+          "sha256": "c5b502ce945ee574619892e0ab4a4122958a7746945447379cf20aa79d3a3947",
+          "defaultSha256": "c5b502ce945ee574619892e0ab4a4122958a7746945447379cf20aa79d3a3947",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/table-default-native-workflow-light-1440-target.png",
+          "sha256": "c5b502ce945ee574619892e0ab4a4122958a7746945447379cf20aa79d3a3947",
+          "defaultSha256": "c5b502ce945ee574619892e0ab4a4122958a7746945447379cf20aa79d3a3947",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "table-default-native-workflow-light-390",
+      "raw": false,
+      "sample": {
+        "page": "table",
+        "saved": "table",
+        "width": 390,
+        "workflow": "rename-open",
+        "state": "native-workflow"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "ea04384ad28860ffc5798dbd2e5f48abd5a9f1d4657236c7ba43c04822e4d6f3",
+        "targetSha256": "ea04384ad28860ffc5798dbd2e5f48abd5a9f1d4657236c7ba43c04822e4d6f3",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/table-default-native-workflow-light-390-source.png",
+          "sha256": "ea04384ad28860ffc5798dbd2e5f48abd5a9f1d4657236c7ba43c04822e4d6f3",
+          "defaultSha256": "ea04384ad28860ffc5798dbd2e5f48abd5a9f1d4657236c7ba43c04822e4d6f3",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/table-default-native-workflow-light-390-target.png",
+          "sha256": "ea04384ad28860ffc5798dbd2e5f48abd5a9f1d4657236c7ba43c04822e4d6f3",
+          "defaultSha256": "ea04384ad28860ffc5798dbd2e5f48abd5a9f1d4657236c7ba43c04822e4d6f3",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "favorites-default-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "favorites",
+        "width": 1440
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "ff4f904aaad23c152eda753f4283df11e99ff7e93673a1c552605a5ad12c8f48",
+        "targetSha256": "ff4f904aaad23c152eda753f4283df11e99ff7e93673a1c552605a5ad12c8f48",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/favorites-default-default-light-1440-source.png",
+          "sha256": "ff4f904aaad23c152eda753f4283df11e99ff7e93673a1c552605a5ad12c8f48",
+          "defaultSha256": "ff4f904aaad23c152eda753f4283df11e99ff7e93673a1c552605a5ad12c8f48",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/favorites-default-default-light-1440-target.png",
+          "sha256": "ff4f904aaad23c152eda753f4283df11e99ff7e93673a1c552605a5ad12c8f48",
+          "defaultSha256": "ff4f904aaad23c152eda753f4283df11e99ff7e93673a1c552605a5ad12c8f48",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "favorites-default-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "favorites",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "0eddb67bc152768e37976ea5d3834c61a74f8a8f2da778b839abb2ee3989fbf1",
+        "targetSha256": "0eddb67bc152768e37976ea5d3834c61a74f8a8f2da778b839abb2ee3989fbf1",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/favorites-default-default-light-390-source.png",
+          "sha256": "0eddb67bc152768e37976ea5d3834c61a74f8a8f2da778b839abb2ee3989fbf1",
+          "defaultSha256": "0eddb67bc152768e37976ea5d3834c61a74f8a8f2da778b839abb2ee3989fbf1",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/favorites-default-default-light-390-target.png",
+          "sha256": "0eddb67bc152768e37976ea5d3834c61a74f8a8f2da778b839abb2ee3989fbf1",
+          "defaultSha256": "0eddb67bc152768e37976ea5d3834c61a74f8a8f2da778b839abb2ee3989fbf1",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-default-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "width": 1440,
+        "project": "p2"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "486d9a16c1c4fb459dd10c827493983b70995367fc15377a630f414cccaa5585",
+        "targetSha256": "486d9a16c1c4fb459dd10c827493983b70995367fc15377a630f414cccaa5585",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-default-light-1440-source.png",
+          "sha256": "486d9a16c1c4fb459dd10c827493983b70995367fc15377a630f414cccaa5585",
+          "defaultSha256": "486d9a16c1c4fb459dd10c827493983b70995367fc15377a630f414cccaa5585",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-default-light-1440-target.png",
+          "sha256": "486d9a16c1c4fb459dd10c827493983b70995367fc15377a630f414cccaa5585",
+          "defaultSha256": "486d9a16c1c4fb459dd10c827493983b70995367fc15377a630f414cccaa5585",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-default-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "width": 390,
+        "project": "p2"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "62705a0c2a1b9818e8858a5fddd4b338aedc9f432235730dcf30b9e16b9a86a3",
+        "targetSha256": "62705a0c2a1b9818e8858a5fddd4b338aedc9f432235730dcf30b9e16b9a86a3",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-default-light-390-source.png",
+          "sha256": "62705a0c2a1b9818e8858a5fddd4b338aedc9f432235730dcf30b9e16b9a86a3",
+          "defaultSha256": "62705a0c2a1b9818e8858a5fddd4b338aedc9f432235730dcf30b9e16b9a86a3",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-default-light-390-target.png",
+          "sha256": "62705a0c2a1b9818e8858a5fddd4b338aedc9f432235730dcf30b9e16b9a86a3",
+          "defaultSha256": "62705a0c2a1b9818e8858a5fddd4b338aedc9f432235730dcf30b9e16b9a86a3",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "activity-default-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "activity",
+        "width": 1440
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "d834673b1d3d4925b45a503dc96995e30bbd99376186e6e29cd262f60fbc098d",
+        "targetSha256": "d834673b1d3d4925b45a503dc96995e30bbd99376186e6e29cd262f60fbc098d",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-default-default-light-1440-source.png",
+          "sha256": "d834673b1d3d4925b45a503dc96995e30bbd99376186e6e29cd262f60fbc098d",
+          "defaultSha256": "d834673b1d3d4925b45a503dc96995e30bbd99376186e6e29cd262f60fbc098d",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-default-default-light-1440-target.png",
+          "sha256": "d834673b1d3d4925b45a503dc96995e30bbd99376186e6e29cd262f60fbc098d",
+          "defaultSha256": "d834673b1d3d4925b45a503dc96995e30bbd99376186e6e29cd262f60fbc098d",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "activity-default-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "activity",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "dec2d220a1642ff5677cbc3b0f377a41d82d18686cb9b4f2e5f59f0ce7f0d7de",
+        "targetSha256": "dec2d220a1642ff5677cbc3b0f377a41d82d18686cb9b4f2e5f59f0ce7f0d7de",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-default-default-light-390-source.png",
+          "sha256": "dec2d220a1642ff5677cbc3b0f377a41d82d18686cb9b4f2e5f59f0ce7f0d7de",
+          "defaultSha256": "dec2d220a1642ff5677cbc3b0f377a41d82d18686cb9b4f2e5f59f0ce7f0d7de",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-default-default-light-390-target.png",
+          "sha256": "dec2d220a1642ff5677cbc3b0f377a41d82d18686cb9b4f2e5f59f0ce7f0d7de",
+          "defaultSha256": "dec2d220a1642ff5677cbc3b0f377a41d82d18686cb9b4f2e5f59f0ce7f0d7de",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "board-default-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "board",
+        "width": 1440
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "bce06a9f63f7ed58addf5783aa9963db19612aeefafed22ccbfb035c128ca805",
+        "targetSha256": "bce06a9f63f7ed58addf5783aa9963db19612aeefafed22ccbfb035c128ca805",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/board-default-default-light-1440-source.png",
+          "sha256": "bce06a9f63f7ed58addf5783aa9963db19612aeefafed22ccbfb035c128ca805",
+          "defaultSha256": "bce06a9f63f7ed58addf5783aa9963db19612aeefafed22ccbfb035c128ca805",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/board-default-default-light-1440-target.png",
+          "sha256": "bce06a9f63f7ed58addf5783aa9963db19612aeefafed22ccbfb035c128ca805",
+          "defaultSha256": "bce06a9f63f7ed58addf5783aa9963db19612aeefafed22ccbfb035c128ca805",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "board-default-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "board",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "1c19aa10e7d7c56f288b78ed906d5ff0d0b19defb67c584964fbf23fcc9134a4",
+        "targetSha256": "926edfd0e872e939493a8f4d6f94f200f7e14626f1a00a707212440f60245f6f",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 65,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/board-default-default-light-390-source.png",
+          "sha256": "223e43946d90d65c95482324c234ff341a5c32f0de48a79493d8b030c7b54793",
+          "defaultSha256": "1c19aa10e7d7c56f288b78ed906d5ff0d0b19defb67c584964fbf23fcc9134a4",
+          "changedPixelsVsDefault": 19
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/board-default-default-light-390-target.png",
+          "sha256": "223e43946d90d65c95482324c234ff341a5c32f0de48a79493d8b030c7b54793",
+          "defaultSha256": "926edfd0e872e939493a8f4d6f94f200f7e14626f1a00a707212440f60245f6f",
+          "changedPixelsVsDefault": 46
+        }
+      ]
+    },
+    {
+      "id": "list-default-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "list",
+        "width": 1440
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "3a2339cc61a33954e2999da50f420e5403ceb8747bf0f854b61805efd6f4fdc4",
+        "targetSha256": "3a2339cc61a33954e2999da50f420e5403ceb8747bf0f854b61805efd6f4fdc4",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/list-default-default-light-1440-source.png",
+          "sha256": "3a2339cc61a33954e2999da50f420e5403ceb8747bf0f854b61805efd6f4fdc4",
+          "defaultSha256": "3a2339cc61a33954e2999da50f420e5403ceb8747bf0f854b61805efd6f4fdc4",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/list-default-default-light-1440-target.png",
+          "sha256": "3a2339cc61a33954e2999da50f420e5403ceb8747bf0f854b61805efd6f4fdc4",
+          "defaultSha256": "3a2339cc61a33954e2999da50f420e5403ceb8747bf0f854b61805efd6f4fdc4",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "list-default-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "list",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "656cbc34dd8897620aa31c4e5810d2115c2f8270feb46470800146e8a5652103",
+        "targetSha256": "ef964950b50e8ab8574b22e9e33dfa4f59d5d84a4b121e22496961d6daed3250",
+        "sourceHashChanged": false,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 46,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/list-default-default-light-390-source.png",
+          "sha256": "656cbc34dd8897620aa31c4e5810d2115c2f8270feb46470800146e8a5652103",
+          "defaultSha256": "656cbc34dd8897620aa31c4e5810d2115c2f8270feb46470800146e8a5652103",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/list-default-default-light-390-target.png",
+          "sha256": "656cbc34dd8897620aa31c4e5810d2115c2f8270feb46470800146e8a5652103",
+          "defaultSha256": "ef964950b50e8ab8574b22e9e33dfa4f59d5d84a4b121e22496961d6daed3250",
+          "changedPixelsVsDefault": 46
+        }
+      ]
+    },
+    {
+      "id": "table-default-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "table",
+        "width": 1440
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "a358b0adb87771751ecde7ed9780c3cf1bd68f3e3254a27035d7fd6d7e0ec05f",
+        "targetSha256": "e5fddb537bce38a4ec2755837c7ebd0cec809959d1199fd01f7aa33bc4e3c79f",
+        "sourceHashChanged": false,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 13,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/table-default-default-light-1440-source.png",
+          "sha256": "a358b0adb87771751ecde7ed9780c3cf1bd68f3e3254a27035d7fd6d7e0ec05f",
+          "defaultSha256": "a358b0adb87771751ecde7ed9780c3cf1bd68f3e3254a27035d7fd6d7e0ec05f",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/table-default-default-light-1440-target.png",
+          "sha256": "a358b0adb87771751ecde7ed9780c3cf1bd68f3e3254a27035d7fd6d7e0ec05f",
+          "defaultSha256": "e5fddb537bce38a4ec2755837c7ebd0cec809959d1199fd01f7aa33bc4e3c79f",
+          "changedPixelsVsDefault": 13
+        }
+      ]
+    },
+    {
+      "id": "table-default-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "table",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "e427019b61967e86f78073a0202af3de1327201d40648361fae10fbf3b023677",
+        "targetSha256": "e427019b61967e86f78073a0202af3de1327201d40648361fae10fbf3b023677",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/table-default-default-light-390-source.png",
+          "sha256": "e427019b61967e86f78073a0202af3de1327201d40648361fae10fbf3b023677",
+          "defaultSha256": "e427019b61967e86f78073a0202af3de1327201d40648361fae10fbf3b023677",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/table-default-default-light-390-target.png",
+          "sha256": "e427019b61967e86f78073a0202af3de1327201d40648361fae10fbf3b023677",
+          "defaultSha256": "e427019b61967e86f78073a0202af3de1327201d40648361fae10fbf3b023677",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "calendar-default-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "calendar",
+        "width": 1440
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "f085ae175d09be321e00d14949a3fd0b101e17fb61fceff9fb2ea61a2ec922a5",
+        "targetSha256": "f085ae175d09be321e00d14949a3fd0b101e17fb61fceff9fb2ea61a2ec922a5",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/calendar-default-default-light-1440-source.png",
+          "sha256": "f085ae175d09be321e00d14949a3fd0b101e17fb61fceff9fb2ea61a2ec922a5",
+          "defaultSha256": "f085ae175d09be321e00d14949a3fd0b101e17fb61fceff9fb2ea61a2ec922a5",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/calendar-default-default-light-1440-target.png",
+          "sha256": "f085ae175d09be321e00d14949a3fd0b101e17fb61fceff9fb2ea61a2ec922a5",
+          "defaultSha256": "f085ae175d09be321e00d14949a3fd0b101e17fb61fceff9fb2ea61a2ec922a5",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "calendar-default-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "calendar",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "7bc9c1887484091e030f7279d433cbf0569a18cfdf5aa883541cfeeeef2f8296",
+        "targetSha256": "7bc9c1887484091e030f7279d433cbf0569a18cfdf5aa883541cfeeeef2f8296",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/calendar-default-default-light-390-source.png",
+          "sha256": "7bc9c1887484091e030f7279d433cbf0569a18cfdf5aa883541cfeeeef2f8296",
+          "defaultSha256": "7bc9c1887484091e030f7279d433cbf0569a18cfdf5aa883541cfeeeef2f8296",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/calendar-default-default-light-390-target.png",
+          "sha256": "7bc9c1887484091e030f7279d433cbf0569a18cfdf5aa883541cfeeeef2f8296",
+          "defaultSha256": "7bc9c1887484091e030f7279d433cbf0569a18cfdf5aa883541cfeeeef2f8296",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "timeline-default-default-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "timeline",
+        "width": 1440
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "ec679e26992d49f7fad87077795a9cc22ecc20d1cf9f19b3072df6baef1265ec",
+        "targetSha256": "ec679e26992d49f7fad87077795a9cc22ecc20d1cf9f19b3072df6baef1265ec",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/timeline-default-default-light-1440-source.png",
+          "sha256": "ec679e26992d49f7fad87077795a9cc22ecc20d1cf9f19b3072df6baef1265ec",
+          "defaultSha256": "ec679e26992d49f7fad87077795a9cc22ecc20d1cf9f19b3072df6baef1265ec",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/timeline-default-default-light-1440-target.png",
+          "sha256": "ec679e26992d49f7fad87077795a9cc22ecc20d1cf9f19b3072df6baef1265ec",
+          "defaultSha256": "ec679e26992d49f7fad87077795a9cc22ecc20d1cf9f19b3072df6baef1265ec",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "timeline-default-default-light-390",
+      "raw": false,
+      "sample": {
+        "page": "timeline",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "c669f1474fbfdf4de859407a7f8386f1e553cc5df14e9b72fd0838ef6f695b11",
+        "targetSha256": "911bb46ccf977c88973fbed244f058932cd696dae2a101a749aef7831d17e2f0",
+        "sourceHashChanged": true,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 4,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/timeline-default-default-light-390-source.png",
+          "sha256": "911bb46ccf977c88973fbed244f058932cd696dae2a101a749aef7831d17e2f0",
+          "defaultSha256": "c669f1474fbfdf4de859407a7f8386f1e553cc5df14e9b72fd0838ef6f695b11",
+          "changedPixelsVsDefault": 4
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/timeline-default-default-light-390-target.png",
+          "sha256": "911bb46ccf977c88973fbed244f058932cd696dae2a101a749aef7831d17e2f0",
+          "defaultSha256": "911bb46ccf977c88973fbed244f058932cd696dae2a101a749aef7831d17e2f0",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "catalogue-grid-default-dark-1440",
+      "raw": false,
+      "sample": {
+        "page": "catalogue",
+        "mode": "grid",
+        "width": 1440,
+        "q": "Website",
+        "theme": "dark"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "1ea99df6654f7a82ab46a6afb5041ca7fc6ccc7827a01d62d989aa662b13ca40",
+        "targetSha256": "1ea99df6654f7a82ab46a6afb5041ca7fc6ccc7827a01d62d989aa662b13ca40",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-grid-default-dark-1440-source.png",
+          "sha256": "c59958951b64835c9666a42b5a318bea8500b6a9241423202b4d0c6d1adaf025",
+          "defaultSha256": "1ea99df6654f7a82ab46a6afb5041ca7fc6ccc7827a01d62d989aa662b13ca40",
+          "changedPixelsVsDefault": 10
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/catalogue-grid-default-dark-1440-target.png",
+          "sha256": "c59958951b64835c9666a42b5a318bea8500b6a9241423202b4d0c6d1adaf025",
+          "defaultSha256": "1ea99df6654f7a82ab46a6afb5041ca7fc6ccc7827a01d62d989aa662b13ca40",
+          "changedPixelsVsDefault": 10
+        }
+      ]
+    },
+    {
+      "id": "favorites-grid-default-dark-1440",
+      "raw": false,
+      "sample": {
+        "page": "favorites",
+        "mode": "grid",
+        "width": 1440,
+        "q": "",
+        "theme": "dark"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "af7543e6361cfac5bdc8170a78c23a09e1a8a4496411b9acd50e7cf7460979ba",
+        "targetSha256": "af7543e6361cfac5bdc8170a78c23a09e1a8a4496411b9acd50e7cf7460979ba",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/favorites-grid-default-dark-1440-source.png",
+          "sha256": "af7543e6361cfac5bdc8170a78c23a09e1a8a4496411b9acd50e7cf7460979ba",
+          "defaultSha256": "af7543e6361cfac5bdc8170a78c23a09e1a8a4496411b9acd50e7cf7460979ba",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/favorites-grid-default-dark-1440-target.png",
+          "sha256": "af7543e6361cfac5bdc8170a78c23a09e1a8a4496411b9acd50e7cf7460979ba",
+          "defaultSha256": "af7543e6361cfac5bdc8170a78c23a09e1a8a4496411b9acd50e7cf7460979ba",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-grid-default-dark-1440",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "mode": "grid",
+        "width": 1440,
+        "q": "",
+        "theme": "dark",
+        "project": "p2"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "860b432c0d3bdead6fda0d6fed30072bf3ffaaf091242eda733938f9e229ec39",
+        "targetSha256": "860b432c0d3bdead6fda0d6fed30072bf3ffaaf091242eda733938f9e229ec39",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-grid-default-dark-1440-source.png",
+          "sha256": "860b432c0d3bdead6fda0d6fed30072bf3ffaaf091242eda733938f9e229ec39",
+          "defaultSha256": "860b432c0d3bdead6fda0d6fed30072bf3ffaaf091242eda733938f9e229ec39",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-grid-default-dark-1440-target.png",
+          "sha256": "860b432c0d3bdead6fda0d6fed30072bf3ffaaf091242eda733938f9e229ec39",
+          "defaultSha256": "860b432c0d3bdead6fda0d6fed30072bf3ffaaf091242eda733938f9e229ec39",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "activity-grid-default-dark-1440",
+      "raw": false,
+      "sample": {
+        "page": "activity",
+        "mode": "grid",
+        "width": 1440,
+        "q": "",
+        "theme": "dark"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "931cb128d7b3dcb4f7a4922b7a24546d53b3afc8901be53c838e96e865256e74",
+        "targetSha256": "931cb128d7b3dcb4f7a4922b7a24546d53b3afc8901be53c838e96e865256e74",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-grid-default-dark-1440-source.png",
+          "sha256": "931cb128d7b3dcb4f7a4922b7a24546d53b3afc8901be53c838e96e865256e74",
+          "defaultSha256": "931cb128d7b3dcb4f7a4922b7a24546d53b3afc8901be53c838e96e865256e74",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-grid-default-dark-1440-target.png",
+          "sha256": "931cb128d7b3dcb4f7a4922b7a24546d53b3afc8901be53c838e96e865256e74",
+          "defaultSha256": "931cb128d7b3dcb4f7a4922b7a24546d53b3afc8901be53c838e96e865256e74",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-default-empty-activity-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "width": 1440,
+        "project": "p7",
+        "state": "empty-activity"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "fef3ac8a95d212a46103c9b1ab901ce3271a2147c5815ce68932970d3911f8c6",
+        "targetSha256": "fef3ac8a95d212a46103c9b1ab901ce3271a2147c5815ce68932970d3911f8c6",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-empty-activity-light-1440-source.png",
+          "sha256": "fef3ac8a95d212a46103c9b1ab901ce3271a2147c5815ce68932970d3911f8c6",
+          "defaultSha256": "fef3ac8a95d212a46103c9b1ab901ce3271a2147c5815ce68932970d3911f8c6",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-empty-activity-light-1440-target.png",
+          "sha256": "fef3ac8a95d212a46103c9b1ab901ce3271a2147c5815ce68932970d3911f8c6",
+          "defaultSha256": "fef3ac8a95d212a46103c9b1ab901ce3271a2147c5815ce68932970d3911f8c6",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-default-empty-activity-light-390",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "width": 390,
+        "project": "p7",
+        "state": "empty-activity"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "6f5daa16f37d05969cdf1742d5d0b8376c73b22d905ed95a2234a4305e1ce14b",
+        "targetSha256": "6f5daa16f37d05969cdf1742d5d0b8376c73b22d905ed95a2234a4305e1ce14b",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-empty-activity-light-390-source.png",
+          "sha256": "6f5daa16f37d05969cdf1742d5d0b8376c73b22d905ed95a2234a4305e1ce14b",
+          "defaultSha256": "6f5daa16f37d05969cdf1742d5d0b8376c73b22d905ed95a2234a4305e1ce14b",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-empty-activity-light-390-target.png",
+          "sha256": "6f5daa16f37d05969cdf1742d5d0b8376c73b22d905ed95a2234a4305e1ce14b",
+          "defaultSha256": "6f5daa16f37d05969cdf1742d5d0b8376c73b22d905ed95a2234a4305e1ce14b",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "activity-default-empty-activity-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "activity",
+        "width": 1440,
+        "project": "p7",
+        "state": "empty-activity"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "d1891c9d5a5d5ce793306375592fe0025e0212837f4ae2e6477ffc46432a3858",
+        "targetSha256": "d1891c9d5a5d5ce793306375592fe0025e0212837f4ae2e6477ffc46432a3858",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-default-empty-activity-light-1440-source.png",
+          "sha256": "d1891c9d5a5d5ce793306375592fe0025e0212837f4ae2e6477ffc46432a3858",
+          "defaultSha256": "d1891c9d5a5d5ce793306375592fe0025e0212837f4ae2e6477ffc46432a3858",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-default-empty-activity-light-1440-target.png",
+          "sha256": "d1891c9d5a5d5ce793306375592fe0025e0212837f4ae2e6477ffc46432a3858",
+          "defaultSha256": "d1891c9d5a5d5ce793306375592fe0025e0212837f4ae2e6477ffc46432a3858",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "activity-default-empty-activity-light-390",
+      "raw": false,
+      "sample": {
+        "page": "activity",
+        "width": 390,
+        "project": "p7",
+        "state": "empty-activity"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "1acdfac99e5328fe8bd41ef8964b6b66a703d4a86cadcc09c3b467c1eebe106c",
+        "targetSha256": "1acdfac99e5328fe8bd41ef8964b6b66a703d4a86cadcc09c3b467c1eebe106c",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-default-empty-activity-light-390-source.png",
+          "sha256": "1acdfac99e5328fe8bd41ef8964b6b66a703d4a86cadcc09c3b467c1eebe106c",
+          "defaultSha256": "1acdfac99e5328fe8bd41ef8964b6b66a703d4a86cadcc09c3b467c1eebe106c",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/activity-default-empty-activity-light-390-target.png",
+          "sha256": "1acdfac99e5328fe8bd41ef8964b6b66a703d4a86cadcc09c3b467c1eebe106c",
+          "defaultSha256": "1acdfac99e5328fe8bd41ef8964b6b66a703d4a86cadcc09c3b467c1eebe106c",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-default-create-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "modal": "create",
+        "width": 1440,
+        "configured": true
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 800
+        },
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 800
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730",
+        "targetSha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 28,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-create-light-1440-source.png",
+          "sha256": "bf6f1dec7717a49cb8294719c0a2348e5ab576d9dce90b3f4f46e8bcec88bea6",
+          "defaultSha256": "d4d08dc1083261aaafa31207e3311afed5cf600107d1c3c33255ee5304ded730",
+          "changedPixelsVsDefault": 13
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-create-light-1440-target.png",
+          "sha256": "bf6f1dec7717a49cb8294719c0a2348e5ab576d9dce90b3f4f46e8bcec88bea6",
+          "defaultSha256": "6d2fe02266b4e1a3c56f4b7724127158239a0ef1c03db30d4f917a158c69926a",
+          "changedPixelsVsDefault": 41
+        }
+      ]
+    },
+    {
+      "id": "overview-default-create-light-390",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "modal": "create",
+        "width": 390,
+        "configured": true
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 67,
+          "width": 390,
+          "height": 777
+        },
+        {
+          "x": 0,
+          "y": 67,
+          "width": 390,
+          "height": 777
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "64649abf050e7cdca2b1baa355e25dcfdb96aad44176eef99d214e7bad395631",
+        "targetSha256": "98868f203ef554a3b55c9cdac3eeb5f01c2c08c97f9e684ec28d0f3f76a048b6",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 43,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-create-light-390-source.png",
+          "sha256": "3beec4a79535c9853c609f048e5d91f6c9f44be06ac9c3694584a7bac9ec6556",
+          "defaultSha256": "64649abf050e7cdca2b1baa355e25dcfdb96aad44176eef99d214e7bad395631",
+          "changedPixelsVsDefault": 14
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-create-light-390-target.png",
+          "sha256": "3beec4a79535c9853c609f048e5d91f6c9f44be06ac9c3694584a7bac9ec6556",
+          "defaultSha256": "98868f203ef554a3b55c9cdac3eeb5f01c2c08c97f9e684ec28d0f3f76a048b6",
+          "changedPixelsVsDefault": 57
+        }
+      ]
+    },
+    {
+      "id": "overview-default-edit-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "modal": "edit",
+        "width": 1440,
+        "configured": true
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 466
+        },
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 466
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "f348a117ffce1882eeba84c5514e347feb2b3cde8bb31c17f319b85bf54d7f96",
+        "targetSha256": "f2bf2bad8bce8d835e0ddda8fa00b06b8dab73d78b92487afaaaf6247ad44cdc",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 5,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-edit-light-1440-source.png",
+          "sha256": "597fd7d072f4e7314ac96f2f79f69ac88566efca00d0ebca31a539fbb00b8e16",
+          "defaultSha256": "f348a117ffce1882eeba84c5514e347feb2b3cde8bb31c17f319b85bf54d7f96",
+          "changedPixelsVsDefault": 55
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-edit-light-1440-target.png",
+          "sha256": "597fd7d072f4e7314ac96f2f79f69ac88566efca00d0ebca31a539fbb00b8e16",
+          "defaultSha256": "f2bf2bad8bce8d835e0ddda8fa00b06b8dab73d78b92487afaaaf6247ad44cdc",
+          "changedPixelsVsDefault": 60
+        }
+      ]
+    },
+    {
+      "id": "overview-default-edit-light-390",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "modal": "edit",
+        "width": 390,
+        "configured": true
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 220,
+          "width": 390,
+          "height": 624
+        },
+        {
+          "x": 0,
+          "y": 220,
+          "width": 390,
+          "height": 624
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "ea0f47375cbdb98d47de727470744c53f500255770e4bf62150667c29438b61d",
+        "targetSha256": "9d5d363948ffe0248f3197a3887a7814850524fd1b8503b68af8b71bf63091a3",
+        "sourceHashChanged": true,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 5,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-edit-light-390-source.png",
+          "sha256": "99905878d8f19d1f17fb123cd0244e77a93bdd38628b2a29f53cef77d25d2a37",
+          "defaultSha256": "ea0f47375cbdb98d47de727470744c53f500255770e4bf62150667c29438b61d",
+          "changedPixelsVsDefault": 14
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-edit-light-390-target.png",
+          "sha256": "99905878d8f19d1f17fb123cd0244e77a93bdd38628b2a29f53cef77d25d2a37",
+          "defaultSha256": "9d5d363948ffe0248f3197a3887a7814850524fd1b8503b68af8b71bf63091a3",
+          "changedPixelsVsDefault": 19
+        }
+      ]
+    },
+    {
+      "id": "overview-default-share-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "modal": "share",
+        "width": 1440
+      },
+      "changedPixels": 2,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 591
+        },
+        {
+          "x": 440,
+          "y": 100,
+          "width": 560,
+          "height": 591
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c",
+        "targetSha256": "22251d6540c4881d21e271aa27b7cefcf8888721b105abce4d50501626eeb3e6",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 2,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-share-light-1440-source.png",
+          "sha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c",
+          "defaultSha256": "37505844238bf125c1266c0b001e69d95a1396f4e796652fd78199695031a46c",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-share-light-1440-target.png",
+          "sha256": "22251d6540c4881d21e271aa27b7cefcf8888721b105abce4d50501626eeb3e6",
+          "defaultSha256": "22251d6540c4881d21e271aa27b7cefcf8888721b105abce4d50501626eeb3e6",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-default-share-light-390",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "modal": "share",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 253,
+          "width": 390,
+          "height": 591
+        },
+        {
+          "x": 0,
+          "y": 253,
+          "width": 390,
+          "height": 591
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "f2f14185a27d016435920fcf2807b5ad8fee235c024d2522e86976d23c853a04",
+        "targetSha256": "f2f14185a27d016435920fcf2807b5ad8fee235c024d2522e86976d23c853a04",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-share-light-390-source.png",
+          "sha256": "f2f14185a27d016435920fcf2807b5ad8fee235c024d2522e86976d23c853a04",
+          "defaultSha256": "f2f14185a27d016435920fcf2807b5ad8fee235c024d2522e86976d23c853a04",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-share-light-390-target.png",
+          "sha256": "f2f14185a27d016435920fcf2807b5ad8fee235c024d2522e86976d23c853a04",
+          "defaultSha256": "f2f14185a27d016435920fcf2807b5ad8fee235c024d2522e86976d23c853a04",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-default-save-light-1440",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "modal": "save",
+        "width": 1440
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 510,
+          "y": 100,
+          "width": 420,
+          "height": 333
+        },
+        {
+          "x": 510,
+          "y": 100,
+          "width": 420,
+          "height": 333
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "04f6f4d2adc80ae30a9dde39ff6742d7f7056444feebecaff8e5aa3918f34f86",
+        "targetSha256": "e9ce0a211dc15e074bc34f61a194f97ad77c629fbcd8c11a1636d694c715fad9",
+        "sourceHashChanged": false,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 13,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-save-light-1440-source.png",
+          "sha256": "04f6f4d2adc80ae30a9dde39ff6742d7f7056444feebecaff8e5aa3918f34f86",
+          "defaultSha256": "04f6f4d2adc80ae30a9dde39ff6742d7f7056444feebecaff8e5aa3918f34f86",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-save-light-1440-target.png",
+          "sha256": "04f6f4d2adc80ae30a9dde39ff6742d7f7056444feebecaff8e5aa3918f34f86",
+          "defaultSha256": "e9ce0a211dc15e074bc34f61a194f97ad77c629fbcd8c11a1636d694c715fad9",
+          "changedPixelsVsDefault": 13
+        }
+      ]
+    },
+    {
+      "id": "overview-default-save-light-390",
+      "raw": false,
+      "sample": {
+        "page": "overview",
+        "modal": "save",
+        "width": 390
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 511,
+          "width": 390,
+          "height": 333
+        },
+        {
+          "x": 0,
+          "y": 511,
+          "width": 390,
+          "height": 333
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "518c70f38d76eac588248ac18e730cc78841e3506e03f8818b97345ca0ae4157",
+        "targetSha256": "0115afad61fe08160196bf2dc421851a1e171e8ac22ed90e2b9a6a5738411bfd",
+        "sourceHashChanged": false,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 11,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-save-light-390-source.png",
+          "sha256": "518c70f38d76eac588248ac18e730cc78841e3506e03f8818b97345ca0ae4157",
+          "defaultSha256": "518c70f38d76eac588248ac18e730cc78841e3506e03f8818b97345ca0ae4157",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-samples/overview-default-save-light-390-target.png",
+          "sha256": "518c70f38d76eac588248ac18e730cc78841e3506e03f8818b97345ca0ae4157",
+          "defaultSha256": "0115afad61fe08160196bf2dc421851a1e171e8ac22ed90e2b9a6a5738411bfd",
+          "changedPixelsVsDefault": 11
+        }
+      ]
+    },
+    {
+      "id": "catalogue-grid-raw-private-light-1440",
+      "raw": true,
+      "sample": {
+        "page": "catalogue",
+        "mode": "grid",
+        "width": 1440,
+        "raw": true
+      },
+      "changedPixels": 20184,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "d509f8f9d4b10e4be0016a2f8f1f81de8ad53268650809155dbf08bb615d213b",
+        "targetSha256": "e3b013f74a85be00789d2b78a8ae550e31accc273ab9327406f12047ba85ad37",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 20184,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/catalogue-grid-raw-private-light-1440-source.png",
+          "sha256": "d509f8f9d4b10e4be0016a2f8f1f81de8ad53268650809155dbf08bb615d213b",
+          "defaultSha256": "d509f8f9d4b10e4be0016a2f8f1f81de8ad53268650809155dbf08bb615d213b",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/catalogue-grid-raw-private-light-1440-target.png",
+          "sha256": "e3b013f74a85be00789d2b78a8ae550e31accc273ab9327406f12047ba85ad37",
+          "defaultSha256": "e3b013f74a85be00789d2b78a8ae550e31accc273ab9327406f12047ba85ad37",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "catalogue-list-raw-private-light-1440",
+      "raw": true,
+      "sample": {
+        "page": "catalogue",
+        "mode": "list",
+        "width": 1440,
+        "raw": true
+      },
+      "changedPixels": 15911,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "9aba39da295533b528d2f66134dd0746c031c8d61cccd337c5a8c83d68ce1522",
+        "targetSha256": "52e881fd3e50810b1bdf7c8d4d75e201fbc136a5d92a1d85ec518de4fe6dd99a",
+        "sourceHashChanged": false,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 15928,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/catalogue-list-raw-private-light-1440-source.png",
+          "sha256": "9aba39da295533b528d2f66134dd0746c031c8d61cccd337c5a8c83d68ce1522",
+          "defaultSha256": "9aba39da295533b528d2f66134dd0746c031c8d61cccd337c5a8c83d68ce1522",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/catalogue-list-raw-private-light-1440-target.png",
+          "sha256": "f0a0886e01b0abc26c070a300ed894cc979fc07645251aeff49d2ce4213b42d3",
+          "defaultSha256": "52e881fd3e50810b1bdf7c8d4d75e201fbc136a5d92a1d85ec518de4fe6dd99a",
+          "changedPixelsVsDefault": 17
+        }
+      ]
+    },
+    {
+      "id": "catalogue-table-raw-private-light-1440",
+      "raw": true,
+      "sample": {
+        "page": "catalogue",
+        "mode": "table",
+        "width": 1440,
+        "raw": true
+      },
+      "changedPixels": 31760,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "1d89a3f5b4b021844156d7b72b117f4d82fccf584da46111efaecfb5f3676a4f",
+        "targetSha256": "87f4839795758a0f95941ab7f6da3b5bfdec1546a707f4d046d6b5d4ce6c01f5",
+        "sourceHashChanged": false,
+        "targetHashChanged": true,
+        "defaultChangedPixels": 31777,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/catalogue-table-raw-private-light-1440-source.png",
+          "sha256": "1d89a3f5b4b021844156d7b72b117f4d82fccf584da46111efaecfb5f3676a4f",
+          "defaultSha256": "1d89a3f5b4b021844156d7b72b117f4d82fccf584da46111efaecfb5f3676a4f",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/catalogue-table-raw-private-light-1440-target.png",
+          "sha256": "8f07c41d54adc6f3804a0c808ba802ef179f27577a57ac3093fd27e46b8596ec",
+          "defaultSha256": "87f4839795758a0f95941ab7f6da3b5bfdec1546a707f4d046d6b5d4ce6c01f5",
+          "changedPixelsVsDefault": 17
+        }
+      ]
+    },
+    {
+      "id": "overview-default-raw-newest-correction-light-1440",
+      "raw": true,
+      "sample": {
+        "page": "overview",
+        "width": 1440,
+        "raw": true,
+        "state": "raw-newest-correction"
+      },
+      "changedPixels": 2551,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        },
+        {
+          "x": 252,
+          "y": 46,
+          "width": 1188,
+          "height": 954
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "e98ad8e52a6275e70b1166c6f379de27611698e3fa94bc3aa22b9bde38916c3d",
+        "targetSha256": "e722ef74462e3990575f847ba059c9ef95e6a66a8e89af76f178b13821b3bb80",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 2551,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/overview-default-raw-newest-correction-light-1440-source.png",
+          "sha256": "e98ad8e52a6275e70b1166c6f379de27611698e3fa94bc3aa22b9bde38916c3d",
+          "defaultSha256": "e98ad8e52a6275e70b1166c6f379de27611698e3fa94bc3aa22b9bde38916c3d",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/overview-default-raw-newest-correction-light-1440-target.png",
+          "sha256": "e722ef74462e3990575f847ba059c9ef95e6a66a8e89af76f178b13821b3bb80",
+          "defaultSha256": "e722ef74462e3990575f847ba059c9ef95e6a66a8e89af76f178b13821b3bb80",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    },
+    {
+      "id": "overview-default-raw-newest-correction-light-390",
+      "raw": true,
+      "sample": {
+        "page": "overview",
+        "width": 390,
+        "raw": true,
+        "state": "raw-newest-correction"
+      },
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "clips": [
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        },
+        {
+          "x": 0,
+          "y": 50,
+          "width": 390,
+          "height": 794
+        }
+      ],
+      "defaultComparison": {
+        "sourceSha256": "3f217205a2684022ab2841820d59716f49019cf6f150aea5f897c33aa38b5016",
+        "targetSha256": "3f217205a2684022ab2841820d59716f49019cf6f150aea5f897c33aa38b5016",
+        "sourceHashChanged": false,
+        "targetHashChanged": false,
+        "defaultChangedPixels": 0,
+        "clipsUnchanged": true
+      },
+      "images": [
+        {
+          "side": "source",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/overview-default-raw-newest-correction-light-390-source.png",
+          "sha256": "3f217205a2684022ab2841820d59716f49019cf6f150aea5f897c33aa38b5016",
+          "defaultSha256": "3f217205a2684022ab2841820d59716f49019cf6f150aea5f897c33aa38b5016",
+          "changedPixelsVsDefault": 0
+        },
+        {
+          "side": "target",
+          "path": "docs/poc/evidence/WU-16/full-raster-linux-raw/overview-default-raw-newest-correction-light-390-target.png",
+          "sha256": "3f217205a2684022ab2841820d59716f49019cf6f150aea5f897c33aa38b5016",
+          "defaultSha256": "3f217205a2684022ab2841820d59716f49019cf6f150aea5f897c33aa38b5016",
+          "changedPixelsVsDefault": 0
+        }
+      ]
+    }
+  ],
+  "remainingCoordinates": [
+    {
+      "x": 527,
+      "y": 22,
+      "source": [
+        189,
+        188,
+        186,
+        255
+      ],
+      "target": [
+        191,
+        190,
+        187,
+        255
+      ]
+    },
+    {
+      "x": 535,
+      "y": 22,
+      "source": [
+        202,
+        201,
+        199,
+        255
+      ],
+      "target": [
+        203,
+        202,
+        201,
+        255
+      ]
+    }
+  ],
+  "limitations": [
+    "Separate matched full-raster Linux supplement is not default-browser parity or automatic primary acceptance.",
+    "One remaining Share1440 pair2px; no DONE/technical PASS/commit/push.",
+    "All prior default/historical failed contexts remain UNPROVED_UNACCEPTED; original173Darwin unchanged.",
+    "Raw private/latest corrections remain separate and counts are not blanket intentional pixel acceptance."
+  ]
+}

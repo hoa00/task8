@@ -1,0 +1,10 @@
+$ tsc --noEmit
+src/features/projects/ProjectCatalogue.tsx(13,822): error TS2322: Type '(previous: { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 4 more ...; state?: string | undefined; }) => { ...; }' is not assignable to type 'true | { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 4 more ...; state?: string | undefined; } | ParamsReducerFn<...>'.
+  Type '(previous: { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 4 more ...; state?: string | undefined; }) => { ...; }' is not assignable to type 'ParamsReducerFn<RouterCore<Route<Register, any, "/", "/", string, "__root__", (input: Record<string, unknown>) => RouteSearch, {}, StudioRouterContext, ... 8 more ..., undefined>, "never", false, RouterHistory, Record<...>>, "SEARCH", string, string>'.
+    Call signature return types '{ taskId?: string | undefined; fileId?: string | undefined; q?: string | undefined; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments" | undefined; mode?: "calendar" | ... 4 more ... | undefined; ... 5 more ...; state?: string | undefined; }' and '{ q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 4 more ...; state?: string | undefined; }' are incompatible.
+      The types of 'q' are incompatible between these types.
+        Type 'string | undefined' is not assignable to type 'string'.
+          Type 'undefined' is not assignable to type 'string'.
+/workspace/task8/apps/web:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @studio/web@0.0.0 typecheck: `tsc --noEmit`
+Exit status 2

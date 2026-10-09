@@ -1,0 +1,251 @@
+{
+  "status": "passed-qualified-managed-linux",
+  "profileAdopted": true,
+  "commands": [
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/build.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/test.log"
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/reference-check.log"
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/http-build.log"
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-16",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/http-bundle.log"
+    },
+    {
+      "name": "choices-regression",
+      "command": "node tests/visual/controls/verify.mjs choices --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/choices-regression.log"
+    },
+    {
+      "name": "display-regression",
+      "command": "node tests/visual/controls/verify.mjs display --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/display-regression.log"
+    },
+    {
+      "name": "overlay-regression",
+      "command": "node tests/visual/overlays/verify.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/overlay-regression.log"
+    },
+    {
+      "name": "overlay-lifecycle",
+      "command": "node tests/visual/overlays/lifecycle.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/overlay-lifecycle.log"
+    },
+    {
+      "name": "overlay-motion",
+      "command": "node tests/visual/overlays/motion.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/overlay-motion.log"
+    },
+    {
+      "name": "calendar-regression",
+      "command": "node tests/visual/calendar/interactions.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/calendar-regression.log"
+    },
+    {
+      "name": "timeline-regression",
+      "command": "node tests/visual/timeline/interactions.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/timeline-regression.log"
+    },
+    {
+      "name": "interactions",
+      "command": "node tests/visual/projects/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/interactions.log"
+    },
+    {
+      "name": "task-detail-regression",
+      "command": "node tests/visual/task-detail/interactions.mjs --wu16-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/task-detail-regression.log"
+    },
+    {
+      "name": "source-interactions",
+      "command": "node tests/visual/projects/source-interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/source-interactions.log"
+    },
+    {
+      "name": "active-tab-motion",
+      "command": "node tests/visual/projects/tab-motion.mjs --verify",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/active-tab-motion.log"
+    },
+    {
+      "name": "owner-motion",
+      "command": "node tests/visual/projects/owner-motion.mjs --verify",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/owner-motion.log"
+    },
+    {
+      "name": "raw-contexts",
+      "command": "node tests/visual/projects/raw-contexts.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/raw-contexts.log"
+    },
+    {
+      "name": "visual",
+      "command": "node tests/visual/projects/verify.mjs --full-raster-linux-candidate",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/visual.log"
+    },
+    {
+      "name": "freeze",
+      "command": "node tests/visual/projects/freeze.mjs --full-raster-linux-candidate",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/freeze.log"
+    },
+    {
+      "name": "final-qa-lint",
+      "command": "pnpm exec eslint tests/visual/projects",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/final-qa-lint.log"
+    },
+    {
+      "name": "final-reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-16/full-raster-linux-candidate-gates/final-reference-check.log"
+    }
+  ],
+  "requiredGateCount": 24,
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "strictPairCount": 45,
+  "rawPairCount": 5,
+  "nativeProbeCount": 28,
+  "sourceProbeCount": 13,
+  "taskDetailRegressionProbeCount": 12,
+  "calendarRegressionProbeCount": 13,
+  "timelineRegressionProbeCount": 17,
+  "rawRecentViewportCount": 2,
+  "displayRegressionPairCount": 12,
+  "review": "docs/poc/evidence/WU-16/full-raster-linux-candidate-review.json",
+  "acceptance": {
+    "AC1": "Shared catalogue3layouts/Card/compactrow/Favorites/taskmini, per-member favorites and persisted sidebar order.",
+    "AC2": "Actual ProjectHeader/Layout8fixed+saved tabs, five reused renderers and all3 saved layouts; Files body PR-07 pending WU22 excluded.",
+    "AC3": "Typed atomic CRUD/templates/globalappend201keys/freshhistory/duplicate/archive/delete/bounded actorCASUndo/demoShare; errors preserve draft and refresh versions.",
+    "AC4": "Overview and separate combined ProjectActivity day groups/links/livepost/empty, exported shared ActivityFeed and complete canonical pages.",
+    "AC5": "Restricted typed projection consistent all3layouts and explicit canonical newest-first Recent correction, immutable raw source retained separately."
+  },
+  "limitations": [
+    "Managed Linux supplement; not original173Darwin replacement/physical-device/user approval.",
+    "Content/dialog acceptance excludes full AppShell; Files body PR-07 pending WU22, not all8complete.",
+    "Raw private/newest correction counts include unproved remaining raster and are not blanket-intentional pixel acceptance.",
+    "Inherited WU10mobile17/14, WU13ListDate558/8814, WU14wholeDesktop0/5 and641/MyTasks390 pointer overlap remain UNPROVED/unaccepted.",
+    "HTTP sharing unavailable; mock local demo changes do not alter canonical grants or send real invitations."
+  ],
+  "runtimeScopeDecision": {
+    "status": "PASS",
+    "scope": "WU-16 managed Linux content/dialog acceptance only",
+    "profile": "matched Source+Target Chromium145 Linux --disable-partial-raster",
+    "appliesTo": "Source and Target equally, one requested/effective flag",
+    "basis": [
+      "Real Create1440 matched-profile causal intervention with equal CSS/geometry/serialized picture/replay/assets.",
+      "Source-faithful shared Share canonical read ownership; first full identities and complete-coverage guard.",
+      "Fresh exact45 strict+5raw and24 actual gates all exit0, root independently checked all100 PNG hashes and50 pixel counts."
+    ],
+    "excludes": [
+      "Default-browser parity; default22 remains31/45 UNPROVED_UNACCEPTED.",
+      "Original173Darwin baseline replacement, full AppShell, physical-device parity or user approval.",
+      "Files body PR-07 pending WU-22."
+    ],
+    "reconciliationOwner": "WU-29 must reconcile all inherited and retained WU-16 raster debts; none is erased or accepted by this policy."
+  },
+  "rootInspection": {
+    "status": "PASS",
+    "reviewer": "root",
+    "strictZeroPairs": 45,
+    "hashesIndependentlyVerified": 100,
+    "pixelCountsIndependentlyRecomputed": 50,
+    "actualCommandsChecked": 24,
+    "sampleActionsClipsNavigationChecked": 50,
+    "sourceProfileHashDelta": 14,
+    "implementationAssetCount": 381,
+    "immutableInputCount": 4,
+    "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+    "sourceTrackedFiles": 86,
+    "sourceClean": true,
+    "ports4173And5173Clear": true,
+    "inspectedSourceImageIds": [
+      "catalogue-grid-default-light-1440",
+      "overview-default-default-light-1440",
+      "activity-grid-default-dark-1440",
+      "board-default-default-light-390",
+      "overview-default-share-light-1440",
+      "overview-default-create-light-390",
+      "table-default-native-workflow-light-390",
+      "timeline-default-default-light-1440",
+      "favorites-default-default-light-390"
+    ],
+    "originalCandidateMetadataHashes": {
+      "report": "68f6efc4ee234ec6d3988db0007d5885909801ea3bdee58992ef14b13173c2b9",
+      "commands": "668ae6e5b243f20c8ef139f58cbcc7186ce5519a1877211be7ff47d59dace527",
+      "reviewBeforeInspection": "2d708b817bc16b2c745ae806f7bf98d986decb4e5cce749db3ab1a3384dd2116",
+      "verificationBeforeInspection": "186d3f465e72f4b984357f53bf0c5a8746c94f72d580083127491f6a4aa92740"
+    }
+  },
+  "reviewSha256": "314d4cebe9912e347f51c9b77389f954dbbbc929a519c49777f73ca81928ac3d"
+}

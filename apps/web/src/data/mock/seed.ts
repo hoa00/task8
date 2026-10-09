@@ -55,6 +55,7 @@ export function createSeedDataset(clock: Clock = fixtureClock): MockDataset {
   assertDatasetRelations(data);
   data.taskCommands.descriptionTexts = Object.fromEntries(tasks.map(task => [task.id, normalizeDescription(task.descriptionHtml).text]));
   data.taskCommands.taskFavorites[data.currentMemberId] = tasks.filter(task => task.isFavorite).map(task => task.id);
+  data.projectCommands.favorites[data.currentMemberId] = projects.filter(project => project.isFavorite).map(project => project.id);
   return data;
 }
 

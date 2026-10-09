@@ -1,0 +1,26 @@
+✔ Project create all seven templates atomic IDs/keys/global append/activity; edit CAS preserves grants, failed merged date range zero writes (88.332569ms)
+✔ Duplicate remaps only internal dependencies/new children, resets metadata/favorites, creates fresh history and source201 keys (9.906149ms)
+✔ Project lifecycle/Undo bounds, consumed replay reauthorizes, deleting actor restore, independent child tombstones survive; shared task/project staging races (18.495552ms)
+✔ Deleted project is absent from every implemented child projection; restricted catalog has only allowed DTO fields and all private child reads fail (13.613328ms)
+✖ Favorites and personal order persist per member/reload; catalogue complete pages/filter/count and saved three-layout explicit definitions/CAS (69.148685ms)
+✔ Sharing demo is separate persistent state, guarded local inverses cannot overwrite later changes or grant real private access (5.932659ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 387.937948
+
+✖ failing tests:
+
+test at apps/web/tests/data/projects.test.ts:46:1
+✖ Favorites and personal order persist per member/reload; catalogue complete pages/filter/count and saved three-layout explicit definitions/CAS (69.148685ms)
+  StudioTransportError: Invalid listProjects response
+      at execute (file:///workspace/task8/apps/web/src/data/operations.ts:28:34)
+      at async TestContext.<anonymous> (file:///workspace/task8/apps/web/tests/data/projects.test.ts:49:16)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    kind: 'invalidResponse'
+  }

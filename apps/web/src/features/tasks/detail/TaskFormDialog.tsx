@@ -16,7 +16,7 @@ export function TaskFormDialog({ open, onClose, data, tasks, detail, onSuccess, 
  const { client } = useDataRuntime(), cache = useQueryClient(), titleRef = useRef<HTMLInputElement>(null), busy = useRef<Promise<void> | null>(null), editSaved = useRef<EditTaskCommit | null>(null);
  const [submission] = useState(() => new TaskSubmission(data.workspace.id, data.currentMember.id, detail ? undefined : sessionStorage));
  const opened = useRef(open); useLayoutEffect(() => { opened.current = open; }, [open]);
- const draftGeneration = useRef(0), mounted = useRef(true); useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+ const draftGeneration = useRef(0), resetFocusGeneration = useRef<number | null>(null), mounted = useRef(true); useEffect(() => { mounted.current = true; return () => { mounted.current = false; resetFocusGeneration.current = null; }; }, []);
  const previous = submission.state?.payload, task = detail?.task;
  const [title, setTitle] = useState(previous?.title ?? task?.title ?? (initialState === 'filled' ? 'Prepare launch checklist' : ''));
  const [description, setDescription] = useState(normalizeDescription(previous?.descriptionHtml ?? task?.descriptionHtml ?? (initialState === 'filled' ? '<p>Coordinate the release plan.</p>' : '')).text);
@@ -36,8 +36,16 @@ export function TaskFormDialog({ open, onClose, data, tasks, detail, onSuccess, 
   }
   priorOpen.current = open;
  }, [open, detail, submission, defaults, data]);
+ // Create-more reset can commit while submission cleanup still disables the
+ // input. Focus the current draft only after React commits an enabled control.
+ useLayoutEffect(() => {
+  if (!open || resetFocusGeneration.current !== draftGeneration.current) { resetFocusGeneration.current = null; return; }
+  const control = titleRef.current;
+  if (resetFocusGeneration.current === null || !mounted.current || !control?.isConnected || control.disabled) return;
+  resetFocusGeneration.current = null; control.focus();
+ });
  async function invalidate(taskId: string) { await cache.invalidateQueries({ queryKey: queryKeys.task(data.workspace.id, taskId) }); await cache.invalidateQueries({ queryKey: queryKeys.workspace(data.workspace.id) }); }
- function reset() { draftGeneration.current++; submission.clear(); editSaved.current = null; setTitle(''); setDescription(''); setChildren([]); setFiles([]); setSub(''); setError(''); refresh(); if (opened.current) requestAnimationFrame(() => titleRef.current?.focus()); }
+ function reset() { draftGeneration.current++; resetFocusGeneration.current = opened.current ? draftGeneration.current : null; submission.clear(); editSaved.current = null; setTitle(''); setDescription(''); setChildren([]); setFiles([]); setSub(''); setError(''); refresh(); }
  async function addFiles(selected: readonly File[]) {
   if (selected.some(file => file.size > 10485760)) { setError('Files must be 10 MiB or smaller'); return; }
   if (frozen) { const generation = draftGeneration.current, state = submission.state; for (const file of selected) { try { const accepted = await submission.reselect(file); if (!mounted.current || draftGeneration.current !== generation || submission.state !== state) return; if (!accepted) setError('Select the same file name, type and content to retry this attachment'); } catch (cause) { if (!mounted.current || draftGeneration.current !== generation || submission.state !== state) return; setError(cause instanceof Error ? cause.message : 'The selected file could not be read'); } } refresh(); }

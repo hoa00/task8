@@ -673,3 +673,203 @@ not source behavior parity. Existing native target asserts Week900/180 restore
 after Months450/72 setup; no subsequent Months restore assertion is invented.
 [Reviewer observation](evidence/WU-15/root-source-zoom-observation.json) retains
 actual result/provenance; frozen renderer PNGs and runtime are unchanged.
+
+## WU-16 actual Project consumers
+
+Project feature CSS owns structural grid/table borders, responsive Catalogue/
+Overview/Templates, overflow-avatar slot integration, and original finite route/
+tab/progress/bar/Card motion. `useProjectMotion` tracks genuine navigation and
+canonical content revisions, preserves finished one-shot CSS until a subsequent
+source-equivalent update, and never replays on identical Query reads or toasts.
+Reduced preference uses the source fade entry and suppresses progress/lift. The
+shared scale-based Progress fill is unchanged (source helpers --p plus scaleX);
+no width-based fill conversion is used. Dark ProjectIcon uses source --pc mix.
+
+Dialog has an optional controlled `entryRevision`: Project consumers preserve
+finite first entrance through text-only drafting, consume it on source-rendering
+actions/errors, and reopen a new node once. Shared defaults still consume at
+animation end. Default overlay/Choices regression and native lifecycle/motion
+checks are kept under WU16-specific evidence paths. Source mobile nav/firstmodal
+z70/z61 usability correction closes only navigation for Project overlays and
+returns focus to a visible opener. Project nav resets after genuine router
+restoration/path changes and saved-dialog lifecycle; global router is unchanged.
+
+Catalogue private p6 defaults across3layouts and p1 Overview newest-first Recent
+are raw correction contexts, not strict pixel acceptance. Raw Recent panels are
+actually scrolled into view on desktop/mobile, with source first-six IDs and
+target canonical latest-six/rendered IDs/times/hash paths preserved; viewport
+mobile whole-content crops do not show the feed and are not evidence of its
+record replacement. Counts include residual raster until independently proved.
+
+The source first capture initially had a redundant render after go and a blank
+header in earlier List captures. The current capture configures initial route
+then calls original go once, uses actual native UI actions and source-self repeats.
+Historical blank-header rendering cause was not independently reproduced; it is
+a capture failure, not a claimed source UI design. No source force-paint/reset,
+style/template/fixture/baseline/font/clock/tolerance/mask edits are used.
+
+Files route/header slot is PR-07 pending WU22; Content/dialog scope does not accept
+full AppShell, all8tab bodies,173Darwin or physical-device/user review. Inherited
+WU10mobile17/14, WU13ListDate558/8814, WU14wholeDesktop0/5 and pointer-overlap
+641/MyTasks390 debts remain unproved/unaccepted.
+
+The primary native consumer sequences are recorded in each image row. Catalogue
+uses layout selection → Website search identically in both applications. Mobile
+Project Table uses Overview → Header Table. The earlier search → layout Input
+11-pixel residue and direct-first-entry mobile Table 33-pixel residue are frozen
+with original images, geometry and hashes in `unaccepted-input-order.json` and
+`unaccepted-direct-table.json`; both remain **UNPROVED_UNACCEPTED** for WU-29.
+They are separate from the authorized privacy/newest-first corrections.
+
+Project create/edit image states exercise ordinary template/icon/color choices:
+Create Website → Rocket → Blue and Edit Target → Violet, after both original
+finite modal entrances settle. Early actions during entrance produced a 37,529
+pixel/scroll failure; this failed attempt remains in diagnostics. Default initial
+modal pairs were frozen before this scope change in
+`unaccepted-default-forms.json` (16 PNGs); their raster differences are not accepted
+as default parity. Meaningful native interactions do not remove those debts.
+
+`DialogBody` has a typed optional `as="form"` composition; the default div remains
+unchanged. Project and saved-view forms use direct scroll/flex bodies, native
+Enter/form association and controlled disabled fields. Project Ctrl/Cmd+Enter
+also submits the draft once; pending submissions preserve the atomic lock. The
+source first-focus name/invite controls are explicit `initialFocus` refs. A typed
+Project status-menu intent consumes the same owned one-shot page entry as the
+source Header/Details popover opening. There is no global render/message bus or
+keyed remount. The owned focus/blur and Close/Template transitions retain source
+CSS default `ease`, distinct from the route easing token.
+
+Diagnostics compare original Source and Target full computed CSS, fractional
+rectangles, actual scroll/focus, and ancestor finite animations. Identical computed
+styles alone do not prove raster parity. The Save info icon uses role=status on
+Target; the earlier role=alert diagnostic omitted it and does not substantiate an
+SVG equality claim. The later correct-role measurement includes both alert and
+SVG rectangles/properties. Project picker SVGs are block in both applications;
+no speculative inline-flex override was applied. Earlier normal-avatar static
+hypothesis was reverted after measuring the source after-render tooltip upgrade.
+
+### WU-16 owned modal completion and confirmation composition
+
+Source `overlays/drawer.js` applies the same finite first-entry flag to content and scrim. Optional controlled `Dialog.entryRevision` now retains both completed animations on the first DOM node/text draft and consumes both on an actual owned revision. The undefined generic default still consumes each entrance on animation end. Project/Saved forms use typed direct `DialogBody as="form"`; Enter/CtrlEnter, pending disabled fields, and bounded command guards remain active. Source heading helper always groups the h2; explicit empty `DialogHeader.description` groups the Project edit/share/rename heading without adding an empty subtitle, while an omitted description preserves the generic default DOM.
+
+Project confirmation is a separate Source consumer: no modal-h, body padding-top18/gap10, 34px colored type icon, body h2, Archive Cancel focus and Delete typed-name focus. Typed-name input only changes the disabled condition and does not consume first-entry content/scrim. Error changes do consume the owned revision. Delete text states the bounded Undo offered by the actual contract; Source's "can't be undone" text contradicts its own Undo action and is retained as a documented source discrepancy.
+
+The native Project name row measurement found equal rectangles but different immediate flex ownership: Source icon is grid/shrink0/margin-top22; Target had a block/shrink1 wrapper around the shared icon. Optional ProjectIcon.className now puts the owned margin directly on the shared root. This fixes the consumer composition without altering other icon consumers or claiming it explains a raster difference. Diagnostic before/after paths are in WU-16 evidence.
+
+WU-16 current combined matrix is40/45 strict zero with all repeats0, not a pass.
+Five configured form pairs remain UNPROVED_UNACCEPTED and hash-frozen in
+`evidence/WU-16/unaccepted-gates-eighth-forms.json`; old input-order11,
+direct-table33, default/configured form and post-create saved workflow debts are
+retained separately for WU-29. Failed validation/draft and allowed-p2 consumer
+inspections are not promoted. No causal claim follows solely from equal full
+computed CSS/rectangles, and no additional capture context is used to find zero.
+The canonical parent overlay correction has native evidence, but does not
+establish passing visual forms or permit tolerance/baseline/source changes.
+
+A later combined WU-16 execution failed at37/45zero/all repeats0. Latest
+CatalogueList/Table39010, Timeline144015, Create192/77, Edit135/24 and
+Share14402 are retained in `evidence/WU-16/unaccepted-gates-twelfth.json` (16PNGs).
+Save0/0 and prior zeros do not substitute for current required failures. Five
+cross-run changes preserve Source hashes/sample inputs/clips while Target hashes
+change; this remains a diagnostic observation without a proven pixel cause.
+
+WU-16 bounded5×3 audit demonstrates Target PNG variability under unchanged380 code/build hashes and equal served JS/CSS/fonts, with stable Source and same-context repeats. Passive chronology shows only an association between font events and the15px Timeline failure; final layer topology is equal, and the subsequent USEDface trace has no failing case. These diagnostics are not acceptance. The demonstrated Source warm-Home versus Target cold-link setup mismatch is corrected systemically by symmetric app-ready native Sidebar→Header consumer navigation. The full prior45+5raw matrix/100PNG remains frozen in `evidence/WU-16/unaccepted-cold-setup.json`; cold deep-link functionality is verified separately. All earlier debts remain UNPROVED_UNACCEPTED for WU29.
+
+WU16 current evidence supersedes earlier historical pipeline summaries: gates19
+executed19 commands with actual exit0, then visual20 exited1 (30/45 strict zero,
+all repeats0); final21–23 did not run. `unaccepted-gates-nineteenth.json` retains
+15 failed pairs/30 PNGs. The new shared AvatarStack controlled render slot has
+12 default Display image pairs/16 native probes passing actual exit0; defaults
+have unchanged rendered DOM/style. Source-equivalent member tooltip and
+Favorites drawer entry consumption are verified in `diagnostics/owner-motion.json`;
+stack bounds/overlap/+4 and front Options hit remain unchanged. Source Team/date
+row now uses its original center alignment. After these production changes the
+mandatory pipeline has24 gates (added Display regression), and still requires a
+fresh complete passing run and independent technical inspection before DONE.
+
+`diagnostics/owned-readiness-archive.json` is a negative observation: exact List390
+and Create1440 were complete with loaded fonts at observed owned animation
+start/end; no readiness gate or extra wait is added.
+`diagnostics/modal-paint-archive.json` records unchanged modal/wrap/host/form boxes
+and the inherited hidden live-region overflow: Source document1001px/live box
+y1000+1, Target document1000px/live box y999+1 with margin−1. Both scrollY0.
+Different painted layers do not establish pixel causality or a visible defect;
+no live-region/Portal/layer/+1px change is made. Diagnostic failures are retained,
+not promoted to strict acceptance.
+
+A later actual failed Task Detail trace established disabled-input focus before
+re-enable. The production reset now requests current-generation focus after an
+enabled React commit, cancels on close/new generation/unmount and preserves
+Start-new-draft/Create-more/busy/frozen identity. Task Detail12 passed afterward;
+earlier passing traces alone had not proved or fixed that race.
+
+WU16 latest pre-repair gates21:20 commands exit0, visual21 exit1,33/45 strict
+zero/all repeats0; final22–24 did not run. `unaccepted-gates-twenty-first.json`
+retains12pairs/24PNG. Later initial-document Target-only live margin−1→0 proved a
+real-consumer effect with unchanged owned CSS/rects, Source/served/build hashes,
+actions and clips: root1000→1001 gives original FixedPosition modal/scrim layers
+and removes164 Create differences (192→28/no new/repeats0). The four frozen PNGs
+and full snapshot comparison are in `evidence/WU-16/diagnostics/root-overflow-summary.json`.
+This does not accept28remaining or other consumer states. The direct prerequisite
+repair restores only specific Source-owned AppShell `#sr-live` margin0; global
+sr-only semantics/defaults, explicit root-height styles, Portal and GPU/layer controls are not rewritten.
+The earlier no-live-edit decision preceded this real-consumer proof. Fresh24
+mandatory gates and independent technical review remain required.
+
+WU16 bounded partial-raster investigation remains diagnostic only. Exact Create1440
+with Source-faithful margin0 has equal477 paint commands and byte-identical
+offscreen scale1 replay, but default live capture differs28 pixels. Final cc
+tile geometry/scales/translation match; recorded partial-raster histories differ.
+The explicitly authorized matched `--disable-partial-raster` browser profile
+applied to both apps yields live0/repeat0 while changing Source13 and Target41
+pixels from default, with equal served assets, full owned CSS/geometry and clips.
+[Profile summary](evidence/WU-16/diagnostics/partial-raster-summary.json) freezes
+the four images, actual command exit1 and effective browser arguments. This is
+evidence of browser-profile dependence for one consumer, not primary acceptance
+or a Source baseline/browser-default change. No product paint/layer workaround
+is justified; default45 mandatory contexts remain the acceptance gate.
+
+A later separate full-raster supplement keeps the same45 strict workflows/5raw,
+Source AND Target flag, assets/clock/fonts/clip/zero-threshold policy. It produced
+44/45zero (Share1440 Close2 remains) and14 Source hash changes versus default22.
+Its100 frozen images and failed report remain in
+`evidence/WU-16/diagnostics/full-raster-linux-summary.json`; no profile adoption
+or default-browser acceptance follows. Ineffective ZeroCopy and negative
+single-worker diagnostics are separately retained with their actual limits.
+
+Share first-DOM chronology then proved a product read-ownership omission: Source
+first7 members/591px, Target first0/283px then7/591px. Bootstrap display identities
+now provide permitted pending labels; no email/role is invented and Invite/Enter
+requires complete canonical membership catalogue plus demo capability. An initial
+projection revision correctly consumed real changed content, yielding different
+final layers/live28; that unaccepted after bundle remains separate. Shared Share
+queries now start at Header/menu exposure and Dialog consumes the same cache,
+without await-opener/extra readiness/remount or removing async projection fields.
+Named after probe records first7/591/Inviteenabled on both, matching640×671 layers,
+first49 paint commands, replay bytes and live0/repeat0. It is a one-consumer
+diagnostic, not an automatic mandatory gate or profile decision. Native28 proves
+normal finite entry/search consumption plus cold held-read identity/Invite/Enter
+guards and draft preservation.
+
+Root authorized one fresh24-gate `--full-raster-linux-candidate` packet following
+that meaningful dependency repair. Normal core/native/affected gates run unchanged;
+exact45+5 visual uses the named matched full-raster profile. Commands/report/100PNG
+and review paths are separate from default22 and earlier44/45 supplement. Candidate
+status remains AwaitingRootRuntimeScopeReview; independent technical/runtime-scope
+acceptance is required before any DONE/commit/push. No original173Darwin baseline,
+Source templates/styles/fixture/font bytes, threshold, AA policy or masks change.
+
+Root final technical PASS explicitly adopts the named matched Source+Target
+Chromium145 Linux `--disable-partial-raster` profile FOR WU16 managed content/dialog
+acceptance, after real-consumer partial-raster proof, source-faithful Share read
+ownership and fresh24/24 actual commands plus45/45 strictzero/5raw evidence. Root
+independently checked100PNG hashes/50pixel counts,381assets/four immutable inputs,
+exact actions/clips/navigation and14 Source profile deltas, and viewed nine Source
+images. Qualified review/verification metadata records the decision; capture report,
+PNG bytes and default/old supplement bundles are unchanged. This supersedes the
+earlier pending-profile decision only in that explicit scope. Default31/45 and old
+full44/45 remain UNPROVED_UNACCEPTED, as do all inherited/input-order/direct/default
+modal/configured/workflow debts for WU29. No default/Darwin173/fullshell/physical
+or userapproval parity, new baseline, Source/template/fixture/font modification,
+tolerance/mask change or product paint workaround is claimed. Files PR07body22
+remains excluded.

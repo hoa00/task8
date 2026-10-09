@@ -60,13 +60,13 @@ export type ToggleProps = Omit<CheckboxProps, 'indeterminate' | 'round'>;
 export function Toggle({ checked, onCheckedChange, className = '', ...props }: ToggleProps) {
   return <input {...props} type="checkbox" role="switch" checked={checked} aria-checked={checked} onChange={event => onCheckedChange(event.target.checked)} className={`relative m-0 h-[18px] w-[30px] shrink-0 cursor-pointer appearance-none rounded-[9px] bg-border-strong transition-[background] checked:bg-accent disabled:cursor-not-allowed ui-toggle ${className}`} />;
 }
-export interface ChoiceItem { value: string; label: ReactNode; icon?: ReactNode; count?: number | undefined; disabled?: boolean; panelId?: string }
+export interface ChoiceItem { ariaLabel?: string; value: string; label: ReactNode; icon?: ReactNode; count?: number | undefined; disabled?: boolean; panelId?: string }
 export interface TabsProps extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> { items: readonly ChoiceItem[]; value: string; onValueChange: (value: string) => void; label: string }
 function Choices({ items, value, onValueChange, label, segmented, ref, className = '', ...props }: TabsProps & { segmented: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   useImperativeHandle(ref, () => root.current!, []);
   return <div {...props} ref={root} role={segmented ? 'radiogroup' : 'tablist'} aria-label={label} className={`${segmented ? 'inline-flex gap-[2px] rounded-sm bg-surface-3 p-[2px]' : 'flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'} ${className}`}>
-    {items.map(item => <button key={item.value} type="button" role={segmented ? 'radio' : 'tab'} aria-checked={segmented ? value === item.value : undefined} aria-selected={!segmented ? value === item.value : undefined} aria-controls={item.panelId} disabled={item.disabled} tabIndex={item.value === value ? 0 : -1} onClick={() => onValueChange(item.value)}
+    {items.map(item => <button key={item.value} type="button" aria-label={item.ariaLabel} role={segmented ? 'radio' : 'tab'} aria-checked={segmented ? value === item.value : undefined} aria-selected={!segmented ? value === item.value : undefined} aria-controls={item.panelId} disabled={item.disabled} tabIndex={item.value === value ? 0 : -1} onClick={() => onValueChange(item.value)}
       onKeyDown={event => {
         if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
         event.preventDefault(); const enabled = items.filter(choice => !choice.disabled); const current = enabled.findIndex(choice => choice.value === item.value);
