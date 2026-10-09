@@ -1,0 +1,66 @@
+{
+  "status": "implementation-pushed-and-verified",
+  "baseHead": "279c77574e59e6118cfd5fa84363445a3c4054de",
+  "baseTree": "bfc7b62b7e0ceb4f54f986a7a2b539bca5fbc933",
+  "implementationSha": "f866df7c721a593c91926e93603085b26da37106",
+  "implementationTree": "ac25167df258a622c1b486580ea7c95130b807c7",
+  "targetRemote": "https://github.com/hoa00/task8.git",
+  "localBranch": "work",
+  "targetBranch": "main",
+  "push": {
+    "command": "git push origin HEAD:main",
+    "actualExitStatus": 0,
+    "actualOutput": "To https://github.com/hoa00/task8.git\n   279c775..f866df7  HEAD -> main\n",
+    "actualLsRemoteMain": "f866df7c721a593c91926e93603085b26da37106"
+  },
+  "preflight": {
+    "fetchExitStatus": 0,
+    "actualRemoteMainBeforeCommit": "279c77574e59e6118cfd5fa84363445a3c4054de",
+    "beforeCommitAheadBehind": [
+      0,
+      0
+    ],
+    "implementationAheadBehind": [
+      1,
+      0
+    ],
+    "originMainAncestorExitStatus": 0
+  },
+  "postPush": {
+    "fetchExitStatus": 0,
+    "aheadBehind": [
+      0,
+      0
+    ],
+    "targetWorkingTreeCleanBeforeDocumentation": true,
+    "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+    "sourceWorkingTreeClean": true,
+    "ownedListeners4173And5173": false
+  },
+  "evidenceHashes": {
+    "commands.json": "268f4e4d06d542c2e9e34d31b993aea9d2e3aa68d8a0c489c45bec5e236b91b3",
+    "verification.json": "007038aba40a3445ee8adc096aaf040ac2e2c12a55eb81dda2527fc4213f1d84",
+    "visual-verification.json": "1765ee6fd0a5c6ccdb73b974707ba21994459a27408a495921a49755b87a91d5",
+    "page-verification.json": "3b4f0568aa3187440e85bb62e5156155c3e36dae1722d21248198c164af84407",
+    "review.json": "9769270d60c8ad06feab117d7cc425d3c61d5f8f780f3b4b5a0c5f6d8081aeed",
+    "interactions.json": "9c5a41ee4e6466e18e745ff1d93789faa241981eed2d85f9b69294d29c5d023b",
+    "source-interactions.json": "7c349d24c02a338e45273554b98d9a2145937ca6b7662da67bb037c26e8abd51",
+    "mobile-pointer-observation.json": "b580baa81442b0a6678d16e9e798e4ee2cc75b6ac94469afecd20a96e00c98bb"
+  },
+  "acceptance": {
+    "requiredGatesExitZero": 17,
+    "extraDesktopAuditActualExitStatus": 1,
+    "requiredCalendarPairs": 42,
+    "acceptedActualMobilePairs": 2,
+    "acceptedPairs": 44,
+    "acceptedPngHashes": 88,
+    "parentTechnicalInspection": "passed,88 hashes/44 byte-identical strict pairs/16 source representatives/4 immutable files unchanged",
+    "unacceptedDesktopScopes": "Both Workspace/MyTasks whole-content context-variable0/5; do not select a passing frame",
+    "sourcePointerLimitations": [
+      "641 legend overlap",
+      "MyTasks390 weekday-head overlap"
+    ],
+    "userApprovalClaim": false
+  },
+  "documentationCheckpoint": "This records the existing implementation SHA/push. A later docs-only commit is normal-pushed; final HEAD/remote/tree/clean are reported externally to avoid self-reference."
+}
