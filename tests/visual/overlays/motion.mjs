@@ -7,7 +7,8 @@ import { sourceServer } from '../reference/source-server.mjs';
 import { newPage, environment } from '../reference/environment.mjs';
 import { sourcePreferences } from '../foundation/source-sample.mjs';
 import { sourceOverlays } from './source-sample.mjs';
-const base=process.argv.includes('--wu16-regression')?'docs/poc/evidence/WU-16/overlay-regression/motion':'docs/poc/evidence/WU-05/motion';fs.mkdirSync(base,{recursive:true});const stop=await sourceServer();
+const wu18=process.argv.includes('--wu18-regression'), attempt=process.argv.find(arg=>arg.startsWith('--attempt='))?.slice(10)??'overlay-motion-01';
+const base=wu18?`docs/poc/evidence/WU-18/attempts/${attempt}`:process.argv.includes('--wu16-regression')?'docs/poc/evidence/WU-16/overlay-regression/motion':'docs/poc/evidence/WU-05/motion';if(wu18&&fs.existsSync(base))throw Error('Attempt already exists');fs.mkdirSync(base,{recursive:true});const stop=await sourceServer();
 const child=spawn(process.execPath,['./node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','5173','--strictPort'],{cwd:path.resolve('apps/web'),stdio:'pipe'});let logs='';child.stdout.on('data',v=>logs+=v);child.stderr.on('data',v=>logs+=v);let browser;
 const report={environment,control:'Web Animations API pause/currentTime only on the selected original overlay CSS animations; unrelated input focus transitions settle concurrently; no stylesheet/keyframe changes',cases:[]};
 try{
@@ -43,5 +44,5 @@ try{
     assert.deepEqual(states[1],states[0]);assert.equal(states[0].scale,'none');if(motion==='full')assert.equal(states[0].duration,140);else assert.equal(states[0].transform,'none');report.buttonActive.push({motion,source:states[0],target:states[1]});
     for(const page of [a.page,b.page])await page.mouse.up();await a.context.close();await b.context.close();
   }
-  report.status='passed';fs.writeFileSync('docs/poc/evidence/WU-05/motion.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:'passed',cases:report.cases.length,frames:report.cases.length*3}));
+  report.status='passed';fs.writeFileSync(wu18?`${base}/motion.json`:'docs/poc/evidence/WU-05/motion.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:'passed',cases:report.cases.length,frames:report.cases.length*3}));
 }finally{await browser?.close();if(child.exitCode===null){const exit=new Promise(resolve=>child.once('exit',resolve));child.kill('SIGTERM');await exit;}await stop();}

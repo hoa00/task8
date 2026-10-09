@@ -1,0 +1,26 @@
+Owned source server: PID 384296, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+activity-1440-light-all-base: pixels0 repeat0 geometrytrue
+activity-1440-light-status-base: pixels0 repeat0 geometrytrue
+activity-1440-light-comments-base: pixels0 repeat0 geometrytrue
+activity-1440-light-projects-base: pixels0 repeat0 geometrytrue
+search-1440-light-all-empty: pixels0 repeat0 geometrytrue
+search-1440-light-all-website: pixels153 repeat0 geometrytrue
+search-1440-light-all-no-match-needle: pixels0 repeat0 geometrytrue
+search-1440-light-all-whitespace: pixels0 repeat0 geometrytrue
+palette-1440-light-cmd-empty: pixels1301 repeat0 geometrytrue
+palette-1440-light-search-empty: pixels0 repeat0 geometrytrue
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('option', { name: /Switch workspace/ }) resolved to 2 elements:
+    1) <div id="pi-0" data-i="0" tabindex="0" class="pi hl" role="option" data-a="palRun" data-hover-i="0" aria-selected="true">…</div> aka getByRole('option', { name: 'Switch workspace…' })
+    2) <div id="pi-1" data-i="1" class="pi " tabindex="0" role="option" data-a="palRun" data-hover-i="1" aria-selected="false">…</div> aka getByRole('option', { name: 'View all results for “Switch' })
+
+Call log:
+[2m  - waiting for getByRole('option', { name: /Switch workspace/ })[22m
+
+    at palette (/workspace/task8/tests/visual/search/verify.mjs:35:329)
+    at async file:///workspace/task8/tests/visual/search/verify.mjs:54:82
+
+Node.js v24.13.0

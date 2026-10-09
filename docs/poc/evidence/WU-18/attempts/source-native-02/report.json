@@ -1,0 +1,27 @@
+{
+  "status": "failed",
+  "runtime": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6"
+  },
+  "sides": [
+    {
+      "side": "source",
+      "probes": [
+        {
+          "id": "native-N-P-existing-forms",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "scope": "Actual native Source/Target keyboard commands and genuine input/filter entry consumption; no pixel claim. Source fixture/order/fonts immutable.",
+  "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#pal-in') to be detached\u001b[22m\n\u001b[2m    64 × locator resolved to visible <input value=\"\" id=\"pal-in\" data-in=\"palQ\" role=\"combobox\" autocomplete=\"off\" aria-expanded=\"true\" aria-controls=\"pal-list\" aria-activedescendant=\"pi-0\" placeholder=\"Type a command or search…\"/>\u001b[22m\n\n    at /workspace/task8/tests/visual/search/source-journeys.mjs:22:644"
+}

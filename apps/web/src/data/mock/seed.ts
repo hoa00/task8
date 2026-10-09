@@ -20,7 +20,7 @@ export function createSeedDataset(clock: Clock = fixtureClock): MockDataset {
   const currentMemberId = sourceId('members', source.me);
   const timestamp = clock.now();
   const workspaces = source.workspaces.map((workspace, index) => WorkspaceSchema.parse({
-    id: sourceId('workspaces', workspace.id), name: workspace.name,
+    id: sourceId('workspaces', workspace.id), name: workspace.name, planLabel: workspace.plan,
     slug: index === 0 ? source.ws.url : workspace.name.toLowerCase().replaceAll(' ', '-'), iconColor: workspace.c,
     brand: workspace.brand ?? false, timezone: 'UTC', createdAt: timestamp, updatedAt: timestamp, version: 1,
   }));

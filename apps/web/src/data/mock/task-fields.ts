@@ -218,7 +218,14 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       const query = ActivityQuerySchema.parse(input.query), { cursor, limit, ...scope } = query;
       if (query.taskId) getTask(data, query.taskId);
       if (query.projectId && !canReadProject(data.projects[query.projectId], data)) return fail('NOT_FOUND', 'Project not found');
-      const rows = Object.values(data.activity).filter(row => (!row.projectId || canReadProject(data.projects[row.projectId], data)) && (!row.taskId || !data.taskCommands.deletedTasks[row.taskId]) && (!query.projectId || row.projectId === query.projectId) && (!query.taskId || row.taskId === query.taskId) && (!query.actorId || row.actorId === query.actorId)).sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id.localeCompare(a.id));
+      const rows = Object.values(data.activity).filter(row => {
+        const task = row.taskId ? data.tasks[row.taskId] : null, parentId = task?.projectId ?? row.projectId;
+        if (row.actorId && data.members[row.actorId]?.workspaceId !== data.workspaceId) return false;
+        if (row.taskId && (!task || task.workspaceId !== data.workspaceId || data.taskCommands.deletedTasks[row.taskId])) return false;
+        if (row.projectId && (!canReadProject(data.projects[row.projectId], data) || data.projects[row.projectId]!.archivedAt)) return false;
+        if (parentId && (!canReadProject(data.projects[parentId], data) || data.projects[parentId]!.archivedAt)) return false;
+        return (!query.projectId || parentId === query.projectId) && (!query.taskId || row.taskId === query.taskId) && (!query.actorId || row.actorId === query.actorId);
+      }).sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id.localeCompare(a.id));
       return { data: await cursorPage(rows, { cursor, limit }, scope, true) };
     }
     case 'createComment': {

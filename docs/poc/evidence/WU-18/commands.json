@@ -1,0 +1,339 @@
+{
+  "status": "passed",
+  "requiredUniqueCount": 21,
+  "requiredActualExitZeroCount": 21,
+  "commands": [
+    {
+      "name": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:17:53.466Z",
+      "completedAt": "2026-10-09T21:18:04.932Z",
+      "log": "docs/poc/evidence/WU-18/typecheck-final-08.log",
+      "required": true,
+      "logSha256": "c47aabeab86e10856455b259679d2da098aac333d9062db42160bcd88660aa60",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:18:04.933Z",
+      "completedAt": "2026-10-09T21:18:07.198Z",
+      "log": "docs/poc/evidence/WU-18/build-fourteenth.log",
+      "required": true,
+      "logSha256": "6c03418bf88e26ac97dd0205c3505a061747fd61b1ad273b209b0baf7530fdfc",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "current-affected-visual",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/post-success.mjs"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:18:15.397Z",
+      "completedAt": "2026-10-09T21:18:15.605Z",
+      "log": "docs/poc/evidence/WU-18/post-success-verification.log",
+      "required": true,
+      "logSha256": "9cd0a11e699b878f31075c5ab938dd81c95c0e4c5c28486ca6ae394957e3bdec",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "native-feedback",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/interactions.mjs",
+        "--feedback-only",
+        "--attempt=native-09"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:18:15.606Z",
+      "completedAt": "2026-10-09T21:18:41.487Z",
+      "log": "docs/poc/evidence/WU-18/attempts/native-09.log",
+      "required": true,
+      "logSha256": "f6e99e842a353297b61a3d69fa2cbf4ba56e059f6a685969d3112fa28603ab39",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "source-copy-feedback",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/source-copy-feedback.mjs",
+        "--attempt=source-copy-feedback-02"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:18:41.530Z",
+      "completedAt": "2026-10-09T21:19:08.758Z",
+      "log": "docs/poc/evidence/WU-18/attempts/source-copy-feedback-02.log",
+      "required": true,
+      "logSha256": "324fb55daf45cae1d4ac3f00754291763fb0767fe8b387eff25ed4554b785087",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:19:08.788Z",
+      "completedAt": "2026-10-09T21:19:10.404Z",
+      "log": "docs/poc/evidence/WU-18/http-build-final-04.log",
+      "required": true,
+      "logSha256": "dcd4f0ab162cf6eb180d5c6f52e2bd5bbd6ad3f0c6922295604716614350ff35",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "http-bundle",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/data/http-bundle.mjs",
+        "WU-18"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:19:10.404Z",
+      "completedAt": "2026-10-09T21:19:10.441Z",
+      "log": "docs/poc/evidence/WU-18/http-bundle-final-05.log",
+      "required": true,
+      "logSha256": "579b5f6bd02076573587b7e2b2be74c6d992445ddbfc37cbac4e0bb401d60797",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "http-query-races",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/http-races.mjs",
+        "--attempt=http-races-04"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/attempts/http-races-04.log",
+      "logSha256": "55e0b3221a4c37a3609f87afba2b4648537b1081f42055db357f6806f28c756d",
+      "required": true,
+      "executionLedger": "current-commands.json"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:19:10.441Z",
+      "completedAt": "2026-10-09T21:19:21.535Z",
+      "log": "docs/poc/evidence/WU-18/lint-final-10.log",
+      "required": true,
+      "logSha256": "ecdd69d0b530514251ac2729b0ba1bc728a6d7945abd9ac2bf05ae6a44484c90",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "source-reference",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/reference/source-check.mjs"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:19:21.536Z",
+      "completedAt": "2026-10-09T21:19:21.579Z",
+      "log": "docs/poc/evidence/WU-18/reference-final-05.log",
+      "required": true,
+      "logSha256": "b87157a6b73193599f8b8c4b16793d4a357771d6e46c384b0ee93d6e8327121b",
+      "executionLedger": "copy-success-commands.json"
+    },
+    {
+      "name": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/test-final-01.log",
+      "logSha256": "bc352adf7f279ec3185bd6f62630c7bb1c3b5c87a92e63300add8377aafc2330",
+      "required": true,
+      "counts": {
+        "web": 96,
+        "contracts": 93,
+        "reference": 3,
+        "workspace": 1
+      },
+      "reuse": "Runtime data/schema/test inputs unchanged; later DTO readonly annotation and UI owner/callback changes covered by fresh type/consumer/native/visual gates."
+    },
+    {
+      "name": "contracts-coverage",
+      "command": [
+        "pnpm",
+        "contracts:coverage"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/contracts-coverage.log",
+      "logSha256": "e5339b579ee9976426678a964d80eaeca2b71ac4fc075b37b2f4f572147c73ff",
+      "required": true,
+      "operationCount": 83
+    },
+    {
+      "name": "contracts-consumers",
+      "command": [
+        "pnpm",
+        "contracts:consumers"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/contracts-consumers-final.log",
+      "logSha256": "acd18fc0b18c86ad14234e2b6e42b97ab04d403065c05dc67320a718102d3f12",
+      "required": true,
+      "executionLedger": "final-core-commands.json"
+    },
+    {
+      "name": "native-current",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/interactions.mjs",
+        "--attempt=native-07"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/attempts/native-07.log",
+      "logSha256": "62014b2a80556f6db94f563be6c16975330782f7aef4a66a5b17c2228fec0ab8",
+      "required": true,
+      "executionLedger": "remaining-continuation-04.json",
+      "reuse": "Archived pre-feedback build. Two exact Search fileCopy-only callback revisions are byte-archived and covered by separate bounded2+2 visual/current native/Source feedback/type-build-lint/HTTP-bundle gates; unrelated runtime inputs unchanged."
+    },
+    {
+      "name": "source-native-current",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/source-journeys.mjs",
+        "--attempt=source-native-05"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/attempts/source-native-05.log",
+      "logSha256": "83ff49b713f6aa921cba32f82b16fa2e873ac7ea5678852218f3ab8e0e6f4cc4",
+      "required": true,
+      "executionLedger": "remaining-continuation-04.json",
+      "reuse": "Archived pre-feedback build. Two exact Search fileCopy-only callback revisions are byte-archived and covered by separate bounded2+2 visual/current native/Source feedback/type-build-lint/HTTP-bundle gates; unrelated runtime inputs unchanged."
+    },
+    {
+      "name": "overlay-default-geometry",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/overlays/verify.mjs",
+        "--wu18-regression",
+        "--attempt=overlay-default-01"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/attempts/overlay-default-01.log",
+      "logSha256": "751b18e3ee54f69e584d85b07803aece9429ed84cd828ed2aa8c7430ab4ff2ea",
+      "required": true,
+      "executionLedger": "remaining-continuation-04.json",
+      "reuse": "Archived pre-feedback build. Two exact Search fileCopy-only callback revisions are byte-archived and covered by separate bounded2+2 visual/current native/Source feedback/type-build-lint/HTTP-bundle gates; unrelated runtime inputs unchanged."
+    },
+    {
+      "name": "overlay-default-lifecycle",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/overlays/lifecycle.mjs",
+        "--wu18-regression",
+        "--attempt=overlay-lifecycle-01"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/attempts/overlay-lifecycle-01.log",
+      "logSha256": "50e1952d6797ec36ac45ea96dcd16874e43976e4170d9cf783e270d23eb5f45b",
+      "required": true,
+      "executionLedger": "remaining-continuation-04.json",
+      "reuse": "Archived pre-feedback build. Two exact Search fileCopy-only callback revisions are byte-archived and covered by separate bounded2+2 visual/current native/Source feedback/type-build-lint/HTTP-bundle gates; unrelated runtime inputs unchanged."
+    },
+    {
+      "name": "overlay-default-motion",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/overlays/motion.mjs",
+        "--wu18-regression",
+        "--attempt=overlay-motion-01"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/attempts/overlay-motion-01.log",
+      "logSha256": "ab52e466c9cccdd2bfb80139bdad603bdd70929c245040cad867d34e9dfc4ccd",
+      "required": true,
+      "executionLedger": "remaining-continuation-04.json",
+      "reuse": "Archived pre-feedback build. Two exact Search fileCopy-only callback revisions are byte-archived and covered by separate bounded2+2 visual/current native/Source feedback/type-build-lint/HTTP-bundle gates; unrelated runtime inputs unchanged."
+    },
+    {
+      "name": "font-network-current",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/font-network.mjs",
+        "--attempt=font-network-01"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/attempts/font-network-01.log",
+      "logSha256": "a66b9a5984d377f996dedc7434c2080fac202b7071a430404460a980bd7f0795",
+      "required": true,
+      "executionLedger": "remaining-continuation-04.json",
+      "reuse": "Archived pre-feedback build. Two exact Search fileCopy-only callback revisions are byte-archived and covered by separate bounded2+2 visual/current native/Source feedback/type-build-lint/HTTP-bundle gates; unrelated runtime inputs unchanged."
+    },
+    {
+      "name": "qualified-visual45",
+      "command": [
+        "node",
+        "tests/visual/search/gates.mjs"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-18/visual-aggregate.log",
+      "logSha256": "028023d3f4bd12cc0a92d8d494deee87014599d86330c28fb58a0d8782b8fe90",
+      "required": true,
+      "scope": "45 qualified pairs at archived pre-feedback build; prior rejectedCopy2 and current successCopy2 bridges separately captured/frozen. Raw matrix04 stays failed."
+    },
+    {
+      "name": "archive-audit",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/archive-audit.mjs",
+        "--output=docs/poc/evidence/WU-18/archive-audit-final02.json"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:19:21.579Z",
+      "completedAt": "2026-10-09T21:19:21.803Z",
+      "log": "docs/poc/evidence/WU-18/archive-audit-final02.log",
+      "required": true,
+      "logSha256": "68b4ca38ca07059c211527906c3de6f96005fce88f84185403a4dce9f92a1ce2",
+      "executionLedger": "copy-success-commands.json"
+    }
+  ],
+  "failedHistoricalExecutions": "Raw attempt reports, continuation01\u201303 ledgers/current lint06 failure and all frozen byte archives are preserved separately; not counted as successful required gates.",
+  "unknownCaptureExit": "Historical file-copy-feedback01 completion UnknownAfterRestart remains unchanged; offline gate0 proof retained. Latest file-copy-success01 capture actualexit0, never relabels previous capture.",
+  "supplementalCommands": [
+    {
+      "name": "current-affected-capture",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/search/verify.mjs",
+        "--file-preview-only",
+        "--attempt=file-copy-success-01"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "startedAt": "2026-10-09T21:18:07.198Z",
+      "completedAt": "2026-10-09T21:18:15.337Z",
+      "log": "docs/poc/evidence/WU-18/attempts/file-copy-success-01.log",
+      "logSha256": "c76cd7f95a91f384708d8a20abab13f266d666d15699b46adb34db9694a3e264",
+      "required": false
+    }
+  ],
+  "archiveCountExplanation": "Actual final audit43 manifests/1356 frozenfiles/819PNG. Earlier files-map1111+standalone log1+motionmetadata2=1114; success revision adds228 archive files+8PNG+reports/logs, all verified."
+}

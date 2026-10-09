@@ -1,0 +1,121 @@
+{
+  "status": "failed",
+  "runtime": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6"
+  },
+  "sides": [
+    {
+      "side": "source",
+      "probes": [
+        {
+          "id": "native-N-P-existing-forms",
+          "passed": true
+        }
+      ],
+      "keyboard": [
+        {
+          "action": "open",
+          "state": {
+            "dom": {
+              "focus": "<input id=\"pal-in\" data-in=\"palQ\" value=\"\" placeholder=\"Type a command or search…\" autocomplete=\"off\" role=\"combobox\" aria-expanded=\"true\" aria-controls=\"pal-list\" aria-activedescendant=\"pi-0\">",
+              "input": "",
+              "dialogs": [
+                {
+                  "name": "Command menu",
+                  "className": "palette"
+                }
+              ]
+            },
+            "source": {
+              "palette": {
+                "q": "",
+                "mode": "cmd"
+              },
+              "modals": 0
+            }
+          }
+        },
+        {
+          "action": "fill np?[",
+          "state": {
+            "dom": {
+              "focus": "<input id=\"pal-in\" data-in=\"palQ\" value=\"np?[\" placeholder=\"Type a command or search…\" autocomplete=\"off\" role=\"combobox\" aria-expanded=\"true\" aria-controls=\"pal-list\" aria-activedescendant=\"pi-0\">",
+              "input": "np?[",
+              "dialogs": [
+                {
+                  "name": "Command menu",
+                  "className": "palette"
+                }
+              ]
+            },
+            "source": {
+              "palette": {
+                "q": "np?[",
+                "mode": "cmd"
+              },
+              "modals": 0
+            }
+          }
+        },
+        {
+          "action": "dark toggle1",
+          "state": {
+            "dom": {
+              "focus": "<body>\n    <div id=\"app\" aria-live=\"off\"><button class=\"skip\" data-a=\"skipToContent\">Skip to content</button><div class=\"shell   \">\n    <nav class=\"side\" aria-label=\"Main\">\n    <div class=\"side-top\">\n      <div class=\"row\" style=\"gap:2px\">\n        <button class=\"ws grow\" data-a=\"pop\" data-pop=\"ws\" aria-haspopup=\"menu\" aria-label=\"Switch workspace\">\n          <span class=\"ws-logo brand\" style=\"width:22px;height:22px\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 332 332\" aria-hidden=\"true\"><rect width",
+              "dialogs": []
+            },
+            "source": {
+              "palette": null,
+              "modals": 0
+            }
+          }
+        },
+        {
+          "action": "dark toggle2",
+          "state": {
+            "dom": {
+              "focus": "<body>\n    <div id=\"app\" aria-live=\"off\"><button class=\"skip\" data-a=\"skipToContent\">Skip to content</button><div class=\"shell   \">\n    <nav class=\"side\" aria-label=\"Main\">\n    <div class=\"side-top\">\n      <div class=\"row\" style=\"gap:2px\">\n        <button class=\"ws grow\" data-a=\"pop\" data-pop=\"ws\" aria-haspopup=\"menu\" aria-label=\"Switch workspace\">\n          <span class=\"ws-logo brand\" style=\"width:22px;height:22px\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 332 332\" aria-hidden=\"true\"><rect width",
+              "dialogs": []
+            },
+            "source": {
+              "palette": null,
+              "modals": 0
+            }
+          }
+        },
+        {
+          "action": "close ModK",
+          "state": {
+            "dom": {
+              "focus": "<input id=\"pal-in\" data-in=\"palQ\" value=\"\" placeholder=\"Type a command or search…\" autocomplete=\"off\" role=\"combobox\" aria-expanded=\"true\" aria-controls=\"pal-list\" aria-activedescendant=\"pi-0\">",
+              "input": "",
+              "dialogs": [
+                {
+                  "name": "Command menu",
+                  "className": "palette"
+                }
+              ]
+            },
+            "source": {
+              "palette": {
+                "q": "",
+                "mode": "cmd"
+              },
+              "modals": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Actual native Source/Target keyboard commands and genuine input/filter entry consumption; no pixel claim. Source fixture/order/fonts immutable.",
+  "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#pal-in') to be detached\u001b[22m\n\u001b[2m    64 × locator resolved to visible <input value=\"\" id=\"pal-in\" data-in=\"palQ\" role=\"combobox\" autocomplete=\"off\" aria-expanded=\"true\" aria-controls=\"pal-list\" aria-activedescendant=\"pi-0\" placeholder=\"Type a command or search…\"/>\u001b[22m\n\n    at /workspace/task8/tests/visual/search/source-journeys.mjs:23:1080"
+}

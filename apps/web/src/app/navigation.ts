@@ -29,10 +29,10 @@ export function legacyDestination(hash: string, workspaceId: string): string | u
   const auth: Record<string, string> = { login: '/login', signup: '/signup', forgot: '/forgot-password', reset: '/reset-password', verify: '/verify-email', onboarding: '/onboarding' };
   return auth[alias] ?? links.workspace(workspaceId, alias as WorkspacePage);
 }
-export interface RouteSearch { taskId?: string; fileId?: string; q?: string; category?: 'all' | 'tasks' | 'projects' | 'people' | 'files' | 'comments'; mode?: 'list' | 'board' | 'table' | 'calendar' | 'grid'; workspaceId?: string; view?: string; projectStatus?: 'planning' | 'active' | 'risk' | 'hold' | 'complete'; projectSort?: 'recent' | 'name' | 'due' | 'progress' }
+export interface RouteSearch { activityProjectId?: string; taskId?: string; fileId?: string; q?: string; category?: 'all' | 'tasks' | 'projects' | 'people' | 'files' | 'comments'; mode?: 'list' | 'board' | 'table' | 'calendar' | 'grid'; workspaceId?: string; view?: string; projectStatus?: 'planning' | 'active' | 'risk' | 'hold' | 'complete'; projectSort?: 'recent' | 'name' | 'due' | 'progress' }
 export function validateRouteSearch(input: Record<string, unknown>): RouteSearch {
   const output: RouteSearch = {};
-  for (const key of ['taskId', 'fileId', 'workspaceId'] as const) if (EntityIdSchema.safeParse(input[key]).success) output[key] = input[key] as string;
+  for (const key of ['taskId', 'fileId', 'workspaceId', 'activityProjectId'] as const) if (EntityIdSchema.safeParse(input[key]).success) output[key] = input[key] as string;
   if (typeof input.view === 'string' && input.view.length <= 16384) output.view = input.view;
   if (typeof input.q === 'string') output.q = input.q.slice(0, 500);
   if (['all', 'tasks', 'projects', 'people', 'files', 'comments'].includes(String(input.category))) output.category = input.category as NonNullable<RouteSearch['category']>;

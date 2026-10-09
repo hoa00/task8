@@ -1,0 +1,1 @@
+import{i as e}from"./Boundaries-COl8H_zG.js";var t=e;export{t as notFoundComponent};

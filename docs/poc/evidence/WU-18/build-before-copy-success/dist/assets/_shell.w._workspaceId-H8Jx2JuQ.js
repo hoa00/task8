@@ -1,0 +1,1 @@
+import{i as e}from"./Boundaries-CmIXbWBL.js";var t=e;export{t as notFoundComponent};

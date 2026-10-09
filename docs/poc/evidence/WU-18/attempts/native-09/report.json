@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "probes": [
+    {
+      "id": "S18-N09-palette-above-modal-file-copy-entry-and-notice-defaults-Undo",
+      "status": "passed",
+      "paletteAboveModalEscapePreservesParent": true,
+      "fileCopyConsumesEntry": {
+        "before": {
+          "transform": "matrix(1, 0, 0, 1, 0, 0)",
+          "animation": "ui-modal-in"
+        },
+        "afterAnimation": "none"
+      },
+      "sourceFaithfulFileCopySuccessLifetimeMs": 4909,
+      "defaultNoUndoLifetimeMs": 3102,
+      "defaultUndoLifetimeMs": 6072,
+      "actualArchiveUndoRestored": true,
+      "clipboardBefore": {
+        "available": true,
+        "secureContext": true,
+        "hasFocus": true,
+        "writePermission": "prompt"
+      },
+      "initialCopyNotice": "Copy isn't available here — http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?fileId=01a11abd-aa80-7dc8-8353-eb86fc8c9d9c",
+      "failedCopyInfoLifetimeMs": 6412,
+      "failedCopyIcon": "<circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 16v-4\"></path><path d=\"M12 8h.01\"></path>",
+      "declaredClipboardPermission": [
+        "clipboard-read",
+        "clipboard-write"
+      ],
+      "clipboardAfter": {
+        "available": true,
+        "hasFocus": true,
+        "writePermission": "granted",
+        "text": "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?fileId=01a11abd-aa80-7dc8-8353-eb86fc8c9d9c"
+      }
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Actual native keyboard/mouse commands, shared Search/Palette history and WU10 file preview; default browser runtime, no pixel claim.",
+  "diagnostics": [
+    {
+      "stage": "N09-initial-native-copy",
+      "clipboardBefore": {
+        "available": true,
+        "secureContext": true,
+        "hasFocus": true,
+        "writePermission": "prompt"
+      },
+      "actualToast": "Copy isn't available here — http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?fileId=01a11abd-aa80-7dc8-8353-eb86fc8c9d9c"
+    },
+    {
+      "stage": "N09-declared-real-clipboard-permission-native-copy",
+      "grantedCopyNotice": "Link copied",
+      "clipboardAfter": {
+        "available": true,
+        "hasFocus": true,
+        "writePermission": "granted",
+        "text": "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?fileId=01a11abd-aa80-7dc8-8353-eb86fc8c9d9c"
+      }
+    }
+  ]
+}

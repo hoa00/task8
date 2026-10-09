@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { sha256 } from '../reference/source-check.mjs';
+const root='docs/poc/evidence/WU-18', output=process.argv.find(arg=>arg.startsWith('--output='))?.slice(9)??`${root}/archive-audit.json`;assert.equal(fs.existsSync(output),false);
+const manifests=fs.readdirSync(root).filter(name=>name.endsWith('-freeze.json')), seen=new Map(), checked=[];
+for(const name of manifests){const path=`${root}/${name}`, manifest=JSON.parse(fs.readFileSync(path,'utf8')), entries=manifest.files??(manifest.path?{[manifest.path]:manifest.sha256}:{});assert.ok(Object.keys(entries).length);for(const[file,hash]of Object.entries(entries)){assert.equal(sha256(fs.readFileSync(file)),hash,file);if(seen.has(file))assert.equal(seen.get(file),hash,file);seen.set(file,hash);}checked.push({path,sha256:sha256(fs.readFileSync(path)),fileCount:Object.keys(entries).length,status:manifest.status,executedStatus:manifest.executedStatus});}
+const actualFiles=[];function walk(dir){for(const file of fs.readdirSync(dir,{withFileTypes:true})){const path=`${dir}/${file.name}`;if(file.isDirectory())walk(path);else actualFiles.push(path);}}walk(`${root}/attempts`);
+const missingCapturedImages=actualFiles.filter(path=>path.endsWith('.png')&&!seen.has(path));assert.deepEqual(missingCapturedImages,[],'Every captured PNG must be frozen before review');
+const imageCount=[...seen.keys()].filter(path=>path.endsWith('.png')).length;
+fs.writeFileSync(output,JSON.stringify({status:'passed',manifestCount:manifests.length,uniqueFrozenFiles:seen.size,uniqueFrozenPngCount:imageCount,missingCapturedImages,manifests:checked,limits:['Inherited WU17 missing historical bytes remain recorded outside WU18; no recovered-byte claim.','Capture completion exit for file-copy-feedback01 remains UnknownAfterRestart, independent current offline gate0.']},null,2)+'\n');console.log(JSON.stringify({status:'passed',manifestCount:manifests.length,uniqueFrozenFiles:seen.size,uniqueFrozenPngCount:imageCount}));

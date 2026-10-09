@@ -1,0 +1,117 @@
+[
+  {
+    "name": "typecheck",
+    "command": [
+      "pnpm",
+      "typecheck"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:05:42.201Z",
+    "completedAt": "2026-10-09T21:05:42.758Z",
+    "log": "docs/poc/evidence/WU-18/typecheck-final-07.log"
+  },
+  {
+    "name": "build",
+    "command": [
+      "pnpm",
+      "build"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:05:42.758Z",
+    "completedAt": "2026-10-09T21:05:43.316Z",
+    "log": "docs/poc/evidence/WU-18/build-thirteenth.log"
+  },
+  {
+    "name": "current-affected-visual",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/post-feedback.mjs"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:05:43.317Z",
+    "completedAt": "2026-10-09T21:05:43.502Z",
+    "log": "docs/poc/evidence/WU-18/post-feedback-verification.log"
+  },
+  {
+    "name": "native-feedback",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/interactions.mjs",
+      "--feedback-only",
+      "--attempt=native-08"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:05:43.502Z",
+    "completedAt": "2026-10-09T21:06:04.008Z",
+    "log": "docs/poc/evidence/WU-18/attempts/native-08.log"
+  },
+  {
+    "name": "source-copy-feedback",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/source-copy-feedback.mjs",
+      "--attempt=source-copy-feedback-01"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:06:04.039Z",
+    "completedAt": "2026-10-09T21:06:21.612Z",
+    "log": "docs/poc/evidence/WU-18/attempts/source-copy-feedback-01.log"
+  },
+  {
+    "name": "http-build",
+    "command": [
+      "pnpm",
+      "--filter",
+      "@studio/web",
+      "build:http"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:06:21.645Z",
+    "completedAt": "2026-10-09T21:06:23.309Z",
+    "log": "docs/poc/evidence/WU-18/http-build-final-03.log"
+  },
+  {
+    "name": "http-bundle",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/data/http-bundle.mjs",
+      "WU-18"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:06:23.310Z",
+    "completedAt": "2026-10-09T21:06:23.366Z",
+    "log": "docs/poc/evidence/WU-18/http-bundle-final-04.log"
+  },
+  {
+    "name": "http-query-races",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/http-races.mjs",
+      "--attempt=http-races-04"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:06:23.366Z",
+    "completedAt": "2026-10-09T21:06:30.646Z",
+    "log": "docs/poc/evidence/WU-18/attempts/http-races-04.log"
+  },
+  {
+    "name": "lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exitStatus": 1,
+    "signal": null,
+    "startedAt": "2026-10-09T21:06:30.681Z",
+    "completedAt": "2026-10-09T21:06:42.015Z",
+    "log": "docs/poc/evidence/WU-18/lint-final-06.log"
+  }
+]

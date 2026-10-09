@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-B1V_twGi.js";var t=e;export{t as component};

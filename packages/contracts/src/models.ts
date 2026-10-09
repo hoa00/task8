@@ -10,7 +10,7 @@ export const CapabilitiesSchema = z.strictObject({ dataMode: DataModeSchema, ide
   features: z.strictObject({ projects: CapabilityStateSchema, tasks: CapabilityStateSchema, teams: CapabilityStateSchema, comments: CapabilityStateSchema, notificationState: CapabilityStateSchema, fileMetadata: CapabilityStateSchema, fileBytes: CapabilityStateSchema, workspaceProvisioning: externalCapability, invitations: externalCapability, projectSharing: externalCapability, authentication: externalCapability, accountSecurity: externalCapability, billing: externalCapability }),
   limits: z.strictObject({ taskPageSize: z.literal(50), maxTaskPageSize: z.literal(200), maxBulkItems: z.literal(20), maxUndoTargets: z.literal(128), maxUndoPayloadBytes: z.literal(65536), maxUploadBytes: z.literal(10485760) }),
 });
-export const WorkspaceSchema = z.strictObject({ id: p.EntityIdSchema, name: p.NameSchema, slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(100), iconColor: p.ColorSchema, brand: z.boolean(), timezone: z.string().min(1).max(100), createdAt: p.InstantSchema, updatedAt: p.InstantSchema, version: p.VersionSchema });
+export const WorkspaceSchema = z.strictObject({ planLabel: z.string().min(1).max(80).optional(), id: p.EntityIdSchema, name: p.NameSchema, slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(100), iconColor: p.ColorSchema, brand: z.boolean(), timezone: z.string().min(1).max(100), createdAt: p.InstantSchema, updatedAt: p.InstantSchema, version: p.VersionSchema });
 export const UserProfileSchema = z.strictObject({ id: p.EntityIdSchema, name: p.NameSchema, email: z.email(), title: z.string().max(240), avatarColor: p.ColorSchema, timezone: z.string().min(1).max(100), version: p.VersionSchema });
 export const MemberSchema = z.strictObject({ id: p.MemberIdSchema, workspaceId: p.EntityIdSchema, userId: p.EntityIdSchema, name: p.NameSchema, email: z.email(), title: z.string().max(240), avatarColor: p.ColorSchema, timezone: z.string().max(100), role: c.RoleSchema, status: c.MemberStatusSchema, teamId: p.EntityIdSchema.nullable(), lastSeenAt: p.InstantSchema.nullable(), version: p.VersionSchema });
 export const MemberDisplaySchema = MemberSchema.pick({ id: true, name: true, avatarColor: true });
@@ -67,7 +67,7 @@ export const ArchiveItemSchema = z.discriminatedUnion('kind', [z.strictObject({ 
 export const TaskViewDatasetSchema = z.strictObject({ items: z.array(TaskSchema), coverage: z.enum(['complete', 'partial']), matchedCount: p.CountSchema, nextCursor: p.CursorSchema.nullable(), summary: TaskSummarySchema }).refine(value => new Set(value.items.map(task => task.id)).size === value.items.length && value.matchedCount === value.summary.total && value.items.length <= value.matchedCount && (value.coverage !== 'complete' || (value.nextCursor === null && value.items.length === value.matchedCount)), 'Incomplete or duplicate full-view dataset');
 
 export type CapabilitiesDto = z.infer<typeof CapabilitiesSchema>;
-export type WorkspaceDto = z.infer<typeof WorkspaceSchema>;
+export type WorkspaceDto = Omit<z.infer<typeof WorkspaceSchema>, 'planLabel'> & { readonly planLabel?: string | undefined };
 export type UserProfileDto = z.infer<typeof UserProfileSchema>;
 export type MemberDto = z.infer<typeof MemberSchema>;
 export type MemberDisplayDto = z.infer<typeof MemberDisplaySchema>;

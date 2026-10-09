@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "portsCommand": [
+    "ss",
+    "-ltnp",
+    "( sport = :4173 or sport = :5173 )"
+  ],
+  "portsActualExit": 0,
+  "portsActualStdout": "State Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\n",
+  "ownedProcesses": [],
+  "processInspection": "Actual ps check found no owned Node/Chromium/Vite/Playwright subprocess; no pipeline remains.",
+  "sourceHead": "904205c626918ee96054eb35495c394a60c0c601",
+  "sourceTree": "5db5f992886b2345881946cf85fac098307953a5",
+  "sourceTracked": 86,
+  "sourcePorcelain": "",
+  "diffCheck": "git diff --cached --check actual0 on full index including archives; exact6 evidence-only attribute entries preserve raw terminal/minified predecessor bytes, production code/docs unaffected.",
+  "indexByteVerification": "docs/poc/evidence/WU-18/index-byte-verification.json"
+}

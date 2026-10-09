@@ -1,0 +1,156 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "S18-N01-global-single-registration-navigation-create",
+      "status": "passed",
+      "activityRows": 13,
+      "taskDialogs": 1,
+      "navigation": [
+        "home",
+        "my-tasks",
+        "projects",
+        "calendar"
+      ]
+    },
+    {
+      "id": "S18-N02-activity-type-person-project-scope-links",
+      "status": "passed",
+      "actorRows": 3,
+      "canonicalProjectScope": true,
+      "taskDrawerAndEdit": true,
+      "projectNavigation": true
+    },
+    {
+      "id": "S18-N03-palette-focus-arrows-modes-escape-return",
+      "status": "passed",
+      "selectedRestored": true,
+      "inputFocus": true,
+      "TabBackspace": true,
+      "EscapeReturnFocus": true
+    },
+    {
+      "id": "S18-N04-shared-search-semantics-category-and-recent-live",
+      "status": "passed",
+      "paletteFirstTasks": [
+        "Create homepage wireframesWebsite RedesignWEB-109"
+      ],
+      "sharedRecent": "homepage wireframes",
+      "samePageNode": true,
+      "SourceViewAllOnlyRemember": true,
+      "existingRecentOrderPreserved": true,
+      "reloadPersistence": true,
+      "whitespaceNoResults": true
+    },
+    {
+      "id": "S18-N05-existing-file-preview-native-link-and-nested-Escape",
+      "status": "passed",
+      "palettePreview": "WU10 FilePreviewDialog",
+      "taskLink": true,
+      "paletteAboveDrawerEscape": true,
+      "pagePreview": true
+    },
+    {
+      "id": "S18-N06-input-and-inherited-contentEditable-suppression-Mod-exceptions",
+      "status": "passed",
+      "inputPlainKeysSuppressed": true,
+      "inheritedEditorSuppressed": true,
+      "CtrlKTypingException": true,
+      "CtrlShiftLTypingException": true
+    },
+    {
+      "id": "S18-N07-shortcut-definitions-source-groups-and-real-commands",
+      "status": "passed",
+      "groupCount": 4,
+      "commandCount": 21,
+      "existingTaskProjectShortcutsWork": true,
+      "pendingOwners": [
+        {
+          "id": "inbox",
+          "owner": 19
+        },
+        {
+          "id": "members",
+          "owner": 20
+        },
+        {
+          "id": "settings",
+          "owner": 23
+        },
+        {
+          "id": "appearance",
+          "owner": 23
+        },
+        {
+          "id": "invite",
+          "owner": 20
+        },
+        {
+          "id": "signout",
+          "owner": 26
+        },
+        {
+          "id": "notifications",
+          "owner": 19
+        }
+      ]
+    },
+    {
+      "id": "S18-N08-existing-navigation-and-truthful-pending-integrations",
+      "status": "passed",
+      "outcomes": [
+        {
+          "command": "Go to Timeline",
+          "actualPath": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/timeline",
+          "body": "TimelineSchedules, dependencies, and milestones across projects.FilterSort: ManualWeeksMonthsGroup: ProjectTodayTaskMilestones10Website Redesign18Audit existing navigationSCSummari"
+        },
+        {
+          "command": "Go to Inbox",
+          "actualPath": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/inbox",
+          "body": "InboxThis view will be available soon."
+        },
+        {
+          "command": "Go to Members",
+          "actualPath": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/members",
+          "body": "MembersThis view will be available soon."
+        },
+        {
+          "command": "Open settings",
+          "actualPath": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/settings/workspace",
+          "body": "Project viewThis view will be available soon."
+        },
+        {
+          "command": "Appearance settings",
+          "actualPath": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/settings/appearance",
+          "body": "Project viewThis view will be available soon."
+        },
+        {
+          "command": "Activity actor",
+          "actorName": "Sarah Chen",
+          "expectedCanonicalMemberId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "actualPath": "/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "body": "ActivityEverything that's changed across the workspace.AllStatus changesCommentsProjectsEveryoneTodaySCSarah Chen moved Create homepage wireframes to Review in Website Redesign38m "
+        },
+        {
+          "command": "Switch Personal",
+          "actualPath": "/w/01a11abd-aa80-7290-8c9b-7aa9af2af468/home",
+          "actualOutcome": "Canonical bootstrap404 -> Page not found; no W1 dataset copied"
+        }
+      ],
+      "disabledPendingMutations": [
+        "invite20",
+        "signout26"
+      ],
+      "workspaceInitializationOwner": [
+        27,
+        31
+      ]
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Actual native keyboard/mouse commands, shared Search/Palette history and WU10 file preview; default browser runtime, no pixel claim.",
+  "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.ui-toast').filter({ hasText: 'Link copied' }) to be visible\u001b[22m\n\n    at /workspace/task8/tests/visual/search/interactions.mjs:90:575\n    at async probe (/workspace/task8/tests/visual/search/interactions.mjs:15:50)\n    at async file:///workspace/task8/tests/visual/search/interactions.mjs:88:2"
+}

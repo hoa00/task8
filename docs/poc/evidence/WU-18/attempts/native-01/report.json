@@ -1,0 +1,23 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "S18-N01-global-single-registration-navigation-create",
+      "status": "passed",
+      "activityRows": 13,
+      "taskDialogs": 1,
+      "navigation": [
+        "home",
+        "my-tasks",
+        "projects",
+        "calendar"
+      ]
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Actual native keyboard/mouse commands, shared Search/Palette history and WU10 file preview; default browser runtime, no pixel claim.",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n3 !== 4\n\n    at file:///workspace/task8/tests/visual/search/interactions.mjs:29:292\n    at async probe (file:///workspace/task8/tests/visual/search/interactions.mjs:14:50)\n    at async file:///workspace/task8/tests/visual/search/interactions.mjs:27:2"
+}

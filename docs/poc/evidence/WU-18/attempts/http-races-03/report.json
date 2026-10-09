@@ -1,0 +1,227 @@
+{
+  "status": "passed",
+  "probes": [
+    {
+      "id": "S18-Q01-rapid-input-debounce-skips-obsolete-query",
+      "status": "passed",
+      "obsoleteRequests": 0,
+      "currentRequests": 1
+    },
+    {
+      "id": "S18-Q02-inflight-cancel-and-late-old-response-cannot-overwrite-new",
+      "status": "passed",
+      "currentQuery": "wireframes",
+      "lateResultIgnored": true,
+      "actualAbortedRequest": true
+    },
+    {
+      "id": "S18-Q03-query-error-retry-without-successful-empty-fallback",
+      "status": "passed",
+      "errorVisible": true,
+      "retryActualRequest": true,
+      "falseEmptySuccess": false
+    },
+    {
+      "id": "S18-Q04-late-error-does-not-replace-current-query",
+      "status": "passed",
+      "currentQuery": "fig",
+      "oldErrorIgnored": true
+    },
+    {
+      "id": "S18-Q05-palette-error-clears-in-inactive-workspace-mode",
+      "status": "passed",
+      "inactiveSearchErrorHidden": true,
+      "sameCachedErrorQuery": "palette-error",
+      "workspaceNoResults": true
+    },
+    {
+      "id": "S18-Q06-palette-query-cancel-category-isolation",
+      "status": "passed",
+      "filesScopeRetained": true,
+      "priorPaletteResponseIgnored": true
+    }
+  ],
+  "requests": [
+    {
+      "sequence": 1,
+      "operation": "getSession",
+      "started": 1791579296705,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 2,
+      "operation": "getBootstrap",
+      "started": 1791579296716,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 3,
+      "operation": "listWorkspaces",
+      "started": 1791579296839,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 4,
+      "operation": "listTasks",
+      "q": "",
+      "started": 1791579296843,
+      "outcome": "aborted-or-error",
+      "error": "StudioApiError: Invalid operation input"
+    },
+    {
+      "sequence": 5,
+      "operation": "search",
+      "q": "pricing",
+      "category": "all",
+      "started": 1791579297515,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 6,
+      "operation": "search",
+      "q": "held-old-query",
+      "category": "all",
+      "started": 1791579297723,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 7,
+      "operation": "search",
+      "q": "wireframes",
+      "category": "all",
+      "started": 1791579298092,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 8,
+      "operation": "search",
+      "q": "recoverable-query",
+      "category": "all",
+      "started": 1791579298405,
+      "outcome": "error"
+    },
+    {
+      "sequence": 9,
+      "operation": "search",
+      "q": "recoverable-query",
+      "category": "all",
+      "started": 1791579299410,
+      "outcome": "error"
+    },
+    {
+      "sequence": 10,
+      "operation": "search",
+      "q": "recoverable-query",
+      "category": "all",
+      "started": 1791579299580,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 11,
+      "operation": "search",
+      "q": "held-old-error",
+      "category": "all",
+      "started": 1791579299761,
+      "outcome": "error"
+    },
+    {
+      "sequence": 12,
+      "operation": "search",
+      "q": "fig",
+      "category": "all",
+      "started": 1791579300132,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 13,
+      "operation": "getTaskSummary",
+      "q": "",
+      "started": 1791579300220,
+      "outcome": "aborted-or-error",
+      "error": "StudioApiError: Invalid operation input"
+    },
+    {
+      "sequence": 14,
+      "operation": "listTasks",
+      "q": "",
+      "started": 1791579300221,
+      "outcome": "aborted-or-error",
+      "error": "StudioApiError: Invalid operation input"
+    },
+    {
+      "sequence": 15,
+      "operation": "search",
+      "q": "palette-error",
+      "category": "all",
+      "started": 1791579300396,
+      "outcome": "error"
+    },
+    {
+      "sequence": 16,
+      "operation": "search",
+      "q": "palette-error",
+      "category": "all",
+      "started": 1791579301404,
+      "outcome": "error"
+    },
+    {
+      "sequence": 17,
+      "operation": "getTaskSummary",
+      "q": "",
+      "started": 1791579301649,
+      "outcome": "aborted-or-error",
+      "error": "StudioApiError: Invalid operation input"
+    },
+    {
+      "sequence": 18,
+      "operation": "listTasks",
+      "q": "",
+      "started": 1791579301650,
+      "outcome": "aborted-or-error",
+      "error": "StudioApiError: Invalid operation input"
+    },
+    {
+      "sequence": 19,
+      "operation": "search",
+      "q": "held-old-palette",
+      "category": "all",
+      "started": 1791579301824,
+      "outcome": "fulfilled"
+    },
+    {
+      "sequence": 20,
+      "operation": "search",
+      "q": "fig",
+      "category": "files",
+      "started": 1791579302186,
+      "outcome": "fulfilled"
+    }
+  ],
+  "failures": [
+    {
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?limit=200&q=held-old-query&category=all",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?limit=200&q=held-old-error&category=all",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?limit=200&q=held-old-palette&category=all",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Actual HTTP-built app/HTTP adapter/useWorkspaceSearch query lifecycle; intercepted typed contract responses, deterministic held requests. No real backend claim or Source synchronous-error equivalence."
+}

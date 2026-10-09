@@ -10,7 +10,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
-    "lint": "eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards eslint.config.mjs && node tests/workspace/boundaries.mjs",
+    "lint": "eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search eslint.config.mjs && node tests/workspace/boundaries.mjs",
     "test": "turbo run test && pnpm test:reference && pnpm test:workspace",
     "test:reference": "node --test tests/visual/reference/*.test.mjs",
     "test:workspace": "node --test tests/workspace/*.test.mjs",
@@ -70,7 +70,10 @@
     "verify:dashboards": "node tests/visual/dashboards/gates.mjs",
     "visual:dashboards": "node tests/visual/dashboards/verify.mjs",
     "test:dashboards:interactions": "node tests/visual/dashboards/interactions.mjs",
-    "test:dashboards:count-up": "node tests/visual/dashboards/count-up.mjs"
+    "test:dashboards:count-up": "node tests/visual/dashboards/count-up.mjs",
+    "visual:search": "node tests/visual/search/verify.mjs",
+    "test:search:interactions": "node tests/visual/search/interactions.mjs",
+    "test:search:http-races": "node tests/visual/search/http-races.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

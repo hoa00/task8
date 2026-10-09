@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { chromium } from '@playwright/test';
+import { newPage, environment } from '../reference/environment.mjs';
+import { artifacts, readJson, checkSource } from '../reference/source-check.mjs';
+import { sourceServer } from '../reference/source-server.mjs';
+import { targetServer, ready } from '../tasks/verify.mjs';
+import { sourcePreferences } from '../foundation/source-sample.mjs';
+import { sourceId } from '../../../packages/contracts/src/source-identities.ts';
+const attempt=process.argv.find(arg=>arg.startsWith('--attempt='))?.slice(10)??'source-copy-feedback-01', output=`docs/poc/evidence/WU-18/attempts/${attempt}`;
+assert.equal(fs.existsSync(output),false);fs.mkdirSync(output,{recursive:true});
+const report={status:'running',scope:'Actual Source/Target native rejected file Copy info6000/manual URL, successful real granted Copy4200, and genuine modal-entry consumption. Canonical URLs differ intentionally; no toast pixel claim.',runtime:environment,sides:[]};
+const save=()=>fs.writeFileSync(`${output}/report.json`,JSON.stringify(report,null,2)+'\n');
+let browser,page;const stopSource=await sourceServer(),stopTarget=await targetServer();
+try {
+ checkSource();browser=await chromium.launch({headless:true,args:['--disable-partial-raster']});report.runtime={...environment,browser:browser.version()};
+ for(const side of ['source','target']) {
+  const context=await newPage(browser,{},side==='source'?readJson(`${artifacts}/source-fixture.json`):undefined,true,side==='source'?'http://127.0.0.1:4173':'http://127.0.0.1:5173');page=context.page;
+  await page.goto(side==='source'?'http://127.0.0.1:4173':`http://127.0.0.1:5173/w/${sourceId('workspaces','w1')}/home`);if(side==='source')await sourcePreferences(page,{theme:'light',accent:'indigo',motion:'system'});else await page.waitForSelector('[data-dashboard-ready]');await ready(page);
+  await page.getByRole('button',{name:'Search and commands',exact:true}).click();await page.locator('#pal-in').press('Tab');await page.locator('#pal-in').fill('fig');if(side==='target')await page.waitForSelector('[data-palette-ready]');await page.getByRole('option',{name:/homepage-wireframes-v3.fig/}).click();await page.getByRole('dialog',{name:'homepage-wireframes-v3.fig',exact:true}).waitFor();await ready(page);
+  const modal=page.getByRole('dialog',{name:'homepage-wireframes-v3.fig',exact:true}), before=await modal.evaluate(el=>({animation:getComputedStyle(el).animationName,transform:getComputedStyle(el).transform})), capability=await page.evaluate(async()=>({available:!!navigator.clipboard,focus:document.hasFocus(),permission:await navigator.permissions.query({name:'clipboard-write'}).then(p=>p.state,e=>e.message)})), at=Date.now();
+  await page.getByRole('button',{name:'Copy link',exact:true}).click();const toast=page.locator(side==='source'?'.toast':'.ui-toast').first();await toast.waitFor({timeout:3000});const text=await toast.textContent(),icon=await toast.locator('svg').first().innerHTML(), after=await modal.evaluate(el=>({animation:getComputedStyle(el).animationName,transform:getComputedStyle(el).transform}));
+  const row={side,status:'running',capability,before,after,text,icon};report.sides.push(row);save();assert.ok(text.startsWith("Copy isn't available here — "));assert.ok(icon.includes('M12 16v-4'));assert.equal(after.animation,'none');assert.equal(after.transform,'none');assert.ok(text.includes(side==='source'?'https://gr8rstudio.com/gr8rstudio/file/':`http://127.0.0.1:5173/w/${sourceId('workspaces','w1')}/projects/`));
+  await page.mouse.move(1,1);await toast.waitFor({state:'detached',timeout:8000});row.actualLifetimeMs=Date.now()-at;assert.ok(row.actualLifetimeMs>=5900&&row.actualLifetimeMs<7500);await context.context.grantPermissions(['clipboard-read','clipboard-write'],{origin:side==='source'?'http://127.0.0.1:4173':'http://127.0.0.1:5173'});await page.bringToFront();const successAt=Date.now();await page.getByRole('button',{name:'Copy link',exact:true}).click();const successToast=page.locator(side==='source'?'.toast':'.ui-toast').first();await successToast.waitFor({timeout:3000});row.successText=await successToast.textContent();row.grantedClipboard=await page.evaluate(async()=>({permission:await navigator.permissions.query({name:'clipboard-write'}).then(p=>p.state),text:await navigator.clipboard.readText()}));save();assert.ok(row.successText.includes('Link copied'));assert.equal(row.grantedClipboard.permission,'granted');assert.ok(row.grantedClipboard.text.includes(side==='source'?'https://gr8rstudio.com/gr8rstudio/file/':`http://127.0.0.1:5173/w/${sourceId('workspaces','w1')}/projects/`));await page.mouse.move(1,1);await successToast.waitFor({state:'detached',timeout:6000});row.successActualLifetimeMs=Date.now()-successAt;assert.ok(row.successActualLifetimeMs>=4100&&row.successActualLifetimeMs<5500);row.status='passed';save();await context.context.close();
+ }
+ checkSource();report.status='passed';save();console.log(JSON.stringify({status:'passed',sides:report.sides.map(row=>({side:row.side,actualLifetimeMs:row.actualLifetimeMs,info:true,entryConsumed:true,successActualLifetimeMs:row.successActualLifetimeMs,realGrantedClipboard:true}))}));
+}catch(error){report.status='failed';report.error=String(error.stack);save();await page?.screenshot({path:`${output}/failed.png`});throw error;}finally{await browser?.close();await stopTarget();await stopSource();}

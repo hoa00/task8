@@ -651,3 +651,9 @@ source quirk. Share remove Undo checks its actual demo post-version and cannot
 overwrite a later permission/access/member change. No real grant or invitation
 operation is invented. Source blank Save view uses the nonempty fallback
 `Untitled view` before the validated create command.
+
+## WU-18 search/activity and workspace display metadata
+
+`WorkspaceDto.planLabel?: string` is optional read-only catalog display metadata (nonempty, max80). The mock maps the unchanged Source workspace plan label; omitted metadata renders no invented plan. Workspace create/PATCH inputs do not accept this field. WU25/31 own the future canonical catalog projection; this adds no billing operation or persisted billing schema.
+
+Global search trims/case-folds a literal query across task title/key/normalized description, project name/description, member name/email/title, file name and comment body. `SearchDto.totals` always covers all five categories before selected-category pagination. Cursors bind normalized query/category/workspace/principal and reject scope changes. Both SearchPage and Palette use this operation and complete cursor reads; UI highlighting never scans the dataset. Source task30 cap is replaced by contract pagination/full totals. Active canonical parent and own workspace checks prevent private, archived, deleted, missing or mismatched task/file/comment leakage. Activity retains archived task history under an active authorized parent; nullable project references still authorize canonical task parent.

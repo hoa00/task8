@@ -1,0 +1,143 @@
+[
+  {
+    "name": "typecheck",
+    "command": [
+      "pnpm",
+      "typecheck"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:17:53.466Z",
+    "completedAt": "2026-10-09T21:18:04.932Z",
+    "log": "docs/poc/evidence/WU-18/typecheck-final-08.log"
+  },
+  {
+    "name": "build",
+    "command": [
+      "pnpm",
+      "build"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:18:04.933Z",
+    "completedAt": "2026-10-09T21:18:07.198Z",
+    "log": "docs/poc/evidence/WU-18/build-fourteenth.log"
+  },
+  {
+    "name": "current-affected-capture",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/verify.mjs",
+      "--file-preview-only",
+      "--attempt=file-copy-success-01"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:18:07.198Z",
+    "completedAt": "2026-10-09T21:18:15.337Z",
+    "log": "docs/poc/evidence/WU-18/attempts/file-copy-success-01.log"
+  },
+  {
+    "name": "current-affected-visual",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/post-success.mjs"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:18:15.397Z",
+    "completedAt": "2026-10-09T21:18:15.605Z",
+    "log": "docs/poc/evidence/WU-18/post-success-verification.log"
+  },
+  {
+    "name": "native-feedback",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/interactions.mjs",
+      "--feedback-only",
+      "--attempt=native-09"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:18:15.606Z",
+    "completedAt": "2026-10-09T21:18:41.487Z",
+    "log": "docs/poc/evidence/WU-18/attempts/native-09.log"
+  },
+  {
+    "name": "source-copy-feedback",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/source-copy-feedback.mjs",
+      "--attempt=source-copy-feedback-02"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:18:41.530Z",
+    "completedAt": "2026-10-09T21:19:08.758Z",
+    "log": "docs/poc/evidence/WU-18/attempts/source-copy-feedback-02.log"
+  },
+  {
+    "name": "http-build",
+    "command": [
+      "pnpm",
+      "--filter",
+      "@studio/web",
+      "build:http"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:19:08.788Z",
+    "completedAt": "2026-10-09T21:19:10.404Z",
+    "log": "docs/poc/evidence/WU-18/http-build-final-04.log"
+  },
+  {
+    "name": "http-bundle",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/data/http-bundle.mjs",
+      "WU-18"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:19:10.404Z",
+    "completedAt": "2026-10-09T21:19:10.441Z",
+    "log": "docs/poc/evidence/WU-18/http-bundle-final-05.log"
+  },
+  {
+    "name": "lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:19:10.441Z",
+    "completedAt": "2026-10-09T21:19:21.535Z",
+    "log": "docs/poc/evidence/WU-18/lint-final-10.log"
+  },
+  {
+    "name": "source-reference",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/reference/source-check.mjs"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:19:21.536Z",
+    "completedAt": "2026-10-09T21:19:21.579Z",
+    "log": "docs/poc/evidence/WU-18/reference-final-05.log"
+  },
+  {
+    "name": "archive-audit",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/search/archive-audit.mjs",
+      "--output=docs/poc/evidence/WU-18/archive-audit-final02.json"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "startedAt": "2026-10-09T21:19:21.579Z",
+    "completedAt": "2026-10-09T21:19:21.803Z",
+    "log": "docs/poc/evidence/WU-18/archive-audit-final02.log"
+  }
+]

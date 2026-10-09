@@ -1,0 +1,174 @@
+$ turbo run build
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running build in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:build: cache hit, replaying logs 36f6c3aa384a72c4
+@studio/contracts:build: $ tsc -p tsconfig.build.json
+@studio/ui:build: cache hit, replaying logs fd431034bd88d58d
+@studio/ui:build: $ tsc -p tsconfig.build.json
+@studio/domain:build: cache hit, replaying logs 42cfa9bc7cccc58a
+@studio/domain:build: $ tsc -p tsconfig.build.json
+@studio/web:build: cache miss, executing 29b4c6d79fc5f4d2
+@studio/api:build: cache hit, replaying logs 17fbd7acfbaac1f4
+@studio/api:build: $ wrangler deploy --dry-run --outdir dist
+@studio/api:build: [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+@studio/api:build: 
+@studio/api:build: 
+@studio/api:build: 
+@studio/api:build:  ⛅️ wrangler 4.148.0
+@studio/api:build: ────────────────────
+@studio/api:build: Total Upload: 58.27 KiB / gzip: 14.61 KiB
+@studio/api:build: Your Worker has access to the following bindings:
+@studio/api:build: Binding                       Resource                  
+@studio/api:build: env.STUDIO_ENV ("local")      Environment Variable      
+@studio/api:build: 
+@studio/api:build: --dry-run: exiting now.
+@studio/web:build: $ vite build
+@studio/web:build: vite v8.3.3 building client environment for production...
+@studio/web:build: transforming...
+@studio/web:build: ✓ 523 modules transformed.
+@studio/web:build: rendering chunks...
+@studio/web:build: computing gzip size...
+@studio/web:build: dist/foundation.html                                                                           0.68 kB │ gzip:  0.34 kB
+@studio/web:build: dist/overlays.html                                                                             0.75 kB │ gzip:  0.35 kB
+@studio/web:build: dist/controls.html                                                                             0.75 kB │ gzip:  0.36 kB
+@studio/web:build: dist/task-fields.html                                                                          1.72 kB │ gzip:  0.56 kB
+@studio/web:build: dist/task-detail.html                                                                          1.97 kB │ gzip:  0.60 kB
+@studio/web:build: dist/shell-harness.html                                                                        1.98 kB │ gzip:  0.58 kB
+@studio/web:build: dist/project-routes.html                                                                       2.15 kB │ gzip:  0.61 kB
+@studio/web:build: dist/index.html                                                                                2.21 kB │ gzip:  0.60 kB
+@studio/web:build: dist/assets/aac11f1b5aa0f50c8942cadc063a95be964e87512812a8256a969b723fcfb00c-s0p6T-aD.woff2    2.78 kB
+@studio/web:build: dist/timeline.html                                                                             2.97 kB │ gzip:  0.79 kB
+@studio/web:build: dist/task-list.html                                                                            3.01 kB │ gzip:  0.78 kB
+@studio/web:build: dist/task-board.html                                                                           3.12 kB │ gzip:  0.82 kB
+@studio/web:build: dist/task-table.html                                                                           3.12 kB │ gzip:  0.82 kB
+@studio/web:build: dist/calendar.html                                                                             3.13 kB │ gzip:  0.82 kB
+@studio/web:build: dist/assets/545e79aa6acc61e9fce346ef373d3974cd47c81df0baf15d2f31a970dc9fd3ae-e7w4Pzot.woff2    3.34 kB
+@studio/web:build: dist/assets/55061797a3b3da1ad06271debea77df7007973ac0386d158618e00897af93eea-D5uBQblr.woff2    3.83 kB
+@studio/web:build: dist/assets/402a0f9709239ccdc5c4f9e6c0d8f787444272bb5615996d8fc8d140de65cc3b-CZJ7W5hq.woff2    5.58 kB
+@studio/web:build: dist/assets/b43bf733b5c29ddd375c6433efb74ecba545ad72b3d2572036e20f52cf7515ac-CCDHRFWI.woff2    7.01 kB
+@studio/web:build: dist/assets/b7a545bbb08256bd809f11cfe66d88da3e22d169ea4407737b1ef0ec1ed3d791-JguAV-SU.woff2    7.25 kB
+@studio/web:build: dist/assets/f689f638f29fff460a2d5749edb5d5c38d7bef0389f32032d871f23fc6ebb008-BOnPvxSZ.woff2    7.96 kB
+@studio/web:build: dist/assets/23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36-BCiuQ2Xg.woff2    9.87 kB
+@studio/web:build: dist/assets/6129fc8571c3e0cb0a4c41f5160c974a843b055009dc4ad8858bd808e18a2d86-D_Kiv5N3.woff2   14.90 kB
+@studio/web:build: dist/assets/58a6b173d5ca1dec92166ea3c6cb1a84a4144556d10928ac14e8e6b40e4787bd-Dr5IBr7O.woff2   16.54 kB
+@studio/web:build: dist/assets/9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608-BGnTDqni.woff2   29.28 kB
+@studio/web:build: dist/module-graph.json                                                                        41.32 kB │ gzip:  3.78 kB
+@studio/web:build: dist/assets/dashboards-CHBbypx-.css                                                            1.13 kB │ gzip:  0.41 kB
+@studio/web:build: dist/assets/app-BST0rkFW.css                                                                 133.32 kB │ gzip: 20.81 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId-CSP2Q00C.js                                                  0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.members-CSP2Q00C.js                                          0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.projects-CSP2Q00C.js                                         0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.settings-CSP2Q00C.js                                         0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.teams-CSP2Q00C.js                                            0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/sharing-demo-hj9N9soT.js                                                           0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.dev.design-system-D6L2z0D6.js                                               0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.dev.shell-harness-sPHOKmhM.js                                               0.07 kB │ gzip:  0.09 kB
+@studio/web:build: dist/assets/_shell.dev.system-states-D6L2z0D6.js                                               0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.archive-D6L2z0D6.js                                          0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.inbox-D6L2z0D6.js                                            0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.members._memberId-D6L2z0D6.js                                0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.members.index-D6L2z0D6.js                                    0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.notifications-D6L2z0D6.js                                    0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.projects._projectId._view-DYwE7kFL.js                        0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.projects._projectId.views._savedViewId-DYwE7kFL.js           0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.settings._section-D6L2z0D6.js                                0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.teams._teamId-D6L2z0D6.js                                    0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.teams.index-D6L2z0D6.js                                      0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/forgot-password-D6L2z0D6.js                                                        0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/login-D6L2z0D6.js                                                                  0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/onboarding-D6L2z0D6.js                                                             0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/reset-password-D6L2z0D6.js                                                         0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/signup-D6L2z0D6.js                                                                 0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/verify-email-D6L2z0D6.js                                                           0.07 kB │ gzip:  0.08 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.calendar-Bdw-a4vA.js                                         0.07 kB │ gzip:  0.09 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.my-tasks-Cs-tccUG.js                                         0.07 kB │ gzip:  0.09 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.tasks-C9lhFsul.js                                            0.07 kB │ gzip:  0.09 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.timeline-BHdWTicq.js                                         0.07 kB │ gzip:  0.09 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId-C-WqhyIw.js                                                  0.08 kB │ gzip:  0.09 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId-H8Jx2JuQ.js                                                  0.08 kB │ gzip:  0.09 kB
+@studio/web:build: dist/assets/useRouter-BWuYVZyj.js                                                              0.15 kB │ gzip:  0.14 kB
+@studio/web:build: dist/assets/useLocation-D3gODi9E.js                                                            0.20 kB │ gzip:  0.16 kB
+@studio/web:build: dist/assets/theme-context-CqEqHCHN.js                                                          0.21 kB │ gzip:  0.18 kB
+@studio/web:build: dist/assets/project-intents-DYsOaZV0.js                                                        0.22 kB │ gzip:  0.18 kB
+@studio/web:build: dist/assets/transient-context-B7anHM-s.js                                                      0.22 kB │ gzip:  0.19 kB
+@studio/web:build: dist/assets/useNavigate-DMavMrLm.js                                                            0.22 kB │ gzip:  0.19 kB
+@studio/web:build: dist/assets/useParams-ByYIG8d5.js                                                              0.25 kB │ gzip:  0.19 kB
+@studio/web:build: dist/assets/ProjectIdentity-Dq_iFERt.js                                                        0.29 kB │ gzip:  0.23 kB
+@studio/web:build: dist/assets/current-view-BQE79Qfh.js                                                           0.29 kB │ gzip:  0.21 kB
+@studio/web:build: dist/assets/workspace-context-D4A0Pg3U.js                                                      0.33 kB │ gzip:  0.25 kB
+@studio/web:build: dist/assets/MemberIdentity-2bvvDgi_.js                                                         0.47 kB │ gzip:  0.34 kB
+@studio/web:build: dist/assets/useTaskListDataset-gs8HSpHL.js                                                     0.47 kB │ gzip:  0.34 kB
+@studio/web:build: dist/assets/files-Lj6itE3M.js                                                                  0.48 kB │ gzip:  0.31 kB
+@studio/web:build: dist/assets/date-format-DIdZiQah.js                                                            0.53 kB │ gzip:  0.36 kB
+@studio/web:build: dist/assets/table-view-CWUuhNlY.js                                                             0.57 kB │ gzip:  0.35 kB
+@studio/web:build: dist/assets/useTaskListCommands-CtkmzxGk.js                                                    0.57 kB │ gzip:  0.39 kB
+@studio/web:build: dist/assets/catalogue-BvBAoDe1.js                                                              0.60 kB │ gzip:  0.40 kB
+@studio/web:build: dist/assets/date-display-Di9y853i.js                                                           0.65 kB │ gzip:  0.35 kB
+@studio/web:build: dist/assets/loadTaskViewDataset-Bvuxqsg2.js                                                    0.80 kB │ gzip:  0.48 kB
+@studio/web:build: dist/assets/sharing-queries-Bk_wmXIX.js                                                        0.85 kB │ gzip:  0.50 kB
+@studio/web:build: dist/assets/PendingPage-CkV_GCNj.js                                                            0.91 kB │ gzip:  0.52 kB
+@studio/web:build: dist/assets/Boundaries-CmIXbWBL.js                                                             1.14 kB │ gzip:  0.61 kB
+@studio/web:build: dist/assets/project-motion-BVSXqeIa.js                                                         1.32 kB │ gzip:  0.62 kB
+@studio/web:build: dist/assets/sharing-demo-BGLxgL1Z.js                                                           1.42 kB │ gzip:  0.80 kB
+@studio/web:build: dist/assets/invalidation-peHH6lK-.js                                                           1.55 kB │ gzip:  0.69 kB
+@studio/web:build: dist/assets/projectRoutes-CgyeDj9e.js                                                          1.55 kB │ gzip:  0.86 kB
+@studio/web:build: dist/assets/app-t0XhvTVm.js                                                                    1.72 kB │ gzip:  0.99 kB
+@studio/web:build: dist/assets/useSelector-Bu_mutpk.js                                                            1.95 kB │ gzip:  0.84 kB
+@studio/web:build: dist/assets/atoms-SVHbV3gc.js                                                                  1.96 kB │ gzip:  0.88 kB
+@studio/web:build: dist/assets/TaskMiniRow-aeHUJ45P.js                                                            2.02 kB │ gzip:  0.94 kB
+@studio/web:build: dist/assets/Highlight-BMEzhxJ4.js                                                              2.39 kB │ gzip:  1.30 kB
+@studio/web:build: dist/assets/shellHarness-DPaWM9hV.js                                                           2.47 kB │ gzip:  1.20 kB
+@studio/web:build: dist/assets/navigation-D0K-RYBb.js                                                             2.72 kB │ gzip:  1.13 kB
+@studio/web:build: dist/assets/taskTable-grwOs2oT.js                                                              3.02 kB │ gzip:  1.45 kB
+@studio/web:build: dist/assets/taskBoard-DD-h56mZ.js                                                              3.08 kB │ gzip:  1.47 kB
+@studio/web:build: dist/assets/timeline-BgjMu2wW.js                                                               3.28 kB │ gzip:  1.67 kB
+@studio/web:build: dist/assets/calendar-nMUN5Br6.js                                                               3.50 kB │ gzip:  1.65 kB
+@studio/web:build: dist/assets/taskList-qpSa8-L5.js                                                               3.54 kB │ gzip:  1.59 kB
+@studio/web:build: dist/assets/useMatch-CAHCNWXf.js                                                               3.65 kB │ gzip:  1.73 kB
+@studio/web:build: dist/assets/ActivityFeed-Bi_ATePU.js                                                           3.73 kB │ gzip:  1.48 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.favorites-BOIxi-CO.js                                        3.80 kB │ gzip:  1.70 kB
+@studio/web:build: dist/assets/foundation-oRBHg4A3.js                                                             3.97 kB │ gzip:  1.58 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.activity-P0Ya1EsW.js                                         3.99 kB │ gzip:  1.88 kB
+@studio/web:build: dist/assets/project-view-BaGQ5fYL.js                                                           4.07 kB │ gzip:  1.70 kB
+@studio/web:build: dist/assets/dashboards-DNI88KpR.js                                                             4.48 kB │ gzip:  1.69 kB
+@studio/web:build: dist/assets/Match-DagMK03D.js                                                                  4.75 kB │ gzip:  1.87 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.projects.index-n0KeGMJQ.js                                   5.36 kB │ gzip:  2.21 kB
+@studio/web:build: dist/assets/overlays-Q-ZbTlbh.js                                                               5.96 kB │ gzip:  2.08 kB
+@studio/web:build: dist/assets/link-CJXY8g5r.js                                                                   6.13 kB │ gzip:  2.98 kB
+@studio/web:build: dist/assets/taskDetail-DFMP9zSx.js                                                             6.15 kB │ gzip:  2.67 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.search-DaGo309A.js                                           6.57 kB │ gzip:  2.63 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.overview-D_XWUtvl.js                                         6.60 kB │ gzip:  2.43 kB
+@studio/web:build: dist/assets/FileFoundation-D_Q-up2R.js                                                         7.62 kB │ gzip:  2.92 kB
+@studio/web:build: dist/assets/taskFields-D-Ca0QUm.js                                                             7.87 kB │ gzip:  2.99 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.projects._projectId-DSTb8cLp.js                              7.91 kB │ gzip:  3.14 kB
+@studio/web:build: dist/assets/jsx-runtime-Dk72oS4N.js                                                            8.77 kB │ gzip:  3.33 kB
+@studio/web:build: dist/assets/_shell.w._workspaceId.home-QESB0s23.js                                             8.90 kB │ gzip:  3.44 kB
+@studio/web:build: dist/assets/controls-o7sS525U.js                                                               9.19 kB │ gzip:  2.98 kB
+@studio/web:build: dist/assets/ProjectComponents-C2F9iew6.js                                                      9.28 kB │ gzip:  2.74 kB
+@studio/web:build: dist/assets/_shell-HkbVFJXb.js                                                                10.45 kB │ gzip:  4.27 kB
+@studio/web:build: dist/assets/ProjectPage-Bgj6IeDR.js                                                           11.13 kB │ gzip:  3.93 kB
+@studio/web:build: dist/assets/TaskViewToolbar-BfXDDGEu.js                                                       12.00 kB │ gzip:  3.67 kB
+@studio/web:build: dist/assets/useTaskFieldCommands-BovbMG0n.js                                                  14.38 kB │ gzip:  5.03 kB
+@studio/web:build: dist/assets/TimelinePages-BgZ5ImXF.js                                                         14.59 kB │ gzip:  5.19 kB
+@studio/web:build: dist/assets/CalendarPages-BCwnZBOT.js                                                         16.12 kB │ gzip:  5.20 kB
+@studio/web:build: dist/assets/src-BYbocbRF.js                                                                   31.96 kB │ gzip:  9.62 kB
+@studio/web:build: dist/assets/icons-BmgEr9yN.js                                                                 37.34 kB │ gzip: 10.89 kB
+@studio/web:build: dist/assets/TaskListPages-B7GeEQGX.js                                                         47.05 kB │ gzip: 12.93 kB
+@studio/web:build: dist/assets/_shell-Bjqz0DiM.js                                                                59.62 kB │ gzip: 18.07 kB
+@studio/web:build: dist/assets/TaskOverlayHost-DU0BpfM0.js                                                       64.43 kB │ gzip: 18.45 kB
+@studio/web:build: dist/assets/router-D8_8R9rB.js                                                                70.48 kB │ gzip: 23.05 kB
+@studio/web:build: dist/assets/api-A9pgQ1Po.js                                                                  122.95 kB │ gzip: 34.63 kB
+@studio/web:build: dist/assets/StudioDataProvider-CkBiL29z.js                                                   129.03 kB │ gzip: 30.65 kB
+@studio/web:build: dist/assets/queries-BxY7NnoM.js                                                              202.99 kB │ gzip: 62.84 kB
+@studio/web:build: dist/assets/app-Dait72jD.js                                                                  209.15 kB │ gzip: 65.75 kB
+@studio/web:build: 
+@studio/web:build: ✓ built in 554ms
+
+ Tasks:    5 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    1.603s 
+

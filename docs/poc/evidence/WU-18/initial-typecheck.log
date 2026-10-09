@@ -1,0 +1,65 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/ui:typecheck: cache miss, executing a9c9927c866ac8da
+@studio/contracts:typecheck: cache hit, replaying logs b1cb13faa43dd966
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 95d63e0ba6e433ab
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs 434434c33cf51762
+@studio/api:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 6a0a22203f7892c7
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/features/activity/WorkspaceActivity.tsx(21,149): error TS2322: Type '(previous: { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 5 more ...; state?: string | undefined; }) => { ...; }' is not assignable to type 'true | { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 5 more ...; state?: string | undefined; } | ParamsReducerFn<...>'.
+@studio/web:typecheck:   Type '(previous: { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 5 more ...; state?: string | undefined; }) => { ...; }' is not assignable to type 'ParamsReducerFn<RouterCore<Route<Register, any, "/", "/", string, "__root__", (input: Record<string, unknown>) => RouteSearch, {}, StudioRouterContext, ... 8 more ..., undefined>, "never", false, RouterHistory, Record<...>>, "SEARCH", string, string>'.
+@studio/web:typecheck:     Call signature return types '{ activityProjectId: string | undefined; q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 4 more ...; state?: string | undefined; }' and '{ q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 5 more ...; state?: string | undefined; }' are incompatible.
+@studio/web:typecheck:       The types of 'activityProjectId' are incompatible between these types.
+@studio/web:typecheck:         Type 'string | undefined' is not assignable to type 'string'.
+@studio/web:typecheck:           Type 'undefined' is not assignable to type 'string'.
+@studio/web:typecheck: src/features/activity/WorkspaceActivity.tsx(29,912): error TS2741: Property 'label' is missing in type '{ className: string; "aria-label": string; value: string; options: { value: string; label: string; }[]; onValueChange: Dispatch<SetStateAction<string>>; }' but required in type 'SelectProps'.
+@studio/web:typecheck: src/features/activity/WorkspaceActivity.tsx(29,1171): error TS2741: Property 'label' is missing in type '{ className: string; "aria-label": string; value: string; options: { value: string; label: string; }[]; onValueChange: (id: string) => void; }' but required in type 'SelectProps'.
+@studio/web:typecheck: src/features/search/CommandPalette.tsx(30,64): error TS2375: Type '{ id: string; name: string; leading: JSX.Element; keys: string[] | undefined; action: { kind: "command"; command: CommandId; }; disabled: boolean; }' is not assignable to type 'PaletteItem' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+@studio/web:typecheck:   Types of property 'keys' are incompatible.
+@studio/web:typecheck:     Type 'string[] | undefined' is not assignable to type 'readonly string[]'.
+@studio/web:typecheck:       Type 'undefined' is not assignable to type 'readonly string[]'.
+@studio/web:typecheck: src/features/search/CommandPalette.tsx(33,29): error TS2375: Type '{ id: string; action: { kind: "result"; result: SearchResultDto; }; leading: JSX.Element; name: string; sub: string | undefined; right: string; }' is not assignable to type 'PaletteItem' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+@studio/web:typecheck:   Types of property 'sub' are incompatible.
+@studio/web:typecheck:     Type 'string | undefined' is not assignable to type 'string'.
+@studio/web:typecheck:       Type 'undefined' is not assignable to type 'string'.
+@studio/web:typecheck: src/features/search/CommandPalette.tsx(34,32): error TS2375: Type '{ id: string; action: { kind: "result"; result: SearchResultDto; }; leading: JSX.Element; name: string; sub: "In Progress" | "Planning" | "At Risk" | "On Hold" | "Completed" | undefined; }' is not assignable to type 'PaletteItem' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+@studio/web:typecheck:   Types of property 'sub' are incompatible.
+@studio/web:typecheck:     Type 'string | undefined' is not assignable to type 'string'.
+@studio/web:typecheck:       Type 'undefined' is not assignable to type 'string'.
+@studio/web:typecheck: src/features/search/CommandPalette.tsx(36,211): error TS2375: Type '{ id: string; action: { kind: "result"; result: SearchResultDto; }; leading: JSX.Element; name: string; sub: string | undefined; right: string; }' is not assignable to type 'PaletteItem' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+@studio/web:typecheck:   Types of property 'sub' are incompatible.
+@studio/web:typecheck:     Type 'string | undefined' is not assignable to type 'string'.
+@studio/web:typecheck:       Type 'undefined' is not assignable to type 'string'.
+@studio/web:typecheck: src/features/search/CommandPalette.tsx(40,210): error TS2339: Property 'plan' does not exist on type '{ id: string & $brand<"EntityId">; name: string; slug: string; iconColor: string; brand: boolean; timezone: string; createdAt: string & $brand<"Instant">; updatedAt: string & $brand<...>; version: number; }'.
+@studio/web:typecheck: src/features/search/CommandPalette.tsx(65,39): error TS2339: Property 'isComposing' does not exist on type 'KeyboardEvent<HTMLElement>'.
+@studio/web:typecheck: src/features/search/SearchOverlayHost.tsx(15,35): error TS2307: Cannot find module '../tasks/task-view-model' or its corresponding type declarations.
+@studio/web:typecheck: src/features/search/SearchOverlayHost.tsx(47,12): error TS2375: Type '{ file: { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; projectId: string & $brand<"EntityId">; taskId: (string & $brand<"EntityId">) | null; ... 9 more ...; version: number; }; ... 5 more ...; onCopy: (url: string) => void; }' is not assignable to type 'FilePreviewDialogProps' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+@studio/web:typecheck:   Types of property 'author' are incompatible.
+@studio/web:typecheck:     Type 'string | undefined' is not assignable to type 'string'.
+@studio/web:typecheck:       Type 'undefined' is not assignable to type 'string'.
+@studio/web:typecheck: src/features/search/SearchPage.tsx(20,320): error TS2322: Type '(previous: { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 5 more ...; state?: string | undefined; }) => { ...; }' is not assignable to type 'true | { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 5 more ...; state?: string | undefined; } | ParamsReducerFn<...>'.
+@studio/web:typecheck:   Type '(previous: { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 5 more ...; state?: string | undefined; }) => { ...; }' is not assignable to type 'ParamsReducerFn<RouterCore<Route<Register, any, "/", "/", string, "__root__", (input: Record<string, unknown>) => RouteSearch, {}, StudioRouterContext, ... 8 more ..., undefined>, "never", false, RouterHistory, Record<...>>, "SEARCH", string, string>'.
+@studio/web:typecheck:     Call signature return types '{ category: string; q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; workspaceId?: string; fileId?: string; activityProjectId?: string; projectStatus?: "active" | ... 3 more ... | "complete"; projectSort?: "name" | ... 2 more ... | "recent"; state?: ...' and '{ q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 5 more ...; state?: string | undefined; }' are incompatible.
+@studio/web:typecheck:       The types of 'category' are incompatible between these types.
+@studio/web:typecheck:         Type 'string' is not assignable to type '"files" | "all" | "tasks" | "projects" | "people" | "comments"'.
+@studio/web:typecheck: src/features/search/SearchPage.tsx(21,924): error TS7053: Element implicitly has an 'any' type because expression of type '"files" | "all" | "tasks" | "projects" | "people" | "comments"' can't be used to index type '{ tasks: number; projects: number; people: number; files: number; comments: number; }'.
+@studio/web:typecheck:   Property 'all' does not exist on type '{ tasks: number; projects: number; people: number; files: number; comments: number; }'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    3 cached, 5 total
+  Time:    16.261s 
+Failed:    @studio/web#typecheck
+
+ ERROR  run failed: command  exited (2)
+[ELIFECYCLE] Command failed with exit code 2.

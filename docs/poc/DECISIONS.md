@@ -385,3 +385,7 @@ WU-16 embedded Calendar/Timeline tab motion follows the original Project taskVie
 - WU17 matched Linux content scope requires its own root review. Default/Darwin/fullshell and inherited WU29 debts stay unaccepted.
 
 WU17 final root review accepts only the named matched managed Linux dashboard content plus6 affected shared-mini consumers, after actual21required+3supplemental pass and native/source/data proof. Reconciled runner schedules21unique gates; the unintentional sequential duplicated mini executions remain recorded with honest first-report/log byte loss. This does not accept default/Darwin/fullshell/fullproject parity or clear inherited WU29 debt.
+
+### WU-18 bounded display metadata and ownership
+
+Root authorized optional read-only `WorkspaceDto.planLabel` for Source-faithful Palette workspace catalog. Seed maps exact existing Source labels, HTTP may omit the optional field, and no create/PATCH input or billing schema is extended. WU25/31 canonical catalog owner closes the integration. Search remains a single typed operation; Source task30 cap/private-parent quirks are explicit integrity corrections. Global ModK/ModShiftL retain Source typing exceptions; plain keys suppress input/textarea/select and inherited contentEditable. OverlayProvider owns Escape/focus; existing form/editor/composer handlers own their local keys. Recent search history has one UI-only shell context owner scoped by workspace/member.

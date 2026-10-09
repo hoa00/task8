@@ -1,0 +1,32 @@
+[
+  {
+    "name": "lint",
+    "command": [
+      "pnpm",
+      "lint"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-18/lint-final-08.log"
+  },
+  {
+    "name": "contracts-consumers",
+    "command": [
+      "pnpm",
+      "contracts:consumers"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-18/contracts-consumers-final.log"
+  },
+  {
+    "name": "reference",
+    "command": [
+      "/tmp/task8-node-runtime/node_modules/node/bin/node",
+      "tests/visual/reference/source-check.mjs"
+    ],
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-18/reference-final-04.log"
+  }
+]

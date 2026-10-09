@@ -603,3 +603,11 @@ Home My tasks uses SegmentedControl with optional tab semantics; default radio s
 
 - Home owns responsive PanelHeader composition through existing className slots; shared PanelHeader defaults remain. TaskMiniRow title uses source flex1/min-width0 so long text allocates width faithfully with the exported ProjectIdentity.
 - Home task/activity/deadline/form callbacks consume finite entry through existing typed projectSurfaceOpened before the shared workspace task intent, verified against real Source openers.
+
+## WU-18 delivered ownership (qualified technical PASS)
+
+AC-01 exports ActivityItem/ActivityFeed/ActivityDayGroup; WorkspaceActivity extends their person/type/project filters and canonical task/project fallback. Grouped feeds use direct day/feed siblings to match Source ownership; non-grouped defaults remain. Home/Project are concrete affected consumers. Actor profile remains WU-20.
+
+SR-01 SearchPage/CommandPalette share one typed search API operation and five result models. Mock read ownership validates canonical private/lifecycle/workspace parents; Query owns debounce, cancellation, cursor completeness and current-query isolation. SearchResultContent owns result composition; Highlight has Source plain-mark page geometry and explicit Palette treatment. One UI-only recent owner in SearchOverlayHost namespaces workspace/member and follows Source ViewAll-only insertion/order semantics.
+
+SearchOverlayHost composes existing task/project intents and OverlayProvider. Command definitions and shortcut groups are exported for WU-23; one global listener reuses local form/editor/composer owners. Shared Dialog adds optional Palette mode with Source z90/scrim89; default modal/drawer style and focus/Escape controller stay unchanged. Shortcuts keeps existing entryRevision; FilePreviewDialog adds optional entryRevision supplied only by Search, with real Copy action consuming native entry. Project notice adds optional kind/duration options while preserving existing default2200/Undo5000 timing and undo callback. Canonical Files/deep-link owner remains WU-22; other future command owners are recorded in COMMAND_INTEGRATIONS.md.

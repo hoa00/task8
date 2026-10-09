@@ -1,0 +1,1 @@
+import{t as e}from"./PendingPage-CkV_GCNj.js";var t=e;export{t as component};

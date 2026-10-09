@@ -12,11 +12,12 @@ import type { MockStorage } from '../mock/persistence.ts';
 import { mockScenarios, waitForScenario } from '../mock/scenarios.ts';
 import { runTaskFieldOperation, taskFieldOperations } from '../mock/task-fields.ts';
 import { dashboardReads, readHome, readOverview } from '../mock/dashboards.ts';
+import { readSearch } from '../mock/search.ts';
 import type { MockScenarioId } from '../mock/scenarios.ts';
 
 export const foundationReads = ['getSession', 'listWorkspaces', 'getBootstrap', 'getWorkspace', 'getProfile', 'getPreferences', 'getNotificationPreferences'] as const satisfies readonly OperationId[];
 // WU-07 needs only saved-view identity/ownership for the static route boundary.
-const shellReads = [...foundationReads, 'listSavedViews', 'listCalendarEvents'] as const;
+const shellReads = [...foundationReads, 'listSavedViews', 'listCalendarEvents', 'search'] as const;
 export interface MockApiOptions {
   clock?: Clock; storage?: MockStorage; scenario?: MockScenarioId; environment?: 'development' | 'test' | 'production';
   wait?: (milliseconds: number, signal?: AbortSignal) => Promise<void>;
@@ -41,6 +42,7 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
     if ((projectOperations as readonly string[]).includes(id) || id === 'undoCommand' && hasProjectUndo(dataset, input.undoId)) { const result = await runProjectOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     if ((taskFieldOperations as readonly string[]).includes(id)) { const result = await runTaskFieldOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     switch (id) {
+      case 'search': return { data: await readSearch(dataset, input.query, clock) };
       case 'getHome': return { data: readHome(dataset, clock) };
       case 'getOverview': return { data: readOverview(dataset, clock) };
       case 'listCalendarEvents': {
