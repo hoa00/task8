@@ -200,3 +200,17 @@ the owner keeps its internal button for keyboard and return focus. Date/search
 body and open-transition state remain in one field owner across contexts. Generic
 Menu excludes text editors from printable typeahead; source popup horizontal flip
 placement is shared UI logic. No Table-specific date body or overlay runtime copy.
+
+
+### WU-14 shared Calendar ownership
+
+`CalendarPanel` loads one complete canonical due-range dataset for chips/count/overflow,
+plus the same complete loader without range for the source first-five project legend.
+Both Query entries live under workspace/tasks and share mutation invalidation.
+`CalendarView` is controlled; Month/Week, task/event chips, DayOverflow and read-only
+event preview have one owner. Workspace Calendar and My Tasks use actual AppShell;
+Project uses the feature harness until WU16. My Tasks exposes only List/Calendar,
+Workspace Tasks only List/Board/Table. Calendar uses existing task fields,
+TaskOverlayHost, TaskFormDefaults and PATCH commands. `rescheduleDateOnly` belongs
+to pure domain, preserving the DateOnly interval without timezone conversion.
+No event CRUD, scheduler, duplicate drawer/form/overlay or endpoint is introduced.

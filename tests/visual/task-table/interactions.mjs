@@ -4,7 +4,7 @@ import {chromium} from '@playwright/test';
 import {sourceIdentities} from '../../../packages/contracts/src/source-identities.ts';
 import {newPage} from '../reference/environment.mjs';
 import {targetServer,ready} from '../tasks/verify.mjs';
-const evidence=process.argv.includes('--field-anchor-regression')?'docs/poc/evidence/WU-13/table-regression':'docs/poc/evidence/WU-13';fs.mkdirSync(evidence,{recursive:true});const workspaceId=sourceIdentities.find(row=>row.collection==='workspaces'&&row.sourceId==='w1').id;
+const evidence=process.argv.includes('--wu14-regression')?'docs/poc/evidence/WU-14/table-regression':process.argv.includes('--field-anchor-regression')?'docs/poc/evidence/WU-13/table-regression':'docs/poc/evidence/WU-13';fs.mkdirSync(evidence,{recursive:true});const workspaceId=sourceIdentities.find(row=>row.collection==='workspaces'&&row.sourceId==='w1').id;
 const report={status:'running',probes:[],notes:['Primary mouse/keyboard actions use real native Playwright events; QA fail/hold/canonical API assertions are declared setup. Workspace actual AppShell; Project/saved controlled feature harness only. Personal UI columns stored per workspace/project/saved ID, not server saved definition.']};const stop=await targetServer();let browser,page;
 async function api(name,input){return page.evaluate(async({name,input})=>(await window.__taskTableQA.client.api[name](input)).data,{name,input});}
 async function current(id){return (await api('getTask',{workspaceId,taskId:id})).task;}

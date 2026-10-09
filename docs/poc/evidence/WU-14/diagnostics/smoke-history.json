@@ -1,0 +1,19 @@
+{
+  "observedCommands": [
+    {
+      "command": "pnpm visual:calendar --smoke",
+      "exitStatus": 1,
+      "changedPixels": 273514,
+      "repeatabilityPixels": 0,
+      "cause": "Calendar day-add IconButton relative utility took normal-flow space; calendar owner now applies absolute selector."
+    },
+    {
+      "command": "pnpm visual:calendar --smoke",
+      "exitStatus": 1,
+      "changedPixels": 759,
+      "repeatabilityPixels": 0,
+      "cause": "Source faint=text3 mapped to target text4 for event localTime; local Calendar renderer now uses text-muted=text3."
+    }
+  ],
+  "limitations": "Earlier temporary PNG pairs/reports were overwritten by later captures at the same sample paths. No historical failed pair hashes or preservation claim. Diff759 and current failures are diagnostics; only final frozen manifests are accepted."
+}

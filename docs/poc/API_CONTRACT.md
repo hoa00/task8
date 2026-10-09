@@ -596,3 +596,29 @@ titles and unsupported estimate strings retain the draft and a visible error;
 empty estimate commits null. Source accepts arbitrary estimates and discards an
 empty title, while the existing canonical estimate enum and explicit WU13 failed
 edit requirement remain authoritative. No operation/binding or HTTP schema changed.
+
+
+### WU-14 Calendar dataset and date command composition
+
+Calendar primary loader always uses `rangeBasis:due` and the complete visible
+35/42-day Month or seven-day Week range. It strips incoming cursor/limit, fetches
+all pages, rejects repeated cursors and validates unique count against the same
+query summary. Count/chips/overflow use that one complete dataset. Source legend
+uses all toolbar-filtered tasks in the current scope, including outside the range;
+a second complete query using the same loader without date range supplies only
+the first-five project legend. This may fetch a second full task set, with existing
+workspace/tasks Query cache and invalidation; no extra endpoint or server-state copy.
+
+`listCalendarEvents` is now implemented in the canonical mock for the existing
+read-only operation: inclusive local DateOnly range, projectId and project
+access/lifecycle guards, stable ID ordering. Workspace/Project show events;
+My Tasks does not. Toolbar project filters apply to events, task-only status/
+priority/assignee/search filters do not define event fields. Overflow uses the
+displayed filtered/auth scope (QUIRK-02), not the original whole-workspace bug.
+
+Calendar drag uses existing version-guarded `updateTask` PATCH with dueDate and,
+when present, shifted startDate preserving calendar-day duration. Same-date and
+invalid drops perform no write. Source drag-drop.js returns a plain 2200ms
+Rescheduled toast and no Undo; the existing §7.2 field-PATCH whitelist stays null.
+Date-only values never become UTC timestamps. No new operation/binding/schema,
+event CRUD, scheduling or Timeline implementation is introduced.

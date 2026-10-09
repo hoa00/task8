@@ -1,0 +1,131 @@
+{
+  "runtime": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "probes": [
+    {
+      "id": "native-month-week-navigation35-42-today-weekStart",
+      "month35And42": true,
+      "week7": true,
+      "nextWeek": true,
+      "fixtureToday": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-date-drag-duration-canonical-Drawer-Table-Board-List-reload",
+      "taskId": "01a11abd-aa80-739e-81f1-1670a2cf5efb",
+      "dueDate": "2026-10-14",
+      "startDate": "2026-10-11",
+      "trustedEvents": [
+        {
+          "type": "dragstart",
+          "trusted": true
+        },
+        {
+          "type": "dragover",
+          "trusted": true
+        },
+        {
+          "type": "drop",
+          "trusted": true
+        }
+      ],
+      "sourceToastNoUndo": true,
+      "surfaces": [
+        "Drawer",
+        "Table",
+        "Board",
+        "List",
+        "reload"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "native-same-date-invalid-drop-failure-rollback-retry",
+      "sameDateNoWrite": true,
+      "invalidDropNoWrite": true,
+      "failedDateAndVersionUnchanged": true,
+      "retry": true,
+      "noDrawer": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-event-preview-readonly-project-open",
+      "readOnly": true,
+      "openProjectIntent": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-project-overflow-preserves-scope-and-open",
+      "fixtureTaskIds": [
+        "01a11abd-aa80-7a97-849a-5913d69d66d7",
+        "01a11abd-aa80-7e0b-80e9-fa442d8387b6",
+        "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "01a11abd-aa80-7d34-868d-53e735cd70aa"
+      ],
+      "overflowTaskIds": [
+        "01a11abd-aa80-7a97-849a-5913d69d66d7",
+        "01a11abd-aa80-7e0b-80e9-fa442d8387b6",
+        "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "01a11abd-aa80-7d34-868d-53e735cd70aa"
+      ],
+      "noOutsideEvents": true,
+      "openOneDrawer": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-mine-overflow-preserves-scope-and-open",
+      "fixtureTaskIds": [
+        "01a11abd-aa80-7e0b-80e9-fa442d8387b6",
+        "01a11abd-aa80-7b0b-8be3-f143433c220a",
+        "01a11abd-aa80-74a3-8f79-c2df99f99a68",
+        "01a11abd-aa80-7180-8cb6-edfb5a174fd3"
+      ],
+      "overflowTaskIds": [
+        "01a11abd-aa80-7180-8cb6-edfb5a174fd3",
+        "01a11abd-aa80-74a3-8f79-c2df99f99a68",
+        "01a11abd-aa80-7b0b-8be3-f143433c220a",
+        "01a11abd-aa80-7e0b-80e9-fa442d8387b6"
+      ],
+      "noOutsideEvents": true,
+      "openOneDrawer": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-project-filter-events-and-search-overflow-same-dataset",
+      "projectFilterScopedEvents": true,
+      "queryChipsCountOverflowSameDataset": true,
+      "status": "passed"
+    }
+  ],
+  "fixturePreparation": "Native gestures are primary. Explicit canonical API fixture setup is recorded per probe and does not substitute for native interaction.",
+  "limitations": [
+    "Project feature harness only; full wrapper WU16.",
+    "Date PATCH has no source-visible Undo; native existing completion Undo is verified separately."
+  ],
+  "browser": "145.0.7632.6",
+  "lastDragEvents": [
+    {
+      "type": "dragstart",
+      "trusted": true
+    },
+    {
+      "type": "dragover",
+      "trusted": true
+    },
+    {
+      "type": "drop",
+      "trusted": true
+    }
+  ],
+  "status": "failed",
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('menuitemcheckbox', { name: 'Mobile App', exact: true })\u001b[22m\n\n    at probe.scope (/workspace/task8/tests/visual/calendar/interactions.mjs:40:657)\n    at async probe (/workspace/task8/tests/visual/calendar/interactions.mjs:12:442)\n    at async file:///workspace/task8/tests/visual/calendar/interactions.mjs:39:2",
+  "alerts": []
+}

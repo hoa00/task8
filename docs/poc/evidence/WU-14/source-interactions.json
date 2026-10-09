@@ -1,0 +1,132 @@
+{
+  "runtime": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "probes": [
+    {
+      "id": "source-native-date-drop-duration-toast-noUndo",
+      "preparation": {
+        "taskId": "t10",
+        "due": "2026-10-09",
+        "start": "2026-10-06"
+      },
+      "result": {
+        "due": "2026-10-14",
+        "start": "2026-10-11",
+        "events": [
+          {
+            "type": "dragstart",
+            "trusted": true
+          },
+          {
+            "type": "drop",
+            "trusted": true
+          }
+        ],
+        "toast": "Rescheduled “Write homepage copy” to Oct 14",
+        "undoButtons": 0
+      },
+      "status": "passed"
+    },
+    {
+      "id": "source-native-week-next-today",
+      "status": "passed"
+    },
+    {
+      "id": "source-native-QUIRK02-project-overflow-leaks-workspace-events-tasks",
+      "fixtureChanges": [
+        "t16",
+        "t10",
+        "t5",
+        "t15"
+      ],
+      "leakage": {
+        "items": [
+          {
+            "title": "Sprint planning09:30",
+            "taskId": null,
+            "project": "p2"
+          },
+          {
+            "title": "Migrate blog to new CMSJC",
+            "taskId": "t16",
+            "project": "p1"
+          },
+          {
+            "title": "Write homepage copyPP",
+            "taskId": "t10",
+            "project": "p1"
+          },
+          {
+            "title": "Design responsive navigationEW",
+            "taskId": "t5",
+            "project": "p1"
+          },
+          {
+            "title": "Weekly design sync notesTI",
+            "taskId": "t15",
+            "project": "p1"
+          },
+          {
+            "title": "Button component auditSC",
+            "taskId": "t42",
+            "project": "p5"
+          },
+          {
+            "title": "Offline mode syncJC",
+            "taskId": "t21",
+            "project": "p2"
+          }
+        ],
+        "dayCount": "+1 more"
+      },
+      "status": "passed",
+      "targetCorrection": "Target uses the displayed canonical complete project/filter/auth dataset; source bug deliberately differs."
+    },
+    {
+      "id": "source-native-641-full-legend-clips-pointer-week-control-keyboard-works",
+      "fixturePreparation": {
+        "route": "calendar",
+        "params": {}
+      },
+      "clipping": {
+        "rect": {
+          "x": 75,
+          "y": 199.828125,
+          "width": 52,
+          "height": 24,
+          "top": 199.828125,
+          "right": 127,
+          "bottom": 223.828125,
+          "left": 75
+        },
+        "pointerCenterHits": "<div class=\"cday out \" data-drop-day=\"2026-09-29\">\n          <span class=\"dn\">29</span>\n          <button class=\"ibtn ibtn-xs add\" data-a=\"newTask\" data-due=\"2026-09-29\" aria-label=\"Add task on Sep 29\"><svg class=\"i \" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"M12 5v14\"></path></svg></button>\n          <button class=\"cev done\" style=\"--c:#5A67D8\" draggable=\"true\" data-drag-cal=\"t2\" data-a=\"openTask\" data-id=\"t2\" data-ctx=\"task\" title=\"Summarize stakeholder interviews\"><svg width=\"11\" height=\"11\" viewBox=\"0 0 14 14\" aria-hidden=\"true\" style=\"flex-shrink:0\"><circle cx=\"7\" cy=\"7\" r=\"6.2\" fill=\"var(--st-done)\"></circle><path d=\"M4.4 7.2 6.2 9 9.7 5.3\" fill=\"none\" stroke=\"var(--surface)\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg><span class=\"trunc\">Summarize stakeholder interviews</span><span class=\"av \" style=\"--c:#5A67D8\" aria-label=\"Tanjim Islam\">TI</span></button>\n          \n        </div>",
+        "blockedByMonthCell": true
+      },
+      "pointer": {
+        "events": [
+          {
+            "trusted": true,
+            "target": "<div class=\"cday out \" data-drop-day=\"2026-09-29\">\n          <span class=\"dn\">29</span>\n          <button class=\"ibtn ibtn-xs add\" data-a=\"newTask\" data-due=\"2026-09-29\" aria-label=\"Add task on Sep 29\"><svg class=\"i \" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"M12 5v14\"></path></svg></button>\n          <button class=\"cev done\" style=\"--c:#5A67D8\" draggable=\"true\" data-drag-cal=\"t2\" data-a=\"openTask\" data-id=\"t2\" data-ctx=\"task\" title=\"Summarize stakeholder interviews\"><svg width=\"11\" height=\"11\" viewBox=\"0 0 14 14\" aria-hidden=\"true\" style=\"flex-shrink:0\"><circle cx=\"7\" cy=\"7\" r=\"6.2\" fill=\"var(--st-done)\"></circle><path d=\"M4.4 7.2 6.2 9 9.7 5.3\" fill=\"none\" stroke=\"var(--surface)\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg><span class=\"trunc\">Summarize stakeholder interviews</span><span class=\"av \" style=\"--c:#5A67D8\" aria-label=\"Tanjim Islam\">TI</span></button>\n          \n        </div>",
+            "monthCell": true
+          }
+        ],
+        "mode": "month"
+      },
+      "sourceRendererTransition": "#app .week attached by original native action; feature fixture then recomposed with original calendarHtml",
+      "trustedKeyboardShiftTabs": 2,
+      "keyboardWeekVisible": true,
+      "status": "passed",
+      "limitation": "Source desktop legend wraps at641 and toolbar shrinks; Week pointer center is covered by first-row day. Geometry preserved; native keyboard navigation remains available."
+    }
+  ],
+  "status": "passed"
+}

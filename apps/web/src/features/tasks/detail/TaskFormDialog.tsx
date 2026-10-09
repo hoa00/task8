@@ -10,9 +10,9 @@ import { Dropzone, FileTypeIcon, UploadProgress } from '../../files/FileFoundati
 import { useSubtaskCommands } from './useSubtaskCommands';
 import { TaskPropertyGrid } from './TaskPropertyGrid';
 import { TaskSubmission, EditTaskCommit } from './submission';
-import type { TaskFieldValues } from '../field-types';
-export interface TaskFormDialogProps { open: boolean; onClose: () => void; data: BootstrapDto; tasks: readonly TaskDto[]; detail?: TaskDetailDto; onSuccess: (taskId: string, key: string, more: boolean) => void; initialState?: 'filled' | 'error' | 'loading' }
-export function TaskFormDialog({ open, onClose, data, tasks, detail, onSuccess, initialState }: TaskFormDialogProps) {
+import type { TaskFieldValues, TaskFormDefaults } from '../field-types';
+export interface TaskFormDialogProps { open: boolean; onClose: () => void; data: BootstrapDto; tasks: readonly TaskDto[]; detail?: TaskDetailDto; onSuccess: (taskId: string, key: string, more: boolean) => void; initialState?: 'filled' | 'error' | 'loading'; defaults?: TaskFormDefaults }
+export function TaskFormDialog({ open, onClose, data, tasks, detail, onSuccess, initialState, defaults }: TaskFormDialogProps) {
  const { client } = useDataRuntime(), cache = useQueryClient(), titleRef = useRef<HTMLInputElement>(null), busy = useRef<Promise<void> | null>(null), editSaved = useRef<EditTaskCommit | null>(null);
  const [submission] = useState(() => new TaskSubmission(data.workspace.id, data.currentMember.id, detail ? undefined : sessionStorage));
  const opened = useRef(open); useLayoutEffect(() => { opened.current = open; }, [open]);
@@ -24,6 +24,18 @@ export function TaskFormDialog({ open, onClose, data, tasks, detail, onSuccess, 
  const [children, setChildren] = useState<readonly CreateSubtaskDraft[]>(previous?.subtasks ?? (initialState === 'filled' ? [{ title: 'Confirm launch date', done: false, assigneeId: null, dueDate: null, note: '' }] : [])), [sub, setSub] = useState(''), [files, setFiles] = useState<readonly File[]>([]);
  const [more, setMore] = useState(false), [openField, setOpenField] = useState<keyof TaskFieldValues | null>(null), [error, setError] = useState(initialState === 'error' ? 'Give the task a name' : ''), [pending, setPending] = useState(initialState === 'loading'), [, redraw] = useState(0);
  const frozen = !!submission.state, refresh = () => redraw(n => n + 1);
+ const priorOpen = useRef(false), seededDraft = useRef(false);
+ useLayoutEffect(() => {
+  // A fresh seeded New task intent mirrors source A.newTask. A committed or
+  // in-flight submission keeps its frozen payload and recovery identity.
+  if (open && !priorOpen.current && !detail && !submission.state && !busy.current && (defaults || seededDraft.current)) {
+   seededDraft.current = !!defaults;
+   draftGeneration.current++;
+   setTitle(''); setDescription(''); setChildren([]); setFiles([]); setSub(''); setError(''); setOpenField(null);
+   setProperties({ projectId: defaults?.projectId ?? data.projects.find(item => item.access === 'allowed')!.project.id, status: 'todo', assigneeId: defaults?.assigneeId === undefined ? data.currentMember.id : defaults.assigneeId, priority: 'medium', startDate: null, dueDate: defaults?.dueDate ?? null, labelIds: [], recurrence: null, estimate: null, dependencyIds: [] });
+  }
+  priorOpen.current = open;
+ }, [open, detail, submission, defaults, data]);
  async function invalidate(taskId: string) { await cache.invalidateQueries({ queryKey: queryKeys.task(data.workspace.id, taskId) }); await cache.invalidateQueries({ queryKey: queryKeys.workspace(data.workspace.id) }); }
  function reset() { draftGeneration.current++; submission.clear(); editSaved.current = null; setTitle(''); setDescription(''); setChildren([]); setFiles([]); setSub(''); setError(''); refresh(); if (opened.current) requestAnimationFrame(() => titleRef.current?.focus()); }
  async function addFiles(selected: readonly File[]) {

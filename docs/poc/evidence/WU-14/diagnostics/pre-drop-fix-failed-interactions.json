@@ -1,0 +1,31 @@
+{
+  "runtime": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "probes": [
+    {
+      "id": "native-month-week-navigation35-42-today-weekStart",
+      "month35And42": true,
+      "week7": true,
+      "nextWeek": true,
+      "fixtureToday": true,
+      "status": "passed"
+    }
+  ],
+  "fixturePreparation": "Native gestures are primary. Explicit canonical API fixture setup is recorded per probe and does not substitute for native interaction.",
+  "limitations": [
+    "Project feature harness only; full wrapper WU16.",
+    "Date PATCH has no source-visible Undo; native existing completion Undo is verified separately."
+  ],
+  "browser": "145.0.7632.6",
+  "status": "failed",
+  "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-task-drawer]') to be visible\u001b[22m\n\n    at /workspace/task8/tests/visual/calendar/interactions.mjs:23:717\n    at async probe (/workspace/task8/tests/visual/calendar/interactions.mjs:12:442)\n    at async file:///workspace/task8/tests/visual/calendar/interactions.mjs:21:2",
+  "alerts": []
+}

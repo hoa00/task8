@@ -1,0 +1,97 @@
+{
+  "runtime": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "probes": [
+    {
+      "id": "source-native-date-drop-duration-toast-noUndo",
+      "preparation": {
+        "taskId": "t10",
+        "due": "2026-10-09",
+        "start": "2026-10-06"
+      },
+      "result": {
+        "due": "2026-10-14",
+        "start": "2026-10-11",
+        "events": [
+          {
+            "type": "dragstart",
+            "trusted": true
+          },
+          {
+            "type": "drop",
+            "trusted": true
+          }
+        ],
+        "toast": "Rescheduled “Write homepage copy” to Oct 14",
+        "undoButtons": 0
+      },
+      "status": "passed"
+    },
+    {
+      "id": "source-native-week-next-today",
+      "status": "passed"
+    },
+    {
+      "id": "source-native-QUIRK02-project-overflow-leaks-workspace-events-tasks",
+      "fixtureChanges": [
+        "t16",
+        "t10",
+        "t5",
+        "t15"
+      ],
+      "leakage": {
+        "items": [
+          {
+            "title": "Sprint planning09:30",
+            "taskId": null,
+            "project": "p2"
+          },
+          {
+            "title": "Migrate blog to new CMSJC",
+            "taskId": "t16",
+            "project": "p1"
+          },
+          {
+            "title": "Write homepage copyPP",
+            "taskId": "t10",
+            "project": "p1"
+          },
+          {
+            "title": "Design responsive navigationEW",
+            "taskId": "t5",
+            "project": "p1"
+          },
+          {
+            "title": "Weekly design sync notesTI",
+            "taskId": "t15",
+            "project": "p1"
+          },
+          {
+            "title": "Button component auditSC",
+            "taskId": "t42",
+            "project": "p5"
+          },
+          {
+            "title": "Offline mode syncJC",
+            "taskId": "t21",
+            "project": "p2"
+          }
+        ],
+        "dayCount": "+1 more"
+      },
+      "status": "passed",
+      "targetCorrection": "Target uses the displayed canonical complete project/filter/auth dataset; source bug deliberately differs."
+    }
+  ],
+  "status": "failed",
+  "error": "page.waitForSelector: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#app .week')\u001b[22m\n\n    at /workspace/task8/tests/visual/calendar/source-interactions.mjs:22:344"
+}

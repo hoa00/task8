@@ -1,0 +1,28 @@
+[
+  {
+    "command": "node tests/visual/calendar/verify.mjs",
+    "exitStatus": 1,
+    "purpose": "Exploratory full46,42 feature zero, optional pages fail5/375/654; not accepted aggregate",
+    "report": "docs/poc/evidence/WU-14/diagnostics/full46-page-failed-visual-verification.json",
+    "log": "docs/poc/evidence/WU-14/diagnostics/full46-page-failed-visual.log"
+  },
+  {
+    "command": "node tests/visual/calendar/verify.mjs --pages",
+    "exitStatus": 1,
+    "purpose": "Symmetric URL correction removes Sort mismatch; residual search-corner5 may occur in either supplemental desktop context. Both desktop whole-content variants stay unaccepted.",
+    "report": "docs/poc/evidence/WU-14/diagnostics/variable-desktop-page-verification.json",
+    "limitations": "Earlier four-page report/temporary PNGs were overwritten before archival; actual console result Workspace1440=5, Mine1440=0, both mobile0 was observed. Archived fresh audit now Workspace1440=0, Mine1440=5, mobile0. Do not claim old zero PNG hashes or copied old report."
+  },
+  {
+    "command": "node tests/visual/calendar/raster-diagnostic.mjs",
+    "exitStatus": 0,
+    "purpose": "Diagnostic execution succeeded, not default-raster acceptance; source query-clear selfdiff11 keeps cause unproved",
+    "report": "docs/poc/evidence/WU-14/diagnostics/workspace-page-raster.json"
+  },
+  {
+    "command": "node tests/visual/calendar/mobile-pointer.mjs",
+    "exitStatus": 0,
+    "purpose": "Additional MyTasks390 source/target trusted pointer observation, inherited overlap with keyboard availability; no physical-phone/all-mobile-pointer pass",
+    "report": "docs/poc/evidence/WU-14/mobile-pointer-observation.json"
+  }
+]

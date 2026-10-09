@@ -128,3 +128,15 @@ Focused commands: node tests/visual/task-table/popovers.mjs (five Table anchors
 and actual Drawer Due), node tests/visual/task-table/supplemental-gates.mjs.
 The six accepted pairs do not cover the extra Workspace/Project List Date raster
 diagnostics retained as explicit M2 parity debt.
+
+
+WU-14 reuses `loadTaskViewDataset` as a pure canonical loader (the Board hook
+reexports it) for Calendar due-range data and full-scope legend. It strips
+caller paging state, consumes all cursors and checks summary count; chips/count/
+overflow never use the first200 as a whole scope. Calendar rescheduling reuses
+updateTask/version guards/cache and domain rescheduleDateOnly; no date Undo.
+Typed TaskFormDefaults belongs to tasks, and Calendar day add seeds the existing
+full form through TaskOverlayHost/AppShell. Fresh seeded open resets cancelled
+fields while busy/frozen submissions preserve original payload/recovery identity.
+My Tasks exposes List/Calendar; Workspace Tasks keeps List/Board/Table, with
+Workspace Calendar on its dedicated existing route. Event preview is read-only.

@@ -1,6 +1,6 @@
-import { EntityIdSchema } from '@studio/contracts/api';
+import { DateRangeQuerySchema, EntityIdSchema } from '@studio/contracts/api';
 import type { OperationId } from '@studio/contracts/api';
-import { normalizeDescription } from '@studio/domain';
+import { canReadProject, normalizeDescription } from '@studio/domain';
 import type { Clock } from '@studio/domain';
 import { StudioApiError, StudioTransportError, unavailable } from '../errors.ts';
 import { createStudioClient } from '../operations.ts';
@@ -14,7 +14,7 @@ import type { MockScenarioId } from '../mock/scenarios.ts';
 
 export const foundationReads = ['getSession', 'listWorkspaces', 'getBootstrap', 'getWorkspace', 'getProfile', 'getPreferences', 'getNotificationPreferences'] as const satisfies readonly OperationId[];
 // WU-07 needs only saved-view identity/ownership for the static route boundary.
-const shellReads = [...foundationReads, 'listSavedViews'] as const;
+const shellReads = [...foundationReads, 'listSavedViews', 'listCalendarEvents'] as const;
 export interface MockApiOptions {
   clock?: Clock; storage?: MockStorage; scenario?: MockScenarioId; environment?: 'development' | 'test' | 'production';
   wait?: (milliseconds: number, signal?: AbortSignal) => Promise<void>;
@@ -37,6 +37,11 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
     if (input.workspaceId && input.workspaceId !== dataset.workspaceId) throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Workspace data is not available' } });
     if ((taskFieldOperations as readonly string[]).includes(id)) { const result = await runTaskFieldOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     switch (id) {
+      case 'listCalendarEvents': {
+        const query = DateRangeQuerySchema.parse(input.query);
+        if (query.projectId && (!canReadProject(dataset.projects[query.projectId], dataset) || dataset.projects[query.projectId]!.archivedAt)) throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Project not found' } });
+        return { data: Object.values(dataset.events).filter(event => event.workspaceId === dataset.workspaceId && event.date >= query.from && event.date <= query.to && (!query.projectId || event.projectId === query.projectId) && canReadProject(dataset.projects[event.projectId], dataset) && !dataset.projects[event.projectId]!.archivedAt).sort((a, b) => a.id.localeCompare(b.id)) };
+      }
       case 'getSession': return { data: readSession(dataset) };
       case 'listWorkspaces': return { data: Object.values(dataset.workspaces) };
       case 'getBootstrap': return { data: readBootstrap(dataset, clock) };

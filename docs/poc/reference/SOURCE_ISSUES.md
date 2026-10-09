@@ -14,3 +14,21 @@ Chi tiết đo nằm trong [interaction-probes.json](interaction-probes.json).
 Không có screen family bị bỏ vì lỗi nguồn; source drawer Esc/return focus đã
 đạt. Capture errors và sửa harness là lịch sử riêng trong
 [rejected-capture.json](rejected-capture.json), không gọi chúng là bug của app.
+
+
+WU-14 supplementary native source observation (managed Linux, original locked
+renderer/CSS): full-filtered five-project legend at641×844 wraps and the toolbar
+shrinks, so the Week control center (x101,y211.828125 in the feature fixture) is
+covered by Sep29 `.cday`. Actual trusted mouse click leaves Month; two native
+Shift+Tab then Space sets source calMode=week and original renderer mounts Week.
+The target has the same geometry/limitation and native keyboard works. See
+[evidence](../evidence/WU-14/source-interactions.json) and separate source/target
+641 PNGs. This is not inferred from image parity and not claimed as mouse-pass.
+
+WU-14 MyTasks390 supplementary pointer observation: source and target Week mode
+control rect x75/y241.359375/w52/h24, center covered by weekday `<div>Tue</div>`.
+Actual trusted mouse click leaves Month; one native Shift+Tab then Space(source)
+or ArrowRight(target) opens Week. [Report](../evidence/WU-14/mobile-pointer-observation.json)
+and before/after PNGs retain the source geometry limitation. Native action
+updates connected source #app, then original feature fixture is explicitly
+recomposed for visible proof. No all-mobile-pointer/physical-phone claim.

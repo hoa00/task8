@@ -98,9 +98,9 @@ Tránh các anti-pattern sau:
 
 | Component ID | Owner / unit | Contract và invariants | Consumers |
 |---|---|---|---|
-| CA-01 | `features/calendar/CalendarView` | tasks/events, scope, date, mode, weekStart, onNavigate, onTaskDrop, onTaskOpen | Workspace, Project, My Tasks |
+| CA-01 | `features/calendar/CalendarView` | tasks/legendTasks/events, scope, date, mode, weekStart, onDateChange/onModeChange, onTaskDrop, onTaskOpen | Workspace, Project, My Tasks |
 | CA-02 | `CalendarToolbar`, `MonthGrid`, `MonthCell`, `WeekColumns` | 35/42 cells, max 3 items+more; mobile bar chips/week stacking | CA-01 |
-| CA-03 | `TaskCalendarChip`, `EventCalendarChip`, `CalendarWeekCard`, `DayOverflowPopover` | Task and event differ; event time/read-only details; task date drag | CA-01 |
+| CA-03 | `TaskChip`, `EventChip`, shared Week card presentation, `DayOverflow` | Task and event differ; event time/read-only details; task date drag | CA-01 |
 | TL-01 | `features/timeline/TimelineView` | Precomputed rows/geometry, zoom, scroll callbacks, onTaskOpen/onDateChange | Workspace, Project |
 | TL-02 | `TimelineTaskRail`, `TimelineHeader`, `TimelineTaskBar` | Row 36px; rail 300px → 170px → hidden; day width 32/11px; header 52px | TL-01 |
 | TL-03 | `MilestoneLane`, `DependencyLayer` | Merge milestones same date; collision-aware labels; exact SVG paths/dashed reverse edges | TL-01 |
@@ -535,3 +535,23 @@ Choice query and Date month initialize on every open transition. Shared Date use
 one source calendar-only body for List/Drawer/form/Table, with canonical mutation
 validation and failed draft retention. Plain Choice search and8px/radius3 menu
 dots belong to this field owner, not a Table-only copy or global ColorDot change.
+
+
+### WU-14 delivered Calendar owners
+
+- `features/calendar/CalendarView` receives typed scope, complete range tasks,
+  full-filtered legend tasks, events, date/mode/weekStart and explicit intents.
+  `CalendarToolbar`, `MonthGrid`, `MonthCell`, `WeekColumns`, `TaskChip`, `EventChip`
+  and `DayOverflow` are shared across the three contexts; event preview is private
+  and read-only, using the existing Popover/Menu and project-open intent.
+- `CalendarPanel` owns complete due-range queries, full-scope legend composition,
+  read-only event queries and existing task PATCH feedback. Workspace Calendar
+  and My Tasks are real pages; Project remains a controlled feature harness.
+- `domain/calendar.ts` owns startOfCalendarWeek, 35/42 cells, navigation and
+  rescheduleDateOnly; no React/DOM/network dependency. Day add passes typed
+  `tasks/field-types.ts:TaskFormDefaults` into the existing full form owner.
+- Source min-height640 and inline row minmax112 remain actual geometry even
+  on mobile; <=640 task bars and Week stacked columns follow original source.
+  The full legend wraps at641 and covers the mode control pointer center in
+  both renderers; recorded trusted pointer failure and native keyboard success
+  are separate from image parity.

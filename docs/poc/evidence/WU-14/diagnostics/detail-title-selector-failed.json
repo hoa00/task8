@@ -1,0 +1,95 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "canonical-list-url-close-back-direct-and-focus",
+      "status": "passed",
+      "canonicalUrl": "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?view=%7B%22query%22%3A%7B%22q%22%3A%22WEB-109%22%7D%7D&taskId=01a11abd-aa80-75fa-877e-0c56eef0ad59",
+      "directReload": true,
+      "returnFocus": true
+    },
+    {
+      "id": "full-drawer-source-motion-geometry-and-focus",
+      "status": "passed",
+      "motion": {
+        "duration": 260,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "effectEasing": "linear",
+        "frames": [
+          {
+            "opacity": "0",
+            "transform": "translateY(8px) scale(0.97)"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ],
+        "name": "ui-modal-in"
+      },
+      "children": [
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.04s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.07s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.1s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.1s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.1s"
+        }
+      ],
+      "rect": {
+        "x": 230,
+        "y": 24,
+        "width": 980,
+        "height": 952
+      },
+      "returnFocus": true
+    }
+  ],
+  "notes": [
+    "Mouse/keyboard and native file chooser used for primary interactions. QA failure/hold commands and sibling mutation are explicitly programmatic. Mock attachment records carry sample metadata, contentAvailable:false; no HTTP/R2 bytes claim."
+  ],
+  "error": "locator.fill: Error: strict mode violation: locator('[data-task-drawer] textarea') resolved to 2 elements:\n    1) <textarea rows=\"1\" aria-label=\"Task title\" class=\"-mx-[6px] my-0 w-full resize-none overflow-hidden rounded-sm border-0 bg-transparent px-[6px] py-1 text-xl font-semibold leading-[1.3] tracking-[-.018em] outline-none source-hover:bg-surface-2 focus:bg-surface-2 focus:[box-shadow:0_0_0_1px_var(--border-strong)]\">Create homepage wireframes</textarea> aka getByRole('textbox', { name: 'Task title' })\n    2) <textarea rows=\"2\" aria-label=\"Comment\" placeholder=\"Leave a comment… type @ to mention\" class=\"min-h-10 resize-none border-0 bg-transparent p-0 text-body leading-[1.5] outline-none placeholder:text-[#757575]\"></textarea> aka getByRole('textbox', { name: 'Comment' })\n\nCall log:\n\u001b[2m  - waiting for locator('[data-task-drawer] textarea')\u001b[22m\n\n    at /workspace/task8/tests/visual/task-detail/interactions.mjs:16:161\n    at probe (/workspace/task8/tests/visual/task-detail/interactions.mjs:11:50)\n    at /workspace/task8/tests/visual/task-detail/interactions.mjs:16:7",
+  "visibleAlerts": [],
+  "qa": {
+    "events": [
+      "getBootstrap:begin",
+      "getBootstrap:confirmed",
+      "getTask:begin",
+      "getTask:confirmed",
+      "listTasks:begin",
+      "listTasks:confirmed",
+      "listComments:begin",
+      "listComments:confirmed",
+      "listActivity:begin",
+      "listActivity:confirmed",
+      "listMembers:begin",
+      "listMembers:confirmed",
+      "listTasks:begin",
+      "listTasks:confirmed"
+    ],
+    "pending": []
+  }
+}

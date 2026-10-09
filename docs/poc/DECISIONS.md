@@ -213,3 +213,62 @@ Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn
   Project List Date captures remain unaccepted raster debt (558/8814 after source
   render, native2 each); matching geometry/fonts/styles does not prove a cause.
   Do not claim all field popup parity or hide those cases behind accepted Drawer.
+
+
+## WU-14 Calendar implementation decisions
+
+- One controlled Calendar renderer for Workspace/Project/My Tasks; actual
+  Workspace and My Tasks routes, Project feature harness until WU16. Context
+  mode normalization prevents Workspace Tasks ?mode=calendar and My Tasks
+  ?mode=board/table from rendering unsupported controls or event intents.
+- Calendar min35/42 cells follows original cells[35].month trim (February may
+  still35). Inline min-height640 and repeat minmax112 override source mobile
+  grid-auto-rows72; preserve actual source geometry rather than the dead rule.
+- Primary complete due-range dataset owns count/chips/overflow. A second complete
+  full-filtered-scope query using the same loader/cache preserves source legend
+  projects outside visible dates; extra query cost and invalidation are explicit
+  in API_CONTRACT. Stable UUID tie preparation follows DATA-10.
+- QUIRK-02 correction: popup preserves current project/assignee/filter/access
+  scope, including events; raw original source leak fixture/PNG/HTML is kept
+  separately from the scoped source input fixture used for layout comparison.
+  Only input data is corrected, never source template/CSS or comparison tolerance.
+- Date drag uses pure rescheduleDateOnly + existing PATCH/cache. Actual source
+  shows a plain Rescheduled toast, no Undo; no invented inverse for date PATCH.
+  Successful moves can unmount the old chip before dragend; release the 60ms
+  click guard on drop as well as dragend, preserving accidental-click protection.
+  Failed native telemetry retains trusted drop with absent dragend.
+- Source A.newTask resets cancelled fields except Create more. Typed seeded
+  day-add resets title/description/project/due/labels and other draft fields in
+  the existing form. In-flight/frozen TaskSubmission keeps original payload,
+  request ID and recovery semantics; native held/create retry probes verify one
+  commit and no stale callback opening a different Drawer. No new composer.
+- At641 full source legend wraps and toolbar shrinks, covering Week pointer
+  center with a Month cell. Source and target trusted mouse attempts retain
+  Month; native keyboard navigates to Week. Preserve matching source geometry
+  and record the limitation; image pass is not a mouse-pass claim. The source
+  feature action renders connected #app, then the feature capture is explicitly
+  recomposed with original calendarHtml; no claim that external section rerenders.
+- No source font/template/baseline/tolerance edits or raster workaround. Existing
+  WU10 mobile17/14 and WU13 extra unaccepted List Date558/8814 remain unproved
+  debt; Calendar work does not claim to repair them.
+
+- Supplemental whole-content audit: all42 required Calendar-owned cases are
+  strict0. Actual Workspace/MyTasks mobile add two strict0 pairs. Both desktop
+  whole-content supplements retain context-variable search-input corner0/5
+  outside Calendar ownership, with Calendar/35-cell geometry equal. Root technical
+  scope review permits required42 +2 mobile acceptance while preserving both
+  desktop scopes as EXTRA UNACCEPTED M2/full-parity/WU29 debt, even a current0.
+  Full46 and four-page commands actually exit1; no failing sample is made passed.
+  Latest audit is Workspace0/Mine5; earlier5/0 console result was observed but
+  its temporary report/PNGs were overwritten before archival, no old hash claim.
+  Selected input styles/rect match; native settlement and original-render source
+  match. Trusted search-clear gives0 but changes source11 pixels, cause unproved;
+  it is not substituted as baseline or production workaround. Never choose only
+  a passing desktop frame to claim parity.
+
+- MyTasks390 Month has the same source mode-control overlap with weekday header:
+  Week center x101/y253.359375 hits Tue, trusted click keeps Month in both; native
+  ShiftTab1 and Space/ArrowRight navigate to Week. Preserve geometry and record
+  this alongside641; Calendar images do not imply all mobile pointer controls
+  work. Original source action updates #app and visible feature is explicitly
+  recomposed. No physical-phone claim or CSS/raster fix.

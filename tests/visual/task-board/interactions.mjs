@@ -5,7 +5,7 @@ import {chromium} from '@playwright/test';
 import {sourceIdentities} from '../../../packages/contracts/src/source-identities.ts';
 import {newPage} from '../reference/environment.mjs';
 import {targetServer,ready} from '../tasks/verify.mjs';
-const evidence=path.resolve(process.argv.includes('--wu13-regression')?'docs/poc/evidence/WU-13/board-regression':'docs/poc/evidence/WU-12');fs.mkdirSync(evidence,{recursive:true});const workspaceId=sourceIdentities.find(row=>row.collection==='workspaces'&&row.sourceId==='w1').id;
+const evidence=path.resolve(process.argv.includes('--wu14-regression')?'docs/poc/evidence/WU-14/board-regression':process.argv.includes('--wu13-regression')?'docs/poc/evidence/WU-13/board-regression':'docs/poc/evidence/WU-12');fs.mkdirSync(evidence,{recursive:true});const workspaceId=sourceIdentities.find(row=>row.collection==='workspaces'&&row.sourceId==='w1').id;
 const report={status:'running',probes:[],notes:['Actual Chromium trusted HTML drag/drop through Playwright mouse gestures. Fault/hold and typed API sibling setup explicitly QA, no synthetic drop dispatch. Project/saved controlled feature harness only; Workspace/List/MyTasks M1 uses actual pages. Mock file sample/contentAvailable:false, no R2 bytes.']};const stop=await targetServer();let browser,page;
 async function api(name,input){return page.evaluate(async({name,input})=>(await window.__taskBoardQA.client.api[name](input)).data,{name,input});}
 async function current(id){return (await api('getTask',{workspaceId,taskId:id})).task;}

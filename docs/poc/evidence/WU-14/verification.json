@@ -1,0 +1,215 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "commands": [
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/typecheck.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/build.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/lint.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/test.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/reference-check.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/http-build.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-14",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/http-bundle.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "interactions",
+      "command": "node tests/visual/calendar/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/interactions.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "source-interactions",
+      "command": "node tests/visual/calendar/source-interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/source-interactions.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "list-interaction-regression",
+      "command": "node tests/visual/task-list/interactions.mjs --wu14-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/list-interaction-regression.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "board-interaction-regression",
+      "command": "node tests/visual/task-board/interactions.mjs --wu14-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/board-interaction-regression.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "table-interaction-regression",
+      "command": "node tests/visual/task-table/interactions.mjs --wu14-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/table-interaction-regression.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "detail-interaction-regression",
+      "command": "node tests/visual/task-detail/interactions.mjs --wu14-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/detail-interaction-regression.log",
+      "required": true,
+      "expectedExitStatus": 0
+    },
+    {
+      "name": "visual-required",
+      "expectedExitStatus": 0,
+      "purpose": "Required or affected gate",
+      "command": "node tests/visual/calendar/verify.mjs --required",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/visual-required.log",
+      "required": true
+    },
+    {
+      "name": "supplemental-page-audit",
+      "expectedExitStatus": 1,
+      "purpose": "Extra whole-content audit retains BOTH desktop whole-content scopes/context-variable0/5 UNACCEPTED raster debt; exit1 is not a visual pass.",
+      "command": "node tests/visual/calendar/verify.mjs --pages",
+      "exitStatus": 1,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/supplemental-page-audit.log",
+      "required": false
+    },
+    {
+      "name": "freeze",
+      "required": true,
+      "expectedExitStatus": 0,
+      "purpose": "Required or affected gate",
+      "command": "node tests/visual/calendar/freeze.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/freeze.log"
+    },
+    {
+      "name": "final-qa-lint",
+      "required": true,
+      "expectedExitStatus": 0,
+      "purpose": "Required or affected gate",
+      "command": "pnpm exec eslint tests/visual/calendar tests/visual/task-list tests/visual/task-board tests/visual/task-table tests/visual/task-detail",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/final-qa-lint.log"
+    },
+    {
+      "name": "final-reference-check",
+      "required": true,
+      "expectedExitStatus": 0,
+      "purpose": "Required or affected gate",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-14/final-reference-check.log"
+    }
+  ],
+  "requiredGateCount": 17,
+  "calendarVisual": {
+    "requiredReport": "docs/poc/evidence/WU-14/visual-verification.json",
+    "requiredSampleCount": 42,
+    "changedPixels": 0,
+    "repeatabilityPixels": 0,
+    "supplementalAuditReport": "docs/poc/evidence/WU-14/page-verification.json",
+    "supplementalActualExitStatus": 1,
+    "acceptedSupplementalPairs": 2,
+    "unacceptedDesktopWholeContent": [
+      {
+        "scope": "workspace",
+        "changedPixels": 0,
+        "repeatabilityPixels": 0,
+        "accepted": false
+      },
+      {
+        "scope": "mine",
+        "changedPixels": 5,
+        "repeatabilityPixels": 0,
+        "accepted": false
+      }
+    ],
+    "acceptedPairCount": 44,
+    "review": "docs/poc/evidence/WU-14/review.json"
+  },
+  "nativeProbeCount": 13,
+  "sourceProbeCount": 4,
+  "acceptance": {
+    "AC1": "One controlled renderer across actual Workspace/MyTasks and Project feature harness; pure DateOnly 35/42/weekStart/leap/navigation/TZ/DST cases.",
+    "AC2": "Trusted drag updates canonical due/start preserving duration; absent old dragend is handled on drop, Drawer/Table/Board/List/reload verified. Same-date/invalid zero writes, failure atomic rollback/retry, source plain toast no Undo. Held/recovering seeded creation remains one original payload.",
+    "AC3": "42 required strict source pairs +2 strict mobile supplemental pairs; both desktop whole-content scopes remain UNACCEPTED context-variable search-corner debt, recorded separately.  corrected scoped overflow input provenance and original leakage diagnostics, mobile Week stacking and read-only events. Source641 pointer limitation is recorded with actual trusted click; keyboard navigation passes."
+  },
+  "limitations": [
+    "Managed Linux source supplement, not full Darwin/physical-device/user approval.",
+    "Project full wrapper WU16/backend remain later units.",
+    "Source full legend geometry at641 and MyTasks390 weekday head retain mode-pointer overlap; trusted pointer stays Month, native keyboard works; no all-mobile mouse-pass claimed.",
+    "WU14 EXTRA Workspace/MyTasks1440 whole-content context-variable search-corner0/5 remains UNACCEPTED debt for full parity/WU29; native Calendar route passes. Inherited WU10 mobile17/14 and WU13 unaccepted List Date558/8814 remain unproved."
+  ],
+  "retainedUnaffectedGates": [
+    "Closed List96/Board49/Drawer42/forms4/fields/overlays are genuine prior evidence; WU14 does not claim rerunning their unchanged visual matrices. Affected native List/Board/Table/detail and canonical loader tests actually rerun here."
+  ]
+}

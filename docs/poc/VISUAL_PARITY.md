@@ -581,3 +581,49 @@ the Workspace heading is a one-pixel raster translation without a proved cause.
 Neither List case is accepted or covered by the six-case matrix. Reports and PNGs
 remain explicit M2/full-parity debt. No paint/translation/remount/mask/tolerance
 workaround or fixture/clock change was made to clear them.
+
+
+### WU-14 Calendar capture and geometry
+
+Calendar static layout is literal Tailwind/@apply in its owned feature stylesheet;
+CSS exceptions are source dynamic project-color mixes, native drag/drop state,
+source moved animation, source hover add button and the <=640 bar/Week stack
+media rule. Source `.faint` maps to text3 (`text-muted`) for event times/No tasks.
+Day add explicitly owns absolute positioning because shared IconButton is relative.
+No paint/translateZ/remount/alpha/browser-flag technique is used.
+
+`tests/visual/calendar/verify.mjs` captures original calendarHtml/pageWsCalendar/
+pageMyTasks/viewToolbar/popHtml and locked font/CSS, with source #app/#layer
+connected in the hidden feature host. The full exploratory46-case run covers42 required shared Calendar cases (three
+scopes Month/Week/overflow,1440/390/dark/compact/640/641, event/filter/project/
+empty/leap/42/weekStart) and four EXTRA actual AppShell content comparisons.
+The required42 run explicitly uses --required; the full four-page audit uses
+--pages and exits1 when a whole-content mismatch remains. Overflow fixtures symmetrically move four
+existing due dates and use explicitly documented scoped source inputs; raw source
+workspace leakage is independently saved under evidence/WU-14/diagnostics.
+Source template/style files are never changed.
+
+Fresh en-US/UTC/DPR1/MacIntel/seed804205/2026-10-08T09Z contexts load locked HTTP
+fonts400/500/600, await concurrent finite motion, invoke original source render,
+force ordinary layout + two RAF, neutralize pointer and assert normal Playwright
+clip dimensions. Comparison remains threshold0/includeAAtrue/maxDiffPixels0/
+masks[]. Original173 Darwin/font/fixture/lock hashes must stay unchanged.
+Frozen hashes in WU-14/review.json accept42 required +2 mobile supplemental strict
+zero-diff pairs (44pairs/88PNG). Both desktop whole-content supplements retain
+context-variable0/5 search-input corner pixels as UNACCEPTED M2/full-parity/WU29 debt; raw46 failure,
+page audit exit1, PNG pairs and native/style diagnostics stay recorded. Current
+audit Workspace1440=0/Mine1440=5; earlier opposite5/0 was observed in console
+but its temporary report/PNGs were overwritten before archival. No old hash
+claim or choice of a passing desktop frame. Equal
+input geometry/style and source native-vs-original-render selfdiff0 do not prove
+cause. Trusted query-clear produces0 but changes source11 pixels, so it is not
+substituted as a baseline or claimed as a fix. No46-pass/whole-desktop-page claim;
+full641 legend overlap is recorded separately as a source pointer limitation,
+with trusted clicks and working native keyboard. Managed Linux technical evidence
+is not user approval/full Darwin/physical-device parity. Inherited unaccepted
+WU13 List Date558/8814 and WU10 mobile17/14 raster debt remains unchanged.
+
+Additional source/target native MyTasks390 observation confirms the Week center
+is covered by weekday Tue, pointer leaves Month, and native keyboard opens Week.
+Geometry is retained and recorded separately;44 accepted image pairs do not
+claim all mobile mode-pointer controls work. Frozen hashes remain unchanged.
