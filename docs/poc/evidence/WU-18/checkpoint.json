@@ -1,0 +1,72 @@
+{
+  "unit": "WU-18",
+  "status": "ImplementationCommittedAndNormalPushVerified",
+  "recordedAtUtc": "2026-10-09T21:27:38.476548+00:00",
+  "qualifiedTechnicalReview": {
+    "status": "ROOT TECHNICAL PASS",
+    "review": "docs/poc/evidence/WU-18/review.json",
+    "reviewSha256": "20106cffad4c2c451457ca24db098d23fee851e54bf68b23a7702441704a788c",
+    "verification": "docs/poc/evidence/WU-18/verification.json",
+    "verificationSha256": "f1630bdc38a2c15fa1444ff387db594cb835682156d17b20af8d0f1a5ba8e34c",
+    "limits": "Named BOTH Source+Target Linux Chromium145 --disable-partial-raster WU18 content/overlays only. Archived45+bounded2+2 callback bridges; Activity canonical-order layout-only and all raw/inherited/future-owner limitations retained."
+  },
+  "implementation": {
+    "branch": "work",
+    "commit": "a88452cbe8946a8a76c34fc0d2f9b5bc4927edab",
+    "tree": "5641719016ad1f72c14e7dd3ff2c2beac7e1e068",
+    "parent": "3a20c13592a40e571324af290a0a43e7be4321a2",
+    "baseAncestorVerified": true,
+    "commitCommand": [
+      "git",
+      "commit",
+      "-qm",
+      "feat(poc): implement WU-18 activity search and commands"
+    ],
+    "commitActualExit": 0
+  },
+  "push": {
+    "origin": "https://github.com/hoa00/task8.git",
+    "command": [
+      "git",
+      "push",
+      "origin",
+      "HEAD:main"
+    ],
+    "actualExit": 0,
+    "actualToolStdout": "To https://github.com/hoa00/task8.git\n   3a20c13..a88452c  HEAD -> main\n",
+    "remoteVerificationCommand": [
+      "git",
+      "ls-remote",
+      "origin",
+      "refs/heads/main"
+    ],
+    "actualLsRemote": "a88452cbe8946a8a76c34fc0d2f9b5bc4927edab\trefs/heads/main",
+    "originMain": "a88452cbe8946a8a76c34fc0d2f9b5bc4927edab",
+    "headRemoteTrackingEqual": true,
+    "actualDivergence": "0/0",
+    "targetCleanAfterImplementationPush": true,
+    "force": false,
+    "referenceRepositoryPushed": false
+  },
+  "source": {
+    "commit": "904205c626918ee96054eb35495c394a60c0c601",
+    "tree": "5db5f992886b2345881946cf85fac098307953a5",
+    "verifiedFiles": 86,
+    "clean": true,
+    "standaloneSourceCheckActualExit": 0
+  },
+  "cleanup": {
+    "no4173or5173Listeners": true,
+    "ownedBuildBrowserServersStopped": true
+  },
+  "byteEvidence": {
+    "frozenManifestCount": 43,
+    "frozenFiles": 1356,
+    "frozenPng": 819,
+    "allWorktreeAndIndexShaVerified": true,
+    "fullStagedDiffCheckActualExit": 0,
+    "exactGeneratedWhitespaceExceptions": 6,
+    "rawHistoricalCaptureCompletionUnknownAfterRestartRetained": true
+  },
+  "documentationCheckpoint": "Only PROGRESS.md and this checkpoint record exact implementationSHA/tree and real push proof; own finalHEAD/parent/tree/remote/clean are verified after commit and reported to root without inventing a recursive ownSHA."
+}
