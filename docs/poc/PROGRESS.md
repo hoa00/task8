@@ -2,8 +2,9 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-16` — **IN_PROGRESS**, typed Projects/Saved operations, actual routes và UI đã triển khai; native/visual và final gates đang chạy.
-- Last completed implementation unit: `WU-15`.
+- Current work unit: `WU-16` — **DONE**, qualified managed Linux content/dialog scope đã được root nghiệm thu; 24 gates và 45 strict pairs đạt, các giới hạn/nợ ảnh giữ nguyên bên dưới.
+- Last completed implementation unit: `WU-16`.
+- Next permitted unit: `WU-17` — NOT_STARTED, chờ root giao owner sau khi xác minh checkpoint.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
 - Target React app: shared Calendar/Table/Board/List/whole rich Drawer/full forms/file foundation; actual Workspace Calendar/Timeline và My Tasks List/Calendar đạt WU14/15 native/shared renderer gates. Project Calendar và Project/saved Table/Board/List có feature harness; full wrappers WU16 và các scope còn lại theo ledger.
@@ -31,7 +32,7 @@
 | [WU-13](work-units/WU-13.md) | DONE | `c44c6f33dacce3cebeb8e0c57c8e64256522bb94` | [41 Table pairs/82 PNG](evidence/WU-13/review.json), [6 popup pairs/12 PNG](evidence/WU-13/table-popovers/review.json), [16 initial + 12 affected gates](evidence/WU-13/verification.json) |
 | [WU-14](work-units/WU-14.md) | DONE | `f866df7c721a593c91926e93603085b26da37106` | [42 required +2 mobile pairs/88PNG/root review](evidence/WU-14/review.json), [17 gates +1 unaccepted page audit](evidence/WU-14/verification.json), [actual push](evidence/WU-14/checkpoint.json) |
 | [WU-15](work-units/WU-15.md) | DONE | `d5a75c467bc2cf5798706759d3f0728b37c047ed` | [Timeline48 pairs](evidence/WU-15/visual-verification.json), [native17](evidence/WU-15/interactions.json), [source4/pure25](evidence/WU-15/source-interactions.json); [13core+3supplemental gates](evidence/WU-15/verification.json), [root technical PASS](evidence/WU-15/review.json), [actual push](evidence/WU-15/checkpoint.json) |
-| [WU-16](work-units/WU-16.md) | IN_PROGRESS | — | [Diagnostics](evidence/WU-16/diagnostics/), final native/visual gates pending |
+| [WU-16](work-units/WU-16.md) | DONE — qualified Linux content/dialog | `537912fe78c6d91e0c122e4918ff90aae331d81b` | [24 gates / 45 strict pairs](evidence/WU-16/full-raster-linux-candidate-verification.json), [root PASS/runtime scope](evidence/WU-16/full-raster-linux-candidate-review.json); checkpoint `6daf1921c315d33184b9a9be87d129fec4bc872c`; Files body WU22, default/inherited raster debts WU29 remain unaccepted |
 | [WU-17](work-units/WU-17.md) | NOT_STARTED | — | — |
 | [WU-18](work-units/WU-18.md) | NOT_STARTED | — | — |
 | [WU-19](work-units/WU-19.md) | NOT_STARTED | — | — |
