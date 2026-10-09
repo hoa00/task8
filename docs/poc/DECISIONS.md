@@ -272,3 +272,53 @@ Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn
   this alongside641; Calendar images do not imply all mobile pointer controls
   work. Original source action updates #app and visible feature is explicitly
   recomposed. No physical-phone claim or CSS/raster fix.
+
+
+## WU-15 Timeline implementation decisions
+
+- One controlled Timeline renderer serves actual Workspace and Project feature
+  harness; full Project wrapper remains WU16. Pure DateOnly geometry keeps
+  91/238 days,32/11px widths,36px rows, source rail breakpoints, inclusive bars,
+  progress, dependencies and merged/collision-aware milestones.
+- Source's internal date comparator returns -1 on equal dates: presentation is
+  date ascending plus reverse incoming ordinal. Read-only original renderer
+  probes prove equality for25 generalized cases. API §6.2 stable-ID query/cursor
+  sorting stays unchanged. No date/position/ID/font/source/baseline mutation is
+  used. Old wrong target tie-order14982 strict diff remains diagnostics.
+- `timelineHtml` calls `groupTasks(ts.filter(t=>t.due),...)`: the fresh filtered
+  array means sorting a no-group array does not mutate original `ts`. Dependency
+  `ts.flatMap` paint order stays incoming query order in all4groupings. An earlier
+  no-group mutation hypothesis was wrong and reverted; original path probes
+  prove the correction. Group project in Project context falls back status while
+  bar colors still follow requested grouping, preserving actual source code.
+- API §6.3 overlap corrects source's missing range filtering at input only. Raw
+  outside-range source is retained from a separate fresh context, avoiding
+  source tlInit scroll-state leakage between raw and corrected captures.
+  Start-only query matches can count without producing bars. Milestones retain
+  all dates from authorized active Bootstrap projects, unaffected by task filter.
+- Existing PATCH/rescheduleDateOnly preserves duration and due-only omitted
+  startDate. Total pointer delta includes scroll; Escape/pointercancel/blur/
+  unmount cancel. Source ignores scroll and Escape (native scroll moves1 versus
+  target3days, Escape commits2 versus target0); these are explicit WU15 contract
+  corrections, not claimed source behavior. No dependency cascade.
+- Source plain Moved toast has no date-drag Undo. Existing Drawer completion Undo
+  remains canonical. Real CAS failure invalidates existing projections before
+  retry; no independent task store or command owner. Panel stores only scoped
+  per-zoom UI scroll positions through loading/refetch, and Router search controls
+  actual mounted Workspace Back/Forward.
+- Automatic approval review rejected a proposed fixture-position-slot swap twice.
+  Neither mutation executed. Work continued with immutable input and proved
+  source presentation geometry; no blocked action or user permission remains.
+  Abandoned fixture/edge hypotheses are not accepted provenance.
+- Acceptance is48 full visible Timeline renderer pairs (44feature+4actual
+  Workspace route clips), not whole page/toolbar/AppShell or ProjectPage.
+  Original173Darwin and inherited unaccepted raster debts remain unchanged.
+
+- Root supplemental original #app zoom probe (actual exit0): Week900/180, first
+  Months489/0, Months scrolled450/72, trusted Weeks return0/0 and trusted Months
+  return0/0. data-keep only restores matching DOM keys during one render; tlInit
+  remains1 on returning zoom. Target Panel Map scroll continuity is a WU15
+  contract interpretation/correction, not source behavior parity. Existing target
+  native actually asserts Weeks900/180 restoration after Months450/72 setup; it
+  does not assert a subsequent Months return. No runtime/PNG/fixture change.
+  See evidence/WU-15/root-source-zoom-observation.json for reviewer provenance.

@@ -1,0 +1,155 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "commands": [
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/build.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/test.log"
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/reference-check.log"
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/http-build.log"
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-15",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/http-bundle.log"
+    },
+    {
+      "name": "interactions",
+      "command": "node tests/visual/timeline/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/interactions.log"
+    },
+    {
+      "name": "source-interactions",
+      "command": "node tests/visual/timeline/source-interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/source-interactions.log"
+    },
+    {
+      "name": "visual",
+      "command": "node tests/visual/timeline/verify.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/visual.log"
+    },
+    {
+      "name": "freeze",
+      "command": "node tests/visual/timeline/freeze.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/freeze.log"
+    },
+    {
+      "name": "final-qa-lint",
+      "command": "pnpm exec eslint tests/visual/timeline",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/final-qa-lint.log"
+    },
+    {
+      "name": "final-reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/final-reference-check.log"
+    }
+  ],
+  "requiredGateCount": 13,
+  "visual": {
+    "report": "docs/poc/evidence/WU-15/visual-verification.json",
+    "pairCount": 48,
+    "actualWorkspaceRendererPairs": 4,
+    "featurePairs": 44,
+    "changedPixels": 0,
+    "repeatabilityPixels": 0,
+    "review": "docs/poc/evidence/WU-15/review.json"
+  },
+  "nativeProbeCount": 17,
+  "sourceProbeCount": 4,
+  "generalizedSourceTieCases": 25,
+  "sourceInputPaintOrderGroupings": 4,
+  "pureTimelineTestGroups": 7,
+  "acceptance": {
+    "AC1": "One Timeline renderer across actual Workspace route and Project feature harness. Source rows/date reversal/path input paint order/bar/header/milestone coordinates preserved; API tuple sort unchanged.",
+    "AC2": "Native32/11 rounding, duration/no-start omission, wheel delta, suppress-click and postguardDrawer, Escape/pointercancel/unmount cleanup, real CAS/refetch/retry, held/failure rollback, no cascade and persistence. Source plain Moved no dragUndo; shared Drawer completion Undo canonical.",
+    "AC3": "48 strict source renderer pairs include fullwidth3400/bothscroll/bothzoom/dark/compact/rail inclusive boundaries/4group/empty/undated/milestone-only/collision/overlap correction. Complete231 canonical records/two pages, scope/count/grouping and actual routeBackForward verified."
+  },
+  "limitations": [
+    "Managed Linux technical supplement, not173Darwin replacement/physical-device/user approval.",
+    "Renderer acceptance does not accept whole toolbar/page/AppShell; inherited WU14 context-variable desktopsearch-corner0/5, WU13 ListDate558/8814 and WU10 mobile17/14 remain UNACCEPTED/unproved.",
+    "Project full wrapper16/backend remain later units.",
+    "Source scroll delta/Escape cancel corrections verified separately from source-native behavior; no date-drag Undo invented.",
+    "Source trusted returning zoom resets0/0; target per-zoom scroll continuity is an explicit contract interpretation/correction, not source behavior parity. Existing target native asserts Week900/180 restoration after Months450/72 setup."
+  ],
+  "retainedUnaffectedEvidence": "Existing Calendar/List/Board/Table/Drawer visual matrices remain genuine prior evidence; this unit did not modify those renderers or pretend to rerun their matrices.",
+  "postReviewSupplementalCommands": [
+    {
+      "name": "post-review-typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/post-review-typecheck.log"
+    },
+    {
+      "name": "post-review-lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/post-review-lint.log"
+    },
+    {
+      "name": "post-review-diff-check",
+      "command": "git diff --check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-15/post-review-diff-check.log"
+    }
+  ],
+  "postReviewTypeOnlyProof": "docs/poc/evidence/WU-15/post-review-type-only.json",
+  "rootSourceZoomObservation": "docs/poc/evidence/WU-15/root-source-zoom-observation.json",
+  "rootTechnicalInspection": {
+    "result": "PASS",
+    "review": "docs/poc/evidence/WU-15/review.json",
+    "additionalSourceZoomObservation": "docs/poc/evidence/WU-15/root-source-zoom-observation.json"
+  }
+}

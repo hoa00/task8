@@ -555,3 +555,21 @@ dots belong to this field owner, not a Table-only copy or global ColorDot change
   The full legend wraps at641 and covers the mode control pointer center in
   both renderers; recorded trusted pointer failure and native keyboard success
   are separate from image parity.
+
+### WU-15 delivered Timeline owners
+
+- `features/timeline/TimelineView` owns rail/header/bars, dependency SVG and
+  milestone lane across Workspace/Project. It receives one typed model and
+  task-open/date-change intents; no legacy HTML or delegated action registry.
+- `TimelinePage/Panel` own shared toolbar, complete overlap Query dataset,
+  Bootstrap authorized milestones, PATCH feedback and per-scope/zoom UI scroll.
+  Workspace is a real AppShell route; Project is a feature harness until WU16.
+- `domain/timeline.ts` owns 91/238-day ranges,32/11px widths,36px rows, inclusive
+  bars/progress, forward/backward paths, collision-aware same-day milestones
+  and signed pointer/scroll rounding. Equal-date presentation reverses incoming
+  ordinal as source; API stable-ID comparator and original dependency paint
+  input order remain unchanged. DateOnly reschedule reuses the Calendar helper.
+- Rail/header/bar MemberIdentity, status/project atoms, task menu, Drawer/form,
+  query loader and canonical commands are reused from their existing owners.
+  Custom Timeline CSS owns source milestone tooltip/keyframes and bar progress
+  effect; static geometry uses Tailwind and typed dynamic style/SVG coordinates.

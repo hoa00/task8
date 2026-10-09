@@ -627,3 +627,49 @@ Additional source/target native MyTasks390 observation confirms the Week center
 is covered by weekday Tue, pointer leaves Month, and native keyboard opens Week.
 Geometry is retained and recorded separately;44 accepted image pairs do not
 claim all mobile mode-pointer controls work. Frozen hashes remain unchanged.
+
+
+## WU-15 Timeline managed Linux supplement
+
+`tests/visual/timeline/verify.mjs` compares48 full visible Timeline renderer clips:
+44shared feature cases plus4actual Workspace route renderer cases, both zooms,
+1440/390/dark/compact, rail640/641/899/900/901, scroll, grouping, milestone
+collision, empty/undated/milestones-only/outside-range,3400 full width, filter and
+weekStart0/6. Project stays feature harness. Every visible rail/header/bar/edge/
+milestone pixel is included; toolbar/page/AppShell are outside this acceptance.
+Fresh locked en-US/UTC/DPR1/MacIntel/seed804205/2026-10-08T09Z contexts use original
+source renderer/CSS/fonts and normal viewport-clamped integer clips, concurrent
+finite animation settlement, ordinary layout/two RAF and neutral pointer.
+Scrolled Workspace is actual left850/top250; Project is actual left850/top1
+(clamped by short dataset), not vertical250.
+Strict threshold0/includeAAtrue/maxDiffPixels0/masks[] gives48zero/repeat0.
+[Freeze](evidence/WU-15/review.json) rehashes96copied PNGs and recompares48pairs.
+
+Default/group/scroll/zoom task dates/positions/IDs and original source files are
+immutable. Source receives the same canonical manual-query input; equal-date
+reverse ordinal is preserved in production geometry, not prepared by fixture
+position swaps. Explicit symmetric collision/empty/undated/milestones-only/
+outside-range scenarios are declared in report provenance. Outside-range input
+is corrected only for API §6.3 overlap, with raw source capture in a separate
+fresh context. Source native tests use actual #app; feature comparisons explicitly
+compose original template sections and never claim hidden hosts auto-rerender.
+The earlier wrong target tie-order14982 PNG pair/report stays diagnostics; an
+unarchived44pixel exploratory attempt has no old artifact/hash claim. Proposed
+position-slot mutation was automatically rejected and never executed. No paint,
+font, clock, remount, tolerance, mask or baseline workaround is accepted.
+
+Original173Darwin reference/fixtures/fonts/lock are unchanged. This supplement
+is technical Linux evidence, not user approval, full Darwin or physical-device
+parity. WU14 desktop whole-content search-corner context-variable0/5 remains
+EXTRA UNACCEPTED; its641/MyTasks390 mode pointer overlap remains a native source
+limitation. WU13 extra List Date558/8814 and WU10 mobile17/14 remain unproved.
+Timeline renderer acceptance does not erase or repair those debts.
+
+Root supplemental trusted source zoom observation: Week900/180 -> first
+Months489/0 -> set Months450/72 -> Weeks0/0 -> Months0/0. Source data-keep keeps
+only same-render matching keys; tlInit prevents reinitialization on return.
+Target per-zoom UI scroll continuity is an explicit contract interpretation,
+not source behavior parity. Existing native target asserts Week900/180 restore
+after Months450/72 setup; no subsequent Months restore assertion is invented.
+[Reviewer observation](evidence/WU-15/root-source-zoom-observation.json) retains
+actual result/provenance; frozen renderer PNGs and runtime are unchanged.

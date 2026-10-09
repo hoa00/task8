@@ -214,3 +214,17 @@ Workspace Tasks only List/Board/Table. Calendar uses existing task fields,
 TaskOverlayHost, TaskFormDefaults and PATCH commands. `rescheduleDateOnly` belongs
 to pure domain, preserving the DateOnly interval without timezone conversion.
 No event CRUD, scheduler, duplicate drawer/form/overlay or endpoint is introduced.
+
+### WU-15 shared Timeline ownership
+
+`TimelinePanel` uses the same complete overlap loader, Query task projections,
+Bootstrap authorized project milestones and existing updateTask/invalidation.
+`TimelineView` receives pure DateOnly geometry and typed task-open/date intents;
+rail/header/bar/dependency/milestone rendering has one Workspace/Project owner.
+Workspace is an actual route; Project remains a feature harness until WU16.
+Panel owns scoped per-zoom UI scroll positions across loading/remounts. Pointer
+preview is transient UI only; duration-preserving PATCH does not create a task
+store, cascade dependent dates or add drag Undo. Failed CAS invalidates the
+existing projections before retry. Router search controls the actual mounted
+Workspace view on Back/Forward. Shared loader, API comparators, commands and
+Drawer/form/field components are reused without modification.

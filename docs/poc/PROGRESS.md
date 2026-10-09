@@ -2,11 +2,11 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-14` — **DONE / STOP**, required/affected gates, root technical inspection và actual implementation/push checkpoint đạt. WU15 qua agent khác sau root final verify.
-- Last completed implementation unit: `WU-14`.
+- Current work unit: `WU-15` — **DONE**, 13 core +3 supplemental gate, native/source và freeze48pairs đạt root technical PASS; commit/push/checkpoint đang thực hiện.
+- Last completed implementation unit: `WU-15`.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
-- Target React app: shared Calendar/Table/Board/List/whole rich Drawer/full forms/file foundation; actual Workspace Calendar và My Tasks List/Calendar đạt WU14 native/shared renderer gates. Project Calendar và Project/saved Table/Board/List có feature harness; full wrappers WU16 và các scope còn lại theo ledger.
+- Target React app: shared Calendar/Table/Board/List/whole rich Drawer/full forms/file foundation; actual Workspace Calendar/Timeline và My Tasks List/Calendar đạt WU14/15 native/shared renderer gates. Project Calendar và Project/saved Table/Board/List có feature harness; full wrappers WU16 và các scope còn lại theo ledger.
 - Backend: Hono Worker skeleton local/404 đã chạy; D1/R2 và business routes chưa triển khai.
 - Source SHA: `904205c626918ee96054eb35495c394a60c0c601`.
 - Target project: `task8`; repository private [hoa00/task8](https://github.com/hoa00/task8), `origin=https://github.com/hoa00/task8.git`, default branch `main`; implementation hiện dùng branch `work`, push normal `HEAD:main`. Kết quả WU-01 ở entry bên dưới; lịch sử push WU-00 giữ nguyên.
@@ -30,7 +30,7 @@
 | [WU-12](work-units/WU-12.md) | DONE | `49ce4f501c71b6f85e2d1e8a1379f2e03759b00f` | [49 Board pairs/98 PNG](evidence/WU-12/review.json), [6-step native M1](evidence/WU-12/m1-journey.json), [gates](evidence/WU-12/verification.json), [push checkpoint](evidence/WU-12/checkpoint.json) |
 | [WU-13](work-units/WU-13.md) | DONE | `c44c6f33dacce3cebeb8e0c57c8e64256522bb94` | [41 Table pairs/82 PNG](evidence/WU-13/review.json), [6 popup pairs/12 PNG](evidence/WU-13/table-popovers/review.json), [16 initial + 12 affected gates](evidence/WU-13/verification.json) |
 | [WU-14](work-units/WU-14.md) | DONE | `f866df7c721a593c91926e93603085b26da37106` | [42 required +2 mobile pairs/88PNG/root review](evidence/WU-14/review.json), [17 gates +1 unaccepted page audit](evidence/WU-14/verification.json), [actual push](evidence/WU-14/checkpoint.json) |
-| [WU-15](work-units/WU-15.md) | NOT_STARTED | — | — |
+| [WU-15](work-units/WU-15.md) | DONE | — | [Timeline48 pairs](evidence/WU-15/visual-verification.json), [native17](evidence/WU-15/interactions.json), [source4/pure25](evidence/WU-15/source-interactions.json); [13core+3supplemental gates](evidence/WU-15/verification.json), [root technical PASS](evidence/WU-15/review.json) |
 | [WU-16](work-units/WU-16.md) | NOT_STARTED | — | — |
 | [WU-17](work-units/WU-17.md) | NOT_STARTED | — | — |
 | [WU-18](work-units/WU-18.md) | NOT_STARTED | — | — |
@@ -498,3 +498,93 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - Commit: implementation `f866df7c721a593c91926e93603085b26da37106`, tree `ac25167df258a622c1b486580ea7c95130b807c7` — feat: implement shared Calendar across three scopes for WU-14. Working tree sạch sau implementation commit. Documentation checkpoint này ghi SHA có thật, không self-reference.
 - Push: normal `git push origin HEAD:main` tới private user-owned hoa00/task8 thành công, actual ls-remote main `f866df7c721a593c91926e93603085b26da37106`. Preflight fetch/main279c..., divergence0/0; implementation ahead1/behind0/ancestor pass, post-push fetch/divergence0/0 và target/sourceclean/no4173-5173 listeners xác minh. [Checkpoint](evidence/WU-14/checkpoint.json) ghi actual SHA/tree/push/evidence hashes. Documentation commit kế tiếp normal-push; final HEAD/remote/tree/clean report ngoài file để tránh self-reference. Không force/reference push.
 - Next permitted unit: `WU-15` qua agent/session khác chỉsau WU14 DONE/rootactualcheckpoint; agentWU14 STOP saucommit/push.
+
+
+## WU-15 — 2026-10-09
+
+- Status: `DONE` — WU15-AC1/2/3, required gates and frozen evidence passed root
+  technical inspection. Technical PASS is not user approval.
+- Started from: branch `work`, actual WU14/main
+  `c62dbed828d2ebbf5d066e2745051e9bbd5120d4`, tree
+  `96bd75cc64a54f987bfadac988fb43a380928397`; fetch/ancestor/divergence0/0 and
+  ls-remote checked. Target/source clean and no4173/5173 listeners at start.
+- Completed: one Timeline renderer for actual Workspace and Project harness;
+  pure DateOnly ranges/rows/bar/progress/edge/milestone geometry; shared complete
+  overlap loader/summary, Bootstrap milestones, task open/Drawer/form, PATCH and
+  cache. Native duration/rounding/scroll/cancel/suppress-click/CAS rollback/retry,
+  persistence/complete231records/two pages, scope/filter/count and mounted actual
+  Workspace URL Back/Forward plus canonical Drawer completion Undo verified.
+- Files changed: `packages/domain/src/timeline.ts` + index; web Timeline feature,
+  harness HTML/entry, thin Workspace route, app CSS/Vite; timeline pure tests;
+  `tests/visual/timeline/*`, HTTP bundle assertion, package/ESLint scripts; relevant
+  API/architecture/catalog/decisions/visual/source-issues docs and WU15 evidence.
+  No shared loader/commands/UI component or API query comparator modification.
+- Verification: actual `pnpm verify:timeline` exit0; [13 actual command rows and
+  logs](evidence/WU-15/commands.json), [verification](evidence/WU-15/verification.json).
+  `pnpm typecheck`, `pnpm build`, `pnpm lint`, `pnpm test`,
+  `pnpm reference:check`, `pnpm --filter @studio/web build:http`,
+  `node tests/data/http-bundle.mjs WU-15`,
+  `node tests/visual/timeline/interactions.mjs`,
+  `node tests/visual/timeline/source-interactions.mjs`,
+  `node tests/visual/timeline/verify.mjs`,
+  `node tests/visual/timeline/freeze.mjs`,
+  `pnpm exec eslint tests/visual/timeline`, final `pnpm reference:check`: all exit0.
+  Web tests76 (including7Timeline pure groups), native17/source4, generalized
+  source ties25 and original dependency paint order all4groupings. Existing
+  unaffected visual matrices retained as prior evidence, not claimed rerun.
+- Visual evidence: [48 strict pairs](evidence/WU-15/visual-verification.json),
+  [96 PNG hash freeze](evidence/WU-15/review.json),
+  [native17](evidence/WU-15/interactions.json),
+  [source4](evidence/WU-15/source-interactions.json). Threshold0/includeAAtrue/
+  maxDiffPixels0/masks[]; all changed0/repeat0. 44feature+4actual Workspace
+  renderer clips. Project full wrapper not accepted before16. Managed Node
+  24.13.0/pnpm11.19.0/Playwright1.58.2/Chromium145.0.7632.6rev1208, locked source
+  SHA904205c626918ee96054eb35495c394a60c0c601; original173Darwin immutable.
+- Decisions/conflicts: source date-tie reversal is presentation, separate from
+  DATA10 API cursor comparator; due-filtered fresh array preserves original
+  dependency paint order all groups. API6.3 overlap input correction has separate
+  raw outside-range fresh-context capture. Source scroll/Escape behavior differs
+  intentionally per contract. Source plain Moved noUndo; canonical completion
+  Undo reused. Panel retains scoped UI scroll through loading, no task store.
+  See DECISIONS/API_CONTRACT/VISUAL_PARITY/source-issues for exact provenance.
+- Failed attempts kept separate: old wrong target tie ordering14982 PNG/report;
+  CAS retry failure led to existing projection invalidation; filter count and
+  Router double-serialization assertions corrected to observed behavior. Earlier
+  44pixel exploratory report/PNGs were overwritten before archival, no old hash
+  claim. Initial2px toolbar/clip/syntax QA failures corrected before final gates.
+  First staged diff-check exit2 found one trailing space in supplemental
+  typecheck log; log display whitespace normalized before commit, no code change.
+  Automatic review rejected fixture position swap twice; neither executed and
+  safe immutable input/source geometry completed. No outstanding blocked action.
+- Limitations: WU14 unaccepted desktop0/5 whole-content and641/MyTasks390 pointer
+  overlap, WU13 ListDate558/8814, WU10 mobile17/14 remain unproved/unaccepted.
+  Scrolled Workspace actual left850/top250; Project actual left850/top1 vì
+  ít hàng nên clamp, không claim Project vertical250.
+  No full page/toolbar/ProjectPage/Darwin/physical-device/user approval claim.
+  HTTP bundle excludes fixture bytes; backend D1/R2/business routes later units.
+- Post-review correction: named public Timeline props/type-only RefObject import
+  per AGENTS. [Supplemental actual commands](evidence/WU-15/post-review-commands.json):
+  `pnpm typecheck`, `pnpm lint`, `git diff --check` all exit0.
+  [Type-only proof](evidence/WU-15/post-review-type-only.json) verifies transpiled
+  JavaScript byte-identical; frozen48pairs/native/source remain applicable.
+- Root technical inspection: PASS; independently96hashes/48strict byte-identical
+  pairs and equal geometry/path/milestone/scroll,4immutablefiles versus WU14base,
+  directly18source images; core13 +supplemental3 actualexit0. Named public props
+  and transpiledJS identity verified. Native17/source4/generalized25/all4paint
+  groups and root zoom quirk observation accepted within exact renderer scope.
+- Blockers: none in WU15 implementation/verification/push authorization.
+- Commit: implementation commit pending below; actual SHA recorded in subsequent
+  documentation checkpoint to avoid self-reference.
+- Push: normal target `origin HEAD:main` authorized; actual result recorded in
+  subsequent documentation checkpoint.
+- Next permitted unit: root may assign WU16 after WU15 actual push/checkpoint
+  verification. WU16 remains NOT_STARTED; this agent stops after WU15.
+
+- Root supplemental source zoom observation (read-only actual exit0): original
+  canonical #app Week900/180 -> first Months489/0 -> set Months450/72 -> trusted
+  Weeks0/0 -> trusted Months0/0. data-keep only same-render matching keys and
+  persistent tlInit explain reset. [Reviewer JSON](evidence/WU-15/root-source-zoom-observation.json)
+  records exact provenance. Target per-zoom continuity is an explicit WU15
+  contract interpretation/correction, not source behavior parity; existing target
+  native asserts Week900/180 restoration after Months450/72 setup, not a subsequent
+  Months return. Documentation/JSON only; no runtime/PNG/fixture change or rerun.

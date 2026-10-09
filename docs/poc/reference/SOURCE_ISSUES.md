@@ -32,3 +32,33 @@ or ArrowRight(target) opens Week. [Report](../evidence/WU-14/mobile-pointer-obse
 and before/after PNGs retain the source geometry limitation. Native action
 updates connected source #app, then original feature fixture is explicitly
 recomposed for visible proof. No all-mobile-pointer/physical-phone claim.
+
+
+WU-15 original locked Timeline observations (managed Linux): source row sort
+returns -1 for equal `(start||due)` dates, reversing incoming equal-date ordinal.
+25 generalized read-only renderer cases prove the typed presentation equivalent.
+`groupTasks(ts.filter(t=>t.due),g)` receives a fresh array, so original input and
+`ts.flatMap` dependency paint order remain unchanged in all4groupings, including
+none. [Source probe report](../evidence/WU-15/source-interactions.json) records
+actual row/path arrays; no persisted source fixture or template was mutated.
+
+Original pointer drag counts only screen dx/dayWidth: trusted wheel64px during
+32px drag moves1day. It has no Escape cancel handler: trusted Escape after64px
+still commits2days. Target includes scroll delta and cancels per WU15 contract,
+verified independently; no false source-equivalence claim for these corrections.
+Source drag has plain Moved toast with no Undo. Native probes run actual connected
+#app Timeline route with original automatic render; feature screenshot sections
+are explicitly composed by the capture harness and are not claimed to rerender
+through an unrelated source host. Raw outside-range source is separately retained
+before explicit API §6.3 overlap input correction; dates/positions/IDs remain
+immutable in default/grouping/scroll/zoom comparisons.
+
+WU-15 root supplemental actual original canonical #app zoom probe (exit0):
+Week900/180; first Months489/0; set Months450/72; trusted Weeks return0/0; trusted
+Months return0/0. render.js data-keep restores matching DOM keys only within one
+render; tlInit still1 so returning zoom does not initialize Today. Target Panel
+Map continuity is an explicit contract interpretation/correction, not source
+behavior parity. [Reviewer JSON](../evidence/WU-15/root-source-zoom-observation.json)
+records provenance and the existing target Week restoration assertion. Source
+files/default fixtures/production/frozen PNGs remain unchanged; root cleaned up
+its browser and Source4173.

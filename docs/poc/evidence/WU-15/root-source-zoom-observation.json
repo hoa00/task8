@@ -1,0 +1,65 @@
+{
+  "status": "observed",
+  "reportedBy": "root technical reviewer",
+  "reportedToolExitStatus": 0,
+  "provenance": "Root read-only browser probe on original canonical connected #app Timeline, original locked renderer/actions/CSS; trusted zoom-button clicks. Root supplied actual result in collaboration message. No standalone command path supplied; this is a supplemental reviewer observation, not an invented required-gate row.",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "sourceSequence": [
+    {
+      "step": "Week scrolled",
+      "zoom": "week",
+      "left": 900,
+      "top": 180,
+      "tlInit": {
+        "tlweek": 1
+      }
+    },
+    {
+      "step": "First trusted Months click",
+      "zoom": "month",
+      "left": 489,
+      "top": 0,
+      "tlInit": {
+        "tlweek": 1,
+        "tlmonth": 1
+      }
+    },
+    {
+      "step": "Months scrolled",
+      "zoom": "month",
+      "left": 450,
+      "top": 72
+    },
+    {
+      "step": "Trusted Weeks return",
+      "zoom": "week",
+      "left": 0,
+      "top": 0
+    },
+    {
+      "step": "Trusted Months return",
+      "zoom": "month",
+      "left": 0,
+      "top": 0
+    }
+  ],
+  "sourceCause": "render.js data-keep only restores matching DOM key during the same render. Returning zoom has no matching old key, while tlInit remains1 so tlAfter does not initialize Today again.",
+  "targetEvidence": {
+    "report": "docs/poc/evidence/WU-15/interactions.json",
+    "probe": "trusted-zoom-scroll-retention-filter-refetch-group-count-Today",
+    "sequence": "Week900/180 -> Months manually scrolled450/72 -> trusted Weeks return900/180",
+    "weekReturnActuallyAsserted": {
+      "left": 900,
+      "top": 180
+    },
+    "monthReturnNotAssertedInExistingProbe": true
+  },
+  "classification": "Target per-zoom UI scroll continuity is a WU15 contract interpretation/correction; it is not source behavior parity. Static renderer geometry comparisons remain unaffected.",
+  "unchanged": [
+    "production renderer/runtime",
+    "frozen96 PNG",
+    "source files",
+    "default fixture dates/positions/IDs"
+  ],
+  "cleanup": "Root confirmed browser and owned Source4173 cleanup before handoff."
+}
