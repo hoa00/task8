@@ -1,0 +1,24 @@
+Owned source server: PID 408143, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '2026-10-08T09:00:00Z'
+- '2026-10-08T09:00:00.000Z'
+                      ^
+
+    at file:///workspace/task8/tests/visual/notifications/interactions.mjs:28:216
+    at async probe (file:///workspace/task8/tests/visual/notifications/interactions.mjs:14:48)
+    at async file:///workspace/task8/tests/visual/notifications/interactions.mjs:26:3 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '2026-10-08T09:00:00Z',
+  expected: '2026-10-08T09:00:00.000Z',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

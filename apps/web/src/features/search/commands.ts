@@ -7,7 +7,7 @@ export const commandDefinitions: readonly CommandDefinition[] = [
  { id: 'project', name: 'Create project', icon: 'folder-plus', keys: ['P'] },
  { id: 'search', name: 'Search workspace', icon: 'search', keys: ['/'] },
  { id: 'home', name: 'Go to Home', icon: 'house', keys: ['G', 'H'], page: 'home' },
- { id: 'inbox', name: 'Go to Inbox', icon: 'inbox', keys: ['G', 'I'], page: 'inbox', pendingOwner: 19 },
+ { id: 'inbox', name: 'Go to Inbox', icon: 'inbox', keys: ['G', 'I'], page: 'inbox' },
  { id: 'my', name: 'Go to My Tasks', icon: 'circle-check', keys: ['G', 'T'], page: 'my-tasks' },
  { id: 'projects', name: 'Go to Projects', icon: 'folder-kanban', keys: ['G', 'P'], page: 'projects' },
  { id: 'calendar', name: 'Go to Calendar', icon: 'calendar', keys: ['G', 'C'], page: 'calendar' },
@@ -22,7 +22,7 @@ export const commandDefinitions: readonly CommandDefinition[] = [
  { id: 'shortcuts', name: 'Keyboard shortcuts', icon: 'keyboard', keys: ['?'] },
  { id: 'signout', name: 'Sign out', icon: 'log-out', pendingOwner: 26 },
  { id: 'activity', name: 'Go to Activity', icon: 'activity', keys: ['G', 'A'], page: 'activity', palette: false },
- { id: 'notifications', name: 'Go to Notifications', icon: 'bell', keys: ['G', 'N'], page: 'notifications', pendingOwner: 19, palette: false },
+ { id: 'notifications', name: 'Go to Notifications', icon: 'bell', keys: ['G', 'N'], page: 'notifications', palette: false },
  { id: 'editTask', name: 'Edit task', icon: 'pencil', keys: ['E'], palette: false },
 ];
 export const modLabel = (platform: string) => platform.includes('Mac') ? '⌘' : 'Ctrl';

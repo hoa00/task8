@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "start": "2026-10-09T21:49:33.137Z",
+      "end": "2026-10-09T21:49:49.892Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/typecheck.log"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "start": "2026-10-09T21:49:49.892Z",
+      "end": "2026-10-09T21:49:54.552Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/test.log"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "start": "2026-10-09T21:49:54.552Z",
+      "end": "2026-10-09T21:50:05.934Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/lint.log"
+    },
+    {
+      "id": "coverage",
+      "command": [
+        "pnpm",
+        "contracts:coverage"
+      ],
+      "start": "2026-10-09T21:50:05.934Z",
+      "end": "2026-10-09T21:50:07.074Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/coverage.log"
+    },
+    {
+      "id": "consumers",
+      "command": [
+        "pnpm",
+        "contracts:consumers"
+      ],
+      "start": "2026-10-09T21:50:07.074Z",
+      "end": "2026-10-09T21:50:09.983Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/consumers.log"
+    },
+    {
+      "id": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "start": "2026-10-09T21:50:09.983Z",
+      "end": "2026-10-09T21:50:11.709Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/http-build.log"
+    },
+    {
+      "id": "http-bundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs"
+      ],
+      "start": "2026-10-09T21:50:11.709Z",
+      "end": "2026-10-09T21:50:11.751Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/http-bundle.log"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "start": "2026-10-09T21:50:11.751Z",
+      "end": "2026-10-09T21:50:12.293Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/reference.log"
+    }
+  ]
+}

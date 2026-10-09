@@ -1,0 +1,43 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache miss, executing 731682dc29344684
+@studio/ui:typecheck: cache miss, executing f3711fada4b4d002
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache miss, executing 132267e0f173bd2b
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache miss, executing b59dd80bc0cd6063
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 35ecae49019e9c2f
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/mock/notifications.ts(47,63): error TS18046: 'value.at' is of type 'unknown'.
+@studio/web:typecheck: src/data/mock/notifications.ts(47,114): error TS18046: 'value.id' is of type 'unknown'.
+@studio/web:typecheck: src/features/notifications/InboxPreview.tsx(25,212): error TS2365: Operator '>' cannot be applied to types 'string & $brand<"DateOnly">' and 'TaskFieldValues[K] & string'.
+@studio/web:typecheck: src/features/notifications/queries.ts(13,127): error TS2554: Expected 1 arguments, but got 2.
+@studio/web:typecheck: src/features/notifications/useNotificationCommands.ts(16,5): error TS2322: Type '(intent: Intent) => Promise<{ data: { changedCount: number; unreadCount: number; }; }> | Promise<{ data: { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; ... 8 more ...; readAt: (string & $brand<...>) | null; }; }>' is not assignable to type 'MutationFunction<{ data: { changedCount: number; unreadCount: number; }; }, Intent>'.
+@studio/web:typecheck:   Type 'Promise<{ data: { changedCount: number; unreadCount: number; }; }> | Promise<{ data: { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; ... 8 more ...; readAt: (string & $brand<...>) | null; }; }>' is not assignable to type 'Promise<{ data: { changedCount: number; unreadCount: number; }; }>'.
+@studio/web:typecheck:     Type 'Promise<{ data: { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; recipientId: string & $brand<"EntityId">; actorId: (string & $brand<...>) | null; ... 6 more ...; readAt: (string & $brand<...>) | null; }; }>' is not assignable to type 'Promise<{ data: { changedCount: number; unreadCount: number; }; }>'.
+@studio/web:typecheck:       Type '{ data: { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; recipientId: string & $brand<"EntityId">; actorId: (string & $brand<"EntityId">) | null; ... 6 more ...; readAt: (string & $brand<...>) | null; }; }' is not assignable to type '{ data: { changedCount: number; unreadCount: number; }; }'.
+@studio/web:typecheck:         Types of property 'data' are incompatible.
+@studio/web:typecheck:           Type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; recipientId: string & $brand<"EntityId">; actorId: (string & $brand<"EntityId">) | null; ... 6 more ...; readAt: (string & $brand<...>) | null; }' is missing the following properties from type '{ changedCount: number; unreadCount: number; }': changedCount, unreadCount
+@studio/web:typecheck: src/features/notifications/useNotificationCommands.ts(28,21): error TS2339: Property 'before' does not exist on type '{}'.
+@studio/web:typecheck: src/features/notifications/useNotificationCommands.ts(28,68): error TS2339: Property 'optimistic' does not exist on type '{}'.
+@studio/web:typecheck: src/features/notifications/useNotificationCommands.ts(28,113): error TS2339: Property 'before' does not exist on type '{}'.
+@studio/web:typecheck: src/features/notifications/useNotificationCommands.ts(29,21): error TS2339: Property 'bootstrapBefore' does not exist on type '{}'.
+@studio/web:typecheck: src/features/notifications/useNotificationCommands.ts(29,86): error TS2339: Property 'bootstrapOptimistic' does not exist on type '{}'.
+@studio/web:typecheck: src/features/notifications/useNotificationCommands.ts(29,149): error TS2339: Property 'bootstrapBefore' does not exist on type '{}'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    16.452s 
+Failed:    @studio/web#typecheck
+
+ ERROR  run failed: command  exited (2)
+[ELIFECYCLE] Command failed with exit code 2.

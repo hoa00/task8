@@ -1,0 +1,1 @@
+import{i as e}from"./Boundaries-HbV0CnPC.js";var t=e;export{t as notFoundComponent};

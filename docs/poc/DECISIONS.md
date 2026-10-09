@@ -389,3 +389,15 @@ WU17 final root review accepts only the named matched managed Linux dashboard co
 ### WU-18 bounded display metadata and ownership
 
 Root authorized optional read-only `WorkspaceDto.planLabel` for Source-faithful Palette workspace catalog. Seed maps exact existing Source labels, HTTP may omit the optional field, and no create/PATCH input or billing schema is extended. WU25/31 canonical catalog owner closes the integration. Search remains a single typed operation; Source task30 cap/private-parent quirks are explicit integrity corrections. Global ModK/ModShiftL retain Source typing exceptions; plain keys suppress input/textarea/select and inherited contentEditable. OverlayProvider owns Escape/focus; existing form/editor/composer handlers own their local keys. Recent search history has one UI-only shell context owner scoped by workspace/member.
+
+
+### WU-19 single records, Source reply and inclusive preview
+
+Source layout distinguishes Inbox unread badge (all except updates) from Notifications unread badge (all types). Both are projections of the same principal-visible records; unequal numbers are intentional. Counts/list/mutations share authorization and parent deletion checks, including project/task identity consistency. Canonical task/comment IDs and current fixture member names are retained.
+
+Source Inbox composer has no avatar, attachment button or mention picker. The existing Comments composer exposes a scoped Inbox presentation; mentions still parse actual names into IDs, and attachments remain available in the Drawer. Successful replies alone call the existing typed notice owner (`Reply posted`); failures retain drafts. There is no secondary message model or event bus. Inbox preview is fixed fullscreen with z48 at the exact inclusive `<=900px` boundary; existing Drawer remains z50. The mounted rail preserves scroll, Back clears selection and restores focus to the originating row or visible list fallback.
+
+WU-19 evaluates the previously qualified matched BOTH Chromium145 Linux `--disable-partial-raster` profile in its own content/preview scope, with threshold0/includeAA/no masks and the original Source fixture/styles. Root must explicitly review this unit's scope. This does not accept default raster, original Darwin baselines, full shell, devices, user approval or the complete project. All inherited visual/missing-byte/order debts remain WU29 obligations.
+
+
+Source Back clears selection and preserves rail scroll but leaves focus on BODY. Target restores focus to the originating visible row or rail fallback as an explicit accessibility policy. This is not presented as identical Source focus behavior. Source Inbox category-count closure observes the filtered list through late binding; tab counts therefore follow the current category/unread view, while Sidebar principal counts remain independent.

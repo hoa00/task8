@@ -901,3 +901,16 @@ WU18 feedback revisions retain both prior build archives (228 files each) and ex
 
 
 Root WU18 technical PASS adopts only the named archived45 plus separately captured rejectedCopy2/successCopy2 callback bridges, with original fixture Activity-order correction explicit. Executed reports and all frozen1356files/819PNG remain byte unchanged. Root verified full worktree/index archive SHA, code/data/commands/default consumers and source/font provenance; exact six generated-evidence whitespace exceptions preserve archived emitted bytes, leaving code/docs checks active. Inherited WU29 limitations and future integration owners remain; no broader visual/runtime/project acceptance follows from this PASS.
+
+
+### WU-19 notifications structure and qualified capture scope
+
+Inbox rail is 420px; only its list scrollbar is visually hidden like Source. Category tabs use Source 16px gap, scoped padding/underline. Notifications keeps its own max820px page, segmented filter and day panels/dividers. Tailwind handles static layout; feature CSS only owns tab pseudo-element geometry, list scrollbar, row sibling dividers and the exact inclusive `@media (max-width:900px)` fullscreen preview (z48). Default Drawer/overlay ownership is unchanged.
+
+Current WU19 captures use original locked Source records and native actions, with both browsers under Chromium145 Linux `--disable-partial-raster`; threshold0, includeAAtrue, maxDiffPixels0 and no masks. Every original/repeat image, failed report/log/executed harness is frozen at a unique attempt path. This named content/preview evaluation still awaits root adoption; it does not replace the original173 Darwin baseline or prior failures.
+
+
+Inbox's local tab counts follow the currently derived category/unread list, matching Source's late-bound count closure. Source rebuilds the tab bar on render and resets horizontal scroll; Target's Inbox owns a Tabs ref/layout reset on category/unread/record revision. This follows the existing Search pattern without changing shared Tabs or notification rail scroll. The accepted candidate will explicitly combine27prior unchanged pairs,7category-count bridge pairs and1current mobile Updates pair with exact production/build provenance. Full matrix02 remains an actual failed attempt, never relabeled as a successful current35 capture.
+
+
+Supplemental actual default Drawer Composer+Avatar wholecomponent captures at1440/390 remain unaccepted59/13 rounded-border pixels, repeat0. Geometry and textarea41px/mdAvatar26px/placeholder/mention/attachment are exact; default composer code branches/classes and all prior Avatar consumers remain unchanged. This new observed border difference is assigned toWU29 without claiming historical inheritance or2strict defaultpairs. Failed post-scroll pipeline/8rawPNG remain frozen. Primary35 qualified aggregate and105strict comparisons are separate.

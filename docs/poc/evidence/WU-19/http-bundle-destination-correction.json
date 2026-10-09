@@ -1,0 +1,17 @@
+{
+  "command": [
+    "node",
+    "tests/data/http-bundle.mjs",
+    "WU-19"
+  ],
+  "exitStatus": 0,
+  "scope": "Corrects runner destination only. Core01 original default WU06 destination bytes preserved then prior WU06 restored exactly from HEAD. HTTP-built assets unchanged.",
+  "http-bundle.json": {
+    "newEqualsActualCore01Bytes": true,
+    "WU06EqualsHEAD": true
+  },
+  "http-module-graph.json": {
+    "newEqualsActualCore01Bytes": true,
+    "WU06EqualsHEAD": true
+  }
+}

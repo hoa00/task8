@@ -1,0 +1,22 @@
+Q19-01-owned-query-loading-before-real-notification-response
+Q19-02-read-error-shared-optimistic-badges-guarded-rollback-zero-server-write
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+1 !== 0
+
+    at file:///workspace/task8/tests/visual/notifications/http.mjs:43:232
+    at async probe (file:///workspace/task8/tests/visual/notifications/http.mjs:17:48)
+    at async file:///workspace/task8/tests/visual/notifications/http.mjs:42:3 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

@@ -6,6 +6,7 @@ import { queryKeys } from './query-keys.ts';
 const taskProjections = ['task', 'tasks', 'getTaskSummary', 'project', 'projects', 'getProjectSummary', 'home', 'overview', 'getMemberSummary', 'getTeamSummary', 'members', 'teams', 'search', 'activity', 'archive', 'bootstrap', 'milestones'] as const;
 const projectProjections = [...taskProjections, 'files', 'file', 'comments', 'savedViews'] as const;
 export const operationInvalidations: Partial<Record<OperationId, readonly string[]>> = {
+  updateNotification: ['notifications', 'bootstrap'], readAllNotifications: ['notifications', 'bootstrap'],
   createTask: taskProjections, updateTask: taskProjections, setTaskCompletion: taskProjections, moveTask: [...taskProjections, 'files', 'file'], duplicateTask: taskProjections, archiveTask: taskProjections, restoreTask: taskProjections, restoreDeletedTask: taskProjections, deleteTask: taskProjections, bulkMutateTasks: taskProjections,
   createSubtask: taskProjections, updateSubtask: taskProjections, deleteSubtask: taskProjections, promoteSubtask: taskProjections,
   createProject: projectProjections, updateProject: projectProjections, duplicateProject: projectProjections, archiveProject: projectProjections, restoreProject: projectProjections, restoreDeletedProject: projectProjections, deleteProject: projectProjections,

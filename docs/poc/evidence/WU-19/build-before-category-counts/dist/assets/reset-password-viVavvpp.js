@@ -1,0 +1,1 @@
+import{t as e}from"./PendingPage-CvnwpK-g.js";var t=e;export{t as component};

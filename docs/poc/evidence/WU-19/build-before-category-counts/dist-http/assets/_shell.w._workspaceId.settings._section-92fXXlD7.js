@@ -1,0 +1,1 @@
+import{t as e}from"./PendingPage-DXptzBJN.js";var t=e;export{t as component};

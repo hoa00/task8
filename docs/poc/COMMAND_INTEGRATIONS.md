@@ -10,7 +10,7 @@ Ledger này được WU-28 kiểm lại và WU-29 phải đóng trước M2. Pen
 | File result preview | Dùng FilePreviewDialog WU-10 ngay; liên kết task mở drawer hiện hữu | WU-18, implemented | Native N05 và scoped preview comparisons |
 | Actor / people result | Route member profile canonical; boundary pending thật | WU-20, pending | Member profile/ActivityFeed actor callback dùng chung; kiểm tất cả Page/Palette/Activity entry |
 | Invite member | Palette option aria-disabled; chưa mutation hay success toast | WU-20, pending | Invite form/permission/canonical member mutation, gồm Home invite entry; WU-27 permission review |
-| Inbox / Notifications | Canonical routes, pending feature boundary | WU-19, pending | Commands và G I / G N vào feature đã triển khai |
+| Inbox / Notifications | Canonical routes, shared persisted notification state | WU-19, implemented; native N19-04 | Commands và G I / G N vào feature đã triển khai |
 | Workspace/appearance Settings | Canonical settings routes, pending boundary; shortcut definitions đã export | WU-23, pending | Settings dùng lại definitions; G S và command appearance mở đúng section |
 | Files suggestion / canonical file URL | Project Files tab route hiện hữu nhưng body pending; preview copy dùng foundation URL | WU-22, pending | Canonical Files body, preview/deep-link/copy URL round trip, archived/deleted/forbidden parent handling |
 | Switch workspace | Typed catalog; current workspace đóng Palette; workspace khác đi canonical Home, bootstrap có thể trả404 thật | WU-27 / WU-31, pending | Canonical namespace/session/init cho từng catalog workspace; không copy dữ liệu W1 sang W2/W3; native actual outcome phải được ghi |

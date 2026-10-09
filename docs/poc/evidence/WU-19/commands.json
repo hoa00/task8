@@ -1,0 +1,211 @@
+{
+  "status": "passed",
+  "requiredUniqueCommands": 13,
+  "requiredActualExitZeroCount": 13,
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "start": "2026-10-09T22:03:42.335Z",
+      "end": "2026-10-09T22:03:53.712Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-02/typecheck.log",
+      "logSha256": "bbb0cbb330f39dc542c9b41928363ffc246c73c705a1ff338afd0aa1a50b662d"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "start": "2026-10-09T22:03:53.713Z",
+      "end": "2026-10-09T22:03:55.837Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-02/build.log",
+      "logSha256": "03e3900ca35fa48f7bebbe0a861c8262ff51f5f440ee8e235e1d3312144f75b4"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "start": "2026-10-09T21:49:49.892Z",
+      "end": "2026-10-09T21:49:54.552Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/test.log",
+      "logSha256": "cbbbb88b633b4d732e33b00f74ba64df0705a9cbbdec953551993b83ee726b93"
+    },
+    {
+      "id": "coverage",
+      "command": [
+        "pnpm",
+        "contracts:coverage"
+      ],
+      "start": "2026-10-09T21:50:05.934Z",
+      "end": "2026-10-09T21:50:07.074Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/coverage.log",
+      "logSha256": "4e53b1723152e0aee086d5f3e95561d8dda6f4d683851bfe0012fb333f50582f"
+    },
+    {
+      "id": "consumers",
+      "command": [
+        "pnpm",
+        "contracts:consumers"
+      ],
+      "start": "2026-10-09T21:50:07.074Z",
+      "end": "2026-10-09T21:50:09.983Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/consumers.log",
+      "logSha256": "acd18fc0b18c86ad14234e2b6e42b97ab04d403065c05dc67320a718102d3f12"
+    },
+    {
+      "id": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "start": "2026-10-09T22:03:55.837Z",
+      "end": "2026-10-09T22:03:57.453Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-02/http-build.log",
+      "logSha256": "0f2fb4eb27a54ee0b45f935a72c447b008cba7c68269c433d2f857b59c4e7a10"
+    },
+    {
+      "id": "http-bundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-19",
+        "--evidence-suffix=final-02"
+      ],
+      "start": "2026-10-09T22:03:57.453Z",
+      "end": "2026-10-09T22:03:57.492Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-02/http-bundle.log",
+      "logSha256": "5c7fc2afaa23d59cb6e6dabfa9cb9ed4b5d78e0de0c2ef054e4f3c0edf0e0445"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "start": "2026-10-09T21:50:11.751Z",
+      "end": "2026-10-09T21:50:12.293Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/core-01/reference.log",
+      "logSha256": "2b359c7cfcf5331723dcd238178dc7be40372c418c174696a3fe25a5eaf20933"
+    },
+    {
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/lint-final-02.log",
+      "id": "lint",
+      "logSha256": "9ed5ea464232e362cc9db5204c7722c401d75503909572c79f0e96b00e7b6ed4"
+    },
+    {
+      "id": "native",
+      "command": [
+        "node",
+        "tests/visual/notifications/interactions.mjs",
+        "--attempt=native-04"
+      ],
+      "exitStatus": 0,
+      "completionEvidence": {
+        "toolSessionId": 10676,
+        "observedExitStatus": 0
+      },
+      "log": "docs/poc/evidence/WU-19/native-04.log",
+      "logSha256": "7a75f95ca7e09e3891147f7f2ef2c7d353f519f412ce552183fdcdeda7333734",
+      "report": "docs/poc/evidence/WU-19/attempts/native-04/report.json",
+      "reportSha256": "45ff06835c24395528c42410d25f39ed9f35c75600c45a2ddadfa2513da3adfb"
+    },
+    {
+      "id": "http-errors",
+      "command": [
+        "node",
+        "tests/visual/notifications/http.mjs",
+        "--attempt=http-03"
+      ],
+      "exitStatus": 0,
+      "completionEvidence": {
+        "toolSessionId": 76981,
+        "observedExitStatus": 0
+      },
+      "log": "docs/poc/evidence/WU-19/http-03.log",
+      "logSha256": "4089c4456e929b243295e914ccc450a438716a53f42a17519845b69b66689d07",
+      "report": "docs/poc/evidence/WU-19/attempts/http-03/report.json",
+      "reportSha256": "f1f19c6eb1b350dfb301266ab7bc2baba067e31dba536cdf6ccf8f305cac32f0"
+    },
+    {
+      "id": "visual-aggregate",
+      "command": [
+        "node",
+        "tests/visual/notifications/aggregate.mjs"
+      ],
+      "exitStatus": 0,
+      "completionEvidence": {
+        "toolSessionId": 82004,
+        "observedExitStatus": 0
+      },
+      "log": "docs/poc/evidence/WU-19/aggregate-02.log",
+      "logSha256": "533362f0e65b580d203ae112a788fb76d78553d34f3392fbca83a40f7de156f9",
+      "report": "docs/poc/evidence/WU-19/visual-verification.json",
+      "reportSha256": "8b1555585ad27b623d8ab19ce69e136e0e49a629840c403811fa4d86d9068826"
+    },
+    {
+      "id": "archive-index",
+      "command": [
+        "node",
+        "tests/visual/notifications/audit.mjs",
+        "--index",
+        "--output=archive-audit-index-02.json"
+      ],
+      "exitStatus": 0,
+      "completionEvidence": {
+        "toolSessionId": 97546,
+        "observedExitStatus": 0
+      },
+      "log": "docs/poc/evidence/WU-19/archive-audit-index-02.log",
+      "logSha256": "e2030de792ea7fb69d58c0bef2f345f19dfe25419a8134890df255ff998850dc",
+      "report": "docs/poc/evidence/WU-19/archive-audit-index-02.json",
+      "reportSha256": "7e4e98af27715132e20261d0e166c814f3891c6f978b0287a2ea92373ad8c04b"
+    }
+  ],
+  "boundedCurrentCapture": "updates-mobile01 actual0 within post-scroll-commands.json; overall postpipeline remains actual1 at supplementaldefaults01.",
+  "reuse": "Native04/HTTP03 unchanged operations at exact archived predecessor build, Source code deltas prove only Inbox tab counts/scroll changed. No rerun/new full35/currentnative claim.",
+  "supplementalFailures": [
+    "smoke01/02/03",
+    "matrix01/02",
+    "categories01",
+    "native01/02/03",
+    "HTTP01/02",
+    "post-scroll pipeline/defaults01",
+    "archive-index01 buffer16MB<26MBreport"
+  ],
+  "supplementalEvidence": [
+    "final01/final02 each5actual0",
+    "bounded Updates3900 and passiveafter0",
+    "defaultgeometry exact withunaccepted59/13",
+    "historicalHTTPdestination restored exactWU06bytes"
+  ]
+}

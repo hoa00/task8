@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "start": "2026-10-09T22:00:35.200Z",
+      "end": "2026-10-09T22:00:46.353Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-01/typecheck.log"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "start": "2026-10-09T22:00:46.353Z",
+      "end": "2026-10-09T22:00:48.455Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-01/build.log"
+    },
+    {
+      "id": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "start": "2026-10-09T22:00:48.455Z",
+      "end": "2026-10-09T22:00:50.047Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-01/http-build.log"
+    },
+    {
+      "id": "http-bundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-19",
+        "--evidence-suffix=final-01"
+      ],
+      "start": "2026-10-09T22:00:50.048Z",
+      "end": "2026-10-09T22:00:50.085Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-01/http-bundle.log"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "start": "2026-10-09T22:00:50.085Z",
+      "end": "2026-10-09T22:01:01.441Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/final-01/lint.log"
+    }
+  ]
+}

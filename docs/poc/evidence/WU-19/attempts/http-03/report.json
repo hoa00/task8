@@ -1,0 +1,536 @@
+{
+  "status": "passed",
+  "probes": [
+    {
+      "id": "Q19-01-owned-query-loading-before-real-notification-response",
+      "status": "passed",
+      "actualHeldRequest": true,
+      "noSuccessfulEmptyFallback": true
+    },
+    {
+      "id": "Q19-02-read-error-shared-optimistic-badges-guarded-rollback-zero-server-write",
+      "status": "passed",
+      "optimisticCount": 5,
+      "rolledBackCount": 6,
+      "serverUnchanged": true,
+      "noSuccessToast": true
+    },
+    {
+      "id": "Q19-03-read-all-error-rolls-back-rows-and-both-counts-without-success-toast",
+      "status": "passed",
+      "optimisticAllRead": true,
+      "restoredCounts": [
+        4,
+        6
+      ],
+      "zeroServerWrite": true,
+      "noSuccessToast": true
+    },
+    {
+      "id": "Q19-04-reply-error-keeps-draft-no-success-then-retry-shared-Drawer",
+      "status": "passed",
+      "draftPreservedOnError": true,
+      "noFalseSuccess": true,
+      "singleSharedCommentAfterRetry": true
+    },
+    {
+      "id": "Q19-05-data-error-visible-and-real-retry-restores-list",
+      "status": "passed",
+      "actualReadFailure": true,
+      "noSuccessfulEmptyFallback": true,
+      "realRetryRecovered": true
+    }
+  ],
+  "requests": [
+    {
+      "operation": "getSession",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listWorkspaces",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "category": "all",
+          "unreadOnly": false
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7345-8f99-fb46494f971f"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7be9-86d8-371d40997650"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7c64-89e6-fb7f40e213f9"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7141-8795-482a25f9352f"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7c13-835b-efe81f8e9f85"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7b0b-8be3-f143433c220a"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "updateNotification",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "notificationId": "01a11abd-aa80-7164-8199-8b7be9dcd9ca",
+        "body": {
+          "read": true
+        }
+      },
+      "outcome": "error"
+    },
+    {
+      "operation": "listNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "category": "all",
+          "unreadOnly": false
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "readAllNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "error"
+    },
+    {
+      "operation": "listNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "category": "all",
+          "unreadOnly": false
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listComments",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "query": {
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "updateNotification",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "notificationId": "01a11abd-aa80-7164-8199-8b7be9dcd9ca",
+        "body": {
+          "read": true
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "category": "all",
+          "unreadOnly": false
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "createComment",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "body": {
+          "bodyText": "WU19 recoverable HTTP reply",
+          "mentionedMemberIds": []
+        }
+      },
+      "outcome": "error"
+    },
+    {
+      "operation": "createComment",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "body": {
+          "bodyText": "WU19 recoverable HTTP reply",
+          "mentionedMemberIds": []
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7345-8f99-fb46494f971f"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7be9-86d8-371d40997650"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7c64-89e6-fb7f40e213f9"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7141-8795-482a25f9352f"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7c13-835b-efe81f8e9f85"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7b0b-8be3-f143433c220a"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listComments",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "query": {
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "category": "all",
+          "unreadOnly": false
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listActivity",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59"
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getSession",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listWorkspaces",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "category": "all",
+          "unreadOnly": false
+        }
+      },
+      "outcome": "error"
+    },
+    {
+      "operation": "listNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "category": "all",
+          "unreadOnly": false
+        }
+      },
+      "outcome": "error"
+    },
+    {
+      "operation": "listNotifications",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "category": "all",
+          "unreadOnly": false
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7345-8f99-fb46494f971f"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7be9-86d8-371d40997650"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7c64-89e6-fb7f40e213f9"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7141-8795-482a25f9352f"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7c13-835b-efe81f8e9f85"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTask",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a11abd-aa80-7b0b-8be3-f143433c220a"
+      },
+      "outcome": "fulfilled"
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Actual HTTP-built app/adapter with typed intercepted responses backed by canonical mock operations. Deterministic held requests/errors test Query optimistic read rollback, loading/error/retry and same Comments. No real backend/D1/R2/Source async-error equivalence."
+}

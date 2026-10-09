@@ -1,0 +1,71 @@
+{
+  "status": "failed",
+  "commands": [
+    {
+      "id": "updates-mobile-01",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/notifications/verify.mjs",
+        "--attempt=updates-mobile-01",
+        "--affected-updates-mobile"
+      ],
+      "start": "2026-10-09T22:05:23.159Z",
+      "end": "2026-10-09T22:05:28.282Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/updates-mobile-01.log"
+    },
+    {
+      "id": "updates-mobile-01-freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/notifications/freeze.mjs",
+        "--attempt=updates-mobile-01"
+      ],
+      "start": "2026-10-09T22:05:28.283Z",
+      "end": "2026-10-09T22:05:28.320Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/updates-mobile-01-freeze.log"
+    },
+    {
+      "id": "tabs-scroll-02",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/notifications/tabs-scroll.mjs",
+        "--attempt=tabs-scroll-02"
+      ],
+      "start": "2026-10-09T22:05:28.320Z",
+      "end": "2026-10-09T22:05:32.236Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/tabs-scroll-02.log"
+    },
+    {
+      "id": "tabs-scroll-02-freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/notifications/freeze.mjs",
+        "--attempt=tabs-scroll-02"
+      ],
+      "start": "2026-10-09T22:05:32.237Z",
+      "end": "2026-10-09T22:05:32.268Z",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/tabs-scroll-02-freeze.log"
+    },
+    {
+      "id": "defaults-01",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/notifications/defaults.mjs",
+        "--attempt=defaults-01"
+      ],
+      "start": "2026-10-09T22:05:32.268Z",
+      "end": "2026-10-09T22:05:40.117Z",
+      "exitStatus": 1,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-19/defaults-01.log"
+    }
+  ]
+}
