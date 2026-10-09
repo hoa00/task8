@@ -1,0 +1,121 @@
+[
+  {
+    "name": "install",
+    "command": "pnpm install --frozen-lockfile --offline",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/install.log"
+  },
+  {
+    "name": "typecheck",
+    "command": "pnpm typecheck",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/typecheck.log"
+  },
+  {
+    "name": "build",
+    "command": "pnpm build",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/build.log"
+  },
+  {
+    "name": "lint",
+    "command": "pnpm lint",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/lint.log"
+  },
+  {
+    "name": "test",
+    "command": "pnpm test",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/test.log"
+  },
+  {
+    "name": "reference-check",
+    "command": "pnpm reference:check",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/reference-check.log"
+  },
+  {
+    "name": "http-build",
+    "command": "pnpm --filter @studio/web build:http",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/http-build.log"
+  },
+  {
+    "name": "http-bundle",
+    "command": "node tests/data/http-bundle.mjs WU-11",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/http-bundle.log"
+  },
+  {
+    "name": "visual",
+    "command": "node tests/visual/task-collaboration/verify.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/visual.log"
+  },
+  {
+    "name": "edit-form-visual",
+    "command": "node tests/visual/task-collaboration/edit-form.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/edit-form-visual.log"
+  },
+  {
+    "name": "interactions",
+    "command": "node tests/visual/task-collaboration/interactions.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/interactions.log"
+  },
+  {
+    "name": "detail-interaction-regression",
+    "command": "node tests/visual/task-collaboration/detail-regression.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/detail-interaction-regression.log"
+  },
+  {
+    "name": "list-visual-regression",
+    "command": "node tests/visual/task-list/verify.mjs --wu11-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/list-visual-regression.log"
+  },
+  {
+    "name": "list-interaction-regression",
+    "command": "node tests/visual/task-list/interactions.mjs --wu11-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/list-interaction-regression.log"
+  },
+  {
+    "name": "field-regression",
+    "command": "node tests/visual/tasks/interactions.mjs --wu11-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/field-regression.log"
+  },
+  {
+    "name": "overlay-lifecycle-regression",
+    "command": "node tests/visual/overlays/lifecycle.mjs --wu11-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/overlay-lifecycle-regression.log"
+  },
+  {
+    "name": "overlay-visual-interaction-regression",
+    "command": "node tests/visual/overlays/verify.mjs --wu11-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-11/overlay-visual-interaction-regression.log"
+  }
+]

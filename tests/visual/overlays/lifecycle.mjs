@@ -5,7 +5,7 @@ import { spawn } from 'node:child_process';
 import { chromium, expect } from '@playwright/test';
 import { newPage, environment } from '../reference/environment.mjs';
 const child=spawn(process.execPath,['./node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','5173','--strictPort'],{cwd:path.resolve('apps/web'),stdio:'pipe'});let logs='';child.stdout.on('data',v=>logs+=v);child.stderr.on('data',v=>logs+=v);let browser;
-const evidence=process.argv.includes('--wu10-regression')?'docs/poc/evidence/WU-10/overlay-regression':'docs/poc/evidence/WU-05';fs.mkdirSync(evidence,{recursive:true});
+const evidence=(process.argv.includes('--wu10-regression')||process.argv.includes('--wu11-regression'))?`docs/poc/evidence/${process.argv.includes('--wu11-regression')?'WU-11':'WU-10'}/overlay-regression`:'docs/poc/evidence/WU-05';fs.mkdirSync(evidence,{recursive:true});
 const report={mode:'development-actual-StrictMode',environment,probes:[]};
 try{
   for(let i=0;i<50;i++){try{if((await fetch('http://127.0.0.1:5173/overlays.html')).ok)break;}catch{/* startup */}if(child.exitCode!==null)throw new Error(logs);await new Promise(resolve=>setTimeout(resolve,100));}

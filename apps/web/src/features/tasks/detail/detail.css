@@ -19,3 +19,8 @@
 
 @media (prefers-reduced-motion: reduce) { :root:not([data-motion='full']) .task-drawer .task-drawer-body > * { animation: fadeOnly .12s both !important; } }
 :root[data-motion='reduce'] .task-drawer .task-drawer-body > * { animation: fadeOnly .12s both !important; }
+
+@layer utilities {
+ .task-detail-section { @apply mt-[26px]; }
+ .task-description:empty::before { content: attr(data-placeholder); color: var(--text-3); }
+}

@@ -15,6 +15,8 @@ export function useOverlayController() {
   if (!controller) throw new Error('Overlay primitives require OverlayProvider');
   return controller;
 }
+// Features honor the same snapshot-only no-initial-focus state as Dialog.
+export function useOverlayInitialState(): 'settled' | 'default' { return useOverlayController().initiallySettled ? 'settled' : 'default'; }
 export const focusables = (node: HTMLElement) => [...node.querySelectorAll<HTMLElement>('a[href],button:not(:disabled),input:not(:disabled):not([type="hidden"]),select:not(:disabled),textarea:not(:disabled),[tabindex]:not([tabindex="-1"]),[contenteditable="true"]')].filter(el => el.getClientRects().length && !el.closest('[inert]'));
 export function useOverlayLayer({ open, node, anchor, modal = false, focus = true, initialFocus, returnFocus, onOpenChange }: {
   open: boolean; node: RefObject<HTMLElement | null>; anchor?: RefObject<HTMLElement | null> | undefined; modal?: boolean; focus?: boolean;

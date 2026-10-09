@@ -489,3 +489,19 @@ TaskFormDialog via canonical scoped child operations, rich editor and Comments/A
 including full-body comparison in both source collaboration states. Do not duplicate
 Drawer/controller/properties/file foundation. Snapshot-only initial settled overlay
 state is independent of default motion/focus verification.
+
+
+### WU-11 ownership checkpoint
+
+TaskDetailsBody now composes one DescriptionEditor/editor adapter, SubtaskList,
+SubtaskDetail, the existing FileFoundation and TaskConversation. The same
+useSubtaskCommands connects the existing EditTaskForm child controls to scoped
+canonical CRUD; Task PATCH remains scalar. No replacement completion owner.
+
+`features/comments/Comments.tsx` exports named CommentListProps, CommentItemProps,
+CommentComposerProps, ReactionBarProps and MentionMenuProps. These presentation
+components receive members, current actor, clock/value/pending/error and typed
+callbacks; Inbox WU-19 reuses this boundary. CommentText renders React text/mention
+spans. Surrounding Drawer timeline and pagination composition remain feature-owned.
+`comments/queries.ts` owns Query infinite-query keys/options, not another cache.
+Composer files call the existing TaskOverlayHost upload controller/FileFoundation.

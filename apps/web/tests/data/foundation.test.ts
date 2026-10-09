@@ -79,7 +79,7 @@ test('same 83-method StudioApi and truthful capabilities reject unimplemented mo
   assert.equal(data.capabilities.dataMode, 'mock');
   assert.equal(data.capabilities.features.tasks, 'unavailable');
   assert.equal(data.capabilities.features.authentication, 'demoOnly');
-  await assert.rejects(mock.createComment({ workspaceId, taskId: sourceId('tasks', 't3'), body: { bodyText: 'Pending collaboration' } }), isApiError('CAPABILITY_UNAVAILABLE'));
+  await assert.rejects(mock.listNotifications({ workspaceId, query: {} }), isApiError('CAPABILITY_UNAVAILABLE'));
 });
 
 test('input validation and unavailable workspace fail through contract errors', async () => {

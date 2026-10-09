@@ -8,6 +8,8 @@ export const MockDatasetSchema = z.strictObject({
   taskCommands: z.strictObject({
     descriptionTexts: z.record(EntityIdSchema, z.string()).default(() => ({})),
     taskFavorites: z.record(EntityIdSchema, z.array(EntityIdSchema)).default(() => ({})),
+    deletedComments: z.record(EntityIdSchema, InstantSchema).default(() => ({})),
+    commentUndoRecords: z.record(EntityIdSchema, z.strictObject({ actorId: EntityIdSchema, commentId: EntityIdSchema, taskId: EntityIdSchema, commentPostVersion: VersionSchema, taskPostVersion: VersionSchema, deletedAt: InstantSchema, result: UndoResultSchema.nullable() })).default(() => ({})),
     deletedFiles: z.record(EntityIdSchema, InstantSchema).default(() => ({})),
     uploadRequests: z.record(EntityIdSchema, z.record(ClientRequestIdSchema, z.strictObject({ fingerprint: z.string().regex(/^[a-f0-9]{64}$/), fileId: EntityIdSchema }))).default(() => ({})),
     lifecycleUndoRecords: z.record(EntityIdSchema, z.strictObject({ actorId: EntityIdSchema, kind: z.enum(['task.archive', 'task.delete', 'file.delete']), entityId: EntityIdSchema, postVersion: VersionSchema, lifecycleAt: InstantSchema, previousArchivedAt: InstantSchema.nullable(), taskId: EntityIdSchema.nullable(), taskPostVersion: VersionSchema.nullable(), activityIds: z.array(EntityIdSchema).max(128), result: UndoResultSchema.nullable() })).default(() => ({})),
@@ -18,7 +20,7 @@ export const MockDatasetSchema = z.strictObject({
     previousStatuses: z.record(EntityIdSchema, TaskStatusSchema).default(() => ({})),
     recurrenceSlots: z.record(EntityIdSchema, EntityIdSchema).default(() => ({})),
     undoRecords: z.record(EntityIdSchema, z.strictObject({ taskId: EntityIdSchema, actorId: EntityIdSchema, postVersion: VersionSchema, previousStatus: TaskStatusSchema, result: UndoResultSchema.nullable() })).default(() => ({})),
-  }).default(() => ({ descriptionTexts: {}, taskFavorites: {}, deletedFiles: {}, uploadRequests: {}, lifecycleUndoRecords: {}, deletedTasks: {}, createRequests: {}, deleteUndoRecords: {}, projectSequences: {}, previousStatuses: {}, recurrenceSlots: {}, undoRecords: {} })),
+  }).default(() => ({ descriptionTexts: {}, deletedComments: {}, commentUndoRecords: {}, taskFavorites: {}, deletedFiles: {}, uploadRequests: {}, lifecycleUndoRecords: {}, deletedTasks: {}, createRequests: {}, deleteUndoRecords: {}, projectSequences: {}, previousStatuses: {}, recurrenceSlots: {}, undoRecords: {} })),
   projectOrder: z.array(EntityIdSchema), preferences: MemberPreferencesSchema, notificationPreferences: NotificationPreferencesSchema,
 });
 export type MockDataset = z.infer<typeof MockDatasetSchema>;

@@ -1,0 +1,193 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "commands": [
+    {
+      "name": "install",
+      "command": "pnpm install --frozen-lockfile --offline",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/install.log"
+    },
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/build.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/test.log"
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/reference-check.log"
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/http-build.log"
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-11",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/http-bundle.log"
+    },
+    {
+      "name": "visual",
+      "command": "node tests/visual/task-collaboration/verify.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/visual.log"
+    },
+    {
+      "name": "edit-form-visual",
+      "command": "node tests/visual/task-collaboration/edit-form.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/edit-form-visual.log"
+    },
+    {
+      "name": "interactions",
+      "command": "node tests/visual/task-collaboration/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/interactions.log"
+    },
+    {
+      "name": "detail-interaction-regression",
+      "command": "node tests/visual/task-collaboration/detail-regression.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/detail-interaction-regression.log"
+    },
+    {
+      "name": "list-visual-regression",
+      "command": "node tests/visual/task-list/verify.mjs --wu11-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/list-visual-regression.log"
+    },
+    {
+      "name": "list-interaction-regression",
+      "command": "node tests/visual/task-list/interactions.mjs --wu11-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/list-interaction-regression.log"
+    },
+    {
+      "name": "field-regression",
+      "command": "node tests/visual/tasks/interactions.mjs --wu11-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/field-regression.log"
+    },
+    {
+      "name": "overlay-lifecycle-regression",
+      "command": "node tests/visual/overlays/lifecycle.mjs --wu11-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/overlay-lifecycle-regression.log"
+    },
+    {
+      "name": "overlay-visual-interaction-regression",
+      "command": "node tests/visual/overlays/verify.mjs --wu11-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-11/overlay-visual-interaction-regression.log"
+    }
+  ],
+  "acceptance": {
+    "AC1": "Same parse5 restricted HTML boundary and six-command native selection/caret serialization",
+    "AC2": "Canonical child CRUD/detail/promotion plus parent CAS, comments/reactions and actor-scoped bounded Undo after reload",
+    "AC3": "Whole owning Drawer top/deep/default Comments and Activity, mobile/dark/full/subtask/editor/mention/reaction/upload/error plus complete Edit form",
+    "AC4": "Reusable comments presentation contracts, native keyboard/Mod+Enter/mentions/reactions/composer chooser/drop/retry/preview and late-response draft scopes"
+  },
+  "limitations": [
+    "Linux source-only technical samples; original173Darwin goldens unchanged, no user visual approval",
+    "Current whole-body sample pass does not establish historical mobile17/14 root cause",
+    "Cold font-ready settled/no-initial-focus QA setup; default production focus/motion verified independently; no production paint workaround",
+    "Mock metadata sample/contentAvailable:false, pending progress0; no HTTP/R2 upload bytes until WU35",
+    "Files catalogue/deeplink WU22; no future units implemented"
+  ],
+  "supplementalVerification": {
+    "report": "docs/poc/evidence/WU-11/supplemental-verification.json",
+    "reason": "Plain clipboard fallback now reuses existing plainDescriptionHtml; literal/multiline/caret/canonical serialization native regression. Existing visual/shared gates unaffected: no CSS/seed markup/child/comment/file behavior change.",
+    "commands": [
+      {
+        "name": "final-web-typecheck",
+        "command": "pnpm --filter @studio/web typecheck",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/final-web-typecheck.log"
+      },
+      {
+        "name": "final-web-build",
+        "command": "pnpm --filter @studio/web build",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/final-web-build.log"
+      },
+      {
+        "name": "final-lint",
+        "command": "pnpm lint",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/final-lint.log"
+      },
+      {
+        "name": "final-web-test",
+        "command": "pnpm --filter @studio/web test",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/final-web-test.log"
+      },
+      {
+        "name": "final-interactions",
+        "command": "node tests/visual/task-collaboration/interactions.mjs",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/final-interactions.log"
+      }
+    ]
+  },
+  "retainedGateRationale": "Post-gate change only replaced the editor plain clipboard literal escape with the existing plainDescriptionHtml helper. Web typecheck/build/lint/56 tests and all9 collaboration native probes reran. Seed markup/CSS/child/comment/file logic and frozen46 visual pairs/shared regression subjects unchanged; prior17 actual gates retained rather than falsely reporting a new full run.",
+  "summary": {
+    "requiredGates": 17,
+    "postPasteChecks": 5,
+    "contractTests": 93,
+    "webTests": 56,
+    "referenceTests": 3,
+    "workspaceTests": 1,
+    "drawerSamples": 42,
+    "fullFormSamples": 4,
+    "collaborationNativeProbes": 9,
+    "detailRegressionProbes": 11,
+    "listRegressionSamples": 96,
+    "listRegressionProbes": 10,
+    "fieldRegressionProbes": 11,
+    "strictModeLifecycleProbes": 3,
+    "overlayRegressionSamples": 42,
+    "overlayRegressionProbes": 17
+  }
+}

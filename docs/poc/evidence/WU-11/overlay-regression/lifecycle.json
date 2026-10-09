@@ -1,0 +1,107 @@
+{
+  "mode": "development-actual-StrictMode",
+  "environment": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "probes": [
+    {
+      "id": "strictmode-effect-replay-single-active-listeners",
+      "pass": true,
+      "mounted": {
+        "active": {
+          "keydown": 1,
+          "pointerdown": 1,
+          "focusin": 1,
+          "scroll": 1,
+          "animationend": 1,
+          "transitionend": 1
+        },
+        "added": {
+          "keydown": 3,
+          "pointerdown": 3,
+          "focusin": 3,
+          "scroll": 2,
+          "animationend": 2,
+          "transitionend": 2
+        },
+        "removed": {
+          "keydown": 2,
+          "pointerdown": 2,
+          "focusin": 2,
+          "scroll": 1,
+          "animationend": 1,
+          "transitionend": 1
+        }
+      }
+    },
+    {
+      "id": "provider-unmount-cleans-listeners-lock",
+      "pass": true,
+      "unmounted": {
+        "active": {
+          "keydown": 0,
+          "pointerdown": 0,
+          "focusin": 0,
+          "scroll": 0,
+          "animationend": 0,
+          "transitionend": 0
+        },
+        "added": {
+          "keydown": 3,
+          "pointerdown": 3,
+          "focusin": 3,
+          "scroll": 2,
+          "animationend": 2,
+          "transitionend": 2
+        },
+        "removed": {
+          "keydown": 3,
+          "pointerdown": 3,
+          "focusin": 3,
+          "scroll": 2,
+          "animationend": 2,
+          "transitionend": 2
+        }
+      }
+    },
+    {
+      "id": "provider-remount-one-dismiss-per-key",
+      "pass": true,
+      "remounted": {
+        "active": {
+          "keydown": 1,
+          "pointerdown": 1,
+          "focusin": 1,
+          "scroll": 0,
+          "animationend": 0,
+          "transitionend": 0
+        },
+        "added": {
+          "keydown": 6,
+          "pointerdown": 6,
+          "focusin": 6,
+          "scroll": 4,
+          "animationend": 4,
+          "transitionend": 4
+        },
+        "removed": {
+          "keydown": 5,
+          "pointerdown": 5,
+          "focusin": 5,
+          "scroll": 4,
+          "animationend": 4,
+          "transitionend": 4
+        }
+      }
+    }
+  ],
+  "pageErrors": [],
+  "status": "passed"
+}

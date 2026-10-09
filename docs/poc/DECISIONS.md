@@ -100,3 +100,35 @@ Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn
   before the closing Drawer RAF; unconditional restore stole focus and blur closed
   that editor. Preserve that new focus; ordinary Close/Escape/nested return still
   follows existing opener semantics and is covered by scoped42/17 regression.
+
+
+## WU-11 implementation decisions
+
+- WU10's read-only edit children are now active in the same form through scoped
+  create/delete commands and current canonical parent version. Child edits apply
+  immediately; cancel closes scalar form draft and does not undo committed child
+  commands. Task PATCH never replaces the child array. No new child Undo.
+- Exactly six source editor actions use the existing parse5 allowlist and canonical
+  description text. Link uses selected http/https URL, no prompt. Invalid selection
+  uses the one existing info Toast and does not change section geometry. Native
+  Range offsets/direction survive a sanitizer rebuild and sibling invalidation.
+- Source synchronous subtask notes save on input; canonical PATCH commits on blur
+  with parent CAS. Pending commands disable overlapping title/note/navigation.
+  Per-child UI drafts survive error/close/reopen. Empty title is retained with a
+  visible validation message instead of a successful write. Escape closes child
+  intent through the shared dismiss reason and does not implicitly retry a failed
+  blur write; canonical version/call-count regression proves this boundary.
+- Comments are oldest-first and activity newest-first, both stable createdAt/id
+  keysets with scope-bound cursors. Author derives from actor; mentions validate
+  workspace members and never send delivery. Reaction add/remove are own
+  set operations, idempotent, and touch parent version only when state changes.
+  Own comment delete/restore uses tombstone/version and bounded actor-owned Undo,
+  preserving reactions. Every child/comment/reaction write guards parent Undo.
+- Composer asynchronous success uses captured per-task comment revision. Closing,
+  reopening or switching tasks cannot let an old success clear a newer draft;
+  canonical original scope still updates. Existing file chooser/drop/controller
+  and real mock file IDs remain the sole attachment owner.
+- Minimal listMembers read supplies canonical mention titles. Full People pages
+  and global description/comment search remain later owners. Feature capability
+  remains unavailable until all declared owning scopes complete; implemented
+  operations do not return fake success for unavailable routes.

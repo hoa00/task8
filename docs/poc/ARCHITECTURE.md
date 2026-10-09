@@ -152,3 +152,14 @@ DTOs remain Query cache. Serialized staged mock command owner from WU09 continue
 with create children, description canonicalization, lifecycle/file metadata operations
 and guarded bounded inverse. Pure domain adds DOM-less parse5 allowlist normalization;
 web and later Worker owners share this helper, without React/DOM/storage dependencies.
+
+
+WU-11 extends that same controller with per-child recoverable title/note drafts,
+subtask detail intent and comment revision. Late post success invalidates its
+original canonical scope, while clearing the UI draft requires the captured
+revision to match the current per-task draft. Escape uses the registered Dialog
+dismiss reason so a disabled child editor cannot accidentally dismiss its parent.
+Child edits disable overlapping controls during the canonical parent-CAS command;
+failed drafts stay recoverable. Comments/activity stay in Query infinite pages.
+The same pure parse5 tree normalizer runs before editor HTML enters the DOM and
+after each command/paste, preserving logical selection offsets and direction.

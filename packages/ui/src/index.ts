@@ -9,6 +9,7 @@ export { Select } from './select';
 export type { SelectProps, SelectOption } from './select';
 export { OverlayProvider, Portal, Dialog, DialogHeader, DialogBody, DialogFooter, Popover, Menu, MenuItem, MenuGroup, MenuSeparator, ContextMenu, Tooltip } from './overlays';
 export type { OverlayProviderProps, PortalProps, DialogProps, DialogHeaderProps, DialogBodyProps, DialogFooterProps, PopoverProps, MenuProps, MenuItemProps, MenuGroupProps, ContextMenuProps, TooltipProps, OverlayPlacement, OverlayPoint } from './overlays';
+export { useOverlayInitialState } from './overlay-context';
 export type { OverlayDismissReason } from './overlay-context';
 export { Toast, ToastViewport } from './toasts';
 export type { ToastProps, ToastViewportProps } from './toasts';

@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "reason": "Plain clipboard fallback now reuses existing plainDescriptionHtml; literal/multiline/caret/canonical serialization native regression. Existing visual/shared gates unaffected: no CSS/seed markup/child/comment/file behavior change.",
+  "commands": [
+    {
+      "name": "final-web-typecheck",
+      "command": "pnpm --filter @studio/web typecheck",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/final-web-typecheck.log"
+    },
+    {
+      "name": "final-web-build",
+      "command": "pnpm --filter @studio/web build",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/final-web-build.log"
+    },
+    {
+      "name": "final-lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/final-lint.log"
+    },
+    {
+      "name": "final-web-test",
+      "command": "pnpm --filter @studio/web test",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/final-web-test.log"
+    },
+    {
+      "name": "final-interactions",
+      "command": "node tests/visual/task-collaboration/interactions.mjs",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/final-interactions.log"
+    }
+  ]
+}

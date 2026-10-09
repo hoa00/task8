@@ -9,7 +9,7 @@ export const operationInvalidations: Partial<Record<OperationId, readonly string
   createTask: taskProjections, updateTask: taskProjections, setTaskCompletion: taskProjections, moveTask: [...taskProjections, 'files', 'file'], duplicateTask: taskProjections, archiveTask: taskProjections, restoreTask: taskProjections, restoreDeletedTask: taskProjections, deleteTask: taskProjections, bulkMutateTasks: taskProjections,
   createSubtask: taskProjections, updateSubtask: taskProjections, deleteSubtask: taskProjections, promoteSubtask: taskProjections,
   createProject: projectProjections, updateProject: projectProjections, duplicateProject: projectProjections, archiveProject: projectProjections, restoreProject: projectProjections, restoreDeletedProject: projectProjections, deleteProject: projectProjections,
-  createComment: [...taskProjections, 'comments', 'notifications'], deleteComment: [...taskProjections, 'comments'], restoreDeletedComment: [...taskProjections, 'comments'], addCommentReaction: ['comments'], removeCommentReaction: ['comments'],
+  createComment: [...taskProjections, 'comments', 'notifications'], deleteComment: [...taskProjections, 'comments'], restoreDeletedComment: [...taskProjections, 'comments'], addCommentReaction: [...taskProjections, 'comments'], removeCommentReaction: [...taskProjections, 'comments'],
   updatePreferences: ['preferences', 'bootstrap'], updateNotificationPreferences: ['notificationPreferences', 'bootstrap'], updateProjectOrder: ['bootstrap', 'projects'],
 };
 

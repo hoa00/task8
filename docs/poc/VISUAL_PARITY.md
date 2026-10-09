@@ -414,3 +414,30 @@ focus target outside the closing layer. This prevents Drawer-close RAF from stea
 new List title editor focus. Real canonical editor-after-two-RAF assertion and scoped
 42/17 overlay nested/trap/return plus StrictMode checks cover this change; source CSS
 and production motion are unchanged.
+
+
+### WU-11 full-body capture boundary
+
+The collaboration matrix compares the entire actual Drawer rectangle, including
+all body sections, default Comments AND Activity, deep scroll, full mode, mobile,
+dark, SubtaskDetail, rich editor, mentions, reaction picker, upload and error. It
+does not use WU10's sections:null or isolateOwnedDrawer. Complete Edit form samples
+include active existing child controls. Original source #app/#layer stay connected;
+only unrelated app paint is hidden by the established QA harness.
+
+Both contexts use real locked font HTTP bytes, 400/500/600 ready, en-US/UTC/DPR1,
+MacIntel, seed804205 and fixture clock2026-10-08T09:00Z. Await concurrent finite
+non-idle motion, original source render clears its own entrance flags, layout and
+two RAF, neutral pointer; cold prefetched target OverlayProvider settled state
+suppresses initial focus only in QA. Default production motion/focus/keyboard,
+held responses and files are verified independently. No production paint,
+transform or remount workaround; original173Darwin baselines remain immutable.
+
+Measured corrections belong to current owners: source progress is full-width
+inner scaleX with radius4; Upload svg opacity .9; native composer placeholder
+rgb117,117,117; source rich-editor radius8; mention .pop min200, no border beyond
+shadow ring, radius10, z80/overflow-y:auto/max-height/origin, and .mi gap9/min-height30/padding0 8; emoji picker font16.
+Reports retain rejected audits and computed styles rather than masks/tolerance.
+Current full-body pass describes this documented harness only; the historical
+WU10 mobile17/14 root cause has not been proved. This is technical comparison,
+not user visual approval or physical-device/Darwin whole-page parity.

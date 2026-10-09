@@ -1,0 +1,210 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running test in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:test: cache bypass, force executing 97d6eeecc572476f
+@studio/ui:build: cache hit, replaying logs a6b0005ae6e9b6b9
+@studio/contracts:build: cache hit, replaying logs 4e0e2b5cc1593823
+@studio/ui:build: $ tsc -p tsconfig.build.json
+@studio/contracts:build: $ tsc -p tsconfig.build.json
+@studio/domain:build: cache hit, replaying logs bff89b23152b1fa6
+@studio/domain:build: $ tsc -p tsconfig.build.json
+@studio/web:test: cache bypass, force executing 7697eb0b31f9ac99
+@studio/contracts:test: $ node --experimental-strip-types --test --test-isolation=none ../../tests/contracts/*.test.ts && node ../../tests/contracts/generate-source-identities.mjs --check
+@studio/web:test: $ node --experimental-strip-types --test --test-isolation=none src/app/env.test.ts tests/data/*.test.ts
+@studio/contracts:test: {"unit":"WU-02","source":"docs/poc/API_CONTRACT.md","status":"passed","expectedCount":83,"actualCount":83,"explicitOperationIds":["setTaskCompletion","bulkMutateTasks","deleteTeam","undoCommand","createTask","uploadProjectFile"]}
+@studio/contracts:test: ✔ getSession: request/response fixture validates shared boundary (4.193639ms)
+@studio/contracts:test: ✔ listWorkspaces: request/response fixture validates shared boundary (1.162977ms)
+@studio/contracts:test: ✔ getBootstrap: request/response fixture validates shared boundary (10.568975ms)
+@studio/contracts:test: ✔ getWorkspace: request/response fixture validates shared boundary (0.368012ms)
+@studio/contracts:test: ✔ updateWorkspace: request/response fixture validates shared boundary (0.807012ms)
+@studio/contracts:test: ✔ getProfile: request/response fixture validates shared boundary (0.225328ms)
+@studio/contracts:test: ✔ updateProfile: request/response fixture validates shared boundary (0.613892ms)
+@studio/contracts:test: ✔ getPreferences: request/response fixture validates shared boundary (0.190837ms)
+@studio/contracts:test: ✔ updatePreferences: request/response fixture validates shared boundary (3.059406ms)
+@studio/contracts:test: ✔ getNotificationPreferences: request/response fixture validates shared boundary (0.298118ms)
+@studio/contracts:test: ✔ updateNotificationPreferences: request/response fixture validates shared boundary (0.688044ms)
+@studio/contracts:test: ✔ listProjects: request/response fixture validates shared boundary (1.547184ms)
+@studio/contracts:test: ✔ createProject: request/response fixture validates shared boundary (1.122196ms)
+@studio/contracts:test: ✔ getProject: request/response fixture validates shared boundary (0.476526ms)
+@studio/contracts:test: ✔ updateProject: request/response fixture validates shared boundary (1.628587ms)
+@studio/contracts:test: ✔ duplicateProject: request/response fixture validates shared boundary (6.794606ms)
+@studio/contracts:test: ✔ archiveProject: request/response fixture validates shared boundary (0.777287ms)
+@studio/contracts:test: ✔ restoreProject: request/response fixture validates shared boundary (0.287101ms)
+@studio/contracts:test: ✔ restoreDeletedProject: request/response fixture validates shared boundary (0.235083ms)
+@studio/contracts:test: ✔ deleteProject: request/response fixture validates shared boundary (0.269545ms)
+@studio/contracts:test: ✔ listProjectMembers: request/response fixture validates shared boundary (0.545178ms)
+@studio/contracts:test: ✔ getProjectSummary: request/response fixture validates shared boundary (0.186711ms)
+@studio/contracts:test: ✔ listMembers: request/response fixture validates shared boundary (1.023657ms)
+@studio/contracts:test: ✔ getMember: request/response fixture validates shared boundary (0.365349ms)
+@studio/contracts:test: ✔ getMemberSummary: request/response fixture validates shared boundary (0.740803ms)
+@studio/contracts:test: ✔ listTeams: request/response fixture validates shared boundary (0.369185ms)
+@studio/contracts:test: ✔ createTeam: request/response fixture validates shared boundary (0.872811ms)
+@studio/contracts:test: ✔ getTeam: request/response fixture validates shared boundary (0.30626ms)
+@studio/contracts:test: ✔ updateTeam: request/response fixture validates shared boundary (0.761323ms)
+@studio/contracts:test: ✔ deleteTeam: request/response fixture validates shared boundary (0.387312ms)
+@studio/contracts:test: ✔ getTeamSummary: request/response fixture validates shared boundary (1.102035ms)
+@studio/contracts:test: ✔ listTasks: request/response fixture validates shared boundary (1.99691ms)
+@studio/contracts:test: ✔ getTaskSummary: request/response fixture validates shared boundary (0.571078ms)
+@studio/contracts:test: ✔ getTask: request/response fixture validates shared boundary (1.933084ms)
+@studio/contracts:test: ✔ resolveTaskKey: request/response fixture validates shared boundary (0.474583ms)
+@studio/contracts:test: ✔ createTask: request/response fixture validates shared boundary (1.635968ms)
+@studio/contracts:test: ✔ updateTask: request/response fixture validates shared boundary (1.062646ms)
+@studio/contracts:test: ✔ setTaskCompletion: request/response fixture validates shared boundary (0.687143ms)
+@studio/contracts:test: ✔ moveTask: request/response fixture validates shared boundary (1.479883ms)
+@studio/contracts:test: ✔ duplicateTask: request/response fixture validates shared boundary (0.42563ms)
+@studio/contracts:test: ✔ archiveTask: request/response fixture validates shared boundary (0.176445ms)
+@studio/contracts:test: ✔ restoreTask: request/response fixture validates shared boundary (0.200341ms)
+@studio/contracts:test: ✔ restoreDeletedTask: request/response fixture validates shared boundary (0.187913ms)
+@studio/contracts:test: ✔ deleteTask: request/response fixture validates shared boundary (0.158739ms)
+@studio/contracts:test: ✔ bulkMutateTasks: request/response fixture validates shared boundary (1.611911ms)
+@studio/contracts:test: ✔ createSubtask: request/response fixture validates shared boundary (0.597408ms)
+@studio/contracts:test: ✔ updateSubtask: request/response fixture validates shared boundary (0.813532ms)
+@studio/contracts:test: ✔ deleteSubtask: request/response fixture validates shared boundary (0.665109ms)
+@studio/contracts:test: ✔ promoteSubtask: request/response fixture validates shared boundary (0.187682ms)
+@studio/contracts:test: ✔ undoCommand: request/response fixture validates shared boundary (1.047022ms)
+@studio/contracts:test: ✔ listComments: request/response fixture validates shared boundary (1.33121ms)
+@studio/contracts:test: ✔ createComment: request/response fixture validates shared boundary (0.667753ms)
+@studio/contracts:test: ✔ deleteComment: request/response fixture validates shared boundary (0.389395ms)
+@studio/contracts:test: ✔ restoreDeletedComment: request/response fixture validates shared boundary (0.396276ms)
+@studio/contracts:test: ✔ addCommentReaction: request/response fixture validates shared boundary (0.43889ms)
+@studio/contracts:test: ✔ removeCommentReaction: request/response fixture validates shared boundary (0.38593ms)
+@studio/contracts:test: ✔ listActivity: request/response fixture validates shared boundary (2.169299ms)
+@studio/contracts:test: ✔ listNotifications: request/response fixture validates shared boundary (2.193935ms)
+@studio/contracts:test: ✔ updateNotification: request/response fixture validates shared boundary (0.52632ms)
+@studio/contracts:test: ✔ readAllNotifications: request/response fixture validates shared boundary (0.377157ms)
+@studio/contracts:test: ✔ listSavedViews: request/response fixture validates shared boundary (1.108936ms)
+@studio/contracts:test: ✔ createSavedView: request/response fixture validates shared boundary (0.474022ms)
+@studio/contracts:test: ✔ updateSavedView: request/response fixture validates shared boundary (0.64571ms)
+@studio/contracts:test: ✔ deleteSavedView: request/response fixture validates shared boundary (0.563726ms)
+@studio/contracts:test: ✔ addTaskFavorite: request/response fixture validates shared boundary (0.465249ms)
+@studio/contracts:test: ✔ removeTaskFavorite: request/response fixture validates shared boundary (0.117096ms)
+@studio/contracts:test: ✔ addProjectFavorite: request/response fixture validates shared boundary (0.454472ms)
+@studio/contracts:test: ✔ removeProjectFavorite: request/response fixture validates shared boundary (0.168273ms)
+@studio/contracts:test: ✔ updateProjectOrder: request/response fixture validates shared boundary (0.290737ms)
+@studio/contracts:test: ✔ listProjectFiles: request/response fixture validates shared boundary (0.814904ms)
+@studio/contracts:test: ✔ getFile: request/response fixture validates shared boundary (0.45291ms)
+@studio/contracts:test: ✔ renameFile: request/response fixture validates shared boundary (0.641514ms)
+@studio/contracts:test: ✔ duplicateFile: request/response fixture validates shared boundary (0.634984ms)
+@studio/contracts:test: ✔ deleteFile: request/response fixture validates shared boundary (0.57911ms)
+@studio/contracts:test: ✔ restoreDeletedFile: request/response fixture validates shared boundary (0.278178ms)
+@studio/contracts:test: ✔ uploadProjectFile: request/response fixture validates shared boundary (0.708925ms)
+@studio/contracts:test: ✔ getFileContent: request/response fixture validates shared boundary (0.739471ms)
+@studio/contracts:test: ✔ getHome: request/response fixture validates shared boundary (1.6977ms)
+@studio/contracts:test: ✔ getOverview: request/response fixture validates shared boundary (0.847273ms)
+@studio/contracts:test: ✔ search: request/response fixture validates shared boundary (1.403478ms)
+@studio/contracts:test: ✔ listCalendarEvents: request/response fixture validates shared boundary (1.030899ms)
+@studio/contracts:test: ✔ listMilestones: request/response fixture validates shared boundary (0.394272ms)
+@studio/contracts:test: ✔ listArchive: request/response fixture validates shared boundary (0.767743ms)
+@studio/contracts:test: ✔ locked identity UUIDs and catalog enums derive from a single canonical definition (0.342675ms)
+@studio/contracts:test: ✔ DateOnly accepts actual leap dates and rejects rollover without timezone conversion (0.454903ms)
+@studio/contracts:test: ✔ PATCH null clears; absent keeps; explicit undefined is not an update (0.408624ms)
+@studio/contracts:test: ✔ closed enums, UUIDv7 membership keys, server fields and positive safe versions are enforced (0.408434ms)
+@studio/contracts:test: ✔ cursor/query validation preserves filters and excludes pagination from summary scope (1.732142ms)
+@studio/contracts:test: ✔ bulk discriminants, column scope, atomic bounds and personal order are constrained (1.455416ms)
+@studio/contracts:test: ✔ restricted projects exclude private child projections and real external services cannot be claimed (0.52613ms)
+@studio/contracts:test: ✔ full view completeness checks count, dedupe and cursor exhaustion (0.808124ms)
+@studio/contracts:test: ✔ error fixtures, lifecycle and file identity are typed and bounded (1.071609ms)
+@studio/contracts:test: ✔ locked deterministic identities retain exact source keys/titles/relations and counts (1.408796ms)
+@studio/contracts:test: ℹ tests 93
+@studio/contracts:test: ℹ suites 0
+@studio/contracts:test: ℹ pass 93
+@studio/contracts:test: ℹ fail 0
+@studio/contracts:test: ℹ cancelled 0
+@studio/contracts:test: ℹ skipped 0
+@studio/contracts:test: ℹ todo 0
+@studio/contracts:test: ℹ duration_ms 255.179904
+@studio/web:test: ✔ public env defaults and explicit HTTP mode are stable (1.92419ms)
+@studio/web:test: ✔ public env rejects unknown modes, external URLs and exposed secrets (0.967283ms)
+@studio/web:test: ✔ normalized seed preserves all canonical identities, task content and relationships (10.780493ms)
+@studio/web:test: ✔ clock seam is UTC, stable and does not mutate the locked fixture (11.948767ms)
+@studio/web:test: ✔ all foundation responses parse and private project catalog excludes protected details (14.841201ms)
+@studio/web:test: ✔ same 83-method StudioApi and truthful capabilities reject unimplemented mock mutations (6.013062ms)
+@studio/web:test: ✔ input validation and unavailable workspace fail through contract errors (4.474681ms)
+@studio/web:test: ✔ mock persistence, reload and reset are reproducible and namespace-isolated (31.522488ms)
+@studio/web:test: ✔ production reset is forbidden; corrupt and foreign persisted state cannot enter mock reads (8.836072ms)
+@studio/web:test: ✔ blocked storage stays operational in memory without changing other namespaces (11.576999ms)
+@studio/web:test: ✔ empty, error and offline scenarios produce explicit data states without persistence leaks (10.985851ms)
+@studio/web:test: ✔ loading exposes real pending Query state then resolves; cancellation clears the timer (12.412474ms)
+@studio/web:test: ✔ HTTP uses typed JSON responses and advertises HTTP mode only from HTTP session (21.728767ms)
+@studio/web:test: ✔ HTTP errors, network failures and malformed success never fall back to mock (6.422026ms)
+@studio/web:test: ✔ HTTP normalizes validated filters with URLSearchParams and forwards abort signals (2.870822ms)
+@studio/web:test: ✔ query keys canonicalize schema defaults and isolate every workspace read (0.560983ms)
+@studio/web:test: ✔ mutation invalidation stays in its workspace and includes cross-view task projections (2.230881ms)
+@studio/web:test: ✔ workspace query cancellation prevents a late old-workspace response entering cache (5.488194ms)
+@studio/web:test: ✔ dev/test mock reset clears Query cache while production denial leaves cache untouched (13.358985ms)
+@studio/web:test: ✔ shell aggregates are actual bootstrap data, empty counts and saved view ownership are truthful (7.033955ms)
+@studio/web:test: ✔ legacy whitelist excludes prototype/project aliases and canonical links retain full prefix (0.764007ms)
+@studio/web:test: ✔ navigation aggregates apply project authorization, archive and internal tombstone predicates (11.055686ms)
+@studio/web:test: ✔ canonical child CRUD, omitted fields, parent versions, progress and promotion inheritance are atomic (20.243326ms)
+@studio/web:test: ✔ child identity/scope validation and tombstones perform zero writes; every child command guards stale Undo (13.208169ms)
+@studio/web:test: ✔ comments, mentions, reactions, delete and idempotent bounded Undo survive reload (49.209034ms)
+@studio/web:test: ✔ comment deletion ownership, reaction/comment parent touches and stale inverse are enforced atomically (7.340225ms)
+@studio/web:test: ✔ stable comments/activity pagination validates cursor scope and hidden task access (20.556277ms)
+@studio/web:test: ✔ sanitizer serializes nested six-command content idempotently and rejects encoded/whitespace protocols (3.205454ms)
+@studio/web:test: ✔ Worker-compatible tree sanitizer allowlist, entities, protocols, discarded namespaces and canonical sanitized text (1.289927ms)
+@studio/web:test: ✔ atomic draft child create, canonical text, normalized actor/key replay and relations before writes (11.232451ms)
+@studio/web:test: ✔ single lifecycle Undo bounded guards, child/file touches block completion inverse, duplicate clean IDs (13.836493ms)
+@studio/web:test: ✔ upload content hash identity, concurrent replay, duplicate names, scope/size checks, file tombstone Undo (10.923087ms)
+@studio/web:test: ✔ form lost create/upload response, shared pending promise, partial retry and session reload retain identities (14.920191ms)
+@studio/web:test: ✔ failed file hashing leaves draft editable and never creates a task without its intended files (6.305672ms)
+@studio/web:test: ✔ edit move succeeds, PATCH fails, retry preserves confirmed phase and does not move twice (8.24253ms)
+@studio/web:test: ✔ reset during a late attachment preserves original target and cannot redirect into the new submission (10.807223ms)
+@studio/web:test: ✔ late file reselection cannot clear a newer same-file failure after reset (6.081955ms)
+@studio/web:test: ✔ source DATA-08 due overlap, done past date, unassigned and AND/OR/NOT empty semantics (1.196968ms)
+@studio/web:test: ✔ source null/string/date/priority sort rules with explicit canonical stable ID correction (0.318198ms)
+@studio/web:test: ✔ normalization validates inputs, unique columns/values, current URL independent from saved filters (0.915475ms)
+@studio/web:test: ✔ pure relation guard rejects foreign workspace/project/member/dependency, self and cycles (6.380163ms)
+@studio/web:test: ✔ mock fields validate nullable/date/status/relation atomically and omitted fields stay unchanged (10.442445ms)
+@studio/web:test: ✔ actual command cycle returns409 and keeps versions, tasks, recurrence slots unchanged; incoming links bump targets (6.804651ms)
+@studio/web:test: ✔ completion Undo is bounded, replay stable and stale parent all-or-nothing (8.211113ms)
+@studio/web:test: ✔ recurrence calendar correction, one slot and single Undo preserves successor with new subtask IDs (8.159276ms)
+@studio/web:test: ✔ project field command scope/neighbor guards, move key+file integrity, full counts+opaque query cursors (11.352752ms)
+@studio/web:test: ✔ command handlers reject actual foreign relation rows with zero writes and persist canonical Undo/sequence state (30.517709ms)
+@studio/web:test: ✔ plain status PATCH recurrence has no Undo and project task sequence never reuses keys (9.140169ms)
+@studio/web:test: ✔ new mock clients own independent mutable command metadata (14.637976ms)
+@studio/web:test: ✔ inline create IDs/key sequence, request replay, title edit and atomic invalid relation (8.110212ms)
+@studio/web:test: ✔ bulk patch all targets CAS, ordinary status recurrence no Undo, stale zero effects (6.746293ms)
+@studio/web:test: ✔ retained Delete tombstones: hide reads/counts, preserve children/history, atomic Undo/replay/stale guard (6.904686ms)
+@studio/web:test: ✔ subtask done aggregate increments parent and rejects stale/cross parent without writes (4.929504ms)
+@studio/web:test: ✔ deleted dependency targets reject explicit replacement; retained associations project out, scalar edit preserves, removal guards Undo (7.757933ms)
+@studio/web:test: ✔ create request dedupe is actor scoped and bulk recurrence preserves every incoming target version bump (5.603607ms)
+@studio/web:test: ✔ bulk over the POC limit returns canonical413 with zero task/count writes (5.92542ms)
+@studio/web:test: ℹ tests 56
+@studio/web:test: ℹ suites 0
+@studio/web:test: ℹ pass 56
+@studio/web:test: ℹ fail 0
+@studio/web:test: ℹ cancelled 0
+@studio/web:test: ℹ skipped 0
+@studio/web:test: ℹ todo 0
+@studio/web:test: ℹ duration_ms 868.780673
+
+ Tasks:    5 successful, 5 total
+Cached:    3 cached, 5 total
+  Time:    1.485s
+
+✔ missing reference fails without creating a golden (1.130859ms)
+✔ one changed pixel fails the exact comparison including antialiasing (4.0612ms)
+✔ comparison CLI rejects snapshot update flags before touching a reference (41.594476ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.390627
+✔ shared packages accept only their own dependency direction (90.143565ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 430.371048
+$ turbo run test && pnpm test:reference && pnpm test:workspace
+$ node --test tests/visual/reference/*.test.mjs
+$ node --test tests/workspace/*.test.mjs

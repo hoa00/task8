@@ -1,0 +1,147 @@
+{
+  "status": "passed",
+  "probes": [
+    {
+      "id": "canonical-list-url-close-back-direct-and-focus",
+      "status": "passed",
+      "canonicalUrl": "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?view=%7B%22query%22%3A%7B%22q%22%3A%22WEB-109%22%7D%7D&taskId=01a11abd-aa80-75fa-877e-0c56eef0ad59",
+      "directReload": true,
+      "returnFocus": true
+    },
+    {
+      "id": "full-drawer-source-motion-geometry-and-focus",
+      "status": "passed",
+      "motion": {
+        "duration": 260,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "effectEasing": "linear",
+        "frames": [
+          {
+            "opacity": "0",
+            "transform": "translateY(8px) scale(0.97)"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ],
+        "name": "ui-modal-in"
+      },
+      "children": [
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.04s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.07s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.1s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.1s"
+        },
+        {
+          "name": "riseIn",
+          "duration": "0.38s",
+          "delay": "0.1s"
+        }
+      ],
+      "rect": {
+        "x": 230,
+        "y": 24,
+        "width": 980,
+        "height": 952
+      },
+      "returnFocus": true
+    },
+    {
+      "id": "drawer-draft-scroll-selection-survive-sibling-patch-and-title-error",
+      "status": "passed",
+      "retained": {
+        "value": "Wireframe draft retained",
+        "start": 3,
+        "end": 8,
+        "scroll": 170
+      },
+      "siblingDispatch": "programmatic typed client",
+      "errorDraftRetained": true
+    },
+    {
+      "id": "drawer-favorite-completion-and-undo",
+      "status": "passed",
+      "favoriteRemoved": true,
+      "completionReopened": true
+    },
+    {
+      "id": "attachment-preview-canonical-links-and-identity-remove-undo",
+      "status": "passed",
+      "fileId": "01a11abd-aa80-7dc8-8353-eb86fc8c9d9c",
+      "canonicalFileUrl": "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?fileId=01a11abd-aa80-7dc8-8353-eb86fc8c9d9c",
+      "restoredSameId": true,
+      "attachedTaskSameController": true
+    },
+    {
+      "id": "drawer-upload-drop-progress-failure-retry",
+      "status": "passed",
+      "progressVisible": true,
+      "retryConfirmed": true,
+      "drop": "actual handler via synthetic DataTransfer/DOM event",
+      "draftRemove": true
+    },
+    {
+      "id": "form-validation-draft-subtasks-files-create-more-and-partial-retry",
+      "status": "passed",
+      "committedId": "01a11abd-aa80-7d1d-9202-ac18ec021e9f",
+      "oneTask": true,
+      "partialThenRetry": true,
+      "createMoreRetainedPriority": "high",
+      "descriptionSanitized": true
+    },
+    {
+      "id": "form-lost-create-response-session-reload-reselect-no-duplicate",
+      "status": "passed",
+      "requestId": "9590180e-5ee6-4bfe-9270-0a2dfd8f8d53",
+      "fileRequestId": "e07e66f2-19d2-4a19-adeb-d8c1620472a1",
+      "oneTask": true,
+      "oneAttachment": true
+    },
+    {
+      "id": "edit-form-preserves-rich-description-and-existing-subtasks",
+      "status": "passed",
+      "existingChildrenPreserved": true,
+      "richDescriptionPreserved": true
+    },
+    {
+      "id": "closed-pending-create-does-not-dismiss-a-new-edit-draft",
+      "status": "passed",
+      "lateCreateAttachedToOriginal": true,
+      "newEditDraftRetained": true,
+      "noLateDismiss": true
+    },
+    {
+      "id": "context-duplicate-archive-single-delete-confirmation-and-undo",
+      "status": "passed",
+      "duplicateId": "01a11abd-aa80-7835-8b7f-43f5f0d46499",
+      "archiveUndo": true,
+      "deleteConfirmation": true,
+      "errorZeroDelete": true,
+      "singleDeleteUndo": true
+    }
+  ],
+  "notes": [
+    "Mouse/keyboard and native file chooser used for primary interactions. QA failure/hold commands and sibling mutation are explicitly programmatic. Mock attachment records carry sample metadata, contentAvailable:false; no HTTP/R2 bytes claim."
+  ]
+}
