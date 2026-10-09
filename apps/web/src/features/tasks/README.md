@@ -100,3 +100,31 @@ with bytes honestly unavailable until the HTTP/R2 owner in WU-35.
 composer state explicitly queries one real Backlog task on both sides, so the
 card and input are inside the accepted viewport; native unfiltered composer,
 focus/scroll, persistence and the actual AppShell M1 journey are separate probes.
+
+WU-13 adds TaskTable/TaskTableHeader/TaskTableRow/TaskTableMobileCard. Workspace
+Tasks enables Table in the existing mode switch; /task-table.html is controlled
+feature evidence for Workspace/Project/saved variants. Full Project wrapper is
+still WU-16. Registry/sort/group remain domain-owned; shared field/task commands
+keep cache records consistent with List/Board/Drawer. Local personal column
+preferences use task8.ui.task-columns.v1 scoped workspace/project/saved IDs;
+Reset widths does not reset visibility. Native HTML table, measured resize64px
+minimum and60ms sort suppression; mobile flat cards at≤640. No bulk UI/grid
+framework. Editors validate existing task schema, keep draft/error and focus once
+per edit intent; estimate clear=null.
+
+Commands: pnpm visual:task-table, pnpm test:task-table:interactions,
+pnpm verify:task-table. A gate invocation with --retain-table-visual re-verifies
+frozen41/82 hashes from the separately executed successful full Table matrix,
+without pretending to rerun it; normal verify reproduces the full matrix.
+
+Table fields pass a stable TD popupAnchorRef while retaining the internal button
+for return focus. Padding click toggles, and field owners reset query/month on
+open transitions. Shared Date uses the original calendar-only body everywhere;
+failed picker attempts keep draft/error while schema/range validation stays in
+canonical commands. Choice search uses the source plain input, and printable
+Menu typeahead permits normal typing into text editors.
+
+Focused commands: node tests/visual/task-table/popovers.mjs (five Table anchors
+and actual Drawer Due), node tests/visual/task-table/supplemental-gates.mjs.
+The six accepted pairs do not cover the extra Workspace/Project List Date raster
+diagnostics retained as explicit M2 parity debt.

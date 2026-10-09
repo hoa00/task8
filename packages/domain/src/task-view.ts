@@ -18,7 +18,7 @@ export function normalizeTaskView(input: { query?: unknown; groupBy?: unknown; h
   const hidden = input.hiddenColumns ?? ['start', 'created', 'deps'];
   if (hidden.some(id => !taskColumns.some(column => column.id === id) || id === 'title')) throw new TypeError('Invalid hidden column');
   const widths = input.columnWidths ?? {};
-  if (Object.entries(widths).some(([id, width]) => !taskColumns.some(column => column.id === id) || !Number.isFinite(width) || width < 40 || width > 1000)) throw new TypeError('Invalid column width');
+  if (Object.entries(widths).some(([id, width]) => !taskColumns.some(column => column.id === id) || !Number.isFinite(width) || width < 64)) throw new TypeError('Invalid column width');
   const query = TaskQuerySchema.parse(input.query ?? {});
   return { query: { ...query, filters: query.filters.map(filter => ({ ...filter, values: [...new Set<string | null>(filter.values)] }) as TaskFilter) }, groupBy: GroupBySchema.parse(input.groupBy ?? 'status'), hiddenColumns: [...new Set(hidden)] as TaskColumnId[], columnWidths: { ...widths } };
 }

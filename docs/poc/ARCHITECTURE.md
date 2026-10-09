@@ -180,3 +180,23 @@ filters hide rows. Canonical bulk owner stages complete/archive/sortPriority and
 bounded actor-owned Undo atomically. Browser move sends scope/status/neighbors,
 never raw positions. Shared integer representation uses100 sort gaps; source
 fractional positions may interleave differently in global manual List.
+
+### WU-13 Task Table ownership
+
+Workspace Tasks now admits List/Board/Table through its existing thin route and
+TaskListPage controller. The Table receives the canonical query rows and evaluated
+sort/groups, with unfiltered dependency candidates from the existing complete-view
+cursor+summary loader. TaskTable owns native table sizing, sticky title/header and
+transient pointer resize; TaskTableRow owns inline title/estimate drafts and reuses
+existing field controls with source table triggers. TaskTableMobileCard is a
+separate flat renderer at the inclusive640 breakpoint. No selection/bulk UI or
+additional table framework. Canonical commands invalidate the same List/Board/
+Drawer/task cache. Personal hidden columns/widths use scoped task8.ui keys and URL
+state; no saved-view server write or server-state copy. Project/saved variants are
+controlled feature harnesses; full Project wrappers remain WU-16.
+
+TaskTableFieldCell supplies a stable TD popupAnchorRef to the shared field owner;
+the owner keeps its internal button for keyboard and return focus. Date/search
+body and open-transition state remain in one field owner across contexts. Generic
+Menu excludes text editors from printable typeahead; source popup horizontal flip
+placement is shared UI logic. No Table-specific date body or overlay runtime copy.

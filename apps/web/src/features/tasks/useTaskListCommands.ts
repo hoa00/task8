@@ -13,5 +13,5 @@ export function useTaskListCommands(workspaceId: string) {
     finally { setPending(value => value - 1); }
   }
   const undo = (descriptor: UndoDescriptorDto) => run('undoCommand', { workspaceId, undoId: descriptor.id, body: {} });
-  return { run, undo, error, pending: pending > 0 };
+  return { run, undo, clearError: () => setError(''), error, pending: pending > 0 };
 }

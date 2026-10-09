@@ -511,3 +511,73 @@ missing source declaration was found through computed-style measurement, not
 adopted as a raster workaround or claimed tiny-pixel cause. Affected controlled
 Input fields/toolbar and List/Drawer/form/Board snapshots use fresh WU-12 outputs;
 previous accepted WU-04/08/09/10/11 evidence is unchanged.
+
+## WU-13 Task Table scope and CSS owner
+
+`features/tasks/table.css` owns literal Tailwind @apply utilities for native table
+geometry and source-specific selectors: th/td borders34/36px, group32px, first-cell
+gutter, sticky stacking2/3/5, row hover, resize6px and active state, native editing
+inset2px accent, dependency radius4 and inclusive≤640 presentation. Dynamic col/
+table width and project/member colors are typed data styles. Mobile panel radius10,
+flat ordering, due numeric styling and inline timer preserve the source browser's
+first duplicate class attribute; no muted union is added. Inline editor deliberately
+uses its native input defaults (source has no .input padding class), not shared
+Input geometry. Display estimate has tabular numerals; editing estimate does not.
+
+The strict scoped runner `visual:task-table` compares actual locked pageTasks/
+tableHtml/tcell/viewToolbar/helpers/styles/font bytes with Workspace Table and
+controlled Project/saved variants. It covers41 full-feature/actual Workspace content
+samples: comfortable/compact/light/dark,1440/390 and boundary640/641,all11 columns,
+resized/sticky horizontal+vertical scroll,hover,inline title/estimate,empty,Columns
+and six group modes. threshold0/includeAAtrue/maxDiffPixels0/masks[], repeatability
+on both sides.82 frozen source/target PNG hashes and root technical inspection are
+separate from user approval. The original173Darwin/font/fixture/lock bytes and source
+working tree remain immutable. Current Linux measurements do not prove physical
+mobile/fullDarwin parity or historical WU10 mobile17/14 cause.
+
+Capture uses connected #app/#layer, source block host and original page flex wrapper,
+DATA-10 UUID tie preparation, identical fixed clock/en-US/UTC/DPR1/MacIntel, locked
+HTTP font readiness400/500/600, concurrent finite animation settlement, original
+source render to clear its entrance flags, layout+twoRAF and neutral pointer.
+Ordinary Playwright clipped screenshots assert dimensions, no masks or source edits.
+Inline focus capture uses source selected input and real target mouse edit; native
+error/blur/newer-focus/resize/persistence/open/context/640/641 are separate probes.
+Project/saved are feature evidence, full wrappers remain WU-16. Regression outputs
+are scoped to WU13 and preserve accepted prior reports. Early failures (text token,
+extra label clip/gap,estimate numeric inheritance,shared-preview lifecycle and
+incorrect QA action/role assumptions) are retained as rejected reports.
+
+Original native title dblclick observation is explicitly a source quirk: two trusted
+clicks detail1/2, Drawer visible, no editor/dblclick event after replacement. The
+strict title editor snapshot is original source tcell/S.ui.editCell state geometry;
+target native rename is verified independently. Source native Estimate focus and
+original desktop/640/641 presentation/scroll/open are actual observed checks.
+
+WU-13 focused field review reopened WU-08's shared field owner. Table popups use
+the original TD rectangle (left/bottom+4) via stable per-cell popupAnchorRef, while
+the inner button remains the keyboard/return-focus target. Native same-cell padding
+click toggles closed; search and calendar month reset on every opening transition,
+including padding openers. Choice search uses original plain input/pin geometry;
+Project/Labels menu dots are local8px/radius3, without changing global ColorDot.
+The one shared Date body now matches original popovers.js180–190: quick badges,
+Clear, separator and mini-calendar,22px month icon buttons and6px day radius.
+The invented manual input/Apply form was removed from every consumer. Canonical
+date/range validation and failed picker draft retention remain in commands.
+
+WU-05 minimal reopening excludes input/textarea/contenteditable from printable
+Menu typeahead (trusted sequential typing had lost search focus); arrow/Home/End
+behavior is retained. Popover horizontal overflow now uses the original anchor
+flip and max8 rule; the extra right-edge8px clamp caused search shrink-fit width
+to change. Tooltip clamping is retained. The diagnostic border-none hypothesis
+did not explain width. The source render already calls placePop; the focused QA
+runner's duplicate placePop call was removed, with before/after evidence retained.
+
+Supplemental accepted matrix is five Table popups (Status/Due, native horizontal
+Priority/Due, right-edge Project) plus one Date popup in the actual whole Drawer:
+six strict0/repeat0 pairs and12 frozen hashes. Original41/82 hashes are retained.
+Additional Workspace List Date remains558 pixels after source render/native2;
+Project List remains8814/native2. Geometry, fonts/styles and text Range match;
+the Workspace heading is a one-pixel raster translation without a proved cause.
+Neither List case is accepted or covered by the six-case matrix. Reports and PNGs
+remain explicit M2/full-parity debt. No paint/translation/remount/mask/tolerance
+workaround or fixture/clock change was made to clear them.

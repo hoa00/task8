@@ -11,7 +11,7 @@ import {artifacts,checkSource,readJson,sha256} from '../reference/source-check.m
 import {sourcePreferences} from '../foundation/source-sample.mjs';
 import {ready,targetServer} from '../tasks/verify.mjs';
 import {sourceBoard} from './source-sample.mjs';
-const evidence=path.resolve('docs/poc/evidence/WU-12'),output=path.resolve('test-results/WU-12');fs.mkdirSync(evidence,{recursive:true});fs.mkdirSync(output,{recursive:true});
+const evidence=path.resolve(process.argv.includes('--wu13-regression')?'docs/poc/evidence/WU-13/board-regression':'docs/poc/evidence/WU-12'),output=path.resolve(process.argv.includes('--wu13-regression')?'test-results/WU-13/board-regression':'test-results/WU-12');fs.mkdirSync(evidence,{recursive:true});fs.mkdirSync(output,{recursive:true});
 const hashes=()=>Object.fromEntries(['baseline-manifest.json','font-assets.json','source-fixture.json','source-lock.json'].map(name=>[name,sha256(fs.readFileSync(`${artifacts}/${name}`))]));
 const matrix=['workspace','project','saved'].flatMap(scope=>['comfortable','compact'].flatMap(density=>[1440,390].flatMap(width=>['default','collapsed','composer'].map(state=>({scope,density,width,state,theme:'light'})))));
 for(const scope of ['workspace','project','saved'])matrix.push({scope,density:'comfortable',width:1440,state:'default',theme:'dark'});

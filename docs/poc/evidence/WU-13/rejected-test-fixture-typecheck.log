@@ -1,0 +1,33 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/ui:typecheck: cache hit, replaying logs 6355c1676250c956
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/contracts:typecheck: cache hit, replaying logs 9f7c4a8ee551af15
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache miss, executing 0656ea59938e6fb6
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 2d7a92fd35574984
+@studio/api:typecheck: cache miss, executing 9a935079bd79827d
+@studio/web:typecheck: $ tsc --noEmit
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: tests/data/task-table.test.ts(6,141): error TS2322: Type 'string' is not assignable to type 'string & $brand<"EntityId">'.
+@studio/web:typecheck:   Type 'string' is not assignable to type '$brand<"EntityId">'.
+@studio/web:typecheck: tests/data/task-table.test.ts(6,204): error TS2322: Type 'string' is not assignable to type 'string & $brand<"EntityId">'.
+@studio/web:typecheck:   Type 'string' is not assignable to type '$brand<"EntityId">'.
+@studio/web:typecheck: tests/data/task-table.test.ts(6,218): error TS2322: Type 'string' is not assignable to type 'string & $brand<"EntityId">'.
+@studio/web:typecheck:   Type 'string' is not assignable to type '$brand<"EntityId">'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    2 cached, 5 total
+  Time:    10.873s
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.
+$ turbo run typecheck
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+ ERROR  run failed: command  exited (2)

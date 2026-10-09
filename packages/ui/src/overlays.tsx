@@ -116,7 +116,9 @@ function usePlacement(open: boolean, node: RefObject<HTMLElement | null>, anchor
       }
       if (x + w > innerWidth - 8) x = point ? x - w : r ? r.right - w : x;
       if (y + h > innerHeight - 8) y = (point ? point.y - gap : r!.top - gap) - h;
-      setOverlayPosition(el, Math.max(8, Math.min(x, innerWidth - w - 8)), Math.max(8, Math.min(y, innerHeight - h - 8)));
+      // Source popovers align to the anchor's right edge after a flip. A second
+      // viewport inset changes shrink-to-fit search menus after left is set.
+      setOverlayPosition(el, tooltip ? Math.max(8, Math.min(x, innerWidth - w - 8)) : Math.max(8, x), Math.max(8, Math.min(y, innerHeight - h - 8)));
     };
     position(); const observer = new ResizeObserver(position); observer.observe(node.current); if (anchor.current) observer.observe(anchor.current);
     window.addEventListener('resize', position); document.addEventListener('scroll', position, true); document.addEventListener('animationend', position, true); document.addEventListener('transitionend', position, true);
@@ -141,7 +143,7 @@ export function Menu({ label, onOpenChange, onKeyDown, ...props }: MenuProps) {
     const items = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('[role^="menuitem"]:not(:disabled)')]; const index = items.indexOf(document.activeElement as HTMLButtonElement);
     if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) { event.preventDefault(); const next = event.key === 'Home' ? 0 : event.key === 'End' ? items.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length; items[next]?.focus(); items[next]?.scrollIntoView({ block: 'nearest' }); }
     else if (event.key === 'Tab') onOpenChange(false, 'tab');
-    else if (event.key.length === 1 && event.key.trim()) { const letter = event.key.toLowerCase(); const ordered = [...items.slice(index + 1), ...items.slice(0, index + 1)]; ordered.find(item => item.textContent?.trim().toLowerCase().startsWith(letter))?.focus(); }
+    else if (event.key.length === 1 && event.key.trim() && !(event.target instanceof HTMLElement && (event.target.matches('input,textarea') || event.target.isContentEditable))) { const letter = event.key.toLowerCase(); const ordered = [...items.slice(index + 1), ...items.slice(0, index + 1)]; ordered.find(item => item.textContent?.trim().toLowerCase().startsWith(letter))?.focus(); }
   }} />;
 }
 export interface ContextMenuProps extends MenuProps { point: OverlayPoint }

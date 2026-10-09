@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "probes": [
+    {
+      "id": "source-desktop-defaults-measured-resize-save-sort-inline-focus",
+      "status": "passed",
+      "before": 314,
+      "after": {
+        "width": 354,
+        "sort": {
+          "f": "manual",
+          "dir": 1
+        },
+        "stored": 354
+      },
+      "columnOptions": 10,
+      "noTitleHide": true,
+      "titleDoubleClick": {
+        "editor": false,
+        "drawer": true,
+        "events": [
+          {
+            "type": "click",
+            "trusted": true,
+            "detail": 1,
+            "field": "title"
+          },
+          {
+            "type": "click",
+            "trusted": true,
+            "detail": 2,
+            "field": "title"
+          }
+        ]
+      },
+      "estimateNativeFocus": true,
+      "titleNote": "Original title first double-click observation preserved. Target native title rename follows source DBL.editCell intent while retaining the td across first-click Drawer render; source renderer/state title edit geometry separately verified in strict visual matrix."
+    },
+    {
+      "id": "source-boundary-640",
+      "status": "passed",
+      "width": 640,
+      "mobile": true,
+      "openClose": true,
+      "content": {
+        "top": 300,
+        "height": 4595,
+        "client": 794
+      },
+      "table": {
+        "top": 0,
+        "height": 0,
+        "client": 0
+      }
+    },
+    {
+      "id": "source-boundary-641",
+      "status": "passed",
+      "width": 641,
+      "mobile": false,
+      "openClose": true,
+      "content": {
+        "top": 0,
+        "height": 798,
+        "client": 798
+      },
+      "table": {
+        "top": 300,
+        "height": 1958,
+        "client": 636
+      }
+    }
+  ],
+  "notes": [
+    "Actual immutable original renderer/actions with trusted native mouse/keyboard. Setup only route/view state; original source templates/styles/fonts untouched. Table source allows arbitrary estimate and discards empty title; canonical estimate enum and explicit WU13 failed-draft retention are documented corrections."
+  ]
+}

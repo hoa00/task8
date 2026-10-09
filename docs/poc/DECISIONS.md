@@ -167,3 +167,49 @@ Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn
   successor/slot, re-complete/reopen creates no duplicate, List/reload persist.
   Column completion Undo separately cancels eligible newly-created successors,
   as API7.4 specifies. No direct API mutation prepares the primary M1 journey.
+
+## WU-13 Table implementation decisions
+
+- Keep native HTML table/colgroup, one shared eleven-column registry and separate
+  mobile flat cards at≤640. No table framework/selection/bulk/pagination added.
+- Source Project _projHidden is initialization, not a permanent hidden-column rule.
+  Initialize in controller personal preferences; permit re-show and preserve it
+  per project/saved view. Title cannot hide; Reset widths preserves hidden columns.
+- Reopen the preparatory domain40..1000 width guard to finite≥64/unbounded, matching
+  actual source pointer resize. Measure rendered col/table widths because native
+  min-width100% stretches a narrowed preset. Commit integer width and source60ms
+  click suppression; pointer cancellation/unmount remove owned listeners/timer.
+- Keep canonical estimate enum and explicit WU13 draft/error retention. Source
+  arbitrary-estimate and empty-title discard are documented behavior corrections.
+  Editor mount focuses/selects once; pending/error/cache renders do not refocus a
+  newer search/menu/Drawer. Clear old command error when starting a new intent.
+- Current Table raster corrections: source faint maps to target muted (text3),
+  remove unintended inner button clipping while keeping td clipping, labels gap4,
+  and editing estimate drops display-only tabular numerals exactly as source.
+  No global Label/Input/font/token change or production paint workaround. These
+  results do not establish causes for historical WU10 mobile17/14 differences.
+- Actual original-source native first title double-click produced two trusted clicks
+  (detail1/2), no dblclick event/editor and a Drawer. The source action replaces the
+  td after click1. Preserve that observation in source-interactions.json; target
+  retains its row and completes the source DBL.editCell intent on native dblclick.
+  This required inline-title correction is distinct from source tcell/state editor
+  geometry/focus capture, which remains original renderer evidence. No source
+  template/listener mutation to force a native-source pass.
+- WU08 field owner reopening after root found a TD/button anchor mismatch:
+  optional stable popupAnchorRef separates Table TD placement/outside scope from
+  inner button return focus. Same-padding click toggles; Choice q and Date month
+  reset on open transitions rather than only on a button handler. Shared Date
+  uses the original calendar-only body in all contexts; remove the invented
+  manual Apply form, preserve canonical schema/range guards and failed attempts.
+  Choice plain search and local Project/Labels dots match locked source rules.
+- WU05 minimal owner reopening: trusted printable search typing was intercepted
+  by Menu typeahead, so exclude text editors from that branch only. Popover
+  horizontal overflow uses source flip/max8 rather than an extra upper clamp;
+  Tooltip behavior remains. QA duplicate placePop after original render was a
+  capture artifact, separately corrected and recorded. Border shorthand was a
+  rejected width hypothesis, not a proved causal correction.
+- Accept five Table popup states and one actual Drawer Date state at strict0 with
+  repeat0; retain original41 closed Table pairs unchanged. Extra Workspace and
+  Project List Date captures remain unaccepted raster debt (558/8814 after source
+  render, native2 each); matching geometry/fonts/styles does not prove a cause.
+  Do not claim all field popup parity or hide those cases behind accepted Drawer.

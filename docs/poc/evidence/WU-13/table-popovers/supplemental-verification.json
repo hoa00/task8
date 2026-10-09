@@ -1,0 +1,125 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/build.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/lint.log"
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/http-build.log"
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-13 --table-popovers",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/http-bundle.log"
+    },
+    {
+      "name": "table-native",
+      "command": "node tests/visual/task-table/interactions.mjs --field-anchor-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/table-native.log"
+    },
+    {
+      "name": "fields-native",
+      "command": "node tests/visual/tasks/interactions.mjs --wu13-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/fields-native.log"
+    },
+    {
+      "name": "overlays",
+      "command": "node tests/visual/overlays/verify.mjs --wu13-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/overlays.log"
+    },
+    {
+      "name": "overlay-strict",
+      "command": "node tests/visual/overlays/lifecycle.mjs --wu13-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/overlay-strict.log"
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/reference-check.log"
+    },
+    {
+      "name": "final-qa-lint",
+      "command": "pnpm exec eslint tests/visual/task-table tests/visual/tasks tests/visual/overlays tests/data/http-bundle.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/final-qa-lint.log"
+    },
+    {
+      "name": "freeze-and-retained-hash-check",
+      "command": "node tests/visual/task-table/freeze-popovers.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-13/table-popovers/freeze-and-retained-hash-check.log"
+    }
+  ],
+  "focusedVisual": {
+    "command": "node tests/visual/task-table/popovers.mjs",
+    "actualExitStatus": 0,
+    "report": "docs/poc/evidence/WU-13/table-popovers/verification.json",
+    "sampleCount": 6,
+    "tableSamples": 5,
+    "sharedDrawerDateSamples": 1,
+    "changedPixels": 0,
+    "repeatabilityPixels": 0
+  },
+  "retainedOriginalTable": {
+    "sampleCount": 41,
+    "pngCount": 82,
+    "report": "docs/poc/evidence/WU-13/visual-verification.json",
+    "review": "docs/poc/evidence/WU-13/review.json",
+    "allFrozenHashesUnchanged": true
+  },
+  "affectedNative": {
+    "table": 13,
+    "fields": 11,
+    "overlay": 17,
+    "overlayStrict": 3
+  },
+  "affectedOverlayVisual": {
+    "sampleCount": 42,
+    "changedPixels": 0,
+    "repeatabilityPixels": 0
+  },
+  "reopenedOwners": [
+    "WU08 shared field popover geometry/search/calendar body and lifecycle corrected to locked source; validation stays canonical.",
+    "WU05 Menu printable typeahead excludes text editors; popup horizontal overflow uses source flip/max8 rule, tooltip clamp retained."
+  ],
+  "limitations": [
+    "Extra Workspace/Project List Date raster diagnostics remain unaccepted debt, not part of six accepted comparisons.",
+    "Managed Linux technical comparison; original173Darwin source evidence untouched; no user-approval claim."
+  ]
+}

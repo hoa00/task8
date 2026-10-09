@@ -514,3 +514,24 @@ source column/card actions and native drop intents. Existing fields, metadata
 formatters, commands, confirmation/Undo and complete Drawer/form/files remain the
 shared owners. No card selection or List bulk bar. Workspace uses the actual page;
 Project/saved Board variants use controlled harnesses until full wrappers WU16.
+
+### WU-13 delivered Table owners
+
+TaskTable, TaskTableHeader, TaskTableRow and TaskTableMobileCard use the existing
+11-entry domain taskColumns registry. Row cell renderers reuse field selectors
+through table-cell/custom trigger props. The Table has native colgroup/table
+layout, source314/132/112/156/112/112/180/150/92/112/156 default widths,34px headers,
+36px rows and32px group rows independent of List density. Title stays sticky and
+visible; defaults hide start/created/deps. Project initializes hidden project once
+and permits later re-show. Resize measures actual rendered geometry, commits
+rounded width≥64 and suppresses header clicks60ms. The mobile flat card preserves
+source duplicate-class browser interpretation, due/estimate content and panel
+radius10. Workspace actual page and Project/saved feature harnesses share this
+owner; full ProjectPage remains WU-16.
+
+TaskTableFieldCell owns a stable TD ref; the existing field owner receives optional
+popupAnchorRef for source cell placement and retains its own button for focus.
+Choice query and Date month initialize on every open transition. Shared Date uses
+one source calendar-only body for List/Drawer/form/Table, with canonical mutation
+validation and failed draft retention. Plain Choice search and8px/radius3 menu
+dots belong to this field owner, not a Table-only copy or global ColorDot change.

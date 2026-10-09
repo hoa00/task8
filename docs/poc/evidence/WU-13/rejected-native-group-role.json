@@ -1,0 +1,51 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "eleven-columns-defaults-title-guard-native-open-context-newtask",
+      "defaults": 8,
+      "registry": 11,
+      "noSelection": true,
+      "titleAlwaysVisible": true,
+      "status": "passed"
+    },
+    {
+      "id": "title-doubleclick-focus-selection-validation-failure-draft-retry-cross-surface",
+      "taskId": "01a11abd-aa80-739e-81f1-1670a2cf5efb",
+      "draftRetained": true,
+      "canonicalListBoardDrawerReload": true,
+      "status": "passed"
+    },
+    {
+      "id": "estimate-validation-null-escape-and-new-editor-after-old-error",
+      "validation": true,
+      "clearNull": true,
+      "escapeNoWrite": true,
+      "newFocus": true,
+      "status": "passed"
+    },
+    {
+      "id": "blur-save-error-keeps-draft-does-not-steal-newer-focus",
+      "failedDraft": true,
+      "noFocusSteal": true,
+      "blurSave": true,
+      "newIntentFocus": true,
+      "status": "passed"
+    },
+    {
+      "id": "resize-measured-stretched-width-minimum-oversized-suppressclick-reset-persistence",
+      "actualStart": 360.5625,
+      "minimum": 64,
+      "largeWidth": 1192,
+      "reload": true,
+      "resetKeepsHidden": true,
+      "noAccidentalSort": true,
+      "status": "passed"
+    }
+  ],
+  "notes": [
+    "Primary mouse/keyboard actions use real native Playwright events; QA fail/hold/canonical API assertions are declared setup. Workspace actual AppShell; Project/saved controlled feature harness only. Personal UI columns stored per workspace/project/saved ID, not server saved definition."
+  ],
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('menuitem', { name: 'Priority', exact: true })\u001b[22m\n\n    at /workspace/task8/tests/visual/task-table/interactions.mjs:21:1075\n    at async probe (/workspace/task8/tests/visual/task-table/interactions.mjs:11:549)\n    at async file:///workspace/task8/tests/visual/task-table/interactions.mjs:21:2",
+  "alerts": []
+}

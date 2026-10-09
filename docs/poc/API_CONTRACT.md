@@ -582,3 +582,17 @@ Các test cần có cho contract/data risk:
 11. TaskForm double submit/lost create response tạo tối đa một task; partial attachment failure không create lại task; retry upload mất response không nhân đôi file; Create more/reset chỉ theo commit state đã nêu.
 
 Không cần test mirror JSX đơn giản. Không thêm production-hardening campaign. Mỗi WU chỉ kiểm tra các rủi ro liên quan và cập nhật PROGRESS với commands/results thực tế.
+
+### WU-13 personal Table state and inline validation
+
+Column widths remain personal UI/URL state (§SavedViewDto), not HTTP task/saved-view
+fields. normalizeTaskView now accepts finite widths≥64 with no arbitrary1000px cap,
+matching source resize; unknown columns/NaN/Infinity and hidden title remain invalid.
+The previous40..1000 guard was a preparatory domain restriction before Table existed;
+this is a source correction within personal state only. Workspace/project/saved
+IDs namespace hidden/width preferences. Reset widths keeps hidden configuration.
+Inline title and estimate use the existing updateTask CAS contract. Empty/oversize
+titles and unsupported estimate strings retain the draft and a visible error;
+empty estimate commits null. Source accepts arbitrary estimates and discards an
+empty title, while the existing canonical estimate enum and explicit WU13 failed
+edit requirement remain authoritative. No operation/binding or HTTP schema changed.
