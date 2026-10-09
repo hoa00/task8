@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-20` — **DONE — qualified Linux content/controls**; ROOT TECHNICAL PASS, actual commit/push checkpoint follows.
+- Current work unit: `WU-20` — **DONE — qualified Linux content/controls**; ROOT TECHNICAL PASS; implementation normal push verified; final documentation checkpoint follows.
 - Last completed implementation unit: `WU-20`.
 - Next permitted unit: `WU-21` only after verified WU-20 STOP and fresh root assignment; owner20 stops at20.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
@@ -36,7 +36,7 @@
 | [WU-17](work-units/WU-17.md) | DONE — qualified Linux content | `c9f64699d6a2ef75e6cfb4b3fa3b8a4e36cd8416` | [21 required gates /26+6 strict pairs](evidence/WU-17/verification.json), [root PASS/runtime scope](evidence/WU-17/review.json);21required+3suppactual0, inherited debts remain WU29 |
 | [WU-18](work-units/WU-18.md) | DONE — qualified Linux content/overlays | `a88452cbe8946a8a76c34fc0d2f9b5bc4927edab` | [21 required actual0](evidence/WU-18/commands.json), [45 archived +2+2 bounded visual bridges](evidence/WU-18/verification.json), final11 executions0; [ROOT TECHNICAL PASS](evidence/WU-18/review.json); all failed bytes retained |
 | [WU-19](work-units/WU-19.md) | DONE — qualified Linux content/fullpreview | `5b19e814e5c18b9d16aab4dc19637852f052a162` | [13 required actual0](evidence/WU-19/commands.json), [35 explicit27+7+1 strict aggregate](evidence/WU-19/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-19/review.json); default59/13 unaccepted WU29 |
-| [WU-20](work-units/WU-20.md) | DONE — qualified Linux content/controls | Actual SHA in checkpoint follows | [15 actual0](evidence/WU-20/commands.json), [36 explicit24+9+3 strict scopes](evidence/WU-20/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-20/review.json); wholepopup11 and prior debts remain WU29 |
+| [WU-20](work-units/WU-20.md) | DONE — qualified Linux content/controls | `63d1d274482ea2f7bb4b861ccc26a7d06a191ba5` | [15 actual0](evidence/WU-20/commands.json), [36 explicit24+9+3 strict scopes](evidence/WU-20/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-20/review.json); wholepopup11 and prior debts remain WU29 |
 | [WU-21](work-units/WU-21.md) | NOT_STARTED | — | — |
 | [WU-22](work-units/WU-22.md) | NOT_STARTED | — | — |
 | [WU-23](work-units/WU-23.md) | NOT_STARTED | — | — |
@@ -845,3 +845,7 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - **AC/results:** shared directory/profile/task/project/activity and four-role permission/export contract complete; canonical membership ID and capability/Owner/foreign-team/storage/version guards proven; active/invited/deactivated/empty/error controls compared; native task open/assignment/completion+Undo, people/actor/palette/Home/project lead/workload links complete. Demo invites/roles/resend/remove only change directory metadata, never accounts/email/runtime grants/task assignment. Canonical HTTP errors stay visible with actual Retry/draft preservation.
 - **Mandatory exclusions remain:** raw original34 and every failed/repeat/diff byte retained, p6+t49+order record-only privacy correction, unchanged original Source prose whole diagnostics, early+8 Source anchor quirk, mobileInvited wholepopup11 UNACCEPTED WU29 with Source table scroll0 vsTarget preserved524. Natural action-control bbox alone strict0 accepted; no wholepopup/corner/whitespace waiver. All prior WU10/13/14/15/16/17/18/19 debts remain. Teams body21 and actual Settings integration24 not implemented.
 - **Commit/push:** root PASS authorizes scoped implementation commit and normal target `origin HEAD:main`; actual SHA/tree/remote result will be recorded by the documentation-only checkpoint after real implementation push. No force/Source push. Owner20 stops after verified checkpoint; root assigns a fresh21 owner.
+
+- **Actual implementation checkpoint:** commit `63d1d274482ea2f7bb4b861ccc26a7d06a191ba5`, tree `55667fd2db34f0a3c04675725d0f5be6bdd2daf7`, parent/base `de55aef49597d95df5222aa733e22b8e882e717f` with ancestry verified. Normal `git push origin HEAD:main` actualexit0; fresh actual `ls-remote main`, HEAD and originmain all equal the exact implementation SHA, divergence0/0, target clean immediately after implementation push. No force/Source push.
+- **Post-push proof:** Source904205/tree5db5/86tracked clean; no4173/5173listeners. Root independently verified43freeze/1763 unique files/708PNG worktree+index hashes; fullstagedcheck actual0 under10exact archive/log-only byte exceptions. [Checkpoint](evidence/WU-20/checkpoint.json) records actual implementation SHA/tree/parent/push stderr/remote equality plus root PASS and verification/review/visual hashes.
+- This documentation-only checkpoint changes exactly PROGRESS and the checkpoint proof. Its actual finalHEAD/tree/parent/remote/clean will be verified after real commit/push and reported to root; no recursive ownSHA invented. Owner20 stops at20; root assigns fresh21.
