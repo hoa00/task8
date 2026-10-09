@@ -1,0 +1,54 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "D17-N01-existing-full-dashboards-before-mutation",
+      "status": "passed",
+      "home": {
+        "totalTasks": 48,
+        "completedThisWeek": 9,
+        "overdue": 2,
+        "activeProjects": 5
+      },
+      "overview": {
+        "total": 48,
+        "byStatus": {
+          "backlog": 8,
+          "todo": 17,
+          "progress": 8,
+          "review": 6,
+          "done": 9
+        },
+        "byPriority": {
+          "urgent": 5,
+          "high": 14,
+          "medium": 21,
+          "low": 8,
+          "none": 0
+        },
+        "overdue": 2,
+        "completed": 9,
+        "completionRate": 19,
+        "subtaskTotals": {
+          "total": 16,
+          "completed": 8
+        }
+      }
+    },
+    {
+      "id": "01a11abd-aa80-784c-b512-294eb2b19b06",
+      "status": "passed",
+      "key": "WEB-201",
+      "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "notes": [
+    "Primary mutations use native actual List/Drawer/Board/Home controls and persistent canonical records; no direct API mutations.",
+    "Pagination fixture setup is a separate explicit 350-task data probe. Native browser uses default matched managed Linux runtime, no full-raster argument."
+  ],
+  "error": "locator.textContent: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('tab', { name: /^Upcoming / })\u001b[22m\n\n    at /workspace/task8/tests/visual/dashboards/interactions.mjs:21:955\n    at async probe (/workspace/task8/tests/visual/dashboards/interactions.mjs:14:44)\n    at async file:///workspace/task8/tests/visual/dashboards/interactions.mjs:21:2"
+}

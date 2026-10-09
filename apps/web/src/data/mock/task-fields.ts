@@ -21,7 +21,7 @@ function editable(data: MockDataset, id: string, version: number): TaskDto {
   if (task.archivedAt || data.projects[task.projectId]!.archivedAt) return fail('CONFLICT', 'Archived tasks cannot be edited');
   return task;
 }
-function projectTask(task: TaskDto, data: MockDataset): TaskDto {
+export function projectTask(task: TaskDto, data: MockDataset): TaskDto {
   return { ...task, isFavorite: (data.taskCommands.taskFavorites[data.currentMemberId] ?? []).includes(task.id), dependencyIds: task.dependencyIds.filter(id => { const target = data.tasks[id]; return !!target && !data.taskCommands.deletedTasks[id] && !target.archivedAt && canReadProject(data.projects[target.projectId], data) && !data.projects[target.projectId]!.archivedAt; }) };
 }
 function validate(task: TaskDto, data: MockDataset, explicitDependencies = false) {

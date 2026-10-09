@@ -1,0 +1,525 @@
+{
+  "status": "PASS \u2014 qualified managed Linux content",
+  "profileAdopted": true,
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "report": "docs/poc/evidence/WU-17/visual-verification.json",
+  "reportSha256": "671bca93b9b87135126e192ee272f5b76a03717bebac5f021dfe1dc41818ede4",
+  "strictPairCount": 26,
+  "strictPngCount": 52,
+  "independentlyRecomparedStrictPairCount": 26,
+  "allCopiedHashesVerified": true,
+  "runtimeProfile": {
+    "name": "matched-full-raster-linux-WU17",
+    "requestedLaunchArguments": [
+      "--disable-partial-raster"
+    ],
+    "actualLaunchArguments": [
+      "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+      "--disable-field-trial-config",
+      "--disable-background-networking",
+      "--disable-background-timer-throttling",
+      "--disable-backgrounding-occluded-windows",
+      "--disable-back-forward-cache",
+      "--disable-breakpad",
+      "--disable-client-side-phishing-detection",
+      "--disable-component-extensions-with-background-pages",
+      "--disable-component-update",
+      "--no-default-browser-check",
+      "--disable-default-apps",
+      "--disable-dev-shm-usage",
+      "--disable-extensions",
+      "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+      "--enable-features=CDPScreenshotNewSurface",
+      "--allow-pre-commit-input",
+      "--disable-hang-monitor",
+      "--disable-ipc-flooding-protection",
+      "--disable-popup-blocking",
+      "--disable-prompt-on-repost",
+      "--disable-renderer-backgrounding",
+      "--force-color-profile=srgb",
+      "--metrics-recording-only",
+      "--no-first-run",
+      "--password-store=basic",
+      "--use-mock-keychain",
+      "--no-service-autorun",
+      "--export-tagged-pdf",
+      "--disable-search-engine-choice-screen",
+      "--unsafely-disable-devtools-self-xss-warnings",
+      "--edge-skip-compat-layer-relaunch",
+      "--enable-automation",
+      "--disable-infobars",
+      "--disable-search-engine-choice-screen",
+      "--disable-sync",
+      "--enable-unsafe-swiftshader",
+      "--headless",
+      "--hide-scrollbars",
+      "--mute-audio",
+      "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+      "--no-sandbox",
+      "--disable-partial-raster",
+      "--user-data-dir=/tmp/playwright_chromiumdev_profile-Zwz7xD",
+      "--remote-debugging-pipe",
+      "--no-startup-window",
+      "--use-gl=angle",
+      "--use-angle=swiftshader-webgl",
+      "--ozone-platform=headless",
+      "--allow-pre-commit-input"
+    ],
+    "appliesTo": "Both Source and Target"
+  },
+  "technicalScope": "Actual Home and Workspace Overview content (including mobile below-fold named panels), original fixture/native tabs/navigation, no AppShell acceptance.",
+  "provenance": "Immutable locked Source code/fixture/fonts/baseline. Source+Target use identical actual native navigation/entry ownership, fixed fixture clock, native Home tabs and named mobile content scrolling. Two snapshot warmups on both sides follow existing harness policy; no extra paint interventions.",
+  "limitations": [
+    "Named matched Chromium Linux full-raster profile; root runtime-scope review required.",
+    "Not original173Darwin/default-browser/fullshell/physical-device/user approval.",
+    "Archived-project task exclusion and activity newest-first are canonical source corrections tested separately; default fixture needs no correction.",
+    "Invite member exposes existing Members route; member invitation form belongs to its later owner.",
+    "Inherited WU10/WU13/WU14/WU15/WU16 and WU29 unaccepted debts remain; no full AppShell acceptance.",
+    "First failed cold smoke retained report/hash and Source PNG bytes; two original Target PNG bytes were overwritten before archival, explicitly recorded in unaccepted-smoke-initial/freeze.json.",
+    "Passive development count-up zero commit can occur after its owned clock starts; both intervals are reported, no timing/easing/paint change."
+  ],
+  "images": [
+    {
+      "id": "home-1440-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-light-base-source.png",
+      "sha256": "2f81022be13089aa51d0d7f021a7d5d0eab17358ff7dbf3a258ab848cc70fb81"
+    },
+    {
+      "id": "home-1440-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-light-base-target.png",
+      "sha256": "2f81022be13089aa51d0d7f021a7d5d0eab17358ff7dbf3a258ab848cc70fb81"
+    },
+    {
+      "id": "home-1920-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1920-light-base-source.png",
+      "sha256": "7734feae225c13506897cd29b5b3b56098662938a7cfca5920bbdadce2c11523"
+    },
+    {
+      "id": "home-1920-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1920-light-base-target.png",
+      "sha256": "7734feae225c13506897cd29b5b3b56098662938a7cfca5920bbdadce2c11523"
+    },
+    {
+      "id": "home-1099-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1099-light-base-source.png",
+      "sha256": "d5cd488ea6a64c955dfbf2d072a5196b03d0d454a9c2d2dd731b0e123ee1fd49"
+    },
+    {
+      "id": "home-1099-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1099-light-base-target.png",
+      "sha256": "d5cd488ea6a64c955dfbf2d072a5196b03d0d454a9c2d2dd731b0e123ee1fd49"
+    },
+    {
+      "id": "home-1100-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1100-light-base-source.png",
+      "sha256": "38ec749a45693f8530fa107dd11170d47c40d4ad92328e03b4138fc9f732a845"
+    },
+    {
+      "id": "home-1100-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1100-light-base-target.png",
+      "sha256": "38ec749a45693f8530fa107dd11170d47c40d4ad92328e03b4138fc9f732a845"
+    },
+    {
+      "id": "home-1101-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1101-light-base-source.png",
+      "sha256": "a0e6ec42526cb5f4ec8455d9231059a9dc8fb7343ce9101246561abb34d4957a"
+    },
+    {
+      "id": "home-1101-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1101-light-base-target.png",
+      "sha256": "a0e6ec42526cb5f4ec8455d9231059a9dc8fb7343ce9101246561abb34d4957a"
+    },
+    {
+      "id": "home-390-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-base-source.png",
+      "sha256": "ffcca6559bb6e2ae052543ff3dd26c687b28bc33cbe62348f1483b08d7c0b7ab"
+    },
+    {
+      "id": "home-390-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-base-target.png",
+      "sha256": "ffcca6559bb6e2ae052543ff3dd26c687b28bc33cbe62348f1483b08d7c0b7ab"
+    },
+    {
+      "id": "overview-1440-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1440-light-base-source.png",
+      "sha256": "08e3425db5fdad6384ab03f4c6921432e81df80ce049d2378869b5d051f8d82a"
+    },
+    {
+      "id": "overview-1440-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1440-light-base-target.png",
+      "sha256": "08e3425db5fdad6384ab03f4c6921432e81df80ce049d2378869b5d051f8d82a"
+    },
+    {
+      "id": "overview-1920-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1920-light-base-source.png",
+      "sha256": "85e9e70fa736757fd17b8efbbd57160a35280906c32bcb6c464cbf291adb04c3"
+    },
+    {
+      "id": "overview-1920-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1920-light-base-target.png",
+      "sha256": "85e9e70fa736757fd17b8efbbd57160a35280906c32bcb6c464cbf291adb04c3"
+    },
+    {
+      "id": "overview-1099-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1099-light-base-source.png",
+      "sha256": "dd8f614d15f31a376a6be4bdf91dbf9803efb58330f17a18a9e363efb20c9ae4"
+    },
+    {
+      "id": "overview-1099-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1099-light-base-target.png",
+      "sha256": "dd8f614d15f31a376a6be4bdf91dbf9803efb58330f17a18a9e363efb20c9ae4"
+    },
+    {
+      "id": "overview-1100-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1100-light-base-source.png",
+      "sha256": "b6d9876d0558984e5e200515b6142d726d21348a8e108f028637bc5a6937b72b"
+    },
+    {
+      "id": "overview-1100-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1100-light-base-target.png",
+      "sha256": "b6d9876d0558984e5e200515b6142d726d21348a8e108f028637bc5a6937b72b"
+    },
+    {
+      "id": "overview-1101-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1101-light-base-source.png",
+      "sha256": "94ca9ff99492e6d6eafaa9ff58d8a1cd31632977850f2260be3c317a5719fa06"
+    },
+    {
+      "id": "overview-1101-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1101-light-base-target.png",
+      "sha256": "94ca9ff99492e6d6eafaa9ff58d8a1cd31632977850f2260be3c317a5719fa06"
+    },
+    {
+      "id": "overview-390-light-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-base-source.png",
+      "sha256": "7284d6a996cb999a59b2512b8c9977c479743d5c6c367617656494fdd46e4402"
+    },
+    {
+      "id": "overview-390-light-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-base-target.png",
+      "sha256": "7284d6a996cb999a59b2512b8c9977c479743d5c6c367617656494fdd46e4402"
+    },
+    {
+      "id": "home-1440-dark-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-dark-base-source.png",
+      "sha256": "2c09ea6a68f27df45f9b8c51bf7306029f3222db8b56b6d4d708a03f1b356f6a"
+    },
+    {
+      "id": "home-1440-dark-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-dark-base-target.png",
+      "sha256": "2c09ea6a68f27df45f9b8c51bf7306029f3222db8b56b6d4d708a03f1b356f6a"
+    },
+    {
+      "id": "overview-1440-dark-base",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1440-dark-base-source.png",
+      "sha256": "10903f6bd3d832b54b1d07ff0a2bad1b33d5c5fd6cadfffb4c7a1fbfc9309ce7"
+    },
+    {
+      "id": "overview-1440-dark-base",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1440-dark-base-target.png",
+      "sha256": "10903f6bd3d832b54b1d07ff0a2bad1b33d5c5fd6cadfffb4c7a1fbfc9309ce7"
+    },
+    {
+      "id": "home-1440-light-overdue",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-light-overdue-source.png",
+      "sha256": "4b841cd6334c2dc361c351d12f30695b72fa180d46ae840b97a09fa19e27b6ed"
+    },
+    {
+      "id": "home-1440-light-overdue",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-light-overdue-target.png",
+      "sha256": "4b841cd6334c2dc361c351d12f30695b72fa180d46ae840b97a09fa19e27b6ed"
+    },
+    {
+      "id": "home-390-light-overdue",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-overdue-source.png",
+      "sha256": "6338c6c5e6a9a22287cd0d036d5912a98400c1c2522438ec1d69414625f4b9d4"
+    },
+    {
+      "id": "home-390-light-overdue",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-overdue-target.png",
+      "sha256": "6338c6c5e6a9a22287cd0d036d5912a98400c1c2522438ec1d69414625f4b9d4"
+    },
+    {
+      "id": "home-1440-light-completed",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-light-completed-source.png",
+      "sha256": "598dbe8349c034eba95cda9cf21695afb8727026ba7da9ff8ed555dbbdb49a02"
+    },
+    {
+      "id": "home-1440-light-completed",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-light-completed-target.png",
+      "sha256": "598dbe8349c034eba95cda9cf21695afb8727026ba7da9ff8ed555dbbdb49a02"
+    },
+    {
+      "id": "home-390-light-completed",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-completed-source.png",
+      "sha256": "f9e949da21fced6e200820772020658847ef3be0308b7ecd0cf9338eff41e0f1"
+    },
+    {
+      "id": "home-390-light-completed",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-completed-target.png",
+      "sha256": "f9e949da21fced6e200820772020658847ef3be0308b7ecd0cf9338eff41e0f1"
+    },
+    {
+      "id": "home-1440-light-empty",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-light-empty-source.png",
+      "sha256": "693ac6cad0a13b67473934c1ba253acfa28c4516e97f19f5a19af15df6a5e040"
+    },
+    {
+      "id": "home-1440-light-empty",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-1440-light-empty-target.png",
+      "sha256": "693ac6cad0a13b67473934c1ba253acfa28c4516e97f19f5a19af15df6a5e040"
+    },
+    {
+      "id": "home-390-light-empty",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-empty-source.png",
+      "sha256": "cce24dd93af533f8816dba00fcbdd2d4a4d1c6151ac1c57a87c8bf2c92cd9ef0"
+    },
+    {
+      "id": "home-390-light-empty",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-empty-target.png",
+      "sha256": "cce24dd93af533f8816dba00fcbdd2d4a4d1c6151ac1c57a87c8bf2c92cd9ef0"
+    },
+    {
+      "id": "overview-1440-light-empty",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1440-light-empty-source.png",
+      "sha256": "ff246821c7a92561119d1a666b8e008309a6d90f367c7581885d5d5150a0ab93"
+    },
+    {
+      "id": "overview-1440-light-empty",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-1440-light-empty-target.png",
+      "sha256": "ff246821c7a92561119d1a666b8e008309a6d90f367c7581885d5d5150a0ab93"
+    },
+    {
+      "id": "overview-390-light-empty",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-empty-source.png",
+      "sha256": "155477176d784d7195a8a7c0278ac2715095f0bde37c91b04318544cbf50aec4"
+    },
+    {
+      "id": "overview-390-light-empty",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-empty-target.png",
+      "sha256": "155477176d784d7195a8a7c0278ac2715095f0bde37c91b04318544cbf50aec4"
+    },
+    {
+      "id": "home-390-light-recent-activity",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-recent-activity-source.png",
+      "sha256": "a5ff86a57cf398d4793226405e29785e1dbd669fa69f1402d138b56591391a67"
+    },
+    {
+      "id": "home-390-light-recent-activity",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/home-390-light-recent-activity-target.png",
+      "sha256": "a5ff86a57cf398d4793226405e29785e1dbd669fa69f1402d138b56591391a67"
+    },
+    {
+      "id": "overview-390-light-tasks-by-status",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-tasks-by-status-source.png",
+      "sha256": "bb7114b9dc3ba21358a9d586f1213cee5b19fa1fbcc63adb9c328adb2c012a40"
+    },
+    {
+      "id": "overview-390-light-tasks-by-status",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-tasks-by-status-target.png",
+      "sha256": "bb7114b9dc3ba21358a9d586f1213cee5b19fa1fbcc63adb9c328adb2c012a40"
+    },
+    {
+      "id": "overview-390-light-workload",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-workload-source.png",
+      "sha256": "5e6a84567111b30fc3a8c43194429a39eb54e1cf6a555e6905bbf31b11b3601d"
+    },
+    {
+      "id": "overview-390-light-workload",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-workload-target.png",
+      "sha256": "5e6a84567111b30fc3a8c43194429a39eb54e1cf6a555e6905bbf31b11b3601d"
+    },
+    {
+      "id": "overview-390-light-upcoming-milestones",
+      "side": "source",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-upcoming-milestones-source.png",
+      "sha256": "5e6a84567111b30fc3a8c43194429a39eb54e1cf6a555e6905bbf31b11b3601d"
+    },
+    {
+      "id": "overview-390-light-upcoming-milestones",
+      "side": "target",
+      "path": "docs/poc/evidence/WU-17/linux-samples/overview-390-light-upcoming-milestones-target.png",
+      "sha256": "5e6a84567111b30fc3a8c43194429a39eb54e1cf6a555e6905bbf31b11b3601d"
+    }
+  ],
+  "miniRegression": {
+    "scope": "Existing ProjectOverviewp2 and Favorites at1440/390 plus dark1440, Source title visible; original WU16 accepted native setup/capture policy/named matched profile. No WU16 evidence overwritten.",
+    "report": "docs/poc/evidence/WU-17/mini-regression/full-raster-linux-candidate.json",
+    "reportSha256": "66c928b4512c19cbec53d715a9d1e0a5e3f644215db1fd433f5270ddab10f5ea",
+    "strictPairCount": 6,
+    "strictPngCount": 12,
+    "independentlyRecomparedStrictPairCount": 6,
+    "allCopiedHashesVerified": true,
+    "images": [
+      {
+        "id": "favorites-default-default-light-1440",
+        "side": "source",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/favorites-default-default-light-1440-source.png",
+        "sha256": "ff4f904aaad23c152eda753f4283df11e99ff7e93673a1c552605a5ad12c8f48"
+      },
+      {
+        "id": "favorites-default-default-light-1440",
+        "side": "target",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/favorites-default-default-light-1440-target.png",
+        "sha256": "ff4f904aaad23c152eda753f4283df11e99ff7e93673a1c552605a5ad12c8f48"
+      },
+      {
+        "id": "favorites-default-default-light-390",
+        "side": "source",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/favorites-default-default-light-390-source.png",
+        "sha256": "0eddb67bc152768e37976ea5d3834c61a74f8a8f2da778b839abb2ee3989fbf1"
+      },
+      {
+        "id": "favorites-default-default-light-390",
+        "side": "target",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/favorites-default-default-light-390-target.png",
+        "sha256": "0eddb67bc152768e37976ea5d3834c61a74f8a8f2da778b839abb2ee3989fbf1"
+      },
+      {
+        "id": "overview-default-default-light-1440",
+        "side": "source",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/overview-default-default-light-1440-source.png",
+        "sha256": "486d9a16c1c4fb459dd10c827493983b70995367fc15377a630f414cccaa5585"
+      },
+      {
+        "id": "overview-default-default-light-1440",
+        "side": "target",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/overview-default-default-light-1440-target.png",
+        "sha256": "486d9a16c1c4fb459dd10c827493983b70995367fc15377a630f414cccaa5585"
+      },
+      {
+        "id": "overview-default-default-light-390",
+        "side": "source",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/overview-default-default-light-390-source.png",
+        "sha256": "62705a0c2a1b9818e8858a5fddd4b338aedc9f432235730dcf30b9e16b9a86a3"
+      },
+      {
+        "id": "overview-default-default-light-390",
+        "side": "target",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/overview-default-default-light-390-target.png",
+        "sha256": "62705a0c2a1b9818e8858a5fddd4b338aedc9f432235730dcf30b9e16b9a86a3"
+      },
+      {
+        "id": "favorites-grid-default-dark-1440",
+        "side": "source",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/favorites-grid-default-dark-1440-source.png",
+        "sha256": "af7543e6361cfac5bdc8170a78c23a09e1a8a4496411b9acd50e7cf7460979ba"
+      },
+      {
+        "id": "favorites-grid-default-dark-1440",
+        "side": "target",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/favorites-grid-default-dark-1440-target.png",
+        "sha256": "af7543e6361cfac5bdc8170a78c23a09e1a8a4496411b9acd50e7cf7460979ba"
+      },
+      {
+        "id": "overview-grid-default-dark-1440",
+        "side": "source",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/overview-grid-default-dark-1440-source.png",
+        "sha256": "860b432c0d3bdead6fda0d6fed30072bf3ffaaf091242eda733938f9e229ec39"
+      },
+      {
+        "id": "overview-grid-default-dark-1440",
+        "side": "target",
+        "path": "docs/poc/evidence/WU-17/mini-regression/linux-samples/overview-grid-default-dark-1440-target.png",
+        "sha256": "860b432c0d3bdead6fda0d6fed30072bf3ffaaf091242eda733938f9e229ec39"
+      }
+    ],
+    "review": "docs/poc/evidence/WU-17/mini-regression/review.json",
+    "provenance": {
+      "actualCaptureAttempt": 2,
+      "firstAttemptReview": "docs/poc/evidence/WU-17/mini-regression/first-attempt-review.json",
+      "firstReportBytesRetained": false,
+      "firstCaptureLogBytesRetained": false,
+      "first12FrozenPngBytesRetained": true,
+      "attemptExitEvidence": "docs/poc/evidence/WU-17/gates/session-70767-tail.stdout.log",
+      "note": "Two sequential mini executions were unintentionally scheduled by duplicated insertion/appended runner entries after restart. Both exit0; second report/log retained. No additional browser capture follows reconciliation."
+    }
+  },
+  "implementationAssetsDelta": {
+    "dashboardCount": 390,
+    "miniCount": 391,
+    "added": {
+      "apps/web/project-routes.html": "bcf59c330e18d8df05387a63c1c28789bf6e66da8f9e64707c2d58a1b5902c51"
+    },
+    "removed": [],
+    "changed": [],
+    "reason": "Existing excluded project feature harness HTML included by project capture asset read-set; no production asset delta."
+  },
+  "postReconciliationQa": {
+    "command": "pnpm exec eslint tests/visual/dashboards tests/visual/projects/verify.mjs",
+    "initialExitStatus": 1,
+    "initialLog": "docs/poc/evidence/WU-17/gates/reconciliation-qa-unaccepted-syntax.log",
+    "finalExitStatus": 0,
+    "finalLog": "docs/poc/evidence/WU-17/gates/reconciliation-qa.log",
+    "reason": "Removing duplicated runner entries introduced one extra closing bracket; bounded syntax repair passed. No product/browser input changed."
+  },
+  "rootTechnicalReview": {
+    "status": "PASS",
+    "reviewer": "root independent technical/runtime-scope review",
+    "recordedAtUtc": "2026-10-09 19:30:50 UTC",
+    "scope": "Root technical PASS: named matched BOTH Source+Target Chromium145.0.7632.6 managed Linux --disable-partial-raster for WU17 Home/WorkspaceOverview content and six affected Favorites/ProjectOverviewp2 mini-row consumer pairs. No default/Darwin/full AppShell/fullproject/physical-device/user-approval parity.",
+    "independentChecks": [
+      "26+6 pixel pairs independently recomputed;52+12 copied PNG SHA and original unique output equality",
+      "390 dashboard/391 mini inputs;only existing excluded project-routes.html extra, no changed/removed assets",
+      "26 equal Source+Target served-font sets and immutable4 inputs",
+      "Source904205/tree5db5/86clean and no owned4173/5173 listeners",
+      "21 required+3 supplemental actual0 command provenance, first mini bytes limits",
+      "Production/development owned count-up523.8/533.5ms, reducednull; native8; affected shell27/project28/detail12/Choices20+16",
+      "Code review;9 representative Source dashboard images and2 Source mini images viewed"
+    ],
+    "limits": [
+      "Original first2Target cold-smoke PNG and first-mini report/log bytes missing, honestly retained known hashes/remaining bytes only.",
+      "Inherited WU29 debts remain UNPROVED_UNACCEPTED; Invite form WU20, Files body WU22."
+    ]
+  }
+}

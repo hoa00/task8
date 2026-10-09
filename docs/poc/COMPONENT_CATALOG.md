@@ -594,3 +594,12 @@ record type and actor/entity/day formatting; no later consumer page is implement
   project-member, complete member-catalogue, session and local demo query keys.
   Query remains authoritative; Bootstrap display DTO is a pending identity
   fallback only. It does not delay dialog opening or copy server state.
+
+## WU-17 delivered ownership
+
+DB-01 lives in `features/dashboards`: HomePage and WorkspaceOverview are separate compositions, with shared StatGroup/StatItem, ProjectProgressTable, TaskStatusBreakdown and WorkloadSummary. Both reuse project icons/status/member stacks, TaskMiniRow, ActivityFeed, MemberIdentity, Progress and StackedBar exports. Domain `dashboard.ts` owns task tabs, deadline groups and rolling completed count; mock reads own complete authorized aggregates. Query/cursor reads remain the server-state owner; previews do not determine workspace totals.
+
+Home My tasks uses SegmentedControl with optional tab semantics; default radio semantics are unchanged. Selected Home tab is UI-only state in the workspace transient provider, retained across navigation and reset on reload/workspace change. StatItem preserves source520ms cubic first-entry count-up and reduced policy through production/development StrictMode; passive start/readiness attributes support chronology verification.
+
+- Home owns responsive PanelHeader composition through existing className slots; shared PanelHeader defaults remain. TaskMiniRow title uses source flex1/min-width0 so long text allocates width faithfully with the exported ProjectIdentity.
+- Home task/activity/deadline/form callbacks consume finite entry through existing typed projectSurfaceOpened before the shared workspace task intent, verified against real Source openers.

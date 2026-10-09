@@ -1,0 +1,109 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "home": {
+        "totalTasks": 48,
+        "completedThisWeek": 9,
+        "overdue": 2,
+        "activeProjects": 5
+      },
+      "overview": {
+        "total": 48,
+        "byStatus": {
+          "backlog": 8,
+          "todo": 17,
+          "progress": 8,
+          "review": 6,
+          "done": 9
+        },
+        "byPriority": {
+          "urgent": 5,
+          "high": 14,
+          "medium": 21,
+          "low": 8,
+          "none": 0
+        },
+        "overdue": 2,
+        "completed": 9,
+        "completionRate": 19,
+        "subtaskTotals": {
+          "total": 16,
+          "completed": 8
+        }
+      },
+      "id": "D17-N01-existing-full-dashboards-before-mutation",
+      "status": "passed"
+    },
+    {
+      "taskId": "01a11abd-aa80-7d86-afb2-cc459040d243",
+      "key": "WEB-201",
+      "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "id": "D17-N02-native-List-create",
+      "status": "passed"
+    },
+    {
+      "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+      "dueDate": "2026-10-08",
+      "homeUpcoming": 7,
+      "Today": 3,
+      "workload": 8,
+      "id": "D17-N03-native-Drawer-assign-and-date-to-Today",
+      "status": "passed"
+    },
+    {
+      "dueDate": "2026-10-09",
+      "Today": 2,
+      "Tomorrow": 4,
+      "id": "D17-N04-native-Drawer-reschedule-to-Tomorrow-updates-groups",
+      "status": "passed"
+    },
+    {
+      "completedAt": "2026-10-08T09:00:00Z",
+      "projectProgress": 26,
+      "summary": {
+        "total": 49,
+        "byStatus": {
+          "backlog": 8,
+          "todo": 17,
+          "progress": 8,
+          "review": 6,
+          "done": 10
+        },
+        "byPriority": {
+          "urgent": 5,
+          "high": 14,
+          "medium": 21,
+          "low": 8,
+          "none": 1
+        },
+        "overdue": 2,
+        "completed": 10,
+        "completionRate": 20,
+        "subtaskTotals": {
+          "total": 16,
+          "completed": 8
+        }
+      },
+      "id": "D17-N05-native-Board-complete-propagates-Home-Overview-progress-tabs",
+      "status": "passed"
+    },
+    {
+      "sameId": "01a11abd-aa80-7d86-afb2-cc459040d243",
+      "currentTitle": "WU17 renamed task",
+      "completionReopened": true,
+      "reload": true,
+      "id": "D17-N06-native-Home-completion-reopen-and-live-Activity-current-title",
+      "status": "passed"
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "notes": [
+    "Primary mutations use native actual List/Drawer/Board/Home controls and persistent canonical records; no direct API mutations.",
+    "Pagination fixture setup is a separate explicit 350-task data probe. Native browser uses default matched managed Linux runtime, no full-raster argument."
+  ],
+  "error": "TypeError: Cannot read properties of undefined (reading 'filters')\n    at file:///workspace/task8/tests/visual/dashboards/interactions.mjs:25:276\n    at runNextTicks (node:internal/process/task_queues:64:5)\n    at process.processImmediate (node:internal/timers:472:9)\n    at async probe (file:///workspace/task8/tests/visual/dashboards/interactions.mjs:14:44)\n    at async file:///workspace/task8/tests/visual/dashboards/interactions.mjs:25:2"
+}

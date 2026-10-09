@@ -1,0 +1,69 @@
+root-current-workspace-launch
+index-full-prefix-01a11abd-aa80-72ea-8b87-b31ad015a24e
+index-full-prefix-01a11abd-aa80-7d11-86d8-e6545859cd14
+index-full-prefix-settings
+all-15-workspace-page-direct-routes
+exact-eight-project-tabs
+static-saved-view-refresh
+invalid-id-entity-tab-setting-and-static-ownership
+restricted-project
+all26-verified-startup-hash-aliases-replace
+startup-alias-has-no-extra-history-entry
+auth-onboarding-search-normalized
+unknown-prototype-project-hashes-preserved-not-interpreted
+same-shell-active-title-live-back-forward
+help-galleries-same-shell-current-workspace
+both-direct-galleries-resolve-session-shell-overlay
+validated-shareable-search-and-task-intent-refresh
+keyboard-skip-and-navigation-focus
+collapsed-preference-reload
+mobile-navigation-trap-escape-scrim-focus-return
+inclusive900-and640-geometry-both-sides
+ordinary-other-catalog-workspace404-no-foreign-data
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+A [Error]: expect(locator).toHaveAttribute(expected) failed
+
+Locator:  locator('.shell-layout')
+Expected: "workspace-retained"
+Received: ""
+Timeout:  5000ms
+
+Call log:
+  - Expect "to.have.attribute.value" with timeout 5000ms
+  - waiting for locator('.shell-layout')
+    9 × locator resolved to <div data-workspace-id="01a11abd-aa80-7290-8c9b-7aa9af2af468" class="shell-layout grid h-full grid-cols-[var(--side-w)_minmax(0,1fr)]">…</div>
+      - unexpected value "null"
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/tests/visual/shell/routes.mjs:49:749 {
+  matcherResult: {
+    name: 'toHaveAttribute',
+    expected: 'workspace-retained',
+    message: 'expect(locator).toHaveAttribute(expected) failed\n' +
+      '\n' +
+      "Locator:  locator('.shell-layout')\n" +
+      'Expected: "workspace-retained"\n' +
+      'Received: ""\n' +
+      'Timeout:  5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.have.attribute.value" with timeout 5000ms\n' +
+      "  - waiting for locator('.shell-layout')\n" +
+      '    9 × locator resolved to <div data-workspace-id="01a11abd-aa80-7290-8c9b-7aa9af2af468" class="shell-layout grid h-full grid-cols-[var(--side-w)_minmax(0,1fr)]">…</div>\n' +
+      '      - unexpected value "null"\n',
+    pass: false,
+    actual: null,
+    log: [
+      '  - Expect "to.have.attribute.value" with timeout 5000ms',
+      "  - waiting for locator('.shell-layout')",
+      '    9 × locator resolved to <div data-workspace-id="01a11abd-aa80-7290-8c9b-7aa9af2af468" class="shell-layout grid h-full grid-cols-[var(--side-w)_minmax(0,1fr)]">…</div>',
+      '      - unexpected value "null"'
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

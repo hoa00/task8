@@ -1,0 +1,161 @@
+{
+  "status": "AwaitingRootRuntimeScopeReview",
+  "profileAdopted": false,
+  "commands": [
+    {
+      "name": "typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/build.log"
+    },
+    {
+      "name": "lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/lint.log"
+    },
+    {
+      "name": "test",
+      "command": "pnpm test",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/test.log"
+    },
+    {
+      "name": "reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/reference-check.log"
+    },
+    {
+      "name": "http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/http-build.log"
+    },
+    {
+      "name": "http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-17",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/http-bundle.log"
+    },
+    {
+      "name": "choices-regression",
+      "command": "node tests/visual/controls/verify.mjs choices --wu17-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/choices-regression.log"
+    },
+    {
+      "name": "shell-routes-regression",
+      "command": "node tests/visual/shell/routes.mjs --wu17-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/shell-routes-regression.log"
+    },
+    {
+      "name": "projects-regression",
+      "command": "node tests/visual/projects/interactions.mjs --wu17-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/projects-regression.log"
+    },
+    {
+      "name": "task-detail-regression",
+      "command": "node tests/visual/task-detail/interactions.mjs --wu17-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/task-detail-regression.log"
+    },
+    {
+      "name": "interactions",
+      "command": "node tests/visual/dashboards/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/interactions.log"
+    },
+    {
+      "name": "openers",
+      "command": "node tests/visual/dashboards/openers.mjs --verify",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/openers.log"
+    },
+    {
+      "name": "leaves",
+      "command": "node tests/visual/dashboards/leaves.mjs --verify",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/leaves.log"
+    },
+    {
+      "name": "count-up",
+      "command": "node tests/visual/dashboards/count-up.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/count-up.log"
+    },
+    {
+      "name": "visual",
+      "command": "node tests/visual/dashboards/verify.mjs --attempt=geometry-candidate",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/visual.log"
+    },
+    {
+      "name": "freeze",
+      "command": "node tests/visual/dashboards/freeze.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/freeze.log"
+    },
+    {
+      "name": "final-qa-lint",
+      "command": "pnpm exec eslint tests/visual/dashboards",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/final-qa-lint.log"
+    },
+    {
+      "name": "final-reference-check",
+      "command": "pnpm reference:check",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-17/gates/final-reference-check.log"
+    }
+  ],
+  "requiredGateCount": 19,
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "strictPairCount": 26,
+  "nativeProbeCount": 8,
+  "countUpCases": 4,
+  "projectRegressionProbeCount": 28,
+  "detailRegressionProbeCount": 12,
+  "review": "docs/poc/evidence/WU-17/review.json",
+  "acceptance": {
+    "AC1": "Separate source-owned Home and Workspace Overview compositions reuse metric/project/task/activity/status/progress primitives.",
+    "AC2": "Canonical full authorized aggregates and complete cursor reads; real List/Drawer/Board create/reschedule/complete, Home reopen, empty/date/privacy/archive/delete/pagination proofs.",
+    "AC3": "26 strict Source+Target content pairs across1440/1920/1099/1100/1101/390, dark/tabs/empty/mobile chart/workload/milestone/activity, native count-up lifecycle."
+  },
+  "limitations": [
+    "Named matched Chromium Linux full-raster profile; root runtime-scope review required.",
+    "Not original173Darwin/default-browser/fullshell/physical-device/user approval.",
+    "Archived-project task exclusion and activity newest-first are canonical source corrections tested separately; default fixture needs no correction.",
+    "Invite member exposes existing Members route; member invitation form belongs to its later owner.",
+    "Inherited WU10/WU13/WU14/WU15/WU16 and WU29 unaccepted debts remain; no full AppShell acceptance.",
+    "First failed cold smoke retained report/hash and Source PNG bytes; two original Target PNG bytes were overwritten before archival, explicitly recorded in unaccepted-smoke-initial/freeze.json.",
+    "Passive development count-up zero commit can occur after its owned clock starts; both intervals are reported, no timing/easing/paint change."
+  ]
+}

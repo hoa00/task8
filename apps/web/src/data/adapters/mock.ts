@@ -11,6 +11,7 @@ import { loadMockDataset, persistMockDataset } from '../mock/persistence.ts';
 import type { MockStorage } from '../mock/persistence.ts';
 import { mockScenarios, waitForScenario } from '../mock/scenarios.ts';
 import { runTaskFieldOperation, taskFieldOperations } from '../mock/task-fields.ts';
+import { dashboardReads, readHome, readOverview } from '../mock/dashboards.ts';
 import type { MockScenarioId } from '../mock/scenarios.ts';
 
 export const foundationReads = ['getSession', 'listWorkspaces', 'getBootstrap', 'getWorkspace', 'getProfile', 'getPreferences', 'getNotificationPreferences'] as const satisfies readonly OperationId[];
@@ -32,7 +33,7 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
   for (const task of Object.values(dataset.tasks)) { const normalized = normalizeDescription(task.descriptionHtml); task.descriptionHtml = normalized.html; dataset.taskCommands.descriptionTexts[task.id] = normalized.text; }
   if (scenario === 'populated') persistMockDataset(storage, dataset);
   const client = createStudioClient(async (id, input, { signal }) => {
-    if (![...shellReads, ...taskFieldOperations, ...projectOperations].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number] | (typeof projectOperations)[number])) throw unavailable(id);
+    if (![...shellReads, ...taskFieldOperations, ...projectOperations, ...dashboardReads].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number] | (typeof projectOperations)[number] | (typeof dashboardReads)[number])) throw unavailable(id);
     await wait(state.delayMs, signal);
     if (state.failure === 'offline') throw new StudioTransportError('offline', 'Mock scenario is offline');
     if (state.failure === 'error') throw new StudioApiError({ error: { code: 'INTERNAL_ERROR', message: 'Mock scenario request failed' } });
@@ -40,6 +41,8 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
     if ((projectOperations as readonly string[]).includes(id) || id === 'undoCommand' && hasProjectUndo(dataset, input.undoId)) { const result = await runProjectOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     if ((taskFieldOperations as readonly string[]).includes(id)) { const result = await runTaskFieldOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     switch (id) {
+      case 'getHome': return { data: readHome(dataset, clock) };
+      case 'getOverview': return { data: readOverview(dataset, clock) };
       case 'listCalendarEvents': {
         const query = DateRangeQuerySchema.parse(input.query);
         if (query.projectId && (!canReadProject(dataset.projects[query.projectId], dataset) || dataset.projects[query.projectId]!.archivedAt)) throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Project not found' } });

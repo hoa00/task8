@@ -30,6 +30,7 @@ function WorkspaceShell({workspaceId}:AppShellProps) {
  const data=useWorkspaceBootstrap().data?.data;
  const [collapsed,setCollapsed]=useState(readCollapsed),[mobileOpen,setMobileOpen]=useState(false);
  const [selection,setSelection]=useState<{workspaceId:string;ids:readonly string[]}>({workspaceId,ids:[]});
+ const [homeTab,setHomeTab]=useState<{workspaceId:string;tab:'upcoming'|'overdue'|'completed'}>({workspaceId,tab:'upcoming'});
  const opener=useRef<HTMLButtonElement>(null),nav=useRef<HTMLElement>(null),priorWorkspace=useRef(workspaceId),mobileOpener=useRef<HTMLElement|null>(null);
  const returnNavigationFocus=()=>requestAnimationFrame(()=>{(mobileOpener.current?.isConnected?mobileOpener.current:opener.current)?.focus();});
  const openNavigation=()=>{mobileOpener.current=document.activeElement as HTMLElement;setMobileOpen(true);};
@@ -41,7 +42,7 @@ function WorkspaceShell({workspaceId}:AppShellProps) {
  useEffect(()=>{if(priorWorkspace.current!==workspaceId){void cancelWorkspaceQueries(queryClient,priorWorkspace.current);priorWorkspace.current=workspaceId;}},[queryClient,workspaceId]);
  useEffect(()=>router.subscribe('onBeforeNavigate',event=>{
    const destination=event.toLocation.pathname.match(/^\/w\/([^/]+)/)?.[1] ?? validateRouteSearch(event.toLocation.search).workspaceId ?? workspaceId;
-   if(destination!==workspaceId){void cancelWorkspaceQueries(queryClient,workspaceId);setSelection({workspaceId:destination,ids:[]});}
+   if(destination!==workspaceId){void cancelWorkspaceQueries(queryClient,workspaceId);setSelection({workspaceId:destination,ids:[]});setHomeTab({workspaceId:destination,tab:'upcoming'});}
    setMobileOpen(false);
  }),[router,queryClient,workspaceId]);
  useEffect(()=>{
@@ -54,7 +55,7 @@ function WorkspaceShell({workspaceId}:AppShellProps) {
  useEffect(()=>{const media=matchMedia('(max-width: 900px)');const resize=()=>{if(!media.matches)setMobileOpen(false);};media.addEventListener('change',resize);return()=>media.removeEventListener('change',resize);},[]);
  const toggleCollapsed=(value:boolean)=>{setCollapsed(value);try{localStorage.setItem('task8.ui.shell.v1',value?'collapsed':'expanded');}catch{/* preference is optional */}};
  if(!data)return <LoadingBoundary/>;
- return <WorkspaceTransientContext value={{selectedTaskIds:selection.workspaceId===workspaceId?selection.ids:[],selectTasks:ids=>setSelection({workspaceId,ids}),openTask,closeTask,openTaskForm:(taskId,defaults)=>setForm(current=>taskId?{open:true,taskId,generation:current.generation+1}:{open:true,generation:current.generation,...(defaults?{defaults}:{})}),openTaskMenu:(taskId,anchor,point)=>setTaskMenu({taskId,anchor,...(point?{point}:{})})}}><OverlayProvider><ProjectOverlayHost key={workspaceId} data={data} onOpenOverlay={() => { setMobileOpen(false); return mobileOpen ? opener.current : null; }}>
+ return <WorkspaceTransientContext value={{homeTaskTab:homeTab.workspaceId===workspaceId?homeTab.tab:'upcoming',setHomeTaskTab:tab=>setHomeTab({workspaceId,tab}),selectedTaskIds:selection.workspaceId===workspaceId?selection.ids:[],selectTasks:ids=>setSelection({workspaceId,ids}),openTask,closeTask,openTaskForm:(taskId,defaults)=>setForm(current=>taskId?{open:true,taskId,generation:current.generation+1}:{open:true,generation:current.generation,...(defaults?{defaults}:{})}),openTaskMenu:(taskId,anchor,point)=>setTaskMenu({taskId,anchor,...(point?{point}:{})})}}><OverlayProvider><ProjectOverlayHost key={workspaceId} data={data} onOpenOverlay={() => { setMobileOpen(false); return mobileOpen ? opener.current : null; }}>
  <button className="shell-skip fixed left-3 -top-[60px] z-[300] rounded-sm bg-foreground px-3 py-2 text-sm font-medium text-[var(--text-inv)] transition-[top]" onClick={()=>document.getElementById('main-content')?.focus()}>Skip to content</button>
  <div className="shell-layout grid h-full grid-cols-[var(--side-w)_minmax(0,1fr)]" data-collapsed={collapsed||undefined} data-mobile-open={mobileOpen||undefined} data-workspace-id={workspaceId}>
   <Sidebar collapsed={collapsed} onCollapsedChange={toggleCollapsed} navigationRef={nav} mobileClosed={mobile&&!mobileOpen}/>{mobileOpen && <button tabIndex={-1} className="shell-scrim fixed inset-0 z-[69] bg-[var(--overlay)]" aria-label="Close navigation" onClick={closeNavigation}/>}

@@ -1,0 +1,107 @@
+[
+  {
+    "name": "typecheck",
+    "command": "pnpm typecheck",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/typecheck.log"
+  },
+  {
+    "name": "build",
+    "command": "pnpm build",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/build.log"
+  },
+  {
+    "name": "lint",
+    "command": "pnpm lint",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/lint.log"
+  },
+  {
+    "name": "test",
+    "command": "pnpm test",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/test.log"
+  },
+  {
+    "name": "reference-check",
+    "command": "pnpm reference:check",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/reference-check.log"
+  },
+  {
+    "name": "http-build",
+    "command": "pnpm --filter @studio/web build:http",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/http-build.log"
+  },
+  {
+    "name": "http-bundle",
+    "command": "node tests/data/http-bundle.mjs WU-17",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/http-bundle.log"
+  },
+  {
+    "name": "choices-regression",
+    "command": "node tests/visual/controls/verify.mjs choices --wu17-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/choices-regression.log"
+  },
+  {
+    "name": "shell-routes-regression",
+    "command": "node tests/visual/shell/routes.mjs --wu17-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/shell-routes-regression.log"
+  },
+  {
+    "name": "projects-regression",
+    "command": "node tests/visual/projects/interactions.mjs --wu17-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/projects-regression.log"
+  },
+  {
+    "name": "task-detail-regression",
+    "command": "node tests/visual/task-detail/interactions.mjs --wu17-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/task-detail-regression.log"
+  },
+  {
+    "name": "interactions",
+    "command": "node tests/visual/dashboards/interactions.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/interactions.log"
+  },
+  {
+    "name": "openers",
+    "command": "node tests/visual/dashboards/openers.mjs --verify",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/openers.log"
+  },
+  {
+    "name": "count-up",
+    "command": "node tests/visual/dashboards/count-up.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/count-up.log"
+  },
+  {
+    "name": "visual",
+    "command": "node tests/visual/dashboards/verify.mjs --attempt=final-candidate",
+    "exitStatus": 1,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-17/gates/visual.log"
+  }
+]

@@ -873,3 +873,15 @@ modal/configured/workflow debts for WU29. No default/Darwin173/fullshell/physica
 or userapproval parity, new baseline, Source/template/fixture/font modification,
 tolerance/mask change or product paint workaround is claimed. Files PR07body22
 remains excluded.
+
+## WU-17 dashboard verification ownership
+
+Home and Workspace Overview own the source1160px centered page wrapper and1.55fr/1fr grid with inclusive1100px stack boundary. Static geometry uses Tailwind; `features/dashboards/dashboards.css` owns sibling separators and source finite panel/stat/chart entry selectors. Existing Project motion ownership is reused; tabs/data updates consume first-entry effects without replaying headline counts. Count-up uses source520ms cubic clock/raw easing and reduced policy separately, including StrictMode cleanup.
+
+The WU17 matrix uses named matched Source+Target Chromium145 Linux `--disable-partial-raster`, content clips only, threshold0/includeAAtrue/masks[]. Both boot Home, finish existing readiness and use actual native navigation: Projects→Home for Home entry, Home→Overview for Overview. Source preference setup otherwise consumed its initial Home effect while Target retained it; asymmetric cold attempts remain unaccepted. Both sides use two snapshot warmups from the established harness, with no additional paint/font/clock interventions. Separate named mobile panels cover below-fold activity/status/workload/milestones. Runtime-scope acceptance remains pending independent root review, not automatic WU16 acceptance.
+
+Count-up tests passively observe production/development entry, tab non-replay, Completed→Overview→Home retention and reduced behavior. Target `data-countup-start` exposes its existing start; actual start→ready must reach520ms. Zero→ready is reported independently because a development commit may lag the clock; no timing/effect/paint change satisfies an observer-relative floor. Historical failed attempts and original Target bytes missing from the first smoke archive remain explicit.
+
+WU17 bounded layout diagnostics distinguish Source inclusive1100 media from Tailwind exclusive max shorthand; pages use the existing source-wide/tablet/mobile variants. Dashboard PanelHeader className slots own source mobile wrap+nowrap headings, leaving shared defaults unchanged. Passive leaves-before records source flex1/basis0%/minwidth0 versus grow-only; shared TaskMiniRow title and dashboard status/workload/milestone flexible leaves now use source flex sizing. First complete17/26zero matrix and all52 original PNGs stay frozen unaccepted separately.
+
+WU17 root technical PASS adopts the named matched BOTH Source+Target Chromium145 Linux `--disable-partial-raster` profile only for the26 Home/WorkspaceOverview content pairs plus6 affected Favorites/ProjectOverviewp2 mini-row pairs. Executed reports and64PNG remain byte unchanged; no default/Darwin/fullshell/fullproject/device/user acceptance. All historical raster debts and missing failed-attempt bytes remain explicit in WU17/29 evidence.

@@ -62,21 +62,23 @@ export function Toggle({ checked, onCheckedChange, className = '', ...props }: T
 }
 export interface ChoiceItem { ariaLabel?: string; value: string; label: ReactNode; icon?: ReactNode; count?: number | undefined; disabled?: boolean; panelId?: string }
 export interface TabsProps extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> { items: readonly ChoiceItem[]; value: string; onValueChange: (value: string) => void; label: string }
-function Choices({ items, value, onValueChange, label, segmented, ref, className = '', ...props }: TabsProps & { segmented: boolean }) {
+export interface SegmentedControlProps extends TabsProps { semantics?: 'radio' | 'tabs' }
+function Choices({ items, value, onValueChange, label, segmented, semantics, ref, className = '', ...props }: SegmentedControlProps & { segmented: boolean }) {
+  const tabs = !segmented || semantics === 'tabs';
   const root = useRef<HTMLDivElement>(null);
   useImperativeHandle(ref, () => root.current!, []);
-  return <div {...props} ref={root} role={segmented ? 'radiogroup' : 'tablist'} aria-label={label} className={`${segmented ? 'inline-flex gap-[2px] rounded-sm bg-surface-3 p-[2px]' : 'flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'} ${className}`}>
-    {items.map(item => <button key={item.value} type="button" aria-label={item.ariaLabel} role={segmented ? 'radio' : 'tab'} aria-checked={segmented ? value === item.value : undefined} aria-selected={!segmented ? value === item.value : undefined} aria-controls={item.panelId} disabled={item.disabled} tabIndex={item.value === value ? 0 : -1} onClick={() => onValueChange(item.value)}
+  return <div {...props} ref={root} role={tabs ? 'tablist' : 'radiogroup'} aria-label={label} className={`${segmented ? 'inline-flex gap-[2px] rounded-sm bg-surface-3 p-[2px]' : 'flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'} ${className}`}>
+    {items.map(item => <button key={item.value} type="button" aria-label={item.ariaLabel} role={tabs ? 'tab' : 'radio'} aria-checked={!tabs ? value === item.value : undefined} aria-selected={tabs ? value === item.value : undefined} aria-controls={item.panelId} disabled={item.disabled} tabIndex={item.value === value ? 0 : -1} onClick={() => onValueChange(item.value)}
       onKeyDown={event => {
         if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
         event.preventDefault(); const enabled = items.filter(choice => !choice.disabled); const current = enabled.findIndex(choice => choice.value === item.value);
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? enabled.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + enabled.length) % enabled.length;
         const choice = enabled[next]; if (choice) { onValueChange(choice.value); root.current?.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')[next]?.focus(); }
-      }} className={`${segmented ? 'h-[calc(var(--h-sm)-2px)] gap-[5px] rounded-[5px] px-[9px] text-xs transition-[background,color] aria-checked:bg-surface aria-checked:text-foreground aria-checked:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)]' : 'relative h-9 gap-[6px] whitespace-nowrap px-[10px] text-sm transition-colors aria-selected:text-foreground ui-tab'} inline-flex items-center font-medium text-secondary source-hover:text-foreground`}>
+      }} className={`${segmented ? 'h-[calc(var(--h-sm)-2px)] gap-[5px] rounded-[5px] px-[9px] text-xs transition-[background,color] aria-checked:bg-surface aria-checked:text-foreground aria-checked:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)] aria-selected:bg-surface aria-selected:text-foreground aria-selected:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)]' : 'relative h-9 gap-[6px] whitespace-nowrap px-[10px] text-sm transition-colors aria-selected:text-foreground ui-tab'} inline-flex items-center font-medium text-secondary source-hover:text-foreground`}>
       {item.icon}{item.label}{item.count !== undefined && <span className="text-2xs font-medium text-muted">{item.count}</span>}</button>)}
   </div>;
 }
 export function Tabs(props: TabsProps) { return <Choices {...props} segmented={false} />; }
-export function SegmentedControl(props: TabsProps) { return <Choices {...props} segmented />; }
+export function SegmentedControl(props: SegmentedControlProps) { return <Choices {...props} segmented />; }
 export type VisuallyHiddenProps = ComponentPropsWithRef<'span'>;
 export function VisuallyHidden(props: VisuallyHiddenProps) { return <span {...props} className={`sr-only ${props.className ?? ''}`} />; }

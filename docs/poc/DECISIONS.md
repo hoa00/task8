@@ -374,3 +374,14 @@ WU-16 embedded Calendar/Timeline tab motion follows the original Project taskVie
   Keep default31/45, oldfull44/45 and every inherited/new raster debt unaccepted
  for WU29; do not modify Source/baseline/tolerance/masks or claim Darwin/fullshell/
  physical/userapproval. Files body remains WU22. See WU16 qualified review JSON.
+
+### WU-17 bounded dashboard choices
+
+- Distinct source Home/Workspace Overview compositions share exports. Existing contracts suffice; complete authorized aggregates/cursor reads supply totals, segments and current activity titles without200-task caps or counter stores.
+- Default locked Home first-seven and canonical newest-seven activity IDs match; no default fixture correction is used. Newest order for synthetic unsorted history and archived/private/deleted/missing project-parent exclusion are explicit canonical corrections, not blanket raw Source pixel acceptance. Archived-task history remains with active authorized parent. Source strict rolling elapsed seven days uses completedAt, including raw future-instant predicate.
+- Selected Home tab is workspace-scoped transient UI state above the page; Source navigation retention needs no module global/server-state copy. Shared Choices optional segmented tabs preserve default radios.
+- Passive owned count-up start repairs measurement ambiguity: development zero DOM commit may lag clock. Both intervals remain evidence; no timing/easing/layout-effect/paint change chases an observer floor.
+- Invite member opens the existing Members route. Its invitation form belongs to its later owner; no grant/success/real invitation is invented here.
+- WU17 matched Linux content scope requires its own root review. Default/Darwin/fullshell and inherited WU29 debts stay unaccepted.
+
+WU17 final root review accepts only the named matched managed Linux dashboard content plus6 affected shared-mini consumers, after actual21required+3supplemental pass and native/source/data proof. Reconciled runner schedules21unique gates; the unintentional sequential duplicated mini executions remain recorded with honest first-report/log byte loss. This does not accept default/Darwin/fullshell/fullproject parity or clear inherited WU29 debt.
