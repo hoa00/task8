@@ -2,11 +2,11 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-12` — **IN_PROGRESS**; Board/data/native implementation hiện hữu, AC1/2/3 và M1 gates đã đạt, đang chốt Git checkpoint/push.
-- Last completed implementation unit: `WU-11`.
+- Current work unit: `WU-12` — **DONE / STOP**; Board và M1 đạt gates, implementation checkpoint đã push. Next permitted unit: `WU-13` qua agent/session riêng.
+- Last completed implementation unit: `WU-12`.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
-- Target React app: shared task List/Drawer/full plain form/file foundation và Workspace/My Tasks pages đã nghiệm thu logic, interaction và scoped source-only visuals; canonical routes/AppShell/foundation/UI/data giữ trước đó. Full rich editor/subtask CRUD/detail/Comments/Activity và composer files đã nghiệm thu WU-11 với whole-Drawer technical comparison; các scope còn lại theo ledger.
+- Target React app: shared Board/List/whole rich Drawer/full forms/file foundation và M1 Workspace Tasks List/Board/My Tasks List đạt native/scoped source-only gates. Project/saved Board/List có feature harness; full wrappers và các scope còn lại theo ledger.
 - Backend: Hono Worker skeleton local/404 đã chạy; D1/R2 và business routes chưa triển khai.
 - Source SHA: `904205c626918ee96054eb35495c394a60c0c601`.
 - Target project: `task8`; repository private [hoa00/task8](https://github.com/hoa00/task8), `origin=https://github.com/hoa00/task8.git`, default branch `main`; implementation hiện dùng branch `work`, push normal `HEAD:main`. Kết quả WU-01 ở entry bên dưới; lịch sử push WU-00 giữ nguyên.
@@ -27,7 +27,7 @@
 | [WU-09](work-units/WU-09.md) | DONE | `1ec030c3966b5ce534880e196c00866e6b7adcf2` | [96 images/10 probes](evidence/WU-09/verification.json), [11 field regressions](evidence/WU-09/field-regression/interactions.json) |
 | [WU-10](work-units/WU-10.md) | DONE | `29ac418fd13a039d31707bf615700ab128d7f089` | [32 images/11 probes/15 gates](evidence/WU-10/verification.json), [affected regressions](evidence/WU-10/commands.json) |
 | [WU-11](work-units/WU-11.md) | DONE | `b99ce11a5389a6fe6602d9ec0ffece42e214beb8` | [17 gates + 5 post-paste + 5 native-drop checks](evidence/WU-11/verification.json), [46 samples/92 PNG](evidence/WU-11/review.json), [9 native collaboration probes](evidence/WU-11/interactions.json); [base push](evidence/WU-11/checkpoint.json), [follow-up push](evidence/WU-11/followup-checkpoint.json) |
-| [WU-12](work-units/WU-12.md) | IN_PROGRESS | — | — |
+| [WU-12](work-units/WU-12.md) | DONE | `49ce4f501c71b6f85e2d1e8a1379f2e03759b00f` | [49 Board pairs/98 PNG](evidence/WU-12/review.json), [6-step native M1](evidence/WU-12/m1-journey.json), [gates](evidence/WU-12/verification.json), [push checkpoint](evidence/WU-12/checkpoint.json) |
 | [WU-13](work-units/WU-13.md) | NOT_STARTED | — | — |
 | [WU-14](work-units/WU-14.md) | NOT_STARTED | — | — |
 | [WU-15](work-units/WU-15.md) | NOT_STARTED | — | — |
@@ -431,7 +431,7 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 
 ## WU-12 — 2026-10-09
 
-- Status: `IN_PROGRESS` — AC1/2/3 và M1 đạt; implementation/push checkpoint đang chốt trước DONE/STOP. Không triển khai WU-13 hoặc unit sau.
+- Status: `DONE / STOP` — AC1/2/3, M1 và actual implementation/push checkpoint đạt. Không triển khai WU-13 hoặc unit sau.
 - Started from: branch `work`, HEAD và actual origin/main `fe777ceea6d7e1de8d932f15e488cb44746226ff`, WU-00..11 DONE; source locked904205c6 sạch. Đọc AGENTS/PROGRESS/read-set/source trước plan6 bước, áp dụng cloud-environment-runtime. Final fetch/ancestor/divergence0/0 xác nhận private hoa00/task8, không push reference.
 - AC1: một TaskBoard/Column/Card dùng chung Workspace/Project/saved;5 status,284px mở/44px thu, scroll dọc từng cột/ngang Board, composer và đúng menus/hover/complete/edit/open. Không Board selection/List bulk bar. Workspace có actual AppShell evidence; Project/saved chỉ feature harness, full wrappers WU-16.
 - AC2: canonical Query/records/fields/commands/TaskOverlayHost dùng chung List/Drawer/Board. Full-column loader consume cursor và kiểm matching summary trước complete coverage. Complete/archive/sort gửi full unfiltered ID/version set, max20 atomic413 zero-write, không chunk. Trusted native drag validates full destination scope/status/neighbors, giữ toolbar filters và cho task rời view; collapsed/no-body drop invalid. Cancel/error không đổi record hoặc mở Drawer nhầm; pending composer khóa cancel/switch, cleanup drag/suppress timers.
@@ -447,6 +447,6 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - Environment: managed Linux,Node24.13.0/pnpm11.19.0/Playwright1.58.2/Chromium145.0.7632.6 rev1208/default args;en-US/UTC/DPR1/MacIntel/seed804205/clock2026-10-08T09:00Z. Locked HTTP font bytes400/500/600. Giữ inherited proxy/CA, runtime cache/log paths; không dump credentials.
 - Limits/not run: full Project/saved wrappers16,Table13,Calendar14,Home17/full app/backend/physical devices/fullDarwin không thuộc unit. Mock file real IDs/contentAvailable:false, chưa HTTP/R2 bytes35. Historical WU-10 mobile17/14 cause vẫn unproved; không user visual approval.
 - Blockers: không implementation/verification blocker. Final reference86/clean và diff check exit0; không listeners4173/5173 sau owned runner cleanup. Default sandbox child-git check EPERM được rerun đúng authorized additional-network process profile, exit0; không source/app failure. Final ls-remote main và fetch/ancestor/divergence0/0 đều fe777cee trước commit.
-- Commit: chưa tạo tại lúc entry này; documentation checkpoint tiếp theo ghi implementation SHA thật, không self-reference.
-- Push: chưa push tại lúc entry này; user-owned origin/main đúng và normal HEAD:main đã được ủy quyền. Không force/reference push.
-- Next permitted unit: WU-12 tới khi checkpoint/push thật đã chốt; sau DONE là `WU-13` qua implementation agent/session riêng. Agent WU-12 STOP.
+- Commit: implementation `49ce4f501c71b6f85e2d1e8a1379f2e03759b00f`, tree `707d93a8e760511859ddf41ebf775a57dcbb893f` — feat: complete shared task Board and M1 for WU-12. Working tree sạch sau commit; documentation checkpoint này ghi SHA implementation có thật và không self-reference.
+- Push: normal `git push origin HEAD:main` tới private hoa00/task8 thành công; actual ls-remote main `49ce4f501c71b6f85e2d1e8a1379f2e03759b00f`, preflight ahead1/behind0/ancestor pass từ fe777cee. [Checkpoint](evidence/WU-12/checkpoint.json) ghi kết quả implementation thật. Commit documentation kế tiếp được normal-push và final HEAD/remote/tree/clean được report ngoài file để tránh self-reference. Không force/reference push.
+- Next permitted unit: `WU-13` qua implementation agent/session riêng sau root checkpoint verification. Agent WU-12 STOP.
