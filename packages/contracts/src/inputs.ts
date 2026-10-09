@@ -31,6 +31,7 @@ export const BulkMutateTasksInputSchema = z.discriminatedUnion('operation', [
   z.strictObject({ operation: z.literal('patch'), items: bulkItems.refine(items => items.length > 0), patch: BulkTaskPatchSchema }),
   z.strictObject({ operation: z.literal('delete'), items: bulkItems.refine(items => items.length > 0) }),
   z.strictObject({ operation: z.literal('complete'), items: bulkItems, columnScope: ColumnScopeSchema }),
+  z.strictObject({ operation: z.literal('sortPriority'), items: bulkItems, columnScope: ColumnScopeSchema }),
   z.strictObject({ operation: z.literal('archive'), items: bulkItems, columnScope: ColumnScopeSchema.refine(scope => scope.status === 'done', 'Archive requires done column') }),
 ]);
 export const CreateSubtaskInputSchema = CreateSubtaskDraftSchema.extend({ expectedTaskVersion: p.VersionSchema });

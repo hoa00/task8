@@ -1,0 +1,170 @@
+[
+  {
+    "name": "install",
+    "command": "pnpm install --frozen-lockfile --offline",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/install.log"
+  },
+  {
+    "name": "typecheck",
+    "command": "pnpm typecheck",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/typecheck.log"
+  },
+  {
+    "name": "build",
+    "command": "pnpm build",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/build.log"
+  },
+  {
+    "name": "lint",
+    "command": "pnpm lint",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/lint.log"
+  },
+  {
+    "name": "test",
+    "command": "pnpm test",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/test.log"
+  },
+  {
+    "name": "contracts-consumers",
+    "command": "pnpm contracts:consumers",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/contracts-consumers.log"
+  },
+  {
+    "name": "contracts-coverage",
+    "command": "pnpm contracts:coverage",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/contracts-coverage.log"
+  },
+  {
+    "name": "reference-check",
+    "command": "pnpm reference:check",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/reference-check.log"
+  },
+  {
+    "name": "http-build",
+    "command": "pnpm --filter @studio/web build:http",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/http-build.log"
+  },
+  {
+    "name": "http-bundle",
+    "command": "node tests/data/http-bundle.mjs WU-12",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/http-bundle.log"
+  },
+  {
+    "name": "interactions",
+    "command": "node tests/visual/task-board/interactions.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/interactions.log"
+  },
+  {
+    "name": "source-interactions",
+    "command": "node tests/visual/task-board/source-interactions.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/source-interactions.log"
+  },
+  {
+    "name": "m1",
+    "command": "node tests/visual/task-board/journey.mjs",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/m1.log"
+  },
+  {
+    "name": "list-visual-regression",
+    "command": "node tests/visual/task-list/verify.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/list-visual-regression.log"
+  },
+  {
+    "name": "list-interaction-regression",
+    "command": "node tests/visual/task-list/interactions.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/list-interaction-regression.log"
+  },
+  {
+    "name": "drawer-visual-regression",
+    "command": "node tests/visual/task-collaboration/verify.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/drawer-visual-regression.log"
+  },
+  {
+    "name": "edit-form-visual-regression",
+    "command": "node tests/visual/task-collaboration/edit-form.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/edit-form-visual-regression.log"
+  },
+  {
+    "name": "drawer-interaction-regression",
+    "command": "node tests/visual/task-collaboration/interactions.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/drawer-interaction-regression.log"
+  },
+  {
+    "name": "detail-interaction-regression",
+    "command": "node tests/visual/task-collaboration/detail-regression.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/detail-interaction-regression.log"
+  },
+  {
+    "name": "editor-drop-regression",
+    "command": "node tests/visual/task-collaboration/editor-drop.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/editor-drop-regression.log"
+  },
+  {
+    "name": "field-regression",
+    "command": "node tests/visual/tasks/interactions.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/field-regression.log"
+  },
+  {
+    "name": "overlay-lifecycle-regression",
+    "command": "node tests/visual/overlays/lifecycle.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/overlay-lifecycle-regression.log"
+  },
+  {
+    "name": "overlay-visual-interaction-regression",
+    "command": "node tests/visual/overlays/verify.mjs --wu12-regression",
+    "exitStatus": 0,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/overlay-visual-interaction-regression.log"
+  },
+  {
+    "name": "visual",
+    "command": "node tests/visual/task-board/verify.mjs",
+    "exitStatus": 1,
+    "signal": null,
+    "log": "docs/poc/evidence/WU-12/visual.log"
+  }
+]

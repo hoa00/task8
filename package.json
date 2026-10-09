@@ -10,7 +10,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
-    "lint": "eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-collaboration eslint.config.mjs && node tests/workspace/boundaries.mjs",
+    "lint": "eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/task-collaboration eslint.config.mjs && node tests/workspace/boundaries.mjs",
     "test": "turbo run test && pnpm test:reference && pnpm test:workspace",
     "test:reference": "node --test tests/visual/reference/*.test.mjs",
     "test:workspace": "node --test tests/workspace/*.test.mjs",
@@ -52,7 +52,11 @@
     "test:task-collaboration:interactions": "node tests/visual/task-collaboration/interactions.mjs",
     "test:task-collaboration:editor-drop": "node tests/visual/task-collaboration/editor-drop.mjs",
     "test:task-collaboration:editor": "node tests/visual/task-collaboration/interactions.mjs --editor-only",
-    "verify:task-collaboration": "node tests/visual/task-collaboration/gates.mjs"
+    "verify:task-collaboration": "node tests/visual/task-collaboration/gates.mjs",
+    "visual:task-board": "node tests/visual/task-board/verify.mjs",
+    "test:task-board:interactions": "node tests/visual/task-board/interactions.mjs",
+    "test:task-board:m1": "node tests/visual/task-board/journey.mjs",
+    "verify:task-board": "node tests/visual/task-board/gates.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

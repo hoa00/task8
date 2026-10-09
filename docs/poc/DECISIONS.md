@@ -146,3 +146,24 @@ Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn
   caret and canonical values, rather than treating dropEffect as proof. Six
   trusted native probes and two focused existing editor probes pass on Chromium;
   no second sanitizer, source change, new command or generic DnD framework.
+
+## WU-12 implementation decisions
+
+- Shared TaskBoard/Column/Card reads canonical scoped Query data and existing task fields/commands. Column dataset consumes all cursor pages, checks matching summary count, and marks coverage complete only after success; toolbar-filtered rows are a separate view of the same records. Board always orders manually (QUIRK-01); no selected cards or List bulk bar (QUIRK-08).
+- Complete/archive/sortPriority require the complete unfiltered column set and versions, preserve max20 atomic rejection without chunking, and use one staged canonical owner. SortPriority extends the existing bulk operation rather than adding an endpoint; 83 operation bindings stay unchanged. Complete-column recurrence Undo differs from single checkbox Undo as declared in API §7.
+- Source colSort writes fractional base+i*.001 while PositionSchema is safe integer and move requires available spacing. Canonical adapter writes base+i*100 with priority-desc/ID-asc ties. Per-column order is preserved; global List interleaving with other statuses may differ. Native sort→drag→List/reload evidence validates canonical persistence, not fractional source positions.
+- Real source filtered drag retains filters, changes status and removes the card from the view. Target validates full unfiltered destination workspace/project/status + neighbors and access, keeps filters unchanged, and rejects collapsed-column drops rather than reusing a stale destination.
+- Composer locks cancel/switch intent while create is pending; successful old requests cannot clear a later unlocked draft. Drag/suppression timers are cleaned up on unmount. UI stores intents/drafts/effects only; failed drop never optimistically changes canonical records.
+- Captured card More point stays fixed when hover actions disappear, matching source ctxBtn. Native default browser drag image is the source ghost behavior; column drop line and card dragging opacity are production state. Project/saved variants are feature harnesses only until WU16.
+
+- WU-04 Input owner reopening: measured native search Input padding-block0px in
+  source and1px in target. Original components.css227–239 declares padding0 10px.
+  Add literal py-0 to shared Input only; Textarea keeps its explicit8px padding.
+  This fixes a missing source rule, not a demonstrated cause of previous tiny
+  pixel differences. Scoped Input/toolbar/List/Drawer/form/Board checks record
+  actual results separately and preserve historical accepted evidence.
+- M1-I07 is a native recurring journey on the same task, not only data tests:
+  Drawer Weekly selection, complete→exactly one successor, single Undo keeps
+  successor/slot, re-complete/reopen creates no duplicate, List/reload persist.
+  Column completion Undo separately cancels eligible newly-created successors,
+  as API7.4 specifies. No direct API mutation prepares the primary M1 journey.

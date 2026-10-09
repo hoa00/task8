@@ -6,7 +6,7 @@ import { normalizeDescription } from '../../../packages/domain/src/description.t
 import { sourceIdentities } from '../../../packages/contracts/src/source-identities.ts';
 import { newPage } from '../reference/environment.mjs';
 import { targetServer } from '../tasks/verify.mjs';
-const evidence=path.resolve('docs/poc/evidence/WU-11'),workspaceId=sourceIdentities.find(row=>row.collection==='workspaces'&&row.sourceId==='w1').id,taskId=sourceIdentities.find(row=>row.collection==='tasks'&&row.sourceId==='t3').id;
+const evidence=path.resolve(process.argv.includes('--wu12-regression')?'docs/poc/evidence/WU-12/drawer-regression':'docs/poc/evidence/WU-11'),workspaceId=sourceIdentities.find(row=>row.collection==='workspaces'&&row.sourceId==='w1').id,taskId=sourceIdentities.find(row=>row.collection==='tasks'&&row.sourceId==='t3').id;
 const editorOnly=process.argv.includes('--editor-only'),reportName=editorOnly?'editor-regression':'interactions';
 const report={scope:editorOnly?'Editor only':'Full collaboration',status:'running',probes:[],notes:['Native mouse/keyboard/chooser primary flows; precision Range selection, QA hold/fault and sibling typed mutation are explicit programmatic setup.','Synthetic clipboard/DataTransfer proves component handlers, not OS native drag. Mock file metadata sample/contentAvailable:false; no HTTP/R2 bytes.']};const stop=await targetServer();let browser,page;
 async function probe(id,work){const value=await work();report.probes.push({id,status:'passed',...value});console.log(id);}

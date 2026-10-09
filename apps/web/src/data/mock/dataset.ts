@@ -19,8 +19,9 @@ export const MockDatasetSchema = z.strictObject({
     projectSequences: z.record(EntityIdSchema, CountSchema).default(() => ({})),
     previousStatuses: z.record(EntityIdSchema, TaskStatusSchema).default(() => ({})),
     recurrenceSlots: z.record(EntityIdSchema, EntityIdSchema).default(() => ({})),
+    columnUndoRecords: z.record(EntityIdSchema, z.strictObject({ actorId: EntityIdSchema, kind: z.enum(['tasks.completeColumn', 'tasks.archiveCompletedColumn']), parents: z.array(z.strictObject({ taskId: EntityIdSchema, postVersion: VersionSchema, status: TaskStatusSchema, completedAt: InstantSchema.nullable(), archivedAt: InstantSchema.nullable(), updatedAt: InstantSchema, previousStatus: TaskStatusSchema.nullable() })).max(20), successors: z.array(z.strictObject({ taskId: EntityIdSchema, sourceTaskId: EntityIdSchema, postVersion: VersionSchema })).max(20), dependencies: z.array(z.strictObject({ taskId: EntityIdSchema, postVersion: VersionSchema })).max(128), activityIds: z.array(EntityIdSchema).max(128), result: UndoResultSchema.nullable() })).default(() => ({})),
     undoRecords: z.record(EntityIdSchema, z.strictObject({ taskId: EntityIdSchema, actorId: EntityIdSchema, postVersion: VersionSchema, previousStatus: TaskStatusSchema, result: UndoResultSchema.nullable() })).default(() => ({})),
-  }).default(() => ({ descriptionTexts: {}, deletedComments: {}, commentUndoRecords: {}, taskFavorites: {}, deletedFiles: {}, uploadRequests: {}, lifecycleUndoRecords: {}, deletedTasks: {}, createRequests: {}, deleteUndoRecords: {}, projectSequences: {}, previousStatuses: {}, recurrenceSlots: {}, undoRecords: {} })),
+  }).default(() => ({ descriptionTexts: {}, deletedComments: {}, commentUndoRecords: {}, taskFavorites: {}, deletedFiles: {}, uploadRequests: {}, lifecycleUndoRecords: {}, deletedTasks: {}, createRequests: {}, deleteUndoRecords: {}, projectSequences: {}, previousStatuses: {}, recurrenceSlots: {}, columnUndoRecords: {}, undoRecords: {} })),
   projectOrder: z.array(EntityIdSchema), preferences: MemberPreferencesSchema, notificationPreferences: NotificationPreferencesSchema,
 });
 export type MockDataset = z.infer<typeof MockDatasetSchema>;

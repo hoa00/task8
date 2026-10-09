@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "reason": "Final collapsed-body commit guard and final native-mount Board QA with declared visible composer query/focus lifecycle. Earlier aggregate scoped regression results retained, not claimed rerun.",
+  "commands": [
+    {
+      "name": "final-web-typecheck",
+      "command": "pnpm --filter @studio/web typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/final-web-typecheck.log"
+    },
+    {
+      "name": "final-web-build",
+      "command": "pnpm --filter @studio/web build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/final-web-build.log"
+    },
+    {
+      "name": "final-lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/final-lint.log"
+    },
+    {
+      "name": "final-http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/final-http-build.log"
+    },
+    {
+      "name": "final-http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-12",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/final-http-bundle.log"
+    },
+    {
+      "name": "final-board-interactions",
+      "command": "node tests/visual/task-board/interactions.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/final-board-interactions.log"
+    },
+    {
+      "name": "final-m1",
+      "command": "node tests/visual/task-board/journey.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/final-m1.log"
+    },
+    {
+      "name": "final-board-visual",
+      "command": "node tests/visual/task-board/verify.mjs",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/final-board-visual.log"
+    }
+  ]
+}

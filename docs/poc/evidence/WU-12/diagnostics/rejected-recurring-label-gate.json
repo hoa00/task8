@@ -1,0 +1,97 @@
+{
+  "status": "failed",
+  "reason": "WU04 shared Input missing source padding-block:0. Add literal py-0 only to Input, retain Textarea8px; no claim that this is the cause of historical tiny raster differences.",
+  "commands": [
+    {
+      "name": "input-typecheck",
+      "command": "pnpm typecheck",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-typecheck.log"
+    },
+    {
+      "name": "input-build",
+      "command": "pnpm build",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-build.log"
+    },
+    {
+      "name": "input-lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-lint.log"
+    },
+    {
+      "name": "input-http-build",
+      "command": "pnpm --filter @studio/web build:http",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-http-build.log"
+    },
+    {
+      "name": "input-http-bundle",
+      "command": "node tests/data/http-bundle.mjs WU-12",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-http-bundle.log"
+    },
+    {
+      "name": "input-fields",
+      "command": "node tests/visual/controls/verify.mjs fields --wu12-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-fields.log"
+    },
+    {
+      "name": "input-toolbar",
+      "command": "node tests/visual/tasks/verify.mjs --wu12-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-toolbar.log"
+    },
+    {
+      "name": "input-list",
+      "command": "node tests/visual/task-list/verify.mjs --wu12-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-list.log"
+    },
+    {
+      "name": "input-drawer",
+      "command": "node tests/visual/task-collaboration/verify.mjs --wu12-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-drawer.log"
+    },
+    {
+      "name": "input-form",
+      "command": "node tests/visual/task-collaboration/edit-form.mjs --wu12-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-form.log"
+    },
+    {
+      "name": "input-native-fields",
+      "command": "node tests/visual/tasks/interactions.mjs --wu12-regression",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-native-fields.log"
+    },
+    {
+      "name": "input-final-lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-final-lint.log"
+    },
+    {
+      "name": "input-m1",
+      "command": "node tests/visual/task-board/journey.mjs",
+      "exitStatus": 1,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-12/input-m1.log"
+    }
+  ]
+}

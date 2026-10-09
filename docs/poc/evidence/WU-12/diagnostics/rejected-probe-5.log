@@ -1,0 +1,17 @@
+shared-five-columns-geometry-no-bulk-hover-open-edit-and-context
+column-collapse-expand-menu-and-inline-composer-empty-cancel-create-reload
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-board-column="todo"]').getByRole('button', { name: 'Add task to Todo', exact: true })[22m
+
+    at /workspace/task8/tests/visual/task-board/interactions.mjs:20:627
+    at async probe (/workspace/task8/tests/visual/task-board/interactions.mjs:12:354)
+    at async file:///workspace/task8/tests/visual/task-board/interactions.mjs:20:1 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

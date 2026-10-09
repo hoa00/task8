@@ -447,3 +447,67 @@ The subsequent AC1 native-drop reopening changes event handling only. Accepted
 no seed/CSS/geometry edit or new visual claim. Native drag evidence separately
 records trusted browser events, pre-input DOM, literal/rich text, caret and
 canonical data for external drops and internal move/Control-copy.
+
+
+### WU-12 Board ownership and capture boundary
+
+TaskBoard/Column/Card reuse canonical fields, identities, task commands and
+TaskOverlayHost. Their feature utility layer owns284/44 widths,12px gaps,
+per-column overflow, horizontal Board overflow, source hover/drag/drop and
+one-shot motion. At max-width900 the Board padding-bottom is90px, exactly the
+source responsive rule; desktop remains24px. No page-height or paint workaround
+is used. The card contains source count metadata, not attachment thumbnails.
+
+The49-case Board matrix has36 Workspace/Project/saved feature samples across
+comfortable/compact,1440/390 and default/collapsed/composer;3 dark samples,
+6 Workspace hover/menu/scroll/no-result samples and4 actual Workspace AppShell
+content samples in desktop/mobile and light/dark. Project/saved captures cover
+the shared feature, not WU-16 full ProjectHeader/tabs/wrappers. Full List96,
+whole Drawer42 and full form4 regressions are kept under WU-12 evidence.
+
+Original locked pageTasks/boardHtml/kcard/viewToolbar, helpers, fonts and styles
+remain unchanged. Connected original #app/#layer remain inside a hidden QA
+host; the source feature has the measured block parent and original .page flex
+composition. Source input tasks are prepared in mapped ascending UUID order
+for DATA-10 stable ties. Composer snapshots explicitly query one real Backlog
+task identically on source and target (the WU-09 visible-state precedent), and
+assert the unique card/input state remains in the full accepted viewport.
+The original source action's setTimeout0 focus is reproduced on the visible
+composer; both sides blur and use a neutral pointer. Native unfiltered composer
+creation, focus/scroll, cancellation and persistence are independent probes.
+Default/collapsed/scroll snapshots retain the full unfiltered Board dataset.
+
+Both contexts use actual locked HTTP font bytes400/500/600, pinned fixture
+clock/seed/locale/UTC/DPR1/MacIntel, native mount/data/font lifecycle, concurrent
+finite motion settlement, original source render to clear its own flags,
+measured standard input/page/body/html styles, layout and two RAF. Scrolling
+uses actual wheel input on both sides. Screenshots use ordinary Playwright
+capture/default Chromium arguments with exact dimension assertions; tolerance0,
+includeAA=true, maxDiffPixels0 and masks[] stay unchanged. Original173Darwin
+baselines/font/fixture/lock bytes stay immutable. This is Linux technical scoped
+comparison, not user visual approval, full Darwin parity or physical-device
+coverage. Default production focus/motion remains unchanged.
+
+Rejected diagnostics are retained. Initial feature-host intrinsic width and
+source composer autofocus scroll were measured QA lifecycle errors. Cold target
+font/data prefetch introduced14 native search-input corner pixels on Project/
+saved mobile and was removed; these were not column corners. Unfiltered
+Workspace composer left5 pixels at search-input/right and column/top corners,
+and a prior scroll attempt left11 at two rounded bottom corners. One-off zero
+results do not establish their cause. Keyed Fragment simplifies source-like
+card DOM but did not prove the corner cause. Tailwind optimize:false, literal
+border declarations, foreground capture, separate browsers, init-hidden Home,
+software flags and view/no-clip captures were rejected; none is adopted as a
+production or accepted runtime workaround. CDP fromSurface:false preserved page
+identity in a red/blue negative probe but ignored clip dimensions, so it was
+rejected. The visible composer state is declared QA query preparation, not a
+claim that historical unfiltered raster diagnostics or WU-10 mobile17/14 were
+fixed. No source templates/CSS/font/baseline edits, masks or target-as-source.
+
+
+WU-04 scoped Input reopening restores the source base padding0 10px with literal
+py-0 on Input; Textarea retains its explicit8px vertical padding. This actual
+missing source declaration was found through computed-style measurement, not
+adopted as a raster workaround or claimed tiny-pixel cause. Affected controlled
+Input fields/toolbar and List/Drawer/form/Board snapshots use fresh WU-12 outputs;
+previous accepted WU-04/08/09/10/11 evidence is unchanged.

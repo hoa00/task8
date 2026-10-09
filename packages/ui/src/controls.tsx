@@ -29,7 +29,7 @@ const inputSizes = { xs: 'h-control-xs', sm: 'h-control-sm text-sm', md: 'h-cont
 const inputClasses = 'w-full rounded-sm border border-solid border-border-strong bg-surface px-[10px] text-body transition-[border-color,box-shadow] placeholder:text-muted source-hover:not-aria-invalid:border-[color-mix(in_srgb,var(--border-strong)_60%,var(--text-3))] focus:not-aria-invalid:border-accent focus:not-aria-invalid:[box-shadow:0_0_0_3px_var(--accent-soft)] focus:outline-none disabled:bg-surface-2 disabled:text-muted disabled:cursor-not-allowed aria-invalid:border-red aria-invalid:[box-shadow:0_0_0_3px_var(--red-soft)]';
 export interface InputProps extends Omit<ComponentPropsWithRef<'input'>, 'size' | 'value' | 'defaultValue'> { value: string; size?: ControlSize; error?: boolean }
 export function Input({ size = 'md', error, className = '', ...props }: InputProps) {
-  return <input {...props} aria-invalid={error || props['aria-invalid']} className={`${inputClasses} ${inputSizes[size]} ${className}`} />;
+  return <input {...props} aria-invalid={error || props['aria-invalid']} className={`${inputClasses} py-0 ${inputSizes[size]} ${className}`} />;
 }
 export interface TextareaProps extends Omit<ComponentPropsWithRef<'textarea'>, 'value' | 'defaultValue'> { value: string; error?: boolean }
 export function Textarea({ error, className = '', ...props }: TextareaProps) {

@@ -5,7 +5,7 @@ import { chromium } from '@playwright/test';
 import { sourceIdentities } from '../../../packages/contracts/src/source-identities.ts';
 import { newPage } from '../reference/environment.mjs';
 import { targetServer } from '../tasks/verify.mjs';
-const evidence=path.resolve('docs/poc/evidence/WU-11/detail-regression'),workspaceId=sourceIdentities.find(row=>row.collection==='workspaces'&&row.sourceId==='w1').id,taskId=sourceIdentities.find(row=>row.collection==='tasks'&&row.sourceId==='t3').id;
+const evidence=path.resolve(process.argv.includes('--wu12-regression')?'docs/poc/evidence/WU-12/drawer-regression/detail-regression':'docs/poc/evidence/WU-11/detail-regression'),workspaceId=sourceIdentities.find(row=>row.collection==='workspaces'&&row.sourceId==='w1').id,taskId=sourceIdentities.find(row=>row.collection==='tasks'&&row.sourceId==='t3').id;
 fs.mkdirSync(evidence,{recursive:true});
 const report={status:'running',probes:[],notes:['Mouse/keyboard and native file chooser used for primary interactions. QA failure/hold commands and sibling mutation are explicitly programmatic. Mock attachment records carry sample metadata, contentAvailable:false; no HTTP/R2 bytes claim.']};
 const stop=await targetServer();let browser;

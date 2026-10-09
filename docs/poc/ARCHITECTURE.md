@@ -166,3 +166,17 @@ after each command/paste/drop, preserving logical selection offsets and directio
 Native drop default is prevented before insertion; the same normalization handles
 external HTML/plain text. A same-editor live Range preserves internal move/copy
 text and the browser point caret, without an additional editor platform.
+
+### WU-12 TaskBoard ownership
+
+TaskBoard/TaskBoardColumn/TaskBoardCard share task atoms, field editors, query cache,
+commands and TaskOverlayHost with List/Drawer. Workspace selects List/Board through
+router search; MyTasks stays List. Project/saved Board use the same renderer in a
+controlled feature harness, with page wrappers left to WU16. Board UI owns collapse,
+composer intent/draft, native drag/drop/suppression and one-shot effects only.
+`useTaskBoardDataset` consumes complete scoped cursor pages with summary coverage
+before column commands; commands use full unfiltered columns even when toolbar
+filters hide rows. Canonical bulk owner stages complete/archive/sortPriority and
+bounded actor-owned Undo atomically. Browser move sends scope/status/neighbors,
+never raw positions. Shared integer representation uses100 sort gaps; source
+fractional positions may interleave differently in global manual List.

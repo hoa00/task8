@@ -11,7 +11,7 @@ import { newPage, environment } from '../reference/environment.mjs';
 import { artifacts, checkSource, sha256 } from '../reference/source-check.mjs';
 import { sourcePreferences } from '../foundation/source-sample.mjs';
 import { sourceControls } from './source-sample.mjs';
-const evidence=path.resolve('docs/poc/evidence/WU-04'),output=path.resolve('test-results/WU-04');fs.mkdirSync(output,{recursive:true});
+const evidence=path.resolve(process.argv.includes('--wu12-regression')?'docs/poc/evidence/WU-12/input-regression':'docs/poc/evidence/WU-04'),output=path.resolve(process.argv.includes('--wu12-regression')?'test-results/WU-12/input-regression':'test-results/WU-04');fs.mkdirSync(output,{recursive:true});fs.mkdirSync(evidence,{recursive:true});
 const immutable=['baseline-manifest.json','font-assets.json','source-fixture.json','source-lock.json'];
 const hashes=()=>Object.fromEntries(immutable.map(name=>[name,sha256(fs.readFileSync(`${artifacts}/${name}`))]));
 const groups=['buttons','fields','choices','display','feedback','select'];

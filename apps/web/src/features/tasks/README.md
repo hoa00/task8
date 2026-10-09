@@ -1,4 +1,4 @@
-# Shared task fields, query and List ownership (WU-08/09)
+# Shared task fields, query, List, Drawer and Board ownership (WU-08..12)
 
 `TaskFields` composes the same controlled editors in row, detail and draft
 contexts. `TaskFieldTarget` distinguishes a record `{workspaceId, taskId}` from
@@ -24,7 +24,7 @@ ordering are preserved; equal sort values use the API's ascending ID tie-breaker
 
 WU-09 extends scoped mock operations with createTask, title updateTask,
 bulkMutateTasks patch/delete and updateSubtask done-only aggregate completion.
-Description and full subtask CRUD/detail remain unavailable for later owners. All mutable
+WU-11 extends these same owners with sanitized rich description, full subtask CRUD/detail and collaboration. All mutable
 relations validate immediately through the shared domain helper. Dependency
 cycles return409, invalid scope/self/date values400, stale versions409; rejected
 commands commit no state. Changed incoming dependency references bump the
@@ -35,7 +35,7 @@ The standalone `task-fields.html` gallery and race probe are QA entry points,
 excluded from the HTTP app graph. They test two contexts for the same record,
 an independent draft and pending response races. WU-10 owns drawer content/description/forms; WU-11 extends the existing
 subtask completion seam into CRUD/detail; WU-16 extends the project wrapper.
-Board/Table/custom query platforms remain with their later owners.
+WU-12 adds Board below; Table and later query surfaces keep their own work units.
 
 `TaskList` owns row/group/composer/selection/drag UI; `TaskListRow`,
 `TaskGroupHeader`, `TaskMiniRow` and `BulkActionBar` are shared components.
@@ -62,11 +62,41 @@ bumps the referenced version to guard Undo. Create retries dedupe by actor/reque
 
 Canonical page view changes use Router search and keep `view` through task-open/
 close/reload. The decoder accepts raw feature-harness JSON and Router-quoted JSON. `onTaskOpen` uses the WU-07 workspace intent; double-click title editing
-closes that intent before focus/select. Drawer content is pending WU-10, and
-source-visible More is explicitly unavailable until that owner. QA initial List
+closes that intent before focus/select. Full Drawer and source-visible More use the shared WU-10/11 TaskOverlayHost. QA initial List
 state/prefetch only prepares symmetric screenshots; actual mouse/keyboard probes
 exercise ordinary state updates. `task-list.html` is excluded from HTTP builds.
 
 Bulk selection may exceed the POC20-task command limit; such an attempt reports
 canonical PAYLOAD_TOO_LARGE413 before writes and keeps selection unchanged.
 The client never chunks one purported atomic command into multiple commits.
+
+
+`TaskBoard`, `TaskBoardColumn` and `TaskBoardCard` own one shared Board renderer.
+Workspace Tasks switches List/Board through Router mode search; My Tasks keeps
+its List. Project/saved Board use the same controlled feature until WU-16.
+Five status columns are284px open/44px collapsed, with per-column vertical and
+Board horizontal scroll. No card selection or List bulk bar is rendered.
+
+The filtered view and complete unfiltered column dataset read the same Query
+records. The column loader follows every cursor and checks an independently
+matching summary count before declaring complete coverage. Column complete,
+archive and priority sort submit one full ID/version set to `bulkMutateTasks`;
+the20-item limit rejects atomically, without browser chunking. Priority sort
+returns no Toast/Undo and computes safe integer100 gaps in the adapter. These
+preserve per-column priority order, while global manual List interleaving may
+differ from the source fractional .001 positions (explicit WU-12 decision).
+
+Trusted native drag submits full destination scope, status and canonical
+neighbors. Toolbar filters remain unchanged, so a status transition can remove
+the card from the view. Collapsed columns reject drops. Escape, invalid drop or
+command failure changes no canonical record; drag-end suppresses click and
+clears drop marks. Timers are cleaned up on unmount. Pending creation locks
+composer cancel/switch until completion; recoverable draft/request identity
+stays local. Reused fields, completion, column Undo and TaskOverlayHost invalidate
+the same records used by List/Drawer/My Tasks. Real mock attachment IDs persist,
+with bytes honestly unavailable until the HTTP/R2 owner in WU-35.
+
+`task-board.html` is a QA entry excluded from the HTTP application graph. Snapshot
+composer state explicitly queries one real Backlog task on both sides, so the
+card and input are inside the accepted viewport; native unfiltered composer,
+focus/scroll, persistence and the actual AppShell M1 journey are separate probes.

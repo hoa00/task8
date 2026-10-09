@@ -1,8 +1,8 @@
-import { BulkMutateTasksInputSchema, CreateTaskInputSchema, UpdateSubtaskInputSchema, ActivitySchema, CursorPayloadSchema, EntityIdSchema, MoveTaskInputSchema, SetTaskCompletionInputSchema, TaskSchema, UpdateTaskInputSchema, UndoResultSchema, SubtaskSchema, DuplicateTaskInputSchema, VersionInputSchema, FileSchema, UploadProjectFileInputSchema, CreateSubtaskInputSchema, TaskVersionInputSchema, CreateCommentInputSchema, CommentSchema, ReactionKeySchema, CursorQuerySchema, ActivityQuerySchema, MemberQuerySchema } from '@studio/contracts/api';
+import { BulkMutateTasksInputSchema, CreateTaskInputSchema, UpdateSubtaskInputSchema, ActivitySchema, CursorPayloadSchema, EntityIdSchema, MoveTaskInputSchema, SetTaskCompletionInputSchema, TaskSchema, UpdateTaskInputSchema, UndoResultSchema, SubtaskSchema, DuplicateTaskInputSchema, VersionInputSchema, FileSchema, UploadProjectFileInputSchema, priorities, CreateSubtaskInputSchema, TaskVersionInputSchema, CreateCommentInputSchema, CommentSchema, ReactionKeySchema, CursorQuerySchema, ActivityQuerySchema, MemberQuerySchema } from '@studio/contracts/api';
 import type { OperationId, TaskDto, TaskMutationDto } from '@studio/contracts/api';
 import { changedDependencyTargets, canReadProject, compareTaskTuple, taskSortValue, evaluateTaskView, normalizeTaskView, nextRecurrenceDate, summarizeTasks, TaskRelationError, validateTaskRelations, normalizeDescription, plainDescriptionHtml, sourceFileType, displayFileSize } from '@studio/domain';
 import type { Clock } from '@studio/domain';
-import { StudioApiError, unavailable } from '../errors.ts';
+import { StudioApiError } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
 
 export const taskFieldOperations = ['createTask', 'bulkMutateTasks', 'updateSubtask', 'createSubtask', 'deleteSubtask', 'promoteSubtask', 'listComments', 'createComment', 'deleteComment', 'restoreDeletedComment', 'addCommentReaction', 'removeCommentReaction', 'listActivity', 'listMembers', 'getTask', 'listTasks', 'getTaskSummary', 'updateTask', 'moveTask', 'setTaskCompletion', 'undoCommand', 'duplicateTask', 'archiveTask', 'deleteTask', 'addTaskFavorite', 'removeTaskFavorite', 'getFile', 'uploadProjectFile', 'deleteFile'] as const satisfies readonly OperationId[];
@@ -250,7 +250,37 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
     }
     case 'bulkMutateTasks': {
       const body = BulkMutateTasksInputSchema.parse(input.body);
-      if (body.operation !== 'patch' && body.operation !== 'delete') throw unavailable('Column commands');
+      if (body.operation === 'complete' || body.operation === 'archive' || body.operation === 'sortPriority') {
+        const scope = body.columnScope;
+        if (scope.kind === 'project' && (!canReadProject(data.projects[scope.projectId], data) || data.projects[scope.projectId]!.archivedAt)) return fail('NOT_FOUND', 'Column project not found');
+        const full = Object.values(data.tasks).filter(task => task.workspaceId === data.workspaceId && task.status === scope.status && !task.archivedAt && !data.taskCommands.deletedTasks[task.id] && !data.projects[task.projectId]?.archivedAt && canReadProject(data.projects[task.projectId], data) && (scope.kind === 'workspace' || task.projectId === scope.projectId));
+        if (full.length > 20) return fail('PAYLOAD_TOO_LARGE', 'A column command supports at most 20 tasks. No tasks were changed.');
+        if (full.length !== body.items.length || full.some(task => !body.items.some(item => item.id === task.id))) return fail('CONFLICT', 'The column changed. Refresh and try again. No tasks were changed.');
+        const originals = body.items.map(item => editable(data, item.id, item.expectedVersion));
+        if (body.operation === 'sortPriority') {
+          const weight = (task: TaskDto) => priorities.find(priority => priority.id === task.priority)!.weight;
+          const sorted = [...originals].sort((a, b) => weight(b) - weight(a) || a.id.localeCompare(b.id)), base = originals.length ? Math.min(...originals.map(task => task.position)) : 0;
+          sorted.forEach((task, index) => { data.tasks[task.id] = { ...task, position: base + index * 100, updatedAt: clock.now(), version: task.version + 1 }; });
+          return { data: { tasks: sorted.map(task => projectTask(data.tasks[task.id]!, data)), createdTasks: [], affectedProjectIds: [...new Set(sorted.map(task => task.projectId))], undo: null } };
+        }
+        if (!originals.length && body.operation === 'complete') return { data: { tasks: [], createdTasks: [], affectedProjectIds: [], undo: null } };
+        const undoId = newMockId(clock), beforeActivity = new Set(Object.keys(data.activity));
+        const parents = originals.map(task => ({ taskId: task.id, postVersion: task.version, status: task.status, completedAt: task.completedAt, archivedAt: task.archivedAt, updatedAt: task.updatedAt, previousStatus: data.taskCommands.previousStatuses[task.id] ?? null }));
+        const createdTasks: TaskDto[] = [], successors: MockDataset['taskCommands']['columnUndoRecords'][TaskDto['id']]['successors'] = [];
+        for (const original of originals) {
+          if (body.operation === 'complete') {
+            const result = patchTask(data, data.tasks[original.id]!, { status: 'done' }, clock);
+            createdTasks.push(...result.createdTasks); successors.push(...result.createdTasks.map(task => ({ taskId: task.id, sourceTaskId: original.id, postVersion: task.version })));
+          } else { const next = { ...original, archivedAt: clock.now(), updatedAt: clock.now(), version: original.version + 1 }; data.tasks[original.id] = next; addActivity(data, next, 'task.archived', clock); }
+        }
+        parents.forEach(parent => { parent.postVersion = data.tasks[parent.taskId]!.version; });
+        successors.forEach(child => { child.postVersion = data.tasks[child.taskId]!.version; });
+        const dependencies = [...new Set(createdTasks.flatMap(task => task.dependencyIds))].filter(id => !parents.some(parent => parent.taskId === id) && !successors.some(child => child.taskId === id)).map(taskId => ({ taskId, postVersion: data.tasks[taskId]!.version }));
+        const record = { actorId: data.currentMemberId, kind: body.operation === 'complete' ? 'tasks.completeColumn' as const : 'tasks.archiveCompletedColumn' as const, parents, successors, dependencies, activityIds: Object.values(data.activity).filter(event => !beforeActivity.has(event.id)).map(event => event.id), result: null };
+        if (parents.length + successors.length + dependencies.length > 128 || new TextEncoder().encode(JSON.stringify(record)).length > 65536) return fail('PAYLOAD_TOO_LARGE', 'The bounded Undo record is too large. No tasks were changed.');
+        data.taskCommands.columnUndoRecords[undoId] = record;
+        return { data: { tasks: originals.map(task => projectTask(data.tasks[task.id]!, data)), createdTasks: createdTasks.map(task => projectTask(data.tasks[task.id]!, data)), affectedProjectIds: [...new Set(originals.map(task => task.projectId))], undo: { id: undoId, kind: record.kind } } };
+      }
       const originals = body.items.map(item => editable(data, item.id, item.expectedVersion));
       if (body.operation === 'patch') {
         // Validate every prospective aggregate before transition/recurrence writes.
@@ -288,6 +318,8 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       const { groupBy, groupKey, ...scope } = body.scope;
       const destination = evaluateTaskView(Object.values(data.tasks).filter(row => row.id !== task.id && !data.taskCommands.deletedTasks[row.id] && !row.archivedAt && !data.projects[row.projectId]?.archivedAt && canReadProject(data.projects[row.projectId], data)), normalizeTaskView({ query: { ...scope, ...(body.targetProjectId ? { projectId } : {}), sortField: 'manual', sortDirection: 'asc' }, groupBy: groupBy ?? 'none' }), env);
       const ids = groupBy && groupKey !== undefined ? destination.groups.find(group => group.key === (groupKey ?? 'none'))?.taskIds ?? [] : destination.taskIds;
+      const prospectiveView = evaluateTaskView([prospective.status !== task.status ? { ...prospective, completedAt: prospective.status === 'done' ? clock.now() : null } : prospective], normalizeTaskView({ query: { ...scope, ...(body.targetProjectId ? { projectId } : {}), sortField: 'manual', sortDirection: 'asc' }, groupBy: groupBy ?? 'none' }), env);
+      if (!prospectiveView.taskIds.includes(task.id) || (groupBy && groupKey !== undefined && !prospectiveView.groups.some(group => group.key === (groupKey ?? 'none') && group.taskIds.includes(task.id)))) return fail('VALIDATION_ERROR', 'Moved task is outside the destination scope or group');
       const before = body.beforeId ? data.tasks[body.beforeId] : null, after = body.afterId ? data.tasks[body.afterId] : null;
       for (const neighbor of [body.beforeId, body.afterId]) if (neighbor && !ids.includes(EntityIdSchema.parse(neighbor))) return fail('VALIDATION_ERROR', 'Move neighbor is outside the destination scope');
       if (before && after && after.position >= before.position) return fail('VALIDATION_ERROR', 'Move neighbors are not ordered');
@@ -310,6 +342,23 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
     }
     case 'undoCommand': {
       const undoId = EntityIdSchema.parse(input.undoId);
+      const column = data.taskCommands.columnUndoRecords[undoId];
+      if (column) {
+        if (column.actorId !== data.currentMemberId) return fail('NOT_FOUND', 'Undo command not found');
+        for (const target of [...column.parents, ...column.successors, ...column.dependencies]) { const task=data.tasks[target.taskId]; if(!task || !canReadProject(data.projects[task.projectId], data)) return fail('NOT_FOUND','Undo target not found'); }
+        if (column.result) return { data: column.result };
+        for (const target of [...column.parents, ...column.successors, ...column.dependencies]) {
+          const task = data.tasks[target.taskId]!;
+          if (task.version !== target.postVersion || data.taskCommands.deletedTasks[task.id] || data.projects[task.projectId]!.archivedAt || (column.kind === 'tasks.completeColumn' && task.archivedAt) || (column.kind === 'tasks.archiveCompletedColumn' && !task.archivedAt)) return fail('CONFLICT', 'An Undo target changed. No tasks were restored.');
+        }
+        for (const child of column.successors) if (data.taskCommands.recurrenceSlots[child.sourceTaskId] !== child.taskId || Object.values(data.tasks).some(task => task.dependencyIds.includes(child.taskId))) return fail('CONFLICT', 'A recurring successor changed. No tasks were restored.');
+        for (const parent of column.parents) { const task = data.tasks[parent.taskId]!; data.tasks[task.id] = { ...task, status: parent.status, completedAt: parent.completedAt, archivedAt: parent.archivedAt, updatedAt: parent.updatedAt, version: task.version + 1 }; if (parent.previousStatus) data.taskCommands.previousStatuses[task.id] = parent.previousStatus; else delete data.taskCommands.previousStatuses[task.id]; }
+        for (const child of column.successors) { const task = data.tasks[child.taskId]!; data.tasks[task.id] = { ...task, version: task.version + 1 }; data.taskCommands.deletedTasks[task.id] = clock.now(); delete data.taskCommands.recurrenceSlots[child.sourceTaskId]; }
+        for (const target of column.dependencies) data.tasks[target.taskId] = { ...data.tasks[target.taskId]!, version: target.postVersion + 1 };
+        column.activityIds.forEach(id => { delete data.activity[id]; });
+        const taskIds = [...column.parents, ...column.successors, ...column.dependencies].map(target => target.taskId);
+        column.result = UndoResultSchema.parse({ undoId, kind: column.kind, appliedAt: clock.now(), affected: { taskIds, projectIds: [...new Set(taskIds.map(id => data.tasks[id]!.projectId))], memberIds: [], teamIds: [], commentIds: [], fileIds: [] } }); return { data: column.result };
+      }
       const commentUndo = data.taskCommands.commentUndoRecords[undoId];
       if (commentUndo) {
         if (commentUndo.actorId !== data.currentMemberId) return fail('NOT_FOUND', 'Undo command not found');

@@ -10,7 +10,7 @@ import { artifacts, checkSource, readJson, sha256 } from '../reference/source-ch
 import { sourcePreferences } from '../foundation/source-sample.mjs';
 import { ready, targetServer } from '../tasks/verify.mjs';
 import { sourceDetail } from '../task-detail/source-sample.mjs';
-const evidence=path.resolve('docs/poc/evidence/WU-11'),output=path.resolve('test-results/WU-11');
+const evidence=path.resolve(process.argv.includes('--wu12-regression')?'docs/poc/evidence/WU-12/drawer-regression':'docs/poc/evidence/WU-11'),output=path.resolve(process.argv.includes('--wu12-regression')?'test-results/WU-12/drawer-regression':'test-results/WU-11');
 const report={status:'running',runtime:{node:process.version,...environment},sourceSha:'904205c626918ee96054eb35495c394a60c0c601',threshold:0,includeAA:true,maxDiffPixels:0,masks:[],samples:[]};
 const compare=(a,b,id)=>{const x=PNG.sync.read(a),y=PNG.sync.read(b);assert.equal(x.width,y.width);assert.equal(x.height,y.height);const diff=new PNG({width:x.width,height:x.height}),n=pixelmatch(x.data,y.data,diff.data,x.width,x.height,{threshold:0,includeAA:true});if(n)fs.writeFileSync(`${output}/${id}-diff.png`,PNG.sync.write(diff));return n;};
 const stopSource=await sourceServer(),stopTarget=await targetServer();let browser;

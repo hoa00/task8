@@ -1,0 +1,44 @@
+{
+  "status": "failed",
+  "steps": [
+    {
+      "id": "M1-I01-list-composer-and-complete-form-create-validation-identity",
+      "listTaskId": "01a11abd-aa80-71a5-8f08-473b63ebde2e",
+      "listTaskKey": "WEB-201",
+      "formTaskId": "01a11abd-aa80-7224-bf96-0778410bdacb",
+      "oneCreate": true,
+      "status": "passed"
+    },
+    {
+      "id": "M1-I02-drawer-title-status-assignee-due-and-rich-edit",
+      "sameId": "01a11abd-aa80-71a5-8f08-473b63ebde2e",
+      "title": "WU12 M1 edited rich task",
+      "taskStatus": "progress",
+      "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+      "dueDate": "2026-10-08",
+      "richHtml": "<strong>M1 release plan with rich content</strong>",
+      "status": "passed"
+    },
+    {
+      "id": "M1-I05-I06-subtask-detail-comment-mention-reaction-and-attachment-preview",
+      "taskId": "01a11abd-aa80-71a5-8f08-473b63ebde2e",
+      "childId": "01a11abd-aa80-7aa3-a14b-4d67f744c0c7",
+      "commentId": "01a11abd-aa80-7370-a969-6848eaaae7dd",
+      "fileId": "01a11abd-aa80-710d-9407-919775591bd0",
+      "metadataOnly": true,
+      "status": "passed"
+    },
+    {
+      "id": "M1-I03-I07-board-drag-completion-Undo-reflects-List",
+      "sameTask": "01a11abd-aa80-71a5-8f08-473b63ebde2e",
+      "statusAfterDragAndUndo": "review",
+      "boardListSync": true,
+      "status": "passed"
+    }
+  ],
+  "notes": [
+    "Native mouse/keyboard/chooser through actual Workspace Tasks List/Board and My Tasks List/AppShell/one TaskOverlayHost. Assertions read persisted canonical mock records; no direct API mutation for primary journey. ContentAvailable:false sample file metadata; real HTTP/R2 bytes WU35."
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Todo/. Input:\n\n'WEB-203WU12 M1 edited rich task0/1To DoTITanjim IslamNo priorityOct 15Website Redesign'\n\n    at file:///workspace/task8/tests/visual/task-board/journey.mjs:22:148\n    at async step (file:///workspace/task8/tests/visual/task-board/journey.mjs:11:43)\n    at async file:///workspace/task8/tests/visual/task-board/journey.mjs:17:1",
+  "alerts": []
+}

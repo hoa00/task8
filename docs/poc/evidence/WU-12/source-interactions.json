@@ -1,0 +1,232 @@
+{
+  "status": "passed",
+  "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+  "before": {
+    "id": "t10",
+    "status": "backlog",
+    "order": 10
+  },
+  "after": {
+    "status": "todo",
+    "order": 50,
+    "filters": [
+      {
+        "f": "status",
+        "op": "is",
+        "v": [
+          "backlog"
+        ]
+      }
+    ],
+    "visible": false,
+    "events": [
+      {
+        "type": "dragstart",
+        "trusted": true
+      },
+      {
+        "type": "drop",
+        "trusted": true
+      }
+    ]
+  },
+  "sort": {
+    "before": [
+      {
+        "id": "t6",
+        "priority": "medium",
+        "order": 6
+      },
+      {
+        "id": "t7",
+        "priority": "medium",
+        "order": 7
+      },
+      {
+        "id": "t8",
+        "priority": "high",
+        "order": 8
+      },
+      {
+        "id": "t10",
+        "priority": "low",
+        "order": 50
+      },
+      {
+        "id": "t13",
+        "priority": "medium",
+        "order": 13
+      },
+      {
+        "id": "t15",
+        "priority": "low",
+        "order": 15
+      },
+      {
+        "id": "t21",
+        "priority": "urgent",
+        "order": 21
+      },
+      {
+        "id": "t25",
+        "priority": "medium",
+        "order": 25
+      },
+      {
+        "id": "t26",
+        "priority": "medium",
+        "order": 26
+      },
+      {
+        "id": "t27",
+        "priority": "urgent",
+        "order": 27
+      },
+      {
+        "id": "t30",
+        "priority": "high",
+        "order": 30
+      },
+      {
+        "id": "t31",
+        "priority": "medium",
+        "order": 31
+      },
+      {
+        "id": "t33",
+        "priority": "medium",
+        "order": 33
+      },
+      {
+        "id": "t36",
+        "priority": "high",
+        "order": 36
+      },
+      {
+        "id": "t38",
+        "priority": "medium",
+        "order": 38
+      },
+      {
+        "id": "t40",
+        "priority": "high",
+        "order": 40
+      },
+      {
+        "id": "t43",
+        "priority": "medium",
+        "order": 43
+      },
+      {
+        "id": "t45",
+        "priority": "medium",
+        "order": 45
+      },
+      {
+        "id": "t49",
+        "priority": "high",
+        "order": 49
+      }
+    ],
+    "after": [
+      {
+        "id": "t21",
+        "priority": "urgent",
+        "order": 6
+      },
+      {
+        "id": "t27",
+        "priority": "urgent",
+        "order": 6.001
+      },
+      {
+        "id": "t8",
+        "priority": "high",
+        "order": 6.002
+      },
+      {
+        "id": "t30",
+        "priority": "high",
+        "order": 6.003
+      },
+      {
+        "id": "t36",
+        "priority": "high",
+        "order": 6.004
+      },
+      {
+        "id": "t40",
+        "priority": "high",
+        "order": 6.005
+      },
+      {
+        "id": "t6",
+        "priority": "medium",
+        "order": 6.006
+      },
+      {
+        "id": "t7",
+        "priority": "medium",
+        "order": 6.007
+      },
+      {
+        "id": "t13",
+        "priority": "medium",
+        "order": 6.008
+      },
+      {
+        "id": "t25",
+        "priority": "medium",
+        "order": 6.009
+      },
+      {
+        "id": "t26",
+        "priority": "medium",
+        "order": 6.01
+      },
+      {
+        "id": "t31",
+        "priority": "medium",
+        "order": 6.011
+      },
+      {
+        "id": "t33",
+        "priority": "medium",
+        "order": 6.012
+      },
+      {
+        "id": "t38",
+        "priority": "medium",
+        "order": 6.013
+      },
+      {
+        "id": "t43",
+        "priority": "medium",
+        "order": 6.014
+      },
+      {
+        "id": "t45",
+        "priority": "medium",
+        "order": 6.015
+      },
+      {
+        "id": "t10",
+        "priority": "low",
+        "order": 6.016
+      },
+      {
+        "id": "t15",
+        "priority": "low",
+        "order": 6.017
+      },
+      {
+        "id": "t49",
+        "priority": "high",
+        "order": 49
+      }
+    ],
+    "toastCount": 0,
+    "canonicalCorrection": "Target safe-integer base+i*100 and DATA-10 ID ties; source actual fractional base+i*.001 recorded, global List interleaving may differ."
+  },
+  "decision": "Real source filtered-Board drag changes status, retains toolbar filters and removes card from visible view. Destination order uses full unfiltered column; target retains scope/access integrity."
+}

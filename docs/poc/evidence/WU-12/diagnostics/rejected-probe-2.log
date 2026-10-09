@@ -1,0 +1,17 @@
+M1-I01-list-composer-and-complete-form-create-validation-identity
+M1-I02-drawer-title-status-assignee-due-and-rich-edit
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-task-drawer]').locator('[data-comment-id]').filter({ hasText: 'M1 native comment' }) to be visible[22m
+
+    at /workspace/task8/tests/visual/task-board/journey.mjs:15:1158
+    at async step (/workspace/task8/tests/visual/task-board/journey.mjs:11:43)
+    at async file:///workspace/task8/tests/visual/task-board/journey.mjs:15:1 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

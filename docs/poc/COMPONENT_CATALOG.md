@@ -505,3 +505,12 @@ callbacks; Inbox WU-19 reuses this boundary. CommentText renders React text/ment
 spans. Surrounding Drawer timeline and pagination composition remain feature-owned.
 `comments/queries.ts` owns Query infinite-query keys/options, not another cache.
 Composer files call the existing TaskOverlayHost upload controller/FileFoundation.
+
+### WU-12 ownership checkpoint
+
+TaskBoard, TaskBoardColumn, TaskBoardCard and TaskCardComposer provide five source
+status columns, 284px/44px collapse, independent vertical/global horizontal scroll,
+source column/card actions and native drop intents. Existing fields, metadata
+formatters, commands, confirmation/Undo and complete Drawer/form/files remain the
+shared owners. No card selection or List bulk bar. Workspace uses the actual page;
+Project/saved Board variants use controlled harnesses until full wrappers WU16.

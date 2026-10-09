@@ -1,0 +1,24 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "shared-five-columns-geometry-no-bulk-hover-open-edit-and-context",
+      "columns": 5,
+      "width": 284,
+      "noSelection": true,
+      "status": "passed"
+    },
+    {
+      "id": "column-collapse-expand-menu-and-inline-composer-empty-cancel-create-reload",
+      "createdId": "01a11abd-aa80-70f1-b8a9-3a8113f1cba0",
+      "key": "WEB-201",
+      "persisted": true,
+      "status": "passed"
+    }
+  ],
+  "notes": [
+    "Actual Chromium trusted HTML drag/drop through Playwright mouse gestures. Fault/hold and typed API sibling setup explicitly QA, no synthetic drop dispatch. Project/saved controlled feature harness only; Workspace/List/MyTasks M1 uses actual pages. Mock file sample/contentAvailable:false, no R2 bytes."
+  ],
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-board-column=\"todo\"]').getByRole('button', { name: 'Add task to Todo', exact: true })\u001b[22m\n\n    at /workspace/task8/tests/visual/task-board/interactions.mjs:20:627\n    at async probe (/workspace/task8/tests/visual/task-board/interactions.mjs:12:354)\n    at async file:///workspace/task8/tests/visual/task-board/interactions.mjs:20:1",
+  "alerts": []
+}

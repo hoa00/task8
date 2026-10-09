@@ -1,0 +1,21 @@
+input-typecheck: exit0
+input-build: exit0
+input-lint: exit0
+input-http-build: exit0
+input-http-bundle: exit0
+input-fields: exit1
+Owned source server: PID 177813, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+Error: ENOENT: no such file or directory, open '/workspace/task8/docs/poc/evidence/WU-12/input-regression/fields-verification.json'
+    at Object.writeFileSync (node:fs:2427:20)
+    at file:///workspace/task8/tests/visual/controls/verify.mjs:77:282 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/workspace/task8/docs/poc/evidence/WU-12/input-regression/fields-verification.json'
+}
+
+Node.js v24.13.0
