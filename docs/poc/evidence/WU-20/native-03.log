@@ -1,0 +1,20 @@
+P20-01-directory-search-role-four-owner-empty
+P20-02-profile-membership-task-drawer-assign-default-copy-complete-Undo
+P20-03-context-role-resend-remove-canonical-unchanged-Undo
+P20-04-Invite-validation-pending-dedupe-reload-profile-no-real-task
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('option', { name: /Go to Members/ }) resolved to 2 elements:
+    1) <div id="pi-0" role="option" aria-selected="true" data-palette-item="command:members" class="flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-sm px-[10px] text-left text-body [&>svg]:text-secondary bg-surface-2">…</div> aka getByRole('option', { name: 'Go to Members', exact: true })
+    2) <div id="pi-1" role="option" aria-selected="false" data-palette-item="view-all" class="flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-sm px-[10px] text-left text-body [&>svg]:text-secondary ">…</div> aka getByRole('option', { name: 'View all results for “Go to' })
+
+Call log:
+[2m  - waiting for getByRole('option', { name: /Go to Members/ })[22m
+
+    at /workspace/task8/tests/visual/people/interactions.mjs:14:910
+    at async probe (/workspace/task8/tests/visual/people/interactions.mjs:8:614)
+    at async file:///workspace/task8/tests/visual/people/interactions.mjs:14:1
+
+Node.js v24.13.0

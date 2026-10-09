@@ -618,3 +618,12 @@ SearchOverlayHost composes existing task/project intents and OverlayProvider. Co
 `features/notifications/queries.ts` owns the shared records query; `NotificationContent`, `NotificationAvatar`, `NotificationSnippet` and `ReadToggle` own content and read controls for both layouts. `InboxPage` owns categories, local selection and task-keyed drafts, `InboxPreview` composes the existing task fields and Comments, and `NotificationsPage` owns separate day groups and All/Unread layout. No Inbox message DTO or duplicated server-state store was introduced.
 
 `CommentComposer` accepts `presentation="inbox"`; its default Drawer presentation retains avatar, mention menu, auto-sizing and attachment chooser. Inbox uses the Source reply textarea and MOD submit with the same canonical name-to-member-ID parser and operation. `AvatarBase` now renders supplied children before initials; consumers without children and empty/presence/default geometry retain their existing behavior. Notification system avatars use this composition for clock/triangle glyphs.
+
+
+### WU-20 implemented people ownership
+
+`features/people/catalogue.ts` owns the complete cursor-read member catalogue; projects reexports the same query owner. `MemberTable`, `MemberStatus`, `RolePicker`, `PermissionMatrix`, `MemberDetail`, and `InviteDialog` compose shared UI primitives and the existing `MemberIdentity`, `TaskMiniRow`, `CompactProjectRow`, and `ActivityFeed`. Thin Members/profile routes delegate to these controllers. `PeopleOverlayHost` owns typed cross-feature intents and directory demo overlays; TanStack Query remains the sole server/demo read cache.
+
+`features/people/index.ts` exports Identity/props, Status/props, RolePicker/props, PermissionMatrix and four-role metadata for Settings WU24. RolePicker takes a DirectoryMember, controlled optional open/anchor and typed Admin|Member|Guest callback; Owner/current read-only policy is supplied by the capability-aware controller. PermissionMatrix owns the exact Source four-role/static permission catalogue, no ACL editor. Actual Settings compact rows and Teams grid/detail are separate later owners.
+
+`CompactProjectRow.membershipLabel` opts a member profile into Source min-height38/name weight400/glyph14 and Lead|Member label. Default project/dashboard consumers retain min-height40/weight500/glyph15 and their status/progress composition. Project icon remains the measured Source28px. `MemberIdentity.presence` is optional and defaults false, preserving its task consumers.

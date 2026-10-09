@@ -1,0 +1,23 @@
+
+/workspace/task8/tests/visual/people/geometry.mjs
+  12:1402  error  'getComputedStyle' is not defined  no-undef
+  12:1515  error  'getComputedStyle' is not defined  no-undef
+
+/workspace/task8/tests/visual/people/http.mjs
+  37:477   error  'window' is not defined    no-undef
+  37:664   error  'window' is not defined    no-undef
+  37:1125  error  'window' is not defined    no-undef
+  37:1151  error  'window' is not defined    no-undef
+  39:190   error  'document' is not defined  no-undef
+  40:308   error  'document' is not defined  no-undef
+
+/workspace/task8/tests/visual/people/verify.mjs
+  34:80   error  'document' is not defined          no-undef
+  45:80   error  'document' is not defined          no-undef
+  45:821  error  'getComputedStyle' is not defined  no-undef
+  46:568  error  'document' is not defined          no-undef
+
+✖ 12 problems (12 errors, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.
+$ eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search tests/visual/notifications tests/visual/people eslint.config.mjs && node tests/workspace/boundaries.mjs

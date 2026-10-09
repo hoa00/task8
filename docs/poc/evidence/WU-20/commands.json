@@ -1,0 +1,210 @@
+{
+  "status": "passed",
+  "requiredUniqueCommands": 15,
+  "requiredActualExitZeroCount": 15,
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-05/typecheck.log",
+      "sha256": "fb95aa9200abc8cbafd7419af0f11bacca5158d92bde08b73ab21f75f669dc74",
+      "report": "docs/poc/evidence/WU-20/attempts/final-05/commands.json",
+      "reportSha256": "2ccb0fa890d1f1f8c8bf551b742f8f33e8edc071c29a5d4447f3a14b4d855ed9"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-05/build.log",
+      "sha256": "8d0b0a601e71e233f2be4936a82209abb6e94717724600e91d135d017a50096c",
+      "report": "docs/poc/evidence/WU-20/attempts/final-05/commands.json",
+      "reportSha256": "2ccb0fa890d1f1f8c8bf551b742f8f33e8edc071c29a5d4447f3a14b4d855ed9"
+    },
+    {
+      "id": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-05/http-build.log",
+      "sha256": "0dff7e06f7967003f04910c7f1ba8c8ac6db9a55869454661a409f2947650914",
+      "report": "docs/poc/evidence/WU-20/attempts/final-05/commands.json",
+      "reportSha256": "2ccb0fa890d1f1f8c8bf551b742f8f33e8edc071c29a5d4447f3a14b4d855ed9"
+    },
+    {
+      "id": "http-bundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-20",
+        "--evidence-suffix=final-05"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-05/http-bundle.log",
+      "sha256": "12d434551365dc87ba790615e540f20035afc4f089dd2a8a657358dcbb6de876",
+      "report": "docs/poc/evidence/WU-20/attempts/final-05/commands.json",
+      "reportSha256": "2ccb0fa890d1f1f8c8bf551b742f8f33e8edc071c29a5d4447f3a14b4d855ed9"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-05/reference.log",
+      "sha256": "2b359c7cfcf5331723dcd238178dc7be40372c418c174696a3fe25a5eaf20933",
+      "report": "docs/poc/evidence/WU-20/attempts/final-05/commands.json",
+      "reportSha256": "2ccb0fa890d1f1f8c8bf551b742f8f33e8edc071c29a5d4447f3a14b4d855ed9"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-04/test.log",
+      "sha256": "8b7ac72de8b6c3f37182e2cdf2bcaa1fd568731019566fff9c7578d36d5ab1ed",
+      "report": "docs/poc/evidence/WU-20/attempts/final-04/commands.json",
+      "reportSha256": "dbb0a9881841d6d13d9000cc2613325ec4df3519b71fb60f3e2fee4f3ffc0fa9",
+      "reuse": "Only later production delta is Invite validation focus/presentation and owned overlay styling; no data/API/operation changes."
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/qa-01.log",
+      "sha256": "5466e9fbc0f4615b1c896e5d7f62c49f1a94797bff720c35376dc0ef6c2f62e2",
+      "report": "docs/poc/evidence/WU-20/attempts/qa-01/report.json",
+      "reportSha256": "8e23166ae2f0e9a4984ba12669183aab66eaf3774e7bf0991371b9362fb13ada"
+    },
+    {
+      "id": "native",
+      "command": [
+        "node",
+        "tests/visual/people/interactions.mjs",
+        "--attempt=native-05"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/native-05.log",
+      "sha256": "bc0fc385c61db134062650dafa4700761c5ee70b1126539c2b6458069c1ec602",
+      "report": "docs/poc/evidence/WU-20/attempts/native-05/report.json",
+      "reportSha256": "a87c7b8ce5af8d7bfd74e817b27b75e5d7277384f60c111262f290b921d2bb4b"
+    },
+    {
+      "id": "http",
+      "command": [
+        "node",
+        "tests/visual/people/http.mjs",
+        "--attempt=http-02"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/http-02.log",
+      "sha256": "0b56f240ef8777694c3eb5b06a9910f407d3da172b44d9f4b1f70284a38108c7",
+      "report": "docs/poc/evidence/WU-20/attempts/http-02/report.json",
+      "reportSha256": "a74de6b14118dc88e215cf9639d288ac69605d7efbf4a8c028c47f32e445b39c"
+    },
+    {
+      "id": "supplement",
+      "command": [
+        "node",
+        "tests/visual/people/supplement.mjs",
+        "--attempt=supplement-01"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/supplement-01.log",
+      "sha256": "ec94e502c9a63fa3e56fb8946dd206d799f3fd5d3ddc025b3341f3814e136cf3",
+      "report": "docs/poc/evidence/WU-20/attempts/supplement-01/report.json",
+      "reportSha256": "fe45766e2b5a1016e5a9c91d49b1f66aea566dbc97831818c1d51a0752f73c19"
+    },
+    {
+      "id": "links",
+      "command": [
+        "node",
+        "tests/visual/people/links.mjs",
+        "--attempt=links-01"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/links-01.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "report": "docs/poc/evidence/WU-20/attempts/links-01/report.json",
+      "reportSha256": "92578977a1ef49b7f8755d4bc92ce529e663c504d2d5292ab54be1848e34fc75"
+    },
+    {
+      "id": "motion",
+      "command": [
+        "node",
+        "tests/visual/people/motion.mjs",
+        "--attempt=motion-02"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/motion-02.log",
+      "sha256": "9e6bca31312d3ed4903aae3c07c3ea1e54a27dc4b360be32fd628b8de41fc48c",
+      "report": "docs/poc/evidence/WU-20/attempts/motion-02/report.json",
+      "reportSha256": "b66148caafdda8fb0189fffcd32ff23c4f68b28278535fa2969e0cd9598ce38b"
+    },
+    {
+      "id": "current-visual",
+      "command": [
+        "node",
+        "tests/visual/people/verify.mjs",
+        "--attempt=errors-01",
+        "--qualified",
+        "--errors"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/errors-01.log",
+      "sha256": "a6c3325b39f6d9a0f9b42c49ed2876be448668e5766df4af003f108ec1ba2c4f",
+      "report": "docs/poc/evidence/WU-20/attempts/errors-01/report.json",
+      "reportSha256": "982cbc5379c418f8c211ca6f26ccc666825821b6a84e160a27ea71d3c544cdff"
+    },
+    {
+      "id": "aggregate",
+      "command": [
+        "node",
+        "tests/visual/people/aggregate.mjs"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/aggregate-03.log",
+      "sha256": "9f2774ff04fc357d6ecb425e77d18ccc291ec8a6b771d9c49b2f530884461684",
+      "report": "docs/poc/evidence/WU-20/attempts/aggregate-03/report.json",
+      "reportSha256": "db58412a15aeca0de958d5b97baebcf38535557ee7176c1006818288897727e2"
+    },
+    {
+      "id": "byte-audit",
+      "command": [
+        "node",
+        "tests/visual/people/audit.mjs",
+        "--attempt=audit-02",
+        "--index"
+      ],
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-20/audit-02.log",
+      "sha256": "bbf72e2ee8515db367a82d99662edcb7cec06e163364d0db2ea1e0fcc1f4a86f",
+      "report": "docs/poc/evidence/WU-20/attempts/audit-02/report.json",
+      "reportSha256": "0535ba670cc79c2f464466deae6f923231462676ba86c1c48b564cec53786a62"
+    }
+  ],
+  "reuse": "Explicit archived checks and bounded current follow-ups; not a claim every prior execution passed or all current checks freshly repeated.",
+  "failedBytes": "Every failed attempt remains failed/frozen; aggregate01 enclosing shell tail0 does not establish node success. Auxiliary loose build/typecheck logs retained without inventing unrecorded statuses."
+}

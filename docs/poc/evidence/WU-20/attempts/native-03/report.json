@@ -1,0 +1,58 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "P20-01-directory-search-role-four-owner-empty",
+      "status": "passed",
+      "fourRoles": true,
+      "ownerReadonly": true,
+      "emailCasefold": true,
+      "noResults": true,
+      "TeamsBodyPending": true
+    },
+    {
+      "id": "P20-02-profile-membership-task-drawer-assign-default-copy-complete-Undo",
+      "status": "passed",
+      "membershipId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+      "userId": "01a11abd-aa80-700f-824b-882a971be8b6",
+      "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+      "drawer": true,
+      "assigneeDefaultCanonical": true,
+      "clipboard": true,
+      "realCompletionUndo": true
+    },
+    {
+      "id": "P20-03-context-role-resend-remove-canonical-unchanged-Undo",
+      "status": "passed",
+      "roleDemoPersisted": true,
+      "invitedResendExplicitDemo": true,
+      "removeProjectionOnly": true,
+      "realPrincipalGrantsTasksUnchanged": true,
+      "Undo": true
+    },
+    {
+      "id": "P20-04-Invite-validation-pending-dedupe-reload-profile-no-real-task",
+      "status": "passed",
+      "createdPendingId": "01a11abd-aa80-77b9-8d71-c989a577fa46",
+      "validationDraftPreserved": true,
+      "deduped": true,
+      "persisted": true,
+      "profileDemo": true,
+      "zeroCanonicalWrites": true
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Native production mock app. Canonical task operations, directory-only local demo actions, real keyboard/clipboard/reload; no email/account/runtimegrant delivery.",
+  "error": "locator.click: Error: strict mode violation: getByRole('option', { name: /Go to Members/ }) resolved to 2 elements:\n    1) <div id=\"pi-0\" role=\"option\" aria-selected=\"true\" data-palette-item=\"command:members\" class=\"flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-sm px-[10px] text-left text-body [&>svg]:text-secondary bg-surface-2\">…</div> aka getByRole('option', { name: 'Go to Members', exact: true })\n    2) <div id=\"pi-1\" role=\"option\" aria-selected=\"false\" data-palette-item=\"view-all\" class=\"flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-sm px-[10px] text-left text-body [&>svg]:text-secondary \">…</div> aka getByRole('option', { name: 'View all results for “Go to' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('option', { name: /Go to Members/ })\u001b[22m\n\n    at /workspace/task8/tests/visual/people/interactions.mjs:14:910\n    at async probe (/workspace/task8/tests/visual/people/interactions.mjs:8:614)\n    at async file:///workspace/task8/tests/visual/people/interactions.mjs:14:1"
+}

@@ -1,0 +1,38 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache miss, executing c8cd207204610d92
+@studio/ui:typecheck: cache miss, executing 938f1be97c2923b3
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache miss, executing 8089ec8e13df3ddc
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache miss, executing 15a63bc1ac864cdf
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 10e68ad72e39dedb
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/people-demo.ts(22,121): error TS2345: Argument of type 'string' is not assignable to parameter of type 'string & $brand<"EntityId">'.
+@studio/web:typecheck:   Type 'string' is not assignable to type '$brand<"EntityId">'.
+@studio/web:typecheck: src/features/people/PeopleOverlayHost.tsx(20,376): error TS2322: Type 'string' is not assignable to type 'string & $brand<"EntityId">'.
+@studio/web:typecheck:   Type 'string' is not assignable to type '$brand<"EntityId">'.
+@studio/web:typecheck: src/features/people/PeopleOverlayHost.tsx(21,2049): error TS2375: Type '{ member: { name: string; title: string; id: string & $brand<"EntityId">; role: "Owner" | "Admin" | "Member" | "Guest"; email: string; version: number; teamId: (string & $brand<"EntityId">) | null; ... 6 more ...; demo: boolean; }; open: true; anchor: HTMLElement | undefined; onOpenChange: (open: boolean) => void; o...' is not assignable to type 'RolePickerProps' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+@studio/web:typecheck:   Types of property 'anchor' are incompatible.
+@studio/web:typecheck:     Type 'HTMLElement | undefined' is not assignable to type 'HTMLElement | null'.
+@studio/web:typecheck:       Type 'undefined' is not assignable to type 'HTMLElement | null'.
+@studio/web:typecheck: src/features/people/RolePicker.tsx(6,961): error TS2322: Type '{ children: (Element | Element[])[]; open: boolean; anchor: RefObject<HTMLButtonElement | null> | { current: HTMLElement; }; onOpenChange: (value: boolean) => void; label: string; width: number; }' is not assignable to type 'IntrinsicAttributes & MenuProps'.
+@studio/web:typecheck:   Property 'width' does not exist on type 'IntrinsicAttributes & MenuProps'.
+@studio/web:typecheck: src/features/search/SearchOverlayHost.tsx(41,914): error TS2367: This comparison appears to be unintentional because the types '"activity" | "calendar" | "home" | "inbox" | "projects" | "timeline" | "members" | "notifications" | "my" | "signout"' and '"invite"' have no overlap.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    16.636s 
+Failed:    @studio/web#typecheck
+
+ ERROR  run failed: command  exited (2)
+[ELIFECYCLE] Command failed with exit code 2.

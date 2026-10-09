@@ -8,8 +8,8 @@ Ledger này được WU-28 kiểm lại và WU-29 phải đóng trước M2. Pen
 | Home/My Tasks/Projects/Calendar/Timeline/Activity | Navigation đến feature đã có | WU-18, implemented | Native keyboard journeys và Source desktop/mobile entry; Timeline command dùng route hiện hữu |
 | Search task/comment/project | Shared typed search; mở TaskDrawer hoặc project với canonical identity | WU-18, implemented | API search/privacy/full cursor tests; native Page/Palette result và actual HTTP cancellation |
 | File result preview | Dùng FilePreviewDialog WU-10 ngay; liên kết task mở drawer hiện hữu | WU-18, implemented | Native N05 và scoped preview comparisons |
-| Actor / people result | Route member profile canonical; boundary pending thật | WU-20, pending | Member profile/ActivityFeed actor callback dùng chung; kiểm tất cả Page/Palette/Activity entry |
-| Invite member | Palette option aria-disabled; chưa mutation hay success toast | WU-20, pending | Invite form/permission/canonical member mutation, gồm Home invite entry; WU-27 permission review |
+| Actor / people result | Canonical membership profile; shared ActivityFeed actor intent | WU-20, implemented | Native05 people Palette/Home/activity links and supplement project lead/search entry; canonical profile/summary/privacy data guards |
+| Invite member | Palette/Home/directory mở shared InviteDialog; capability-guarded directory-only demo | WU-20, implemented | Native05 validation/dedupe/persist/profile + HTTP storage fault/retry; no canonical account/grant/task writes or email delivery. WU27 principal review remains |
 | Inbox / Notifications | Canonical routes, shared persisted notification state | WU-19, implemented; native N19-04 | Commands và G I / G N vào feature đã triển khai |
 | Workspace/appearance Settings | Canonical settings routes, pending boundary; shortcut definitions đã export | WU-23, pending | Settings dùng lại definitions; G S và command appearance mở đúng section |
 | Files suggestion / canonical file URL | Project Files tab route hiện hữu nhưng body pending; preview copy dùng foundation URL | WU-22, pending | Canonical Files body, preview/deep-link/copy URL round trip, archived/deleted/forbidden parent handling |
@@ -25,3 +25,5 @@ All pending entries above must be revisited at WU-28 and closed with actual evid
 
 
 Actual final navigation evidence: native07 N08 derives the first visible actor from canonical bootstrap and checks the exact member-ID route. Switching Personal uses catalog workspaceW2 ID and reaches its canonical Home with bootstrap404/Page not found; no synthetic success or W1 dataset copy. These remain truthful pending20 and27/31 integrations. Final current fileCopy feedback uses Source success4200/info-failure6000/manual foundationURL; actual granted clipboard and failure journeys are in native09/source-copy-feedback02. Canonical copy/deep-link round trip remains WU22.
+
+WU20 closes the people/profile and workspace Invite boundaries only. Settings integration remains WU24, Teams body WU21, canonical file URLs WU22, authentication WU26/27 and provisioning WU31. Project sharing keeps its existing WU16 separate explicit guest projection; it does not provision a canonical membership or authenticated account. Historical pending statements above describe their actual WU18 checkpoints.

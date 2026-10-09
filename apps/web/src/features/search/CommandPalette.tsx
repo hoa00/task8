@@ -27,7 +27,7 @@ export function CommandPalette({ mode: initialMode, data, workspaces, recent, on
  const search = useWorkspaceSearch(data.workspace.id, q, mode === 'search' ? scope : 'all', mode !== 'ws');
  const recentTasks = useQuery({ queryKey: [...queryKeys.workspace(data.workspace.id), 'tasks', 'palette-recent'], queryFn: ({ signal }) => loadTaskViewDataset(client, data.workspace.id, TaskQuerySchema.parse({}), signal), enabled: mode === 'cmd' && !q.trim() });
  const commands = commandDefinitions.filter(row => row.palette !== false).map(row => row.id === 'dark' && effectiveDark ? { ...row, name: 'Switch to light mode', icon: 'sun' as const } : row).filter(row => !q.trim() || row.name.toLowerCase().includes(q.trim().toLowerCase()));
- const commandItem = (row: CommandDefinition): PaletteItem => ({ id: `command:${row.id}`, name: row.name, leading: <Icon name={row.icon} size={15}/>, keys: commandKeys(row, navigator.platform), action: { kind: 'command', command: row.id }, disabled: row.id === 'signout' || row.id === 'invite' });
+ const commandItem = (row: CommandDefinition): PaletteItem => ({ id: `command:${row.id}`, name: row.name, leading: <Icon name={row.icon} size={15}/>, keys: commandKeys(row, navigator.platform), action: { kind: 'command', command: row.id }, disabled: row.id === 'signout' });
  const resultItem = (row: SearchResultDto): PaletteItem => {
   const id = `${row.kind}:${searchResultId(row)}`, action: PaletteAction = { kind: 'result', result: row };
   if (row.kind === 'tasks') return { id, action, leading: <TaskStatusIcon status={row.task.status}/>, name: row.task.title, sub: data.projects.find(item => item.project.id === row.task.projectId)?.project.name, right: row.task.key };

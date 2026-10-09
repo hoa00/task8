@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "probes": [],
+  "runtime": {
+    "node": "v24.13.0",
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Native production mock app. Canonical task operations, directory-only local demo actions, real keyboard/clipboard/reload; no email/account/runtimegrant delivery.",
+  "error": "locator.isDisabled: Error: strict mode violation: getByRole('button', { name: 'New team', exact: true }) resolved to 2 elements:\n    1) <button type=\"button\" aria-disabled=\"true\" aria-label=\"New team\" class=\"relative inline-flex shrink-0 items-center justify-center text-secondary transition-[background,color] source-hover:bg-surface-2 source-hover:text-foreground active:bg-surface-3 active:text-foreground aria-pressed:bg-surface-3 aria-pressed:text-foreground disabled:opacity-40 disabled:pointer-events-none size-control-xs rounded-xs opacity-0 group-hover:opacity-100 focus-visible:opacity-100\">…</button> aka getByLabel('New team')\n    2) <button disabled type=\"button\" data-variant=\"secondary\" class=\"relative inline-flex items-center justify-center gap-[6px] rounded-sm border border-solid font-medium whitespace-nowrap select-none transition-[background,border-color,color,box-shadow,transform] ease-[ease] enabled:active:[transform:scale(0.97)] source-reduce:enabled:active:transform-none [&_svg]:opacity-90 h-control-sm px-2 text-xs bg-surface border-border-strong text-foreground [box-shadow:var(--shadow-sm)] source-hover:bg-surface-2 act…>…</button> aka getByText('New team')\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'New team', exact: true })\u001b[22m\n\n    at /workspace/task8/tests/visual/people/interactions.mjs:10:1340\n    at async probe (/workspace/task8/tests/visual/people/interactions.mjs:8:614)\n    at async file:///workspace/task8/tests/visual/people/interactions.mjs:10:1"
+}

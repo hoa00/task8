@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-04/typecheck.log",
+      "sha256": "4cc608ac97f0e1f22df537c6bbb3b347907627cd4d3579f2eebcfa02edde4528"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-04/test.log",
+      "sha256": "8b7ac72de8b6c3f37182e2cdf2bcaa1fd568731019566fff9c7578d36d5ab1ed"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-04/lint.log",
+      "sha256": "c49b307a988521321e8792c8d5624f58fbae0987002541282c62641a3afbc115"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-04/build.log",
+      "sha256": "716a79460a2c7862b206cf75611e5f14081da0a4f4cfb8a6eb843ae4621c5097"
+    },
+    {
+      "id": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-04/http-build.log",
+      "sha256": "b55d673c697d3af6226e1bc706fa34e2418d8f8dee9d9b24b8b9f5cb1716d081"
+    },
+    {
+      "id": "http-bundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-20",
+        "--evidence-suffix=final-04"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-04/http-bundle.log",
+      "sha256": "8e596e09c8c9ce5ffd187fced25631f669afaf4f25811d87e6f9de7f5fbf0269"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-20/attempts/final-04/reference.log",
+      "sha256": "2b359c7cfcf5331723dcd238178dc7be40372c418c174696a3fe25a5eaf20933"
+    }
+  ]
+}

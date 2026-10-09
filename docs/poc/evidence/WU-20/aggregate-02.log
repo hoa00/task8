@@ -1,0 +1,27 @@
+node:internal/child_process:1120
+    result.error = new ErrnoException(result.error, 'spawnSync ' + options.file);
+                   ^
+
+<ref *1> Error: spawnSync git EPERM
+    at Object.spawnSync (node:internal/child_process:1120:20)
+    at spawnSync (node:child_process:911:24)
+    at execFileSync (node:child_process:954:15)
+    at file:///workspace/task8/tests/visual/people/aggregate.mjs:19:658
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawnSync git',
+  path: 'git',
+  spawnargs: [ '-C', '.reference/gr8r-studio', 'rev-parse', 'HEAD' ],
+  error: [Circular *1],
+  status: 0,
+  signal: null,
+  output: [ null, '904205c626918ee96054eb35495c394a60c0c601\n', '' ],
+  pid: 429088,
+  stdout: '904205c626918ee96054eb35495c394a60c0c601\n',
+  stderr: ''
+}
+
+Node.js v24.13.0

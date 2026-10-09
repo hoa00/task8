@@ -1,0 +1,1 @@
+import{t as e}from"./PendingPage-y5LxNRAL.js";var t=e;export{t as component};

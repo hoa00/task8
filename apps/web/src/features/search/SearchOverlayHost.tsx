@@ -14,6 +14,7 @@ import { FilePreviewDialog } from '../files/FileFoundation';
 import { normalizeTaskView } from '@studio/domain';
 import { SearchIntentContext } from './search-intents';
 import { recentSearchKey, readRecentSearches } from './recent-searches';
+import { usePeopleIntents } from '../people/people-intents';
 import { commandDefinitions } from './commands';
 import type { CommandId } from './commands';
 import { useGlobalShortcuts } from './global-shortcuts';
@@ -22,7 +23,7 @@ import type { PaletteMode, CommandPaletteProps } from './CommandPalette';
 import { ShortcutsDialog } from './ShortcutsDialog';
 export interface SearchOverlayHostProps { data: BootstrapDto; children: ReactNode; toggleSidebar: () => void; onOpenOverlay: () => void }
 export function SearchOverlayHost({ data, children, toggleSidebar, onOpenOverlay }: SearchOverlayHostProps) {
- const { client, clock } = useDataRuntime(), projects = useProjectIntents(), tasks = useWorkspaceIntents(), navigate = useNavigate(), location = useLocation(), theme = useTheme(), catalog = useStudioQuery('listWorkspaces', {}).data?.data ?? [];
+ const { client, clock } = useDataRuntime(), people = usePeopleIntents(), projects = useProjectIntents(), tasks = useWorkspaceIntents(), navigate = useNavigate(), location = useLocation(), theme = useTheme(), catalog = useStudioQuery('listWorkspaces', {}).data?.data ?? [];
  const [palette, setPalette] = useState<{ mode: PaletteMode; generation: number } | null>(null), [shortcuts, setShortcuts] = useState(false), [fileId, setFileId] = useState<string | null>(null), [notice, setNotice] = useState(''), generation = useRef(0);
  const historyKey = recentSearchKey(data.workspace.id, data.currentMember.id), [history, setHistory] = useState(() => ({ key: historyKey, rows: readRecentSearches(historyKey) }));
  const rows = history.key === historyKey ? history.rows : readRecentSearches(historyKey);
@@ -37,7 +38,7 @@ export function SearchOverlayHost({ data, children, toggleSidebar, onOpenOverlay
  const run = (id: CommandId) => {
   const command = commandDefinitions.find(row => row.id === id)!;
   if (command.page) { void navigate({ to: links.workspace(data.workspace.id, command.page) }); return; }
-  if (id === 'task') { prepare(); tasks.openTaskForm(); } else if (id === 'project') projects.newProject(); else if (id === 'search') openPalette('search'); else if (id === 'workspace') openPalette('ws'); else if (id === 'dark') { setPalette(null); theme.setPreferences({ theme: theme.effectiveDark ? 'light' : 'dark' }); projects.notice(theme.effectiveDark ? 'Light mode on' : 'Dark mode on', undefined, { kind: 'info', duration: 1800 }); } else if (id === 'sidebar') toggleSidebar(); else if (id === 'shortcuts') openShortcuts(); else if (id === 'settings' || id === 'appearance') { void navigate({ to: links.settings(data.workspace.id, id === 'settings' ? 'workspace' : 'appearance') }); } else if (id === 'editTask') { const taskId = validateRouteSearch(location.search).taskId; if (taskId) { prepare(); tasks.openTaskForm(taskId); } } else setNotice(id === 'invite' ? 'Invitations are not available yet.' : 'Sign out is not available yet.');
+  if (id === 'task') { prepare(); tasks.openTaskForm(); } else if (id === 'project') projects.newProject(); else if (id === 'search') openPalette('search'); else if (id === 'workspace') openPalette('ws'); else if (id === 'dark') { setPalette(null); theme.setPreferences({ theme: theme.effectiveDark ? 'light' : 'dark' }); projects.notice(theme.effectiveDark ? 'Light mode on' : 'Dark mode on', undefined, { kind: 'info', duration: 1800 }); } else if (id === 'invite') { prepare(); people.invite(); } else if (id === 'sidebar') toggleSidebar(); else if (id === 'shortcuts') openShortcuts(); else if (id === 'settings' || id === 'appearance') { void navigate({ to: links.settings(data.workspace.id, id === 'settings' ? 'workspace' : 'appearance') }); } else if (id === 'editTask') { const taskId = validateRouteSearch(location.search).taskId; if (taskId) { prepare(); tasks.openTaskForm(taskId); } } else setNotice('Sign out is not available yet.');
  };
  useGlobalShortcuts({ run, togglePalette: () => palette ? setPalette(null) : openPalette(), blocked: () => !!document.querySelector('[role="dialog"][aria-modal="true"]:not([data-task-drawer]),[role="menu"],[data-mobile-open=true]') });
  const viewAll = (q: string, category: Parameters<CommandPaletteProps['onViewAll']>[1]) => { remember(q); void navigate({ to: links.workspace(data.workspace.id, 'search'), search: { q, category } }); };

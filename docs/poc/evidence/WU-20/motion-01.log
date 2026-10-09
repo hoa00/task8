@@ -1,0 +1,22 @@
+Owned source server: PID 427311, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ null
+- 846.1590000079013
+
+    at file:///workspace/task8/tests/visual/people/motion.mjs:19:756
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: null,
+  expected: 846.1590000079013,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0
