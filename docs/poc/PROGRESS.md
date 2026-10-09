@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-11` — **DONE**, gồm AC1 native HTML-drop reopening; final follow-up checkpoint đang được ghi trước root dispatch WU-12.
+- Current work unit: `WU-11` — **DONE**, gồm AC1 native HTML-drop reopening; base và follow-up implementation normal-push đã verified, root chỉ dispatch WU-12 sau final documentation checkpoint.
 - Last completed implementation unit: `WU-11`.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
@@ -26,7 +26,7 @@
 | [WU-08](work-units/WU-08.md) | DONE | `3a48f7b45e43fc675af7c770cb3225f987c2ab5b` | [Verification](evidence/WU-08/verification.json), [22 toolbar/filter images](evidence/WU-08/visual-verification.json), [11 browser probes](evidence/WU-08/interactions.json) |
 | [WU-09](work-units/WU-09.md) | DONE | `1ec030c3966b5ce534880e196c00866e6b7adcf2` | [96 images/10 probes](evidence/WU-09/verification.json), [11 field regressions](evidence/WU-09/field-regression/interactions.json) |
 | [WU-10](work-units/WU-10.md) | DONE | `29ac418fd13a039d31707bf615700ab128d7f089` | [32 images/11 probes/15 gates](evidence/WU-10/verification.json), [affected regressions](evidence/WU-10/commands.json) |
-| [WU-11](work-units/WU-11.md) | DONE | `60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9` | [17 gates + 5 post-paste + 5 native-drop checks](evidence/WU-11/verification.json), [46 samples/92 PNG](evidence/WU-11/review.json), [9 native collaboration probes](evidence/WU-11/interactions.json); [verified implementation push](evidence/WU-11/checkpoint.json) |
+| [WU-11](work-units/WU-11.md) | DONE | `b99ce11a5389a6fe6602d9ec0ffece42e214beb8` | [17 gates + 5 post-paste + 5 native-drop checks](evidence/WU-11/verification.json), [46 samples/92 PNG](evidence/WU-11/review.json), [9 native collaboration probes](evidence/WU-11/interactions.json); [base push](evidence/WU-11/checkpoint.json), [follow-up push](evidence/WU-11/followup-checkpoint.json) |
 | [WU-12](work-units/WU-12.md) | NOT_STARTED | — | — |
 | [WU-13](work-units/WU-13.md) | NOT_STARTED | — | — |
 | [WU-14](work-units/WU-14.md) | NOT_STARTED | — | — |
@@ -408,5 +408,22 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
   native suite, dedicated native-drop suite/package commands/gate entry;
   ARCHITECTURE/DECISIONS/VISUAL_PARITY/PROGRESS and scoped WU11 evidence.
 - Status: `DONE`, no blocker; follow-up implementation SHA/push and subsequent
-  checkpoint will be recorded only after successful normal commit/push. Never
-  amend already-pushed60ad5a9/285045a. Root alone dispatches WU12 after final verify.
+  checkpoint below records the successful normal commit/push. Already-pushed
+  60ad5a9/285045a were never amended. Root alone dispatches WU12 after final verify.
+
+- Follow-up implementation commit: `b99ce11a5389a6fe6602d9ec0ffece42e214beb8` —
+  `fix: sanitize native description drops for WU-11`; tree
+  `ad64ed2dfdca37d82280b281318ab090e357d0ce`. Base implementation remains
+  `60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9`, earlier documentation checkpoint
+  `285045a88669df276c777cea69b721570358fc4f`. Staged diff-check and commit show-check
+  both exit0, all changes scoped to WU11. No amend or force of pushed history.
+- Follow-up push: actual `git push origin HEAD:main` exit0,
+  `285045a..b99ce11 HEAD -> main`. `git ls-remote origin refs/heads/main` and
+  post-push fetch verified HEAD/origin-main=`b99ce11a5389a6fe6602d9ec0ffece42e214beb8`,
+  both trees=`ad64ed2dfdca37d82280b281318ab090e357d0ce`, ahead0/behind0, clean.
+  [Actual subsequent checkpoint](evidence/WU-11/followup-checkpoint.json).
+- Final checkpoint: this documentation-only commit records the actual implementation
+  push above; its own real HEAD/remote/clean/process cleanup are checked after the
+  final normal push and reported by SHA, avoiding a self-referential commit hash.
+  No further implementation after affected gates; WU11 stops, WU12 remains
+  NOT_STARTED until root dispatches a distinct agent.

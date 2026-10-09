@@ -1,0 +1,109 @@
+{
+  "status": "passed",
+  "unit": "WU-11",
+  "reason": "AC1 native HTML-drop reopening",
+  "baseImplementationSha": "60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9",
+  "baseDocumentationSha": "285045a88669df276c777cea69b721570358fc4f",
+  "followupImplementation": {
+    "sha": "b99ce11a5389a6fe6602d9ec0ffece42e214beb8",
+    "tree": "ad64ed2dfdca37d82280b281318ab090e357d0ce",
+    "message": "fix: sanitize native description drops for WU-11"
+  },
+  "target": {
+    "remote": "origin",
+    "url": "https://github.com/hoa00/task8.git",
+    "branch": "work",
+    "pushTarget": "HEAD:main",
+    "force": false
+  },
+  "before": [
+    {
+      "command": "git rev-parse HEAD",
+      "exitStatus": 0,
+      "output": "285045a88669df276c777cea69b721570358fc4f"
+    },
+    {
+      "command": "git rev-parse origin/main",
+      "exitStatus": 0,
+      "output": "285045a88669df276c777cea69b721570358fc4f"
+    },
+    {
+      "command": "git merge-base --is-ancestor origin/main HEAD",
+      "exitStatus": 0,
+      "output": ""
+    },
+    {
+      "command": "git rev-list --left-right --count HEAD...origin/main",
+      "exitStatus": 0,
+      "output": "0\t0"
+    }
+  ],
+  "beforePush": {
+    "ancestor": {
+      "command": "git merge-base --is-ancestor origin/main HEAD",
+      "exitStatus": 0,
+      "output": ""
+    },
+    "divergence": {
+      "command": "git rev-list --left-right --count HEAD...origin/main",
+      "exitStatus": 0,
+      "output": "1\t0"
+    },
+    "clean": {
+      "command": "git status --porcelain",
+      "exitStatus": 0,
+      "output": ""
+    }
+  },
+  "push": {
+    "command": "git push origin HEAD:main",
+    "exitStatus": 0,
+    "output": "To https://github.com/hoa00/task8.git\n   285045a..b99ce11  HEAD -> main"
+  },
+  "afterPush": {
+    "lsRemote": {
+      "command": "git ls-remote origin refs/heads/main",
+      "exitStatus": 0,
+      "output": "b99ce11a5389a6fe6602d9ec0ffece42e214beb8\trefs/heads/main"
+    },
+    "fetch": {
+      "command": "git fetch origin main",
+      "exitStatus": 0,
+      "output": "From https://github.com/hoa00/task8\n * branch            main       -> FETCH_HEAD"
+    },
+    "head": {
+      "command": "git rev-parse HEAD",
+      "exitStatus": 0,
+      "output": "b99ce11a5389a6fe6602d9ec0ffece42e214beb8"
+    },
+    "originMain": {
+      "command": "git rev-parse origin/main",
+      "exitStatus": 0,
+      "output": "b99ce11a5389a6fe6602d9ec0ffece42e214beb8"
+    },
+    "headTree": {
+      "command": "git rev-parse HEAD^{tree}",
+      "exitStatus": 0,
+      "output": "ad64ed2dfdca37d82280b281318ab090e357d0ce"
+    },
+    "originMainTree": {
+      "command": "git rev-parse origin/main^{tree}",
+      "exitStatus": 0,
+      "output": "ad64ed2dfdca37d82280b281318ab090e357d0ce"
+    },
+    "divergence": {
+      "command": "git rev-list --left-right --count HEAD...origin/main",
+      "exitStatus": 0,
+      "output": "0\t0"
+    },
+    "clean": {
+      "command": "git status --porcelain",
+      "exitStatus": 0,
+      "output": ""
+    }
+  },
+  "verification": "docs/poc/evidence/WU-11/editor-drop-verification.json",
+  "aggregate": "docs/poc/evidence/WU-11/verification.json",
+  "cleanup": "docs/poc/evidence/WU-11/process-cleanup.json",
+  "documentationCheckpoint": "This subsequent documentation checkpoint records actual base and follow-up implementation SHAs and successful normal push. Its final commit SHA is checked/reported after push, avoiding self-referential SHA."
+}
