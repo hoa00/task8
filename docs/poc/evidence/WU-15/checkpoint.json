@@ -1,0 +1,146 @@
+{
+  "workUnit": "WU-15",
+  "recordedAtUtc": "2026-10-09T06:54:28.983817+00:00",
+  "implementationCommit": "d5a75c467bc2cf5798706759d3f0728b37c047ed",
+  "implementationTree": "e3723f921b844e4553eb990fa5070bd4316a308c",
+  "startedFrom": "c62dbed828d2ebbf5d066e2745051e9bbd5120d4",
+  "target": {
+    "branch": "work",
+    "remote": "https://github.com/hoa00/task8.git",
+    "pushedRef": "refs/heads/main",
+    "pushCommand": "git push origin HEAD:main",
+    "pushExitStatus": 0,
+    "remoteMainVerified": "d5a75c467bc2cf5798706759d3f0728b37c047ed",
+    "cleanBeforeDocumentationCheckpoint": true
+  },
+  "source": {
+    "sha": "904205c626918ee96054eb35495c394a60c0c601",
+    "tree": "5db5f992886b2345881946cf85fac098307953a5",
+    "trackedFiles": 86,
+    "clean": true
+  },
+  "verification": {
+    "requiredCoreExit0": 13,
+    "supplementalExit0": 3,
+    "native": 17,
+    "source": 4,
+    "pureGroups": 7,
+    "generalizedSourceTieCases": 25,
+    "strictPairs": 48,
+    "frozenPng": 96,
+    "rootTechnicalInspection": "PASS",
+    "review": "docs/poc/evidence/WU-15/review.json"
+  },
+  "actualChecks": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitStatus": 0,
+      "stdout": "d5a75c467bc2cf5798706759d3f0728b37c047ed",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitStatus": 0,
+      "stdout": "e3723f921b844e4553eb990fa5070bd4316a308c",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exitStatus": 0,
+      "stdout": "work",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "exitStatus": 0,
+      "stdout": "https://github.com/hoa00/task8.git",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "exitStatus": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exitStatus": 0,
+      "stdout": "d5a75c467bc2cf5798706759d3f0728b37c047ed\trefs/heads/main",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitStatus": 0,
+      "stdout": "904205c626918ee96054eb35495c394a60c0c601",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitStatus": 0,
+      "stdout": "5db5f992886b2345881946cf85fac098307953a5",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "status",
+        "--porcelain"
+      ],
+      "exitStatus": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "ls-files"
+      ],
+      "exitStatus": 0,
+      "stdout": "86 tracked paths counted (bounded output)",
+      "stderr": ""
+    }
+  ],
+  "checkpointScope": "This record documents the actual implementation commit/push. Subsequent documentation-only checkpoint commit SHA/tree and final remote equality are reported externally after commit to avoid self-reference."
+}

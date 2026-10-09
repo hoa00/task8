@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-15` — **DONE**, 13 core +3 supplemental gate, native/source và freeze48pairs đạt root technical PASS; commit/push/checkpoint đang thực hiện.
+- Current work unit: `WU-15` — **DONE**, 13 core +3 supplemental gate, native/source và freeze48pairs đạt root technical PASS; implementation đã push và checkpoint actual SHA được ghi; final documentation checkpoint commit/push đang thực hiện.
 - Last completed implementation unit: `WU-15`.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
@@ -30,7 +30,7 @@
 | [WU-12](work-units/WU-12.md) | DONE | `49ce4f501c71b6f85e2d1e8a1379f2e03759b00f` | [49 Board pairs/98 PNG](evidence/WU-12/review.json), [6-step native M1](evidence/WU-12/m1-journey.json), [gates](evidence/WU-12/verification.json), [push checkpoint](evidence/WU-12/checkpoint.json) |
 | [WU-13](work-units/WU-13.md) | DONE | `c44c6f33dacce3cebeb8e0c57c8e64256522bb94` | [41 Table pairs/82 PNG](evidence/WU-13/review.json), [6 popup pairs/12 PNG](evidence/WU-13/table-popovers/review.json), [16 initial + 12 affected gates](evidence/WU-13/verification.json) |
 | [WU-14](work-units/WU-14.md) | DONE | `f866df7c721a593c91926e93603085b26da37106` | [42 required +2 mobile pairs/88PNG/root review](evidence/WU-14/review.json), [17 gates +1 unaccepted page audit](evidence/WU-14/verification.json), [actual push](evidence/WU-14/checkpoint.json) |
-| [WU-15](work-units/WU-15.md) | DONE | — | [Timeline48 pairs](evidence/WU-15/visual-verification.json), [native17](evidence/WU-15/interactions.json), [source4/pure25](evidence/WU-15/source-interactions.json); [13core+3supplemental gates](evidence/WU-15/verification.json), [root technical PASS](evidence/WU-15/review.json) |
+| [WU-15](work-units/WU-15.md) | DONE | `d5a75c467bc2cf5798706759d3f0728b37c047ed` | [Timeline48 pairs](evidence/WU-15/visual-verification.json), [native17](evidence/WU-15/interactions.json), [source4/pure25](evidence/WU-15/source-interactions.json); [13core+3supplemental gates](evidence/WU-15/verification.json), [root technical PASS](evidence/WU-15/review.json), [actual push](evidence/WU-15/checkpoint.json) |
 | [WU-16](work-units/WU-16.md) | NOT_STARTED | — | — |
 | [WU-17](work-units/WU-17.md) | NOT_STARTED | — | — |
 | [WU-18](work-units/WU-18.md) | NOT_STARTED | — | — |
@@ -573,10 +573,14 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
   and transpiledJS identity verified. Native17/source4/generalized25/all4paint
   groups and root zoom quirk observation accepted within exact renderer scope.
 - Blockers: none in WU15 implementation/verification/push authorization.
-- Commit: implementation commit pending below; actual SHA recorded in subsequent
-  documentation checkpoint to avoid self-reference.
-- Push: normal target `origin HEAD:main` authorized; actual result recorded in
-  subsequent documentation checkpoint.
+- Commit: implementation `d5a75c467bc2cf5798706759d3f0728b37c047ed`, tree
+  `e3723f921b844e4553eb990fa5070bd4316a308c`; [actual checkpoint](evidence/WU-15/checkpoint.json).
+  Subsequent documentation-only checkpoint SHA/tree reported externally after
+  commit to avoid self-reference.
+- Push: actual `git push origin HEAD:main` exit0; remote main verified
+  `d5a75c467bc2cf5798706759d3f0728b37c047ed` after implementation push. Target/source clean
+  before documentation checkpoint; source SHA904205 unchanged,86tracked files.
+  Final checkpoint push/HEAD/tree/clean/ports verified externally after commit.
 - Next permitted unit: root may assign WU16 after WU15 actual push/checkpoint
   verification. WU16 remains NOT_STARTED; this agent stops after WU15.
 
