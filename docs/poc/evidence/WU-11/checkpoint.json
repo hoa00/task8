@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "unit": "WU-11",
+  "implementation": {
+    "sha": "60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9",
+    "message": "feat: complete task detail collaboration for WU-11",
+    "tree": "eefd06d4aab964c5b4d455f4eab7fd8c661b0bd1",
+    "sourceSha": "904205c626918ee96054eb35495c394a60c0c601"
+  },
+  "target": {
+    "remote": "origin",
+    "url": "https://github.com/hoa00/task8.git",
+    "branch": "work",
+    "pushTarget": "HEAD:main",
+    "force": false
+  },
+  "beforePush": [
+    {
+      "command": "git remote get-url origin",
+      "exitStatus": 0,
+      "output": "https://github.com/hoa00/task8.git"
+    },
+    {
+      "command": "git branch --show-current",
+      "exitStatus": 0,
+      "output": "work"
+    },
+    {
+      "command": "git fetch origin main",
+      "exitStatus": 0,
+      "output": "From https://github.com/hoa00/task8\n * branch            main       -> FETCH_HEAD"
+    },
+    {
+      "command": "git merge-base --is-ancestor origin/main HEAD",
+      "exitStatus": 0,
+      "output": ""
+    },
+    {
+      "command": "git rev-list --left-right --count HEAD...origin/main",
+      "exitStatus": 0,
+      "output": "1\t0"
+    }
+  ],
+  "push": {
+    "command": "git push origin HEAD:main",
+    "exitStatus": 0,
+    "output": "To https://github.com/hoa00/task8.git\n   b16814b..60ad5a9  HEAD -> main"
+  },
+  "afterPush": {
+    "lsRemoteCommand": "git ls-remote origin refs/heads/main",
+    "lsRemoteExitStatus": 0,
+    "remoteMain": "60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9",
+    "fetchExitStatus": 0,
+    "head": "60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9",
+    "originMain": "60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9",
+    "headTree": "eefd06d4aab964c5b4d455f4eab7fd8c661b0bd1",
+    "originMainTree": "eefd06d4aab964c5b4d455f4eab7fd8c661b0bd1",
+    "ahead": 0,
+    "behind": 0,
+    "workingTreeClean": true
+  },
+  "verification": "docs/poc/evidence/WU-11/verification.json",
+  "technicalReview": "docs/poc/evidence/WU-11/review.json",
+  "cleanup": "docs/poc/evidence/WU-11/process-cleanup.json",
+  "documentationCheckpoint": "This subsequent documentation checkpoint records the actual implementation SHA and verified successful normal push; its own final commit/push HEAD is verified in final reporting to avoid self-referential SHA."
+}
