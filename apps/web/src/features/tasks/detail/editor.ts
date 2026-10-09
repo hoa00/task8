@@ -18,3 +18,14 @@ export function executeDescriptionCommand(root: HTMLElement, command: Descriptio
  return true;
 }
 export function pasteDescription(root: HTMLElement, html: string, text: string): string { const clean = html ? normalizeDescription(html).html : plainDescriptionHtml(text); document.execCommand('insertHTML', false, clean); return serializeDescription(root); }
+// Native drop inserts HTML before input listeners run. Normalize at the drop
+// boundary and use the browser caret position; an internal move retains its
+// original live Range so deletion adjusts the target Range before insertion.
+export function dropDescription(root: HTMLElement, html: string, text: string, point: { x: number; y: number }, source: Range | null): string | null {
+ const clean = html ? normalizeDescription(html).html : plainDescriptionHtml(text);
+ const caret = document.caretRangeFromPoint(point.x, point.y);
+ if (!clean || !caret || !root.contains(caret.startContainer)) return null;
+ if (source && !source.collapsed && root.contains(source.startContainer) && root.contains(source.endContainer)) { if (source.comparePoint(caret.startContainer, caret.startOffset) === 0) return null; source.deleteContents(); }
+ root.focus({ preventScroll: true }); caret.collapse(true); const selection = window.getSelection(); selection?.removeAllRanges(); selection?.addRange(caret);
+ document.execCommand('insertHTML', false, clean); return serializeDescription(root);
+}

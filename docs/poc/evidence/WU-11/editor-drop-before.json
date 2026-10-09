@@ -1,0 +1,24 @@
+{
+  "drop": [
+    {
+      "trusted": true,
+      "types": [
+        "text/plain",
+        "text/html"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "trusted": true,
+      "inputType": "insertFromDrop",
+      "html": "<p>Origin Native <b>bold</b><img src=\"/native-invalid-image\"><a style=\"color: rgb(29, 28, 26);\">unsafe&nbsp;</a>al editor text</p>",
+      "forbidden": true
+    }
+  ],
+  "executed": 0,
+  "finalHtml": "<p>Origin Native <strong>bold</strong><a>unsafe&nbsp;</a>al editor text</p>",
+  "finalForbidden": false,
+  "status": "observed",
+  "setup": "Draggable DOM source supplies HTML in native dragstart; Playwright mouse dragTo invokes browser native default/trusted drop, not synthetic drop dispatch."
+}

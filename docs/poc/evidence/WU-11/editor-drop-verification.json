@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "reopening": "WU-11-AC1 native HTML drop pre-insertion boundary",
+  "baseImplementationSha": "60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9",
+  "baseDocumentationSha": "285045a88669df276c777cea69b721570358fc4f",
+  "commands": [
+    {
+      "name": "drop-web-typecheck",
+      "command": "pnpm --filter @studio/web typecheck",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/drop-web-typecheck.log",
+      "execution": "Reran after CommentTextProps; exec50822 exit0."
+    },
+    {
+      "name": "drop-web-build",
+      "command": "pnpm --filter @studio/web build",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/drop-web-build.log"
+    },
+    {
+      "name": "drop-lint",
+      "command": "pnpm lint",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/drop-lint.log",
+      "execution": "Reran after final gate order and CommentTextProps; exec6861 exit0."
+    },
+    {
+      "name": "drop-editor-regression",
+      "command": "node tests/visual/task-collaboration/interactions.mjs --editor-only",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/drop-editor-regression.log"
+    },
+    {
+      "name": "drop-native",
+      "command": "node tests/visual/task-collaboration/editor-drop.mjs",
+      "exitStatus": 0,
+      "log": "docs/poc/evidence/WU-11/drop-native.log",
+      "execution": "Actual prior exec session3372 finished exit0; report contains six completed trusted native probes, reused without rerun."
+    }
+  ],
+  "nativeReport": "docs/poc/evidence/WU-11/editor-drop.json",
+  "editorRegressionReport": "docs/poc/evidence/WU-11/editor-regression.json",
+  "nativeDropProbes": 6,
+  "editorRegressionProbes": 2,
+  "retainedEvidence": "Original17 required gates +5 post-paste checks,46 byte-identical visual pairs and shared regressions retained; event handling only, no seed/CSS/geometry or child/comment/file change.",
+  "finalTypeOnlyCorrection": "Exported named CommentTextProps; final web typecheck exec50822 and lint exec6861 both exit0. Build/native/visual subjects unchanged by erased props type; no rerun claim."
+}

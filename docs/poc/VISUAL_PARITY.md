@@ -441,3 +441,9 @@ Reports retain rejected audits and computed styles rather than masks/tolerance.
 Current full-body pass describes this documented harness only; the historical
 WU10 mobile17/14 root cause has not been proved. This is technical comparison,
 not user visual approval or physical-device/Darwin whole-page parity.
+
+The subsequent AC1 native-drop reopening changes event handling only. Accepted
+46 whole-Drawer/form pairs and all92 PNG hashes remain unchanged and retained;
+no seed/CSS/geometry edit or new visual claim. Native drag evidence separately
+records trusted browser events, pre-input DOM, literal/rich text, caret and
+canonical data for external drops and internal move/Control-copy.

@@ -171,7 +171,7 @@
       }
     ]
   },
-  "retainedGateRationale": "Post-gate change only replaced the editor plain clipboard literal escape with the existing plainDescriptionHtml helper. Web typecheck/build/lint/56 tests and all9 collaboration native probes reran. Seed markup/CSS/child/comment/file logic and frozen46 visual pairs/shared regression subjects unchanged; prior17 actual gates retained rather than falsely reporting a new full run.",
+  "retainedGateRationale": "Post-gate change only replaced the editor plain clipboard literal escape with the existing plainDescriptionHtml helper. Web typecheck/build/lint/56 tests and all9 collaboration native probes reran. Seed markup/CSS/child/comment/file logic and frozen46 visual pairs/shared regression subjects unchanged; prior17 actual gates retained rather than falsely reporting a new full run. Subsequent AC1 reopening prevents native drop default and normalizes before insertion, with same-root move/copy Range. Only editor event handling and erased CommentTextProps changed; focused5 drop checks passed, no seed/CSS/geometry/shared logic change. Original17/post-paste5/46 visual pairs and prior shared probes retained as historical actual results, not reported as a fresh full18 run.",
   "summary": {
     "requiredGates": 17,
     "postPasteChecks": 5,
@@ -188,6 +188,53 @@
     "fieldRegressionProbes": 11,
     "strictModeLifecycleProbes": 3,
     "overlayRegressionSamples": 42,
-    "overlayRegressionProbes": 17
+    "overlayRegressionProbes": 17,
+    "nativeDropChecks": 5,
+    "nativeDropProbes": 6,
+    "focusedEditorRegressionProbes": 2,
+    "futureFullRunnerSubjects": 18
+  },
+  "nativeDropReopening": {
+    "report": "docs/poc/evidence/WU-11/editor-drop-verification.json",
+    "before": "docs/poc/evidence/WU-11/editor-drop-before.json",
+    "failure": "docs/poc/evidence/WU-11/rejected-native-drop-internal.json",
+    "commands": [
+      {
+        "name": "drop-web-typecheck",
+        "command": "pnpm --filter @studio/web typecheck",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/drop-web-typecheck.log",
+        "execution": "Reran after CommentTextProps; exec50822 exit0."
+      },
+      {
+        "name": "drop-web-build",
+        "command": "pnpm --filter @studio/web build",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/drop-web-build.log"
+      },
+      {
+        "name": "drop-lint",
+        "command": "pnpm lint",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/drop-lint.log",
+        "execution": "Reran after final gate order and CommentTextProps; exec6861 exit0."
+      },
+      {
+        "name": "drop-editor-regression",
+        "command": "node tests/visual/task-collaboration/interactions.mjs --editor-only",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/drop-editor-regression.log"
+      },
+      {
+        "name": "drop-native",
+        "command": "node tests/visual/task-collaboration/editor-drop.mjs",
+        "exitStatus": 0,
+        "log": "docs/poc/evidence/WU-11/drop-native.log",
+        "execution": "Actual prior exec session3372 finished exit0; report contains six completed trusted native probes, reused without rerun."
+      }
+    ],
+    "nativeProbes": 6,
+    "focusedEditorProbes": 2,
+    "typeOnlyCorrection": "Exported named CommentTextProps; final web typecheck exec50822 and lint exec6861 both exit0. Build/native/visual subjects unchanged by erased props type; no rerun claim."
   }
 }

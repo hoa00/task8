@@ -132,3 +132,17 @@ Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn
   and global description/comment search remain later owners. Feature capability
   remains unavailable until all declared owning scopes complete; implemented
   operations do not return fake success for unavailable routes.
+
+- AC1 reopening after base implementation60ad5a9 and documentation285045a:
+  trusted native HTML drop inserted an img before the input boundary rebuilt the
+  editor. Chromium already stripped script/handler/javascript protocol; executed0
+  and finalForbiddenfalse do not erase the measured transient img gap. Prevent
+  native drop default and normalize through the same parse5/plainDescriptionHtml
+  helpers before insertion. Empty sanitized HTML is a no-op; use browser point
+  caret and same-editor live selection Range for move, modifiers for copy.
+  First internal native test copied MOVE twice while dropEffect reported none;
+  retain that failure and determine intent from the captured editor Range and
+  modifiers, with explicit dragOver cursor intent. Assertions use actual text,
+  caret and canonical values, rather than treating dropEffect as proof. Six
+  trusted native probes and two focused existing editor probes pass on Chromium;
+  no second sanitizer, source change, new command or generic DnD framework.

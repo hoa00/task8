@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-11` — **DONE**; chờ root giao `WU-12` cho agent khác.
+- Current work unit: `WU-11` — **DONE**, gồm AC1 native HTML-drop reopening; final follow-up checkpoint đang được ghi trước root dispatch WU-12.
 - Last completed implementation unit: `WU-11`.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
@@ -26,7 +26,7 @@
 | [WU-08](work-units/WU-08.md) | DONE | `3a48f7b45e43fc675af7c770cb3225f987c2ab5b` | [Verification](evidence/WU-08/verification.json), [22 toolbar/filter images](evidence/WU-08/visual-verification.json), [11 browser probes](evidence/WU-08/interactions.json) |
 | [WU-09](work-units/WU-09.md) | DONE | `1ec030c3966b5ce534880e196c00866e6b7adcf2` | [96 images/10 probes](evidence/WU-09/verification.json), [11 field regressions](evidence/WU-09/field-regression/interactions.json) |
 | [WU-10](work-units/WU-10.md) | DONE | `29ac418fd13a039d31707bf615700ab128d7f089` | [32 images/11 probes/15 gates](evidence/WU-10/verification.json), [affected regressions](evidence/WU-10/commands.json) |
-| [WU-11](work-units/WU-11.md) | DONE | `60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9` | [17 gates + 5 post-paste checks](evidence/WU-11/verification.json), [46 samples/92 PNG](evidence/WU-11/review.json), [9 native collaboration probes](evidence/WU-11/interactions.json); [verified implementation push](evidence/WU-11/checkpoint.json) |
+| [WU-11](work-units/WU-11.md) | DONE | `60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9` | [17 gates + 5 post-paste + 5 native-drop checks](evidence/WU-11/verification.json), [46 samples/92 PNG](evidence/WU-11/review.json), [9 native collaboration probes](evidence/WU-11/interactions.json); [verified implementation push](evidence/WU-11/checkpoint.json) |
 | [WU-12](work-units/WU-12.md) | NOT_STARTED | — | — |
 | [WU-13](work-units/WU-13.md) | NOT_STARTED | — | — |
 | [WU-14](work-units/WU-14.md) | NOT_STARTED | — | — |
@@ -343,7 +343,7 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 
 ## WU-11 — 2026-10-09 (UTC)
 
-- Status: `DONE` — WU-11-AC1/2/3/4, mandatory17 gates và targeted5 post-paste checks đạt. Implementation SHA/push thật được ghi trong subsequent documentation checkpoint này; không coi technical comparison là user approval.
+- Status: `DONE` — WU-11-AC1/2/3/4, original17 gates, targeted5 post-paste checks và subsequent5 native-drop checks đạt. Implementation SHA/push thật được ghi trong subsequent documentation checkpoint này; không coi technical comparison là user approval.
 - Started from: clean `work`, HEAD/origin-main `b16814ba0c6100295e8f03b5c8b26b777113ff85`, WU-00..10 DONE với implementation/evidence/checkpoint thật. Đọc AGENTS/PROGRESS trước, WU-11/read-set và locked drawer/subtasks/actions/inbox/helpers/keyboard/CSS; kế hoạch tiếng Việt6 bước triển khai ngay. Cloud runtime skill, proxy/CA/policy giữ nguyên; Node24.13.0/pnpm11.19.0/Playwright1.58.2/Chromium145.0.7632.6 rev1208. Actual documentation date09; fixture clock vẫn2026-10-08T09:00Z. [Preflight](evidence/WU-11/preflight.json) fetch origin/main exit0, ahead0/behind0 trước commit.
 - Completed / AC1: single editor adapter exactly6 commands (bold/italic/UL/OL/h4/link), source toolbar/rich geometry, selected http/https URL link và shared info Toast khi invalid. Cùng pure parse5 normalizeDescription/plainDescriptionHtml và canonical descriptionText WU10; không thêm sanitizer/regex sanitizer. HTML paste sanitize trước DOM insertion; plain literal/multiline fallback dùng existing helper. Logical directional selection/caret/focus/scroll không mất khi rebuild hoặc sibling canonical invalidation; blur save canonical parent version, failed draft retained.
 - Completed / AC2: SubtaskList/Detail add/title/note/assignee/due/completion/progress/delete/parent backlink/Previous/Next/promote. Same child command owner extends WU09 completion; canonical UUIDs, current parent CAS, ordered positions, atomic inherited promotion and source Open action. Same EditTaskForm child controls now scoped create/delete; scalar Task PATCH never replaces children. Immediate child commits remain after form Cancel, no new child Undo. Source synchronous notes-on-input becomes canonical blur PATCH with recoverable per-child drafts; pending disables overlapping edit/navigation. Empty title gives validation and zero-write.
@@ -364,3 +364,49 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - Commit: `60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9` — `feat: complete task detail collaboration for WU-11`. Đây là implementation SHA thật sau own unpublished log-only amend; không sửa implementation sau final gates.
 - Push: actual normal `git push origin HEAD:main` exit0, `b16814b..60ad5a9 HEAD -> main`; pre-push fetch exit0/ahead1/behind0/origin-main ancestor. `git ls-remote origin refs/heads/main` và post-push fetch HEAD/origin-main=`60ad5a95080e0e4a354b5f0a78f54c4c4b5a30c9`, tree=`eefd06d4aab964c5b4d455f4eab7fd8c661b0bd1`, divergence0/0 và tree sạch. Origin hoa00/task8.git, localwork; [checkpoint](evidence/WU-11/checkpoint.json). Subsequent documentation checkpoint commit/push theo cùng normal target; final report xác minh HEAD/remote thật. Không force/source push.
 - Next permitted unit: `WU-12`, only root dispatches another agent after verified implementation/documentation commits+pushes; WU-11 agent stops.
+
+### WU-11 AC1 reopening — 2026-10-09 UTC
+
+- Reason / actual boundary: root review requested a real native HTML drag test.
+  Base60ad5a9/285045a had synchronous normalized onInput, but trusted
+  insertFromDrop still contained an img before React input; Chromium stripped
+  script/handlers/javascript itself, executed0 and finalForbiddenfalse. This is
+  a transient disallowed-node finding, no claim of script execution. Preserved
+  [before capture](evidence/WU-11/editor-drop-before.json). Root held WU12.
+- Correction: prevent native drop default and reuse exactly the existing
+  normalizeDescription/plainDescriptionHtml before insertHTML; no second or regex
+  sanitizer. Browser point caret and same-editor live Range retain move text;
+  Ctrl/Alt select copy intent. Empty sanitized content makes no draft change.
+  Six formatting commands, source markup/CSS and canonical blur save unchanged.
+- Actual native failure: first internal drag trusted drop reported dropEffect none
+  and copied MOVE twice. [Rejected report](evidence/WU-11/rejected-native-drop-internal.json)
+  and [log](evidence/WU-11/rejected-native-drop-internal.log) retained. Correction
+  derives move intent from captured same-root Range plus modifiers and sets
+  dragOver intent explicitly. Tests assert actual text/caret/canonical output,
+  retaining truthful dropEffect none metadata instead of assuming it is move.
+- Verification: [5 checks](evidence/WU-11/editor-drop-verification.json), all exit0:
+  web typecheck/build/lint, [2 focused editor regressions](evidence/WU-11/editor-regression.json),
+  [6 trusted native drag probes](evidence/WU-11/editor-drop.json) covering
+  forbidden HTML pre-insertion, allowed rich heading/strong/link, plain literal
+  CRLF/CR multiline, forbidden-only no-op, internal move and Control-copy. Every
+  captured input has forbiddenfalse/executed0; caret is collapsed in editor after
+  accepted insertion, prefix/suffix and canonical HTML/text verified after blur.
+  Internal MOVE occurs once after move; Control-copy preserves original plus one
+  copy. Programmatic DOM dragstart data and Range selection are declared setup;
+  actual browser drop/input is trusted, no synthetic drop dispatch or OS claim.
+- Retained evidence: original17 mandatory gates +5 post-paste checks,9 full native
+  collaboration probes and shared List/fields/StrictMode/overlay regressions,
+  46 whole-Drawer/form pairs/92 immutable accepted PNGs/root technical inspection.
+  Only editor event handling changed; no seed/CSS/geometry/child/comment/file edit.
+  These are retained real previous results, not claimed as fresh reruns. Full
+  WU11 gate runner now includes the native-drop regression as its eighteenth
+  subject; this reopening ran the documented focused5 checks independently.
+- Final type-only convention correction: exported CommentTextProps now has a
+  named public props contract. Actual final web typecheck/lint reran exit0;
+  erased type does not change runtime/visuals, no additional raster/native rerun.
+- Files: same DescriptionEditor/editor adapter, named CommentTextProps, editor-only option in existing
+  native suite, dedicated native-drop suite/package commands/gate entry;
+  ARCHITECTURE/DECISIONS/VISUAL_PARITY/PROGRESS and scoped WU11 evidence.
+- Status: `DONE`, no blocker; follow-up implementation SHA/push and subsequent
+  checkpoint will be recorded only after successful normal commit/push. Never
+  amend already-pushed60ad5a9/285045a. Root alone dispatches WU12 after final verify.

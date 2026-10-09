@@ -23,4 +23,5 @@ export function CommentComposer({currentMember,members,value,onChange,onPosted,o
 }
 // Explicit exports form the Inbox presentation boundary; surrounding layouts stay
 // feature-owned. Text is React text and mention spans, never inserted HTML.
-export function CommentText({text,members}:{text:string;members:readonly (MemberDisplayDto & { title?: string })[]}){return <Fragment>{commentText(text,members)}</Fragment>;}
+export interface CommentTextProps { text:string; members:readonly (MemberDisplayDto & { title?: string })[] }
+export function CommentText({text,members}:CommentTextProps){return <Fragment>{commentText(text,members)}</Fragment>;}

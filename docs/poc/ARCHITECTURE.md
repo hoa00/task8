@@ -162,4 +162,7 @@ dismiss reason so a disabled child editor cannot accidentally dismiss its parent
 Child edits disable overlapping controls during the canonical parent-CAS command;
 failed drafts stay recoverable. Comments/activity stay in Query infinite pages.
 The same pure parse5 tree normalizer runs before editor HTML enters the DOM and
-after each command/paste, preserving logical selection offsets and direction.
+after each command/paste/drop, preserving logical selection offsets and direction.
+Native drop default is prevented before insertion; the same normalization handles
+external HTML/plain text. A same-editor live Range preserves internal move/copy
+text and the browser point caret, without an additional editor platform.

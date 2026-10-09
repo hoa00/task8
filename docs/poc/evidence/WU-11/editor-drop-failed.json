@@ -1,0 +1,181 @@
+{
+  "status": "failed",
+  "baseCheckpointSha": "285045a88669df276c777cea69b721570358fc4f",
+  "probes": [
+    {
+      "id": "forbidden-html-preinsertion",
+      "status": "passed",
+      "drops": [
+        {
+          "trusted": true,
+          "types": [
+            "text/plain",
+            "text/html"
+          ],
+          "dropEffect": "none",
+          "beforeHtml": "<p>Original editor text</p>",
+          "prefix": "Origin",
+          "suffix": "al editor text"
+        }
+      ],
+      "inputs": [
+        {
+          "trusted": true,
+          "inputType": "",
+          "html": "<p>OriginNative <strong>bold</strong><a style=\"color: rgb(29, 28, 26);\">unsafe</a>al editor text</p>",
+          "forbidden": false
+        }
+      ],
+      "executed": 0,
+      "finalHtml": "<p>OriginNative <strong>bold</strong><a>unsafe</a>al editor text</p>",
+      "text": "OriginNative boldunsafeal editor text",
+      "finalForbidden": false,
+      "caret": {
+        "inside": true,
+        "collapsed": true,
+        "before": "OriginNative boldunsafe",
+        "active": "task-description"
+      },
+      "canonicalHtml": "<p>OriginNative <strong>bold</strong><a>unsafe</a>al editor text</p>",
+      "canonicalText": "OriginNative boldunsafeal editor text"
+    },
+    {
+      "id": "allowed-rich-drop",
+      "status": "passed",
+      "drops": [
+        {
+          "trusted": true,
+          "types": [
+            "text/plain",
+            "text/html"
+          ],
+          "dropEffect": "none",
+          "beforeHtml": "<p>Original editor text</p>",
+          "prefix": "Origin",
+          "suffix": "al editor text"
+        }
+      ],
+      "inputs": [
+        {
+          "trusted": true,
+          "inputType": "",
+          "html": "<p>Origin</p><h4>Allowed heading</h4><p><strong>Bold</strong> <a href=\"https://example.com\">Plan</a>al editor text</p>",
+          "forbidden": false
+        }
+      ],
+      "executed": 0,
+      "finalHtml": "<p>Origin</p><h4>Allowed heading</h4><p><strong>Bold</strong> <a href=\"https://example.com\">Plan</a>al editor text</p>",
+      "text": "OriginAllowed headingBold Planal editor text",
+      "finalForbidden": false,
+      "caret": {
+        "inside": true,
+        "collapsed": true,
+        "before": "OriginAllowed headingBold Plan",
+        "active": "task-description"
+      },
+      "canonicalHtml": "<p>Origin</p><h4>Allowed heading</h4><p><strong>Bold</strong> <a href=\"https://example.com\">Plan</a>al editor text</p>",
+      "canonicalText": "Origin Allowed heading Bold Planal editor text"
+    },
+    {
+      "id": "plain-literal-multiline-drop",
+      "status": "passed",
+      "drops": [
+        {
+          "trusted": true,
+          "types": [
+            "text/plain"
+          ],
+          "dropEffect": "none",
+          "beforeHtml": "<p>Original editor text</p>",
+          "prefix": "Origin",
+          "suffix": "al editor text"
+        }
+      ],
+      "inputs": [
+        {
+          "trusted": true,
+          "inputType": "",
+          "html": "<p>Origin&lt;img src=x onerror=bad()&gt;</p><p>A&amp;B<br></p><p>lineal editor text</p>",
+          "forbidden": false
+        }
+      ],
+      "executed": 0,
+      "finalHtml": "<p>Origin&lt;img src=x onerror=bad()&gt;</p><p>A&amp;B<br></p><p>lineal editor text</p>",
+      "text": "Origin<img src=x onerror=bad()>A&Blineal editor text",
+      "finalForbidden": false,
+      "caret": {
+        "inside": true,
+        "collapsed": true,
+        "before": "Origin<img src=x onerror=bad()>A&Bline",
+        "active": "task-description"
+      },
+      "canonicalHtml": "<p>Origin&lt;img src=x onerror=bad()&gt;</p><p>A&amp;B<br></p><p>lineal editor text</p>",
+      "canonicalText": "Origin<img src=x onerror=bad()> A&B lineal editor text"
+    },
+    {
+      "id": "forbidden-only-drop-keeps-original",
+      "status": "passed",
+      "drops": [
+        {
+          "trusted": true,
+          "types": [
+            "text/plain",
+            "text/html"
+          ],
+          "dropEffect": "none",
+          "beforeHtml": "<p>Original editor text</p>",
+          "prefix": "Origin",
+          "suffix": "al editor text"
+        }
+      ],
+      "inputs": [],
+      "executed": 0,
+      "finalHtml": "<p>Original editor text</p>",
+      "text": "Original editor text",
+      "finalForbidden": false,
+      "caret": {
+        "inside": false,
+        "collapsed": true,
+        "before": "Original editor text",
+        "active": ""
+      },
+      "canonicalHtml": "<p>Original editor text</p>",
+      "canonicalText": "Original editor text"
+    }
+  ],
+  "setup": "Native DOM dragstart/DataTransfer + Playwright mouse drag; trusted browser drop/input, no synthetic drop dispatch. Internal Range selection is declared programmatic setup.",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'none' !== 'move'\n\n    at file:///workspace/task8/tests/visual/task-collaboration/editor-drop.mjs:20:763",
+  "current": {
+    "drops": [
+      {
+        "trusted": true,
+        "types": [
+          "text/plain",
+          "text/html"
+        ],
+        "dropEffect": "none",
+        "beforeHtml": "<p>MOVE tail end</p>",
+        "prefix": "MOVE tail end",
+        "suffix": ""
+      }
+    ],
+    "inputs": [
+      {
+        "trusted": true,
+        "inputType": "",
+        "html": "<p>MOVE tail endMOVE</p>",
+        "forbidden": false
+      }
+    ],
+    "executed": 0,
+    "finalHtml": "<p>MOVE tail endMOVE</p>",
+    "text": "MOVE tail endMOVE",
+    "finalForbidden": false,
+    "caret": {
+      "inside": true,
+      "collapsed": true,
+      "before": "MOVE tail endMOVE",
+      "active": "task-description"
+    }
+  }
+}
