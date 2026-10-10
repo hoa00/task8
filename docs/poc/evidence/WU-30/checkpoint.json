@@ -1,0 +1,1071 @@
+{
+  "status": "ACTUAL_IMPLEMENTATION_PUSH_VERIFIED_DOCUMENTATION_CHECKPOINT_PENDING",
+  "unit": "WU-30",
+  "actualImplementation": {
+    "status": "ACTUAL_IMPLEMENTATION_COMMIT_NORMAL_PUSH_VERIFIED",
+    "head": "d2ef41cbd054950b9aa2f50d769569586edfcdec",
+    "tree": "7f2a3dd9514235bd8f9aefaa88ebf53d56d369ee",
+    "parent": "92a6479ed15d673ecd5fa7396dfdd9a37ded0ff2",
+    "originMain": "d2ef41cbd054950b9aa2f50d769569586edfcdec",
+    "remoteMain": "d2ef41cbd054950b9aa2f50d769569586edfcdec",
+    "divergence": [
+      "0",
+      "0"
+    ],
+    "cleanBeforeAndAfterPush": true,
+    "branch": "work",
+    "origin": "https://github.com/hoa00/task8.git",
+    "push": {
+      "argv": [
+        "git",
+        "push",
+        "origin",
+        "HEAD:main"
+      ],
+      "exitCode": 0
+    },
+    "source": {
+      "head": "904205c626918ee96054eb35495c394a60c0c601",
+      "tree": "5db5f992886b2345881946cf85fac098307953a5",
+      "tracked": 86,
+      "clean": true,
+      "locks": [
+        {
+          "path": "/workspace/task8/docs/poc/reference/baseline-manifest.json",
+          "bytes": 69302,
+          "sha256": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/reference/font-assets.json",
+          "bytes": 21805,
+          "sha256": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/reference/source-fixture.json",
+          "bytes": 54153,
+          "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/reference/source-lock.json",
+          "bytes": 7870,
+          "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+        }
+      ]
+    },
+    "ports": [
+      {
+        "port": 4173,
+        "connectResult": 111
+      },
+      {
+        "port": 5173,
+        "connectResult": 111
+      },
+      {
+        "port": 5174,
+        "connectResult": 111
+      },
+      {
+        "port": 8787,
+        "connectResult": 111
+      }
+    ],
+    "commands": [
+      {
+        "name": "base",
+        "argv": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652503.5663207,
+        "completedAtEpoch": 1791652503.5680685,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/base.stdout",
+          "bytes": 41,
+          "sha256": "cc39bab5d7240829fb4caf803cc8e1bec24a61e22e863694efd196d396732c8f"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/base.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "branch",
+        "argv": [
+          "git",
+          "branch",
+          "--show-current"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652503.568244,
+        "completedAtEpoch": 1791652503.5695784,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/branch.stdout",
+          "bytes": 5,
+          "sha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/branch.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "origin",
+        "argv": [
+          "git",
+          "remote",
+          "get-url",
+          "origin"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652503.5697258,
+        "completedAtEpoch": 1791652503.5711954,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/origin.stdout",
+          "bytes": 35,
+          "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/origin.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "unstaged-before",
+        "argv": [
+          "git",
+          "diff",
+          "--name-only",
+          "-z"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652503.571352,
+        "completedAtEpoch": 1791652503.6589732,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/unstaged-before.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/unstaged-before.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "untracked-before",
+        "argv": [
+          "git",
+          "ls-files",
+          "--others",
+          "--exclude-standard",
+          "-z"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652503.659268,
+        "completedAtEpoch": 1791652503.789486,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/untracked-before.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/untracked-before.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "cached-check",
+        "argv": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652503.789786,
+        "completedAtEpoch": 1791652503.852313,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/cached-check.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/cached-check.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "commit",
+        "argv": [
+          "git",
+          "commit",
+          "-m",
+          "WU-30: add local Hono D1 bootstrap foundation"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652503.853149,
+        "completedAtEpoch": 1791652504.0478795,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/commit.stdout",
+          "bytes": 16145,
+          "sha256": "93c4c89cea2508e921fb67c65c6f1b55bc540ca6091fb5954d1baf95c93630f3"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/commit.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "head",
+        "argv": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652504.0482302,
+        "completedAtEpoch": 1791652504.0498931,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/head.stdout",
+          "bytes": 41,
+          "sha256": "d65f0ede40eebcb7675490d3f5431a0fb81713496248ff14b0179ecca75a457c"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/head.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "tree",
+        "argv": [
+          "git",
+          "rev-parse",
+          "HEAD^{tree}"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652504.0501423,
+        "completedAtEpoch": 1791652504.051805,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/tree.stdout",
+          "bytes": 41,
+          "sha256": "4089505a2762a344e4584a056a916c4b79befe3683afa6d10548baecbf7d75d3"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/tree.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "parent",
+        "argv": [
+          "git",
+          "show",
+          "-s",
+          "--format=%P",
+          "HEAD"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652504.052035,
+        "completedAtEpoch": 1791652504.0550685,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/parent.stdout",
+          "bytes": 41,
+          "sha256": "cc39bab5d7240829fb4caf803cc8e1bec24a61e22e863694efd196d396732c8f"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/parent.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "clean-before-push",
+        "argv": [
+          "git",
+          "status",
+          "--porcelain",
+          "--untracked-files=all"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652504.0552955,
+        "completedAtEpoch": 1791652504.2612286,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/clean-before-push.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/clean-before-push.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "push",
+        "argv": [
+          "git",
+          "push",
+          "origin",
+          "HEAD:main"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652504.2617006,
+        "completedAtEpoch": 1791652505.8522804,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/push.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/push.stderr",
+          "bytes": 74,
+          "sha256": "33d116acf064646f2d9a5d7afc7f613bdf4e20aa70a7e76d138ba6abbaa3b46c"
+        }
+      },
+      {
+        "name": "fetch",
+        "argv": [
+          "git",
+          "fetch",
+          "origin",
+          "main"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652505.852722,
+        "completedAtEpoch": 1791652506.332529,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/fetch.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/fetch.stderr",
+          "bytes": 84,
+          "sha256": "63f67e4a0105a9431528d327acb071bd233275e01cb2e1268549d7a3f5bb1526"
+        }
+      },
+      {
+        "name": "origin-main",
+        "argv": [
+          "git",
+          "rev-parse",
+          "origin/main"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652506.3330164,
+        "completedAtEpoch": 1791652506.334555,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/origin-main.stdout",
+          "bytes": 41,
+          "sha256": "d65f0ede40eebcb7675490d3f5431a0fb81713496248ff14b0179ecca75a457c"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/origin-main.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "remote-main",
+        "argv": [
+          "git",
+          "ls-remote",
+          "origin",
+          "refs/heads/main"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652506.3348649,
+        "completedAtEpoch": 1791652506.6544683,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/remote-main.stdout",
+          "bytes": 57,
+          "sha256": "8ab9ddf5dab6c1f26b181a13ce398abfdac057e066637a55cc12da2fac40b5d5"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/remote-main.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "divergence",
+        "argv": [
+          "git",
+          "rev-list",
+          "--left-right",
+          "--count",
+          "HEAD...origin/main"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652506.6549938,
+        "completedAtEpoch": 1791652506.657374,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/divergence.stdout",
+          "bytes": 4,
+          "sha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/divergence.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "clean-after-push",
+        "argv": [
+          "git",
+          "status",
+          "--porcelain",
+          "--untracked-files=all"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652506.6577616,
+        "completedAtEpoch": 1791652506.8572023,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/clean-after-push.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/clean-after-push.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "source-head",
+        "argv": [
+          "git",
+          "-C",
+          ".reference/gr8r-studio",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652506.857739,
+        "completedAtEpoch": 1791652506.859958,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/source-head.stdout",
+          "bytes": 41,
+          "sha256": "7b13267f3236258e1feb01348be92239d0d83c2d5fa0b1b2dc8bc5b3cf3aea30"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/source-head.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "source-tree",
+        "argv": [
+          "git",
+          "-C",
+          ".reference/gr8r-studio",
+          "rev-parse",
+          "HEAD^{tree}"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652506.8604658,
+        "completedAtEpoch": 1791652506.8624666,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/source-tree.stdout",
+          "bytes": 41,
+          "sha256": "dfcd9413f95e2de91d7ff886b9322f6fbc8c6430034bc5ec30aa8048c8876ef8"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/source-tree.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "source-clean",
+        "argv": [
+          "git",
+          "-C",
+          ".reference/gr8r-studio",
+          "status",
+          "--porcelain",
+          "--untracked-files=no"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652506.8629284,
+        "completedAtEpoch": 1791652506.8650515,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/source-clean.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/source-clean.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "source-tracked",
+        "argv": [
+          "git",
+          "-C",
+          ".reference/gr8r-studio",
+          "ls-files",
+          "-z"
+        ],
+        "exitCode": 0,
+        "startedAtEpoch": 1791652506.865441,
+        "completedAtEpoch": 1791652506.8668735,
+        "stdout": {
+          "path": "/tmp/task8-wu30-implementation01/source-tracked.stdout",
+          "bytes": 1816,
+          "sha256": "76a214f1862d783d3a65592fbafe5e2f80695809e49ceb83450043798f7131f1"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu30-implementation01/source-tracked.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "rootPhysicalCapture": null,
+    "scope": "Exactly Root reviewed WU30 index; normal user targetmain push. OnlyPROGRESS/checkpoint documentation writes follow Root authorization; noSourcepush/force/laterunit."
+  },
+  "outsideResult": {
+    "path": "/tmp/task8-wu30-implementation01/result.json",
+    "bytes": 15943,
+    "sha256": "826ce8f49b16033c01a2a90634d7ed85024ab92396519afca14ed7434a24c9ed",
+    "gitBlob": "4b83ef40383effde8cffe00c4751e98f53d188c1"
+  },
+  "actualRawCommands": [
+    {
+      "name": "base",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/base.stdout",
+        "bytes": 41,
+        "sha256": "cc39bab5d7240829fb4caf803cc8e1bec24a61e22e863694efd196d396732c8f",
+        "utf8": "92a6479ed15d673ecd5fa7396dfdd9a37ded0ff2\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/base.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "branch",
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/branch.stdout",
+        "bytes": 5,
+        "sha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2",
+        "utf8": "work\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/branch.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "origin",
+      "argv": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/origin.stdout",
+        "bytes": 35,
+        "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348",
+        "utf8": "https://github.com/hoa00/task8.git\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "unstaged-before",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "-z"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/unstaged-before.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/unstaged-before.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "untracked-before",
+      "argv": [
+        "git",
+        "ls-files",
+        "--others",
+        "--exclude-standard",
+        "-z"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/untracked-before.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/untracked-before.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "cached-check",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/cached-check.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/cached-check.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "commit",
+      "argv": [
+        "git",
+        "commit",
+        "-m",
+        "WU-30: add local Hono D1 bootstrap foundation"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/commit.stdout",
+        "bytes": 16145,
+        "sha256": "93c4c89cea2508e921fb67c65c6f1b55bc540ca6091fb5954d1baf95c93630f3",
+        "utf8": "[work d2ef41cb] WU-30: add local Hono D1 bootstrap foundation\n 224 files changed, 60448 insertions(+), 22 deletions(-)\n create mode 100644 apps/api/README.md\n create mode 100644 apps/api/drizzle.config.ts\n create mode 100644 apps/api/scripts/reset-local.mjs\n create mode 100644 apps/api/scripts/seed-data.mjs\n create mode 100644 apps/api/scripts/seed-local.mjs\n create mode 100644 apps/api/src/db/fixture.ts\n create mode 100644 apps/api/src/db/guards.ts\n create mode 100644 apps/api/src/db/migrations/0000_freezing_greymalkin.sql\n create mode 100644 apps/api/src/db/migrations/meta/0000_snapshot.json\n create mode 100644 apps/api/src/db/migrations/meta/_journal.json\n create mode 100644 apps/api/src/db/repository.ts\n create mode 100644 apps/api/src/db/schema.ts\n create mode 100644 apps/api/src/db/undo.ts\n create mode 100644 apps/api/src/errors.ts\n create mode 100644 apps/api/src/middleware.ts\n create mode 100644 apps/api/src/modules/bootstrap.ts\n create mode 100644 apps/api/src/modules/routes.ts\n create mode 100644 apps/api/src/runtime.ts\n create mode 100644 apps/api/tests/runtime/parity-receipts.mjs\n create mode 100644 apps/api/tests/runtime/parity.mjs\n create mode 100644 apps/api/tests/runtime/verify.mjs\n create mode 100644 apps/api/tests/runtime/worker.ts\n create mode 100644 docs/poc/evidence/WU-30/EVIDENCE_INDEX.md\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-01/executed/verify.mjs\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-01/executed/worker.ts\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-01/report.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/commands.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/executed/fixture.ts\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/executed/seed-data.mjs\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/executed/seed-local.mjs\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/executed/verify.mjs\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/executed/worker.ts\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/identity-body.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/identity-query.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/migrate-fresh.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/migrate-fresh.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/migrate-reapply.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/migrate-reapply.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/primary-test.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/primary-test.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/primary-test.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/report.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/seed-first.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/seed-first.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/seed-summary.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/session.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/snapshot-first.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/snapshot-normalized-proof.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/spoof-header.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-02/workspaces.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/catalogs.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/commands.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/executed/fixture.ts\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/executed/seed-data.mjs\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/executed/seed-local.mjs\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/executed/verify.mjs\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/executed/worker.ts\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/foreign-bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/foreign-catalogs.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/future-post.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/guard-probes.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/guard-results.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/identity-body.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/identity-query.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/internal-error.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invalid-bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invalid-session.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invalid-workspace.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invalid.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invalid.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invalid.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invited-bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invited-session.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invited.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invited.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/invited.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/isolation-bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/isolation-session.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/isolation-test.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/isolation-test.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/isolation-test.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/isolation-to-primary.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/migrate-fresh.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/migrate-fresh.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/migrate-reapply.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/migrate-reapply.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/missing-bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/missing-session.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/missing.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/missing.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/missing.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/nonlocal-bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/nonlocal-session.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/nonlocal.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/nonlocal.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/nonlocal.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/primary-production.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/primary-production.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/primary-production.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/primary-test.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/primary-test.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/primary-test.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/production-bootstrap.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/production-no-test-endpoint.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/production-session.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/report.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/seed-first.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/seed-first.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/seed-reapply-test.config.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/seed-reapply-test.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/seed-reapply-test.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/seed-second.stderr.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/seed-second.stdout.log\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/seed-summary.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/session.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/snapshot-after-guards.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/snapshot-first.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/snapshot-normalized-proof.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/snapshot-seed-reapply.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/spoof-header.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/unknown.json\n create mode 100644 docs/poc/evidence/WU-30/attempts/d1-03/workspaces.json\n create mode 100644 docs/poc/evidence/WU-30/candidate.json\n create mode 100644 docs/poc/evidence/WU-30/commands/boundaries01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/boundaries01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/boundaries01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/build01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/build01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/build01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-02/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-02/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-02/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-03/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-03/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/d1-03/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/generate-check01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/generate-check01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/generate-check01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/generate01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/generate01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/generate01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/generate02/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/generate02/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/generate02/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/install01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/install01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/install01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/link01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/link01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/link01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/lint-final/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/lint-final/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/lint-final/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/lint01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/lint01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/lint01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/parity01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/parity01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/parity01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/source-final/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/source-final/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/source-final/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/source-final02/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/source-final02/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/source-final02/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck-final/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck-final/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck-final/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck02/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck02/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck02/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck03/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck03/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/typecheck03/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/commands/types01/result.json\n create mode 100644 docs/poc/evidence/WU-30/commands/types01/stderr.log\n create mode 100644 docs/poc/evidence/WU-30/commands/types01/stdout.log\n create mode 100644 docs/poc/evidence/WU-30/generated01/migrations/0000_square_edwin_jarvis.sql\n create mode 100644 docs/poc/evidence/WU-30/generated01/migrations/meta/0000_snapshot.json\n create mode 100644 docs/poc/evidence/WU-30/generated01/migrations/meta/_journal.json\n create mode 100644 docs/poc/evidence/WU-30/prestage01/00-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/00-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/01-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/01-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/02-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/02-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/03-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/03-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/04-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/04-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/05-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/05-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/06-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/06-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/07-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/07-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/08-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/08-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/09-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/09-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/10-stderr.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/10-stdout.log\n create mode 100644 docs/poc/evidence/WU-30/prestage01/report.json\n create mode 100644 docs/poc/evidence/WU-30/root-pass.json\n create mode 100644 docs/poc/evidence/WU-30/source-inputs.json\n create mode 100644 docs/poc/evidence/WU-30/verification.json\n create mode 100644 docs/poc/evidence/WU-30/whitespace-proposal.json\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/commit.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "head",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/head.stdout",
+        "bytes": 41,
+        "sha256": "d65f0ede40eebcb7675490d3f5431a0fb81713496248ff14b0179ecca75a457c",
+        "utf8": "d2ef41cbd054950b9aa2f50d769569586edfcdec\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "tree",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/tree.stdout",
+        "bytes": 41,
+        "sha256": "4089505a2762a344e4584a056a916c4b79befe3683afa6d10548baecbf7d75d3",
+        "utf8": "7f2a3dd9514235bd8f9aefaa88ebf53d56d369ee\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/tree.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "parent",
+      "argv": [
+        "git",
+        "show",
+        "-s",
+        "--format=%P",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/parent.stdout",
+        "bytes": 41,
+        "sha256": "cc39bab5d7240829fb4caf803cc8e1bec24a61e22e863694efd196d396732c8f",
+        "utf8": "92a6479ed15d673ecd5fa7396dfdd9a37ded0ff2\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/parent.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "clean-before-push",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/clean-before-push.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/clean-before-push.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "push",
+      "argv": [
+        "git",
+        "push",
+        "origin",
+        "HEAD:main"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/push.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/push.stderr",
+        "bytes": 74,
+        "sha256": "33d116acf064646f2d9a5d7afc7f613bdf4e20aa70a7e76d138ba6abbaa3b46c",
+        "utf8": "To https://github.com/hoa00/task8.git\n   92a6479e..d2ef41cb  HEAD -> main\n"
+      }
+    },
+    {
+      "name": "fetch",
+      "argv": [
+        "git",
+        "fetch",
+        "origin",
+        "main"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/fetch.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/fetch.stderr",
+        "bytes": 84,
+        "sha256": "63f67e4a0105a9431528d327acb071bd233275e01cb2e1268549d7a3f5bb1526",
+        "utf8": "From https://github.com/hoa00/task8\n * branch              main       -> FETCH_HEAD\n"
+      }
+    },
+    {
+      "name": "origin-main",
+      "argv": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/origin-main.stdout",
+        "bytes": 41,
+        "sha256": "d65f0ede40eebcb7675490d3f5431a0fb81713496248ff14b0179ecca75a457c",
+        "utf8": "d2ef41cbd054950b9aa2f50d769569586edfcdec\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/origin-main.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "remote-main",
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/remote-main.stdout",
+        "bytes": 57,
+        "sha256": "8ab9ddf5dab6c1f26b181a13ce398abfdac057e066637a55cc12da2fac40b5d5",
+        "utf8": "d2ef41cbd054950b9aa2f50d769569586edfcdec\trefs/heads/main\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/remote-main.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "divergence",
+      "argv": [
+        "git",
+        "rev-list",
+        "--left-right",
+        "--count",
+        "HEAD...origin/main"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/divergence.stdout",
+        "bytes": 4,
+        "sha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c",
+        "utf8": "0\t0\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/divergence.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "clean-after-push",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/clean-after-push.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/clean-after-push.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "source-head",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/source-head.stdout",
+        "bytes": 41,
+        "sha256": "7b13267f3236258e1feb01348be92239d0d83c2d5fa0b1b2dc8bc5b3cf3aea30",
+        "utf8": "904205c626918ee96054eb35495c394a60c0c601\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/source-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "source-tree",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/source-tree.stdout",
+        "bytes": 41,
+        "sha256": "dfcd9413f95e2de91d7ff886b9322f6fbc8c6430034bc5ec30aa8048c8876ef8",
+        "utf8": "5db5f992886b2345881946cf85fac098307953a5\n"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/source-tree.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "source-clean",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/source-clean.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/source-clean.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    },
+    {
+      "name": "source-tracked",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "ls-files",
+        "-z"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "originalPath": "/tmp/task8-wu30-implementation01/source-tracked.stdout",
+        "bytes": 1816,
+        "sha256": "76a214f1862d783d3a65592fbafe5e2f80695809e49ceb83450043798f7131f1",
+        "utf8": ".editorconfig\u0000.gitattributes\u0000.github/workflows/ci.yml\u0000.gitignore\u0000.nvmrc\u0000.prettierignore\u0000.prettierrc.json\u0000README.md\u0000docs/preview.png\u0000eslint.config.js\u0000index.html\u0000package-lock.json\u0000package.json\u0000public/favicon.svg\u0000src/actions/actions.js\u0000src/actions/archive.js\u0000src/actions/drag-drop.js\u0000src/actions/events.js\u0000src/actions/keyboard.js\u0000src/actions/subtasks.js\u0000src/actions/teams.js\u0000src/components/task-list.js\u0000src/core/constants.js\u0000src/core/icons.js\u0000src/core/store.js\u0000src/core/theme.js\u0000src/core/utils.js\u0000src/data/seed.js\u0000src/features/archive.js\u0000src/features/subtasks.js\u0000src/features/teams.js\u0000src/main.js\u0000src/overlays/context-menu.js\u0000src/overlays/drawer.js\u0000src/overlays/modals.js\u0000src/overlays/palette.js\u0000src/overlays/popovers.js\u0000src/pages/activity.js\u0000src/pages/auth.js\u0000src/pages/design-system.js\u0000src/pages/errors.js\u0000src/pages/favorites.js\u0000src/pages/home.js\u0000src/pages/inbox.js\u0000src/pages/members.js\u0000src/pages/my-tasks.js\u0000src/pages/notifications.js\u0000src/pages/overview.js\u0000src/pages/project.js\u0000src/pages/projects.js\u0000src/pages/search.js\u0000src/pages/settings.js\u0000src/pages/tasks.js\u0000src/shell/layout.js\u0000src/shell/render.js\u0000src/shell/skeletons.js\u0000src/shell/view-engine.js\u0000src/styles/base.css\u0000src/styles/components.css\u0000src/styles/index.css\u0000src/styles/motion.css\u0000src/styles/overlays.css\u0000src/styles/pages/auth.css\u0000src/styles/pages/settings.css\u0000src/styles/panels.css\u0000src/styles/responsive.css\u0000src/styles/shell.css\u0000src/styles/states.css\u0000src/styles/tokens.css\u0000src/styles/views/board.css\u0000src/styles/views/calendar.css\u0000src/styles/views/list.css\u0000src/styles/views/projects-files.css\u0000src/styles/views/table.css\u0000src/styles/views/timeline.css\u0000src/ui/helpers.js\u0000src/ui/select.js\u0000src/ui/toast.js\u0000src/views/board.js\u0000src/views/calendar.js\u0000src/views/files.js\u0000src/views/project-overview.js\u0000src/views/table.js\u0000src/views/timeline.js\u0000vercel.json\u0000vite.config.js\u0000"
+      },
+      "stderr": {
+        "originalPath": "/tmp/task8-wu30-implementation01/source-tracked.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "utf8": ""
+      }
+    }
+  ],
+  "actualToolReturned": {
+    "start": {
+      "chunk_id": "148a03",
+      "wall_time_seconds": 1.000801013,
+      "session_id": 46830,
+      "original_token_count": 0,
+      "output": ""
+    },
+    "completion": {
+      "chunk_id": "2ac4f7",
+      "wall_time_seconds": 3.8671e-05,
+      "exit_code": 0,
+      "original_token_count": 569,
+      "output": "{\n  \"status\": \"ACTUAL_IMPLEMENTATION_COMMIT_NORMAL_PUSH_VERIFIED\",\n  \"head\": \"d2ef41cbd054950b9aa2f50d769569586edfcdec\",\n  \"tree\": \"7f2a3dd9514235bd8f9aefaa88ebf53d56d369ee\",\n  \"parent\": \"92a6479ed15d673ecd5fa7396dfdd9a37ded0ff2\",\n  \"originMain\": \"d2ef41cbd054950b9aa2f50d769569586edfcdec\",\n  \"remoteMain\": \"d2ef41cbd054950b9aa2f50d769569586edfcdec\",\n  \"divergence\": [\n    \"0\",\n    \"0\"\n  ],\n  \"cleanBeforeAndAfterPush\": true,\n  \"branch\": \"work\",\n  \"origin\": \"https://github.com/hoa00/task8.git\",\n  \"push\": {\n    \"argv\": [\n      \"git\",\n      \"push\",\n      \"origin\",\n      \"HEAD:main\"\n    ],\n    \"exitCode\": 0\n  },\n  \"ports\": [\n    {\n      \"port\": 4173,\n      \"connectResult\": 111\n    },\n    {\n      \"port\": 5173,\n      \"connectResult\": 111\n    },\n    {\n      \"port\": 5174,\n      \"connectResult\": 111\n    },\n    {\n      \"port\": 8787,\n      \"connectResult\": 111\n    }\n  ],\n  \"rootPhysicalCapture\": null,\n  \"scope\": \"Exactly Root reviewed WU30 index; normal user targetmain push. OnlyPROGRESS/checkpoint documentation writes follow Root authorization; noSourcepush/force/laterunit.\"\n}\n{\n  \"source\": {\n    \"head\": \"904205c626918ee96054eb35495c394a60c0c601\",\n    \"tree\": \"5db5f992886b2345881946cf85fac098307953a5\",\n    \"tracked\": 86,\n    \"clean\": true,\n    \"locks\": [\n      {\n        \"path\": \"/workspace/task8/docs/poc/reference/baseline-manifest.json\",\n        \"bytes\": 69302,\n        \"sha256\": \"b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe\"\n      },\n      {\n        \"path\": \"/workspace/task8/docs/poc/reference/font-assets.json\",\n        \"bytes\": 21805,\n        \"sha256\": \"af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4\"\n      },\n      {\n        \"path\": \"/workspace/task8/docs/poc/reference/source-fixture.json\",\n        \"bytes\": 54153,\n        \"sha256\": \"8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80\"\n      },\n      {\n        \"path\": \"/workspace/task8/docs/poc/reference/source-lock.json\",\n        \"bytes\": 7870,\n        \"sha256\": \"11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d\"\n      }\n    ]\n  },\n  \"commandCount\": 21,\n  \"result\": {\n    \"path\": \"/tmp/task8-wu30-implementation01/result.json\",\n    \"bytes\": 15943,\n    \"sha256\": \"826ce8f49b16033c01a2a90634d7ed85024ab92396519afca14ed7434a24c9ed\"\n  }\n}\n"
+    }
+  },
+  "outsideStageProofs": {
+    "stage01OriginalFailure": {
+      "path": "/tmp/task8-wu30-stage01/commands.json",
+      "bytes": 16204,
+      "sha256": "5f43eb40b85d7b9725980b42ce2e14f90a2813ba6e0db9fe8a445e77e92a4b93",
+      "gitBlob": "84e47fb3786afa497916459ef3cc71f45051d900"
+    },
+    "stage01CachedCheckFailure": {
+      "metadata": {
+        "path": "/tmp/task8-wu30-stage01/cached-check.stdout",
+        "bytes": 1567,
+        "sha256": "53bbd8c65bb8ff3e0294c65531c3829d82fdb25e04c6b676bf07db82ad32ba9c",
+        "gitBlob": "a5ce28d88005af0e3dd8924ca777333ddf91083d"
+      },
+      "utf8": "docs/poc/evidence/WU-30/attempts/d1-02/migrate-fresh.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-02/migrate-reapply.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-02/primary-test.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-02/seed-first.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/invalid.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/invited.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/isolation-test.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/migrate-fresh.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/migrate-reapply.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/missing.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/nonlocal.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/primary-production.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/seed-first.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/seed-reapply-test.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/attempts/d1-03/seed-second.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-30/commands/build01/stderr.log:3: new blank line at EOF.\ndocs/poc/evidence/WU-30/commands/types01/stderr.log:3: new blank line at EOF.\ndocs/poc/evidence/WU-30/commands/types01/stdout.log:30: new blank line at EOF.\n"
+    },
+    "stage02Exact": {
+      "path": "/tmp/task8-wu30-stage02/report.json",
+      "bytes": 81893,
+      "sha256": "c2f609ee27300e154d0acd28b1e1b1a41ec605101ff4e03c228f21184874a67d",
+      "gitBlob": "5fc73392930d9ed8ad2e378dd61c243f2349331e"
+    },
+    "metadataGate": {
+      "path": "/tmp/task8-wu30-metadata01/report.json",
+      "bytes": 3696,
+      "sha256": "c8c7b70c1239967cf9bcd3835f11bf0a6ec291c6afb5d054c2780de12fbab566",
+      "gitBlob": "e493fb07fa574db16f5f461cf2217deb3acb7f75"
+    }
+  },
+  "rootActualReportedGate": {
+    "technical": "PASS actual0",
+    "allChangedBytes": "223changedblobs2,757,392B exact; allother131726HEADrowsunchanged",
+    "fastMetadata": "PASS actual0 exact2metadata docs; other131948rowsunchanged",
+    "fingerprint": "a86343d081a8a3006677fcee7326e8a19a524581ea7b02a8fa046f750da2e1cb",
+    "physicalCapture": null
+  },
+  "rawLimit": "Stage index/head streams are only size/SHAmetadata verified in-memory, no oldpersistedraw; Root independentlymatched freshsameargv. No recovered oldraw/Root archive claimed. Implementation21command rawstreams above are actualcompleteoriginals.",
+  "scope": "Only WU30 AC1\u20133 actual local Hono+D1 foundation. Allfuturecapabilitiesunavailable; noCRUD31+, Undo dispatcher, R2, prod, provider, CI; historicalM2failed/missingbytesremainunaccepted.",
+  "documentation": "Only PROGRESS+checkpoint edit follows actualimplementationcommit/push. Its future ownSHA/pushproof will be reportedexternally after Root gate; norecursive futureassertion."
+}
