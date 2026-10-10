@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { createMockClient } from '../../../apps/web/src/data/adapters/mock.ts';
+import { defaultOnboardingDraft, onboardingFlowId } from '../../../apps/web/src/data/onboarding-demo.ts';
+import { sha256 } from '../reference/source-check.mjs';
+const attempt = process.argv[2], output = `docs/poc/evidence/WU-27/attempts/${attempt}`;
+assert.ok(attempt && !fs.existsSync(output)); fs.mkdirSync(output, { recursive: true }); fs.copyFileSync(import.meta.filename, `${output}/executed-harness.mjs`);
+const rows = new Map(), storage = { getItem: key => rows.get(key) ?? null, setItem: (key, value) => rows.set(key, value), removeItem: key => rows.delete(key) };
+const client = createMockClient({ storage }), draft = { ...defaultOnboardingDraft(onboardingFlowId()), ws: 'Newer Studio', url: 'manual-url', proj: 'Custom Project', team: 'table', completedStep: 4 };
+const result = await client.completeOnboarding(draft); client.selectWorkspace(result.workspaceId); const key = [...rows.keys()].find(key => key.endsWith(`:${result.workspaceId}`)), before = storage.getItem(key);
+createMockClient({ storage }); const after = storage.getItem(key);
+const write = (name, text) => { const path = `${output}/${name}`; fs.writeFileSync(path, text, { flag: 'wx' }); return { path, bytes: Buffer.byteLength(text), sha256: sha256(text) }; };
+const changes = []; function diff(a, b, path = '') { if (JSON.stringify(a) === JSON.stringify(b)) return; if (a && b && typeof a === 'object' && typeof b === 'object') for (const key of new Set([...Object.keys(a), ...Object.keys(b)])) diff(a[key], b[key], `${path}/${key}`); else changes.push({ path, before: a ?? null, after: b ?? null }); } diff(JSON.parse(before), JSON.parse(after));
+const report = { status: 'diagnosed', scope: 'Fresh current exact before/after constructor repro; does not recover truncated native03 original bodies.', before: write('before.json', before), after: write('after.json', after), changes };
+fs.writeFileSync(`${output}/report.json`, JSON.stringify(report, null, 2) + '\n'); console.log(JSON.stringify(changes)); assert.equal(changes.length, 2); assert.ok(changes.every(row => row.path.includes('Favorites/') || row.path.includes('projectCommands/favorites/')));

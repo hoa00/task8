@@ -1,0 +1,25 @@
+{
+  "command": {
+    "path": "docs/poc/evidence/WU-27/raw/prestage-01/command.txt",
+    "bytes": 1924,
+    "sha256": "d26120419db8a75a8019e8c5857099b9ed54473a8dcac5137667d4b03def9fa8"
+  },
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\nimport subprocess,json,hashlib,shlex\nout=Path('docs/poc/evidence/WU-27/attempts/prestage-01');out.mkdir();rows=[]\ncommands=[('HEAD',['git','rev-parse','HEAD']),('branch',['git','branch','--show-current']),('origin',['git','remote','get-url','origin']),('fresh-main',['git','ls-remote','origin','refs/heads/main']),('index',['git','diff','--cached','--name-only']),('active-whitespace',['git','diff','--check']),('SourceHEAD',['git','-C','.reference/gr8r-studio','rev-parse','HEAD']),('SourceTree',['git','-C','.reference/gr8r-studio','rev-parse','HEAD^{tree}']),('SourceStatus',['git','-C','.reference/gr8r-studio','status','--porcelain']),('SourceTracked',['git','-C','.reference/gr8r-studio','ls-files']),('ports',['ss','-ltnH','sport = :4173 or sport = :5173 or sport = :8787'])]\nfor name,args in commands:\n r=subprocess.run(args,capture_output=True);row={'id':name,'argv':args,'exitStatus':r.returncode}\n for key,b in [('command',(shlex.join(args)+'\\n').encode()),('stdout',r.stdout),('stderr',r.stderr)]:\n  p=out/(name+'.'+key);p.write_bytes(b);row[key]={'path':str(p),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}\n rows.append(row);assert r.returncode==0\nreport={'status':'passed','commands':rows,'scope':'Read-only actual Git/Source/ports before stable pause; no stage/commit/push.'};(out/'report.json').write_text(json.dumps(report,indent=2)+'\\n');print(json.dumps({'status':'passed','commands':len(rows)}))\n"
+  ],
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-27/raw/prestage-01/stdout",
+    "bytes": 37,
+    "sha256": "e4dc496848ffdf81acb84e78fd110f2ec4424fffb4c492c17f06b3b0a45fe738"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-27/raw/prestage-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

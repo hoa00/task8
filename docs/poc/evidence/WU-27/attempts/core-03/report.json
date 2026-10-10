@@ -1,0 +1,73 @@
+{
+  "status": "failed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-03/typecheck.stdout",
+        "bytes": 806,
+        "sha256": "ec959ba2a63467574834273bf911e6ab439c5767c1da2883fdaf8f71df96842f"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-03/typecheck.stderr",
+        "bytes": 22,
+        "sha256": "bf18c62cdc9924cebfa985a804c2b55e5fabcdec27ab2707fe215d547b85ec16"
+      }
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-03/test.stdout",
+        "bytes": 33285,
+        "sha256": "8027f89c5308117ba424e7c15961d628abf66141ec4b099bca1af6f6b4cb3382"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-03/test.stderr",
+        "bytes": 152,
+        "sha256": "0da6e8095dee124ad6481edbfaa850d6d9d1580bdf4c1972bda28ed9d1b35f3c"
+      }
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 1,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-03/lint.stdout",
+        "bytes": 812,
+        "sha256": "722718d0b445224e0c764fb82fbdbe1797e6131937561d1dccd67dd6da1b41bd"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-03/lint.stderr",
+        "bytes": 616,
+        "sha256": "36b7bc4d72a2cd76570e07ad117be591f6bd9da451b28308a87bdbe426b0a9ea"
+      }
+    }
+  ]
+}

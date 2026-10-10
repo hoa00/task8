@@ -1,0 +1,1 @@
+import{t as e}from"./PendingPage-T_IElMju.js";var t=e;export{t as component};

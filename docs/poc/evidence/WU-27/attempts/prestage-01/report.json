@@ -1,0 +1,280 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "id": "HEAD",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/HEAD.command",
+        "bytes": 19,
+        "sha256": "4efde96313ab618b31843815582cd27c102485c5ee9a4c9c66e907855a202017"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/HEAD.stdout",
+        "bytes": 41,
+        "sha256": "f93bf69a07a4d9c649e8eb8c3d445a7165451fa2b25262015d0a6d51c33ac845"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/HEAD.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "branch",
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/branch.command",
+        "bytes": 26,
+        "sha256": "047ca3f23aaaa34e4b2c7d5e177497c35fc0f7f24b94a68a7bfd00d2040e6e8b"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/branch.stdout",
+        "bytes": 5,
+        "sha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/branch.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "origin",
+      "argv": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/origin.command",
+        "bytes": 26,
+        "sha256": "8df387768cd764e50a0c625b3ca6ee64730390f00e9f9448518655dbe9b0c930"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/origin.stdout",
+        "bytes": 35,
+        "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "fresh-main",
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/fresh-main.command",
+        "bytes": 37,
+        "sha256": "912ecb2f96bfb8efb5880f2a4161f2fe2d9afb1b2b358b5f5237738addb9359d"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/fresh-main.stdout",
+        "bytes": 57,
+        "sha256": "df2f0e4954db62d5f02bb0dd74d6f913b0843ff4fa04e5b7cf68f0f651be6f8a"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/fresh-main.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "index",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/index.command",
+        "bytes": 30,
+        "sha256": "b47cd7f70a427479b058f45677e72036ce5aa97ca5d6484099ab67bfca7c461e"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/index.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/index.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "active-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/active-whitespace.command",
+        "bytes": 17,
+        "sha256": "d9ef3d1695645413cdc098707c0b447cc19275eb61556bf9d84a09633cf075a6"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/active-whitespace.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/active-whitespace.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "SourceHEAD",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceHEAD.command",
+        "bytes": 45,
+        "sha256": "327d780fdf8c058c8acf595c15104bb0d1fa7d8ac2f262b9051808f471e110ed"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceHEAD.stdout",
+        "bytes": 41,
+        "sha256": "7b13267f3236258e1feb01348be92239d0d83c2d5fa0b1b2dc8bc5b3cf3aea30"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceHEAD.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "SourceTree",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceTree.command",
+        "bytes": 54,
+        "sha256": "d3f2b59dcbc487e57b5bafcae0c0d5503b65d4d26b9881d310d0203ec8b2884f"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceTree.stdout",
+        "bytes": 41,
+        "sha256": "dfcd9413f95e2de91d7ff886b9322f6fbc8c6430034bc5ec30aa8048c8876ef8"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceTree.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "SourceStatus",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "status",
+        "--porcelain"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceStatus.command",
+        "bytes": 49,
+        "sha256": "c667577af8d3e88c98df4b72f14a1ab0ae647675170ae1b8f0d423ed7e5d70fc"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceStatus.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceStatus.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "SourceTracked",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "ls-files"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceTracked.command",
+        "bytes": 39,
+        "sha256": "6262a53ef8c82d4c655ddc5f14b8a9468c2f61d1acbd76a298b408d08d61ce51"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceTracked.stdout",
+        "bytes": 1816,
+        "sha256": "ff802db5025496466a0b36c347fd4a69e6c1fe626692ff3dd5191a696922df52"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/SourceTracked.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "ports",
+      "argv": [
+        "ss",
+        "-ltnH",
+        "sport = :4173 or sport = :5173 or sport = :8787"
+      ],
+      "exitStatus": 0,
+      "command": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/ports.command",
+        "bytes": 59,
+        "sha256": "36da09b82ed42ba02da6cd167b55419ae685f3fae695ce858d5a9c12b5739d4f"
+      },
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/ports.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/prestage-01/ports.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "scope": "Read-only actual Git/Source/ports before stable pause; no stage/commit/push."
+}

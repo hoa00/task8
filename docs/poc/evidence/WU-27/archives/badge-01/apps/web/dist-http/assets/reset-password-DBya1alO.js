@@ -1,0 +1,1 @@
+import{r as e}from"./useRouter-BOAPZDg1.js";import{t}from"./reset-password-D9Ulc4_m.js";import{t as n}from"./AuthPage-ByDq8tx-.js";var r=e();function i(){let{state:e}=t.useSearch();return(0,r.jsx)(n,{screen:e===`done`?`reset-done`:`reset`})}export{i as component};

@@ -1,0 +1,30 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/ui:typecheck: cache hit, replaying logs 0edbbf005ccb7e2e
+@studio/contracts:typecheck: cache hit, replaying logs 7542ad69ef0fb122
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs a0c13194e1c21477
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs 0ac096efd9e314e1
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing db3f5e46abd32286
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/adapters/mock.ts(110,12): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; ... 15 more ...; version: number; }>'.
+@studio/web:typecheck:   No index signature with a parameter of type 'string' was found on type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; ... 15 more ...; version: number; }>'.
+@studio/web:typecheck: src/data/adapters/mock.ts(110,50): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; ... 15 more ...; version: number; }>'.
+@studio/web:typecheck:   No index signature with a parameter of type 'string' was found on type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; ... 15 more ...; version: number; }>'.
+@studio/web:typecheck: src/data/adapters/mock.ts(117,49): error TS2322: Type 'string' is not assignable to type 'string & $brand<"EntityId">'.
+@studio/web:typecheck:   Type 'string' is not assignable to type '$brand<"EntityId">'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    12.335s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

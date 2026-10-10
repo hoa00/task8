@@ -1,0 +1,35 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs 7542ad69ef0fb122
+@studio/ui:typecheck: cache hit, replaying logs 0edbbf005ccb7e2e
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs a0c13194e1c21477
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 546d37a284cbd2a3
+@studio/api:typecheck: cache hit, replaying logs 0ac096efd9e314e1
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/adapters/mock.ts(23,34): error TS2307: Cannot find module '../mock/activeDataset.ts' or its corresponding type declarations.
+@studio/web:typecheck: src/data/adapters/mock.ts(47,135): error TS18046: 'workspace' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(77,70): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(77,115): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(77,143): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(77,190): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(77,262): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(77,310): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(77,355): error TS18046: 'a' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(77,374): error TS18046: 'b' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(90,73): error TS18046: 'view' is of type 'unknown'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    12.597s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

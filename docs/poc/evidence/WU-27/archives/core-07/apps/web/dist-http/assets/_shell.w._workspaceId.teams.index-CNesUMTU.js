@@ -1,0 +1,1 @@
+import{n as e}from"./TeamsPage-BTq8i7ra.js";var t=e;export{t as component};

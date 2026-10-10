@@ -1,0 +1,1 @@
+import{i as e}from"./SettingsLayout-C20AIGyq.js";var t=e;export{t as component};

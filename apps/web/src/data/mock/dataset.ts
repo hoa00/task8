@@ -4,6 +4,7 @@ import { ActivitySchema, CalendarEventSchema, CommentSchema, EntityIdSchema, Fil
 const table = <T extends z.ZodType>(schema: T) => z.record(EntityIdSchema, schema).refine(rows => Object.entries(rows).every(([id, row]) => typeof row === 'object' && row !== null && 'id' in row && row.id === id), 'Entity table key differs from ID');
 export const MockDatasetSchema = z.strictObject({
   workspaceId: EntityIdSchema, currentMemberId: EntityIdSchema,
+  onboardingReceipt: z.strictObject({ flowId: EntityIdSchema, projectId: EntityIdSchema }).nullable().default(null),
   workspaces: table(WorkspaceSchema), users: table(UserProfileSchema), members: table(MemberSchema), teams: table(TeamSchema), projects: table(ProjectSchema), tasks: table(TaskSchema), subtasks: table(SubtaskSchema), comments: table(CommentSchema), files: table(FileSchema), activity: table(ActivitySchema), notifications: table(NotificationSchema), events: table(CalendarEventSchema), savedViews: table(SavedViewSchema),
   taskCommands: z.strictObject({
     descriptionTexts: z.record(EntityIdSchema, z.string()).default(() => ({})),
@@ -42,6 +43,7 @@ export function assertDatasetRelations(data: MockDataset): void {
   const requireId = (rows: Record<string, unknown>, id: string | null) => { if (id !== null && !rows[id]) throw new TypeError('Broken mock entity relationship'); };
   requireId(data.workspaces, data.workspaceId);
   requireId(data.members, data.currentMemberId);
+  if (data.onboardingReceipt) { if (data.onboardingReceipt.flowId !== data.workspaceId) throw new TypeError('Onboarding receipt belongs to another scope'); requireId(data.projects, data.onboardingReceipt.projectId); }
   const scope = (row: { workspaceId: string }) => { if (row.workspaceId !== data.workspaceId) throw new TypeError('Cross-workspace mock entity'); };
   for (const member of Object.values(data.members)) { scope(member); requireId(data.users, member.userId); requireId(data.teams, member.teamId); }
   for (const team of Object.values(data.teams)) { scope(team); for (const id of team.memberIds) requireId(data.members, id); }

@@ -1,0 +1,18 @@
+'python3' '-c' 'from pathlib import Path
+import json,hashlib
+root=Path('\''docs/poc/evidence/WU-27'\'');out=root/'\''attempts/whitespace-01'\'';out.mkdir()
+rows=[]
+for p in sorted(root.rglob('\''*'\'')):
+ if not p.is_file() or str(p).startswith(str(root/'\''raw/whitespace-01'\'')) or str(p).startswith(str(out)):continue
+ b=p.read_bytes()
+ if b'\''\0'\'' in b:continue
+ try:b.decode('\''utf-8'\'')
+ except UnicodeDecodeError:continue
+ trailing=any(line.rstrip(b'\''\r\n'\'').endswith((b'\'' '\'',b'\''\t'\'')) for line in b.splitlines(keepends=True))
+ eof=b.endswith(b'\''\n\n'\'') or b.endswith(b'\''\r\n\r\n'\'')
+ if trailing or eof:
+  path=str(p);assert '\''/archives/'\'' in path or path.endswith(('\''.stdout'\'','\''.stderr'\'','\''/stdout'\'','\''/stderr'\'','\''.log'\''))
+  rows.append({'\''path'\'':path,'\''bytes'\'':len(b),'\''sha256'\'':hashlib.sha256(b).hexdigest(),'\''trailing'\'':trailing,'\''blankEOF'\'':eof})
+report={'\''status'\'':'\''proposed-owned-literal-exceptions-only'\'','\''scope'\'':'\''Review proposal only; no .gitattributes/index write. Exact immutable owned archives/logs; no active code/wildcard/reference edit.'\'','\''files'\'':rows,'\''attributesPatch'\'':['\''# WU-27 exact immutable owned archive/log byte whitespace exceptions.'\'']+[r['\''path'\'']+'\'' -whitespace'\'' for r in rows]}
+(out/'\''report.json'\'').write_text(json.dumps(report,indent=2)+'\''\n'\'');print(json.dumps({'\''files'\'':len(rows),'\''report'\'':str(out/'\''report.json'\'')}))
+'

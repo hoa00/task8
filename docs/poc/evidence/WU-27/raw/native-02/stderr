@@ -1,0 +1,43 @@
+/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213
+        return matcher.call(target, ...args);
+                       ^
+
+A [Error]: expect(locator).toBeVisible() failed
+
+Locator: getByText('Give your project a name')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "to.be.visible" with timeout 5000ms
+  - waiting for getByText('Give your project a name')
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/tests/visual/onboarding/interactions.mjs:30:652
+    at async probe (file:///workspace/task8/tests/visual/onboarding/interactions.mjs:21:107)
+    at async file:///workspace/task8/tests/visual/onboarding/interactions.mjs:26:3 {
+  matcherResult: {
+    message: 'expect(locator).toBeVisible() failed\n' +
+      '\n' +
+      "Locator: getByText('Give your project a name')\n" +
+      'Expected: visible\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.be.visible" with timeout 5000ms\n' +
+      "  - waiting for getByText('Give your project a name')\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      '  - Expect "to.be.visible" with timeout 5000ms',
+      "  - waiting for getByText('Give your project a name')"
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

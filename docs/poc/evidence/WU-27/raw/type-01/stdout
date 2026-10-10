@@ -1,0 +1,40 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache miss, executing 7542ad69ef0fb122
+@studio/ui:typecheck: cache miss, executing 0edbbf005ccb7e2e
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache miss, executing a0c13194e1c21477
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache miss, executing 0ac096efd9e314e1
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 3e71a454c9414438
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/adapters/mock.ts(52,11): error TS7022: 'scoped' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+@studio/web:typecheck: src/data/adapters/mock.ts(52,73): error TS2345: Argument of type 'string' is not assignable to parameter of type 'string & $brand<"EntityId">'.
+@studio/web:typecheck:   Type 'string' is not assignable to type '$brand<"EntityId">'.
+@studio/web:typecheck: src/data/adapters/mock.ts(52,94): error TS2448: Block-scoped variable 'dataset' used before its declaration.
+@studio/web:typecheck: src/data/adapters/mock.ts(54,11): error TS7022: 'dataset' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+@studio/web:typecheck: src/data/adapters/mock.ts(74,70): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(74,115): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(74,143): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(74,190): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(74,262): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(74,310): error TS18046: 'event' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(74,355): error TS18046: 'a' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(74,374): error TS18046: 'b' is of type 'unknown'.
+@studio/web:typecheck: src/data/adapters/mock.ts(87,73): error TS18046: 'view' is of type 'unknown'.
+@studio/web:typecheck: src/data/onboarding-demo.ts(21,84): error TS2322: Type 'string' is not assignable to type 'string & $brand<"EntityId">'.
+@studio/web:typecheck:   Type 'string' is not assignable to type '$brand<"EntityId">'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    18.16s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

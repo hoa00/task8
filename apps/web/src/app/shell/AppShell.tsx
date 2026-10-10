@@ -21,18 +21,21 @@ import { TaskOverlayHost } from '../../features/tasks/detail/TaskOverlayHost';
 import type { TaskFormIntent, TaskMenuIntent } from '../../features/tasks/detail/TaskOverlayHost';
 import { links } from '../navigation';
 import { LoadingBoundary } from './Boundaries';
+import { useDataRuntime } from '../../data/context';
 
 export interface AppShellProps { workspaceId: string }
 function subscribeMobile(callback:()=>void){const media=matchMedia('(max-width: 900px)');media.addEventListener('change',callback);return ()=>media.removeEventListener('change',callback);}
 function readCollapsed():boolean {try{return localStorage.getItem('task8.ui.shell.v1')==='collapsed';}catch{return false;}}
 export function AppShell({workspaceId}:AppShellProps) {return <WorkspaceContext value={workspaceId}><WorkspaceShell workspaceId={workspaceId}/></WorkspaceContext>;}
 function WorkspaceShell({workspaceId}:AppShellProps) {
+ const {selectDemoWorkspace}=useDataRuntime();
  const queryClient=useQueryClient(),router=useRouter(),navigate=useNavigate();
  const mobile=useSyncExternalStore(subscribeMobile,()=>matchMedia('(max-width: 900px)').matches,()=>false);
  const location=useLocation();
  const loading=useRouterState({select:state=>state.isLoading});
  const notFound=useRouterState({select:state=>state.matches.some(match=>match.status==='notFound'||isNotFound(match.error))});
  const data=useWorkspaceBootstrap().data?.data;
+ useEffect(()=>{if(data?.workspace.id===workspaceId)selectDemoWorkspace?.(workspaceId);},[data,workspaceId,selectDemoWorkspace]);
  const {setPreferences}=useTheme();
  useLayoutEffect(()=>{if(!data)return;const {theme:selectedTheme,accent,side,density,motion,dateFmt}=data.preferences;setPreferences({theme:selectedTheme,accent,side,density,motion});document.documentElement.dataset.dateFormat=dateFmt;},[data,setPreferences]);
  const [collapsed,setCollapsed]=useState(readCollapsed),[mobileOpen,setMobileOpen]=useState(false);

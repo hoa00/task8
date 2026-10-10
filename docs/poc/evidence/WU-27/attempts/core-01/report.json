@@ -1,0 +1,54 @@
+{
+  "status": "failed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-01/typecheck.stdout",
+        "bytes": 806,
+        "sha256": "f282af47ae9e6e956b50c8483d1efb604d8eb1a7da6cc9b5c1a7eeeb7a7c887f"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-01/typecheck.stderr",
+        "bytes": 22,
+        "sha256": "bf18c62cdc9924cebfa985a804c2b55e5fabcdec27ab2707fe215d547b85ec16"
+      }
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 1,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-01/test.stdout",
+        "bytes": 40964,
+        "sha256": "fe2aca0321b58b973fe35b031bc4a639372d21e5f4963b3b7588ae795556d12c"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-27/attempts/core-01/test.stderr",
+        "bytes": 236,
+        "sha256": "e27f76281ac94dd347e97d836ef78388e848ff330c0a7e843d9acdc5bf8fb9b4"
+      }
+    }
+  ]
+}

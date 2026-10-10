@@ -1,0 +1,1 @@
+import{O as e}from"./queries-ap_NfiM_.js";import{n as t}from"./invalidation-gI7HsYw1.js";import{t as n}from"./useTaskListCommands-0O97KlZU.js";function r(r){let i=n(r),a=e();async function o(e,n){let r=await i.run(e,n);return r||await t(a,e,n),r}return{...i,run:o,undo:e=>o(`undoCommand`,{workspaceId:r,undoId:e.id,body:{}})}}export{r as t};
