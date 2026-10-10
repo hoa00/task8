@@ -1,0 +1,64 @@
+Owned source server: PID 463116, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+system-initial
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    null,
++   {
++     duration: 260,
++     easing: 'ease',
++     frames: [
++       {
++         easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
++         offset: 0,
++         opacity: '0',
++         transform: 'translateY(8px) scale(0.97)'
++       },
++       {
++         easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
++         offset: 1,
++         opacity: '1',
++         transform: 'none'
++       }
++     ],
++     name: 'none'
++   }
+-   null
+  ]
+
+    at file:///workspace/task8/tests/visual/files/motion.mjs:15:362 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    null,
+    {
+      duration: 260,
+      easing: 'ease',
+      name: 'none',
+      frames: [
+        {
+          offset: 0,
+          easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          opacity: '0',
+          transform: 'translateY(8px) scale(0.97)'
+        },
+        {
+          offset: 1,
+          easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+          opacity: '1',
+          transform: 'none'
+        }
+      ]
+    }
+  ],
+  expected: [ null, null ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

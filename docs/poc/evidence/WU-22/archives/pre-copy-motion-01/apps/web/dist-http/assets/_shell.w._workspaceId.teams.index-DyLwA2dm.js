@@ -1,0 +1,1 @@
+import{n as e}from"./TeamsPage-DIP-ljbn.js";var t=e;export{t as component};

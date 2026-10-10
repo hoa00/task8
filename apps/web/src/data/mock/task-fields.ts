@@ -1,13 +1,14 @@
-import { BulkMutateTasksInputSchema, CreateTaskInputSchema, UpdateSubtaskInputSchema, ActivitySchema, CursorPayloadSchema, EntityIdSchema, MoveTaskInputSchema, SetTaskCompletionInputSchema, TaskSchema, UpdateTaskInputSchema, UndoResultSchema, SubtaskSchema, DuplicateTaskInputSchema, VersionInputSchema, FileSchema, UploadProjectFileInputSchema, priorities, CreateSubtaskInputSchema, TaskVersionInputSchema, CreateCommentInputSchema, CommentSchema, ReactionKeySchema, CursorQuerySchema, ActivityQuerySchema, MemberQuerySchema } from '@studio/contracts/api';
+import { BulkMutateTasksInputSchema, CreateTaskInputSchema, UpdateSubtaskInputSchema, ActivitySchema, CursorPayloadSchema, EntityIdSchema, MoveTaskInputSchema, SetTaskCompletionInputSchema, TaskSchema, UpdateTaskInputSchema, UndoResultSchema, SubtaskSchema, DuplicateTaskInputSchema, VersionInputSchema, FileSchema, UploadProjectFileInputSchema, priorities, CreateSubtaskInputSchema, TaskVersionInputSchema, CreateCommentInputSchema, CommentSchema, ReactionKeySchema, CursorQuerySchema, ActivityQuerySchema, MemberQuerySchema, FileQuerySchema, RenameFileInputSchema, DuplicateFileInputSchema } from '@studio/contracts/api';
 import type { OperationId, TaskDto, TaskMutationDto } from '@studio/contracts/api';
 import { changedDependencyTargets, compareTaskTuple, taskSortValue, evaluateTaskView, normalizeTaskView, nextRecurrenceDate, summarizeTasks, TaskRelationError, validateTaskRelations, normalizeDescription, plainDescriptionHtml, sourceFileType, displayFileSize } from '@studio/domain';
 import { canReadMockProject as canReadProject } from './project-access.ts';
+import { accessibleMockFile, canReadMockFile } from './file-access.ts';
 import { transactMock } from './transaction.ts';
 import type { Clock } from '@studio/domain';
 import { StudioApiError } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
 
-export const taskFieldOperations = ['createTask', 'bulkMutateTasks', 'updateSubtask', 'createSubtask', 'deleteSubtask', 'promoteSubtask', 'listComments', 'createComment', 'deleteComment', 'restoreDeletedComment', 'addCommentReaction', 'removeCommentReaction', 'listActivity', 'listMembers', 'getTask', 'listTasks', 'getTaskSummary', 'updateTask', 'moveTask', 'setTaskCompletion', 'undoCommand', 'duplicateTask', 'archiveTask', 'deleteTask', 'addTaskFavorite', 'removeTaskFavorite', 'getFile', 'uploadProjectFile', 'deleteFile'] as const satisfies readonly OperationId[];
+export const taskFieldOperations = ['createTask', 'bulkMutateTasks', 'updateSubtask', 'createSubtask', 'deleteSubtask', 'promoteSubtask', 'listComments', 'createComment', 'deleteComment', 'restoreDeletedComment', 'addCommentReaction', 'removeCommentReaction', 'listActivity', 'listMembers', 'getTask', 'listTasks', 'getTaskSummary', 'updateTask', 'moveTask', 'setTaskCompletion', 'undoCommand', 'duplicateTask', 'archiveTask', 'deleteTask', 'addTaskFavorite', 'removeTaskFavorite', 'getFile', 'listProjectFiles', 'renameFile', 'duplicateFile', 'uploadProjectFile', 'deleteFile'] as const satisfies readonly OperationId[];
 const fail = (code: 'NOT_FOUND' | 'CONFLICT' | 'VALIDATION_ERROR' | 'PAYLOAD_TOO_LARGE', message: string, field?: string): never => { throw new StudioApiError({ error: { code, message, ...(field ? { fieldErrors: { [field]: [message] } } : {}) } }); };
 export function newMockId(clock: Clock) { const time = Date.parse(clock.now()).toString(16).padStart(12, '0'); const random = crypto.randomUUID(); return EntityIdSchema.parse(`${time.slice(0, 8)}-${time.slice(8)}-7${random.slice(15, 18)}-${random.slice(19)}`); }
 function getTask(data: MockDataset, id: string): TaskDto {
@@ -69,14 +70,11 @@ function patchTask(data: MockDataset, original: TaskDto, patch: Partial<TaskDto>
 function addActivity(data: MockDataset, task: TaskDto, eventType: string, clock: Clock, detail?: string): TaskDto['id'] {
   const event = ActivitySchema.parse({ id: newMockId(clock), actorId: data.currentMemberId, eventType, taskId: task.id, projectId: task.projectId, createdAt: clock.now(), payload: { taskKey: task.key, taskTitle: task.title, ...(detail ? { detail } : {}) } }); data.activity[event.id] = event; return event.id;
 }
-function accessibleFile(data: MockDataset, id: string) {
-  const file = data.files[EntityIdSchema.parse(id)];
-  if (!file || data.taskCommands.deletedFiles[file.id] || !canReadProject(data.projects[file.projectId], data) || data.projects[file.projectId]!.archivedAt || (file.taskId && (data.taskCommands.deletedTasks[file.taskId] || data.tasks[file.taskId]?.archivedAt))) return fail('NOT_FOUND', 'File not found');
-  return file;
-}
+const accessibleFile = accessibleMockFile;
 function touchAttachments(data: MockDataset, task: TaskDto, clock: Clock) { data.tasks[task.id] = { ...task, version: task.version + 1, updatedAt: clock.now(), attachmentCount: Object.values(data.files).filter(file => file.taskId === task.id && !data.taskCommands.deletedFiles[file.id]).length }; }
 function undoLifecycle(data: MockDataset, undoId: string, record: MockDataset['taskCommands']['lifecycleUndoRecords'][TaskDto['id']], clock: Clock) {
   if (record.actorId !== data.currentMemberId) return fail('NOT_FOUND', 'Undo command not found');
+  if (record.kind === 'file.delete') accessibleFile(data, record.entityId, true);
   const file = record.kind === 'file.delete' ? data.files[record.entityId] : null, task = record.kind === 'file.delete' ? record.taskId ? data.tasks[record.taskId] : null : data.tasks[record.entityId];
   const projectId = file?.projectId ?? task?.projectId;
   if (!projectId || !canReadProject(data.projects[projectId], data)) return fail('NOT_FOUND', 'Undo target not found');
@@ -95,7 +93,7 @@ function undoLifecycle(data: MockDataset, undoId: string, record: MockDataset['t
 }
 export async function fingerprint(query: object): Promise<string> { const bytes = new TextEncoder().encode(JSON.stringify(query)); const digest = await crypto.subtle.digest('SHA-256', bytes); return [...new Uint8Array(digest)].map(value => value.toString(16).padStart(2, '0')).join(''); }
 const encode = (data: unknown) => btoa(JSON.stringify(data)).replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
-function detailOf(data: MockDataset, task: TaskDto) { return { task: projectTask(task, data), subtasks: Object.values(data.subtasks).filter(row => row.taskId === task.id).sort((a, b) => a.position - b.position || a.id.localeCompare(b.id)), attachments: Object.values(data.files).filter(row => row.taskId === task.id && !data.taskCommands.deletedFiles[row.id]) }; }
+function detailOf(data: MockDataset, task: TaskDto) { return { task: projectTask(task, data), subtasks: Object.values(data.subtasks).filter(row => row.taskId === task.id).sort((a, b) => a.position - b.position || a.id.localeCompare(b.id)), attachments: Object.values(data.files).filter(row => row.taskId === task.id && canReadMockFile(row, data)) }; }
 function touchChildren(data: MockDataset, task: TaskDto, clock: Clock) { const rows = Object.values(data.subtasks).filter(row => row.taskId === task.id); data.tasks[task.id] = { ...task, version: task.version + 1, updatedAt: clock.now(), subtaskSummary: { total: rows.length, completed: rows.filter(row => row.done).length } }; }
 function touchComments(data: MockDataset, task: TaskDto, clock: Clock) { data.tasks[task.id] = { ...task, version: task.version + 1, updatedAt: clock.now(), commentCount: Object.values(data.comments).filter(row => row.taskId === task.id && !data.taskCommands.deletedComments[row.id]).length }; }
 function commentOf(data: MockDataset, id: string, includeDeleted = false) { const comment = data.comments[EntityIdSchema.parse(id)]; if (!comment || (!includeDeleted && data.taskCommands.deletedComments[comment.id])) return fail('NOT_FOUND', 'Comment not found'); getTask(data, comment.taskId); return comment; }
@@ -149,10 +147,29 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       data.taskCommands.lifecycleUndoRecords[undoId] = { actorId: data.currentMemberId, kind: id === 'archiveTask' ? 'task.archive' : 'task.delete', entityId: task.id, postVersion: next.version, lifecycleAt, previousArchivedAt: task.archivedAt, taskId: null, taskPostVersion: null, activityIds: [activity], result: null };
       return { data: { task: projectTask(next, data), createdTasks: [], affectedProjectIds: [task.projectId], undo: { id: undoId, kind: id === 'archiveTask' ? 'task.archive' : 'task.delete' } } };
     }
+    case 'listProjectFiles': {
+      const projectId = EntityIdSchema.parse(input.projectId), project = data.projects[projectId], actor = data.members[data.currentMemberId], query = FileQuerySchema.parse(input.query);
+      if (!actor || actor.workspaceId !== data.workspaceId || actor.status !== 'active' || !canReadProject(project, data) || project.archivedAt) return fail('NOT_FOUND', 'Project not found');
+      const rows = Object.values(data.files).filter(file => file.projectId === projectId && canReadMockFile(file, data) && (!query.q || file.name.toLowerCase().includes(query.q.toLowerCase())) && (!query.type || file.fileType === query.type));
+      const compare = (a: typeof rows[number], b: typeof rows[number]) => (query.sort === 'name' ? a.name.localeCompare(b.name) : query.sort === 'type' ? a.fileType.localeCompare(b.fileType) : query.sort === 'size' ? (b.sizeBytes ?? -1) - (a.sizeBytes ?? -1) : b.createdAt.localeCompare(a.createdAt)) || a.id.localeCompare(b.id);
+      rows.sort(compare);
+      const { cursor, limit, ...filters } = query, signature = await fingerprint({ workspaceId: data.workspaceId, actorId: data.currentMemberId, projectId, ...filters }); let start = 0;
+      if (cursor) { try { const value = JSON.parse(atob(cursor.replaceAll('-', '+').replaceAll('_', '/'))) as { signature: string; tuple: typeof rows[number] }; if (value.signature !== signature || !FileSchema.safeParse(value.tuple).success) return fail('VALIDATION_ERROR', 'Cursor belongs to a different query', 'cursor'); const index = rows.findIndex(row => compare(row, value.tuple) > 0); start = index < 0 ? rows.length : index; } catch { return fail('VALIDATION_ERROR', 'Invalid cursor', 'cursor'); } }
+      const items = rows.slice(start, start + limit), last = items.at(-1); return { data: { items, total: rows.length, nextCursor: last && start + items.length < rows.length ? encode({ signature, tuple: last }) : null } };
+    }
+    case 'renameFile': case 'duplicateFile': {
+      const body = id === 'renameFile' ? RenameFileInputSchema.parse(input.body) : DuplicateFileInputSchema.parse(input.body), original = accessibleFile(data, String(input.fileId));
+      if (original.version !== body.expectedVersion) return fail('CONFLICT', 'The file changed. Refresh and try again.');
+      const name = body.name ?? original.name.replace(/(\.[^.]+)$/, ' copy$1');
+      const next = FileSchema.parse(id === 'renameFile' ? { ...original, name, fileType: sourceFileType(name), version: original.version + 1 } : { ...original, id: newMockId(clock), name, fileType: sourceFileType(name), createdAt: clock.now(), createdBy: data.currentMemberId, version: 1 });
+      data.files[next.id] = next;
+      if (original.taskId) { const task = data.tasks[original.taskId]!; data.tasks[task.id] = { ...task, version: task.version + 1, attachmentCount: Object.values(data.files).filter(file => file.taskId === task.id && canReadMockFile(file, data)).length }; }
+      return { data: next };
+    }
     case 'getFile': { return { data: accessibleFile(data, String(input.fileId)) }; }
     case 'uploadProjectFile': {
       const body = UploadProjectFileInputSchema.parse(input.body), projectId = EntityIdSchema.parse(input.projectId), project = data.projects[projectId];
-      if (!canReadProject(project, data) || project.archivedAt) return fail('NOT_FOUND', 'Project not found');
+      const actor = data.members[data.currentMemberId]; if (!actor || actor.workspaceId !== data.workspaceId || actor.status !== 'active' || !canReadProject(project, data) || project.archivedAt) return fail('NOT_FOUND', 'Project not found');
       const task = body.taskId ? getTask(data, body.taskId) : null;
       if (task && (task.projectId !== projectId || task.archivedAt)) return fail('VALIDATION_ERROR', 'File target must be an active task in this project', 'taskId');
       const contentHash = await crypto.subtle.digest('SHA-256', body.file.bytes as Uint8Array<ArrayBuffer>);
@@ -410,7 +427,8 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
 
 // Stage a command on an isolated aggregate; only a successful command commits.
 // This is a transaction boundary, never an Undo workspace snapshot.
-export async function runTaskFieldOperation(id: OperationId, input: Record<string, unknown>, data: MockDataset, clock: Clock): Promise<unknown> {
-  if (['getTask', 'listTasks', 'getTaskSummary', 'getFile', 'listComments', 'listActivity', 'listMembers'].includes(id)) return executeTaskOperation(id, input, data, clock);
-  return transactMock(data, staged => executeTaskOperation(id, input, staged, clock));
+export async function runTaskFieldOperation(id: OperationId, input: Record<string, unknown>, data: MockDataset, clock: Clock, persist?: (staged: MockDataset) => boolean): Promise<unknown> {
+  if ((['getFile','listProjectFiles','renameFile','duplicateFile','uploadProjectFile','deleteFile'].includes(id) || id === 'undoCommand' && data.taskCommands.lifecycleUndoRecords[EntityIdSchema.parse(input.undoId)]?.kind === 'file.delete') && input.workspaceId && input.workspaceId !== data.workspaceId) return fail('NOT_FOUND', 'File not found');
+  if (['getTask', 'listTasks', 'getTaskSummary', 'getFile', 'listProjectFiles', 'listComments', 'listActivity', 'listMembers'].includes(id)) return executeTaskOperation(id, input, data, clock);
+  return transactMock(data, async staged => { const result = await executeTaskOperation(id, input, staged, clock); if (persist && !persist(staged)) throw new StudioApiError({ error: { code: 'INTERNAL_ERROR', message: 'Changes could not be saved. Try again.' } }); return result; });
 }

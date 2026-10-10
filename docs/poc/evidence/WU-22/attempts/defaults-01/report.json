@@ -1,0 +1,40 @@
+{
+  "status": "failed",
+  "scope": "Exact AST branch preservation against actual predecessor bytes; defaults only. No historic/default visual debt acceptance.",
+  "proofs": [
+    {
+      "name": "FileTypeIcon",
+      "file": "apps/web/src/features/files/FileFoundation.tsx",
+      "kind": "Exact normalized AST body",
+      "sha256": "4340f99c58124605da15bc19abac7ba56709eb889363f182a6ccedd8fd8891f2",
+      "constants": {}
+    },
+    {
+      "name": "FilePreviewArt",
+      "file": "apps/web/src/features/files/FileFoundation.tsx",
+      "kind": "Exact normalized AST body",
+      "sha256": "7a5d41f230053c3cede91b0e508e0314694d2606b0a5cd0cb97de5811455bf7d",
+      "constants": {}
+    },
+    {
+      "name": "AttachmentCard",
+      "file": "apps/web/src/features/files/FileFoundation.tsx",
+      "kind": "Exact normalized AST body",
+      "sha256": "4aaf538dfa02bc2362b8602390a4df40b5972b9398feb88c911cd17f1d7a2d66",
+      "constants": {}
+    },
+    {
+      "name": "FilePreviewDialog",
+      "file": "apps/web/src/features/files/FileFoundation.tsx",
+      "kind": "Exact normalized AST body",
+      "sha256": "08e2ffa39764f791eaa4e90cbaa404b8de253a78c6bd71bdc01ac8040ec5a794",
+      "constants": {}
+    }
+  ],
+  "files": {
+    "apps/web/src/features/files/FileFoundation.tsx": "c9c6f5545b7b201e604d21b37dab07a4d1807f2b5600ecea8ad7ec91655264c5",
+    "docs/poc/evidence/WU-22/archives/pre-edit-02/apps/web/src/features/files/FileFoundation.tsx": "edc1300eb341c11a38f59961cee82e847ef4586eabd39c7bbcfefd1088033fd5"
+  },
+  "limitation": "Inherited default UploadProgress positive percent is scaled to0 because --p is absent. Production Drawer/Form use only0; positive42 is existing dev fixture, not accepted positive progress evidence. Catalogue explicit option supplies --p. WU29 retains inherited issue.",
+  "error": "AssertionError [ERR_ASSERTION]: Dropzone\n+ actual - expected\n\n  '{\\n' +\n    '    const input = useRef<HTMLInputElement>(null), [over, setOver] = useState(false);\\n' +\n    \"    return <label className={`file-dropzone flex cursor-pointer items-center justify-center gap-[10px] rounded-lg border-[1.5px] border-dashed border-border-strong text-sm text-secondary transition-[background,border-color] source-hover:border-accent-line source-hover:bg-accent-soft source-hover:text-foreground ${over ? 'border-accent-line bg-accent-soft text-foreground' : ''}`} style={{ padding }} tabIndex={disabled ? -1 : 0} aria-disabled={disabled} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') {\\n\" +\n    '        event.preventDefault();\\n' +\n    '        input.current?.click();\\n' +\n    '    } }} onDragOver={event => { event.preventDefault(); if (!disabled)\\n' +\n    '        setOver(true); }} onDragLeave={() => setOver(false)} onDrop={event => { event.preventDefault(); setOver(false); if (!disabled)\\n' +\n+   `        onFiles([...event.dataTransfer.files]); }}><Icon name={\"paperclip\"} size={padding === 10 ? 14 : 15}/><span>{label}</span><input ref={input} type=\"file\" multiple hidden disabled={disabled} aria-label={label} onChange={event => { onFiles([...event.target.files ?? []]); event.target.value = ''; }}/></label>;\\n` +\n-   `        onFiles([...event.dataTransfer.files]); }}><Icon name=\"paperclip\" size={padding === 10 ? 14 : 15}/><span>{label}</span><input ref={input} type=\"file\" multiple hidden disabled={disabled} aria-label={label} onChange={event => { onFiles([...event.target.files ?? []]); event.target.value = ''; }}/></label>;\\n` +\n    '}'\n\n    at equalBody (file:///workspace/task8/tests/visual/files/defaults.mjs:10:291)\n    at file:///workspace/task8/tests/visual/files/defaults.mjs:11:316\n    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+}

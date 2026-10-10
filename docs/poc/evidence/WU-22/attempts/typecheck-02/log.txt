@@ -1,0 +1,33 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs 4fdbf60ad4757edc
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: cache hit, replaying logs 445b3f4e4e699152
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 7cd556a06d071554
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs dde5825123476b17
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 31ab05f524d0dc92
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/features/files/ProjectFilesPage.tsx(25,180): error TS2322: Type '(previous: { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 7 more ...; state?: string | undefined; }) => { ...; }' is not assignable to type 'true | { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 7 more ...; state?: string | undefined; } | ParamsReducerFn<...>'.
+@studio/web:typecheck:   Type '(previous: { q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 7 more ...; state?: string | undefined; }) => { ...; }' is not assignable to type 'ParamsReducerFn<RouterCore<Route<Register, any, "/", "/", string, "__root__", (input: Record<string, unknown>) => RouteSearch, {}, StudioRouterContext, ... 8 more ..., undefined>, "never", false, RouterHistory, Record<...>>, "SEARCH", string, string>'.
+@studio/web:typecheck:     Call signature return types '{ q?: string; fileType?: string | undefined; fileSort?: "type" | "name" | "recent"; mode?: "calendar" | "grid" | "list" | "table" | "board"; view?: string; step?: number; taskId?: string; category?: "files" | ... 4 more ... | "comments"; ... 5 more ...; state?: string | undefined; }' and '{ q?: string; view?: string; step?: number; mode?: "calendar" | "grid" | "list" | "table" | "board"; taskId?: string; category?: "files" | "all" | "tasks" | "projects" | "people" | "comments"; ... 7 more ...; state?: string | undefined; }' are incompatible.
+@studio/web:typecheck:       The types of 'fileType' are incompatible between these types.
+@studio/web:typecheck:         Type 'string | undefined' is not assignable to type 'string'.
+@studio/web:typecheck:           Type 'undefined' is not assignable to type 'string'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    11.179s 
+Failed:    @studio/web#typecheck
+
+ ERROR  run failed: command  exited (2)
+[ELIFECYCLE] Command failed with exit code 2.

@@ -1,0 +1,19 @@
+N22-01-query-type-sort-list-preview-Close-Back-Forward-scroll
+N22-02-direct-entry-reload-copy-real-clipboard-safe-Close-task-controller
+N22-03-rename-duplicate-same-ID-Drawer-delete-Undo-remove-Undo
+N22-04-mock-progress-cancel-zero-file-error-retained-retry-single-record
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForSelector: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-file-preview]') to be visible[22m
+
+    at /workspace/task8/tests/visual/files/interactions.mjs:15:795
+    at async probe (/workspace/task8/tests/visual/files/interactions.mjs:9:920)
+    at async file:///workspace/task8/tests/visual/files/interactions.mjs:15:1 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

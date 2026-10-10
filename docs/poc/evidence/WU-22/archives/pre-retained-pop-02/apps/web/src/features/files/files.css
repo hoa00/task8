@@ -1,0 +1,17 @@
+/* Source filePrev's responsive artwork descendants; shared by all file surfaces. */
+.file-art { inset: 14px 18px; padding: 10px; gap: 5px; }
+.file-art i { display: block; height: 4px; border-radius: 2px; background: var(--surface-3); }
+.file-art i.file-art-heading { height: 7px; width: 55%; background: var(--border-strong); }
+.file-art-attachment .file-art { inset: 10px 14px; padding: 7px; gap: 4px; }
+
+/* Catalogue table descendants share the Source permission-table geometry. */
+.file-table { width:100%; border-collapse:collapse; font-size:var(--fs-sm); }
+.file-table th,.file-table td { padding:9px 8px; border-bottom:1px solid var(--divider); text-align:center; }
+.file-table th:first-child,.file-table td:first-child { text-align:left; }
+.file-table th { font-weight:500; color:var(--text-2); font-size:var(--fs-xs); }
+
+/* Source retains the normal popIn identity transform after entry. Keeping it
+   only on the catalogue menu preserves identical fractional SVG raster paint. */
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-motion="reduce"]) .file-catalogue-menu[data-entered] { transform: translateY(0) scale(1); }
+}

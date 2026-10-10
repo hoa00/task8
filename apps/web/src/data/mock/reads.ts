@@ -7,7 +7,7 @@ import { visibleNotifications } from './notifications.ts';
 
 export const mockCapabilities: CapabilitiesDto = {
   dataMode: 'mock', identityMode: 'development',
-  features: { projects: 'implemented', tasks: 'unavailable', teams: 'implemented', comments: 'unavailable', notificationState: 'implemented', fileMetadata: 'unavailable', fileBytes: 'unavailable', workspaceProvisioning: 'demoOnly', invitations: 'demoOnly', projectSharing: 'demoOnly', authentication: 'demoOnly', accountSecurity: 'demoOnly', billing: 'demoOnly' },
+  features: { projects: 'implemented', tasks: 'unavailable', teams: 'implemented', comments: 'unavailable', notificationState: 'implemented', fileMetadata: 'implemented', fileBytes: 'unavailable', workspaceProvisioning: 'demoOnly', invitations: 'demoOnly', projectSharing: 'demoOnly', authentication: 'demoOnly', accountSecurity: 'demoOnly', billing: 'demoOnly' },
   limits: { taskPageSize: 50, maxTaskPageSize: 200, maxBulkItems: 20, maxUndoTargets: 128, maxUndoPayloadBytes: 65536, maxUploadBytes: 10485760 },
 };
 

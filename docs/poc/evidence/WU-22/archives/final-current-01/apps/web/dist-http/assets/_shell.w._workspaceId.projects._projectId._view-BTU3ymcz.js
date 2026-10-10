@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-BGzloplV.js";var t=e;export{t as component};

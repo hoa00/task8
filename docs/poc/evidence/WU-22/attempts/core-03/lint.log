@@ -1,0 +1,11 @@
+$ eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search tests/visual/notifications tests/visual/people tests/visual/teams tests/visual/files eslint.config.mjs && node tests/workspace/boundaries.mjs
+
+/workspace/task8/apps/web/src/features/files/FileFoundation.tsx
+  9:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+/workspace/task8/apps/web/src/features/files/ProjectFilesPage.tsx
+  31:120  warning  The ref value 'controllers.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'controllers.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+✖ 2 problems (1 error, 1 warning)
+
+[ELIFECYCLE] Command failed with exit code 1.

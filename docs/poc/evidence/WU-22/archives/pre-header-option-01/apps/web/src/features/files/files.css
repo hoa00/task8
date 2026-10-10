@@ -1,0 +1,20 @@
+/* Source filePrev's responsive artwork descendants; shared by all file surfaces. */
+.file-art { inset: 14px 18px; padding: 10px; gap: 5px; }
+.file-art i { display: block; height: 4px; border-radius: 2px; background: var(--surface-3); }
+.file-art i.file-art-heading { height: 7px; width: 55%; background: var(--border-strong); }
+.file-art-attachment .file-art { inset: 10px 14px; padding: 7px; gap: 4px; }
+
+/* Catalogue table descendants share the Source permission-table geometry. */
+.file-table { width:100%; border-collapse:collapse; font-size:var(--fs-sm); }
+.file-table th,.file-table td { padding:9px 8px; border-bottom:1px solid var(--divider); text-align:center; }
+.file-table th:first-child,.file-table td:first-child { text-align:left; }
+.file-table th { font-weight:500; color:var(--text-2); font-size:var(--fs-xs); }
+
+/* Source keeps the completed finite popIn effect on its native file menu. */
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-motion="reduce"]) .file-catalogue-menu[data-entered] { animation: ui-pop-in .16s var(--ease) both !important; }
+}
+/* Source max-width:900px is inclusive. Scope its 16px header inset to Files. */
+@media (max-width:900px) {
+  [data-project-host]:has([data-file-page]) > [data-project-header] { padding-top:16px; }
+}

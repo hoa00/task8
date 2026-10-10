@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/retained-ui-01/typecheck.log",
+      "logSha256": "884e89c36d57a1e82bc2ac7aadddf141e0ea1cba3afcc18763886c4de7afd964"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/retained-ui-01/lint.log",
+      "logSha256": "bb128cacfde145fa8bbf12783b568f036e828cf4a3de0b6d9d708cf88177e2da"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/retained-ui-01/build.log",
+      "logSha256": "d8db507815cfe9270e94f32dbe6eb835efaafbac188e7cc1e4f88b9fa33388b3"
+    },
+    {
+      "id": "HTTPbuild",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/retained-ui-01/HTTPbuild.log",
+      "logSha256": "e2e87e1261a8f9adce587eb315158e24c5c510c291e9541bec32a44ed2e40d72"
+    },
+    {
+      "id": "HTTPbundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-22",
+        "--evidence-suffix=retained-ui-01-http-bundle"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/retained-ui-01/HTTPbundle.log",
+      "logSha256": "39156c2df9f8cf450ad1711a6aa280f7347a3278ed0f9b7ee35e0284c8cdfe52"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/retained-ui-01/reference.log",
+      "logSha256": "6750afa7d8c51180ab75e6ee0e1869dc0f3c6b7e1b65052a6b4139a088f1155e"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+/* AppShell owns state selectors, inclusive source media queries and pseudo-state
+   geometry. Static layout remains Tailwind. Source shell.css is not imported. */
+@layer utilities {
+ .shell-item[aria-current=page], .shell-item[data-active] { background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.05),0 0 0 1px var(--border);font-weight:500; }
+ .shell-item[aria-current=page] > svg, .shell-item[data-active] > svg { color:var(--text-2); }
+ :root[data-theme=dark] .shell-item[aria-current=page], :root[data-theme=dark] .shell-item[data-active] {background:var(--surface-3);box-shadow:none;}
+ .shell-project-icon {--pc:color-mix(in srgb,var(--project-color) var(--pc-mix,100%),var(--text));color:var(--pc);}
+ .shell-layout[data-collapsed] {grid-template-columns:52px minmax(0,1fr);}
+ .shell-layout[data-collapsed] .shell-item {justify-content:center;padding:0;}
+ .shell-layout[data-collapsed] .shell-item>span[role=img], .shell-layout[data-collapsed] .shell-label, .shell-layout[data-collapsed] .shell-count, .shell-layout[data-collapsed] .shell-group-heading, .shell-layout[data-collapsed] .shell-project-decoration, .shell-layout[data-collapsed] .shell-project-dot {display:none!important;}
+ .shell-layout[data-collapsed] .shell-group {margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
+ .shell-layout[data-collapsed] .shell-workspace {justify-content:center;padding:5px 0;}
+ .shell-topbar .shell-navigation-opener, .shell-bottomnav, .shell-scrim {display:none;}
+ .shell-bottomitem[aria-current=page] {color:var(--text);}
+ .shell-skip:focus {top:calc(8px + env(safe-area-inset-top,0px));}
+ @media(prefers-color-scheme:dark){:root:not([data-theme=light]) .shell-item[aria-current=page],:root:not([data-theme=light]) .shell-item[data-active]{background:var(--surface-3);box-shadow:none;}}
+ @media(max-width:1100px){.shell-topbar .shell-topsearch{width:auto;}.shell-search-label,.shell-search-key{display:none;}}
+ @media(max-width:900px){
+  .shell-layout,.shell-layout[data-collapsed]{grid-template-columns:minmax(0,1fr);}
+  .shell-sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;z-index:70;transform:translateX(-100%);transition:transform .22s var(--ease);box-shadow:var(--shadow-pop);}
+  .shell-layout[data-mobile-open] .shell-sidebar{transform:none;}
+  .shell-layout[data-collapsed] .shell-sidebar .shell-item{justify-content:flex-start;padding:0 8px;}
+  .shell-topbar .shell-navigation-opener{display:inline-flex;}.shell-scrim{display:block;animation:shell-fade .14s both;}
+ }
+ @media(max-width:640px){
+  .shell-bottomnav{display:flex;padding-bottom:calc(4px + env(safe-area-inset-bottom,0px));}
+  .shell-hide-mobile{display:none!important;}
+  .shell-topbar .shell-topsearch{border:0;background:transparent;padding:0;width:var(--h-md);justify-content:center;}
+  .shell-parent-crumb,.shell-crumb-separator,.shell-current-crumb > span{display:none!important;}
+  .shell-current-crumb{display:block;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+  .shell-topbar .shell-navigation-opener,.shell-topbar .shell-top-icon,.shell-topbar .shell-create,.shell-topsearch{min-width:40px;min-height:40px;}
+ }
+ @media(prefers-reduced-motion:reduce){.shell-skip{transition:none;}}
+ :root[data-motion=reduce] .shell-skip{transition:none;}
+}
+@keyframes shell-fade {from{opacity:0;}to{opacity:1;}}

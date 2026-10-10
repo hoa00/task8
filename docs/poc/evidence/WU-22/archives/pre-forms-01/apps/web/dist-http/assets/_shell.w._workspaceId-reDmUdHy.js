@@ -1,0 +1,1 @@
+import{n as e}from"./Boundaries-BC6raert.js";var t=e;export{t as errorComponent};

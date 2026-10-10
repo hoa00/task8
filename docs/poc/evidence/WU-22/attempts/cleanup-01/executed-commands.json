@@ -1,0 +1,24 @@
+{
+  "runtimePins": "Exported Node24.13 PATH plus XDG_DATA_HOME/XDG_CACHE_HOME/XDG_CONFIG_HOME/PNPM_CONFIG_STORE_DIR/WRANGLER_LOG_PATH",
+  "commands": [
+    [
+      "ss",
+      "-ltnp",
+      "( sport = :4173 or sport = :5173 )"
+    ],
+    [
+      "git",
+      "fetch",
+      "origin",
+      "main"
+    ],
+    [
+      "git",
+      "ls-remote",
+      "origin",
+      "refs/heads/main"
+    ]
+  ],
+  "actualToolExitStatus": 0,
+  "report": "Node read/hash/assertion command verified HEAD=origin/main=actual remote, Source locks and zero listener output; actual source/build maps retained."
+}

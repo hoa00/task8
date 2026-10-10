@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/scroll-ui-01/typecheck.log",
+      "logSha256": "92a452f78b28ecde0580d72beb62bbdf540b2f2477c442503af20d0eaf20d64d"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/scroll-ui-01/lint.log",
+      "logSha256": "bb128cacfde145fa8bbf12783b568f036e828cf4a3de0b6d9d708cf88177e2da"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/scroll-ui-01/build.log",
+      "logSha256": "d1b8978e3f55f8462814c28afe22e2a61954ec4128314f30a1ccf3c083d5b488"
+    },
+    {
+      "id": "HTTPbuild",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/scroll-ui-01/HTTPbuild.log",
+      "logSha256": "b78a8620e1daa57f914e9fa7727d0dbb44125b28d5ef1f9133bcba9c2e8a3c64"
+    },
+    {
+      "id": "HTTPbundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-22",
+        "--evidence-suffix=scroll-ui-01-http-bundle"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/scroll-ui-01/HTTPbundle.log",
+      "logSha256": "16bd7c6356dcaaf2a99e67ce619ed5a7d0c1d3f6459cc030ac47dc7001f17f5e"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/scroll-ui-01/reference.log",
+      "logSha256": "6750afa7d8c51180ab75e6ee0e1869dc0f3c6b7e1b65052a6b4139a088f1155e"
+    }
+  ]
+}

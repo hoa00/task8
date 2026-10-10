@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-DtIa9-0R.js";var t=e;export{t as component};

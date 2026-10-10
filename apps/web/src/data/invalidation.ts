@@ -7,6 +7,7 @@ const taskProjections = ['task', 'tasks', 'getTaskSummary', 'project', 'projects
 const teamProjections = ['team', 'teams', 'getTeamSummary', 'member', 'members', 'getMemberSummary', 'project', 'projects', 'getProjectSummary', 'bootstrap', 'home', 'overview', 'search', 'activity'] as const;
 const projectProjections = [...taskProjections, 'files', 'file', 'comments', 'savedViews'] as const;
 export const operationInvalidations: Partial<Record<OperationId, readonly string[]>> = {
+  renameFile: [...taskProjections, 'files', 'file'], duplicateFile: [...taskProjections, 'files', 'file'], deleteFile: [...taskProjections, 'files', 'file'], uploadProjectFile: [...taskProjections, 'files', 'file'],
   createTeam: teamProjections, updateTeam: teamProjections, deleteTeam: teamProjections,
   updateNotification: ['notifications', 'bootstrap'], readAllNotifications: ['notifications', 'bootstrap'],
   createTask: taskProjections, updateTask: taskProjections, setTaskCompletion: taskProjections, moveTask: [...taskProjections, 'files', 'file'], duplicateTask: taskProjections, archiveTask: taskProjections, restoreTask: taskProjections, restoreDeletedTask: taskProjections, deleteTask: taskProjections, bulkMutateTasks: taskProjections,

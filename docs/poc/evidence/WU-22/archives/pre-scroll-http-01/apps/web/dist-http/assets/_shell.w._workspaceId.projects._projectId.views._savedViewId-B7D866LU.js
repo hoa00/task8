@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-BJ7jcrcK.js";var t=e;export{t as component};

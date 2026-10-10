@@ -1,0 +1,30 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs 4fdbf60ad4757edc
+@studio/ui:typecheck: cache hit, replaying logs 445b3f4e4e699152
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 7cd556a06d071554
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing ff170efcca8a1bb9
+@studio/api:typecheck: cache hit, replaying logs dde5825123476b17
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/features/projects/ProjectHeader.tsx(13,58): error TS2339: Property 'files' does not exist on type 'ProjectHeaderProps'.
+@studio/web:typecheck: src/features/projects/ProjectLayout.tsx(24,326): error TS2322: Type '{ children: Element; project: { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; icon: "briefcase" | ... 14 more ... | "zap"; ... 14 more ...; version: number; }; data: { ...; }; files: boolean; }' is not assignable to type 'IntrinsicAttributes & ProjectHeaderProps'.
+@studio/web:typecheck:   Property 'files' does not exist on type 'IntrinsicAttributes & ProjectHeaderProps'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    12.115s 
+Failed:    @studio/web#typecheck
+
+ ERROR  run failed: command  exited (2)
+[ELIFECYCLE] Command failed with exit code 2.

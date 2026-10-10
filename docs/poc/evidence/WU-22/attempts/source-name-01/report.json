@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/source-name-01/typecheck.log",
+      "logSha256": "4b7ded9cec87b0401edd79238f9e63d24c71ebf0f01f50d0e22ac8571de30ceb"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/source-name-01/test.log",
+      "logSha256": "0c724cf0976148b647dc8d995a92c6daeeb59631e4b3fcda60b55a5b77e34638"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/source-name-01/lint.log",
+      "logSha256": "bb128cacfde145fa8bbf12783b568f036e828cf4a3de0b6d9d708cf88177e2da"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/source-name-01/build.log",
+      "logSha256": "1196332a060a0e1206d9c63576a825505a512feddec159a30856390bf860173f"
+    },
+    {
+      "id": "HTTPbuild",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/source-name-01/HTTPbuild.log",
+      "logSha256": "3ac21cefdec103a982d335460a0ec25ae92e797e2eb00e5258e7d5acad4fb1c9"
+    },
+    {
+      "id": "HTTPbundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/source-name-01/HTTPbundle.log",
+      "logSha256": "a9b13becd31b08a5f8afa5cdee5d8d0cae6997cf1a034778b31a11643e70c584"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/source-name-01/reference.log",
+      "logSha256": "6750afa7d8c51180ab75e6ee0e1869dc0f3c6b7e1b65052a6b4139a088f1155e"
+    }
+  ]
+}

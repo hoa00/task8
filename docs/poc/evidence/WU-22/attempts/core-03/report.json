@@ -1,0 +1,38 @@
+{
+  "status": "failed",
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/core-03/typecheck.log",
+      "logSha256": "e132f7edf49dffa23e9f456e9ceb78c69970186a6cc1c79b4f5fba6ee91491ad"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/core-03/test.log",
+      "logSha256": "45505ccd2dfb7275ccf67473dc274a0470e7635bd05e69efaba14fb5fd5d0d51"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 1,
+      "error": null,
+      "log": "docs/poc/evidence/WU-22/attempts/core-03/lint.log",
+      "logSha256": "bacd87b89863930b922b1228867c73905de0f03a3bed66769e9ad8ef235afbfd"
+    }
+  ]
+}

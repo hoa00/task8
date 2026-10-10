@@ -1,0 +1,63 @@
+Owned source server: PID 463962, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+system-initial
+system-after-copy
+user-reduce-initial
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    {
++     animations: [
++       {
++         currentTime: 16.675999987823875,
++         playState: 'running'
++       }
++     ],
++     name: 'fadeOnly',
++     opacity: '0.163311',
+-     animations: [],
+-     name: 'none',
+-     opacity: '1',
+      transform: 'none'
+    },
+    {
+      animations: [],
++     name: 'fadeOnly',
+-     name: 'none',
+      opacity: '1',
+      transform: 'none'
+    }
+  ]
+
+    at file:///workspace/task8/tests/visual/files/motion.mjs:14:963
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    {
+      name: 'fadeOnly',
+      opacity: '0.163311',
+      transform: 'none',
+      animations: [ { playState: 'running', currentTime: 16.675999987823875 } ]
+    },
+    {
+      name: 'fadeOnly',
+      opacity: '1',
+      transform: 'none',
+      animations: []
+    }
+  ],
+  expected: [
+    { name: 'none', opacity: '1', transform: 'none', animations: [] },
+    { name: 'none', opacity: '1', transform: 'none', animations: [] }
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

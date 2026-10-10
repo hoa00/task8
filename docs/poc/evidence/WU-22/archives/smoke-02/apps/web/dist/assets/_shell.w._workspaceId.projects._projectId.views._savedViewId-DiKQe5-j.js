@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-QAKT8jfo.js";var t=e;export{t as component};

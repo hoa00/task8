@@ -1,0 +1,16 @@
+{
+  "status": "WrongDestinationNotAccepted",
+  "files": [
+    {
+      "path": "docs/poc/evidence/WU-06/http-bundle.json",
+      "overwrittenSha256": "4002932bb128275a0b659340d28f93d1835022ce7e189500e033f6b0d9a2731c",
+      "restoredHEADSha256": "a84e030644bd767f1d964be86f330355b1e80b3a751d3ae246034f0afadce3f9"
+    },
+    {
+      "path": "docs/poc/evidence/WU-06/http-module-graph.json",
+      "overwrittenSha256": "c6eb0b7a1e6a32b4f221d8edc584d9053b09e69ce18a2ce4226acac0403e217e",
+      "restoredHEADSha256": "193c16259836a482d2217bf38d4cb04bc27e3bad4dac9d7c3961be23ccade7bb"
+    }
+  ],
+  "gap": "core-04 and source-name-01 HTTPbundle executions wrote WU06 default destination. Only latest overwritten raw report/graph bytes remain recoverable; earlier overwritten raw reports were not frozen and are not claimed recovered. Both gate logs retained. Restore exact HEAD originals; execute fresh bounded WU22 suffix gate."
+}

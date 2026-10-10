@@ -1,0 +1,41 @@
+Owned source server: PID 451207, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+grid-1440: pixels46932 repeat0 geometrytrue
+list-1440: pixels37126 repeat0 geometrytrue
+grid-390: pixels15792 repeat0 geometrytrue
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'list view', exact: true })[22m
+[2m    - locator resolved to <button class="" data-a="set" data-v="list" data-k="fileView" aria-label="list view">…</button>[22m
+[2m  - attempting click action[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="page wide">…</div> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m    - waiting 20ms[22m
+[2m    2 × waiting for element to be visible, enabled and stable[22m
+[2m      - element is visible, enabled and stable[22m
+[2m      - scrolling into view if needed[22m
+[2m      - done scrolling[22m
+[2m      - <div class="page wide">…</div> intercepts pointer events[22m
+[2m    - retrying click action[22m
+[2m      - waiting 100ms[22m
+[2m    58 × waiting for element to be visible, enabled and stable[22m
+[2m       - element is visible, enabled and stable[22m
+[2m       - scrolling into view if needed[22m
+[2m       - done scrolling[22m
+[2m       - <div class="page wide">…</div> intercepts pointer events[22m
+[2m     - retrying click action[22m
+[2m       - waiting 500ms[22m
+
+    at setup (/workspace/task8/tests/visual/files/verify.mjs:21:356)
+    at async file:///workspace/task8/tests/visual/files/verify.mjs:22:2578 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

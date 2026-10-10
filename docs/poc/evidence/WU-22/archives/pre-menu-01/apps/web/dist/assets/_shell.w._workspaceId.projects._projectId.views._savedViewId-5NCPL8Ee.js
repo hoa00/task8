@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-DwA1_LOb.js";var t=e;export{t as component};

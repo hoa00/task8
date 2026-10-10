@@ -1,3 +1,4 @@
+import { canReadMockFile } from './file-access.ts';
 import { SearchQuerySchema, SearchSchema } from '@studio/contracts/api';
 import type { SearchResultDto } from '@studio/contracts/api';
 import type { Clock } from '@studio/domain';
@@ -19,7 +20,7 @@ export async function readSearch(data: MockDataset, input: unknown, clock: Clock
     ...tasks.filter(task => has(task.title) || has(task.key) || has(data.taskCommands.descriptionTexts[task.id])).map(task => ({ kind: 'tasks' as const, task })),
     ...projects.filter(project => has(project.name) || has(project.description)).map(project => ({ kind: 'projects' as const, project: projectCatalogItem(data, project, clock) })),
     ...Object.values(data.members).filter(member => member.workspaceId === data.workspaceId && (has(member.name) || has(member.email) || has(member.title))).map(member => ({ kind: 'people' as const, member })),
-    ...Object.values(data.files).filter(file => file.workspaceId === data.workspaceId && projectIds.has(file.projectId) && (!file.taskId || taskIds.has(file.taskId) && data.tasks[file.taskId]?.projectId === file.projectId) && !data.taskCommands.deletedFiles[file.id] && has(file.name)).map(file => ({ kind: 'files' as const, file })),
+    ...Object.values(data.files).filter(file => canReadMockFile(file, data) && projectIds.has(file.projectId) && (!file.taskId || taskIds.has(file.taskId) && data.tasks[file.taskId]?.projectId === file.projectId) && !data.taskCommands.deletedFiles[file.id] && has(file.name)).map(file => ({ kind: 'files' as const, file })),
     ...Object.values(data.comments).filter(comment => comment.workspaceId === data.workspaceId && taskIds.has(comment.taskId) && !data.taskCommands.deletedComments[comment.id] && has(comment.bodyText)).map(comment => ({ kind: 'comments' as const, comment, taskKey: data.tasks[comment.taskId]!.key, taskTitle: data.tasks[comment.taskId]!.title })),
   ];
   const totals = { tasks: 0, projects: 0, people: 0, files: 0, comments: 0 };

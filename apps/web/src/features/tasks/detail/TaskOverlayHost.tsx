@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import type { ReactNode, RefObject } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Alert, Button, ContextMenu, Dialog, DialogBody, DialogFooter, DialogHeader, Icon, MenuItem, MenuSeparator, ToastViewport } from '@studio/ui';
@@ -13,6 +13,7 @@ import { invalidateOperation } from '../../../data/invalidation';
 import { TaskDrawer } from './TaskDrawer';
 import type { AttachmentUpload, TaskDrawerDraft } from './TaskDrawer';
 import { TaskFormDialog } from './TaskFormDialog';
+import { FileIntentContext } from '../../files/file-intents';
 import { FilePreviewDialog } from '../../files/FileFoundation';
 import { useTaskListDataset } from '../useTaskListDataset';
 import { useTaskListCommands } from '../useTaskListCommands';
@@ -25,7 +26,7 @@ interface UploadJob extends AttachmentUpload { projectId: TaskDto['projectId']; 
 // Keep transient cached reads, but never render a child after a terminal denial.
 function availableChild<T>(value: T | undefined, error: unknown): T | undefined { return error instanceof StudioApiError && (error.status === 403 || error.status === 404) ? undefined : value; }
 export function TaskOverlayHost({ data, taskId, onTaskOpen, onTaskClose, opener, form, onFormChange, menu, onMenuChange, onProjectOpen, drawerSections }: TaskOverlayHostProps) {
- const workspaceId = data.workspace.id, { client } = useDataRuntime(), cache = useQueryClient(), commands = useTaskListCommands(workspaceId), dataset = useTaskListDataset(workspaceId, normalizeTaskView({ query: { limit: 200 } }).query);
+ const files = useContext(FileIntentContext), workspaceId = data.workspace.id, { client } = useDataRuntime(), cache = useQueryClient(), commands = useTaskListCommands(workspaceId), dataset = useTaskListDataset(workspaceId, normalizeTaskView({ query: { limit: 200 } }).query);
  const [full, setFull] = useState(data.preferences.openTasks === 'full'), [openField, setOpenField] = useState<keyof TaskFieldValues | null>(null), [previewId, setPreviewId] = useState<string | null>(null), [toasts, setToasts] = useState<ToastMessage[]>([]), [deleteId, setDeleteId] = useState<string | null>(null), [jobs, setJobs] = useState<readonly UploadJob[]>([]);
  const drafts = useRef(new Map<string, TaskDrawerDraft>()), activeJobs = useRef(new Set<string>());
  const tasks = dataset.data ?? [];
@@ -34,7 +35,7 @@ export function TaskOverlayHost({ data, taskId, onTaskOpen, onTaskClose, opener,
  async function copy(url: string) { try { await navigator.clipboard.writeText(url); toast('Link copied'); } catch { toast('Link could not be copied'); } }
  async function deleteTask(id: string) { const latest = await commands.run('getTask', { workspaceId, taskId: id }); if (!latest) return; const result = await commands.run('deleteTask', { workspaceId, taskId: id, body: { expectedVersion: latest.data.task.version } }); if (result?.data.undo) { if (taskId === id) closeTask(); undo(result.data.undo, 'Task deleted'); } }
  function closeTask() { setOpenField(null); onTaskClose(); }
- async function removeFile(file: FileDto) { const result = await commands.run('deleteFile', { workspaceId, fileId: file.id, body: { expectedVersion: file.version } }); if (result?.data.undo) undo(result.data.undo, `Deleted “${file.name}”`); }
+ async function removeFile(file: FileDto) { const result = await commands.run('deleteFile', { workspaceId, fileId: file.id, body: { expectedVersion: file.version } }); if (result?.data.undo) { if (files) files.deleted(file, result.data.undo); else undo(result.data.undo, `Deleted “${file.name}”`); } }
  async function upload(job: UploadJob) {
   if (activeJobs.current.has(job.id)) return; activeJobs.current.add(job.id);
   setJobs(current => current.map(row => row.id === job.id ? { ...row, status: 'uploading', error: '' } : row));
@@ -45,7 +46,7 @@ export function TaskOverlayHost({ data, taskId, onTaskOpen, onTaskClose, opener,
  function selectFiles(task: TaskDto, files: readonly File[]) { if (files.some(file => file.size > 10485760)) { toast('Files must be 10 MiB or smaller'); return; } const next: UploadJob[] = files.map(file => ({ id: crypto.randomUUID(), taskId: task.id, projectId: task.projectId, name: file.name, file, status: 'uploading' })); setJobs(current => [...current, ...next]); next.forEach(job => { void upload(job); }); }
  function saved(id: string, key: string, more: boolean) { toast(form.taskId ? 'Changes saved' : `Created ${key}`, more ? undefined : { label: 'Open', onAction: () => onTaskOpen(id) }); }
  return <>
- {taskId && <DrawerController sections={drawerSections} key={taskId} taskId={taskId} workspaceId={workspaceId} data={data} tasks={tasks} full={full} setFull={setFull} openField={openField} setOpenField={setOpenField} onClose={closeTask} opener={opener} onMenu={(id, anchor) => onMenuChange({ taskId: id, anchor })} onProjectOpen={onProjectOpen} onCopy={() => { void copy(new URL(links.task(workspaceId, taskId), location.origin).href); }} onUndo={undo} onNotice={(message, kind) => toast(message, undefined, kind ?? 'info')} onPromoted={task => toast(`Converted to ${task.key}`, { label: 'Open', onAction: () => onTaskOpen(task.id) })} drafts={drafts.current} jobs={jobs} selectFiles={selectFiles} onRetry={id => { const job = jobs.find(row => row.id === id); if (job) void upload(job); }} onRemove={file => { void removeFile(file); }} onPreview={file => setPreviewId(file.id)} />}
+ {taskId && <DrawerController sections={drawerSections} key={taskId} taskId={taskId} workspaceId={workspaceId} data={data} tasks={tasks} full={full} setFull={setFull} openField={openField} setOpenField={setOpenField} onClose={closeTask} opener={opener} onMenu={(id, anchor) => onMenuChange({ taskId: id, anchor })} onProjectOpen={onProjectOpen} onCopy={() => { void copy(new URL(links.task(workspaceId, taskId), location.origin).href); }} onUndo={undo} onNotice={(message, kind) => toast(message, undefined, kind ?? 'info')} onPromoted={task => toast(`Converted to ${task.key}`, { label: 'Open', onAction: () => onTaskOpen(task.id) })} drafts={drafts.current} jobs={jobs} selectFiles={selectFiles} onRetry={id => { const job = jobs.find(row => row.id === id); if (job) void upload(job); }} onRemove={file => { void removeFile(file); }} onPreview={file => files ? files.openFile(file) : setPreviewId(file.id)} />}
  {!!data.projects.some(row => row.access === 'allowed') && <TaskFormDialog open={form.open && !form.taskId} {...(form.defaults ? { defaults: form.defaults } : {})} onClose={() => onFormChange({ ...form, open: false })} data={data} tasks={tasks} onSuccess={saved} />}
  {form.taskId && <EditFormController key={`${form.taskId}:${form.generation}`} taskId={form.taskId} data={data} tasks={tasks} open={form.open} onClose={() => onFormChange({ ...form, open: false })} onSuccess={saved} />}
  {menu && <TaskContextController intent={menu} workspaceId={workspaceId} onClose={() => onMenuChange(null)} onOpen={id => { onMenuChange(null); onTaskOpen(id); }} onEdit={id => { onMenuChange(null); onFormChange({ open: true, taskId: id, generation: form.generation + 1 }); }} onField={(id, field) => { onMenuChange(null); setOpenField(field); onTaskOpen(id); }} onDelete={id => { onMenuChange(null); if (data.preferences.confirmDel) setDeleteId(id); else void deleteTask(id); }} onCopy={id => { onMenuChange(null); void copy(new URL(links.task(workspaceId, id), location.origin).href); }} onUndo={undo} onArchived={id => { onMenuChange(null); if (taskId === id) closeTask(); }} onDuplicated={id => { onMenuChange(null); toast('Task duplicated', { label: 'Open', onAction: () => onTaskOpen(id) }); }} />}
