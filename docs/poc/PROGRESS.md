@@ -4,7 +4,7 @@
 
 - Current work unit: `WU-23` — **DONE**, bounded ROOT TECHNICAL PASS; actual implementation/checkpoint commit and normal push verification below.
 - Last completed implementation unit: `WU-23`.
-- Next permitted unit: `WU-24` after actual WU23 implementation/checkpoint push verification; a new owner is required. WU23 owner stops.
+- Next permitted unit: `WU-24` with a new owner after this actual docs-checkpoint normal push verification. WU23 owner stops.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
 - Visual baseline runtime: **ready**, 173 source scenario, repeatability zero-diff; đã inspect 9 ảnh đầy đủ và 10 contact sheets bao phủ 173 case.
 - Target React app: shared Calendar/Table/Board/List/whole rich Drawer/full forms/file foundation; actual Workspace Calendar/Timeline và My Tasks List/Calendar đạt WU14/15 native/shared renderer gates. Project Calendar và Project/saved Table/Board/List có feature harness; full wrappers WU16 và các scope còn lại theo ledger.
@@ -39,7 +39,7 @@
 | [WU-20](work-units/WU-20.md) | DONE — qualified Linux content/controls | `63d1d274482ea2f7bb4b861ccc26a7d06a191ba5` | [15 actual0](evidence/WU-20/commands.json), [36 explicit24+9+3 strict scopes](evidence/WU-20/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-20/review.json); wholepopup11 and prior debts remain WU29 |
 | [WU-21](work-units/WU-21.md) | DONE — qualified Linux content/dialog/action-controls | `b33bc4c0c7de5c3f76d0a8c9137247157c3c3130` | [Seven required actual0](evidence/WU-21/commands.json), [36 qualified scopes](evidence/WU-21/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-21/root-pass.json); footer15/fullprose/default debts remain WU29 |
 | [WU-22](work-units/WU-22.md) | DONE | `eee78d94617588f118abd21b6d89fc34164897bd` | [ROOT pass](evidence/WU-22/root-pass.json), [review](evidence/WU-22/review.json), [58-pair closure](evidence/WU-22/attempts/closure-02/report.json); qualified scope only, earlier WU29 debts retained |
-| [WU-23](work-units/WU-23.md) | DONE | actual implementation SHA recorded in following checkpoint | [ROOT pass](evidence/WU-23/root-pass.json), [immutable review candidate](evidence/WU-23/review.json), [48-pair closure](evidence/WU-23/attempts/closure-01/report.json); bounded scope only, all raw failures/missing-byte/WU29 debts retained |
+| [WU-23](work-units/WU-23.md) | DONE | `269ff53e582bcd4b4b8ba9740282dd9d8edcff33` | [ROOT pass](evidence/WU-23/root-pass.json), [immutable review candidate](evidence/WU-23/review.json), [48-pair closure](evidence/WU-23/attempts/closure-01/report.json); bounded scope only, all raw failures/missing-byte/WU29 debts retained |
 | [WU-24](work-units/WU-24.md) | NOT_STARTED | — | — |
 | [WU-25](work-units/WU-25.md) | NOT_STARTED | — | — |
 | [WU-26](work-units/WU-26.md) | NOT_STARTED | — | — |
@@ -938,3 +938,6 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 
 - ROOT TECHNICAL PASS received for stable review4f27d0eb/index04cd32fe39: all15678 mapped blobs/197459389 bytes plus four emitted audit files match staged Git/worktree; stagedcheck0/output0/unstaged0. Root independently verified48/144strict0/192PNG/current692/Source86/ports0, native8+shortcut1, scopedHTTP7, motion8 and default13+7 proofs, seven gates+lint, and inspected9 fresh Source images. Approval candidate/proofs remain immutable; root-pass.json supersedes their historical pending status.
 - AC1–4 DONE only in the explicit bounded scope above. No open production blocker. Raw index01/scroll03 gaps, all failed attempts and inherited WU29 debts remain unaccepted. Metadata-only final stage check and real commit/push/checkpoint verification follow; no later unit implemented.
+
+- Actual implementation committed 269ff53e582bcd4b4b8ba9740282dd9d8edcff33 (treee459d66a1ae092f251ac6e1e5f1ec807ccb9f704, parentc0a892d6af0bbffd3eeb2189ea1bf7a64d5cd32c) and normal git push origin HEAD:main exit0. Fresh actual remote/origin-main/HEAD all 269ff53e582bcd4b4b8ba9740282dd9d8edcff33; divergence0/0; clean before/after implementation push, Source86 clean and no listeners4173/5173. Actual stdout/SHA and bounded root evidence are in [checkpoint](evidence/WU-23/checkpoint.json).
+- This following docs-only checkpoint changes exactly PROGRESS plus WU23/checkpoint.json with the real implementation SHA/tree/parent/push result. Its own real commit/tree/normal-push/fresh-remote proof is verified after committing and reported to root without recursive SHA invention. WU23 STOP after this verification; WU24 requires a new owner. All raw failure/gap/inherited WU29 exclusions remain unchanged.
