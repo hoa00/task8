@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { immutableInputs, sourceAssets } from './assets.mjs';
+const attempt=process.argv.find(arg=>arg.startsWith('--attempt='))?.slice(10),root=`docs/poc/evidence/WU-23/attempts/${attempt}`;
+if(!attempt||fs.existsSync(root))throw Error('Unique cleanup attempt required');fs.mkdirSync(root,{recursive:true});fs.copyFileSync('tests/visual/settings/cleanup.mjs',`${root}/executed-harness.mjs`);
+const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
+const ports=execFileSync('ss',['-ltnp','( sport = :4173 or sport = :5173 )'],{encoding:'utf8'});fs.writeFileSync(`${root}/ports.log`,ports);assert.equal(ports.trim().split('\n').length,1);
+const source={head:git('-C','.reference/gr8r-studio','rev-parse','HEAD'),tree:git('-C','.reference/gr8r-studio','rev-parse','HEAD^{tree}'),tracked:git('-C','.reference/gr8r-studio','ls-files').split('\n').length,status:git('-C','.reference/gr8r-studio','status','--porcelain'),assets:sourceAssets()};
+assert.equal(source.head,'904205c626918ee96054eb35495c394a60c0c601');assert.equal(source.tree,'5db5f992886b2345881946cf85fac098307953a5');assert.equal(source.tracked,86);assert.equal(source.status,'');
+const remote=git('ls-remote','origin','refs/heads/main').split(/\s+/)[0],head=git('rev-parse','HEAD');assert.equal(remote,head);
+const report={status:'passed',runtime:{node:process.version},source,immutableInputs:immutableInputs(),ports:{command:['ss','-ltnp','( sport = :4173 or sport = :5173 )'],listeners:0,raw:'ports.log'},git:{head,tree:git('rev-parse','HEAD^{tree}'),originMain:git('rev-parse','origin/main'),freshActualRemoteMain:remote,target:'origin HEAD:main',remote:git('remote','get-url','origin')},scope:'Precommit cleanup/current Source/immutable inputs and actual fresh remote. Does not claim a clean worktree while owned changes are staged.'};
+fs.writeFileSync(`${root}/report.json`,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,sourceTracked:86,sourceClean:true,listeners:0,freshActualRemoteMain:remote}));

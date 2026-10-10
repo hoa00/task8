@@ -1,0 +1,11 @@
+$ eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search tests/visual/notifications tests/visual/people tests/visual/teams tests/visual/files tests/visual/settings eslint.config.mjs && node tests/workspace/boundaries.mjs
+
+/workspace/task8/tests/visual/settings/verify.mjs
+  23:1125  error  'document' is not defined          no-undef
+  24:3779  error  'document' is not defined          no-undef
+  24:4398  error  'getComputedStyle' is not defined  no-undef
+  24:5204  error  'document' is not defined          no-undef
+
+✖ 4 problems (4 errors, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.

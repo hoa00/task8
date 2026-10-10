@@ -15,4 +15,4 @@
    not restart. This opt-in affects only people menus, keeping defaults intact. */
 .people-menu.ui-popover { animation:ui-pop-in .16s var(--ease) both !important; }
 :root[data-motion=reduce] .people-menu.ui-popover { animation:fadeOnly .12s var(--ease) both !important; }
-@media(prefers-reduced-motion:reduce) { .people-menu.ui-popover { animation:fadeOnly .12s var(--ease) both !important; } }
+@media(prefers-reduced-motion:reduce) { :root:not([data-motion=full]) .people-menu.ui-popover { animation:fadeOnly .12s var(--ease) both !important; } }

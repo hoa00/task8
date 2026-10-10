@@ -18,6 +18,8 @@ import { peopleReads, readMember, readMemberSummary } from '../mock/people.ts';
 import { notificationOperations, runNotificationOperation } from '../mock/notifications.ts';
 import { teamOperations, runTeamOperation, hasTeamUndo } from '../mock/teams.ts';
 
+import { settingsOperations, runSettingsOperation } from '../mock/settings.ts';
+
 export const foundationReads = ['getSession', 'listWorkspaces', 'getBootstrap', 'getWorkspace', 'getProfile', 'getPreferences', 'getNotificationPreferences'] as const satisfies readonly OperationId[];
 // WU-07 needs only saved-view identity/ownership for the static route boundary.
 const shellReads = [...foundationReads, 'listSavedViews', 'listCalendarEvents', 'search'] as const;
@@ -37,11 +39,12 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
   for (const task of Object.values(dataset.tasks)) { const normalized = normalizeDescription(task.descriptionHtml); task.descriptionHtml = normalized.html; dataset.taskCommands.descriptionTexts[task.id] = normalized.text; }
   if (scenario === 'populated') persistMockDataset(storage, dataset);
   const client = createStudioClient(async (id, input, { signal }) => {
-    if (![...shellReads, ...taskFieldOperations, ...projectOperations, ...dashboardReads, ...notificationOperations, ...peopleReads, ...teamOperations].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number] | (typeof projectOperations)[number] | (typeof dashboardReads)[number] | (typeof notificationOperations)[number] | (typeof peopleReads)[number] | (typeof teamOperations)[number])) throw unavailable(id);
+    if (![...shellReads, ...taskFieldOperations, ...projectOperations, ...dashboardReads, ...notificationOperations, ...peopleReads, ...teamOperations, ...settingsOperations].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number] | (typeof projectOperations)[number] | (typeof dashboardReads)[number] | (typeof notificationOperations)[number] | (typeof peopleReads)[number] | (typeof teamOperations)[number] | (typeof settingsOperations)[number])) throw unavailable(id);
     await wait(state.delayMs, signal);
     if (state.failure === 'offline') throw new StudioTransportError('offline', 'Mock scenario is offline');
     if (state.failure === 'error') throw new StudioApiError({ error: { code: 'INTERNAL_ERROR', message: 'Mock scenario request failed' } });
     if (input.workspaceId && input.workspaceId !== dataset.workspaceId) throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Workspace data is not available' } });
+    if ((settingsOperations as readonly string[]).includes(id)) return runSettingsOperation(id, input, dataset, clock, scenario === 'populated' && storage ? staged => persistMockDataset(storage, staged) : undefined);
     if ((teamOperations as readonly string[]).includes(id) || id === 'undoCommand' && hasTeamUndo(dataset, input.undoId)) return runTeamOperation(id, input, dataset, clock, scenario === 'populated' && storage ? staged => persistMockDataset(storage, staged) : undefined);
     if ((notificationOperations as readonly string[]).includes(id)) { const result = runNotificationOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     if ((projectOperations as readonly string[]).includes(id) || id === 'undoCommand' && hasProjectUndo(dataset, input.undoId)) { const result = await runProjectOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }

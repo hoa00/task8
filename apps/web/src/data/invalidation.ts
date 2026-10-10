@@ -14,6 +14,7 @@ export const operationInvalidations: Partial<Record<OperationId, readonly string
   createSubtask: taskProjections, updateSubtask: taskProjections, deleteSubtask: taskProjections, promoteSubtask: taskProjections,
   createProject: projectProjections, updateProject: projectProjections, duplicateProject: projectProjections, archiveProject: projectProjections, restoreProject: projectProjections, restoreDeletedProject: projectProjections, deleteProject: projectProjections,
   createComment: [...taskProjections, 'comments', 'notifications'], deleteComment: [...taskProjections, 'comments'], restoreDeletedComment: [...taskProjections, 'comments'], addCommentReaction: [...taskProjections, 'comments'], removeCommentReaction: [...taskProjections, 'comments'],
+  updateWorkspace: ['workspace', 'bootstrap'],
   updatePreferences: ['preferences', 'bootstrap'], updateNotificationPreferences: ['notificationPreferences', 'bootstrap'], updateProjectOrder: ['bootstrap', 'projects'],
 };
 
@@ -21,6 +22,7 @@ export function invalidationKeys<K extends OperationId>(id: K, input: OperationI
   const operation = operations[id];
   if (operation.method === 'GET') return [];
   const parsed: Record<string, unknown> = operation.request.parse(input);
+  if (id === 'updateWorkspace') return [queryKeys.workspaces(), queryKeys.workspace(String(parsed.workspaceId))];
   if (id === 'updateProfile') return [queryKeys.profile(), queryKeys.session(), ['workspace']];
   if (typeof parsed.workspaceId !== 'string') throw new TypeError('Mutation requires a workspace scope');
   const root = queryKeys.workspace(parsed.workspaceId);

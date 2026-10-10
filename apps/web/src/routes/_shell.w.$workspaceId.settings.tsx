@@ -1,2 +1,3 @@
-import {createFileRoute,Outlet} from '@tanstack/react-router';
-export const Route=createFileRoute('/_shell/w/$workspaceId/settings')({component:Outlet});
+import {createFileRoute} from '@tanstack/react-router';
+import {SettingsLayout} from '../features/settings/SettingsLayout';
+export const Route=createFileRoute('/_shell/w/$workspaceId/settings')({component:SettingsLayout});

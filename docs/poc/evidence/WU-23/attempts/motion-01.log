@@ -1,0 +1,15 @@
+Owned source server: PID 478941, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Error: strict mode violation: locator('[data-settings-nav]') resolved to 2 elements:
+    1) <nav aria-label="Settings" data-settings-nav="true" class="overflow-y-auto border-0 border-r border-solid border-border bg-surface px-[10px] py-5 source-tablet:flex source-tablet:gap-1 source-tablet:overflow-x-auto source-tablet:border-b source-tablet:border-r-0 source-tablet:px-3 source-tablet:py-2">…</nav> aka getByRole('navigation', { name: 'Settings' }).first()
+    2) <nav aria-label="Settings" data-settings-nav="true" class="overflow-y-auto border-0 border-r border-solid border-border bg-surface px-[10px] py-5 source-tablet:flex source-tablet:gap-1 source-tablet:overflow-x-auto source-tablet:border-b source-tablet:border-r-0 source-tablet:px-3 source-tablet:py-2">…</nav> aka getByRole('navigation', { name: 'Settings' }).nth(1)
+
+Call log:
+[2m  - waiting for locator('[data-settings-nav]')[22m
+
+    at /workspace/task8/tests/visual/settings/motion.mjs:13:1881
+
+Node.js v24.13.0

@@ -1,0 +1,197 @@
+{
+  "status": "IN_PROGRESS_AWAITING_ROOT_TECHNICAL_REVIEW",
+  "unit": "WU-23",
+  "predecessor": "c0a892d6af0bbffd3eeb2189ea1bf7a64d5cd32c",
+  "target": "origin HEAD:main normal push only",
+  "counts": {
+    "visualPairs": 48,
+    "strictComparisons": 144,
+    "visualPNG": 192,
+    "native": 8,
+    "shortcut": 1,
+    "HTTP": 7,
+    "motion": 8,
+    "defaultPairs": 13,
+    "defaultProofs": 7,
+    "assetCount": 692,
+    "frozenManifests": 51
+  },
+  "reports": {
+    "closure-01": {
+      "path": "docs/poc/evidence/WU-23/attempts/closure-01/report.json",
+      "sha256": "afb62f12cbc89562ecf68804feeb7c22f72b78c4a8724772e3f9f03b54c388fd"
+    },
+    "matrix-03": {
+      "path": "docs/poc/evidence/WU-23/attempts/matrix-03/report.json",
+      "sha256": "5ead7c55292b3841177b5f4f9485fb59443afb897c6f335cac12f28071c51730"
+    },
+    "boundaries-02": {
+      "path": "docs/poc/evidence/WU-23/attempts/boundaries-02/report.json",
+      "sha256": "d06de10876c5bb7522368a7547451ea281fc399844e3fa62f8b05c7c4fa0ae43"
+    },
+    "native-03": {
+      "path": "docs/poc/evidence/WU-23/attempts/native-03/report.json",
+      "sha256": "5f49381a840129442b228afaa900288f71bfff73cb0ffa7ec1cc434f8b190d75"
+    },
+    "shortcut-01": {
+      "path": "docs/poc/evidence/WU-23/attempts/shortcut-01/report.json",
+      "sha256": "565cb979c9f362b20c6e760eb591d1ef2df3a72d03ef5603e6dd316c48912d67"
+    },
+    "http-01": {
+      "path": "docs/poc/evidence/WU-23/attempts/http-01/report.json",
+      "sha256": "aacb9ca1a00bac479cba72718fc64df868f2ce4a135a3fd528c63774b748c194"
+    },
+    "motion-02": {
+      "path": "docs/poc/evidence/WU-23/attempts/motion-02/report.json",
+      "sha256": "d63f15c4b37bd6b80cf9638a81d3eb22f3902d367a1288020184a236222db2c2"
+    },
+    "defaults-02": {
+      "path": "docs/poc/evidence/WU-23/attempts/defaults-02/report.json",
+      "sha256": "97fadd0de2f4eb041bb1e2590345973a43311d8ea7569fc64676f4aa73b7272f"
+    },
+    "core-08": {
+      "path": "docs/poc/evidence/WU-23/attempts/core-08/report.json",
+      "sha256": "c8a792af317f76598e204d19a1ca42feb83628776d1515c42aef882c4944c86d"
+    },
+    "lint-01": {
+      "path": "docs/poc/evidence/WU-23/attempts/lint-01/report.json",
+      "sha256": "e4705d1078ab5fd3e7900ecc232dc658da046e89d8b35b028409ff0659028f10"
+    },
+    "cleanup-01": {
+      "path": "docs/poc/evidence/WU-23/attempts/cleanup-01/report.json",
+      "sha256": "c78f63c947a986bd4a283a3260a21cd21ebfc34de92738f97fbec7c06e2b7887"
+    }
+  },
+  "activeChangedPaths": [
+    ".gitattributes",
+    "apps/web/src/app/shell/AppShell.tsx",
+    "apps/web/src/app/shell/shell.css",
+    "apps/web/src/data/adapters/mock.ts",
+    "apps/web/src/data/invalidation.ts",
+    "apps/web/src/data/mock/settings.ts",
+    "apps/web/src/features/calendar/calendar.css",
+    "apps/web/src/features/files/FileOverlayHost.tsx",
+    "apps/web/src/features/files/files.css",
+    "apps/web/src/features/people/people.css",
+    "apps/web/src/features/search/SearchOverlayHost.tsx",
+    "apps/web/src/features/settings/Appearance.tsx",
+    "apps/web/src/features/settings/SettingsLayout.tsx",
+    "apps/web/src/features/settings/SettingsPage.tsx",
+    "apps/web/src/features/settings/useSettingsCommands.ts",
+    "apps/web/src/features/tasks/TaskTableCell.tsx",
+    "apps/web/src/features/tasks/board.css",
+    "apps/web/src/features/tasks/date-display.ts",
+    "apps/web/src/features/tasks/detail/TaskOverlayHost.tsx",
+    "apps/web/src/features/teams/teams.css",
+    "apps/web/src/routes/_shell.w.$workspaceId.settings.$section.tsx",
+    "apps/web/src/routes/_shell.w.$workspaceId.settings.tsx",
+    "apps/web/src/theme/ThemeProvider.tsx",
+    "apps/web/src/theme/preferences.ts",
+    "apps/web/tests/data/settings.test.ts",
+    "docs/poc/DECISIONS.md",
+    "docs/poc/PROGRESS.md",
+    "docs/poc/VISUAL_PARITY.md",
+    "eslint.config.mjs",
+    "package.json",
+    "packages/contracts/src/models.ts",
+    "packages/ui/src/styles/overlays.css",
+    "packages/ui/src/styles/theme.css",
+    "tests/data/http-bundle.mjs",
+    "tests/visual/settings/archive.mjs",
+    "tests/visual/settings/assets.mjs",
+    "tests/visual/settings/cleanup.mjs",
+    "tests/visual/settings/closure.mjs",
+    "tests/visual/settings/defaults.mjs",
+    "tests/visual/settings/freeze.mjs",
+    "tests/visual/settings/gates.mjs",
+    "tests/visual/settings/http.mjs",
+    "tests/visual/settings/index-audit.py",
+    "tests/visual/settings/interactions.mjs",
+    "tests/visual/settings/motion.mjs",
+    "tests/visual/settings/run.mjs",
+    "tests/visual/settings/verify.mjs"
+  ],
+  "currentAssetCount": 692,
+  "currentAssetsSha256": "fcdd07e49b0f6c247bfd848bdf5b0b281102d4e0d886c8f76f5da3423db0f867",
+  "runtimePublic": "runtime-final.json",
+  "scope": "48 explicit natural Settings/dialog/select/boundary pairs only; BOTH Linux Chromium145 --disable-partial-raster, threshold0/includeAAtrue/maxDiffPixels0/masks[], equal absolute float boxes/clips. No Source-full/motion-PNG/default-raster/Darwin/fullshell/device/user/project/real-backend acceptance. All inherited debts and raw failures remain unaccepted.",
+  "HTTPBridge": {
+    "attempt": "http-01",
+    "archive": "docs/poc/evidence/WU-23/archives/http-01/manifest.json",
+    "originalAssetCount": 606,
+    "currentAssetCount": 692,
+    "productionChanged": [
+      "apps/web/src/features/settings/SettingsLayout.tsx"
+    ],
+    "changedBuildKeys": [
+      "apps/web/dist/assets/SettingsLayout-hfPM4A8W.js",
+      "apps/web/dist/assets/_shell.w._workspaceId.settings-CwPYvLLJ.js",
+      "apps/web/dist/assets/_shell.w._workspaceId.settings._section-BSfGZ7pv.js",
+      "apps/web/dist/assets/_shell.w._workspaceId.settings._section-DeWvvDMS.js",
+      "apps/web/dist/assets/app-DBKF8shT.js",
+      "apps/web/dist/assets/projectRoutes-CxibUvWL.js",
+      "apps/web/dist/assets/router-B1Lil2GQ.js",
+      "apps/web/dist/assets/shellHarness-xX4xF_NQ.js",
+      "apps/web/dist/index.html",
+      "apps/web/dist/project-routes.html",
+      "apps/web/dist/shell-harness.html",
+      "apps/web/dist-http/assets/SettingsLayout-ClN5Swc1.js",
+      "apps/web/dist-http/assets/_shell.w._workspaceId.settings-Bhcs-sNK.js",
+      "apps/web/dist-http/assets/_shell.w._workspaceId.settings._section-DjlDGpas.js",
+      "apps/web/dist-http/assets/_shell.w._workspaceId.settings._section-rbI7WKMD.js",
+      "apps/web/dist-http/assets/app-CPzj66aQ.js",
+      "apps/web/dist-http/index.html",
+      "apps/web/dist/assets/SettingsLayout-CVj-WtXA.js",
+      "apps/web/dist/assets/_shell.w._workspaceId.settings-CVmxRDbg.js",
+      "apps/web/dist/assets/_shell.w._workspaceId.settings._section-C6M46fvt.js",
+      "apps/web/dist/assets/_shell.w._workspaceId.settings._section-D_4w4v6R.js",
+      "apps/web/dist/assets/app-DkWDWi3G.js",
+      "apps/web/dist/assets/projectRoutes-D96Br9oM.js",
+      "apps/web/dist/assets/router-dAAOr0pl.js",
+      "apps/web/dist/assets/shellHarness-CMCBLAzE.js",
+      "apps/web/dist-http/assets/SettingsLayout-D_7v05_T.js",
+      "apps/web/dist-http/assets/_shell.w._workspaceId.settings-D7XRDx8o.js",
+      "apps/web/dist-http/assets/_shell.w._workspaceId.settings._section-Dd-ocRAe.js",
+      "apps/web/dist-http/assets/_shell.w._workspaceId.settings._section-xNovvXIN.js",
+      "apps/web/dist-http/assets/app-BJcM5g0O.js"
+    ],
+    "reason": "Only SettingsLayout route scroll/focus changed after this actual HTTP capture; current native, paired motion, whole Settings visuals and built bundles close that bounded change. Original HTTP report is not relabeled current-final assets.",
+    "audit": {
+      "requests": 111,
+      "writes": 10,
+      "intentionalErrors": 12,
+      "incidentalErrors": [],
+      "pending": []
+    }
+  },
+  "archivePolicy": "Every actual capture keeps its unique executed harness/log/status/PNG/map and actual Source+mock+HTTP built bytes archived before postcapture production edits. Frozen old failures/partial gaps are retained, not relabeled. Initial674/current692 are file counts, not byte counts.",
+  "defaultPolicy": "Default13 compares archived WU22 Target with current Target;7 exact known replacements preserve default branches. Explicit full OS-reduce is QUIRK03 intentional Target-only correction. No Source-full or motion-PNG parity.",
+  "decisions": [
+    "single canonical profile and membership projection; five-key startup cache only",
+    "six Source accent enum minimal WU02 preference prerequisite correction; project catalog unchanged",
+    "only Source profile-error cloned prefs.name empty record projection for AC2; original362 failed",
+    "timezone missing-option first-display projection without canonical mutation",
+    "Source-dateFmt old Files fallback and prior-year MMM d year",
+    "typed onRendered pathname-guard reset and unique owned nav/body keys; same-section200 preserved",
+    "destructive workspace demo/unavailable honesty; no reset/fake auth/backend success"
+  ],
+  "excludedDebts": "All inherited WU10\u201322/WU29 raster/default/mobile/Darwin/fullshell/missing-byte/whole-upload/static42 positive-progress debts remain unaccepted. No later unit, translation/timezone redesign/auth/provisioning/D1/R2 implemented.",
+  "rootReview": "Root reported all production findings closed and independently checked48 visual pairs/native8/shortcut1/HTTP7/motion8/default13; formal pass remains pending final stage/index/cleanup.",
+  "staging": {
+    "index02": "docs/poc/evidence/WU-23/attempts/index-02/report.json",
+    "index02Sha256": "6885dcd2c2f89ed4fc5e322fe2b90de39f03829c9961e0bb5c45b2065da096c0",
+    "stagedVerifiedFiles": 15666,
+    "stagedVerifiedBytes": 188947927,
+    "whitespaceExit": 0,
+    "whitespaceBytes": 0,
+    "literalWU23ImmutableExceptions": 130,
+    "activeCodeWaivers": 0,
+    "gap": "Index01 raw cached-check stdout/stderr were not emitted; failed original status and byte count retained. Fresh check02 is independent execution, not recovered original bytes.",
+    "emittedAuditPolicy": "Self-emitted index output excluded explicitly; reviewer checks emitted files separately. Final metadata gets another staged audit.",
+    "index03": "docs/poc/evidence/WU-23/attempts/index-03/report.json",
+    "index03Sha256": "5faafb1ae8b36a13d536c24fb5e02bfc981f65556e8931524fb949cbb87be8f6",
+    "unpersistedIndex01OutputBytes": 1570974,
+    "missingByteDisposition": "Original stdout/stderr bytes/SHA absent; FAILED remains. Fresh check02 separate, no recovery. Unaccepted WU29 debt.",
+    "emittedIndex02And03": "Staged before final index04; index04 emitted files explicitly excluded and independently reviewed."
+  }
+}

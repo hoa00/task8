@@ -1,0 +1,1 @@
+import{n as e}from"./PendingPage-Di_0q5Et.js";var t=e;export{t as component};

@@ -14,3 +14,6 @@
 @media (prefers-reduced-motion: no-preference) {
   :root:not([data-motion="reduce"]) .file-catalogue-menu[data-entered] { animation: ui-pop-in .16s var(--ease) both !important; }
 }
+
+/* QUIRK-03: explicit full retains the normal menu entrance under OS reduce. */
+:root[data-motion=full] .file-catalogue-menu[data-entered] { animation: ui-pop-in .16s var(--ease) both !important; }

@@ -37,7 +37,7 @@
 .calendar-card-meta { @apply flex items-center gap-[6px] text-2xs text-muted; }
 .calendar-over { @apply bg-accent-soft; }
 .calendar-moved { animation: popCheck .4s var(--spring) both; }
-@media (prefers-reduced-motion: reduce) { .calendar-moved { animation: fadeOnly .12s both !important; } }
+@media (prefers-reduced-motion: reduce) { :root:not([data-motion=full]) .calendar-moved { animation: fadeOnly .12s both !important; } }
 @media(max-width:640px) {
  .calendar-month-grid { grid-auto-rows: minmax(72px,1fr); }
  .calendar-chip-title,.calendar-chip-avatar { display: none; }

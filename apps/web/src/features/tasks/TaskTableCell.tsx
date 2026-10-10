@@ -13,7 +13,7 @@ import { useTaskListCommands } from './useTaskListCommands';
 import { formatTaskDate } from './date-display';
 import type { TaskTableModel } from './table-types';
 
-const absoluteDate = (date: string) => new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(`${date.slice(0, 10)}T00:00:00Z`));
+import { formatAbsoluteDate as absoluteDate } from './date-display';
 const dash = <span className="text-muted">—</span>;
 export interface TaskTableRowProps { task: TaskDto; model: TaskTableModel; columns: readonly TaskColumnId[] }
 export function TaskTableRow({ task, model, columns }: TaskTableRowProps) {

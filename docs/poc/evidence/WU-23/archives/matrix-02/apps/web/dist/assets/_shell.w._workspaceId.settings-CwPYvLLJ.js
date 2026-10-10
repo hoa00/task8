@@ -1,0 +1,1 @@
+import{i as e}from"./SettingsLayout-hfPM4A8W.js";var t=e;export{t as component};

@@ -30,6 +30,6 @@ export function applyRootPreferences(preferences: ThemePreferences, root = docum
   else root.setAttribute('data-accent', preferences.accent);
   root.setAttribute('data-side', preferences.side);
   root.setAttribute('data-density', preferences.density);
-  if (preferences.motion === 'reduce') root.setAttribute('data-motion', 'reduce');
+  if (preferences.motion !== 'system') root.setAttribute('data-motion', preferences.motion);
   else root.removeAttribute('data-motion');
 }

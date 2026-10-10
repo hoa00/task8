@@ -1,0 +1,94 @@
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --breakpoint-*: initial;
+  --spacing: 4px;
+}
+@theme inline {
+  --font-sans: var(--font);
+  --font-mono: var(--mono);
+  --color-canvas: var(--bg);
+  --color-sidebar: var(--bg-side);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-sunken: var(--sunken);
+  --color-overlay: var(--overlay);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-divider: var(--divider);
+  --color-foreground: var(--text);
+  --color-secondary: var(--text-2);
+  --color-muted: var(--text-3);
+  --color-faint: var(--text-4);
+  --color-inverse: var(--text-inv);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-green: var(--green);
+  --color-amber: var(--amber);
+  --color-red: var(--red);
+  --color-blue: var(--blue);
+  --color-violet: var(--violet);
+  --color-teal: var(--teal);
+  --color-rose: var(--rose);
+  --color-orange: var(--orange);
+  --color-gray: var(--gray);
+  --color-green-soft: var(--green-soft);
+  --color-amber-soft: var(--amber-soft);
+  --color-red-soft: var(--red-soft);
+  --color-status-backlog: var(--st-backlog);
+  --color-status-todo: var(--st-todo);
+  --color-status-progress: var(--st-progress);
+  --color-status-review: var(--st-review);
+  --color-status-done: var(--st-done);
+  --radius-xs: var(--r-xs);
+  --radius-sm: var(--r-sm);
+  --radius-default: var(--r);
+  --radius-lg: var(--r-lg);
+  --radius-full: var(--r-full);
+  --text-2xs: var(--fs-2xs);
+  --text-xs: var(--fs-xs);
+  --text-sm: var(--fs-sm);
+  --text-body: var(--fs);
+  --text-md: var(--fs-md);
+  --text-lg: var(--fs-lg);
+  --text-xl: var(--fs-xl);
+  --text-2xl: var(--fs-2xl);
+  --spacing-control-xs: var(--h-xs);
+  --spacing-control-sm: var(--h-sm);
+  --spacing-control-md: var(--h-md);
+  --spacing-control-lg: var(--h-lg);
+  --spacing-sidebar: var(--side-w);
+  --spacing-side-row: var(--side-row);
+  --spacing-row: var(--row-h);
+  --spacing-card: var(--card-pad);
+  --spacing-topbar: var(--topbar-h);
+  --spacing-gutter: var(--gutter);
+  --shadow-elevation-sm: var(--shadow-sm);
+  --shadow-elevation-card: var(--shadow-card);
+  --shadow-elevation-pop: var(--shadow-pop);
+  --shadow-elevation-drag: var(--shadow-drag);
+  --ease-source: var(--ease);
+  --ease-spring: var(--spring);
+  --ease-panel: var(--ease-drawer);
+  --default-transition-duration: var(--dur);
+  --default-transition-timing-function: var(--ease);
+}
+@custom-variant source-wide { @media (max-width: 1100px) { @slot; } }
+@custom-variant source-tablet { @media (max-width: 900px) { @slot; } }
+@custom-variant source-mobile { @media (max-width: 640px) { @slot; } }
+@custom-variant source-hover (&:hover);
+/* QUIRK-03: explicit full overrides OS reduce; system keeps source default. */
+@custom-variant source-reduce {
+  @media (prefers-reduced-motion: reduce) { &:where(:root:not([data-motion='full']) *) { @slot; } }
+  &:where(:root[data-motion='reduce'] *) { @slot; }
+}
+@custom-variant source-dark {
+  &:where(:root[data-theme='dark'] *) { @slot; }
+  @media (prefers-color-scheme: dark) { &:where(:root:not([data-theme='light']) *) { @slot; } }
+}

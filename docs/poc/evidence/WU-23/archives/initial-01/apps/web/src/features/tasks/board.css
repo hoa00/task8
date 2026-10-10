@@ -1,0 +1,57 @@
+/* TaskBoard owns static utilities, source hover/scroll/drop state and one-shot motion. */
+@layer utilities {
+.task-board { @apply flex min-h-0 flex-1 items-start gap-3 overflow-x-auto px-[var(--gutter)] pb-6 pt-[14px]; }
+.task-board::after { content: ''; flex: 0 0 8px; }
+.task-board-column { @apply flex max-h-full w-[284px] shrink-0 flex-col rounded-lg border border-solid border-divider bg-sunken; }
+.task-board-collapsed { @apply w-11 cursor-pointer items-center pt-2; }
+.task-board-vertical-name { @apply mt-2 flex items-center gap-2 text-sm font-medium text-secondary; writing-mode: vertical-rl; }
+.task-board-column-heading { @apply flex items-center gap-[7px] pb-[6px] pl-3 pr-2 pt-[10px] text-sm font-semibold; }
+.task-board-column-count { @apply font-medium text-muted; }
+.task-board-column-actions { @apply ml-auto flex gap-0 opacity-55 transition-opacity; }
+.task-board-column:hover .task-board-column-actions { @apply opacity-100; }
+.task-board-column-body { @apply flex min-h-[60px] flex-1 flex-col gap-[6px] overflow-y-auto px-2 pb-2 pt-1; scrollbar-width: none; }
+.task-board-column-body::-webkit-scrollbar { display: none; }
+.task-board-over { background: color-mix(in srgb,var(--accent) 6%,var(--sunken)); border-color: var(--accent-line); }
+.task-board-card { @apply relative flex cursor-pointer flex-col gap-2 rounded-default bg-surface transition-[box-shadow,transform]; padding: var(--card-pad) calc(var(--card-pad) + 2px); box-shadow: var(--shadow-card); transition: box-shadow var(--dur), transform .18s var(--ease); }
+.task-board-card:hover { transform: translateY(-1px); box-shadow: 0 2px 6px -2px rgba(0,0,0,.08),0 0 0 1px var(--border-strong); }
+.task-card-dragging { opacity: .35; }
+.task-card-ghost { box-shadow: var(--shadow-drag); transform: rotate(1.5deg); }
+.task-card-top { @apply flex items-start gap-0; }
+.task-card-title { @apply min-w-0 flex-1 text-body font-[450] leading-[1.4]; overflow-wrap: break-word; }
+.task-card-done .task-card-title { @apply text-muted line-through; }
+.task-card-done-icon { @apply mr-[7px] mt-[2px] inline-flex; }
+.task-card-actions { @apply absolute right-[6px] top-[6px] hidden gap-px rounded-sm bg-surface p-px; box-shadow: 0 0 0 1px var(--border); }
+.task-board-card:hover .task-card-actions { @apply flex; }
+.task-card-labels { @apply flex flex-wrap gap-1; }
+.task-card-meta { @apply flex items-center gap-[10px] text-xs text-muted; }
+.task-card-meta-item { @apply inline-flex items-center gap-[3px]; }
+.task-card-due { @apply inline-flex items-center gap-1 whitespace-nowrap text-xs text-secondary tabular-nums; }
+.task-card-due.text-red { color: var(--red); }
+.task-card-due.text-amber { color: var(--amber); }
+.task-card-subtasks { @apply flex items-center gap-2 text-2xs text-muted; }
+.task-card-key { @apply font-mono text-[11px] text-muted; }
+.task-board-drop-line { @apply h-[2px] shrink-0 rounded-[2px] bg-accent; margin: -4px 2px; }
+.task-board-add-card { @apply flex h-[30px] w-full shrink-0 items-center gap-[6px] rounded-sm px-2 text-left text-sm text-muted; }
+.task-board-add-card:hover { @apply bg-surface-3 text-foreground; }
+.task-card-composer { @apply flex flex-col gap-2 rounded-default bg-surface px-[10px] py-2; box-shadow: 0 0 0 1px var(--accent-line),0 0 0 3px var(--accent-soft); }
+.task-card-composer textarea { @apply min-h-[38px] resize-none border-0 bg-transparent p-0 text-body outline-none; }
+.task-board-menu-heading { @apply px-2 pb-1 pt-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted; }
+.task-card-moved { animation: taskBoardLand .5s var(--spring) both; }
+.task-card-added { animation: taskBoardRise .3s var(--ease) both,taskBoardAddRing 1.4s var(--ease) both; }
+.task-card-done.task-card-done-effect { animation: taskBoardDoneRing 1s var(--ease) both; }
+.task-card-done-effect .task-card-done-icon { animation: taskBoardPop .42s var(--spring) both; }
+.task-card-done-effect .task-card-title { text-decoration: none !important; background: linear-gradient(currentColor,currentColor) 0 58%/0 1.5px no-repeat; animation: taskBoardStrike .38s .1s var(--ease) forwards; }
+}
+@keyframes taskBoardRise { from {opacity:0;transform:translateY(8px)} to {opacity:1;transform:none} }
+@keyframes taskBoardLand { 0% {transform:scale(1.04) rotate(-1.2deg);box-shadow:var(--shadow-drag)} 100% {transform:none;box-shadow:var(--shadow-card)} }
+@keyframes taskBoardDoneRing { from {box-shadow:0 0 0 2px var(--green),var(--shadow-card)} to {box-shadow:var(--shadow-card)} }
+@keyframes taskBoardAddRing { from {box-shadow:0 0 0 2px var(--accent-line),var(--shadow-card)} to {box-shadow:var(--shadow-card)} }
+@keyframes taskBoardPop { 0% {transform:scale(.55)} 55% {transform:scale(1.2)} 100% {transform:scale(1)} }
+@keyframes taskBoardStrike { to {background-size:100% 1.5px} }
+@media(prefers-reduced-motion:reduce) { :root:not([data-motion='full']) .task-board-card,:root:not([data-motion='full']) .task-card-title,:root:not([data-motion='full']) .task-card-done-icon { animation-duration: .01ms !important; } }
+:root[data-motion='reduce'] .task-board-card,:root[data-motion='reduce'] .task-card-title,:root[data-motion='reduce'] .task-card-done-icon { animation-duration: .01ms !important; }
+
+@media(prefers-reduced-motion:reduce) { .task-board-card:hover { transform: none; } }
+:root[data-motion='reduce'] .task-board-card:hover { transform: none; }
+
+@layer utilities { @media(max-width:900px) { .task-board { padding-bottom: 90px; } } }

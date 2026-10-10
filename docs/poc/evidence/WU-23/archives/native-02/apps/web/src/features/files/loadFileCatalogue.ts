@@ -1,0 +1,3 @@
+import type { FileDto, OperationInput } from '@studio/contracts/api';
+import type { StudioClient } from '../../data/operations';
+export async function loadFileCatalogue(client: StudioClient, input: OperationInput<'listProjectFiles'>, signal?: AbortSignal): Promise<readonly FileDto[]> { const files: FileDto[] = [], seen = new Set<string>(); let cursor: string | undefined; do { const result = await client.execute('listProjectFiles', { ...input, query: { ...input.query, limit: 200, ...(cursor ? { cursor } : {}) } }, signal ? { signal } : {}); files.push(...result.data.items); const next = result.data.nextCursor; if (next && seen.has(next)) throw Error('File pagination did not advance'); if (next) seen.add(next); cursor = next ?? undefined; } while (cursor); return files; }

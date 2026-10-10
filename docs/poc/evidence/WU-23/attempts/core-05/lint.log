@@ -1,0 +1,11 @@
+$ eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search tests/visual/notifications tests/visual/people tests/visual/teams tests/visual/files tests/visual/settings eslint.config.mjs && node tests/workspace/boundaries.mjs
+
+/workspace/task8/tests/visual/settings/http.mjs
+  15:16  error  'select' is defined but never used  no-unused-vars
+
+/workspace/task8/tests/visual/settings/verify.mjs
+  20:721  error  Parsing error: Unexpected token ' to express blank retained draft required by AC2; current me/avatar/title remain original. Original raw362 name-reset difference stays failed at matrix01. No Source templates/styles/assets changed.'
+
+✖ 2 problems (2 errors, 0 warnings)
+
+[ELIFECYCLE] Command failed with exit code 1.

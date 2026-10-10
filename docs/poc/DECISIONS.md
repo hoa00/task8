@@ -401,3 +401,16 @@ WU-19 evaluates the previously qualified matched BOTH Chromium145 Linux `--disab
 
 
 Source Back clears selection and preserves rail scroll but leaves focus on BODY. Target restores focus to the originating visible row or rail fallback as an explicit accessibility policy. This is not presented as identical Source focus behavior. Source Inbox category-count closure observes the filtered list through late binding; tab counts therefore follow the current category/unread view, while Sidebar principal counts remain independent.
+
+
+### WU-23 canonical Settings and bounded Source corrections
+
+Settings uses canonical workspace, current User profile/membership and MemberPreferences operations, staged persistence before memory commit and existing query invalidation. Profile name/title are not copied into preferences; the existing five-field UI theme cache is a projection for startup paint. Failed edits retain drafts; color Retry preserves the exact failed operation, and later preference changes send all pending keys. Source motion dropdown remains system/reduce; the existing full contract is supported without adding a Source-absent choice.
+
+MemberPreferences accent incorrectly inherited project colors. The WU23 prerequisite correction replaces only that preference enum with the six Source colors indigo/blue/violet/teal/rose/graphite, including validation; project colors remain unchanged. This minimally reopens the WU02 preference contract to close WU23, not a catalog refactor.
+
+The original Source profile validation render resets blank name to duplicated prefs.name. AC2 requires retaining the blank draft against the canonical profile. Original matrix01 raw362 remains failed; qualifying comparison projects only cloned fixture.prefs.name to empty while Source current member/avatar/title stay unchanged. No Source file/style/template is edited. The locked timezone is absent from Source options, so native/enhanced selection displays the first Pacific option; Settings reproduces this value projection without altering the stored timezone or creating timezone behavior. Language/time selections keep English labels; Source dateFmt also controls old Files/comment/activity absolute-date fallbacks and past-year MMM d includes the year.
+
+QUIRK-03 explicit full sets data-motion=full and overrides OS reduce for the existing motion branches. This is a deliberate correction, separately measured on Target, not Source-full parity. System/reduce defaults are qualified against actual Source computed phases and archived Target default samples. Native Source recreates section body/nav and loses nav focus on route changes; Settings keys those owned nodes and resets them on typed Router onRendered after nested restoration when pathname changes. Same-section rerenders preserve body scroll. No timer, global focus blur or routing-wide behavior is added.
+
+Workspace destructive confirmation preserves Source layout and typed-name control, but respects existing demo/unavailable capabilities: no dataset reset, fake auth redirect, HTTP fallback or service-success claim. Security/Billing/Members/Teams and real HTTP/D1/R2 provisioning remain later-unit scope. All existing WU10–22/WU29 raw failure/raster/missing-byte/default-positive-progress debts are preserved.

@@ -13,7 +13,10 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   const [preferences, setValue] = useState(readThemePreferences);
   const systemDark = useSyncExternalStore(subscribeDark, () => darkMedia.matches);
   const setPreferences = useCallback((patch: Partial<ThemePreferences>) => {
-    setValue(previous => ({ ...previous, ...patch }));
+    setValue(previous => {
+      const next = { theme: patch.theme ?? previous.theme, accent: patch.accent ?? previous.accent, side: patch.side ?? previous.side, density: patch.density ?? previous.density, motion: patch.motion ?? previous.motion };
+      return Object.keys(next).every(key => next[key as keyof ThemePreferences] === previous[key as keyof ThemePreferences]) ? previous : next;
+    });
   }, []);
   useLayoutEffect(() => {
     applyRootPreferences(preferences);

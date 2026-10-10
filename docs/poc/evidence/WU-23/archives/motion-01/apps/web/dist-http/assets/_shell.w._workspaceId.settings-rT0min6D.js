@@ -1,0 +1,1 @@
+import{i as e}from"./SettingsLayout-W5sN9FLc.js";var t=e;export{t as component};

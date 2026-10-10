@@ -1,0 +1,49 @@
+{
+  "status": "failed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-01/typecheck.log",
+      "logSha256": "f7d4f130f0c8cd6839ec758b14fd35bf230942aa880e992e453acdd7c412e705"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-01/test.log",
+      "logSha256": "a818af45bf51ef38640fd61f8bec5acb5c0a60896e460136032d2a7abc02f0c2"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 1,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-01/lint.log",
+      "logSha256": "eeb5ce6ee2af790108853bd5d8a70375403b8e1bc70b3fb9f1a251667d91a5e7"
+    }
+  ]
+}

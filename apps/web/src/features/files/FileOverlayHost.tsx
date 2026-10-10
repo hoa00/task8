@@ -19,7 +19,7 @@ import { FileIntentContext } from './file-intents';
 export interface FileOverlayHostProps { data: BootstrapDto; children: ReactNode }
 function subscribeReducedMotion(callback: () => void) { const media = matchMedia('(prefers-reduced-motion: reduce)'); media.addEventListener('change', callback); return () => media.removeEventListener('change', callback); }
 export function FileOverlayHost({ data, children }: FileOverlayHostProps) {
-  const previewRef = useRef<HTMLElement>(null), { preferences } = useTheme(), osReduced = useSyncExternalStore(subscribeReducedMotion, () => matchMedia('(prefers-reduced-motion: reduce)').matches, () => false), reduced = preferences.motion === 'reduce' || osReduced;
+  const previewRef = useRef<HTMLElement>(null), { preferences } = useTheme(), osReduced = useSyncExternalStore(subscribeReducedMotion, () => matchMedia('(prefers-reduced-motion: reduce)').matches, () => false), reduced = preferences.motion === 'reduce' || preferences.motion === 'system' && osReduced;
   const [copyMotion, setCopyMotion] = useState<{ fileId: string; revision: number } | null>(null);
   useLayoutEffect(() => { if (!copyMotion || !reduced || previewRef.current?.dataset.filePreview !== copyMotion.fileId) return; /* Source's unconditional reduced fade replays on Copy render:120ms/ease/fillnone. Keep the same node/focus and shared default Dialog. */ const animation = previewRef.current.animate([{ opacity: '0', offset: 0, easing: 'ease' }, { opacity: '1', offset: 1, easing: 'ease' }], { duration: 120, fill: 'none' }); return () => animation.cancel(); }, [copyMotion, reduced]);
 

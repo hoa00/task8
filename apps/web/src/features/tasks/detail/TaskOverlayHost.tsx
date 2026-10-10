@@ -27,7 +27,10 @@ interface UploadJob extends AttachmentUpload { projectId: TaskDto['projectId']; 
 function availableChild<T>(value: T | undefined, error: unknown): T | undefined { return error instanceof StudioApiError && (error.status === 403 || error.status === 404) ? undefined : value; }
 export function TaskOverlayHost({ data, taskId, onTaskOpen, onTaskClose, opener, form, onFormChange, menu, onMenuChange, onProjectOpen, drawerSections }: TaskOverlayHostProps) {
  const files = useContext(FileIntentContext), workspaceId = data.workspace.id, { client } = useDataRuntime(), cache = useQueryClient(), commands = useTaskListCommands(workspaceId), dataset = useTaskListDataset(workspaceId, normalizeTaskView({ query: { limit: 200 } }).query);
- const [full, setFull] = useState(data.preferences.openTasks === 'full'), [openField, setOpenField] = useState<keyof TaskFieldValues | null>(null), [previewId, setPreviewId] = useState<string | null>(null), [toasts, setToasts] = useState<ToastMessage[]>([]), [deleteId, setDeleteId] = useState<string | null>(null), [jobs, setJobs] = useState<readonly UploadJob[]>([]);
+ const [view, setView] = useState<{ taskId: string | undefined; full: boolean }>({ taskId, full: data.preferences.openTasks === 'full' }), [openField, setOpenField] = useState<keyof TaskFieldValues | null>(null), [previewId, setPreviewId] = useState<string | null>(null), [toasts, setToasts] = useState<ToastMessage[]>([]), [deleteId, setDeleteId] = useState<string | null>(null), [jobs, setJobs] = useState<readonly UploadJob[]>([]);
+ if (view.taskId !== taskId) setView({ taskId, full: data.preferences.openTasks === 'full' });
+ const full = view.taskId === taskId ? view.full : data.preferences.openTasks === 'full';
+ const setFull = (full:boolean) => setView({ taskId, full });
  const drafts = useRef(new Map<string, TaskDrawerDraft>()), activeJobs = useRef(new Set<string>());
  const tasks = dataset.data ?? [];
  function toast(message: string, action?: ToastMessage['action'], kind: ToastMessage['kind'] = 'success') { setToasts(current => [{ id: crypto.randomUUID(), message, kind, ...(action ? { action, duration: 0 } : {}) }, ...current]); }

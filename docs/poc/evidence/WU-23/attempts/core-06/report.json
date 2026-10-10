@@ -1,0 +1,97 @@
+{
+  "status": "passed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-06/typecheck.log",
+      "logSha256": "c5fb0b48fb7661eebdb53d9c619da0d9dd223739a653649d5de339a411a21a78"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-06/test.log",
+      "logSha256": "30b7227d703a0b7767ccde05e4a733111d6335818cb0549a28a4efa0f6b4bb78"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-06/lint.log",
+      "logSha256": "4e81039252f7c1a2c622636fa8a5d8f7c22b663071ebc46c75696de1faa3daf1"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-06/build.log",
+      "logSha256": "5ace35ed3cd32f4bd14532de25ff68dc90c695ff5791f27a8ea878df4b04bdfa"
+    },
+    {
+      "id": "HTTPbuild",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-06/HTTPbuild.log",
+      "logSha256": "aa6d3d12b3d6a11e5107294f9d165dc0e98054c8c181ba2ef48a6ae7b66e7533"
+    },
+    {
+      "id": "HTTPbundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-23",
+        "--evidence-suffix=core-06-http-bundle"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-06/HTTPbundle.log",
+      "logSha256": "2119ebe3bea865665e5a7989a8dc26580c2aabad1879a6ca6bda03fa58df4e64"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-23/attempts/core-06/reference.log",
+      "logSha256": "6750afa7d8c51180ab75e6ee0e1869dc0f3c6b7e1b65052a6b4139a088f1155e"
+    }
+  ]
+}

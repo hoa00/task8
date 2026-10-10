@@ -1,0 +1,10 @@
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { OverlaysGallery } from './OverlaysGallery';
+import { ThemeProvider } from './theme/ThemeProvider';
+import { applyRootPreferences, readThemePreferences } from './theme/preferences';
+import './styles/app.css';
+applyRootPreferences(readThemePreferences());
+const root = document.getElementById('root');
+if (!root) throw new Error('Missing overlay gallery root');
+createRoot(root).render(<StrictMode><ThemeProvider><OverlaysGallery /></ThemeProvider></StrictMode>);

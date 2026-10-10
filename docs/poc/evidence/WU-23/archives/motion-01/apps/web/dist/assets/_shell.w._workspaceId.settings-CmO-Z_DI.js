@@ -1,0 +1,1 @@
+import{i as e}from"./SettingsLayout-CUG0eY-B.js";var t=e;export{t as component};

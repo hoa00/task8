@@ -51,7 +51,7 @@
 @media(prefers-reduced-motion:reduce) { :root:not([data-motion='full']) .task-board-card,:root:not([data-motion='full']) .task-card-title,:root:not([data-motion='full']) .task-card-done-icon { animation-duration: .01ms !important; } }
 :root[data-motion='reduce'] .task-board-card,:root[data-motion='reduce'] .task-card-title,:root[data-motion='reduce'] .task-card-done-icon { animation-duration: .01ms !important; }
 
-@media(prefers-reduced-motion:reduce) { .task-board-card:hover { transform: none; } }
+@media(prefers-reduced-motion:reduce) { :root:not([data-motion=full]) .task-board-card:hover { transform: none; } }
 :root[data-motion='reduce'] .task-board-card:hover { transform: none; }
 
 @layer utilities { @media(max-width:900px) { .task-board { padding-bottom: 90px; } } }

@@ -1,0 +1,27 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@import "@studio/ui/styles.css";
+@import "../app/shell/shell.css";
+@import "../features/tasks/list.css";
+@import "../features/tasks/board.css";
+@import "../features/tasks/table.css";
+@import "../features/calendar/calendar.css";
+@import "../features/timeline/timeline.css";
+@import "../features/projects/projects.css";
+@import "../features/activity/activity.css";
+
+@import "../features/files/files.css";
+@import "../features/tasks/detail/detail.css";
+
+@source "../";
+@source "../../../../packages/ui/src";
+/* Task-field/query presentation owns source inclusive mobile conditions. */
+@layer utilities {
+@media (max-width: 640px) {
+  .task-hide-mobile { display: none; }
+  .task-filter-builder { min-width: 0 !important; }
+  .task-filter-row { grid-template-columns: 1fr 1fr; }
+  .task-filter-conjunction { display: none; }
+}
+}

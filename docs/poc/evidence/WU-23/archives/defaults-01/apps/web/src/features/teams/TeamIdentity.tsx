@@ -1,0 +1,4 @@
+import { Icon } from '@studio/ui';
+import type { TeamDto } from '@studio/contracts/api';
+export interface TeamIdentityProps { team: Pick<TeamDto, 'name' | 'icon' | 'color'>; iconOnly?: boolean; large?: boolean; size?: number; className?: string }
+export function TeamIdentity({ team, iconOnly = false, large = false, size = large ? 18 : 15, className = '' }: TeamIdentityProps) { return <><span className={`${large ? 'grid size-9 shrink-0 place-items-center rounded-[9px]' : 'grid size-7 shrink-0 place-items-center rounded-[7px]'} ${className}`} style={{ background: `color-mix(in srgb,${team.color} 14%,transparent)`, color: `color-mix(in srgb,${team.color} var(--pc-mix,100%),var(--text))` }}><Icon name={team.icon} size={size}/></span>{!iconOnly && <b className="text-[14px] font-semibold">{team.name}</b>}</>; }

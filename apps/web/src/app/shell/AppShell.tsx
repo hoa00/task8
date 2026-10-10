@@ -1,6 +1,7 @@
 import { FileOverlayHost } from '../../features/files/FileOverlayHost';
 import { TeamOverlayHost } from '../../features/teams/TeamOverlayHost';
-import { useEffect,useRef,useState,useSyncExternalStore } from 'react';
+import { useEffect,useLayoutEffect,useRef,useState,useSyncExternalStore } from 'react';
+import { useTheme } from '../../theme/theme-context';
 import { Outlet,useLocation,useNavigate,useRouter,useRouterState,isNotFound } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { OverlayProvider } from '@studio/ui';
@@ -32,6 +33,8 @@ function WorkspaceShell({workspaceId}:AppShellProps) {
  const loading=useRouterState({select:state=>state.isLoading});
  const notFound=useRouterState({select:state=>state.matches.some(match=>match.status==='notFound'||isNotFound(match.error))});
  const data=useWorkspaceBootstrap().data?.data;
+ const {setPreferences}=useTheme();
+ useLayoutEffect(()=>{if(!data)return;const {theme:selectedTheme,accent,side,density,motion,dateFmt}=data.preferences;setPreferences({theme:selectedTheme,accent,side,density,motion});document.documentElement.dataset.dateFormat=dateFmt;},[data,setPreferences]);
  const [collapsed,setCollapsed]=useState(readCollapsed),[mobileOpen,setMobileOpen]=useState(false);
  const [selection,setSelection]=useState<{workspaceId:string;ids:readonly string[]}>({workspaceId,ids:[]});
  const [homeTab,setHomeTab]=useState<{workspaceId:string;tab:'upcoming'|'overdue'|'completed'}>({workspaceId,tab:'upcoming'});

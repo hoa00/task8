@@ -30,7 +30,7 @@
   .shell-current-crumb{display:block;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
   .shell-topbar .shell-navigation-opener,.shell-topbar .shell-top-icon,.shell-topbar .shell-create,.shell-topsearch{min-width:40px;min-height:40px;}
  }
- @media(prefers-reduced-motion:reduce){.shell-skip{transition:none;}}
+ @media(prefers-reduced-motion:reduce){:root:not([data-motion=full]) .shell-skip{transition:none;}}
  :root[data-motion=reduce] .shell-skip{transition:none;}
 }
 @keyframes shell-fade {from{opacity:0;}to{opacity:1;}}
