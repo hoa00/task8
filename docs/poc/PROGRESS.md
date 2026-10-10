@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-25` — **DONE**, bounded ROOT TECHNICAL PASS; actual implementation/checkpoint commits and normal pushes follow.
+- Current work unit: `WU-25` — **DONE**, bounded ROOT TECHNICAL PASS; implementation `8cdab3537cd0284993c3551626d29f49a96fd400` normal-push verified; this docs-only checkpoint follows.
 - Last completed implementation unit: `WU-25`.
 - Next permitted unit: `WU-26` with a different new owner only after actual WU25 implementation/checkpoint normal-push verification and STOP25.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
@@ -41,7 +41,7 @@
 | [WU-22](work-units/WU-22.md) | DONE | `eee78d94617588f118abd21b6d89fc34164897bd` | [ROOT pass](evidence/WU-22/root-pass.json), [review](evidence/WU-22/review.json), [58-pair closure](evidence/WU-22/attempts/closure-02/report.json); qualified scope only, earlier WU29 debts retained |
 | [WU-23](work-units/WU-23.md) | DONE | `269ff53e582bcd4b4b8ba9740282dd9d8edcff33` | [ROOT pass](evidence/WU-23/root-pass.json), [immutable review candidate](evidence/WU-23/review.json), [48-pair closure](evidence/WU-23/attempts/closure-01/report.json); bounded scope only, all raw failures/missing-byte/WU29 debts retained |
 | [WU-24](work-units/WU-24.md) | DONE | `fcc38be7a4b7a8559b6cda470b024287788664e2` | [Matrix32](evidence/WU-24/attempts/matrix-02/report.json), [minimal2](evidence/WU-24/attempts/minimal-02/report.json), [native9](evidence/WU-24/attempts/native-02/report.json), [HTTP7](evidence/WU-24/attempts/http-01/report.json); root accepted, implementation `fcc38be7` and docs checkpoint `0295b026` both actually pushed/verified |
-| [WU-25](work-units/WU-25.md) | DONE | — | [Root PASS](evidence/WU-25/root-pass.json), selected68/204strict0, native9, HTTP7, seven current gates0; actual commit/push follows |
+| [WU-25](work-units/WU-25.md) | DONE | `8cdab3537cd0284993c3551626d29f49a96fd400` | [Root PASS](evidence/WU-25/root-pass.json), selected68/204strict0, native9, HTTP7, seven current gates0; implementation normal-push verified, docs checkpoint follows |
 | [WU-26](work-units/WU-26.md) | NOT_STARTED | — | — |
 | [WU-27](work-units/WU-27.md) | NOT_STARTED | — | — |
 | [WU-28](work-units/WU-28.md) | NOT_STARTED | — | — |
@@ -997,3 +997,6 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 
 - ROOT TECHNICAL PASS for immutable candidateb64d899c/index02c69932c/emitted53bd374b/closure0217430314. Root independently streams24113 staged blobs/258073791B exact versus Git+worktree; all24087 physicalevidencefiles staged;179 literal owned evidence-only exceptions/check0/output0;75 referenced freezes23069entries/31rawexecutions310stablefiles, all82finalfreezes24075uniquephysicalhashes. Root verifies68selected/204strict0/272PNG/136fixtures/272actualwoff200/136fourfacecontexts, native8archive+1current and HTTP4archive+1current+2mobile/99GET/0writes/errors/pending, current709/exact23-path bridge, lint02/cleanup02actual0, fresh0295/Source86clean/fourlocks/ports0. Root actual runtime114current/enforcedunrestricted is recorded separately at [root-pass](evidence/WU-25/root-pass.json); immutable cleanup113 is not relabeled.
 - WU25 AC1–4 DONE only within those bounded scopes. HTTP03 missingtwo33067Bbody/fourrefs and cleanup01outerdiagnosticgap remainFAILED_UNACCEPTED_WU29, all inherited failures/debts preserved. Metadata-only DONE/root-pass changes supersede historical pending wording and immutable candidate review status; implementation normalcommit/push and docs-onlycheckpoint actualproof follow. Owner25 stops afterverification; noWU26 work.
+
+- Actual WU25 implementation committed `8cdab3537cd0284993c3551626d29f49a96fd400` (tree `05d4511cfef8e2cd1763ee8b114eb7cc2458d7b6`, parent `0295b0262ca11f7e9e7a9b7d31a6d545605a6e7a`) and normal `git push origin HEAD:main` exit0. HEAD/origin-main/fresh remote main all match implementation, divergence0/0, clean before/afterpush, Source904205/tree5db5/86clean/fourinputsunchanged/ports0. Root-pass metadata-only staged bytes/cachedcheck0 verified; all24102 unchanged original indexfiles plus6 emittedproof files remain exact after root approval. Complete actual command stdout/stderr texts/bytes/SHA/status are embedded in [checkpoint](evidence/WU-25/checkpoint.json), preserving raw bytes without exposing environment secrets.
+- This documentation checkpoint changes exactly PROGRESS plus WU25/checkpoint.json and records the actual implementation SHA/tree/parent/normalpush/freshremote/cleanproof. Its own real SHA/tree/parent/normalpush/freshremote/clean proof is reported to root after execution, without recursively writing its own SHA. STOP25 afterverification; WU26 requires a new owner. Every raw failure, HTTP03lostbodygap/cleanup01outerdiagnosticgap/inheritedWU29debt remains unaccepted; no production or immutable evidence changes in this checkpoint.
