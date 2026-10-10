@@ -1,0 +1,51 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126e1-1b69-733a-b0f8-426dcc8dbbb7",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "project": {
+        "id": "01a126e1-1b69-733a-b0f8-426dcc8dbbb7",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "key": "SW",
+        "name": "Software WU31",
+        "description": "WU31 integration",
+        "icon": "folder",
+        "color": "#5A67D8",
+        "status": "planning",
+        "teamId": null,
+        "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "startDate": "2026-10-10",
+        "dueDate": null,
+        "visibility": "workspace",
+        "memberIds": [
+          "01a11abd-aa80-7249-8034-93bbfb2174a2"
+        ],
+        "milestones": [],
+        "isFavorite": false,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T17:34:09.257Z",
+        "updatedAt": "2026-10-10T17:34:10.028Z",
+        "lastActivityAt": "2026-10-10T17:34:09.257Z",
+        "version": 2
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a126e1-1b69-733a-b0f8-426dcc8dbbb7"
+      ],
+      "taskIdMap": [],
+      "undo": {
+        "id": "01a126e1-1e6c-7ede-af6f-289d63de2755",
+        "kind": "project.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 14
+  }
+}

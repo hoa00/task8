@@ -1,0 +1,15 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126df-253a-78bc-9f4b-1829b39a3379",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"name\":\"stale\"}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Team version changed"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126e1-1f92-7f88-9f48-00fd7ede6f15",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "team": {
+        "id": "01a126e1-1f92-7f88-9f48-00fd7ede6f15",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "lifecycle-team",
+        "description": "WU31 integration",
+        "icon": "users",
+        "color": "#5A67D8",
+        "memberIds": [],
+        "createdAt": "2026-10-10T17:34:10.321Z",
+        "updatedAt": "2026-10-10T17:34:10.432Z",
+        "version": 2
+      },
+      "members": [
+        {
+          "id": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "userId": "01a11abd-aa80-700f-824b-882a971be8b6",
+          "name": "Sarah Chen",
+          "email": "sarah@gr8rstudio.com",
+          "title": "Design Lead",
+          "avatarColor": "#C54B78",
+          "timezone": "New York",
+          "role": "Admin",
+          "status": "active",
+          "teamId": null,
+          "lastSeenAt": "2026-10-08T08:56:00.000Z",
+          "version": 3
+        }
+      ],
+      "affectedProjectIds": [
+        "01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+        "01a126e1-1fa3-704b-85a1-d0e03ed44906"
+      ],
+      "undo": {
+        "id": "01a126e1-2002-75b1-b10b-2b2a6c06c65c",
+        "kind": "team.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 21
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126e1-1b82-7966-ba17-33efdbacbd70",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"name\":\"Renamed WU31\",\"startDate\":null,\"dueDate\":null}",
+  "status": 200,
+  "response": {
+    "data": {
+      "project": {
+        "id": "01a126e1-1b82-7966-ba17-33efdbacbd70",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "key": "BLA",
+        "name": "Renamed WU31",
+        "description": "WU31 integration",
+        "icon": "folder",
+        "color": "#5A67D8",
+        "status": "planning",
+        "teamId": null,
+        "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "startDate": null,
+        "dueDate": null,
+        "visibility": "workspace",
+        "memberIds": [
+          "01a11abd-aa80-7249-8034-93bbfb2174a2"
+        ],
+        "milestones": [],
+        "isFavorite": false,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T17:34:09.281Z",
+        "updatedAt": "2026-10-10T17:34:09.635Z",
+        "lastActivityAt": "2026-10-10T17:34:09.635Z",
+        "version": 2
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a126e1-1b82-7966-ba17-33efdbacbd70"
+      ],
+      "taskIdMap": [],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 17
+  }
+}

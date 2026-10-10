@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126e1-2245-7195-ad2b-237b40922dc0",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu31-test": "{\"sql\":\"UPDATE workspaceMembers SET version=version+1 WHERE id=?\",\"parameters\":[\"01a11abd-aa80-7606-8d4c-58e60fb7e5a4\"]}"
+  },
+  "body": "{}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Undo targets changed"
+    }
+  },
+  "budget": {
+    "queries": 7,
+    "parameters": 28
+  }
+}

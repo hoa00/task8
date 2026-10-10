@@ -1,0 +1,81 @@
+{
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkN1c3RvbWVyIFBvcnRhbCIsImlkIjoiMDFhMTFhYmQtYWE4MC03ZTMzLTgxNDQtMDc1NmRmZDhlOGMzIn0",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "items": [
+        {
+          "access": "allowed",
+          "project": {
+            "id": "01a11abd-aa80-7232-8a34-286c60c1a535",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "key": "DS",
+            "name": "Design System",
+            "description": "Shared tokens, components, and documentation used by web and mobile teams.",
+            "icon": "component",
+            "color": "#8662C9",
+            "status": "active",
+            "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+            "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "startDate": "2026-08-09",
+            "dueDate": "2026-12-17",
+            "visibility": "workspace",
+            "memberIds": [
+              "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+              "01a11abd-aa80-72e4-8e93-62c2ece91c47"
+            ],
+            "milestones": [
+              {
+                "id": "01a11abd-aa80-7e21-8112-2b24976a5e2a",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                "name": "v2 tokens",
+                "date": "2026-10-11",
+                "position": 0
+              }
+            ],
+            "isFavorite": false,
+            "archivedAt": null,
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "lastActivityAt": "2026-10-08T04:00:00.000Z",
+            "version": 1
+          },
+          "summary": {
+            "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+            "taskSummary": {
+              "total": 6,
+              "byStatus": {
+                "backlog": 1,
+                "todo": 2,
+                "progress": 1,
+                "review": 1,
+                "done": 1
+              },
+              "byPriority": {
+                "urgent": 0,
+                "high": 2,
+                "medium": 3,
+                "low": 1,
+                "none": 0
+              },
+              "overdue": 0,
+              "completed": 1,
+              "completionRate": 17,
+              "subtaskTotals": {
+                "total": 0,
+                "completed": 0
+              }
+            },
+            "progress": 17
+          }
+        }
+      ],
+      "nextCursor": "eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkRlc2lnbiBTeXN0ZW0iLCJpZCI6IjAxYTExYWJkLWFhODAtNzIzMi04YTM0LTI4NmM2MGMxYTUzNSJ9",
+      "total": 10
+    }
+  }
+}

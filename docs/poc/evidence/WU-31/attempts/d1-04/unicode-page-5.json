@@ -1,0 +1,95 @@
+{
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6Ik1hcmtldGluZyBXZWJzaXRlIiwiaWQiOiIwMWExMWFiZC1hYTgwLTdkOTktODQ5YS1hYmVjOTM0MGRjODkifQ",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "items": [
+        {
+          "access": "allowed",
+          "project": {
+            "id": "01a11abd-aa80-7f23-849c-94f63946ff17",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "key": "MOB",
+            "name": "Mobile App",
+            "description": "Native iOS and Android client for field teams with offline sync, push notifications, and biometric sign-in.",
+            "icon": "smartphone",
+            "color": "#3B82C4",
+            "status": "active",
+            "teamId": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+            "leadId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+            "startDate": "2026-08-24",
+            "dueDate": "2026-11-29",
+            "visibility": "workspace",
+            "memberIds": [
+              "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+              "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "01a11abd-aa80-7567-80df-64683f5c3572",
+              "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+            ],
+            "milestones": [
+              {
+                "id": "01a11abd-aa80-73de-8352-a37eda1f6804",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "name": "Beta build",
+                "date": "2026-10-17",
+                "position": 0
+              },
+              {
+                "id": "01a11abd-aa80-7968-841d-52612a365a0b",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "name": "App Store submission",
+                "date": "2026-11-22",
+                "position": 100
+              }
+            ],
+            "isFavorite": true,
+            "archivedAt": null,
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "lastActivityAt": "2026-10-08T08:12:00.000Z",
+            "version": 1
+          },
+          "summary": {
+            "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+            "taskSummary": {
+              "total": 9,
+              "byStatus": {
+                "backlog": 1,
+                "todo": 4,
+                "progress": 2,
+                "review": 1,
+                "done": 1
+              },
+              "byPriority": {
+                "urgent": 2,
+                "high": 3,
+                "medium": 3,
+                "low": 1,
+                "none": 0
+              },
+              "overdue": 2,
+              "completed": 1,
+              "completionRate": 11,
+              "subtaskTotals": {
+                "total": 0,
+                "completed": 0
+              }
+            },
+            "progress": 11
+          }
+        }
+      ],
+      "nextCursor": "eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6Ik1vYmlsZSBBcHAiLCJpZCI6IjAxYTExYWJkLWFhODAtN2YyMy04NDljLTk0ZjYzOTQ2ZmYxNyJ9",
+      "total": 10
+    }
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 4
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"name\":\"invited lead\",\"description\":\"WU31 integration\",\"icon\":\"folder\",\"color\":\"#5A67D8\",\"teamId\":null,\"leadId\":\"01a11abd-aa80-7a8a-8271-af0df3499721\",\"dueDate\":null,\"templateId\":\"blank\"}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Choose an active workspace lead"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "workUnit": "WU-31",
+  "status": "DONE_BOUNDED_ROOT_PASS",
+  "reviewer": "ROOT read-only coordinator",
+  "physicalCapture": null,
+  "observations": "Actual reported ROOT technical/all-index results; not fabricated physical capture",
+  "base": "a6b21efe50781d1bba5689081d16123ae9887887",
+  "technical": {
+    "finiteFiles": 775,
+    "finiteBytes": 33754892,
+    "candidateBytes": 151672,
+    "candidateSha256": "1eec9be3f61678137b490b4196483fc95e02c453241ca28691e4e57301aeafba",
+    "hashedRefs": 928,
+    "hashedRefBytes": 34731596,
+    "commandRecords": 20,
+    "selected": [
+      {
+        "attempt": "d1-04",
+        "status": "PASS",
+        "probes": 186,
+        "commands": 9,
+        "maxQueries": 28,
+        "maxParameters": 44
+      },
+      {
+        "attempt": "guards-01",
+        "status": "PASS",
+        "probes": 24,
+        "commands": 3,
+        "maxQueries": 20,
+        "maxParameters": 44
+      }
+    ],
+    "rollbackFamilies": [
+      "template",
+      "project Undo",
+      "team delete",
+      "profile"
+    ],
+    "executedCurrentBytesEqual": true
+  },
+  "index": {
+    "rows": 132721,
+    "baseRows": 131951,
+    "changedBlobs": 776,
+    "changedBytes": 33906564,
+    "otherRows": 131945,
+    "otherModeOidPathsUnchanged": true,
+    "cachedCheck": {
+      "exitCode": 0,
+      "empty": true
+    },
+    "unstagedEmpty": true,
+    "untrackedEmpty": true,
+    "excludingMetadataRows": 132720,
+    "excludingMetadataFingerprint": "33e81d3c381297d6debb379dab17b38fde15d6f5e6899446d9a75a79a3a8ee83"
+  },
+  "stageProof": {
+    "path": "/tmp/task8-wu31-stage01/report.json",
+    "bytes": 272323,
+    "sha256": "efff315674cb0c1f52b4d1a1f15c773c60a130baf78fc222b8f434da5987ca2b",
+    "commands": 8,
+    "rawRefs": 16,
+    "rawBytes": 253678,
+    "scope": "Current changed index only; no giant prior-index archive"
+  },
+  "attributes": {
+    "basePrefixBytes": 95959,
+    "basePrefixSha256": "c47d72636ff0c2e3cef24f790ee7779f17cff3aa57bedbb7af653b346c5b15ff",
+    "literalRawLogExceptions": 38,
+    "wildcardOrActiveCodeWaiver": false
+  },
+  "acceptance": "WU31 AC1\u20133 bounded actual local D1 only; workspace/profile/core11projects/member reads/6teams/3Undo kinds",
+  "qualifications": [
+    "Projects capability remains unavailable until WU34 completes remaining7 operations",
+    "All later task/discussion/preferences/projection/R2/provider/provisioning/invitations/ACL writes unavailable",
+    "M2 failed/missing/SVG/default/Darwin evidence remains unaccepted/unrecovered",
+    "Original D1-04 outer completion retained; early other outer objects not persisted, child raw streams exact"
+  ],
+  "next": "Root FAST2metadata byte gate then actual implementation commit and normal user-origin HEAD:main push; no future SHA/push claim"
+}

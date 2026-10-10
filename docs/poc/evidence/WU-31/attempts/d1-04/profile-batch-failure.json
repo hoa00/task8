@@ -1,0 +1,20 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/me/profile",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu31-test": "fail"
+  },
+  "body": "{\"expectedVersion\":2,\"title\":\"fail\"}",
+  "status": 500,
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Request failed"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 6
+  }
+}

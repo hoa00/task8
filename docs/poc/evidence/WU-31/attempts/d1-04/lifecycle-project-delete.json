@@ -1,0 +1,51 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126e1-1fa3-704b-85a1-d0e03ed44906",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2}",
+  "status": 200,
+  "response": {
+    "data": {
+      "project": {
+        "id": "01a126e1-1fa3-704b-85a1-d0e03ed44906",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "key": "LP",
+        "name": "Lifecycle project",
+        "description": "WU31 integration",
+        "icon": "folder",
+        "color": "#5A67D8",
+        "status": "planning",
+        "teamId": "01a126e1-1f92-7f88-9f48-00fd7ede6f15",
+        "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "startDate": "2026-10-10",
+        "dueDate": null,
+        "visibility": "workspace",
+        "memberIds": [
+          "01a11abd-aa80-7249-8034-93bbfb2174a2"
+        ],
+        "milestones": [],
+        "isFavorite": false,
+        "archivedAt": "2026-10-10T17:34:10.358Z",
+        "createdAt": "2026-10-10T17:34:10.337Z",
+        "updatedAt": "2026-10-10T17:34:10.374Z",
+        "lastActivityAt": "2026-10-10T17:34:10.337Z",
+        "version": 3
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a126e1-1fa3-704b-85a1-d0e03ed44906"
+      ],
+      "taskIdMap": [],
+      "undo": {
+        "id": "01a126e1-1fc7-7aaa-b49e-abb08ea744df",
+        "kind": "project.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 14
+  }
+}

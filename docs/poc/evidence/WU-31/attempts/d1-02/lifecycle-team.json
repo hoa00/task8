@@ -1,0 +1,46 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"name\":\"lifecycle-team\",\"description\":\"WU31 integration\",\"icon\":\"users\",\"color\":\"#5A67D8\",\"memberIds\":[\"01a11abd-aa80-7947-8d13-2178f1cc4d45\"]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "team": {
+        "id": "01a126de-5bc7-7c5b-ac09-275b05d045af",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "lifecycle-team",
+        "description": "WU31 integration",
+        "icon": "users",
+        "color": "#5A67D8",
+        "memberIds": [
+          "01a11abd-aa80-7947-8d13-2178f1cc4d45"
+        ],
+        "createdAt": "2026-10-10T17:31:09.126Z",
+        "updatedAt": "2026-10-10T17:31:09.126Z",
+        "version": 1
+      },
+      "members": [
+        {
+          "id": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "userId": "01a11abd-aa80-700f-824b-882a971be8b6",
+          "name": "Sarah Chen",
+          "email": "sarah@gr8rstudio.com",
+          "title": "Design Lead",
+          "avatarColor": "#C54B78",
+          "timezone": "New York",
+          "role": "Admin",
+          "status": "active",
+          "teamId": "01a126de-5bc7-7c5b-ac09-275b05d045af",
+          "lastSeenAt": "2026-10-08T08:56:00.000Z",
+          "version": 2
+        }
+      ],
+      "affectedProjectIds": [],
+      "undo": null
+    }
+  }
+}

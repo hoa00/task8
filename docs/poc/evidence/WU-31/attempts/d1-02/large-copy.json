@@ -1,0 +1,15 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-5da3-7622-b40a-cf329ce1a657/duplicate",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"name\":\"Oversized copy\"}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "VIEW_SCOPE_TOO_LARGE",
+      "message": "Project copy exceeds bounded scope"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5b44-7480-981f-950447d9996d",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"description\":\"changed\"}",
+  "status": 200,
+  "response": {
+    "data": {
+      "team": {
+        "id": "01a126de-5b44-7480-981f-950447d9996d",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "transfer-team-b",
+        "description": "changed",
+        "icon": "users",
+        "color": "#5A67D8",
+        "memberIds": [
+          "01a11abd-aa80-7606-8d4c-58e60fb7e5a4"
+        ],
+        "createdAt": "2026-10-10T17:31:08.995Z",
+        "updatedAt": "2026-10-10T17:31:09.036Z",
+        "version": 2
+      },
+      "members": [],
+      "affectedProjectIds": [],
+      "undo": null
+    }
+  }
+}

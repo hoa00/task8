@@ -1,0 +1,952 @@
+{
+  "workUnit": "WU-31",
+  "status": "REQUIRED_CHECKS_PASS_ROOT_GATE_PENDING",
+  "base": "a6b21efe50781d1bba5689081d16123ae9887887",
+  "runtime": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0",
+    "wrangler": "4.148.0",
+    "database": "actual local Wrangler D1",
+    "os": "Linux"
+  },
+  "selected": [
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-31/attempts/d1-04/report.json",
+        "bytes": 59765,
+        "sha256": "c16f08e40b59ddb6fe235ca2c0eeca92a05cf06fb323e6e61699e5e68d841e29"
+      },
+      "commands": 9,
+      "probes": 186,
+      "instrumentedRequests": 134,
+      "maxQueries": 28,
+      "maxParameters": 44,
+      "sourceMatches": [
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/commands.ts",
+            "bytes": 1611,
+            "sha256": "7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f"
+          },
+          "current": {
+            "path": "apps/api/src/db/commands.ts",
+            "bytes": 1611,
+            "sha256": "7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/features.ts",
+            "bytes": 11941,
+            "sha256": "0ff25c1bfa8e2eb8039c187f5dec9e0c9e91a49f958edefa8c5b85580ec9db29"
+          },
+          "current": {
+            "path": "apps/api/src/modules/features.ts",
+            "bytes": 11941,
+            "sha256": "0ff25c1bfa8e2eb8039c187f5dec9e0c9e91a49f958edefa8c5b85580ec9db29"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/projects.ts",
+            "bytes": 14147,
+            "sha256": "a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d"
+          },
+          "current": {
+            "path": "apps/api/src/modules/projects.ts",
+            "bytes": 14147,
+            "sha256": "a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/read-model.ts",
+            "bytes": 9838,
+            "sha256": "e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804"
+          },
+          "current": {
+            "path": "apps/api/src/modules/read-model.ts",
+            "bytes": 9838,
+            "sha256": "e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/routes.ts",
+            "bytes": 2603,
+            "sha256": "2386c1e9d32134ce8a6203bf692346ee3aeacc5456a2903428446d955cc71931"
+          },
+          "current": {
+            "path": "apps/api/src/modules/routes.ts",
+            "bytes": 2603,
+            "sha256": "2386c1e9d32134ce8a6203bf692346ee3aeacc5456a2903428446d955cc71931"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/shared.ts",
+            "bytes": 3949,
+            "sha256": "3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7"
+          },
+          "current": {
+            "path": "apps/api/src/modules/shared.ts",
+            "bytes": 3949,
+            "sha256": "3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/teams.ts",
+            "bytes": 7813,
+            "sha256": "aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678"
+          },
+          "current": {
+            "path": "apps/api/src/modules/teams.ts",
+            "bytes": 7813,
+            "sha256": "aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/undo-command.ts",
+            "bytes": 6179,
+            "sha256": "d2f3026bc622b4904d4babf62663a5f2187e50aa9d4b1ed0cdd8aa5548977cb1"
+          },
+          "current": {
+            "path": "apps/api/src/modules/undo-command.ts",
+            "bytes": 6179,
+            "sha256": "d2f3026bc622b4904d4babf62663a5f2187e50aa9d4b1ed0cdd8aa5548977cb1"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/undo.ts",
+            "bytes": 2755,
+            "sha256": "f1da8ef6d483cd4fd7127dfbac2a299bf9303693dbdd2c9c76dab4dc4779668f"
+          },
+          "current": {
+            "path": "apps/api/src/db/undo.ts",
+            "bytes": 2755,
+            "sha256": "f1da8ef6d483cd4fd7127dfbac2a299bf9303693dbdd2c9c76dab4dc4779668f"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/verify.mjs",
+            "bytes": 29981,
+            "sha256": "0bd7313f138cc08d4e0ae30d4cc5c726707d5a37b01eed4f3e170123000af0f4"
+          },
+          "current": {
+            "path": "apps/api/tests/wu31/verify.mjs",
+            "bytes": 29981,
+            "sha256": "0bd7313f138cc08d4e0ae30d4cc5c726707d5a37b01eed4f3e170123000af0f4"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/worker.ts",
+            "bytes": 2712,
+            "sha256": "dbedaa8488b1789b4ba57338850df948ad47d87ed510c4defe1df5e243c0ce16"
+          },
+          "current": {
+            "path": "apps/api/tests/wu31/worker.ts",
+            "bytes": 2712,
+            "sha256": "dbedaa8488b1789b4ba57338850df948ad47d87ed510c4defe1df5e243c0ce16"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/d1-04/executed/workspace.ts",
+            "bytes": 2739,
+            "sha256": "bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63"
+          },
+          "current": {
+            "path": "apps/api/src/modules/workspace.ts",
+            "bytes": 2739,
+            "sha256": "bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63"
+          }
+        }
+      ],
+      "acceptance": {
+        "AC1": "workspace/profile/projects/template/duplicate/team assignment persisted across actual production Worker restart",
+        "AC2": "Owner/Admin/Member/Guest, view/edit grants/private children, invited401, two workspace principals, current authorization including final SQL",
+        "AC3": "actual local D1 multi-row template/copy/association/lifecycle/Undo, injected midbatch FK rollback, stale/ABA/name reuse/association races/concurrent replay"
+      }
+    },
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-31/attempts/guards-01/report.json",
+        "bytes": 8305,
+        "sha256": "06eff1b26309ff883ac0e5dd5d04e288b7393f73bda99b3d0142712b3efae5f2"
+      },
+      "commands": 3,
+      "probes": 24,
+      "instrumentedRequests": 10,
+      "maxQueries": 20,
+      "maxParameters": 44,
+      "sourceMatches": [
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/commands.ts",
+            "bytes": 1611,
+            "sha256": "7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f"
+          },
+          "current": {
+            "path": "apps/api/src/db/commands.ts",
+            "bytes": 1611,
+            "sha256": "7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/features.ts",
+            "bytes": 11941,
+            "sha256": "0ff25c1bfa8e2eb8039c187f5dec9e0c9e91a49f958edefa8c5b85580ec9db29"
+          },
+          "current": {
+            "path": "apps/api/src/modules/features.ts",
+            "bytes": 11941,
+            "sha256": "0ff25c1bfa8e2eb8039c187f5dec9e0c9e91a49f958edefa8c5b85580ec9db29"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/guards.mjs",
+            "bytes": 11529,
+            "sha256": "bbe2a4f686b94f580108c758296dcb983e8bd9d404f7601328c7cc0f4c15a7c0"
+          },
+          "current": {
+            "path": "apps/api/tests/wu31/guards.mjs",
+            "bytes": 11529,
+            "sha256": "bbe2a4f686b94f580108c758296dcb983e8bd9d404f7601328c7cc0f4c15a7c0"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/projects.ts",
+            "bytes": 14147,
+            "sha256": "a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d"
+          },
+          "current": {
+            "path": "apps/api/src/modules/projects.ts",
+            "bytes": 14147,
+            "sha256": "a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/read-model.ts",
+            "bytes": 9838,
+            "sha256": "e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804"
+          },
+          "current": {
+            "path": "apps/api/src/modules/read-model.ts",
+            "bytes": 9838,
+            "sha256": "e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/routes.ts",
+            "bytes": 2603,
+            "sha256": "2386c1e9d32134ce8a6203bf692346ee3aeacc5456a2903428446d955cc71931"
+          },
+          "current": {
+            "path": "apps/api/src/modules/routes.ts",
+            "bytes": 2603,
+            "sha256": "2386c1e9d32134ce8a6203bf692346ee3aeacc5456a2903428446d955cc71931"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/shared.ts",
+            "bytes": 3949,
+            "sha256": "3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7"
+          },
+          "current": {
+            "path": "apps/api/src/modules/shared.ts",
+            "bytes": 3949,
+            "sha256": "3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/teams.ts",
+            "bytes": 7813,
+            "sha256": "aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678"
+          },
+          "current": {
+            "path": "apps/api/src/modules/teams.ts",
+            "bytes": 7813,
+            "sha256": "aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/undo-command.ts",
+            "bytes": 6179,
+            "sha256": "d2f3026bc622b4904d4babf62663a5f2187e50aa9d4b1ed0cdd8aa5548977cb1"
+          },
+          "current": {
+            "path": "apps/api/src/modules/undo-command.ts",
+            "bytes": 6179,
+            "sha256": "d2f3026bc622b4904d4babf62663a5f2187e50aa9d4b1ed0cdd8aa5548977cb1"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/undo.ts",
+            "bytes": 2755,
+            "sha256": "f1da8ef6d483cd4fd7127dfbac2a299bf9303693dbdd2c9c76dab4dc4779668f"
+          },
+          "current": {
+            "path": "apps/api/src/db/undo.ts",
+            "bytes": 2755,
+            "sha256": "f1da8ef6d483cd4fd7127dfbac2a299bf9303693dbdd2c9c76dab4dc4779668f"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/worker.ts",
+            "bytes": 2712,
+            "sha256": "dbedaa8488b1789b4ba57338850df948ad47d87ed510c4defe1df5e243c0ce16"
+          },
+          "current": {
+            "path": "apps/api/tests/wu31/worker.ts",
+            "bytes": 2712,
+            "sha256": "dbedaa8488b1789b4ba57338850df948ad47d87ed510c4defe1df5e243c0ce16"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-31/attempts/guards-01/executed/workspace.ts",
+            "bytes": 2739,
+            "sha256": "bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63"
+          },
+          "current": {
+            "path": "apps/api/src/modules/workspace.ts",
+            "bytes": 2739,
+            "sha256": "bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63"
+          }
+        }
+      ],
+      "acceptance": {
+        "guards": "copy source task race;129 team Undo targets prewrite413;global profile membership invalidation;stale project target zero inverse/history/consume;private grant race zero effects"
+      }
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "tests/workspace/boundaries.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:30:34.161Z",
+      "completedAt": "2026-10-10T17:30:34.576Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 76,
+        "sha256": "f5649f16cdaddad3a4de3d9574e183e83d390fc856c0de309d1b07929cf56a6b"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/boundaries-01/result.json",
+        "bytes": 523,
+        "sha256": "0dfea5d2de511d4c23c24ffa715b881b518cdb49a09d027d66fb8119d5ad227a"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "build"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:31:11.383Z",
+      "completedAt": "2026-10-10T17:31:18.240Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 687,
+        "sha256": "781b2a9bfe1eef2187dd291a3275565c28472933b087d65449cd5bf614673119"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 178,
+        "sha256": "98f562258abb1ba00558ab591696b1230919f159f54fa56504ab411328f5af7a"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/build-01/result.json",
+        "bytes": 536,
+        "sha256": "c967ddc0a65f06614bd447d87233e4b1c55a4c2ce652af6f91258b355da4db11"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "build"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:34:05.746Z",
+      "completedAt": "2026-10-10T17:34:08.691Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 687,
+        "sha256": "6863c7256913bbc1f6397dedc98ff6da61277240efe4707252ecf96f8f660be0"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 178,
+        "sha256": "98f562258abb1ba00558ab591696b1230919f159f54fa56504ab411328f5af7a"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/build-02/result.json",
+        "bytes": 536,
+        "sha256": "2aa24907088c3035a09ad819de1e24501c73bc6e43a291e5fea7b810d4db7969"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "apps/api/tests/wu31/verify.mjs",
+        "d1-01"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:30:02.367Z",
+      "completedAt": "2026-10-10T17:30:23.265Z",
+      "exitCode": 1,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 423,
+        "sha256": "21d6efaf8396a38899d7f23c1e91519b934562bce1a6746631acc4d42c15f628"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/d1-01/result.json",
+        "bytes": 537,
+        "sha256": "4208d230f3a36490ab953af6a5c8cf8445aa8368308d45becb04a086fe58d996"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "apps/api/tests/wu31/verify.mjs",
+        "d1-02"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:30:51.508Z",
+      "completedAt": "2026-10-10T17:31:12.058Z",
+      "exitCode": 1,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 567,
+        "sha256": "32162eac4ed886b877f2eab1aa07d03b020d9a1a5fa547f58720de88b632a92f"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/d1-02/result.json",
+        "bytes": 537,
+        "sha256": "fac6536d12c73406610589e65cd4e345209d0b74fee90f6d093525014bf43824"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "apps/api/tests/wu31/verify.mjs",
+        "d1-03"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:31:43.002Z",
+      "completedAt": "2026-10-10T17:32:42.068Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 136,
+        "sha256": "bc3edd570cb4cb0144db3a649ad68a5a8db294e86d8bd2a25c32cc81e0aae3c4"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/d1-03/result.json",
+        "bytes": 537,
+        "sha256": "13dbffd989f1d48ab86e38566c4d6d280de5e1953e386fc989830eca9a2f39a6"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "apps/api/tests/wu31/verify.mjs",
+        "d1-04"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:33:51.247Z",
+      "completedAt": "2026-10-10T17:34:50.158Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 136,
+        "sha256": "16464a3c966485dcef396d49ed33350797ba1bac2c40048bdf5ba2618bfc8938"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/d1-04/result.json",
+        "bytes": 537,
+        "sha256": "bf7c2935a2f524be00d53822ed09a9f515433bc493bbe712bb78fa941e3b9740"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:34:59.283Z",
+      "completedAt": "2026-10-10T17:34:59.381Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/diffcheck-01/result.json",
+        "bytes": 510,
+        "sha256": "66597316b0fa8bbb3d940585f96813e853c7b5e75b774c51107ef2814f39490c"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "apps/api/tests/wu31/guards.mjs",
+        "guards-01"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:36:44.095Z",
+      "completedAt": "2026-10-10T17:37:04.863Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 139,
+        "sha256": "c0f70514d86c40bddb9fd21aa28b617dcea68a7090152e0d52111a51ab0a016c"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/guards-01/result.json",
+        "bytes": 541,
+        "sha256": "9ad70f0ce16ff9f09859ba8aab1e19270bfd1b82476824d78e29ad3e7b22f2f2"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:30:13.696Z",
+      "completedAt": "2026-10-10T17:30:15.597Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/lint-01/result.json",
+        "bytes": 526,
+        "sha256": "b837bfa2ac32cc63e071faabc193d4daf34a8937512d02d3e54966ba9c51989d"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:34:09.338Z",
+      "completedAt": "2026-10-10T17:34:11.281Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/lint-02/result.json",
+        "bytes": 526,
+        "sha256": "7de586172f3667a6b76291c1fb78c5e71402446562201f6cf1c808c7b11f6a85"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:39:04.647Z",
+      "completedAt": "2026-10-10T17:39:06.453Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/lint-03/result.json",
+        "bytes": 526,
+        "sha256": "1dbfae575b549698a7cab8b79572bc3cbb5ec124ac80b97efb52dd05d0a6aeaf"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api/tests/wu31/evidence.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:41:45.375Z",
+      "completedAt": "2026-10-10T17:41:46.632Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/lint-evidence-01/result.json",
+        "bytes": 550,
+        "sha256": "dc2b328e00a3e0a7dee9d31a72b1ebf815491318064077de63c004b79803a73f"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "tests/visual/reference/source-check.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:34:59.258Z",
+      "completedAt": "2026-10-10T17:34:59.299Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 153,
+        "sha256": "b87157a6b73193599f8b8c4b16793d4a357771d6e46c384b0ee93d6e8327121b"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/source-01/result.json",
+        "bytes": 533,
+        "sha256": "b631ff7b27a37c509c84d3b99dc239be98cd6631bf9a003ccc93ec4ee5877427"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:25:20.765Z",
+      "completedAt": "2026-10-10T17:25:24.408Z",
+      "exitCode": 2,
+      "signal": null,
+      "error": "spawnSync pnpm EPERM",
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/typecheck-01/result.json",
+        "bytes": 554,
+        "sha256": "90bb1785bba4eaaca242942ca617d364021943b73991db52597017fdd8b5d6ad"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:25:36.483Z",
+      "completedAt": "2026-10-10T17:25:40.200Z",
+      "exitCode": 2,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 7046,
+        "sha256": "8972b6558ba6d44a989cda771a4cb849f0cf0016d5e57ef362cdd60fa5d74bfe"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/typecheck-02/result.json",
+        "bytes": 540,
+        "sha256": "386e31cf1b86adc9a186f4c786c83329139e84a46d8dea42ad815acb83e5ec78"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:25:58.733Z",
+      "completedAt": "2026-10-10T17:26:02.129Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/typecheck-03/result.json",
+        "bytes": 537,
+        "sha256": "30a6b91058f9b1dc47ce153ee14029cfba470bb1fe3b7bfe4c714cc8debee391"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:29:41.420Z",
+      "completedAt": "2026-10-10T17:29:44.870Z",
+      "exitCode": 2,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 947,
+        "sha256": "fcb493d8795741b0e19d3caf0bbc09e6c7d4e3a53d947e729373814051f08187"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/typecheck-04/result.json",
+        "bytes": 539,
+        "sha256": "1102d3fb911e6b43e1cd8da0219b5f5be757e358e03ce5c236c19fcea54bf236"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:29:58.909Z",
+      "completedAt": "2026-10-10T17:30:02.318Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/typecheck-05/result.json",
+        "bytes": 537,
+        "sha256": "c3f9b98d9d2bda331790a64fed696395aa94b14a84778e4a0b55ad1f8167f4f9"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T17:34:05.695Z",
+      "completedAt": "2026-10-10T17:34:09.492Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-31/commands/typecheck-06/result.json",
+        "bytes": 537,
+        "sha256": "583284522398a4fc5a44877853525ba67d131181a9bef9351e7a439350ac5b58"
+      }
+    }
+  ],
+  "scope": {
+    "coreProjectOperations": 11,
+    "teamOperations": 6,
+    "undoKinds": [
+      "project.archive",
+      "project.delete",
+      "team.delete"
+    ],
+    "profiles": "current user only; all membership versions atomically invalidated",
+    "capabilities": {
+      "teams": "implemented",
+      "projects": "unavailable until WU34 seven remaining operations",
+      "otherFuture": "unavailable"
+    },
+    "limits": {
+      "queries": 50,
+      "parameters": 100,
+      "undoTargets": 128,
+      "undoUtf8Bytes": 65536,
+      "copyTasks": 128,
+      "copyCombinedRows": 512
+    }
+  },
+  "qualification": {
+    "historicalM2": "bounded; failed/missing-byte/SVG/default/Darwin obligations unchanged, not recovered",
+    "d1_03": "PASS174 on earlier profile bytes; superseded by d1_04 for current acceptance",
+    "failedOriginals": [
+      "typecheck-01 sandbox spawnSync pnpm EPERM",
+      "typecheck-02 request schema name and optional PATCH typing",
+      "typecheck-04 narrow text replacement typo",
+      "d1-01 harness secondary row lookup in primary-only seed rows",
+      "d1-02 harness expected413 versus contracted VIEW_SCOPE_TOO_LARGE409"
+    ],
+    "outerReceipts": "Original returned D1-04 completion object retained. Other early tool wrapper objects were not persisted; exact child argv/stdout/stderr/status retained, no reconstructed-original claim.",
+    "notRun": [
+      "optional browser/visual campaign",
+      "remote D1/R2/provider",
+      "production deploy",
+      "CI",
+      "future WU32–36"
+    ]
+  }
+}

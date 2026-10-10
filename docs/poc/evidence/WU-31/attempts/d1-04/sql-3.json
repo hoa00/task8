@@ -1,0 +1,24 @@
+{
+  "method": "POST",
+  "path": "/__wu31/sql",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"sql\":\"UPDATE teams SET nameNormalized=? WHERE name=?\",\"parameters\":[\"name-reuse\",\"name-reuse-new\"]}",
+  "status": 200,
+  "response": {
+    "success": true,
+    "meta": {
+      "served_by": "miniflare.db",
+      "duration": 0,
+      "changes": 1,
+      "last_row_id": 15,
+      "changed_db": true,
+      "size_after": 679936,
+      "rows_read": 15,
+      "rows_written": 2
+    },
+    "results": []
+  },
+  "budget": null
+}

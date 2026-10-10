@@ -1,0 +1,308 @@
+{
+  "status": "PASS",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu31-guards-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:36:44.323Z",
+      "completedAt": "2026-10-10T17:36:51.296Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1457,
+        "sha256": "ca6694abb67436534f6ca6c0ed3288c80e4f7f759dc16d58d40048fb6a5f1692"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu31-guards-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:36:51.296Z",
+      "completedAt": "2026-10-10T17:36:58.450Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48591,
+        "sha256": "bf659bb35f354ec20ebc112f0e09da33e348077adcfb67c07ea5191f624d21b6"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu31-config-guards-01/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu31-guards-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:36:58.452Z",
+      "completedAt": "2026-10-10T17:37:04.852Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 4447,
+        "sha256": "94822c090a3e5906e7fac0be2dea145906a2285460bfdfebf75ec29e272d73b0"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "initial",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "initial.json",
+      "budget": null
+    },
+    {
+      "name": "copy-task-race",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/duplicate",
+      "evidence": "copy-task-race.json",
+      "budget": {
+        "queries": 20,
+        "parameters": 44
+      }
+    },
+    {
+      "name": "copy-race-after",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "copy-race-after.json",
+      "budget": null
+    },
+    {
+      "name": "bounded-team",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "bounded-team.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 20
+      }
+    },
+    {
+      "name": "sql-1",
+      "status": 200,
+      "path": "/__wu31/sql",
+      "evidence": "sql-1.json",
+      "budget": null
+    },
+    {
+      "name": "bound-before",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "bound-before.json",
+      "budget": null
+    },
+    {
+      "name": "team-129-target-reject",
+      "status": 413,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126e3-b931-7a8d-a9b4-cbb9ce1a7fd0",
+      "evidence": "team-129-target-reject.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "bound-after",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "bound-after.json",
+      "budget": null
+    },
+    {
+      "name": "sql-2",
+      "status": 200,
+      "path": "/__wu31/sql",
+      "evidence": "sql-2.json",
+      "budget": null
+    },
+    {
+      "name": "profile-all-before",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "profile-all-before.json",
+      "budget": null
+    },
+    {
+      "name": "profile-all-memberships",
+      "status": 200,
+      "path": "/api/v1/me/profile",
+      "evidence": "profile-all-memberships.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      }
+    },
+    {
+      "name": "profile-all-after",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "profile-all-after.json",
+      "budget": null
+    },
+    {
+      "name": "project-stale-team",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "project-stale-team.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 20
+      }
+    },
+    {
+      "name": "sql-3",
+      "status": 200,
+      "path": "/__wu31/sql",
+      "evidence": "sql-3.json",
+      "budget": null
+    },
+    {
+      "name": "project-stale-team-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126e3-b9f6-7800-a6af-c384e9e4b034",
+      "evidence": "project-stale-team-delete.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 21
+      }
+    },
+    {
+      "name": "project-stale-before",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "project-stale-before.json",
+      "budget": null
+    },
+    {
+      "name": "project-stale-undo",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126e3-ba09-733d-8afa-3a1f682a3d8d",
+      "evidence": "project-stale-undo.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "project-stale-after",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "project-stale-after.json",
+      "budget": null
+    },
+    {
+      "name": "sql-4",
+      "status": 200,
+      "path": "/__wu31/sql",
+      "evidence": "sql-4.json",
+      "budget": null
+    },
+    {
+      "name": "private-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/archive",
+      "evidence": "private-archive.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 14
+      }
+    },
+    {
+      "name": "access-race-before",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "access-race-before.json",
+      "budget": null
+    },
+    {
+      "name": "private-undo-access-race",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126e3-ba7d-74ff-8ac4-65a7a3af9226",
+      "evidence": "private-undo-access-race.json",
+      "budget": {
+        "queries": 8,
+        "parameters": 17
+      }
+    },
+    {
+      "name": "access-race-after",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "access-race-after.json",
+      "budget": null
+    },
+    {
+      "name": "private-undo-current-access",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126e3-ba7d-74ff-8ac4-65a7a3af9226",
+      "evidence": "private-undo-current-access.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      }
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "acceptance": {
+    "guards": "copy source task race;129 team Undo targets prewrite413;global profile membership invalidation;stale project target zero inverse/history/consume;private grant race zero effects"
+  },
+  "completedAt": "2026-10-10T17:37:04.853Z"
+}

@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126e1-1fa3-704b-85a1-d0e03ed44906/restore-deleted",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":5}",
+  "status": 403,
+  "response": {
+    "error": {
+      "code": "FORBIDDEN",
+      "message": "Only deleting member can restore project"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 4
+  }
+}

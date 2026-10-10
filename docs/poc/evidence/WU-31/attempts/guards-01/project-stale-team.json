@@ -1,0 +1,32 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"name\":\"project-stale-team\",\"description\":\"Bounded guard fixture\",\"icon\":\"users\",\"color\":\"#5A67D8\",\"memberIds\":[]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "team": {
+        "id": "01a126e3-b9f6-7800-a6af-c384e9e4b034",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "project-stale-team",
+        "description": "Bounded guard fixture",
+        "icon": "users",
+        "color": "#5A67D8",
+        "memberIds": [],
+        "createdAt": "2026-10-10T17:37:00.917Z",
+        "updatedAt": "2026-10-10T17:37:00.917Z",
+        "version": 1
+      },
+      "members": [],
+      "affectedProjectIds": [],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 7,
+    "parameters": 20
+  }
+}

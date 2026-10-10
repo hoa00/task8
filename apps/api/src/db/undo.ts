@@ -4,7 +4,7 @@ import { ApiFailure } from '../errors.ts';
 const identity={id:EntityIdSchema,postVersion:VersionSchema};
 const lifecycle=z.strictObject({...identity,before:z.strictObject({archivedAt:InstantSchema.nullable(),deletedAt:InstantSchema.nullable(),deletedBy:EntityIdSchema.nullable(),updatedAt:InstantSchema})});
 const completion=z.strictObject({...identity,before:z.strictObject({status:TaskStatusSchema,completedAt:InstantSchema.nullable(),previousStatus:TaskStatusSchema.nullable(),updatedAt:InstantSchema})});
-const association=z.strictObject({...identity,entity:z.enum(['team','member','project']),before:z.strictObject({teamId:EntityIdSchema.nullable(),nameNormalized:z.string().max(240).nullable(),archivedAt:InstantSchema.nullable(),deletedAt:InstantSchema.nullable(),removedAt:InstantSchema.nullable()})});
+const association=z.strictObject({...identity,entity:z.enum(['team','member','project']),before:z.strictObject({teamId:EntityIdSchema.nullable(),nameNormalized:z.string().max(240).nullable(),archivedAt:InstantSchema.nullable(),deletedAt:InstantSchema.nullable(),removedAt:InstantSchema.nullable(),status:z.enum(['active','invited']).optional(),deletedBy:EntityIdSchema.nullable().optional()})});
 const base={activityIds:z.array(EntityIdSchema).max(128)};
 export const undoPayloadSchema=z.discriminatedUnion('kind',[
   z.strictObject({...base,kind:z.literal('task.complete'),targets:z.array(completion).length(1)}),
@@ -18,4 +18,3 @@ export function encodeUndoPayload(input:unknown) {const payload=undoPayloadSchem
 export function decodeUndoPayload(json:string) {if(new TextEncoder().encode(json).byteLength>65536)throw new ApiFailure('PAYLOAD_TOO_LARGE','Undo payload exceeds limit');return undoPayloadSchema.parse(JSON.parse(json));}
 export function encodeUndoResult(input:unknown) {return JSON.stringify(UndoResultSchema.parse(input));}
 export function decodeUndoResult(json:string) {return UndoResultSchema.parse(JSON.parse(json));}
-// No command dispatcher or public Undo endpoint in WU30.

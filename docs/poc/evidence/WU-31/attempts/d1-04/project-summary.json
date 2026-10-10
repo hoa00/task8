@@ -1,0 +1,40 @@
+{
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "taskSummary": {
+        "total": 18,
+        "byStatus": {
+          "backlog": 4,
+          "todo": 5,
+          "progress": 3,
+          "review": 2,
+          "done": 4
+        },
+        "byPriority": {
+          "urgent": 1,
+          "high": 5,
+          "medium": 8,
+          "low": 4,
+          "none": 0
+        },
+        "overdue": 3,
+        "completed": 4,
+        "completionRate": 22,
+        "subtaskTotals": {
+          "total": 12,
+          "completed": 6
+        }
+      },
+      "progress": 22
+    }
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 4
+  }
+}

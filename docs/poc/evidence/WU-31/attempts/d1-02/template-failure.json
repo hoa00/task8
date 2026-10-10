@@ -1,0 +1,16 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu31-test": "fail"
+  },
+  "body": "{\"name\":\"Failed template\",\"description\":\"WU31 integration\",\"icon\":\"folder\",\"color\":\"#5A67D8\",\"teamId\":null,\"leadId\":\"01a11abd-aa80-7249-8034-93bbfb2174a2\",\"dueDate\":null,\"templateId\":\"software\"}",
+  "status": 500,
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Request failed"
+    }
+  }
+}

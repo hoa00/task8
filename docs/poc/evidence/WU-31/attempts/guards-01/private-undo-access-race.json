@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126e3-ba7d-74ff-8ac4-65a7a3af9226",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu31-test": "{\"sql\":\"DELETE FROM projectMembers WHERE workspaceId=? AND projectId=? AND memberId=?\",\"parameters\":[\"01a11abd-aa80-72ea-8b87-b31ad015a24e\",\"01a11abd-aa80-7e33-8144-0756dfd8e8c3\",\"01a11abd-aa80-7249-8034-93bbfb2174a2\"]}"
+  },
+  "body": "{}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Undo targets changed"
+    }
+  },
+  "budget": {
+    "queries": 8,
+    "parameters": 17
+  }
+}

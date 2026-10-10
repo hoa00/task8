@@ -1,0 +1,37 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126e3-b9f6-7800-a6af-c384e9e4b034",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "team": {
+        "id": "01a126e3-b9f6-7800-a6af-c384e9e4b034",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "project-stale-team",
+        "description": "Bounded guard fixture",
+        "icon": "users",
+        "color": "#5A67D8",
+        "memberIds": [],
+        "createdAt": "2026-10-10T17:37:00.917Z",
+        "updatedAt": "2026-10-10T17:37:00.935Z",
+        "version": 2
+      },
+      "members": [],
+      "affectedProjectIds": [
+        "01a11abd-aa80-7d11-86d8-e6545859cd14"
+      ],
+      "undo": {
+        "id": "01a126e3-ba09-733d-8afa-3a1f682a3d8d",
+        "kind": "team.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 21
+  }
+}

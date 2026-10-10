@@ -1,0 +1,31 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126df-26f8-7fd2-aadf-03e92cb357b3",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "team": {
+        "id": "01a126df-26f8-7fd2-aadf-03e92cb357b3",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "name-reuse",
+        "description": "WU31 integration",
+        "icon": "users",
+        "color": "#5A67D8",
+        "memberIds": [],
+        "createdAt": "2026-10-10T17:32:01.143Z",
+        "updatedAt": "2026-10-10T17:32:01.156Z",
+        "version": 2
+      },
+      "members": [],
+      "affectedProjectIds": [],
+      "undo": {
+        "id": "01a126df-2707-76a2-bc50-ec3fc988ddcc",
+        "kind": "team.delete"
+      }
+    }
+  }
+}

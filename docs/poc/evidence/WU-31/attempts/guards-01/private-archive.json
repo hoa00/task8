@@ -1,0 +1,53 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/archive",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "project": {
+        "id": "01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "key": "CP",
+        "name": "Customer Portal",
+        "description": "Self-serve billing and support portal for enterprise customers. Restricted during contract review.",
+        "icon": "building-2",
+        "color": "#23918A",
+        "status": "hold",
+        "teamId": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+        "leadId": "01a11abd-aa80-7567-80df-64683f5c3572",
+        "startDate": "2026-10-03",
+        "dueDate": "2027-01-06",
+        "visibility": "private",
+        "memberIds": [
+          "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+          "01a11abd-aa80-7567-80df-64683f5c3572"
+        ],
+        "milestones": [],
+        "isFavorite": false,
+        "archivedAt": "2026-10-10T17:37:01.052Z",
+        "createdAt": "2026-10-08T09:00:00.000Z",
+        "updatedAt": "2026-10-10T17:37:01.052Z",
+        "lastActivityAt": "2026-10-06T09:00:00.000Z",
+        "version": 2
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a11abd-aa80-7e33-8144-0756dfd8e8c3"
+      ],
+      "taskIdMap": [],
+      "undo": {
+        "id": "01a126e3-ba7d-74ff-8ac4-65a7a3af9226",
+        "kind": "project.archive"
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 14
+  }
+}

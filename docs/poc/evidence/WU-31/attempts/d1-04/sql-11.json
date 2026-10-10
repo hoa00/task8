@@ -1,0 +1,24 @@
+{
+  "method": "POST",
+  "path": "/__wu31/sql",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"sql\":\"UPDATE workspaceMembers SET role='Admin' WHERE id=?\",\"parameters\":[\"01a11abd-aa80-7947-8d13-2178f1cc4d45\"]}",
+  "status": 200,
+  "response": {
+    "success": true,
+    "meta": {
+      "served_by": "miniflare.db",
+      "duration": 0,
+      "changes": 1,
+      "last_row_id": 71,
+      "changed_db": true,
+      "size_after": 794624,
+      "rows_read": 2,
+      "rows_written": 1
+    },
+    "results": []
+  },
+  "budget": null
+}

@@ -1,0 +1,35 @@
+
+ ⛅️ wrangler 4.148.0
+────────────────────
+Your Worker has access to the following bindings:
+Binding                                                              Resource                  Mode
+env.DB (task8-local)                                                 D1 Database               local
+env.STUDIO_ENV ("local")                                             Environment Variable      local
+env.LOCAL_USER_ID ("01a11abd-aa80-7d3f-879a-dd89204bcd77")           Environment Variable      local
+env.LOCAL_WORKSPACE_ID ("01a11abd-aa80-72ea-8b87-b31ad015a24e")      Environment Variable      local
+
+Wrangler detected this dev session is running in an AI agent.
+The Local Explorer API is available at http://127.0.0.1:8787/cdn-cgi/local/explorer/api
+Useful routes:
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/workers - local Workers and bindings
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/scheduled?worker=<name> - invoke a Worker's scheduled handler; cron is required (see the OpenAPI schema for the full request)
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/storage/kv/namespaces - KV namespaces
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/d1/database - D1 databases
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/r2/buckets - R2 buckets
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/workers/durable_objects/namespaces - Durable Object namespaces
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/workflows - Workflows
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/query - run a read-only SQL query (SELECT/WITH only) over captured request traces and console logs. Tables: spans, logs (read attributes via json(attributes)). Example:
+    curl -X POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/query -H 'Content-Type: application/json' -d '{"sql":"SELECT service, name, outcome, duration_ms FROM spans WHERE parent_id IS NULL LIMIT 20"}'
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/clear - clear all captured traces and logs
+If the routes above don't cover what you need, fetch the full OpenAPI schema (large - use only as a last resort):
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api - OpenAPI schema
+⎔ Starting local server...
+[wrangler:info] Ready on http://127.0.0.1:8787
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e 200 OK (25ms)
+[wrangler:info] GET /api/v1/me/profile 200 OK (4ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126df-220f-7c3c-bbb0-58ff91bd154a 200 OK (9ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126df-2306-7fa1-8ce2-799b35c3c1d5 200 OK (9ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126df-23ab-7f1c-b5bb-6cd8d086ae5f 200 OK (9ms)
+[wrangler:info] GET /__wu31/sql 404 Not Found (3ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 501 Not Implemented (5ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views 501 Not Implemented (4ms)

@@ -1,0 +1,315 @@
+{
+  "status": "FAILED",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu31-d1-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:30:02.626Z",
+      "completedAt": "2026-10-10T17:30:09.590Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1453,
+        "sha256": "4800b3f9a19d9d8d968a2a7cb893d51d8e5198b2aa2cffd8e62e2594a77be198"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu31-d1-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:30:09.590Z",
+      "completedAt": "2026-10-10T17:30:16.839Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48587,
+        "sha256": "df8568064227d224bf68d28ff652321a59ec3e36393222a06602558452522f04"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu31-config-d1-01/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu31-d1-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:30:16.840Z",
+      "completedAt": "2026-10-10T17:30:23.253Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 6111,
+        "sha256": "e50b069c3ede173be2397ae71bf0a2b20af96ee2c88954e5b51d6b5d3d61909f"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "snapshot-initial",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "snapshot-initial.json"
+    },
+    {
+      "name": "bootstrap-initial",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "evidence": "bootstrap-initial.json"
+    },
+    {
+      "name": "session",
+      "status": 200,
+      "path": "/api/v1/session",
+      "evidence": "session.json"
+    },
+    {
+      "name": "workspace",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "evidence": "workspace.json"
+    },
+    {
+      "name": "workspace-patch",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "evidence": "workspace-patch.json"
+    },
+    {
+      "name": "workspace-stale",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "evidence": "workspace-stale.json"
+    },
+    {
+      "name": "workspace-unknown",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "evidence": "workspace-unknown.json"
+    },
+    {
+      "name": "profile",
+      "status": 200,
+      "path": "/api/v1/me/profile",
+      "evidence": "profile.json"
+    },
+    {
+      "name": "profile-patch",
+      "status": 200,
+      "path": "/api/v1/me/profile",
+      "evidence": "profile-patch.json"
+    },
+    {
+      "name": "profile-email-forbidden",
+      "status": 400,
+      "path": "/api/v1/me/profile",
+      "evidence": "profile-email-forbidden.json"
+    },
+    {
+      "name": "projects-recent",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "projects-recent.json"
+    },
+    {
+      "name": "private-detail",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+      "evidence": "private-detail.json"
+    },
+    {
+      "name": "private-members",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/members",
+      "evidence": "private-members.json"
+    },
+    {
+      "name": "private-summary",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/summary",
+      "evidence": "private-summary.json"
+    },
+    {
+      "name": "private-patch",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+      "evidence": "private-patch.json"
+    },
+    {
+      "name": "project-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "evidence": "project-detail.json"
+    },
+    {
+      "name": "project-members",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "evidence": "project-members.json"
+    },
+    {
+      "name": "project-summary",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary",
+      "evidence": "project-summary.json"
+    },
+    {
+      "name": "page-projects-1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=2",
+      "evidence": "page-projects-1.json"
+    },
+    {
+      "name": "page-projects-2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=3&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkRlc2lnbiBTeXN0ZW0iLCJpZCI6IjAxYTExYWJkLWFhODAtNzIzMi04YTM0LTI4NmM2MGMxYTUzNSJ9",
+      "evidence": "page-projects-2.json"
+    },
+    {
+      "name": "page-query-conflict",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=due&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkRlc2lnbiBTeXN0ZW0iLCJpZCI6IjAxYTExYWJkLWFhODAtNzIzMi04YTM0LTI4NmM2MGMxYTUzNSJ9",
+      "evidence": "page-query-conflict.json"
+    },
+    {
+      "name": "invalid-cursor",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?cursor=garbage",
+      "evidence": "invalid-cursor.json"
+    },
+    {
+      "name": "unknown-query",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?actorId=01a11abd-aa80-7947-8d13-2178f1cc4d45",
+      "evidence": "unknown-query.json"
+    },
+    {
+      "name": "repeated-query",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?q=a&q=b",
+      "evidence": "repeated-query.json"
+    },
+    {
+      "name": "members-page",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=2",
+      "evidence": "members-page.json"
+    },
+    {
+      "name": "members-next",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=4&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiZGNmMDU3NGE4NzkwNjAyYmEwYjhjOWY0ODVmMzE0NmNiN2I1NzNjN2RmNDEwYmI0ZTc1MjZmNGQ5YjQ5ODRjNyIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkVtbWEgV2lsc29uIiwiaWQiOiIwMWExMWFiZC1hYTgwLTcyZTQtOGU5My02MmMyZWNlOTFjNDcifQ",
+      "evidence": "members-next.json"
+    },
+    {
+      "name": "invited-directory",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?status=invited",
+      "evidence": "invited-directory.json"
+    },
+    {
+      "name": "member-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+      "evidence": "member-detail.json"
+    },
+    {
+      "name": "member-summary",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7606-8d4c-58e60fb7e5a4/summary",
+      "evidence": "member-summary.json"
+    },
+    {
+      "name": "teams",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "teams.json"
+    },
+    {
+      "name": "teams-query",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams?q=Design",
+      "evidence": "teams-query.json"
+    },
+    {
+      "name": "team-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+      "evidence": "team-detail.json"
+    },
+    {
+      "name": "team-summary",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a11abd-aa80-7215-8b3f-9c5f78a7b7e2/summary",
+      "evidence": "team-summary.json"
+    },
+    {
+      "name": "foreign-workspace",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/projects",
+      "evidence": "foreign-workspace.json"
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "error": {
+    "message": "Cannot read properties of undefined (reading 'id')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'id')\n    at file:///workspace/task8/apps/api/tests/wu31/verify.mjs:72:222\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+  },
+  "completedAt": "2026-10-10T17:30:23.253Z"
+}

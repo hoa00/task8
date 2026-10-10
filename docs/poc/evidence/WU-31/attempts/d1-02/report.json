@@ -1,0 +1,891 @@
+{
+  "status": "FAILED",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu31-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:30:51.741Z",
+      "completedAt": "2026-10-10T17:30:58.617Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1453,
+        "sha256": "3d1fb435a2d15b031ec60bec5312639314d91084e20997e0febce42e75f33e53"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu31-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:30:58.617Z",
+      "completedAt": "2026-10-10T17:31:05.673Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48587,
+        "sha256": "1ebc37f1445d7913ef97dbeb9e0524f364a80c1f471eca1ae6669f64df4aac43"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu31-config-d1-02/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu31-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T17:31:05.674Z",
+      "completedAt": "2026-10-10T17:31:12.044Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 15972,
+        "sha256": "bd39317386e65565ddb12a5079ca9b8c9840905d5cf1941ca7d192b1610aa36a"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 467,
+        "sha256": "6860c116dbc223a93dabaed72d2076bc2e2678e995ca4bfc9db7341cb3be4134"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "snapshot-initial",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "snapshot-initial.json"
+    },
+    {
+      "name": "bootstrap-initial",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "evidence": "bootstrap-initial.json"
+    },
+    {
+      "name": "session",
+      "status": 200,
+      "path": "/api/v1/session",
+      "evidence": "session.json"
+    },
+    {
+      "name": "workspace",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "evidence": "workspace.json"
+    },
+    {
+      "name": "workspace-patch",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "evidence": "workspace-patch.json"
+    },
+    {
+      "name": "workspace-stale",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "evidence": "workspace-stale.json"
+    },
+    {
+      "name": "workspace-unknown",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "evidence": "workspace-unknown.json"
+    },
+    {
+      "name": "profile",
+      "status": 200,
+      "path": "/api/v1/me/profile",
+      "evidence": "profile.json"
+    },
+    {
+      "name": "profile-patch",
+      "status": 200,
+      "path": "/api/v1/me/profile",
+      "evidence": "profile-patch.json"
+    },
+    {
+      "name": "profile-email-forbidden",
+      "status": 400,
+      "path": "/api/v1/me/profile",
+      "evidence": "profile-email-forbidden.json"
+    },
+    {
+      "name": "projects-recent",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "projects-recent.json"
+    },
+    {
+      "name": "private-detail",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+      "evidence": "private-detail.json"
+    },
+    {
+      "name": "private-members",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/members",
+      "evidence": "private-members.json"
+    },
+    {
+      "name": "private-summary",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/summary",
+      "evidence": "private-summary.json"
+    },
+    {
+      "name": "private-patch",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+      "evidence": "private-patch.json"
+    },
+    {
+      "name": "project-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "evidence": "project-detail.json"
+    },
+    {
+      "name": "project-members",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "evidence": "project-members.json"
+    },
+    {
+      "name": "project-summary",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary",
+      "evidence": "project-summary.json"
+    },
+    {
+      "name": "page-projects-1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=2",
+      "evidence": "page-projects-1.json"
+    },
+    {
+      "name": "page-projects-2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=3&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkRlc2lnbiBTeXN0ZW0iLCJpZCI6IjAxYTExYWJkLWFhODAtNzIzMi04YTM0LTI4NmM2MGMxYTUzNSJ9",
+      "evidence": "page-projects-2.json"
+    },
+    {
+      "name": "page-query-conflict",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=due&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkRlc2lnbiBTeXN0ZW0iLCJpZCI6IjAxYTExYWJkLWFhODAtNzIzMi04YTM0LTI4NmM2MGMxYTUzNSJ9",
+      "evidence": "page-query-conflict.json"
+    },
+    {
+      "name": "invalid-cursor",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?cursor=garbage",
+      "evidence": "invalid-cursor.json"
+    },
+    {
+      "name": "unknown-query",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?actorId=01a11abd-aa80-7947-8d13-2178f1cc4d45",
+      "evidence": "unknown-query.json"
+    },
+    {
+      "name": "repeated-query",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?q=a&q=b",
+      "evidence": "repeated-query.json"
+    },
+    {
+      "name": "members-page",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=2",
+      "evidence": "members-page.json"
+    },
+    {
+      "name": "members-next",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=4&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiZGNmMDU3NGE4NzkwNjAyYmEwYjhjOWY0ODVmMzE0NmNiN2I1NzNjN2RmNDEwYmI0ZTc1MjZmNGQ5YjQ5ODRjNyIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkVtbWEgV2lsc29uIiwiaWQiOiIwMWExMWFiZC1hYTgwLTcyZTQtOGU5My02MmMyZWNlOTFjNDcifQ",
+      "evidence": "members-next.json"
+    },
+    {
+      "name": "invited-directory",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?status=invited",
+      "evidence": "invited-directory.json"
+    },
+    {
+      "name": "member-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+      "evidence": "member-detail.json"
+    },
+    {
+      "name": "member-summary",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7606-8d4c-58e60fb7e5a4/summary",
+      "evidence": "member-summary.json"
+    },
+    {
+      "name": "teams",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "teams.json"
+    },
+    {
+      "name": "teams-query",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams?q=Design",
+      "evidence": "teams-query.json"
+    },
+    {
+      "name": "team-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+      "evidence": "team-detail.json"
+    },
+    {
+      "name": "team-summary",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a11abd-aa80-7215-8b3f-9c5f78a7b7e2/summary",
+      "evidence": "team-summary.json"
+    },
+    {
+      "name": "foreign-workspace",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/projects",
+      "evidence": "foreign-workspace.json"
+    },
+    {
+      "name": "foreign-project",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7ae7-8304-32062c509b49",
+      "evidence": "foreign-project.json"
+    },
+    {
+      "name": "before-template-failure",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-template-failure.json"
+    },
+    {
+      "name": "template-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "template-failure.json"
+    },
+    {
+      "name": "after-template-failure",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-template-failure.json"
+    },
+    {
+      "name": "template-software",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "template-software.json"
+    },
+    {
+      "name": "blank-create",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "blank-create.json"
+    },
+    {
+      "name": "unicode-create",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "unicode-create.json"
+    },
+    {
+      "name": "unicode-page-0",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1",
+      "evidence": "unicode-page-0.json"
+    },
+    {
+      "name": "unicode-page-1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6ImJsYW5rLWNyZWF0ZSIsImlkIjoiMDFhMTI2ZGUtNTg5YS03Y2FiLThlZDQtNzgxMjYwZWQ0N2JkIn0",
+      "evidence": "unicode-page-1.json"
+    },
+    {
+      "name": "unicode-page-2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkN1c3RvbWVyIFBvcnRhbCIsImlkIjoiMDFhMTFhYmQtYWE4MC03ZTMzLTgxNDQtMDc1NmRmZDhlOGMzIn0",
+      "evidence": "unicode-page-2.json"
+    },
+    {
+      "name": "unicode-page-3",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IkRlc2lnbiBTeXN0ZW0iLCJpZCI6IjAxYTExYWJkLWFhODAtNzIzMi04YTM0LTI4NmM2MGMxYTUzNSJ9",
+      "evidence": "unicode-page-3.json"
+    },
+    {
+      "name": "unicode-page-4",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6Ik1hcmtldGluZyBDYW1wYWlnbiIsImlkIjoiMDFhMTFhYmQtYWE4MC03ODRkLTg2ODEtN2RhZjg3Mjk3ODg2In0",
+      "evidence": "unicode-page-4.json"
+    },
+    {
+      "name": "unicode-page-5",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6Ik1hcmtldGluZyBXZWJzaXRlIiwiaWQiOiIwMWExMWFiZC1hYTgwLTdkOTktODQ5YS1hYmVjOTM0MGRjODkifQ",
+      "evidence": "unicode-page-5.json"
+    },
+    {
+      "name": "unicode-page-6",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6Ik1vYmlsZSBBcHAiLCJpZCI6IjAxYTExYWJkLWFhODAtN2YyMy04NDljLTk0ZjYzOTQ2ZmYxNyJ9",
+      "evidence": "unicode-page-6.json"
+    },
+    {
+      "name": "unicode-page-7",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IlByb2R1Y3QgTGF1bmNoIiwiaWQiOiIwMWExMWFiZC1hYTgwLTdmMjYtODI1MS0wMmM1OWUyOWMzYjEifQ",
+      "evidence": "unicode-page-7.json"
+    },
+    {
+      "name": "unicode-page-8",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IlNvZnR3YXJlIFdVMzEiLCJpZCI6IjAxYTEyNmRlLTU4ODItNzI0NC05ZDZmLWJmYjRjYjhlY2JiMiJ9",
+      "evidence": "unicode-page-8.json"
+    },
+    {
+      "name": "unicode-page-9",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?sort=name&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNGJjYmM3YzVjMzIyOTExZTM4MTQyYWUxMzg2ZjQyNmJhZTFlNzRiOTRmZTUyMzU4MjA2NThiM2ZjYzg5MmI0NCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IldlYnNpdGUgUmVkZXNpZ24iLCJpZCI6IjAxYTExYWJkLWFhODAtN2QxMS04NmQ4LWU2NTQ1ODU5Y2QxNCJ9",
+      "evidence": "unicode-page-9.json"
+    },
+    {
+      "name": "duplicate-seeded",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/duplicate",
+      "evidence": "duplicate-seeded.json"
+    },
+    {
+      "name": "copy-snapshot",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "copy-snapshot.json"
+    },
+    {
+      "name": "create-foreign-reference",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "create-foreign-reference.json"
+    },
+    {
+      "name": "create-invited-lead",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "create-invited-lead.json"
+    },
+    {
+      "name": "project-date-invalid",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-589a-7cab-8ed4-781260ed47bd",
+      "evidence": "project-date-invalid.json"
+    },
+    {
+      "name": "project-patch",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-589a-7cab-8ed4-781260ed47bd",
+      "evidence": "project-patch.json"
+    },
+    {
+      "name": "before-stale-project",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-stale-project.json"
+    },
+    {
+      "name": "project-stale",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-589a-7cab-8ed4-781260ed47bd",
+      "evidence": "project-stale.json"
+    },
+    {
+      "name": "after-stale-project",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-stale-project.json"
+    },
+    {
+      "name": "project-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-589a-7cab-8ed4-781260ed47bd/archive",
+      "evidence": "project-archive.json"
+    },
+    {
+      "name": "archive-catalog",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects?archived=true",
+      "evidence": "archive-catalog.json"
+    },
+    {
+      "name": "before-undo-failure",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-undo-failure.json"
+    },
+    {
+      "name": "undo-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-59f9-7971-ada4-a15adbd29648",
+      "evidence": "undo-failure.json"
+    },
+    {
+      "name": "after-undo-failure",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-undo-failure.json"
+    },
+    {
+      "name": "undo-project-first",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-59f9-7971-ada4-a15adbd29648",
+      "evidence": "undo-project-first.json"
+    },
+    {
+      "name": "undo-project-concurrent",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-59f9-7971-ada4-a15adbd29648",
+      "evidence": "undo-project-concurrent.json"
+    },
+    {
+      "name": "undo-project-retry",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-59f9-7971-ada4-a15adbd29648",
+      "evidence": "undo-project-retry.json"
+    },
+    {
+      "name": "project-undo-snapshot",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "project-undo-snapshot.json"
+    },
+    {
+      "name": "project-archive-aba",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-589a-7cab-8ed4-781260ed47bd/archive",
+      "evidence": "project-archive-aba.json"
+    },
+    {
+      "name": "project-restore",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-589a-7cab-8ed4-781260ed47bd/restore",
+      "evidence": "project-restore.json"
+    },
+    {
+      "name": "project-archive-again",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-589a-7cab-8ed4-781260ed47bd/archive",
+      "evidence": "project-archive-again.json"
+    },
+    {
+      "name": "before-project-aba-undo",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-project-aba-undo.json"
+    },
+    {
+      "name": "project-aba-undo",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-5a83-7ca4-8443-86f68956b0cb",
+      "evidence": "project-aba-undo.json"
+    },
+    {
+      "name": "after-project-aba-undo",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-project-aba-undo.json"
+    },
+    {
+      "name": "sql-1",
+      "status": 200,
+      "path": "/__wu31/sql",
+      "evidence": "sql-1.json"
+    },
+    {
+      "name": "project-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-5882-7244-9d6f-bfb4cb8ecbb2",
+      "evidence": "project-delete.json"
+    },
+    {
+      "name": "deleted-project-hidden",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-5882-7244-9d6f-bfb4cb8ecbb2",
+      "evidence": "deleted-project-hidden.json"
+    },
+    {
+      "name": "project-delete-undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-5ae0-7161-96d1-37098d8098be",
+      "evidence": "project-delete-undo.json"
+    },
+    {
+      "name": "deleted-child-preserved",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "deleted-child-preserved.json"
+    },
+    {
+      "name": "project-delete-again",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-5882-7244-9d6f-bfb4cb8ecbb2",
+      "evidence": "project-delete-again.json"
+    },
+    {
+      "name": "project-restore-deleted",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-5882-7244-9d6f-bfb4cb8ecbb2/restore-deleted",
+      "evidence": "project-restore-deleted.json"
+    },
+    {
+      "name": "deleted-undo-stale",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-5b16-7d07-b72e-65de9d570bf0",
+      "evidence": "deleted-undo-stale.json"
+    },
+    {
+      "name": "transfer-team-a",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "transfer-team-a.json"
+    },
+    {
+      "name": "transfer-team-b",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "transfer-team-b.json"
+    },
+    {
+      "name": "transfer-member",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+      "evidence": "transfer-member.json"
+    },
+    {
+      "name": "transfer-old-team",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5b38-7739-b00b-144f8ab770e3",
+      "evidence": "transfer-old-team.json"
+    },
+    {
+      "name": "team-patch",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5b44-7480-981f-950447d9996d",
+      "evidence": "team-patch.json"
+    },
+    {
+      "name": "team-stale",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5b44-7480-981f-950447d9996d",
+      "evidence": "team-stale.json"
+    },
+    {
+      "name": "team-duplicate-name",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "team-duplicate-name.json"
+    },
+    {
+      "name": "before-team-delete-failure",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-team-delete-failure.json"
+    },
+    {
+      "name": "team-delete-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5b44-7480-981f-950447d9996d",
+      "evidence": "team-delete-failure.json"
+    },
+    {
+      "name": "after-team-delete-failure",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-team-delete-failure.json"
+    },
+    {
+      "name": "lifecycle-team",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "lifecycle-team.json"
+    },
+    {
+      "name": "lifecycle-project",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "lifecycle-project.json"
+    },
+    {
+      "name": "lifecycle-project-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-5bd4-7900-b2f9-2d409aacb6e6/archive",
+      "evidence": "lifecycle-project-archive.json"
+    },
+    {
+      "name": "lifecycle-project-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-5bd4-7900-b2f9-2d409aacb6e6",
+      "evidence": "lifecycle-project-delete.json"
+    },
+    {
+      "name": "sql-2",
+      "status": 200,
+      "path": "/__wu31/sql",
+      "evidence": "sql-2.json"
+    },
+    {
+      "name": "team-lifecycle-before",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "team-lifecycle-before.json"
+    },
+    {
+      "name": "team-delete-lifecycle",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5bc7-7c5b-ac09-275b05d045af",
+      "evidence": "team-delete-lifecycle.json"
+    },
+    {
+      "name": "team-deleted-hidden",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5bc7-7c5b-ac09-275b05d045af",
+      "evidence": "team-deleted-hidden.json"
+    },
+    {
+      "name": "team-undo-lifecycle",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-5c1c-7f6b-88e5-1a2fcc873d41",
+      "evidence": "team-undo-lifecycle.json"
+    },
+    {
+      "name": "team-lifecycle-after",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "team-lifecycle-after.json"
+    },
+    {
+      "name": "team-undo-retry",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-5c1c-7f6b-88e5-1a2fcc873d41",
+      "evidence": "team-undo-retry.json"
+    },
+    {
+      "name": "aba-team",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "aba-team.json"
+    },
+    {
+      "name": "team-delete-aba",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5c51-7591-8fc0-16c5b31c218a",
+      "evidence": "team-delete-aba.json"
+    },
+    {
+      "name": "aba-other-team",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "aba-other-team.json"
+    },
+    {
+      "name": "aba-clear",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5c69-76bc-b39a-48e1b55d5b88",
+      "evidence": "aba-clear.json"
+    },
+    {
+      "name": "before-team-aba",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-team-aba.json"
+    },
+    {
+      "name": "team-aba-undo",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-5c5e-712f-96ee-4a06b08d9e85",
+      "evidence": "team-aba-undo.json"
+    },
+    {
+      "name": "after-team-aba",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-team-aba.json"
+    },
+    {
+      "name": "name-reuse",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "name-reuse.json"
+    },
+    {
+      "name": "name-reuse-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5cb5-79d3-bef7-c667bd2a0043",
+      "evidence": "name-reuse-delete.json"
+    },
+    {
+      "name": "name-reuse-new",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "name-reuse-new.json"
+    },
+    {
+      "name": "sql-3",
+      "status": 200,
+      "path": "/__wu31/sql",
+      "evidence": "sql-3.json"
+    },
+    {
+      "name": "before-name-reuse",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-name-reuse.json"
+    },
+    {
+      "name": "name-reuse-undo",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-5cc2-78fb-b81d-c07d01e53b4f",
+      "evidence": "name-reuse-undo.json"
+    },
+    {
+      "name": "after-name-reuse",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-name-reuse.json"
+    },
+    {
+      "name": "race-team",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams",
+      "evidence": "race-team.json"
+    },
+    {
+      "name": "before-association-race",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-association-race.json"
+    },
+    {
+      "name": "association-race",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5d14-7d58-9480-2833a24ab21d",
+      "evidence": "association-race.json"
+    },
+    {
+      "name": "after-association-race",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-association-race.json"
+    },
+    {
+      "name": "race-team-delete-current",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126de-5d14-7d58-9480-2833a24ab21d",
+      "evidence": "race-team-delete-current.json"
+    },
+    {
+      "name": "before-undo-race",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-undo-race.json"
+    },
+    {
+      "name": "undo-member-race",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a126de-5d5f-70fd-afb9-8d2138ea63ff",
+      "evidence": "undo-member-race.json"
+    },
+    {
+      "name": "after-undo-race",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "after-undo-race.json"
+    },
+    {
+      "name": "large-project",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "large-project.json"
+    },
+    {
+      "name": "sql-4",
+      "status": 200,
+      "path": "/__wu31/sql",
+      "evidence": "sql-4.json"
+    },
+    {
+      "name": "before-large-copy",
+      "status": 200,
+      "path": "/__wu31/snapshot",
+      "evidence": "before-large-copy.json"
+    },
+    {
+      "name": "large-copy",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126de-5da3-7622-b40a-cf329ce1a657/duplicate",
+      "evidence": "large-copy.json"
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "error": {
+    "message": "large-copy\n\n409 !== 413\n",
+    "stack": "AssertionError [ERR_ASSERTION]: large-copy\n\n409 !== 413\n\n    at get (file:///workspace/task8/apps/api/tests/wu31/verify.mjs:34:826)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async command (file:///workspace/task8/apps/api/tests/wu31/verify.mjs:40:86)\n    at async file:///workspace/task8/apps/api/tests/wu31/verify.mjs:107:511"
+  },
+  "completedAt": "2026-10-10T17:31:12.045Z"
+}

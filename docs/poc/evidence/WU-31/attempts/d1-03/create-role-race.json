@@ -1,0 +1,16 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu31-test": "{\"sql\":\"UPDATE workspaceMembers SET role='Guest' WHERE id=?\",\"parameters\":[\"01a11abd-aa80-7249-8034-93bbfb2174a2\"]}"
+  },
+  "body": "{\"name\":\"role race\",\"description\":\"WU31 integration\",\"icon\":\"folder\",\"color\":\"#5A67D8\",\"teamId\":null,\"leadId\":\"01a11abd-aa80-7249-8034-93bbfb2174a2\",\"dueDate\":null,\"templateId\":\"blank\"}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Version, authorization or command scope changed"
+    }
+  }
+}

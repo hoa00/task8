@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/duplicate",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu31-test": "{\"sql\":\"UPDATE tasks SET version=version+1 WHERE id=?\",\"parameters\":[\"01a11abd-aa80-7a97-849a-5913d69d66d7\"]}"
+  },
+  "body": "{\"expectedVersion\":1,\"name\":\"Raced copy\"}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Version, authorization or command scope changed"
+    }
+  },
+  "budget": {
+    "queries": 20,
+    "parameters": 44
+  }
+}

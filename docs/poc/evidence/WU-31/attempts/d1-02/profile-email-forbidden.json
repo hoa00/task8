@@ -1,0 +1,15 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/me/profile",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2,\"email\":\"other@invalid.test\"}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid request"
+    }
+  }
+}

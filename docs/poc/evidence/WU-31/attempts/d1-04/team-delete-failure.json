@@ -1,0 +1,20 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126e1-1ef1-7e37-bfd6-012518934bbd",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu31-test": "fail"
+  },
+  "body": "{\"expectedVersion\":2}",
+  "status": 500,
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Request failed"
+    }
+  },
+  "budget": {
+    "queries": 8,
+    "parameters": 21
+  }
+}

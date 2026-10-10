@@ -1,0 +1,51 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a126e1-215f-7d1f-92e6-fb337baa408f",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "team": {
+        "id": "01a126e1-215f-7d1f-92e6-fb337baa408f",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "profile-stale-team",
+        "description": "WU31 integration",
+        "icon": "users",
+        "color": "#5A67D8",
+        "memberIds": [],
+        "createdAt": "2026-10-10T17:34:10.782Z",
+        "updatedAt": "2026-10-10T17:34:10.798Z",
+        "version": 2
+      },
+      "members": [
+        {
+          "id": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77",
+          "name": "Tanjim Islam",
+          "email": "hello@gr8rstudio.com",
+          "title": "WU31 profile",
+          "avatarColor": "#5A67D8",
+          "timezone": "San Francisco",
+          "role": "Owner",
+          "status": "active",
+          "teamId": null,
+          "lastSeenAt": "2026-10-08T09:00:00.000Z",
+          "version": 4
+        }
+      ],
+      "affectedProjectIds": [],
+      "undo": {
+        "id": "01a126e1-2170-7a62-ad9c-ce00c42e770a",
+        "kind": "team.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 21
+  }
+}

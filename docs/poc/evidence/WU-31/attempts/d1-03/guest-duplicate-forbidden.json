@@ -1,0 +1,15 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a126df-28d0-78ed-a200-2cd6ebe1a7b1/duplicate",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2,\"name\":\"Guest copy\"}",
+  "status": 403,
+  "response": {
+    "error": {
+      "code": "FORBIDDEN",
+      "message": "Guests cannot create projects"
+    }
+  }
+}

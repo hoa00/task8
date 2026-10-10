@@ -1,0 +1,19 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":4,\"name\":\"forbidden\"}",
+  "status": 403,
+  "response": {
+    "error": {
+      "code": "FORBIDDEN",
+      "message": "Project is restricted"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 4
+  }
+}
