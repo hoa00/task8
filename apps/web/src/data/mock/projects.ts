@@ -48,6 +48,6 @@ async function execute(id: OperationId, input: Record<string, unknown>, data: Mo
     default: throw new TypeError('Unsupported project operation');
   }
 }
-export function runProjectOperation(id: OperationId, input: Record<string, unknown>, data: MockDataset, clock: Clock) { return ['getProject', 'listProjects', 'getProjectSummary', 'listProjectMembers', 'listSavedViews'].includes(id) ? execute(id, input, data, clock) : transactMock(data, staged => execute(id, input, staged, clock)); }
+export function runProjectOperation(id: OperationId, input: Record<string, unknown>, data: MockDataset, clock: Clock, persist?: (staged: MockDataset) => boolean) { return ['getProject', 'listProjects', 'getProjectSummary', 'listProjectMembers', 'listSavedViews'].includes(id) ? execute(id, input, data, clock) : transactMock(data, async staged => { const result = await execute(id, input, staged, clock); if (persist && !persist(staged)) throw new StudioApiError({ error: { code: 'INTERNAL_ERROR', message: 'Changes could not be saved. Try again.' } }); return result; }); }
 export function hasProjectUndo(data: MockDataset, id: unknown) { const parsed = EntityIdSchema.safeParse(id); return parsed.success && !!data.projectCommands.undoRecords[parsed.data]; }
 export { canReadMockProject };

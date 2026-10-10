@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-D_mQ2iNV.js";var t=e;export{t as component};

@@ -1,0 +1,132 @@
+# WU-28 action / native-event / Undo ledger — IN_PROGRESS
+
+Source is the immutable 904205c626918ee96054eb35495c394a60c0c601 tree. All Source anchors below are under `.reference/gr8r-studio/`. React owners are under `apps/web/src/` unless prefixed `packages/`. `action-assignments.json` retains each of 232 literal A/IN/KEY/BLUR/DBL assignments with Source line, owner, typed operation family, exact historical report bytes/SHA and individual scenario results. There are 231 distinct dispatch/action pairs: `A.rmSub` at actions/actions.js757 is overridden by actions/subtasks.js23. This count supplements the inventory below; it is not the count of all interactions.
+
+Evidence is qualified by its actual report and WU checkpoint. A traced code owner is not a browser PASS. Historical accepted bounded evidence remains historical, including partial passed scenarios inside failed reports and all previously recorded missing-original/visual/runtime debts. The selected evidence appendix below supersedes early pending labels. ROOT final review/staging remains pending. No default OS/Darwin/full-project acceptance follows from this ledger.
+
+## Ten modal types
+
+| Source modals.js case | React owner / operation | Scenario and actual evidence |
+| --- | --- | --- |
+| task33 | tasks/detail/TaskFormDialog; createTask/updateTask, draft fields/files/subtasks | WU10 interactions form validation, create-more, partial retry, lost response; WU28 N01/N11 selected archived27 N01/N11 passed; current31 N01/N11 passed |
+| project35 | projects/ProjectFormDialog; createProject/updateProject | WU16 interactions create/edit/CAS; WU28 selected archived27 N11 passed; current31 N11 passed |
+| share37 | projects/ShareDialog; listProjectMembers + sharingDemo projection | WU16 interactions Share read/search/permission/access/remove Undo; explicit guest demo, no real account/ACL/email grant |
+| invite39 | people/InviteDialog; peopleDemo invite | WU20 native05 P20-04/05 passed; WU28 selected archived27 N11 passed; current31 N11 passed; no canonical account/task grants/email |
+| confirm41 | shared Dialog + task/project/people/team/file/settings/dev owners | WU09 bulk delete; WU10 task; WU16 project; WU20 member; WU21 T21-03 passed inside failed01; WU22 N03; WU24 N07; WU28 N02/N04/N05/N06 individually passed in selected failed native11 (archived27) |
+| prompt43 | ProjectFilesPage renameFile through FileOverlayHost prompt; ProjectLayout updateSavedView | WU22 native05 N03 passed; WU16 three saved layouts/create/rename/delete passed |
+| shortcuts48 | search/ShortcutsDialog + shared shortcut definitions | WU18 native07 N07; WU23 native03 N08; WU28 N08 desktop/mobile individually passed in selected failed native11 (archived27) |
+| team50 | teams/TeamFormDialog; createTeam/updateTeam | WU21 native01 T21-01/02 individually passed; native02 empty/mobile passed; WU28 selected archived27 N11 passed; current31 N11 passed |
+| filePreview52 | files/FileFoundation FilePreviewDialog; getFile/content capability | WU10 attachment preview; WU18 N05; WU22 native05 N01/02/05 |
+| saveView54 | projects/ProjectLayout; createSavedView/updateSavedView/deleteSavedView | WU16 saved three-layout create/open/rename/delete, personal state/history passed |
+
+Common Source open/close/autofocus/opener (modals.js10/23) is shared Dialog/OverlayProvider with feature returnFocus refs. Native form submission, ModEnter, pending guards, typed-name validation and cancellation stay in each form owner. WU10/WU16/WU21/WU23 own those historical cases; WU28 verifies current newly wired triggers/focus/stacked Escape separately.
+
+## Twenty-eight popover switch cases
+
+| Source popovers.js case | React owner / typed operation or local state | Actual scenario evidence |
+| --- | --- | --- |
+| create99 | shell/Topbar, existing task/project/team/people typed intents | WU28 selected archived27 N11 passed; current31 N11 passed; actual Source menu width/order preserved |
+| subassignee103 | tasks/fields AssigneeField + detail/Subtasks; updateSubtask | WU11 subtask detail/assignee/due/note/navigation passed |
+| status118 | shared TaskStatusField; updateTask or form draft | WU13 all-field-popovers; WU10 form/drawer |
+| priority121 | TaskPriorityField; updateTask or draft | WU13 all-field-popovers; WU09 bulk PATCH no Undo |
+| assignee124 | AssigneeField; updateTask or draft | WU13 all-field-popovers; WU17 assignment cross-surface |
+| labels135 | LabelsField; updateTask or draft | WU13 all-field-popovers |
+| project147 | ProjectField; updateTask or draft | WU13 all-field-popovers; WU10 form |
+| recur155 | RecurrenceField; updateTask or draft | WU13 all-field-popovers |
+| estimate165 | EstimateField/TaskTableCell; updateTask | WU13 estimate validation/null/Escape/error and all fields |
+| deps172 | DependenciesField; updateTask | WU13 all-field-popovers; canonical DAG validation tests |
+| date180 | DateField; updateTask/updateSubtask or draft | WU13 all fields; WU11 subtask; WU14 calendar |
+| pstatus192 | ProjectHeader/ProjectStatusPicker; updateProject | WU16 Header/Overview status native interactions |
+| role204 | people/RolePicker/PeopleOverlayHost; peopleDemo role | WU20 native05 P03; explicit demo/unchanged canonical ACL |
+| ws217 | Sidebar + SearchOverlayHost; listWorkspaces/catalog/navigation | WU27 native05 N06; WU28 selected archived27 N12 passed BOTH-direction scope/banner/write block/retry/reset |
+| user228 | shell/ProfileMenu; updatePreferences + existing profile/shortcut/signOut intents | WU28 N09 individually passed in selected failed native11 (archived27); offline preference failure N06; final selected archived27 N01/N11 passed; current31 N01/N11 passed |
+| help244 | Sidebar + DevScenarioHost; local navigation/scenario controls | WU28 N08 desktop/mobile and reset N10 individually passed in selected failed native11 (archived27) |
+| sort249 | TaskViewToolbar SortMenu; local scoped view state | WU09 toolbar; WU13 headers; WU16 project catalogue |
+| group273 | TaskViewToolbar GroupMenu; local scoped view state | WU09 list groups; WU13 group/flatmobile; WU15 timeline |
+| cols292 | ColumnMenu; local column visibility/width preference | WU13 eleven columns, required title, reset/reload/scoped saved views |
+| filter305 | FilterBuilder; typed TaskQuery/local view state | WU09 toolbar search; WU13 clear; WU16 saved views |
+| fvals310 | FilterValues/FilterChip; typed filters | WU09/WU13 scoped filter scenarios |
+| daylist325 | calendar/CalendarView; existing drawer intents | WU14 native project/mine overflow, full cursor/range coverage |
+| event346 | CalendarView event preview; readonly milestone/project navigation | WU14 native event-preview readonly/project-open |
+| emoji353 | comments/ReactionBar; addCommentReaction/removeCommentReaction | WU11 comments keyboard/mention/reaction/delete Undo |
+| ctx357 | six feature context owners below | WU10–16/WU20/WU22 native context scenarios; selected archived27 N13/N14/N15/N16/N17 individually passed |
+| bulk-status360 | BulkActionBar/TaskListPages; bulkMutateTasks PATCH | WU09 exact targets/no Undo |
+| bulk-priority363 | same owner/typed PATCH | WU09 exact targets/no Undo |
+| bulk-assignee366 | same owner/typed PATCH | WU09 exact targets/no Undo |
+
+Common Source open/place/close (popovers.js13/47/60) maps to shared Popover/Menu placement and feature-owned intent state. Resize closes actual popovers through Popover, matching events.js85–91; select closes itself on resize/outside scroll. Modulo navigation in menus and clamped native Select navigation remain distinct. Current resize/menu/Input context proof is selected archived27 N13 passed.
+
+## Six context branches and launch surfaces
+
+| Source context-menu.js | Owner / operation | Actual coverage |
+| --- | --- | --- |
+| task10 | TaskOverlayHost twelve typed intents, nested task fields | WU10 context duplicate/archive/delete/Undo; WU13 field menus; current native List/Table editing guard N13 passed (selected archived27) |
+| project31 | ProjectOverlayHost ten intents incl conditional personal sidebar up/down | WU16 duplicate/archive/delete/Undo/favorite/reorder; current Sidebar native right-click N15 passed (selected archived27) |
+| column49 | TaskBoard/TaskBoardColumn; local collapse/add + bulkMutateTasks | WU12 complete/archive/sort/drop; current options native right-click N15 passed (selected archived27) |
+| member58 | PeopleOverlayHost/RolePicker, six possible items | WU20 P03 native role/resend/remove/Undo + WU24 settings shared owner |
+| file74 | ProjectFilesPage rename/duplicate/delete typed callbacks + FileOverlayHost preview/copy/Undo transport | WU22 native05 N03/N05 rename/duplicate/delete/copy/preview/Undo |
+| savedview84 | ProjectLayout rename/delete | WU16 saved-view native create/open/rename/delete |
+
+Native launch sites are List/Table/Board/Calendar/Timeline, ProjectComponents/Sidebar, MemberTable, FileCatalogue and ProjectLayout. Task menu delegation ignores input/textarea/contenteditable, preserving browser text context and uncommitted drafts. Source Add-task `data-ctx` is composer metadata, not a column menu action.
+
+## Keyboard, event, drag, select and presentation inventory
+
+Source events.js: click9, doubleclick43, contextmenu47, input56, change61, submit66, focusout72, mouseover76, resize85, media-theme92. They map to React local callbacks and shared overlay/select/theme owners: inline List/Table/Drawer/Subtasks/Description commits; native forms and file inputs; palette pointer selection; resize closure; ThemeProvider media subscriptions. WU09–16/WU18–27 historical native reports contain these feature cases. Current WU28 N13/N14/N15/N16 supplements concrete context/mention/Escape/external-files corrections.
+
+Source keyboard.js: ModK/ModShiftL11–25; modal Tab27–49; menu wrap51–61; palette62–101; Escape103–147; ModEnter148–165; native Enter166–171; accessible role buttons/links172; N/P/?/[/slash/E/G174–228. WU18 native07 N01/N03/N06/N07 and WU23 native03 N08 are actual historical checks. Global registry uses existing typed intents and typing/modal suppression. Local form/editor/composer handlers own submission. Escape priority: popover → mention → inline editor → composer → modal → subtask → Drawer → mobile nav → selection. Current selection owner runs on window after higher document/local owners; no blanket typing exclusion. N15 selected archived27 actually verified focused checkbox, ordinary text input, inline edit and nested menu ordering with single key presses.
+
+Source drag-drop.js has native dragstart17/dragend47/external-files-dragover51/dragover113/drop117/pointerdown201 and two dynamic pointer move/up pairs. Owners: Board, List, Calendar, Sidebar, Table column resize, Timeline range drag and Drawer/CommentComposer/Dropzone file upload. WU09/WU12/WU14/WU15/WU16 prove trusted internal drag/resize plus failures/no-op/CAS behavior. WU28 N16 selected archived27 uses real browser DataTransfer+File dispatched drag events: synthetic browser Files-boundary qualification, not OS file drag. Drawer forwards existing upload intent anywhere including header/existing grid and skips child defaultPrevented drops; N17 selected archived27 proves child exactly-once upload.
+
+Source Select has nine bindings (select.js32/33/37/72/73/79/115/122/123): controlled Select uses native keyboard/click/change/close/typeahead with source clamp. Source toast7–26 maps shared Toast/ToastViewport/action timer; Source rich text actions915/932 maps DescriptionEditor sanitized native editor commands (WU11 six commands/paste/tree/caret and existing draft retention).
+
+Presentation samples are distinct from Source actions: DS Button states, sample Breadcrumbs/Tabs/layout/status chip, alert Undo/Try again, SystemStates Clear search, and rich-text icon spans have no Source data-a. Native input/checkbox/radio/select/date/time/text content samples remain editable locally. Actual DS triggers are toast/error/retry, newTask, openTask(t3), demoConfirm, openPalette and theme. SystemStates actual triggers are offline, demoLoad1400, reloadPage skeleton1400, retry toast1300, deleteProject(p5), deleteTask(t10), removeMember(m8), archiveProject(p7). They use shared real feature owners or explicitly marked demo preview; HTTP unsupported controls show the capability boundary, never fabricated success. Source sample `.side` mobile behavior is retained as a presentation quirk.
+
+## Source Undo matrix
+
+| Source Undo toast site | Canonical/local authority | Actual evidence |
+| --- | --- | --- |
+| actions431 completeTask | setTaskCompletion → undoCommand | WU10 Drawer; WU12 Board; WU17 Home/Overview; WU14 calendar |
+| actions493 archiveTask | archiveTask → undoCommand | WU10 context archive |
+| actions509 deleteTask | deleteTask → undoCommand | WU10 context delete confirmation; WU23 preference/full confirmation |
+| actions901 deleteComment | deleteComment → undoCommand | WU11 native comment delete/reload |
+| actions975 bulkDelete | bulkMutateTasks delete → undoCommand | WU09 confirm/cancel/error/atomic Undo |
+| actions1156 completeColumn | bulkMutateTasks complete → undoCommand | WU12 full filtered column complete/Undo |
+| actions1170 archiveCompletedColumn | bulkMutateTasks archive → undoCommand | WU12 archive done-column/Undo/empty |
+| actions1364 archiveProject | archiveProject → undoCommand | WU16 native; WU28 current offline/retry N06 passed (selected archived27) |
+| actions1402 deleteProject | deleteProject → undoCommand | WU16 typed-name confirm; WU28 N05 individually passed in selected failed native11 (archived27) |
+| actions1655 deleteFile | deleteFile → undoCommand | WU10 attachment removal; WU22 N03 delete/remove Undo |
+| actions/teams120 deleteTeam | deleteTeam → undoCommand | WU21 T21-03 individually passed in failed01; actual restoration/route/history |
+| actions1482 removeProjectMember | sharingDemo.undo only | WU16 Share remove Undo; no canonical ACL/account restore |
+| actions1586 removeWorkspaceMember | peopleDemo.execute undo only | WU20 P03; WU24 N04; no canonical ACL/account restore |
+| actions1816 preview Undo | local toast/demo only | WU28 N02 actual zero domain writes; N02 selected archived27 passed |
+
+Exactly eleven canonical inverse sites call `undoCommand(workspaceId, undoId,{})`. No workspace snapshot restoration, new inverse service or physical purge is introduced. Ordinary PATCH/bulk-set959–965/create/duplicate/move/reorder/subtasks/restoreTask/restoreProject/favorites/preferences/file rename/copy have no new Undo. Source purgeTask always confirms irreversible physical deletion and has NO Undo; current canonical tombstone keeps the confirmation and explicitly says permanent deletion is unavailable, hides the entity with the same ID, and exposes no extra inverse. Project archive/delete retain existing Undo; errors/CAS failures retain authoritative IDs and do not invent successful removal.
+
+## Pending integration closure
+
+The original COMMAND_INTEGRATIONS.md table is historical WU18 evidence, not erased. Current Settings routes/appearance/shortcuts reuse completed WU23 owners; Files body/preview/deep links use WU22; catalog/new demo scope uses WU27 actual bounded namespace transition; planLabel is readonly catalog metadata; sign out uses shared auth-demo reset/navigation with unchanged canonical principal and truthful HTTP-unavailable dialog. Selected native N20 (archived27 and current31), N09 (archived27), N12 (archived27) and HTTP03 H04 actually close these UI/typed-owner boundaries; see current COMMAND_INTEGRATIONS appendix. Archived visual12 workspace55 remains unaccepted; fresh current visual13 closes the corrected scope. ROOT review remains pending. Real provisioning/authentication/billing/purge remain explicit capability boundaries, not missing UI wiring or invented future-work implementations.
+
+
+## Actual selected evidence and archive bridge (IN_PROGRESS; no final ROOT PASS)
+
+| Selected report | Actual result and scope |
+| --- | --- |
+| native11 | Overall FAILED; N01–15 individually passed, 16 journeys including N08 desktop/mobile. Exact before679 assets are a subset of core27-before-static-samples-fix765. Failed report has no after map. |
+| native12 | Overall FAILED; N16–19 individually passed. N20 failed at incorrect harness Pro plan expectation; locked plans are Team/Free/Business. Exact before679 assets match archived27; no after map exists. |
+| native14 | N20 passed once on unchanged core27 assets; exact before/after679 maps match archived27. Combined archived selection21 actual passed journeys, without calling native11/12 whole PASS. |
+| native15 | Actual8 passed affected/current-core31 journeys: N01, N07, N08×2, N11, N20, all nine G shortcuts N21 and five persisted status shortcuts N22. Now matched to exact archived core31 before the minimal workspace-label overflow correction; fresh affected coverage follows. |
+| HTTP03 | Actual5 probes passed, 73 requests with expected faults; fixture-backed production HTTP adapter, not real backend. H05 native GoHome→Archive paired route-entry whole0 both widths/repeats0. First-cold Source rerender versus Target route-entry137/140 remains FAILED_UNACCEPTED with full original bytes/actual exception and HTTP500. |
+| motion01 | Actual24 probes passed across normal/stored-reduce/OS-reduce, both sides, load/skeleton1400, toast-retry1300 and offlineRetry700. Actual observed timestamps are retained separately from scheduled constants; original locked Source fixture and changed capture fixture are separate. |
+| menu-style03 | Actual16 computed first-entry probes passed across normal/stored/OS/OS+storedfull, workspace and404 both sides. Source menu reduced120ms varEase/both;404 OS120ms ease/both and storedreduce360ms Source quirk. Computed timing is not measured elapsed entry duration. |
+| visual12 | Overall FAILED; WorkspaceDesktop55 remains unaccepted. All other full-view pairs strict0 or exact intentional-copy bounds with outside0, and all repeats0. Diagnostic independent Source contexts have Source-to-Source0 and Target-to-Target0; deterministic cross55 is not Source variance. |
+
+All report bytes/SHA and exact individual results are in action-assignments.json selectedEvidence. Native27 selection is bridged to unchanged action owners; later31 changes are local gallery/shell/error presentation and safe restricted lead display. Current31 is archived at core31-before-workspace-overflow before any label fix. The concrete current Source workspace name span has overflow visible/text-overflow clip and min-width0; Target truncation introduced additional composited overlap layers. The minimal overflow correction now has fresh core32 visual13 whole menu0 both widths; menu-layer02 confirms equal12 layers and0 PNG pixels. Original55 remains FAILED_UNACCEPTED.
+
+N13 preserves browser editing context and correct cold-list canonical task identity/scroll; Source cold double-click legacy DOM replacement produces no editor and remains a documented Source quirk. N14 proves outside mention closure, Escape from descendant focus, pick and retained draft. N15 proves checkbox-focused/ordinary-input Escape, inline-edit priority, nested-menu first-Escape priority, native Sidebar project and column context. N16/N17 use dispatched browser DataTransfer+File and actual canonical upload/link/counts exactly once; this does not claim trusted OS file drag. N18 proves forced task-delete canonical Undo and member removal demo Undo, N19 restores all six project tasks with same identities/no Restore Undo. No new workspace snapshot inverse or physical purge is implemented.
+
+Historical early reports/raw gaps remain as originally qualified, including core18 outer transcription/persistence gap and all inherited WU22–27 debts. No current success recovers absent original bytes, default Linux/Darwin acceptance, or whole-project parity. Required current core/helper/freeze/index/root gates and actual commit/push remain pending.
+
+
+- Final current WU28 verification checkpoint (still IN_PROGRESS): core32 seven actual0; visual13 actual passed-bounded22 views/43 full desktop/mobile pairs =31 whole strict0 +12 intentional truthful-copy pairs with exact text bounds/unchanged outside0; all86 same-side repeats0, all88 actual200font responses locked and four loaded faces per context. Workspace menu is whole0 BOTH widths after only removing label overflow:hidden/ellipsis. Read-only menu-layer02 confirms Source and Target each12 layers, no extra Personal overlap layers and whole/repeat0; Source/Target actual label min-width are both0px. Current native16 N20 actually passed catalog/Settings/Files/copy closure on core32. Archived31 native15 eight successes, HTTP03 five, motion01 twenty-four and menu-style03 sixteen retain their exact archive31 provenance; handler/timer/full-error presentation bytes are unchanged by this one span class correction. Original visual12 deterministic55 and prior failures are never relabeled recovered or accepted. Finite closure/freezes/helper audit/ROOT pre-stage and all-index gates remain pending; no staging, DONE or actual commit/push yet.
+
+- Finite closure01 actual exit0/passed-bounded independently verifies all43 full RGBA comparisons,86 repeats and12 exact-copy outside0; all selected assets/archive bridges,21 manifests16,041files134,286,478B,5224 unique referenced files588,917,457B and108 completed raw command/argv/child-byte records. Current core32 seven0, helper-lint02 actual0 and Python helper syntax actual0. Historical original outer receipts remain qualified, and failed prestage01 retains nine actual command records before the unpersisted status-subprocess diagnostic gap. Finite freeze/candidate/ROOT gates follow; this is not final approval or commit/push.

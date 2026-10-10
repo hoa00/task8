@@ -140,6 +140,7 @@ export function Popover({ open, onOpenChange, anchor, placement = 'bottom-start'
   const node = useRef<HTMLDivElement>(null); const { id, scope } = useOverlayLayer({ open, node, anchor, initialFocus, returnFocus, focus, onOpenChange });
   useImperativeHandle(ref, () => node.current!);
   usePlacement(open, node, anchor, placement, point);
+  useEffect(() => { if (!open) return; const resize = () => onOpenChange(false, 'outside'); window.addEventListener('resize', resize); return () => window.removeEventListener('resize', resize); }, [open, onOpenChange]);
   if (!open) return null;
   return <Portal><OverlayScopeContext value={{ ...scope, id }}><div {...props} ref={node} tabIndex={-1} data-overlay-kind="popover" onAnimationEnd={event => { props.onAnimationEnd?.(event); if (event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className={`ui-popover fixed z-[80] max-h-[min(420px,70vh)] min-w-[200px] max-w-[320px] origin-top-left overflow-y-auto rounded-lg bg-surface p-1 text-body [box-shadow:var(--shadow-pop)] ${className}`}>{children}</div></OverlayScopeContext></Portal>;
 }

@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-DVaz8VjP.js";var t=e;export{t as component};

@@ -34,3 +34,9 @@
  :root[data-motion=reduce] .shell-skip{transition:none;}
 }
 @keyframes shell-fade {from{opacity:0;}to{opacity:1;}}
+
+/* Shell menu first-entry nodes retain Source pop.enter fillboth until closed.
+   Shared overlay cleanup remains owned by its existing controller. */
+.shell-menu.ui-popover { animation: ui-pop-in .16s var(--ease) both !important; }
+:root[data-motion=reduce] .shell-menu.ui-popover { animation: fadeOnly .12s var(--ease) both !important; }
+@media(prefers-reduced-motion:reduce) { .shell-menu.ui-popover { animation: fadeOnly .12s var(--ease) both !important; } }

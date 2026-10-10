@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-C_RyakPh.js";var t=e;export{t as component};

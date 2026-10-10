@@ -1,0 +1,1 @@
+import{r as e}from"./useRouter-BOAPZDg1.js";import{t}from"./AuthPage-CABY8mkG.js";var n=e(),r=()=>(0,n.jsx)(t,{screen:`signup`});export{r as component};

@@ -1,0 +1,230 @@
+{
+  "status": "failed",
+  "commands": [
+    {
+      "id": "HEAD",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/HEAD.command",
+        "bytes": 25,
+        "sha256": "a02fc5735edb706f11d027134a9c3dae392fd40ab960ccbacde9e17674cf3ed2"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/HEAD.stdout",
+        "bytes": 41,
+        "sha256": "0c5173e2004412a497cfa343e5e3244f2b383e5322f05e178d1619b34fbe60e4"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/HEAD.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "tree",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/tree.command",
+        "bytes": 32,
+        "sha256": "481d436a93f0fe4fd6b8b88a36c19039129439e944a4c53a197b27307f4c996f"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/tree.stdout",
+        "bytes": 41,
+        "sha256": "53fa5fc28161b7db5f79cc401dcc04ddc63824dafe967681ceba6d8b15af4c70"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/tree.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "parent",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/parent.command",
+        "bytes": 26,
+        "sha256": "2c11cdf4da5c2bd7b6e4aca4cf76b6e194e88757b9929d7d6f2a2c014800b6f2"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/parent.stdout",
+        "bytes": 41,
+        "sha256": "c96c21256632c28b21d08aea40683572a5c3f45adbf3d838847d79c5174e9ed4"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/parent.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "branch",
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/branch.command",
+        "bytes": 32,
+        "sha256": "19b290aa8538d84ffcdbcd171e28b72a21187e195189e856dba4fee839ead4da"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/branch.stdout",
+        "bytes": 5,
+        "sha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/branch.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "origin",
+      "argv": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/origin.command",
+        "bytes": 34,
+        "sha256": "82033bf2eca0c90c6e7a64e6ecfd881b7bb22252d8a72112e34d1d02cc0b2a9e"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/origin.stdout",
+        "bytes": 35,
+        "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "freshMain",
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/freshMain.command",
+        "bytes": 45,
+        "sha256": "c571e4617b956e855985241640f00754b29d1755e697ada4a0472389dace4d88"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/freshMain.stdout",
+        "bytes": 57,
+        "sha256": "d5d0ee6d35cbeda85a3223ca62869250c1d9e88258a53789a61d4cd87a4a9545"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/freshMain.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "trackingMain",
+      "argv": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/trackingMain.command",
+        "bytes": 32,
+        "sha256": "bff09024fa3e72b68e354e581c88eff725e7bfa643886632f7fa44744959c109"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/trackingMain.stdout",
+        "bytes": 41,
+        "sha256": "0c5173e2004412a497cfa343e5e3244f2b383e5322f05e178d1619b34fbe60e4"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/trackingMain.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "divergence",
+      "argv": [
+        "git",
+        "rev-list",
+        "--left-right",
+        "--count",
+        "HEAD...origin/main"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/divergence.command",
+        "bytes": 63,
+        "sha256": "766411718f6491d3a8c8b07d06e0a8e1d5d45895196d25d411588770c3436398"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/divergence.stdout",
+        "bytes": 4,
+        "sha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/divergence.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "index",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only",
+        "-z"
+      ],
+      "command": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/index.command",
+        "bytes": 43,
+        "sha256": "69365f2a0906d10e9094f5260636a044d80a2e35026aa1abcd4127887c8913d3"
+      },
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/index.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-28/attempts/prestage-01/index.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "base": "f2daa4e27916949efc167c8dce09846b9610304c",
+  "scope": "Finite read-only Git/Source/ports/active-whitespace packet before root pre-stage. No staging, DONE, commit or push. Actual fresh remote-main must equal prerequisite.",
+  "error": "AssertionError [ERR_ASSERTION]: status\n\nnull !== 0\n\n    at file:///workspace/task8/tests/visual/archive/prestage.mjs:17:94\n    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+}

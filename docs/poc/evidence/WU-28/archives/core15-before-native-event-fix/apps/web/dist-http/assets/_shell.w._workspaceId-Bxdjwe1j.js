@@ -1,0 +1,1 @@
+import{n as e}from"./Boundaries-CNkOkz7X.js";var t=e;export{t as errorComponent};

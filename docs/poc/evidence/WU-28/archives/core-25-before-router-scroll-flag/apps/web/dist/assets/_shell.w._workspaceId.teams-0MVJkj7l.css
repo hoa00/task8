@@ -1,0 +1,15 @@
+/* Source .fx-route .grid2 has two nested motion owners in TeamDetail.
+   Keep their layer/timing alongside the shared route entrance; no global override. */
+[data-team-detail][data-project-transition=route] [data-team-detail-grid] > * > :nth-child(2),
+[data-team-detail][data-project-transition=route] [data-team-detail-grid] > :nth-child(2) > :first-child {
+  animation: riseIn .4s .09s var(--ease) both;
+}
+/* Source OS preference applies to every nested owner. Its explicit UI Reduce
+   selector omits these descendants, so their existing rise remains unchanged. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion=full]) [data-team-detail][data-project-transition=route] [data-team-detail-grid] > * > * { animation: fadeOnly .12s both !important; }
+}
+
+/* Source .fx-route > .fullstate owns the same finite entrance. */
+.team-not-found-motion { animation: riseIn .36s var(--ease) both; }
+@media (prefers-reduced-motion: reduce) { :root:not([data-motion=full]) .team-not-found-motion { animation: fadeOnly .12s both !important; } }

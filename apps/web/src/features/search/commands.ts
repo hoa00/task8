@@ -1,7 +1,7 @@
 import type { IconName } from '@studio/ui';
 import type { WorkspacePage } from '../../app/navigation';
 export type CommandId = 'task' | 'project' | 'search' | 'home' | 'inbox' | 'my' | 'projects' | 'calendar' | 'timeline' | 'members' | 'settings' | 'appearance' | 'workspace' | 'dark' | 'invite' | 'sidebar' | 'shortcuts' | 'signout' | 'activity' | 'notifications' | 'editTask';
-export interface CommandDefinition { id: CommandId; name: string; icon: IconName; keys?: readonly string[]; page?: WorkspacePage; pendingOwner?: number; palette?: boolean }
+export interface CommandDefinition { id: CommandId; name: string; icon: IconName; keys?: readonly string[]; page?: WorkspacePage; palette?: boolean }
 export const commandDefinitions: readonly CommandDefinition[] = [
  { id: 'task', name: 'Create task', icon: 'plus', keys: ['N'] },
  { id: 'project', name: 'Create project', icon: 'folder-plus', keys: ['P'] },
@@ -13,14 +13,14 @@ export const commandDefinitions: readonly CommandDefinition[] = [
  { id: 'calendar', name: 'Go to Calendar', icon: 'calendar', keys: ['G', 'C'], page: 'calendar' },
  { id: 'timeline', name: 'Go to Timeline', icon: 'chart-gantt', page: 'timeline' },
  { id: 'members', name: 'Go to Members', icon: 'users', page: 'members' },
- { id: 'settings', name: 'Open settings', icon: 'settings', keys: ['G', 'S'], pendingOwner: 23 },
- { id: 'appearance', name: 'Appearance settings', icon: 'palette', pendingOwner: 23 },
+ { id: 'settings', name: 'Open settings', icon: 'settings', keys: ['G', 'S'] },
+ { id: 'appearance', name: 'Appearance settings', icon: 'palette' },
  { id: 'workspace', name: 'Switch workspace…', icon: 'arrow-left-right' },
  { id: 'dark', name: 'Switch to dark mode', icon: 'moon', keys: ['Mod', '⇧', 'L'] },
  { id: 'invite', name: 'Invite member', icon: 'user-plus' },
  { id: 'sidebar', name: 'Toggle sidebar', icon: 'panel-left', keys: ['['] },
  { id: 'shortcuts', name: 'Keyboard shortcuts', icon: 'keyboard', keys: ['?'] },
- { id: 'signout', name: 'Sign out', icon: 'log-out', pendingOwner: 26 },
+ { id: 'signout', name: 'Sign out', icon: 'log-out' },
  { id: 'activity', name: 'Go to Activity', icon: 'activity', keys: ['G', 'A'], page: 'activity', palette: false },
  { id: 'notifications', name: 'Go to Notifications', icon: 'bell', keys: ['G', 'N'], page: 'notifications', palette: false },
  { id: 'editTask', name: 'Edit task', icon: 'pencil', keys: ['E'], palette: false },

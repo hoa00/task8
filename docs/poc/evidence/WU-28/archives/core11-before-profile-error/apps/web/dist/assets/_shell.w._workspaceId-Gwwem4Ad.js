@@ -1,0 +1,1 @@
+import{n as e}from"./Boundaries-BWM7g3c8.js";var t=e;export{t as errorComponent};

@@ -1,0 +1,1 @@
+import{i as e}from"./SettingsLayout-D0KBjW-i.js";var t=e;export{t as component};

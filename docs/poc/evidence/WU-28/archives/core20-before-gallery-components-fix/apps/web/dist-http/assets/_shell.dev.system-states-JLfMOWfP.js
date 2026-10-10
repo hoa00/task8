@@ -1,0 +1,1 @@
+import{n as e}from"./Galleries-DpNSNNfn.js";var t=e;export{t as component};

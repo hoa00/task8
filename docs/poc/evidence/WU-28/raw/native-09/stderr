@@ -1,0 +1,43 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+A [Error]: expect(locator).toBeVisible() failed
+
+Locator: locator('[data-offline-preview]')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "to.be.visible" with timeout 5000ms
+  - waiting for locator('[data-offline-preview]')
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/tests/visual/archive/native.mjs:39:1106
+    at async journey (file:///workspace/task8/tests/visual/archive/native.mjs:23:9)
+    at async file:///workspace/task8/tests/visual/archive/native.mjs:39:3 {
+  matcherResult: {
+    message: 'expect(locator).toBeVisible() failed\n' +
+      '\n' +
+      "Locator: locator('[data-offline-preview]')\n" +
+      'Expected: visible\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.be.visible" with timeout 5000ms\n' +
+      "  - waiting for locator('[data-offline-preview]')\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      '  - Expect "to.be.visible" with timeout 5000ms',
+      "  - waiting for locator('[data-offline-preview]')"
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

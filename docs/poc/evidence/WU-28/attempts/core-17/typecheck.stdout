@@ -1,0 +1,26 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs 66802112efe0b52f
+@studio/ui:typecheck: cache hit, replaying logs 9f2051a15bb91bc6
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 453da13fc6656f8f
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs 2f0e6e429ae7944a
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 8c6f910ec1d4acac
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/features/tasks/TaskBoard.tsx(43,163): error TS2339: Property 'point' does not exist on type '{ status: "backlog" | "todo" | "progress" | "review" | "done"; anchor: HTMLElement; }'.
+@studio/web:typecheck: src/features/tasks/TaskBoard.tsx(43,181): error TS2339: Property 'point' does not exist on type '{ status: "backlog" | "todo" | "progress" | "review" | "done"; anchor: HTMLElement; }'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    12.821s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

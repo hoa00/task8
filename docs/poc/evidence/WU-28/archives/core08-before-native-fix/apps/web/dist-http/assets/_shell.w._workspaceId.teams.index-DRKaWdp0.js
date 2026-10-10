@@ -1,0 +1,1 @@
+import{n as e}from"./TeamsPage-nScO2SUA.js";var t=e;export{t as component};

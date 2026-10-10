@@ -1,0 +1,1 @@
+import{n as e}from"./Boundaries-DOIBi2iD.js";var t=e;export{t as errorComponent};

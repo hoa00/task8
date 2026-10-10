@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-NDDNp-0i.js";var t=e;export{t as component};

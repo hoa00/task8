@@ -1,0 +1,25 @@
+{
+  "command": {
+    "path": "docs/poc/evidence/WU-28/raw/helper-syntax-02/command.txt",
+    "bytes": 207,
+    "sha256": "f49473e457bbc039f2c227b35ca07a6191d21d0742053e1451900a0fb82ba7af"
+  },
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; [compile(Path(p).read_bytes(),p,\"exec\") for p in [\"tests/visual/archive/index-audit.py\",\"tests/visual/archive/checkpoint.py\",\"tests/visual/archive/whitespace.py\"]]"
+  ],
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-28/raw/helper-syntax-02/stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-28/raw/helper-syntax-02/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

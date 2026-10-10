@@ -1,0 +1,55 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+A [Error]: expect(locator).toContainText(expected) failed
+
+Locator: getByRole('menu')
+Expected substring: "Pro"
+Received string:    "WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out"
+Timeout: 5000ms
+
+Call log:
+  - Expect "to.have.text" with timeout 5000ms
+  - waiting for getByRole('menu')
+    3 × locator resolved to <div role="menu" tabindex="-1" aria-label="Workspaces" data-overlay-kind="popover" class="ui-popover fixed z-[80] max-h-[min(420px,70vh)] min-w-[200px] max-w-[320px] origin-top-left overflow-y-auto rounded-lg bg-surface p-1 text-body [box-shadow:var(--shadow-pop)] ">…</div>
+      - unexpected value "WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out"
+    6 × locator resolved to <div role="menu" tabindex="-1" data-entered="" aria-label="Workspaces" data-overlay-kind="popover" class="ui-popover fixed z-[80] max-h-[min(420px,70vh)] min-w-[200px] max-w-[320px] origin-top-left overflow-y-auto rounded-lg bg-surface p-1 text-body [box-shadow:var(--shadow-pop)] ">…</div>
+      - unexpected value "WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out"
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/tests/visual/archive/native.mjs:70:125
+    at async journey (file:///workspace/task8/tests/visual/archive/native.mjs:25:9)
+    at async file:///workspace/task8/tests/visual/archive/native.mjs:66:3 {
+  matcherResult: {
+    name: 'toContainText',
+    expected: 'Pro',
+    message: 'expect(locator).toContainText(expected) failed\n' +
+      '\n' +
+      "Locator: getByRole('menu')\n" +
+      'Expected substring: "Pro"\n' +
+      'Received string:    "WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out"\n' +
+      'Timeout: 5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.have.text" with timeout 5000ms\n' +
+      "  - waiting for getByRole('menu')\n" +
+      '    3 × locator resolved to <div role="menu" tabindex="-1" aria-label="Workspaces" data-overlay-kind="popover" class="ui-popover fixed z-[80] max-h-[min(420px,70vh)] min-w-[200px] max-w-[320px] origin-top-left overflow-y-auto rounded-lg bg-surface p-1 text-body [box-shadow:var(--shadow-pop)] ">…</div>\n' +
+      '      - unexpected value "WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out"\n' +
+      '    6 × locator resolved to <div role="menu" tabindex="-1" data-entered="" aria-label="Workspaces" data-overlay-kind="popover" class="ui-popover fixed z-[80] max-h-[min(420px,70vh)] min-w-[200px] max-w-[320px] origin-top-left overflow-y-auto rounded-lg bg-surface p-1 text-body [box-shadow:var(--shadow-pop)] ">…</div>\n' +
+      '      - unexpected value "WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out"\n',
+    pass: false,
+    actual: 'WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out',
+    log: [
+      '  - Expect "to.have.text" with timeout 5000ms',
+      "  - waiting for getByRole('menu')",
+      '    3 × locator resolved to <div role="menu" tabindex="-1" aria-label="Workspaces" data-overlay-kind="popover" class="ui-popover fixed z-[80] max-h-[min(420px,70vh)] min-w-[200px] max-w-[320px] origin-top-left overflow-y-auto rounded-lg bg-surface p-1 text-body [box-shadow:var(--shadow-pop)] ">…</div>',
+      '      - unexpected value "WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out"',
+      '    6 × locator resolved to <div role="menu" tabindex="-1" data-entered="" aria-label="Workspaces" data-overlay-kind="popover" class="ui-popover fixed z-[80] max-h-[min(420px,70vh)] min-w-[200px] max-w-[320px] origin-top-left overflow-y-auto rounded-lg bg-surface p-1 text-body [box-shadow:var(--shadow-pop)] ">…</div>',
+      '      - unexpected value "WorkspacesGr8r StudioTeamPPersonalFreeAAcme LabsBusinessCreate workspaceWorkspace settingsInvite membersSign out"'
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

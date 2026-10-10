@@ -1,0 +1,27 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/ui:typecheck: cache hit, replaying logs c25ed775629c935c
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/contracts:typecheck: cache hit, replaying logs 66802112efe0b52f
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 453da13fc6656f8f
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 8c72c031d1929377
+@studio/api:typecheck: cache hit, replaying logs 2f0e6e429ae7944a
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: tests/data/archive.test.ts(34,105): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; ... 15 more ...; version: number; }>'.
+@studio/web:typecheck:   No index signature with a parameter of type 'string' was found on type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; ... 15 more ...; version: number; }>'.
+@studio/web:typecheck: tests/data/archive.test.ts(34,204): error TS2537: Type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; ... 15 more ...; version: number; }>' has no matching index signature for type 'string'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    12.968s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

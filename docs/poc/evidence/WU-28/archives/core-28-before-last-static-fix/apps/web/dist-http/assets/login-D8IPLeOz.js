@@ -1,0 +1,1 @@
+import{r as e}from"./useRouter-BOAPZDg1.js";import{t}from"./AuthPage-DZ0WcK5_.js";var n=e(),r=()=>(0,n.jsx)(t,{screen:`login`});export{r as component};

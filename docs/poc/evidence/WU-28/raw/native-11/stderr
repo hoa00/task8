@@ -1,0 +1,17 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Error: strict mode violation: locator('[data-task-attachments] .grid') resolved to 3 elements:
+    1) <div class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-2">…</div> aka getByText('fighomepage-wireframes-v3.figFigma · 4.2 MBpdfnav-audit-findings.pdfPDF · 860 KB')
+    2) <div data-file-art="fig" class="file-preview relative grid max-w-full place-items-center overflow-hidden border-b border-b-[var(--border)] bg-sunken file-art-attachment aspect-[16/9]">…</div> aka getByRole('button', { name: 'Preview homepage-wireframes-' })
+    3) <div data-file-art="pdf" class="file-preview relative grid max-w-full place-items-center overflow-hidden border-b border-b-[var(--border)] bg-sunken file-art-attachment aspect-[16/9]">…</div> aka getByRole('button', { name: 'Preview nav-audit-findings.pdf' })
+
+Call log:
+[2m  - waiting for locator('[data-task-attachments] .grid')[22m
+
+    at /workspace/task8/tests/visual/archive/native.mjs:43:470
+    at async journey (/workspace/task8/tests/visual/archive/native.mjs:23:9)
+    at async file:///workspace/task8/tests/visual/archive/native.mjs:43:3
+
+Node.js v24.13.0

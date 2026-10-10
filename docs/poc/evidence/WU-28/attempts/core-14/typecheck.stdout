@@ -1,0 +1,24 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/ui:typecheck: cache miss, executing 6875503b845e6934
+@studio/contracts:typecheck: cache hit, replaying logs 66802112efe0b52f
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 453da13fc6656f8f
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs 2f0e6e429ae7944a
+@studio/api:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: src/overlays.tsx(1,10): error TS2300: Duplicate identifier 'useEffect'.
+@studio/ui:typecheck: src/overlays.tsx(1,21): error TS2300: Duplicate identifier 'useEffect'.
+@studio/ui:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    3 successful, 4 total
+Cached:    3 cached, 4 total
+  Time:    5.198s 
+Failed:    @studio/ui#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

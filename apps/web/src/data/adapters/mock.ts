@@ -1,4 +1,4 @@
-import { DateRangeQuerySchema, EntityIdSchema, catalogs } from '@studio/contracts/api';
+import { DateRangeQuerySchema, EntityIdSchema, catalogs, operations } from '@studio/contracts/api';
 import type { OperationId } from '@studio/contracts/api';
 import { normalizeDescription } from '@studio/domain';
 import { canReadMockProject as canReadProject, projectOperations, runProjectOperation, hasProjectUndo } from '../mock/projects.ts';
@@ -16,6 +16,7 @@ import { readSearch } from '../mock/search.ts';
 import type { MockScenarioId } from '../mock/scenarios.ts';
 import { peopleReads, readMember, readMemberSummary } from '../mock/people.ts';
 import { notificationOperations, runNotificationOperation } from '../mock/notifications.ts';
+import { readArchive } from '../mock/archive.ts';
 import { teamOperations, runTeamOperation, hasTeamUndo } from '../mock/teams.ts';
 
 import { settingsOperations, runSettingsOperation } from '../mock/settings.ts';
@@ -25,14 +26,15 @@ import type { OnboardingDraft, OnboardingResult } from '../onboarding-demo.ts';
 
 export const foundationReads = ['getSession', 'listWorkspaces', 'getBootstrap', 'getWorkspace', 'getProfile', 'getPreferences', 'getNotificationPreferences'] as const satisfies readonly OperationId[];
 // WU-07 needs only saved-view identity/ownership for the static route boundary.
-const shellReads = [...foundationReads, 'listSavedViews', 'listCalendarEvents', 'search'] as const;
+const shellReads = [...foundationReads, 'listArchive', 'listSavedViews', 'listCalendarEvents', 'search'] as const;
 export interface MockApiOptions {
-  clock?: Clock; storage?: MockStorage; scenario?: MockScenarioId; environment?: 'development' | 'test' | 'production';
+  clock?: Clock; storage?: MockStorage; scenario?: MockScenarioId; environment?: 'development' | 'test' | 'production'; allowDemoReset?: boolean;
   wait?: (milliseconds: number, signal?: AbortSignal) => Promise<void>;
 }
 
-export function createMockClient({ clock = fixtureClock, storage, scenario = 'populated', environment = 'production', wait = waitForScenario }: MockApiOptions = {}) {
+export function createMockClient({ clock = fixtureClock, storage, scenario = 'populated', environment = 'production', allowDemoReset = false, wait = waitForScenario }: MockApiOptions = {}) {
   const state = mockScenarios[scenario];
+  let demoOffline = false;
   const fresh = () => state.dataset === 'empty' ? createEmptyDataset(clock) : createSeedDataset(clock);
   const seed = fresh();
   // System scenarios always start from their fixture and never overwrite the populated demo.
@@ -70,15 +72,17 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
     reconcilePrincipal(dataset);
     if (![...shellReads, ...taskFieldOperations, ...projectOperations, ...dashboardReads, ...notificationOperations, ...peopleReads, ...teamOperations, ...settingsOperations].includes(id as (typeof shellReads)[number] | (typeof taskFieldOperations)[number] | (typeof projectOperations)[number] | (typeof dashboardReads)[number] | (typeof notificationOperations)[number] | (typeof peopleReads)[number] | (typeof teamOperations)[number] | (typeof settingsOperations)[number])) throw unavailable(id);
     await wait(state.delayMs, signal);
+    if (demoOffline && operations[id].method !== 'GET') throw new StudioTransportError('offline', 'Offline demo — changes were not saved');
     if (state.failure === 'offline') throw new StudioTransportError('offline', 'Mock scenario is offline');
     if (state.failure === 'error') throw new StudioApiError({ error: { code: 'INTERNAL_ERROR', message: 'Mock scenario request failed' } });
     if (input.workspaceId && input.workspaceId !== dataset.workspaceId) throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Workspace data is not available' } });
     if ((settingsOperations as readonly string[]).includes(id)) { const settingsScope = id === 'updateProfile' ? canonicalPrincipal : dataset; const result = await runSettingsOperation(id, input, settingsScope, clock, scenario === 'populated' && storage ? staged => persistMockDataset(storage, staged) : undefined); if (id === 'updateProfile') for (const scoped of datasets.values()) reconcilePrincipal(scoped); return result; }
     if ((teamOperations as readonly string[]).includes(id) || id === 'undoCommand' && hasTeamUndo(dataset, input.undoId)) return runTeamOperation(id, input, dataset, clock, scenario === 'populated' && storage ? staged => persistMockDataset(storage, staged) : undefined);
     if ((notificationOperations as readonly string[]).includes(id)) { const result = runNotificationOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
-    if ((projectOperations as readonly string[]).includes(id) || id === 'undoCommand' && hasProjectUndo(dataset, input.undoId)) { const result = await runProjectOperation(id, input, dataset, clock); if (scenario === 'populated') persistMockDataset(storage, dataset); return result; }
-    if ((taskFieldOperations as readonly string[]).includes(id)) { const fileWrite = ['renameFile', 'duplicateFile', 'uploadProjectFile', 'deleteFile'].includes(id) || id === 'undoCommand' && dataset.taskCommands.lifecycleUndoRecords[EntityIdSchema.parse(input.undoId)]?.kind === 'file.delete'; const result = await runTaskFieldOperation(id, input, dataset, clock, fileWrite && scenario === 'populated' && storage ? staged => persistMockDataset(storage, staged) : undefined); if (!fileWrite && scenario === 'populated') persistMockDataset(storage, dataset); return result; }
+    if ((projectOperations as readonly string[]).includes(id) || id === 'undoCommand' && hasProjectUndo(dataset, input.undoId)) { const result = await runProjectOperation(id, input, dataset, clock, scenario === 'populated' && storage ? staged => persistMockDataset(storage, staged) : undefined); if (scenario === 'populated' && !storage) persistMockDataset(storage, dataset); return result; }
+    if ((taskFieldOperations as readonly string[]).includes(id)) { const lifecycleWrite = ['archiveTask', 'restoreTask', 'deleteTask'].includes(id) || id === 'undoCommand' && !!dataset.taskCommands.lifecycleUndoRecords[EntityIdSchema.parse(input.undoId)]; const fileWrite = ['renameFile', 'duplicateFile', 'uploadProjectFile', 'deleteFile'].includes(id) || id === 'undoCommand' && dataset.taskCommands.lifecycleUndoRecords[EntityIdSchema.parse(input.undoId)]?.kind === 'file.delete'; const result = await runTaskFieldOperation(id, input, dataset, clock, (fileWrite || lifecycleWrite) && scenario === 'populated' && storage ? staged => persistMockDataset(storage, staged) : undefined); if (!(fileWrite || lifecycleWrite) && scenario === 'populated') persistMockDataset(storage, dataset); return result; }
     switch (id) {
+      case 'listArchive': return { data: await readArchive(dataset, input.query, clock) };
       case 'getMember': return { data: readMember(dataset, input.memberId) };
       case 'getMemberSummary': return { data: readMemberSummary(dataset, input.memberId, clock) };
       case 'search': return { data: await readSearch(dataset, input.query, clock) };
@@ -127,16 +131,20 @@ export function createMockClient({ clock = fixtureClock, storage, scenario = 'po
   return { ...client,
     selectWorkspace(workspaceId: string) { const selected = datasets.get(workspaceId); if (!selected) throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Workspace data is not available' } }); activeDataset = selected; if (datasets.size > 1) { try { storage?.setItem('task8.demo.onboarding.selected.v1', workspaceId); } catch { /* UI selection remains operational in memory. */ } } },
     completeOnboarding(draft: OnboardingDraft): Promise<OnboardingResult> { const existing = completions.get(draft.flowId); if (existing) return existing; const promise = completeOnboarding(draft).finally(() => completions.delete(draft.flowId)); completions.set(draft.flowId, promise); return promise; },
-    reset() {
-      if (environment === 'production') throw new StudioApiError({ error: { code: 'FORBIDDEN', message: 'Mock reset is only available in dev/test' } });
+    isDemoOffline() { return demoOffline; },
+    setDemoOffline(value: boolean) { if (environment === 'production' && !allowDemoReset) throw new StudioApiError({ error: { code: 'FORBIDDEN', message: 'Offline scenarios require dev/POC boundary' } }); demoOffline = value; },
+    reset({ durable = false }: { durable?: boolean } = {}) {
+      if (environment === 'production' && !allowDemoReset) throw new StudioApiError({ error: { code: 'FORBIDDEN', message: 'Mock reset is only available in dev/test' } });
       const demoIds = [...datasets.keys()].filter(id => id !== seed.workspaceId);
-      activeDataset = fresh();
+      const resetDataset = fresh(); resetDataset.preferences.theme = activeDataset.preferences.theme;
+      if (scenario === 'populated' && storage && !persistMockDataset(storage, resetDataset) && durable) throw new StudioApiError({ error: { code: 'INTERNAL_ERROR', message: 'Demo data could not be restored. Try again.' } });
+      activeDataset = resetDataset; demoOffline = false;
       datasets.clear();
       Object.assign(canonicalPrincipal, structuredClone(activeDataset));
       activeDataset = canonicalPrincipal;
       datasets.set(activeDataset.workspaceId, activeDataset);
       if (demoIds.length) { try { for (const id of demoIds) storage?.removeItem(mockStorageKey(id)); for (const key of [catalogKey, 'task8.demo.onboarding.selected.v1', 'task8.demo.onboarding.v1']) storage?.removeItem(key); } catch { /* Dev reset still clears in-memory scopes when storage is blocked. */ } }
-      if (scenario === 'populated') persistMockDataset(storage, activeDataset);
+      return activeDataset.workspaceId;
     },
   };
 }

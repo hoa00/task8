@@ -1,0 +1,1 @@
+import{i as e}from"./SettingsLayout-CX4-9g6i.js";var t=e;export{t as component};

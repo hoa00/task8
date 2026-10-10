@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-dbZ0mURt.js";var t=e;export{t as component};

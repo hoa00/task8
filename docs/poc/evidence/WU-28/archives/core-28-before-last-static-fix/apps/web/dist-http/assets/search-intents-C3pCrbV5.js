@@ -1,0 +1,1 @@
+import{i as e,o as t}from"./useRouter-BOAPZDg1.js";var n=t(e(),1),r=(0,n.createContext)(null);function i(){let e=(0,n.useContext)(r);if(!e)throw Error(`Search intents require AppShell`);return e}export{i as n,r as t};

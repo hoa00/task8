@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-CjFIDhor.js";var t=e;export{t as component};

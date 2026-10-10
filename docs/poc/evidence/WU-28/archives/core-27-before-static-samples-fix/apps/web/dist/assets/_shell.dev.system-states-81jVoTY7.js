@@ -1,0 +1,1 @@
+import{n as e}from"./Galleries-r7_qKoya.js";var t=e;export{t as component};

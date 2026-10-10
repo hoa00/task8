@@ -1,3 +1,3 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { PendingPage } from '../app/shell/PendingPage';
-export const Route=createFileRoute('/_shell/dev/system-states')({component:PendingPage});
+import { SystemStatesGallery } from '../features/dev/Galleries';
+export const Route=createFileRoute('/_shell/dev/system-states')({component:SystemStatesGallery});

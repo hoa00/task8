@@ -1,0 +1,10 @@
+file:///workspace/task8/tests/visual/archive/http.mjs:63
+    const archived = await client.api.archiveProject({ workspaceId: wid, projectId: canonicalProjectId, body: { expectedVersion: before.data.project.version } });
+                                                                                                                                                     ^
+
+TypeError: Cannot read properties of undefined (reading 'version')
+    at file:///workspace/task8/tests/visual/archive/http.mjs:63:150
+    at async probe (file:///workspace/task8/tests/visual/archive/http.mjs:29:77)
+    at async file:///workspace/task8/tests/visual/archive/http.mjs:60:3
+
+Node.js v24.13.0

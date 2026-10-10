@@ -8,7 +8,7 @@ import type { Clock } from '@studio/domain';
 import { StudioApiError } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
 
-export const taskFieldOperations = ['createTask', 'bulkMutateTasks', 'updateSubtask', 'createSubtask', 'deleteSubtask', 'promoteSubtask', 'listComments', 'createComment', 'deleteComment', 'restoreDeletedComment', 'addCommentReaction', 'removeCommentReaction', 'listActivity', 'listMembers', 'getTask', 'listTasks', 'getTaskSummary', 'updateTask', 'moveTask', 'setTaskCompletion', 'undoCommand', 'duplicateTask', 'archiveTask', 'deleteTask', 'addTaskFavorite', 'removeTaskFavorite', 'getFile', 'listProjectFiles', 'renameFile', 'duplicateFile', 'uploadProjectFile', 'deleteFile'] as const satisfies readonly OperationId[];
+export const taskFieldOperations = ['createTask', 'bulkMutateTasks', 'updateSubtask', 'createSubtask', 'deleteSubtask', 'promoteSubtask', 'listComments', 'createComment', 'deleteComment', 'restoreDeletedComment', 'addCommentReaction', 'removeCommentReaction', 'listActivity', 'listMembers', 'getTask', 'listTasks', 'getTaskSummary', 'updateTask', 'moveTask', 'setTaskCompletion', 'undoCommand', 'duplicateTask', 'archiveTask', 'restoreTask', 'deleteTask', 'addTaskFavorite', 'removeTaskFavorite', 'getFile', 'listProjectFiles', 'renameFile', 'duplicateFile', 'uploadProjectFile', 'deleteFile'] as const satisfies readonly OperationId[];
 const fail = (code: 'NOT_FOUND' | 'CONFLICT' | 'VALIDATION_ERROR' | 'PAYLOAD_TOO_LARGE', message: string, field?: string): never => { throw new StudioApiError({ error: { code, message, ...(field ? { fieldErrors: { [field]: [message] } } : {}) } }); };
 export function newMockId(clock: Clock) { const time = Date.parse(clock.now()).toString(16).padStart(12, '0'); const random = crypto.randomUUID(); return EntityIdSchema.parse(`${time.slice(0, 8)}-${time.slice(8)}-7${random.slice(15, 18)}-${random.slice(19)}`); }
 function getTask(data: MockDataset, id: string): TaskDto {
@@ -139,8 +139,15 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       if (before !== favorites.has(task.id)) data.tasks[task.id] = { ...task, version: task.version + 1 };
       return { data: { taskId: task.id, isFavorite: favorites.has(task.id) } };
     }
+    case 'restoreTask': {
+      const body = VersionInputSchema.parse(input.body), task = getTask(data, taskId);
+      if (task.version !== body.expectedVersion || !task.archivedAt || data.projects[task.projectId]!.archivedAt) return fail('CONFLICT', 'The task or parent lifecycle changed. Refresh and try again.');
+      const next = { ...task, archivedAt: null, updatedAt: clock.now(), version: task.version + 1 }; data.tasks[task.id] = next; addActivity(data, next, 'task.updated', clock, 'Restored from archive');
+      return { data: { task: projectTask(next, data), createdTasks: [], affectedProjectIds: [task.projectId], undo: null } };
+    }
     case 'archiveTask': case 'deleteTask': {
-      const body = VersionInputSchema.parse(input.body), task = editable(data, taskId, body.expectedVersion), lifecycleAt = clock.now();
+      const body = VersionInputSchema.parse(input.body), task = id === 'deleteTask' ? getTask(data, taskId) : editable(data, taskId, body.expectedVersion), lifecycleAt = clock.now();
+      if (task.version !== body.expectedVersion || data.projects[task.projectId]!.archivedAt) return fail('CONFLICT', 'The task or parent lifecycle changed. Refresh and try again.');
       const next = { ...task, version: task.version + 1, updatedAt: lifecycleAt, ...(id === 'archiveTask' ? { archivedAt: lifecycleAt } : {}) };
       data.tasks[task.id] = next; if (id === 'deleteTask') data.taskCommands.deletedTasks[task.id] = lifecycleAt;
       const activity = addActivity(data, next, id === 'archiveTask' ? 'task.archived' : 'task.deleted', clock), undoId = newMockId(clock);

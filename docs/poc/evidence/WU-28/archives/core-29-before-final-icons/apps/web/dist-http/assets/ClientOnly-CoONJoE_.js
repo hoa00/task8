@@ -1,0 +1,1 @@
+import{i as e,o as t,r as n}from"./useRouter-BOAPZDg1.js";var r=t(e(),1),i=n(),a=()=>!0,o=()=>!1;function s({children:e,fallback:t=null}){return(0,i.jsx)(r.Fragment,{children:c()?e:t})}function c(e=!0){return r.useSyncExternalStore(l,a,e?o:a)}function l(){return()=>{}}export{c as n,s as t};

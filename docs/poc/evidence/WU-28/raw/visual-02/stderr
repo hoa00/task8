@@ -1,0 +1,68 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
+    'Geist Mono:400:loaded',
++   'Geist Mono:400:unloaded',
++   'Geist Mono:400:unloaded',
++   'Geist Mono:400:unloaded',
++   'Geist Mono:400:unloaded',
++   'Geist Mono:400:unloaded',
+    'Geist:400:loaded',
++   'Geist:400:unloaded',
++   'Geist:400:unloaded',
++   'Geist:400:unloaded',
++   'Geist:400:unloaded',
+    'Geist:500:loaded',
++   'Geist:500:unloaded',
++   'Geist:500:unloaded',
++   'Geist:500:unloaded',
++   'Geist:500:unloaded',
+    'Geist:600:loaded',
++   'Geist:600:unloaded',
++   'Geist:600:unloaded',
++   'Geist:600:unloaded',
++   'Geist:600:unloaded'
+  ]
+
+    at file:///workspace/task8/tests/visual/archive/verify.mjs:44:40 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'Geist Mono:400:loaded',
+    'Geist Mono:400:unloaded',
+    'Geist Mono:400:unloaded',
+    'Geist Mono:400:unloaded',
+    'Geist Mono:400:unloaded',
+    'Geist Mono:400:unloaded',
+    'Geist:400:loaded',
+    'Geist:400:unloaded',
+    'Geist:400:unloaded',
+    'Geist:400:unloaded',
+    'Geist:400:unloaded',
+    'Geist:500:loaded',
+    'Geist:500:unloaded',
+    'Geist:500:unloaded',
+    'Geist:500:unloaded',
+    'Geist:500:unloaded',
+    'Geist:600:loaded',
+    'Geist:600:unloaded',
+    'Geist:600:unloaded',
+    'Geist:600:unloaded',
+    'Geist:600:unloaded'
+  ],
+  expected: [
+    'Geist Mono:400:loaded',
+    'Geist:400:loaded',
+    'Geist:500:loaded',
+    'Geist:600:loaded'
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

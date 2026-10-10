@@ -1,0 +1,63 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache miss, executing 66802112efe0b52f
+@studio/ui:typecheck: cache miss, executing c25ed775629c935c
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache miss, executing 453da13fc6656f8f
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache miss, executing 2f0e6e429ae7944a
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 6ccab4a80921b54d
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/mock/archive.ts(24,59): error TS2339: Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; icon: "briefcase" | "building-2" | "code" | ... 12 more ... | "zap"; ... 14 more ...; version: number; } | { ...; } | { ...; }'.
+@studio/web:typecheck:   Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; name: string; key: string; icon: "briefcase" | "building-2" | "code" | "component" | ... 11 more ... | "zap"; ... 4 more ...; catalogSummary: string; }'.
+@studio/web:typecheck: src/data/mock/archive.ts(24,101): error TS2339: Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; icon: "briefcase" | "building-2" | "code" | ... 12 more ... | "zap"; ... 14 more ...; version: number; } | { ...; } | { ...; }'.
+@studio/web:typecheck:   Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; name: string; key: string; icon: "briefcase" | "building-2" | "code" | "component" | ... 11 more ... | "zap"; ... 4 more ...; catalogSummary: string; }'.
+@studio/web:typecheck: src/data/mock/archive.ts(32,81): error TS2339: Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; icon: "briefcase" | "building-2" | "code" | ... 12 more ... | "zap"; ... 14 more ...; version: number; } | { ...; } | { ...; }'.
+@studio/web:typecheck:   Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; name: string; key: string; icon: "briefcase" | "building-2" | "code" | "component" | ... 11 more ... | "zap"; ... 4 more ...; catalogSummary: string; }'.
+@studio/web:typecheck: src/data/mock/archive.ts(32,126): error TS2339: Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; icon: "briefcase" | "building-2" | "code" | ... 12 more ... | "zap"; ... 14 more ...; version: number; } | { ...; } | { ...; }'.
+@studio/web:typecheck:   Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; name: string; key: string; icon: "briefcase" | "building-2" | "code" | "component" | ... 11 more ... | "zap"; ... 4 more ...; catalogSummary: string; }'.
+@studio/web:typecheck: src/data/mock/archive.ts(37,167): error TS2339: Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; icon: "briefcase" | "building-2" | "code" | ... 12 more ... | "zap"; ... 14 more ...; version: number; } | { ...; } | { ...; }'.
+@studio/web:typecheck:   Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; name: string; key: string; icon: "briefcase" | "building-2" | "code" | "component" | ... 11 more ... | "zap"; ... 4 more ...; catalogSummary: string; }'.
+@studio/web:typecheck: src/features/archive/ArchivePage.tsx(23,85): error TS2339: Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; icon: "briefcase" | "building-2" | "code" | ... 12 more ... | "zap"; ... 14 more ...; version: number; } | { ...; } | { ...; }'.
+@studio/web:typecheck:   Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; name: string; key: string; icon: "briefcase" | "building-2" | "code" | "component" | ... 11 more ... | "zap"; ... 4 more ...; catalogSummary: string; }'.
+@studio/web:typecheck: src/features/archive/ArchivePage.tsx(23,121): error TS2339: Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; key: string; name: string; description: string; icon: "briefcase" | "building-2" | "code" | ... 12 more ... | "zap"; ... 14 more ...; version: number; } | { ...; } | { ...; }'.
+@studio/web:typecheck:   Property 'archivedAt' does not exist on type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; name: string; key: string; icon: "briefcase" | "building-2" | "code" | "component" | ... 11 more ... | "zap"; ... 4 more ...; catalogSummary: string; }'.
+@studio/web:typecheck: src/features/archive/ArchivePage.tsx(42,6): error TS2741: Property 'label' is missing in type '{ className: string; "aria-label": string; value: string; onValueChange: Dispatch<SetStateAction<string>>; items: { value: string; label: string; count: number; }[]; }' but required in type 'TabsProps'.
+@studio/web:typecheck: src/features/archive/ArchivePage.tsx(44,434): error TS2375: Type '{ key: string & $brand<"EntityId">; item: { kind: "tasks"; task: { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; projectId: string & $brand<...>; ... 21 more ...; commentCount: number; }; } | { ...; }; ... 4 more ...; onDelete: () => void; }' is not assignable to type 'ArchivedRowProps' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+@studio/web:typecheck:   Types of property 'projectName' are incompatible.
+@studio/web:typecheck:     Type 'string | undefined' is not assignable to type 'string'.
+@studio/web:typecheck:       Type 'undefined' is not assignable to type 'string'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,66): error TS2741: Property 'value' is missing in type '{ id: string; placeholder: string; }' but required in type 'InputProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,191): error TS2322: Type '{ id: string; defaultValue: string; className: string; }' is not assignable to type 'IntrinsicAttributes & InputProps'.
+@studio/web:typecheck:   Property 'defaultValue' does not exist on type 'IntrinsicAttributes & InputProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,758): error TS2741: Property 'value' is missing in type '{ id: string; placeholder: string; }' but required in type 'InputProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,871): error TS2741: Property 'label' is missing in type '{ id: string; value: string; onValueChange: Dispatch<SetStateAction<string>>; options: { value: string; label: string; }[]; }' but required in type 'SelectProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,1433): error TS2322: Type '{ type: "date"; id: string; defaultValue: string; }' is not assignable to type 'IntrinsicAttributes & InputProps'.
+@studio/web:typecheck:   Property 'defaultValue' does not exist on type 'IntrinsicAttributes & InputProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,1622): error TS2322: Type '{ type: "time"; id: string; defaultValue: string; }' is not assignable to type 'IntrinsicAttributes & InputProps'.
+@studio/web:typecheck:   Property 'defaultValue' does not exist on type 'IntrinsicAttributes & InputProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,1770): error TS2322: Type '{ defaultChecked: true; "aria-label": string; }' is not assignable to type 'IntrinsicAttributes & CheckboxProps'.
+@studio/web:typecheck:   Property 'defaultChecked' does not exist on type 'IntrinsicAttributes & CheckboxProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,1803): error TS2739: Type '{ "aria-label": string; }' is missing the following properties from type 'CheckboxProps': checked, onCheckedChange
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,1845): error TS2322: Type '{ round: true; defaultChecked: true; "aria-label": string; }' is not assignable to type 'IntrinsicAttributes & CheckboxProps'.
+@studio/web:typecheck:   Property 'defaultChecked' does not exist on type 'IntrinsicAttributes & CheckboxProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,1996): error TS2322: Type '{ defaultChecked: true; "aria-label": string; }' is not assignable to type 'IntrinsicAttributes & ToggleProps'.
+@studio/web:typecheck:   Property 'defaultChecked' does not exist on type 'IntrinsicAttributes & ToggleProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,2029): error TS2739: Type '{ "aria-label": string; }' is missing the following properties from type 'ToggleProps': checked, onCheckedChange
+@studio/web:typecheck: src/features/dev/Galleries.tsx(55,2158): error TS2322: Type '{ id: string; rows: number; defaultValue: string; }' is not assignable to type 'IntrinsicAttributes & TextareaProps'.
+@studio/web:typecheck:   Property 'defaultValue' does not exist on type 'IntrinsicAttributes & TextareaProps'.
+@studio/web:typecheck: src/features/dev/Galleries.tsx(57,986): error TS2741: Property 'label' is missing in type '{ value: string; onValueChange: Dispatch<SetStateAction<string>>; items: { value: string; label: string; }[]; }' but required in type 'TabsProps'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    18.827s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

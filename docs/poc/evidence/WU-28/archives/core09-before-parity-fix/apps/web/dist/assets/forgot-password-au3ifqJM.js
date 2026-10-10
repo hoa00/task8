@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-Dk72oS4N.js";import{t}from"./forgot-password-B24H2zrG.js";import{t as n}from"./AuthPage-BSIQw5bI.js";var r=e();function i(){let{state:e}=t.useSearch();return(0,r.jsx)(n,{screen:e===`sent`?`forgot-sent`:`forgot`})}export{i as component};

@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('option', { name: /Sign out/ }) resolved to 2 elements:
+    1) <div id="pi-0" role="option" aria-selected="true" data-palette-item="command:signout" class="flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-sm px-[10px] text-left text-body [&>svg]:text-secondary bg-surface-2">…</div> aka getByRole('option', { name: 'Sign out', exact: true })
+    2) <div id="pi-1" role="option" aria-selected="false" data-palette-item="view-all" class="flex h-[38px] w-full cursor-pointer items-center gap-[10px] rounded-sm px-[10px] text-left text-body [&>svg]:text-secondary ">…</div> aka getByRole('option', { name: 'View all results for “Sign' })
+
+Call log:
+[2m  - waiting for getByRole('option', { name: /Sign out/ })[22m
+
+    at /workspace/task8/tests/visual/archive/native.mjs:36:466
+    at async journey (/workspace/task8/tests/visual/archive/native.mjs:23:9)
+    at async file:///workspace/task8/tests/visual/archive/native.mjs:36:3
+
+Node.js v24.13.0

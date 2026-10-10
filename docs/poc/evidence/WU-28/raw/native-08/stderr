@@ -1,0 +1,49 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+A [Error]: expect(locator).toBeFocused() failed
+
+Locator:  getByRole('menuitem', { name: 'Sign out', exact: true })
+Expected: focused
+Received: inactive
+Timeout:  5000ms
+
+Call log:
+  - Expect "to.be.focused" with timeout 5000ms
+  - waiting for getByRole('menuitem', { name: 'Sign out', exact: true })
+    9 × locator resolved to <button type="button" role="menuitem" class="flex min-h-[30px] w-full items-center gap-[9px] whitespace-nowrap rounded-sm px-2 text-left text-body source-hover:bg-surface-2 focus-visible:bg-surface-2 focus-visible:outline-none disabled:opacity-45 disabled:pointer-events-none text-foreground [&>svg]:text-secondary ">…</button>
+      - unexpected value "inactive"
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/tests/visual/archive/native.mjs:38:813
+    at async journey (file:///workspace/task8/tests/visual/archive/native.mjs:23:9)
+    at async file:///workspace/task8/tests/visual/archive/native.mjs:38:3 {
+  matcherResult: {
+    message: 'expect(locator).toBeFocused() failed\n' +
+      '\n' +
+      "Locator:  getByRole('menuitem', { name: 'Sign out', exact: true })\n" +
+      'Expected: focused\n' +
+      'Received: inactive\n' +
+      'Timeout:  5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.be.focused" with timeout 5000ms\n' +
+      "  - waiting for getByRole('menuitem', { name: 'Sign out', exact: true })\n" +
+      '    9 × locator resolved to <button type="button" role="menuitem" class="flex min-h-[30px] w-full items-center gap-[9px] whitespace-nowrap rounded-sm px-2 text-left text-body source-hover:bg-surface-2 focus-visible:bg-surface-2 focus-visible:outline-none disabled:opacity-45 disabled:pointer-events-none text-foreground [&>svg]:text-secondary ">…</button>\n' +
+      '      - unexpected value "inactive"\n',
+    pass: false,
+    actual: 'inactive',
+    name: 'toBeFocused',
+    expected: 'focused',
+    log: [
+      '  - Expect "to.be.focused" with timeout 5000ms',
+      "  - waiting for getByRole('menuitem', { name: 'Sign out', exact: true })",
+      '    9 × locator resolved to <button type="button" role="menuitem" class="flex min-h-[30px] w-full items-center gap-[9px] whitespace-nowrap rounded-sm px-2 text-left text-body source-hover:bg-surface-2 focus-visible:bg-surface-2 focus-visible:outline-none disabled:opacity-45 disabled:pointer-events-none text-foreground [&>svg]:text-secondary ">…</button>',
+      '      - unexpected value "inactive"'
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

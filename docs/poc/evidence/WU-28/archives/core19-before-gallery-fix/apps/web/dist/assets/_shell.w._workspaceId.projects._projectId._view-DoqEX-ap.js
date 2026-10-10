@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-DEg_-jyS.js";var t=e;export{t as component};

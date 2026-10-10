@@ -1,0 +1,1 @@
+import{n as e}from"./Galleries-CnCF9r52.js";var t=e;export{t as component};
