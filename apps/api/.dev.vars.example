@@ -1,2 +1,6 @@
-# Private Worker variables belong here; never use VITE_* for them.
-# This skeleton has no secrets or database bindings.
+# Optional local overrides of committed development fixture identity.
+# Never accept browser x-user-id, authorization, query, or body fields as identity.
+# Only active memberships in LOCAL_WORKSPACE_ID are valid; invited fixtures are not principals.
+STUDIO_ENV=local
+LOCAL_USER_ID=01a11abd-aa80-7d3f-879a-dd89204bcd77
+LOCAL_WORKSPACE_ID=01a11abd-aa80-72ea-8b87-b31ad015a24e

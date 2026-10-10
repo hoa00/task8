@@ -1,0 +1,100 @@
+{
+  "status": "DONE_BOUNDED_ROOT_PASS",
+  "unit": "WU-30",
+  "rootPhysicalCapture": null,
+  "rootActualReadOnlyObservations": {
+    "technicalExitCode": 0,
+    "indexExitCode": 0,
+    "candidate": {
+      "bytes": 69082,
+      "sha256": "3db06949e1828d8e4901edfe32cf2295df337c06a3407befd6933c7bdf5ce298"
+    },
+    "finiteFiles": 221,
+    "finiteBytes": 2592351,
+    "commands": 20,
+    "rawRefs": 94,
+    "rawBytes": 238174,
+    "D1": {
+      "httpProbes": 31,
+      "commands": 12,
+      "guardCases": 11,
+      "rows": 528,
+      "seededTables": 22,
+      "scopes": 2,
+      "appliedLedger": "d1_migrations"
+    },
+    "stagedChangedPaths": 223,
+    "changedBytes": 2757392,
+    "indexRows": 131949,
+    "baseRows": 131735,
+    "otherHeadRowsEqual": 131726,
+    "cachedCheck": "0empty",
+    "unstaged": "0empty",
+    "untracked": "0empty",
+    "metadataExcludedRows": 131948,
+    "metadataExcludedFingerprint": "a86343d081a8a3006677fcee7326e8a19a524581ea7b02a8fa046f750da2e1cb",
+    "fingerprintRecipe": "sorted mode SPACE oid TAB path LF UTF8 SHA256; exclude ONLY PROGRESS and root-pass"
+  },
+  "ownerEvidence": {
+    "candidate": {
+      "path": "/workspace/task8/docs/poc/evidence/WU-30/candidate.json",
+      "bytes": 69082,
+      "sha256": "3db06949e1828d8e4901edfe32cf2295df337c06a3407befd6933c7bdf5ce298",
+      "gitBlob": "476dc38ffcc0b3537f0a09d4979a98812c93530e"
+    },
+    "verification": {
+      "path": "/workspace/task8/docs/poc/evidence/WU-30/verification.json",
+      "bytes": 3714,
+      "sha256": "4f688ec2e888074ade19298cc30dcdd4ccf4390b8b54e493165ea6fb456ea722",
+      "gitBlob": "6bd9893f744fae639ea8f5b328bcf2c2e90f06bc"
+    },
+    "actualD1": {
+      "path": "/workspace/task8/docs/poc/evidence/WU-30/attempts/d1-03/report.json",
+      "bytes": 17108,
+      "sha256": "7d331905906c15f9eaa05803590bb5456aacd0c5c955b15492274cc6142052a3",
+      "gitBlob": "df156fc89d0a882128bab670f5e90717116cc658"
+    },
+    "namedInstantParity": {
+      "path": "/workspace/task8/docs/poc/evidence/WU-30/commands/parity01/result.json",
+      "bytes": 498,
+      "sha256": "0669cd674697c448bdf2234b8b30d641b3fd0fd14b30d759f8c559efd3e94be6",
+      "gitBlob": "8e833c58916d9b11a100a314294bee5215560763"
+    },
+    "sourceInputs": {
+      "path": "/workspace/task8/docs/poc/evidence/WU-30/source-inputs.json",
+      "bytes": 754,
+      "sha256": "2df80af70c35a48b08c45dc876b8d7ab389653c68b6e848fc866d2b391257b1b",
+      "gitBlob": "082f78e69642a5de185a7999495787174f27123a"
+    },
+    "stage02": {
+      "path": "/tmp/task8-wu30-stage02/report.json",
+      "bytes": 81893,
+      "sha256": "c2f609ee27300e154d0acd28b1e1b1a41ec605101ff4e03c228f21184874a67d",
+      "gitBlob": "5fc73392930d9ed8ad2e378dd61c243f2349331e"
+    },
+    "stage01CachedCheckFailure": {
+      "path": "/tmp/task8-wu30-stage01/cached-check.stdout",
+      "bytes": 1567,
+      "sha256": "53bbd8c65bb8ff3e0294c65531c3829d82fdb25e04c6b676bf07db82ad32ba9c",
+      "gitBlob": "a5ce28d88005af0e3dd8924ca777333ddf91083d"
+    }
+  },
+  "stageRawLimit": "Stage02 has12persistedrawstreamrefs exact. The index/head commandstreams have only metadata bytes/SHA and were verified in memory, no original persisted raw. Root fresh sameargv streams independently matched; no recovered oldraw or Root archive invented.",
+  "attributes": {
+    "path": "/workspace/task8/.gitattributes",
+    "bytes": 95959,
+    "sha256": "c47d72636ff0c2e3cef24f790ee7779f17cff3aa57bedbb7af653b346c5b15ff",
+    "gitBlob": "c5369e763f003469bfa8e7194042bf4b179dfd0f"
+  },
+  "attributesPrefixBytes": 94017,
+  "literalRawLogExceptions": 26,
+  "acceptedScope": "WU30 AC1\u20133 local foundation only; all future feature capabilities unavailable",
+  "qualification": [
+    "No31+business endpoints or Undo dispatcher",
+    "NoR2/provider/prod/CI",
+    "NamedInstant-only epoch parity, not JSONbyteequality",
+    "Worker8 planned SIGTERM/null exitCode, enclosing test actual0",
+    "HistoricalM2failed/missingbytes remain unaccepted/unrecovered"
+  ],
+  "authorizedNext": "Only these2metadata edits/staging; Root FAST gate before implementation commit/normalpush. No future Git SHA asserted."
+}

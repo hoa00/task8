@@ -1,0 +1,299 @@
+{
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/catalogs",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "taskStatuses": [
+        {
+          "id": "backlog",
+          "name": "Backlog"
+        },
+        {
+          "id": "todo",
+          "name": "To Do"
+        },
+        {
+          "id": "progress",
+          "name": "In Progress"
+        },
+        {
+          "id": "review",
+          "name": "Review"
+        },
+        {
+          "id": "done",
+          "name": "Done"
+        }
+      ],
+      "priorities": [
+        {
+          "id": "urgent",
+          "name": "Urgent",
+          "weight": 4
+        },
+        {
+          "id": "high",
+          "name": "High",
+          "weight": 3
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "weight": 2
+        },
+        {
+          "id": "low",
+          "name": "Low",
+          "weight": 1
+        },
+        {
+          "id": "none",
+          "name": "No priority",
+          "weight": 0
+        }
+      ],
+      "projectStatuses": [
+        {
+          "id": "planning",
+          "name": "Planning",
+          "colorToken": "gray"
+        },
+        {
+          "id": "active",
+          "name": "In Progress",
+          "colorToken": "blue"
+        },
+        {
+          "id": "risk",
+          "name": "At Risk",
+          "colorToken": "red"
+        },
+        {
+          "id": "hold",
+          "name": "On Hold",
+          "colorToken": "amber"
+        },
+        {
+          "id": "complete",
+          "name": "Completed",
+          "colorToken": "green"
+        }
+      ],
+      "labels": [
+        {
+          "id": "design",
+          "name": "Design",
+          "colorToken": "violet"
+        },
+        {
+          "id": "frontend",
+          "name": "Frontend",
+          "colorToken": "blue"
+        },
+        {
+          "id": "backend",
+          "name": "Backend",
+          "colorToken": "teal"
+        },
+        {
+          "id": "research",
+          "name": "Research",
+          "colorToken": "amber"
+        },
+        {
+          "id": "content",
+          "name": "Content",
+          "colorToken": "rose"
+        },
+        {
+          "id": "bug",
+          "name": "Bug",
+          "colorToken": "red"
+        },
+        {
+          "id": "qa",
+          "name": "QA",
+          "colorToken": "green"
+        },
+        {
+          "id": "growth",
+          "name": "Growth",
+          "colorToken": "orange"
+        }
+      ],
+      "recurrences": [
+        {
+          "id": "daily",
+          "name": "Daily"
+        },
+        {
+          "id": "weekly",
+          "name": "Weekly"
+        },
+        {
+          "id": "biweekly",
+          "name": "Every 2 weeks"
+        },
+        {
+          "id": "monthly",
+          "name": "Monthly"
+        }
+      ],
+      "projectColors": [
+        {
+          "id": "indigo",
+          "color": "#5A67D8"
+        },
+        {
+          "id": "blue",
+          "color": "#3B82C4"
+        },
+        {
+          "id": "violet",
+          "color": "#8662C9"
+        },
+        {
+          "id": "teal",
+          "color": "#23918A"
+        },
+        {
+          "id": "rose",
+          "color": "#C54B78"
+        },
+        {
+          "id": "amber",
+          "color": "#C48A1E"
+        },
+        {
+          "id": "green",
+          "color": "#3D8E5F"
+        },
+        {
+          "id": "slate",
+          "color": "#6B7280"
+        }
+      ],
+      "projectIcons": [
+        "globe",
+        "smartphone",
+        "megaphone",
+        "rocket",
+        "component",
+        "building-2",
+        "layout-grid",
+        "palette",
+        "code",
+        "briefcase",
+        "target",
+        "layers",
+        "zap",
+        "heart",
+        "folder",
+        "sparkles"
+      ],
+      "estimates": [
+        "30m",
+        "1h",
+        "2h",
+        "4h",
+        "1d",
+        "2d",
+        "3d",
+        "5d",
+        "8d"
+      ],
+      "templates": [
+        {
+          "id": "blank",
+          "name": "Blank project",
+          "icon": "file",
+          "description": "Start from scratch",
+          "tasks": []
+        },
+        {
+          "id": "product",
+          "name": "Product Development",
+          "icon": "target",
+          "description": "Discovery to launch",
+          "tasks": [
+            "Define problem statement",
+            "User research plan",
+            "Write PRD",
+            "Design exploration",
+            "Build MVP",
+            "Beta launch"
+          ]
+        },
+        {
+          "id": "web",
+          "name": "Website",
+          "icon": "globe",
+          "description": "IA, design, build, launch",
+          "tasks": [
+            "Sitemap & information architecture",
+            "Wireframes",
+            "Visual design",
+            "Build page templates",
+            "Content migration",
+            "QA & launch"
+          ]
+        },
+        {
+          "id": "mkt",
+          "name": "Marketing Campaign",
+          "icon": "megaphone",
+          "description": "Brief, assets, channels",
+          "tasks": [
+            "Campaign brief",
+            "Audience research",
+            "Creative assets",
+            "Channel plan",
+            "Launch campaign",
+            "Performance report"
+          ]
+        },
+        {
+          "id": "design",
+          "name": "Design Project",
+          "icon": "palette",
+          "description": "Discovery to handoff",
+          "tasks": [
+            "Discovery workshop",
+            "Moodboard",
+            "Concept directions",
+            "Refinement",
+            "Developer handoff"
+          ]
+        },
+        {
+          "id": "software",
+          "name": "Software Development",
+          "icon": "code",
+          "description": "Spec, build, ship",
+          "tasks": [
+            "Technical spec",
+            "Set up repo & CI",
+            "Implement core API",
+            "Write tests",
+            "Code review",
+            "Deploy to staging"
+          ]
+        },
+        {
+          "id": "personal",
+          "name": "Personal Project",
+          "icon": "heart",
+          "description": "Plan your own goals",
+          "tasks": [
+            "Brain dump ideas",
+            "Pick top 3 priorities",
+            "Schedule focus time",
+            "Weekly review"
+          ]
+        }
+      ]
+    }
+  }
+}

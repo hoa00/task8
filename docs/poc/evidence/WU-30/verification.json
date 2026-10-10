@@ -1,0 +1,115 @@
+{
+  "status": "PASS_REQUIRED_CHECKS_PENDING_ROOT_GATES",
+  "unit": "WU-30",
+  "base": "92a6479ed15d673ecd5fa7396dfdd9a37ded0ff2",
+  "acceptance": {
+    "AC1": "fresh/reapply Wrangler migration, exact fixture rows, idempotent seed, production local Worker restart persistence",
+    "AC2": "schemas, truthful unavailable capabilities, principal401 modes/header ignored/query-body reject/error mapping",
+    "AC3": "two disjoint scopes, private restricted DTO, actual scoped FK+rollback, canonical bootstrap aggregates"
+  },
+  "actualD1": {
+    "report": "attempts/d1-03/report.json",
+    "commandCount": 12,
+    "httpProbes": 31,
+    "guardCases": 11,
+    "seedScopes": 2,
+    "seedRows": 528,
+    "tables": 23,
+    "seededTables": 22,
+    "processShutdown": "Worker8 planned SIGTERM records have null exitCode;4 finite CLI commands have actual exit0"
+  },
+  "commands": {
+    "lint01": {
+      "exitCode": 0,
+      "result": "commands/lint01/result.json"
+    },
+    "typecheck-final": {
+      "exitCode": 0,
+      "result": "commands/typecheck-final/result.json"
+    },
+    "d1-01": {
+      "exitCode": 1,
+      "result": "commands/d1-01/result.json"
+    },
+    "boundaries01": {
+      "exitCode": 0,
+      "result": "commands/boundaries01/result.json"
+    },
+    "source-final": {
+      "exitCode": 1,
+      "result": "commands/source-final/result.json"
+    },
+    "typecheck01": {
+      "exitCode": 2,
+      "result": "commands/typecheck01/result.json"
+    },
+    "typecheck03": {
+      "exitCode": 0,
+      "result": "commands/typecheck03/result.json"
+    },
+    "types01": {
+      "exitCode": 0,
+      "result": "commands/types01/result.json"
+    },
+    "link01": {
+      "exitCode": 0,
+      "result": "commands/link01/result.json"
+    },
+    "parity01": {
+      "exitCode": 0,
+      "result": "commands/parity01/result.json"
+    },
+    "generate02": {
+      "exitCode": 0,
+      "result": "commands/generate02/result.json"
+    },
+    "source-final02": {
+      "exitCode": 0,
+      "result": "commands/source-final02/result.json"
+    },
+    "d1-02": {
+      "exitCode": 1,
+      "result": "commands/d1-02/result.json"
+    },
+    "d1-03": {
+      "exitCode": 0,
+      "result": "commands/d1-03/result.json"
+    },
+    "install01": {
+      "exitCode": 0,
+      "result": "commands/install01/result.json"
+    },
+    "typecheck02": {
+      "exitCode": 0,
+      "result": "commands/typecheck02/result.json"
+    },
+    "build01": {
+      "exitCode": 0,
+      "result": "commands/build01/result.json"
+    },
+    "lint-final": {
+      "exitCode": 0,
+      "result": "commands/lint-final/result.json"
+    },
+    "generate-check01": {
+      "exitCode": 0,
+      "result": "commands/generate-check01/result.json"
+    },
+    "generate01": {
+      "exitCode": 0,
+      "result": "commands/generate01/result.json"
+    }
+  },
+  "failedPreserved": {
+    "typecheck01": "missing .ts allowance/typed cyclicFK inference; subsequent typecheck pass",
+    "d1-01": "pre-runtime canonical fixture comparison included Mock-only onboardingReceipt; no D1 executed",
+    "d1-02": "actual migration/seed/read passed then strict timestamp lexical Z versus .000Z comparison failed",
+    "source-final": "sandbox spawnSync git EPERM; authorized tooling retry source-final02 passed"
+  },
+  "parity": "commands/parity01/stdout.log verifies actual two D1 receipt bodies using named Instant fields only, sameepoch notbyteJSON, strict IDs/copy/date/counts/projectorder; current comparator refines original d1-03 executed copy without rerunning runtime",
+  "limitations": [
+    "No31+business endpoints/Undo dispatcher",
+    "NoR2/filebytes/prod/provider/CI",
+    "Historical M2 FAILED_UNACCEPTED/missing bytes unchanged; no recovery claim"
+  ]
+}

@@ -1,0 +1,30 @@
+
+ ⛅️ wrangler 4.148.0
+────────────────────
+Generating project types...
+
+interface __BaseEnv_CloudflareBindings {
+	DB: D1Database;
+	STUDIO_ENV: "local";
+	LOCAL_USER_ID: "01a11abd-aa80-7d3f-879a-dd89204bcd77";
+	LOCAL_WORKSPACE_ID: "01a11abd-aa80-72ea-8b87-b31ad015a24e";
+}
+declare namespace Cloudflare {
+	interface GlobalProps {
+		mainModule: typeof import("./src/index");
+	}
+	interface Env extends __BaseEnv_CloudflareBindings {}
+}
+interface CloudflareBindings extends __BaseEnv_CloudflareBindings {}
+type StringifyValues<EnvType extends Record<string, unknown>> = {
+	[Binding in keyof EnvType]: EnvType[Binding] extends string ? EnvType[Binding] : string;
+};
+declare namespace NodeJS {
+	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "STUDIO_ENV" | "LOCAL_USER_ID" | "LOCAL_WORKSPACE_ID">> {}
+}
+
+
+✨ Types written to worker-configuration.d.ts
+
+📣 Remember to rerun 'wrangler types' after you change your wrangler.jsonc file.
+

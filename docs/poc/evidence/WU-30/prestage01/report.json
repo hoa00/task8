@@ -1,0 +1,236 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "00-stdout.log",
+        "bytes": 41,
+        "sha256": "cc39bab5d7240829fb4caf803cc8e1bec24a61e22e863694efd196d396732c8f"
+      },
+      "stderr": {
+        "path": "00-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "01-stdout.log",
+        "bytes": 41,
+        "sha256": "dd93719bbcb25a346a0598ef613fc0f13bf6e9c884e42be11510529aabdd0bce"
+      },
+      "stderr": {
+        "path": "01-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "02-stdout.log",
+        "bytes": 41,
+        "sha256": "cc39bab5d7240829fb4caf803cc8e1bec24a61e22e863694efd196d396732c8f"
+      },
+      "stderr": {
+        "path": "02-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "03-stdout.log",
+        "bytes": 57,
+        "sha256": "1faf4857fad0f5ddbec50b8d945ef552731149740f3a927c4f2aadbf4488c164"
+      },
+      "stderr": {
+        "path": "03-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "rev-list",
+        "--left-right",
+        "--count",
+        "HEAD...origin/main"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "04-stdout.log",
+        "bytes": 4,
+        "sha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c"
+      },
+      "stderr": {
+        "path": "04-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "05-stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "05-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "06-stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "06-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "07-stdout.log",
+        "bytes": 35,
+        "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348"
+      },
+      "stderr": {
+        "path": "07-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "08-stdout.log",
+        "bytes": 5,
+        "sha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2"
+      },
+      "stderr": {
+        "path": "08-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "status",
+        "--porcelain"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "09-stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "09-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitCode": 0,
+      "stdout": {
+        "path": "10-stdout.log",
+        "bytes": 41,
+        "sha256": "7b13267f3236258e1feb01348be92239d0d83c2d5fa0b1b2dc8bc5b3cf3aea30"
+      },
+      "stderr": {
+        "path": "10-stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "locks": {
+    "docs/poc/reference/source-lock.json": {
+      "bytes": 7870,
+      "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+    },
+    "docs/poc/reference/source-fixture.json": {
+      "bytes": 54153,
+      "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80"
+    },
+    "docs/poc/reference/baseline-manifest.json": {
+      "bytes": 69302,
+      "sha256": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe"
+    },
+    "packages/contracts/src/source-identities.ts": {
+      "bytes": 41333,
+      "sha256": "0aa748895672d70f64dd6a23eb2d119529c67c06503f86a88a2c98375b774201"
+    }
+  },
+  "portsAbsent": {
+    "4173": true,
+    "5173": true,
+    "5174": true,
+    "8787": true
+  }
+}

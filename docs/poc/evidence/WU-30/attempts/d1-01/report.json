@@ -1,0 +1,39 @@
+{
+  "status": "FAILED",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [],
+  "probes": [],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "provenance": {
+    "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+    "fixtureSha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "clock": "2026-10-08T09:00:00Z",
+    "timezone": "UTC",
+    "namespace": "task8:source:904205c626918ee96054eb35495c394a60c0c601",
+    "counts": {
+      "members": 8,
+      "projects": 7,
+      "tasks": 49,
+      "comments": 9,
+      "activity": 13,
+      "notifs": 10,
+      "files": 12,
+      "events": 6,
+      "savedViews": 1
+    }
+  },
+  "error": {
+    "message": "API seed mirrors canonical mapper\n+ actual - expected\n... Skipped lines\n\n  {\n    activity: {\n      '01a11abd-aa80-7095-8214-67f1c3bf0c34': {\n        actorId: '01a11abd-aa80-7947-8d13-2178f1cc4d45',\n        createdAt: '2026-10-08T08:22:00.000Z',\n...\n    },\n-   onboardingReceipt: null,\n    preferences: {\n      accent: 'indigo',\n      confirmDel: true,\n      dateFmt: 'MMM d',\n      defaultTab: 'board',\n",
+    "stack": "AssertionError [ERR_ASSERTION]: API seed mirrors canonical mapper\n+ actual - expected\n... Skipped lines\n\n  {\n    activity: {\n      '01a11abd-aa80-7095-8214-67f1c3bf0c34': {\n        actorId: '01a11abd-aa80-7947-8d13-2178f1cc4d45',\n        createdAt: '2026-10-08T08:22:00.000Z',\n...\n    },\n-   onboardingReceipt: null,\n    preferences: {\n      accent: 'indigo',\n      confirmDel: true,\n      dateFmt: 'MMM d',\n      defaultTab: 'board',\n\n    at file:///workspace/task8/apps/api/tests/runtime/verify.mjs:40:9\n    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+  },
+  "completedAt": "2026-10-10T16:57:13.340Z"
+}

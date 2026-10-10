@@ -1,0 +1,21 @@
+{
+  "method": "GET",
+  "path": "/__verify/guards",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "passed": [
+      "stale-CAS-zero-side-effects",
+      "private-CAS-no-Owner-bypass",
+      "mid-batch-FK-rollback",
+      "cross-scope-FK-root-history-rollback",
+      "Undo-missing-null-empty-targets-reject",
+      "Undo-empty-archive-noop-permitted",
+      "r2-null-size-check",
+      "idempotency-key-hash-pair",
+      "Undo-runtime-128target-UTF8bytes-result-schema",
+      "50queries-100params-prewrite-budget",
+      "matched-CAS-marker-side-effect"
+    ]
+  }
+}

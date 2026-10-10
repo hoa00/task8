@@ -1,0 +1,201 @@
+{
+  "status": "FAILED",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate-fresh",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu30-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T16:57:34.390Z",
+      "completedAt": "2026-10-10T16:57:41.317Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "migrate-fresh.stdout.log",
+        "bytes": 1453,
+        "sha256": "003261c12e2b548c0cd3f006b89f07be3edd38371b626c08987d9c982715380c"
+      },
+      "stderr": {
+        "path": "migrate-fresh.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "migrate-reapply",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu30-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T16:57:41.317Z",
+      "completedAt": "2026-10-10T16:57:48.199Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "migrate-reapply.stdout.log",
+        "bytes": 199,
+        "sha256": "e77373d6a2a469babce71ad0786316024559266eb5395f6bbe79658812aa2f42"
+      },
+      "stderr": {
+        "path": "migrate-reapply.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed-first",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu30-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T16:57:48.199Z",
+      "completedAt": "2026-10-10T16:57:55.375Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "seed-first.stdout.log",
+        "bytes": 48587,
+        "sha256": "2d3ed00cd2b7fa5348284594eea6f56552aecc1d26e454df5c05da0c815ad06d"
+      },
+      "stderr": {
+        "path": "seed-first.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "primary-test",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu30-config-d1-02/primary-test.json",
+        "--persist-to",
+        "/tmp/task8-wu30-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T16:57:55.375Z",
+      "completedAt": "2026-10-10T16:58:01.833Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "primary-test.stdout.log",
+        "bytes": 2913,
+        "sha256": "e0f44869f50d7d0d98079212253c5ff6f6cbcdf245fc3a162da36b6cace54c65"
+      },
+      "stderr": {
+        "path": "primary-test.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "snapshot-first",
+      "status": 200,
+      "path": "/__verify/snapshot",
+      "evidence": "snapshot-first.json"
+    },
+    {
+      "name": "session",
+      "status": 200,
+      "path": "/api/v1/session",
+      "evidence": "session.json"
+    },
+    {
+      "name": "spoof-header",
+      "status": 200,
+      "path": "/api/v1/session",
+      "evidence": "spoof-header.json"
+    },
+    {
+      "name": "identity-query",
+      "status": 400,
+      "path": "/api/v1/session?userId=01a11abd-aa80-786e-8116-7c6e3927d385",
+      "evidence": "identity-query.json"
+    },
+    {
+      "name": "identity-body",
+      "status": 400,
+      "path": "/api/v1/session",
+      "evidence": "identity-body.json"
+    },
+    {
+      "name": "workspaces",
+      "status": 200,
+      "path": "/api/v1/workspaces",
+      "evidence": "workspaces.json"
+    },
+    {
+      "name": "bootstrap",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "evidence": "bootstrap.json"
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "provenance": {
+    "sourceSha": "904205c626918ee96054eb35495c394a60c0c601",
+    "fixtureSha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "clock": "2026-10-08T09:00:00Z",
+    "timezone": "UTC",
+    "namespace": "task8:source:904205c626918ee96054eb35495c394a60c0c601",
+    "counts": {
+      "members": 8,
+      "projects": 7,
+      "tasks": 49,
+      "comments": 9,
+      "activity": 13,
+      "notifs": 10,
+      "files": 12,
+      "events": 6,
+      "savedViews": 1
+    }
+  },
+  "error": {
+    "message": "bootstrap canonical content/summaries/badges\n+ actual - expected\n... Skipped lines\n\n  {\n    catalogs: {\n      estimates: [\n        '1d',\n        '1h',\n...\n          color: '#3B82C4',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Native iOS and Android client for field teams with offline sync, push notifications, and biometric sign-in.',\n          dueDate: '2026-11-29',\n          icon: 'smartphone',\n          id: '01a11abd-aa80-7f23-849c-94f63946ff17',\n          isFavorite: true,\n...\n          teamId: '01a11abd-aa80-7f1b-87c9-4f06efe7d086',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#3D8E5F',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Launch site for the spring release. Shipped and handed to the web team for maintenance.',\n          dueDate: '2026-09-20',\n          icon: 'layout-grid',\n          id: '01a11abd-aa80-7d99-849a-abec9340dc89',\n          isFavorite: false,\n...\n          teamId: '01a11abd-aa80-78fc-8df2-e8f729329cc7',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#5A67D8',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Rebuild gr8rstudio.com with a clearer information architecture, a responsive component library, and a faster CMS-driven blog.',\n          dueDate: '2026-11-01',\n          icon: 'globe',\n          id: '01a11abd-aa80-7d11-86d8-e6545859cd14',\n          isFavorite: true,\n...\n          teamId: '01a11abd-aa80-7215-8b3f-9c5f78a7b7e2',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#8662C9',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Shared tokens, components, and documentation used by web and mobile teams.',\n          dueDate: '2026-12-17',\n          icon: 'component',\n          id: '01a11abd-aa80-7232-8a34-286c60c1a535',\n          isFavorite: false,\n...\n          teamId: '01a11abd-aa80-7215-8b3f-9c5f78a7b7e2',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#C48A1E',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Coordinate the Workflows 2.0 launch: pricing, docs, press, and sales enablement across teams.',\n          dueDate: '2026-10-20',\n          icon: 'rocket',\n          id: '01a11abd-aa80-7f26-8251-02c59e29c3b1',\n          isFavorite: false,\n...\n          teamId: '01a11abd-aa80-7c4b-88b5-79c301cf70d7',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#C54B78',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Q4 awareness campaign across paid social, email, and a launch webinar targeting operations leads.',\n          dueDate: '2026-11-17',\n          icon: 'megaphone',\n          id: '01a11abd-aa80-784d-8681-7daf87297886',\n          isFavorite: false,\n...\n          teamId: '01a11abd-aa80-78fc-8df2-e8f729329cc7',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n        color: '#3B82C4',\n+       createdAt: '2026-10-08T09:00:00.000Z',\n-       createdAt: '2026-10-08T09:00:00Z',\n        description: 'Web, mobile, and platform engineering',\n        icon: 'code',\n        id: '01a11abd-aa80-7f1b-87c9-4f06efe7d086',\n        memberIds: [\n          '01a11abd-aa80-7567-80df-64683f5c3572',\n...\n        name: 'Engineering',\n+       updatedAt: '2026-10-08T09:00:00.000Z',\n-       updatedAt: '2026-10-08T09:00:00Z',\n        version: 1,\n        workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n      },\n      {\n        color: '#8662C9',\n+       createdAt: '2026-10-08T09:00:00.000Z',\n-       createdAt: '2026-10-08T09:00:00Z',\n        description: 'Product design, brand, and research',\n        icon: 'palette',\n        id: '01a11abd-aa80-7215-8b3f-9c5f78a7b7e2',\n        memberIds: [\n          '01a11abd-aa80-72e4-8e93-62c2ece91c47',\n...\n        name: 'Design',\n+       updatedAt: '2026-10-08T09:00:00.000Z',\n-       updatedAt: '2026-10-08T09:00:00Z',\n        version: 1,\n        workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n      },\n      {\n        color: '#C48A1E',\n+       createdAt: '2026-10-08T09:00:00.000Z',\n-       createdAt: '2026-10-08T09:00:00Z',\n        description: 'Roadmap, planning, and QA',\n        icon: 'target',\n        id: '01a11abd-aa80-7c4b-88b5-79c301cf70d7',\n        memberIds: [\n          '01a11abd-aa80-7249-8034-93bbfb2174a2',\n...\n        name: 'Product',\n+       updatedAt: '2026-10-08T09:00:00.000Z',\n-       updatedAt: '2026-10-08T09:00:00Z',\n        version: 1,\n        workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n      },\n      {\n        color: '#C54B78',\n+       createdAt: '2026-10-08T09:00:00.000Z',\n-       createdAt: '2026-10-08T09:00:00Z',\n        description: 'Campaigns, content, and growth',\n        icon: 'megaphone',\n        id: '01a11abd-aa80-78fc-8df2-e8f729329cc7',\n        memberIds: [\n          '01a11abd-aa80-7470-803a-d8637be26509',\n...\n        name: 'Marketing',\n+       updatedAt: '2026-10-08T09:00:00.000Z',\n-       updatedAt: '2026-10-08T09:00:00Z',\n        version: 1,\n        workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n      }\n    ],\n    unreadCount: 6,\n    workspace: {\n      brand: true,\n+     createdAt: '2026-10-08T09:00:00.000Z',\n-     createdAt: '2026-10-08T09:00:00Z',\n      iconColor: '#1D1C1A',\n      id: '01a11abd-aa80-72ea-8b87-b31ad015a24e',\n      name: 'Gr8r Studio',\n      planLabel: 'Team',\n      slug: 'gr8rstudio',\n      timezone: 'UTC',\n+     updatedAt: '2026-10-08T09:00:00.000Z',\n-     updatedAt: '2026-10-08T09:00:00Z',\n      version: 1\n    }\n  }\n",
+    "stack": "AssertionError [ERR_ASSERTION]: bootstrap canonical content/summaries/badges\n+ actual - expected\n... Skipped lines\n\n  {\n    catalogs: {\n      estimates: [\n        '1d',\n        '1h',\n...\n          color: '#3B82C4',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Native iOS and Android client for field teams with offline sync, push notifications, and biometric sign-in.',\n          dueDate: '2026-11-29',\n          icon: 'smartphone',\n          id: '01a11abd-aa80-7f23-849c-94f63946ff17',\n          isFavorite: true,\n...\n          teamId: '01a11abd-aa80-7f1b-87c9-4f06efe7d086',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#3D8E5F',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Launch site for the spring release. Shipped and handed to the web team for maintenance.',\n          dueDate: '2026-09-20',\n          icon: 'layout-grid',\n          id: '01a11abd-aa80-7d99-849a-abec9340dc89',\n          isFavorite: false,\n...\n          teamId: '01a11abd-aa80-78fc-8df2-e8f729329cc7',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#5A67D8',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Rebuild gr8rstudio.com with a clearer information architecture, a responsive component library, and a faster CMS-driven blog.',\n          dueDate: '2026-11-01',\n          icon: 'globe',\n          id: '01a11abd-aa80-7d11-86d8-e6545859cd14',\n          isFavorite: true,\n...\n          teamId: '01a11abd-aa80-7215-8b3f-9c5f78a7b7e2',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#8662C9',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Shared tokens, components, and documentation used by web and mobile teams.',\n          dueDate: '2026-12-17',\n          icon: 'component',\n          id: '01a11abd-aa80-7232-8a34-286c60c1a535',\n          isFavorite: false,\n...\n          teamId: '01a11abd-aa80-7215-8b3f-9c5f78a7b7e2',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#C48A1E',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Coordinate the Workflows 2.0 launch: pricing, docs, press, and sales enablement across teams.',\n          dueDate: '2026-10-20',\n          icon: 'rocket',\n          id: '01a11abd-aa80-7f26-8251-02c59e29c3b1',\n          isFavorite: false,\n...\n          teamId: '01a11abd-aa80-7c4b-88b5-79c301cf70d7',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n          color: '#C54B78',\n+         createdAt: '2026-10-08T09:00:00.000Z',\n-         createdAt: '2026-10-08T09:00:00Z',\n          description: 'Q4 awareness campaign across paid social, email, and a launch webinar targeting operations leads.',\n          dueDate: '2026-11-17',\n          icon: 'megaphone',\n          id: '01a11abd-aa80-784d-8681-7daf87297886',\n          isFavorite: false,\n...\n          teamId: '01a11abd-aa80-78fc-8df2-e8f729329cc7',\n+         updatedAt: '2026-10-08T09:00:00.000Z',\n-         updatedAt: '2026-10-08T09:00:00Z',\n          version: 1,\n          visibility: 'workspace',\n          workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n        },\n        summary: {\n...\n        color: '#3B82C4',\n+       createdAt: '2026-10-08T09:00:00.000Z',\n-       createdAt: '2026-10-08T09:00:00Z',\n        description: 'Web, mobile, and platform engineering',\n        icon: 'code',\n        id: '01a11abd-aa80-7f1b-87c9-4f06efe7d086',\n        memberIds: [\n          '01a11abd-aa80-7567-80df-64683f5c3572',\n...\n        name: 'Engineering',\n+       updatedAt: '2026-10-08T09:00:00.000Z',\n-       updatedAt: '2026-10-08T09:00:00Z',\n        version: 1,\n        workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n      },\n      {\n        color: '#8662C9',\n+       createdAt: '2026-10-08T09:00:00.000Z',\n-       createdAt: '2026-10-08T09:00:00Z',\n        description: 'Product design, brand, and research',\n        icon: 'palette',\n        id: '01a11abd-aa80-7215-8b3f-9c5f78a7b7e2',\n        memberIds: [\n          '01a11abd-aa80-72e4-8e93-62c2ece91c47',\n...\n        name: 'Design',\n+       updatedAt: '2026-10-08T09:00:00.000Z',\n-       updatedAt: '2026-10-08T09:00:00Z',\n        version: 1,\n        workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n      },\n      {\n        color: '#C48A1E',\n+       createdAt: '2026-10-08T09:00:00.000Z',\n-       createdAt: '2026-10-08T09:00:00Z',\n        description: 'Roadmap, planning, and QA',\n        icon: 'target',\n        id: '01a11abd-aa80-7c4b-88b5-79c301cf70d7',\n        memberIds: [\n          '01a11abd-aa80-7249-8034-93bbfb2174a2',\n...\n        name: 'Product',\n+       updatedAt: '2026-10-08T09:00:00.000Z',\n-       updatedAt: '2026-10-08T09:00:00Z',\n        version: 1,\n        workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n      },\n      {\n        color: '#C54B78',\n+       createdAt: '2026-10-08T09:00:00.000Z',\n-       createdAt: '2026-10-08T09:00:00Z',\n        description: 'Campaigns, content, and growth',\n        icon: 'megaphone',\n        id: '01a11abd-aa80-78fc-8df2-e8f729329cc7',\n        memberIds: [\n          '01a11abd-aa80-7470-803a-d8637be26509',\n...\n        name: 'Marketing',\n+       updatedAt: '2026-10-08T09:00:00.000Z',\n-       updatedAt: '2026-10-08T09:00:00Z',\n        version: 1,\n        workspaceId: '01a11abd-aa80-72ea-8b87-b31ad015a24e'\n      }\n    ],\n    unreadCount: 6,\n    workspace: {\n      brand: true,\n+     createdAt: '2026-10-08T09:00:00.000Z',\n-     createdAt: '2026-10-08T09:00:00Z',\n      iconColor: '#1D1C1A',\n      id: '01a11abd-aa80-72ea-8b87-b31ad015a24e',\n      name: 'Gr8r Studio',\n      planLabel: 'Team',\n      slug: 'gr8rstudio',\n      timezone: 'UTC',\n+     updatedAt: '2026-10-08T09:00:00.000Z',\n-     updatedAt: '2026-10-08T09:00:00Z',\n      version: 1\n    }\n  }\n\n    at file:///workspace/task8/apps/api/tests/runtime/verify.mjs:52:115\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+  },
+  "completedAt": "2026-10-10T16:58:01.833Z"
+}
