@@ -1,0 +1,66 @@
+/* Only structural descendants/pseudo states without a utility owner. Source
+   projects-files.css, settings.css and responsive.css; no legacy import. */
+.project-row { border-top:1px solid var(--divider); }
+.project-table { width:100%; border-collapse:collapse; font-size:var(--fs-sm); }
+.project-table th,.project-table td { padding:9px 8px; border-bottom:1px solid var(--divider); text-align:center; }
+.project-table th { font-weight:500; color:var(--text-2); font-size:var(--fs-xs); }
+.project-header-tabs { margin:0 calc(-1 * var(--gutter)); padding:0 calc(var(--gutter) - 10px); }
+.project-body .task-page { padding:0; max-width:none; margin:0; }
+.project-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:12px; }
+.project-overview-grid { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); gap:16px; }
+.project-templates { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+@media(max-width:900px) { .project-overview-grid { grid-template-columns:minmax(0,1fr); } }
+@media(max-width:640px) { .project-hide-mobile { display:none!important; } .project-templates { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+[data-project-panel] > .task-mini:first-child { border-top:0; }
+.project-avatar-overflow { position:static; }
+/* Locked source .pcard .more also matches the overflow avatar. Preserve this
+   consumer quirk without truncating canonical memberships. */
+[data-project-card] .project-avatar-overflow { position:absolute; top:10px; right:10px; opacity:0; }
+[data-project-card]:hover .project-avatar-overflow { opacity:1; }
+
+.project-row:first-child { border-top:0; }
+
+/* Original .fx-tabs active underline is finite and has no filled transform.
+   Scope reduced fade to the same entry flag; Source's ungated reduced selector
+   otherwise replays it on unrelated renders and preference changes. */
+@keyframes projectTabIn { from { transform:scaleX(.4); opacity:0; } to { transform:none; opacity:1; } }
+[data-project-host][data-project-transition] .ui-tab[aria-selected=true]::after { animation:projectTabIn .26s var(--ease); }
+:root[data-motion=reduce] [data-project-host][data-project-transition] .ui-tab[aria-selected=true]::after { animation-name:fadeOnly; animation-duration:.12s; }
+@media(prefers-reduced-motion:reduce) { :root:not([data-motion=full]) [data-project-host][data-project-transition] .ui-tab[aria-selected=true]::after { animation-name:fadeOnly; animation-duration:.12s; } }
+
+
+[data-project-transition=route] > [data-project-header], [data-project-transition=route] > [data-project-body] { animation:riseIn .36s var(--ease) both; }
+[data-project-transition=route] > [data-project-body] { animation-delay:.035s; }
+[data-project-transition=route] .project-overview-grid > div > section:nth-child(2), [data-project-transition=route] .project-overview-grid > div:nth-child(2) > section:first-child { animation:riseIn .4s .09s var(--ease) both; }
+[data-project-transition=tab] > [data-project-body] > :not([data-project-task-page]):not([data-project-view-page]), [data-project-transition=tab] [data-project-task-page] > * { animation:riseIn .26s var(--ease) both; }
+[data-project-transition=tab] [data-project-view-page] > .task-view-toolbar, [data-project-transition=tab] [data-project-view-page] > [data-calendar-coverage] > .calendar-view, [data-project-transition=tab] [data-project-view-page] > [data-timeline-coverage] > .timeline-view { animation:riseIn .26s var(--ease) both; }
+:root[data-motion=reduce] [data-project-transition] > *, :root[data-motion=reduce] [data-project-transition] .project-overview-grid > div > section, :root[data-motion=reduce] [data-project-transition] [data-project-task-page] > *, :root[data-motion=reduce] [data-project-transition] [data-project-view-page] > .task-view-toolbar, :root[data-motion=reduce] [data-project-transition] [data-project-view-page] > [data-calendar-coverage] > .calendar-view, :root[data-motion=reduce] [data-project-transition] [data-project-view-page] > [data-timeline-coverage] > .timeline-view { animation-name:fadeOnly; animation-duration:.12s; animation-delay:0s; }
+@media(prefers-reduced-motion:reduce) { :root:not([data-motion=full]) [data-project-transition] > *, :root:not([data-motion=full]) [data-project-transition] .project-overview-grid > div > section, :root:not([data-motion=full]) [data-project-transition] [data-project-task-page] > *, :root:not([data-motion=full]) [data-project-transition] [data-project-view-page] > .task-view-toolbar, :root:not([data-motion=full]) [data-project-transition] [data-project-view-page] > [data-calendar-coverage] > .calendar-view, :root:not([data-motion=full]) [data-project-transition] [data-project-view-page] > [data-timeline-coverage] > .timeline-view { animation-name:fadeOnly; animation-duration:.12s; animation-delay:0s; } }
+
+[data-project-transition=tab] [data-task-card] { animation:riseIn .32s var(--ease) both; }
+[data-project-transition=tab] .task-board-column:nth-child(2) [data-task-card] { animation-delay:.03s; }
+[data-project-transition=tab] .task-board-column:nth-child(3) [data-task-card] { animation-delay:.06s; }
+[data-project-transition=tab] .task-board-column:nth-child(n+4) [data-task-card] { animation-delay:.09s; }
+
+/* Original .fx-route owns catalogue/Favorites direct-child entry and progress, Overview stack segments and Timeline bars. The shared scale-based
+   fill preserves its underlying value at the end of growX. */
+[data-project-page-motion][data-project-transition=route] > * { animation:riseIn .36s var(--ease) both; }
+[data-project-page-motion][data-project-transition=route] > :nth-child(2) { animation-delay:.035s; }
+[data-project-page-motion][data-project-transition=route] > :nth-child(3) { animation-delay:.07s; }
+[data-project-page-motion][data-project-transition=route] > :nth-child(n+4) { animation-delay:.1s; }
+[data-project-transition=route] [role=progressbar] > i, [data-project-transition=route] [data-project-stackedbar] i { animation:growX .8s .12s var(--ease) both; }
+[data-project-transition=route] [data-timeline-bar] { animation:riseIn .4s var(--ease) both; }
+:root[data-motion=reduce] [data-project-page-motion][data-project-transition] > *, :root[data-motion=reduce] [data-project-transition=route] [data-timeline-bar] { animation:fadeOnly .12s both; }
+:root[data-motion=reduce] [data-project-transition=route] [role=progressbar] > i, :root[data-motion=reduce] [data-project-transition=route] [data-project-stackedbar] i { animation:none; }
+@media(prefers-reduced-motion:reduce) {
+ :root:not([data-motion=full]) [data-project-page-motion][data-project-transition] > *, :root:not([data-motion=full]) [data-project-transition=route] [data-timeline-bar] { animation:fadeOnly .12s both; }
+ :root:not([data-motion=full]) [data-project-transition=route] [role=progressbar] > i, :root:not([data-motion=full]) [data-project-transition=route] [data-project-stackedbar] i { animation:none; }
+}
+
+/* Native Source input focus/blur uses the CSS default ease, not route easing. */
+[data-project-catalogue] input, [data-project-form] input, [data-project-form] textarea, [data-project-share] input, [data-project-saved-dialog] input, [data-project-host] input { transition:border-color var(--dur),box-shadow var(--dur); }
+[data-project-form] [aria-label=Close], [data-project-share] [aria-label=Close], [data-project-saved-dialog] [aria-label=Close] { transition:background var(--dur),color var(--dur); }
+.project-templates > button { transition:border-color var(--dur),box-shadow var(--dur),background var(--dur); }
+/* Source .select shares the native Input focus/blur transition shorthand. */
+[data-project-catalogue] .ui-select-trigger, [data-project-form] .ui-select-trigger, [data-project-share] .ui-select-trigger, [data-project-saved-dialog] .ui-select-trigger, [data-project-host] .ui-select-trigger { transition:border-color var(--dur),box-shadow var(--dur); }

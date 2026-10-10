@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-VPa2x_kd.js";var t=e;export{t as component};

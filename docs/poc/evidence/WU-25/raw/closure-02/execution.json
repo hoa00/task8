@@ -1,0 +1,86 @@
+{
+  "node": "v24.13.0",
+  "records": [
+    {
+      "id": "closure",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-closure.mjs",
+        "--attempt=closure-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/closure-02/closure.stdout",
+        "bytes": 361,
+        "sha256": "450b915b76353875b0fee61a33a1479c2c497f3b5496119ce6c2fab661bc1819"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/closure-02/closure.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "archive",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-archive.mjs",
+        "--attempt=closure-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/closure-02/archive.stdout",
+        "bytes": 51,
+        "sha256": "240ef503b293fe70f56642345675064d2e8c34c018a410d225e78957ea6af1ce"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/closure-02/archive.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-freeze.mjs",
+        "--attempt=closure-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/closure-02/freeze.stdout",
+        "bytes": 74,
+        "sha256": "3df2d1f1e2199cd0238ffc7652b1d628f5a738f25f1f53b40770b1c65e1cfad7"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/closure-02/freeze.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "archive-freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-freeze.mjs",
+        "--attempt=closure-02-archive",
+        "--directory=archives/closure-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/closure-02/archive-freeze.stdout",
+        "bytes": 58,
+        "sha256": "3c7953fe57c582fa3d4637a7168fd68e8435f71968c80f93008b381745d2e201"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/closure-02/archive-freeze.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

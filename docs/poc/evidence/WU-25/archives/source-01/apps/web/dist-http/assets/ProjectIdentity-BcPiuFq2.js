@@ -1,0 +1,1 @@
+import{r as e}from"./useRouter-BOAPZDg1.js";import{b as t}from"./src-BWvJAbCs.js";var n=e();function r({project:e}){return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(t,{className:`size-2! rounded-[3px]!`,color:e.color}),(0,n.jsx)(`span`,{className:`truncate`,children:e.name})]})}export{r as t};

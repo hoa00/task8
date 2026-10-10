@@ -1,0 +1,87 @@
+{
+  "node": "v24.13.0",
+  "records": [
+    {
+      "id": "interactions",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-interactions.mjs",
+        "--attempt=native-02",
+        "--only=N25-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/native-02/interactions.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/native-02/interactions.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "archive",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-archive.mjs",
+        "--attempt=native-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/native-02/archive.stdout",
+        "bytes": 50,
+        "sha256": "a87942cc0c64d2ea7f591e0ccf70349f20ff2f7b22eb43fba7ee0c62b78a58ef"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/native-02/archive.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-freeze.mjs",
+        "--attempt=native-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/native-02/freeze.stdout",
+        "bytes": 73,
+        "sha256": "628f7c3729a1c85bc83149b473a30f0ce423598ecfe12bcece014305b5ed13b2"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/native-02/freeze.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "archive-freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-freeze.mjs",
+        "--attempt=native-02-archive",
+        "--directory=archives/native-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/native-02/archive-freeze.stdout",
+        "bytes": 57,
+        "sha256": "daba4ae25c0597985bebb87cc41f81d6ed610246caa9fa8c2c9c1b70b0956f8b"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/native-02/archive-freeze.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

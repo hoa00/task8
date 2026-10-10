@@ -44,9 +44,10 @@ export function Field({ label, hint, error, controlId, children, className = '',
     {typeof children === 'function' ? children({ id, 'aria-invalid': error ? true : undefined, 'aria-describedby': error || hint ? descriptionId : undefined }) : children}
     {error ? <span id={descriptionId} className="flex items-center gap-1 text-xs text-red"><Icon name="circle-alert" size={12} />{error}</span> : hint ? <span id={descriptionId} className="text-xs text-muted">{hint}</span> : null}</div>;
 }
-export interface PasswordInputProps extends Omit<InputProps, 'type'> { revealed: boolean; onRevealedChange: (revealed: boolean) => void }
-export function PasswordInput({ revealed, onRevealedChange, className = '', ...props }: PasswordInputProps) {
-  return <div className="relative flex items-center"><Input {...props} type={revealed ? 'text' : 'password'} className={`pl-[30px] pr-[38px] ${className}`} /><span className="absolute right-[5px]"><IconButton size="sm" disabled={props.disabled} aria-label={revealed ? 'Hide password' : 'Show password'} aria-pressed={revealed} onClick={() => onRevealedChange(!revealed)}><Icon name={revealed ? 'eye-off' : 'eye'} size={15} /></IconButton></span></div>;
+export type PasswordInputProps = Omit<InputProps, 'type'> & ({ revealControl: false; revealed?: never; onRevealedChange?: never } | { revealControl?: true; revealed: boolean; onRevealedChange: (revealed: boolean) => void });
+export function PasswordInput({ revealed, onRevealedChange, revealControl = true, className = '', ...props }: PasswordInputProps) {
+  if (!revealControl) return <Input {...props} type="password" className={className} />;
+  return <div className="relative flex items-center"><Input {...props} type={revealed ? 'text' : 'password'} className={`pl-[30px] pr-[38px] ${className}`} /><span className="absolute right-[5px]"><IconButton size="sm" disabled={props.disabled} aria-label={revealed ? 'Hide password' : 'Show password'} aria-pressed={revealed} onClick={() => onRevealedChange?.(!revealed)}><Icon name={revealed ? 'eye-off' : 'eye'} size={15} /></IconButton></span></div>;
 }
 export interface CheckboxProps extends Omit<ComponentPropsWithRef<'input'>, 'type' | 'checked' | 'defaultChecked' | 'onChange' | 'size'> { checked: boolean; indeterminate?: boolean; round?: boolean; onCheckedChange: (checked: boolean) => void }
 export function Checkbox({ checked, indeterminate = false, round = false, onCheckedChange, ref, className = '', ...props }: CheckboxProps) {

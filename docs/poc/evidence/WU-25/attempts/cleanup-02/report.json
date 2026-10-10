@@ -1,0 +1,287 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "id": "origin",
+      "command": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/origin.stdout",
+        "bytes": 35,
+        "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "fetch",
+      "command": [
+        "git",
+        "fetch",
+        "origin",
+        "main"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/fetch.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/fetch.stderr",
+        "bytes": 82,
+        "sha256": "aa2bbd28234e39b12f0df705416fe162011587e81177106b1bcc7526c7f372d1"
+      }
+    },
+    {
+      "id": "head",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/head.stdout",
+        "bytes": 41,
+        "sha256": "ed505f6f8eba5419fc355e32b35495055dce9375008ed1d0abcb855536a34870"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "tree",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/tree.stdout",
+        "bytes": 41,
+        "sha256": "29e944cc73d53dd7cf502683461e8a31b945e9ba05bb6b8ffc3487ce7c3360da"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/tree.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "origin-main",
+      "command": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/origin-main.stdout",
+        "bytes": 41,
+        "sha256": "ed505f6f8eba5419fc355e32b35495055dce9375008ed1d0abcb855536a34870"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/origin-main.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "remote-main",
+      "command": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/remote-main.stdout",
+        "bytes": 57,
+        "sha256": "65eb8c123be7ca1a9c9ef28c0bf7ccb7de068573ec6e0107064d18577fa5a56d"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/remote-main.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "divergence",
+      "command": [
+        "git",
+        "rev-list",
+        "--left-right",
+        "--count",
+        "HEAD...origin/main"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/divergence.stdout",
+        "bytes": 4,
+        "sha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/divergence.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "source-head",
+      "command": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/source-head.stdout",
+        "bytes": 41,
+        "sha256": "7b13267f3236258e1feb01348be92239d0d83c2d5fa0b1b2dc8bc5b3cf3aea30"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/source-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "source-tree",
+      "command": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/source-tree.stdout",
+        "bytes": 41,
+        "sha256": "dfcd9413f95e2de91d7ff886b9322f6fbc8c6430034bc5ec30aa8048c8876ef8"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/source-tree.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "source-status",
+      "command": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "status",
+        "--porcelain"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/source-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/source-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "source-tracked",
+      "command": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "ls-files"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/source-tracked.stdout",
+        "bytes": 1816,
+        "sha256": "ff802db5025496466a0b36c347fd4a69e6c1fe626692ff3dd5191a696922df52"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/source-tracked.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "ports",
+      "command": [
+        "ss",
+        "-ltnH",
+        "sport = :4173 or sport = :5173 or sport = :8787"
+      ],
+      "exitStatus": 0,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/ports.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/ports.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "origin": "https://github.com/hoa00/task8.git",
+  "head": "0295b0262ca11f7e9e7a9b7d31a6d545605a6e7a",
+  "tree": "d4e149b226bf0f58ec777d8da7160df536c1752d",
+  "originMain": "0295b0262ca11f7e9e7a9b7d31a6d545605a6e7a",
+  "freshRemoteMain": "0295b0262ca11f7e9e7a9b7d31a6d545605a6e7a",
+  "divergence": "0\t0",
+  "sourceHead": "904205c626918ee96054eb35495c394a60c0c601",
+  "sourceTree": "5db5f992886b2345881946cf85fac098307953a5",
+  "sourceStatus": "",
+  "sourceTracked": 86,
+  "listeners": "",
+  "lockedInputs": {
+    "baseline-manifest.json": {
+      "path": "docs/poc/reference/baseline-manifest.json",
+      "sha256": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe"
+    },
+    "font-assets.json": {
+      "path": "docs/poc/reference/font-assets.json",
+      "sha256": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4"
+    },
+    "source-fixture.json": {
+      "path": "docs/poc/reference/source-fixture.json",
+      "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80"
+    },
+    "source-lock.json": {
+      "path": "docs/poc/reference/source-lock.json",
+      "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+    }
+  },
+  "runtime": {
+    "environment_id": "ccarenv_b64_Y2NhcmVudl9kNGJkODU0N2U5MjQ4MTkxODExNDNkMjNjMjRlOTdkMw",
+    "spec_revision": "113",
+    "observed_spec_revision": "113",
+    "observations_current": true,
+    "desired_phase": "running",
+    "observed_phase": "running",
+    "connectivity": "connected",
+    "network_policy": {
+      "mode": "unrestricted",
+      "state": "enforced"
+    }
+  }
+}

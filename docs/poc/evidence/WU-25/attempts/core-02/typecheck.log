@@ -1,0 +1,28 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs 902a11b60b8ff66b
+@studio/ui:typecheck: cache hit, replaying logs 752746048f43f560
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs f2ccde00f978189b
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing d20a431572df1773
+@studio/api:typecheck: cache hit, replaying logs ff7acf4fc87b09ee
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/features/settings/SecurityBilling.tsx(47,563): error TS2741: Property 'label' is missing in type '{ "aria-label": string; value: "loading" | "error" | "normal" | "enabled" | "current-session" | "free" | "business"; options: { value: "loading" | "error" | "normal" | "enabled" | "current-session" | "free" | "business"; label: "loading" | ... 5 more ... | "business"; }[]; disabled: boolean; onValueChange: (value: s...' but required in type 'SelectProps'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    12.397s 
+Failed:    @studio/web#typecheck
+
+ ERROR  run failed: command  exited (2)
+[ELIFECYCLE] Command failed with exit code 2.

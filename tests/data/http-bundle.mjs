@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
 const root = new URL('../../', import.meta.url);
-const unit = process.argv.find(arg => ['WU-07', 'WU-08', 'WU-09', 'WU-10', 'WU-11', 'WU-12', 'WU-13', 'WU-14', 'WU-15', 'WU-16', 'WU-17', 'WU-18', 'WU-19', 'WU-20', 'WU-21', 'WU-22', 'WU-23', 'WU-24'].includes(arg)) ?? 'WU-06';
+const unit = process.argv.find(arg => ['WU-07', 'WU-08', 'WU-09', 'WU-10', 'WU-11', 'WU-12', 'WU-13', 'WU-14', 'WU-15', 'WU-16', 'WU-17', 'WU-18', 'WU-19', 'WU-20', 'WU-21', 'WU-22', 'WU-23', 'WU-24', 'WU-25'].includes(arg)) ?? 'WU-06';
 const suffix = process.argv.find(arg => arg.startsWith('--evidence-suffix='))?.slice(18);
 assert(!suffix || /^[a-z][a-z0-9-]*$/.test(suffix), 'Invalid evidence suffix');
 const evidence = `docs/poc/evidence/${unit}${suffix ? `/${suffix}` : process.argv.includes('--table-popovers') ? '/table-popovers' : ''}`;

@@ -1,0 +1,26 @@
+/* Source drawer full positioning and inclusive mobile override, owned here. */
+.task-drawer-full { width: min(980px, calc(100vw - 48px)); right: 50%; transform: translateX(50%); top: 24px; bottom: 24px; border-radius: 12px; border: 1px solid var(--border); }
+.task-drawer-full:not([data-entered]) { animation: ui-modal-in .26s var(--ease) both; }
+.task-drawer-full .task-drawer-body { padding: 28px 48px 40px; }
+.task-description p { margin: 0 0 6px; }
+.task-description ul, .task-description ol { margin: 4px 0; padding-left: 20px; }
+.task-description h4 { font-size: var(--fs-md); margin: 10px 0 4px; }
+@media (max-width: 640px) {
+ .task-drawer, .task-drawer-full { width: 100vw; right: 0; left: 0; top: 0; bottom: 0; transform: none; border-radius: 0; border: 0; }
+ .task-drawer .task-drawer-body, .task-drawer-full .task-drawer-body { padding: 16px 16px 40px; }
+ .task-property-grid { grid-template-columns: 96px minmax(0, 1fr); }
+}
+
+/* Source independent body entrance: final delayed child settles at .48s. */
+.task-drawer:not([data-overlay-initial-state='settled']) .task-drawer-body:not([data-body-entered]) > * { animation: riseIn .38s var(--ease) both; }
+.task-drawer:not([data-overlay-initial-state='settled']) .task-drawer-body:not([data-body-entered]) > :nth-child(2) { animation-delay: .04s; }
+.task-drawer:not([data-overlay-initial-state='settled']) .task-drawer-body:not([data-body-entered]) > :nth-child(3) { animation-delay: .07s; }
+.task-drawer:not([data-overlay-initial-state='settled']) .task-drawer-body:not([data-body-entered]) > :nth-child(n+4) { animation-delay: .1s; }
+
+@media (prefers-reduced-motion: reduce) { :root:not([data-motion='full']) .task-drawer .task-drawer-body > * { animation: fadeOnly .12s both !important; } }
+:root[data-motion='reduce'] .task-drawer .task-drawer-body > * { animation: fadeOnly .12s both !important; }
+
+@layer utilities {
+ .task-detail-section { @apply mt-[26px]; }
+ .task-description:empty::before { content: attr(data-placeholder); color: var(--text-3); }
+}

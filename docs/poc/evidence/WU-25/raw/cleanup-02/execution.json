@@ -1,0 +1,86 @@
+{
+  "node": "v24.13.0",
+  "records": [
+    {
+      "id": "cleanup",
+      "command": [
+        "python3",
+        "tests/visual/settings/security-cleanup.py",
+        "cleanup-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/cleanup-02/cleanup.stdout",
+        "bytes": 490,
+        "sha256": "9f1ba526a6ab25856703eb1917a4f6bea67371959e830cc53b3e4ce8281d59fd"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/cleanup-02/cleanup.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "archive",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-archive.mjs",
+        "--attempt=cleanup-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/cleanup-02/archive.stdout",
+        "bytes": 51,
+        "sha256": "ad802e43059dc6de39567289c020f4186d644c9247b103f0aad7671998846d09"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/cleanup-02/archive.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-freeze.mjs",
+        "--attempt=cleanup-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/cleanup-02/freeze.stdout",
+        "bytes": 75,
+        "sha256": "52995da33faa86586402b11b0dc8061e87b824671461389d50b386bad6157e6e"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/cleanup-02/freeze.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "archive-freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-freeze.mjs",
+        "--attempt=cleanup-02-archive",
+        "--directory=archives/cleanup-02"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/cleanup-02/archive-freeze.stdout",
+        "bytes": 58,
+        "sha256": "1288b9e4ceaf21d5440b3f4c7e3bc4d5c20641aa3649cb3cc75c28dc8adaf58c"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/cleanup-02/archive-freeze.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

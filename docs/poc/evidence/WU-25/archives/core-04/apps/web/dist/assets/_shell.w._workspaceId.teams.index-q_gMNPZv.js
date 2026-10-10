@@ -1,0 +1,1 @@
+import{n as e}from"./TeamsPage-Cnt2Cm8d.js";var t=e;export{t as component};

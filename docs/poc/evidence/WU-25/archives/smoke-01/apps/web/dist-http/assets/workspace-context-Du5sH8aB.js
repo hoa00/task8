@@ -1,0 +1,1 @@
+import{i as e,o as t}from"./useRouter-BOAPZDg1.js";import{r as n}from"./queries-E4EaxpFS.js";var r=t(e(),1),i=(0,r.createContext)(null);function a(){let e=(0,r.useContext)(i);if(!e)throw Error(`Workspace feature requires the shared shell`);return e}function o(){return n(`getBootstrap`,{workspaceId:a()})}export{o as n,a as r,i as t};

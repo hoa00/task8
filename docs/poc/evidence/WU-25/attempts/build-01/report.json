@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/build-01/build.stdout",
+        "bytes": 24865,
+        "sha256": "12e9fb0381de211eb8031a5c46bce35b31d8f616d7dc17cc0b781a45de0af670"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/build-01/build.stderr",
+        "bytes": 18,
+        "sha256": "c7ae53061ae01873a9768eadfdff2c192fb4acbd5744d4eb0741e66c8469a052"
+      }
+    },
+    {
+      "id": "HTTPbuild",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/build-01/HTTPbuild.stdout",
+        "bytes": 16339,
+        "sha256": "da3ee97be03f7a9cb6f0085e4aa4c6ab603300079bf51e43bff93e9f5f1daf95"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/build-01/HTTPbuild.stderr",
+        "bytes": 50,
+        "sha256": "7565e095260c7d52d09978ace1e2ea7aab1846150749be88f487e94db03369db"
+      }
+    }
+  ]
+}

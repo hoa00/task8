@@ -16,6 +16,9 @@ import { useDataRuntime } from '../../data/context';
 import { WorkspaceNotifications } from './WorkspaceNotifications';
 import { workspaceNotificationSections } from './workspace-notification-sections';
 import { PendingPage } from '../../app/shell/PendingPage';
+import { SecurityBilling } from './SecurityBilling';
+import { securityBillingSections } from './security-billing-sections';
+import type { SecurityBillingSection } from './security-billing-sections';
 
 const generalPersonalSections = ['workspace','appearance','language','datetime','profile','preferences','shortcuts'] as const;
 export type GeneralPersonalSection = typeof generalPersonalSections[number];
@@ -23,7 +26,7 @@ const headings: Record<GeneralPersonalSection, [string,string]> = {
   workspace:['Workspace','Your workspace name, address, and identity.'], appearance:['Appearance','Customize how Gr8r looks on this device.'], language:['Language','Language and regional formats.'], datetime:['Date & time','How dates and times appear across the workspace.'], profile:['Profile','How you appear to others in the workspace.'], preferences:['Preferences','Personal defaults for how you work.'], shortcuts:['Keyboard shortcuts','Move faster with the keyboard.'],
 };
 export interface SettingsPageProps { section: string }
-export function SettingsPage({section}:SettingsPageProps) { if ((workspaceNotificationSections as readonly string[]).includes(section)) return <WorkspaceNotifications key={section} section={section}/>; if (!(generalPersonalSections as readonly string[]).includes(section)) return <PendingPage/>; return <GeneralPersonal key={section} section={section as GeneralPersonalSection}/>; }
+export function SettingsPage({section}:SettingsPageProps) { if ((securityBillingSections as readonly string[]).includes(section)) return <SecurityBilling key={section} section={section as SecurityBillingSection}/>; if ((workspaceNotificationSections as readonly string[]).includes(section)) return <WorkspaceNotifications key={section} section={section}/>; if (!(generalPersonalSections as readonly string[]).includes(section)) return <PendingPage/>; return <GeneralPersonal key={section} section={section as GeneralPersonalSection}/>; }
 function GeneralPersonal({section}:{section:GeneralPersonalSection}) {
   const workspaceId=useWorkspaceId(), bootstrap=useWorkspaceBootstrap(), preferences=useStudioQuery('getPreferences',{workspaceId}), profile=useStudioQuery('getProfile',{}), workspace=useStudioQuery('getWorkspace',{workspaceId}), [toasts,setToasts]=useState<ToastMessage[]>([]), data=bootstrap.data?.data;
   const required=section==='workspace'?workspace:section==='profile'?profile:preferences;

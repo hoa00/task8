@@ -1,0 +1,1 @@
+var e=[`Can view`,`Can comment`,`Can edit`,`Full access`];export{e as t};

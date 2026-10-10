@@ -1,0 +1,87 @@
+{
+  "node": "v24.13.0",
+  "records": [
+    {
+      "id": "verify",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-verify.mjs",
+        "--attempt=dark-01",
+        "--dark"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/dark-01/verify.stdout",
+        "bytes": 650,
+        "sha256": "80c6567bf5e14021bf0e672501a900ab995b20a6675177f84f2de5129cc08fd5"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/dark-01/verify.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "archive",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-archive.mjs",
+        "--attempt=dark-01"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/dark-01/archive.stdout",
+        "bytes": 48,
+        "sha256": "012a415ca4eaaddce28bfa08c16afba84f5f389ebb118e87247dd090118dce40"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/dark-01/archive.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-freeze.mjs",
+        "--attempt=dark-01"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/dark-01/freeze.stdout",
+        "bytes": 73,
+        "sha256": "7f4d8448616644685a2662011719bb65649854a0165c83a3f0cc4877ccb34a23"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/dark-01/freeze.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "archive-freeze",
+      "command": [
+        "/tmp/task8-node-runtime/node_modules/node/bin/node",
+        "tests/visual/settings/security-freeze.mjs",
+        "--attempt=dark-01-archive",
+        "--directory=archives/dark-01"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/raw/dark-01/archive-freeze.stdout",
+        "bytes": 55,
+        "sha256": "ccb6c8cae5ace630abba855db85dcf9685a89a4fa4fd4ce5648b86a6e4717fdd"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/raw/dark-01/archive-freeze.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

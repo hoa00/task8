@@ -1,0 +1,57 @@
+/* TaskList owns only responsive layout and source pseudo-state selectors;
+   static component declarations live in the utility layer without legacy CSS. */
+@layer utilities {
+.task-page { @apply flex h-full max-w-none flex-col p-0; }
+.task-page-heading { @apply flex flex-wrap items-start gap-3 px-[var(--gutter)] pb-3 pt-6; }
+.task-page-heading h1 { @apply m-0 text-2xl font-semibold leading-[1.2] tracking-[-.022em]; }
+.task-page-heading p { @apply mb-0 mt-1 text-body text-secondary; }
+.task-page-actions { @apply ml-auto flex flex-wrap items-center gap-[6px]; }
+.task-list-wrap { padding: 0 var(--gutter) 90px calc(var(--gutter) - 26px); }
+.task-list-head,.task-list-row { @apply grid items-center gap-0; min-height: var(--row-h); }
+.task-list-head { @apply sticky top-0 z-[2] min-h-8 border-0 border-b border-solid border-border bg-surface text-xs font-medium text-muted; }
+.task-list-head > div { @apply flex items-center gap-1 whitespace-nowrap px-2; }
+.task-list-row { @apply relative border-0 border-b border-solid border-divider transition-[background]; }
+.task-list-row:hover { @apply bg-surface-2; }
+.task-list-row.task-selected { @apply bg-accent-soft; }
+.task-list-row > div { @apply flex min-w-0 items-center gap-[6px] px-2; }
+.task-list-row .task-handle { @apply w-4 cursor-grab justify-center p-0 text-faint opacity-0; }
+.task-list-row:hover .task-handle { @apply opacity-100; }
+.task-list-row .task-title-cell { @apply cursor-pointer gap-2 text-body; }
+.task-title { @apply overflow-hidden text-ellipsis whitespace-nowrap; }
+.task-list-row .task-title-cell:hover .task-title { text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.task-done .task-title,.task-subrow.task-done span { @apply text-muted line-through; }
+.task-key { @apply shrink-0 font-mono text-[11px] text-muted; }
+.task-meta-mini { @apply inline-flex items-center gap-[3px] text-2xs text-muted; }
+.task-group { @apply mt-[10px] flex h-9 select-none items-center gap-2 border-0 border-b border-solid border-border pl-[22px] pr-2 text-sm font-semibold; }
+.task-group-count { @apply font-medium text-muted; }
+.task-group button { @apply opacity-60; }
+.task-group:hover button { @apply opacity-100; }
+.task-subrows { @apply bg-sunken; }
+.task-subrow { @apply flex h-8 items-center gap-2 border-0 border-b border-solid border-divider pl-16 text-sm; }
+.task-add-row { @apply flex h-[34px] w-full items-center gap-2 border-0 border-b border-solid border-divider pl-[26px] pr-[10px] text-left text-sm text-muted; }
+.task-add-row:hover { @apply bg-surface-2 text-foreground; }
+.task-inline-input { @apply h-full w-full border-0 bg-transparent p-0 text-body outline-none; }
+.task-bulkbar { @apply fixed bottom-6 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1 rounded-lg bg-foreground py-[6px] pl-[14px] pr-[6px] text-sm text-inverse; box-shadow: var(--shadow-pop); }
+.task-label-field { @apply inline-flex h-[26px] max-w-full items-center gap-1 overflow-hidden whitespace-nowrap rounded-sm px-[7px] text-sm transition-[background] source-hover:bg-surface-2; }
+.task-label-field > span { flex-shrink: 0; }
+.task-bulk-button { @apply inline-flex h-[26px] items-center justify-center gap-[6px] whitespace-nowrap rounded-sm border border-solid border-transparent bg-transparent px-2 text-xs font-medium text-inverse opacity-85 select-none; }
+.task-bulk-button svg { opacity: .9; }
+.task-bulkbar .task-bulk-button:hover { background: color-mix(in srgb, var(--text-inv) 14%, transparent); opacity: 1; }
+.task-bulk-sep { @apply mx-1 h-[18px] w-px; background: color-mix(in srgb, var(--text-inv) 20%, transparent); }
+.task-mini { @apply flex min-h-[38px] cursor-pointer items-center gap-[10px] border-0 border-t border-solid border-divider px-[14px] transition-[background]; }
+.task-mini:hover { @apply bg-surface-2; }
+.task-drop-before { box-shadow: inset 0 2px 0 var(--accent); }
+.task-drop-after { box-shadow: inset 0 -2px 0 var(--accent); }
+@media(max-width:640px) {
+ .task-page-heading h1 { @apply text-xl; }
+ .task-page-actions { @apply ml-0 w-full; }
+ .task-list-wrap { padding-left: var(--gutter); }
+ .task-list-head { display: none; }
+ .task-list .task-list-row { @apply my-[6px] flex min-h-0 flex-wrap gap-x-[6px] gap-y-1 rounded-default border border-solid border-border px-[6px] py-[10px]; }
+ .task-list .task-list-row > div { @apply p-0; }
+ .task-list .task-list-row .task-handle { display: none; }
+ .task-list .task-title-cell { flex: 1 1 calc(100% - 30px); order: 1; }
+ .task-list .task-c-check { order: 0; }
+ .task-list .task-c-meta { order: 2; }
+}
+}

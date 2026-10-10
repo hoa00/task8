@@ -1,6 +1,8 @@
 export { Icon, TaskStatusIcon, PriorityIcon, Logo, BrandMark } from './icons';
 export type { IconProps, TaskStatusIconProps, PriorityIconProps, StatusGlyph, PriorityGlyph, LogoProps, BrandMarkProps } from './icons';
 export type { IconName } from './icon-paths';
+export { PasswordStrength } from './password-strength';
+export type { PasswordStrengthProps } from './password-strength';
 export { AppearanceFields } from './appearance-fields';
 export type { AppearanceFieldsProps } from './appearance-fields';
 export { Button, IconButton, Input, Textarea, Field, PasswordInput, Checkbox, Toggle, Tabs, SegmentedControl, VisuallyHidden } from './controls';

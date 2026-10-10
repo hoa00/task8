@@ -1,0 +1,134 @@
+{
+  "status": "failed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/typecheck.stdout",
+        "bytes": 821,
+        "sha256": "23d45c2a0726581c9c4b1a62752c799f524f2c76a376336c6d0a713fc6faf997"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/typecheck.stderr",
+        "bytes": 22,
+        "sha256": "bf18c62cdc9924cebfa985a804c2b55e5fabcdec27ab2707fe215d547b85ec16"
+      }
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/test.stdout",
+        "bytes": 32190,
+        "sha256": "b642a2a605a31849ce4bf5fab17583cb8863666a18f7ffeabe3385a3310ccb4d"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/test.stderr",
+        "bytes": 152,
+        "sha256": "0da6e8095dee124ad6481edbfaa850d6d9d1580bdf4c1972bda28ed9d1b35f3c"
+      }
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/lint.stdout",
+        "bytes": 76,
+        "sha256": "f5649f16cdaddad3a4de3d9574e183e83d390fc856c0de309d1b07929cf56a6b"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/lint.stderr",
+        "bytes": 574,
+        "sha256": "bfb61f9a6225ed67561b78efc95e2d066847ed02e5dffe6d570825eb15249147"
+      }
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/build.stdout",
+        "bytes": 24861,
+        "sha256": "954e572ce7e24686af8897b1379ed3263b0d6f348fe03ae4dd7e2ac23cd7fbb3"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/build.stderr",
+        "bytes": 18,
+        "sha256": "c7ae53061ae01873a9768eadfdff2c192fb4acbd5744d4eb0741e66c8469a052"
+      }
+    },
+    {
+      "id": "HTTPbuild",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/HTTPbuild.stdout",
+        "bytes": 16339,
+        "sha256": "2fa420af7876b17e077d2a65a958a0797c4e43607d26678ddaf77a4e854c0940"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/HTTPbuild.stderr",
+        "bytes": 50,
+        "sha256": "7565e095260c7d52d09978ace1e2ea7aab1846150749be88f487e94db03369db"
+      }
+    },
+    {
+      "id": "HTTPbundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-25",
+        "--evidence-suffix=core-05-http-bundle"
+      ],
+      "exitStatus": 1,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/HTTPbundle.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-25/attempts/core-05/HTTPbundle.stderr",
+        "bytes": 696,
+        "sha256": "b8d91ce5bfd1d2fd9eaf55a84b1ae3618a2ea6e7ce619e81b4eadd394c2a988c"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+/* Timeline owns dynamic color mixes, pointer states, milestone tooltip anchoring
+   and the source's inclusive rail breakpoints. Static layout is Tailwind. */
+@layer utilities {
+.timeline-view { @apply grid min-h-0 flex-1 grid-cols-[300px_minmax(0,1fr)] overflow-hidden; }
+.timeline-left { @apply flex flex-col overflow-hidden border-0 border-r border-solid border-border; }
+.timeline-head { @apply sticky top-0 z-[4] h-[52px] shrink-0 border-0 border-b border-solid border-border bg-surface; }
+.timeline-row { @apply flex h-9 cursor-pointer items-center gap-2 whitespace-nowrap border-0 border-b border-solid border-divider pl-[var(--gutter)] pr-3 text-sm; }
+.timeline-row:hover { @apply bg-surface-2; }
+.timeline-row.timeline-group { @apply cursor-default bg-sunken text-xs font-semibold text-secondary; }
+.timeline-months,.timeline-days { @apply absolute left-0 flex h-[26px]; }
+.timeline-months { @apply top-0; }
+.timeline-months > div { @apply whitespace-nowrap border-0 border-l border-solid border-border py-[5px] text-xs font-semibold text-foreground; }
+.timeline-months span { @apply sticky left-2 px-2; }
+.timeline-days { @apply top-[26px] border-0 border-t border-solid border-divider; }
+.timeline-days > div { @apply grid place-items-center border-0 border-l border-solid border-divider text-[11px] tabular-nums text-muted; }
+.timeline-days .timeline-day-today { @apply font-semibold text-accent; }
+.timeline-row-background { @apply absolute left-0 right-0 h-9 border-0 border-b border-solid border-divider; }
+.timeline-group-background { background: color-mix(in srgb,var(--sunken) 70%,transparent); }
+.timeline-bar { @apply absolute z-[3] flex h-6 cursor-grab select-none items-center gap-[6px] overflow-hidden whitespace-nowrap rounded-[6px] border border-solid px-2 text-sm text-foreground; background: color-mix(in srgb,var(--timeline-color) 16%,var(--surface)); border-color: color-mix(in srgb,var(--timeline-color) 45%,transparent); touch-action: none; }
+.timeline-bar:hover { border-color: var(--timeline-color); }
+.timeline-progress { @apply absolute bottom-0 left-0 top-0 -z-[1]; background: color-mix(in srgb,var(--timeline-color) 26%,transparent); }
+.timeline-done { opacity: .6; }
+.timeline-dragging { @apply cursor-grabbing; box-shadow: var(--shadow-drag); }
+.timeline-milestone { @apply absolute z-[3] flex h-[18px] cursor-default items-center gap-2; }
+.timeline-milestone:hover { z-index: 6; }
+.timeline-milestone:hover::after,.timeline-milestone:focus-visible::after { content: attr(data-timeline-tip); position: absolute; top: calc(100% + 6px); left: 0; z-index: 200; white-space: nowrap; background: var(--text); color: var(--text-inv); font-size: 11px; font-weight: 500; padding: 5px 7px; border-radius: 5px; pointer-events: none; line-height: 1; animation: fadeOnly .12s .35s both; }
+@media(max-width:900px) { .timeline-view { grid-template-columns: 170px minmax(0,1fr); } }
+@media(max-width:640px) { .timeline-left { display: none; } .timeline-view { grid-template-columns: minmax(0,1fr); } }
+}

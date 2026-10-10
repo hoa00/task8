@@ -1,0 +1,169 @@
+{
+  "schema": "wu25-review-v1",
+  "status": "AwaitingRootTechnicalPass",
+  "owner": "WU25 only; production and metadata frozen for root review after packet emission",
+  "prerequisite": {
+    "headAndFreshRemoteMain": "0295b0262ca11f7e9e7a9b7d31a6d545605a6e7a",
+    "implementationParent": "fcc38be7a4b7a8559b6cda470b024287788664e2"
+  },
+  "scope": "Six Security/Billing Source presentations with isolated explicit demo facade/scenarios, shared exported PasswordInput and PasswordStrength. No real backend/auth/TOTP/payment/session/principal changes or WU26. No fullproject/default/Darwin/physical-device/fullshell parity.",
+  "sourceOriginals": {
+    "path": "docs/poc/evidence/WU-25/attempts/source-01/report.json",
+    "bytes": 103,
+    "sha256": "5e4d91586cab56b156bb70374f5124708254c1233f36c3d2eba10f16e2e3b5b8"
+  },
+  "closure": {
+    "path": "docs/poc/evidence/WU-25/attempts/closure-02/report.json",
+    "bytes": 189427,
+    "sha256": "174303148b4e1e615adb6a76ca9cef835537189fce66cc6b377540756d8205dd"
+  },
+  "productionBridge": {
+    "archive": {
+      "path": "docs/poc/evidence/WU-25/archives/core-06/manifest.json",
+      "bytes": 87740,
+      "sha256": "a3457a08c00c227ff3f868655a7a34101e1a51be1ad6f8a7763684b961d776c8"
+    },
+    "current": {
+      "path": "docs/poc/evidence/WU-25/archives/core-07/manifest.json",
+      "bytes": 87740,
+      "sha256": "1c205effd8bbfd247452a8a54cdd6d950aa143f301a704bdcb02dda849abc6c7"
+    },
+    "maps": 709,
+    "changedUnionPaths": 23,
+    "sourceChangedOnly": "PasswordSettings three inputs use availability instead of pending; submit busy/duplicate guard preserved; HTTP unavailable disabled",
+    "otherChanges": "22 generated JS/import/HTML paths; Source/facade/shared UI/other settings/emitted CSS unchanged",
+    "qualification": "Older captures are immutable archived bytes with exact bounded source/generated bridge, never relabeled fresh current"
+  },
+  "visual": {
+    "qualifiedExecutedPairs": 72,
+    "archiveExecutedPairs": 66,
+    "currentExecutedPairs": 6,
+    "selectedUniqueVariants": 68,
+    "selectedArchiveVariants": 62,
+    "selectedCurrentVariants": 6,
+    "strictComparisons": 204,
+    "changedPixels": 0,
+    "bothRepeats": 0,
+    "pngs": 272,
+    "fixtures": 136,
+    "actualBothOriginWoff200": 272,
+    "contextsWithFourFaces": 136,
+    "masks": [],
+    "threshold": 0,
+    "includeAA": true,
+    "timerProjection": "Current password-loading actual800ms browser handler held at40ms after bootstrap; no Source edits/motion claim",
+    "selection": "matrix01 excluding both setups and four password base/success + focus01 two setups + dark01 twelve + boundaries01 six + loading02 six current password states"
+  },
+  "gates": {
+    "path": "docs/poc/evidence/WU-25/attempts/core-07/report.json",
+    "bytes": 4492,
+    "sha256": "77b9199452f4c194a547d8f393a6946e4009eda4b3d5e3b0a5fff2e9c19c0218"
+  },
+  "currentHarnessLint": {
+    "path": "docs/poc/evidence/WU-25/attempts/lint-02/report.json",
+    "bytes": 988,
+    "sha256": "970a8ecbb49ca3868fee0e559691d3f6bd010f21f26c42e7b569db69e85ebaa5"
+  },
+  "native": {
+    "selectedProbes": 9,
+    "scope": "8 unchanged native01 archived + current native02 N25-02",
+    "reports": [
+      {
+        "path": "docs/poc/evidence/WU-25/attempts/native-01/report.json",
+        "bytes": 158826,
+        "sha256": "6f6df5f6c3ffee7ba2abf7466a76e1cdd46b73e78f46939e1ebdef142c833df5"
+      },
+      {
+        "path": "docs/poc/evidence/WU-25/attempts/native-02/report.json",
+        "bytes": 156852,
+        "sha256": "8ad64ade2d85a92e809aac480385b5b8ba060ea42bad0707329d9b705364a812"
+      }
+    ]
+  },
+  "http": {
+    "selectedExecutions": 7,
+    "scope": "4 archived HTTP04 + current HTTP05 H5 + current HTTP06 mobileH1H2,99 GET/0writes/errors/pending/principal unchanged. Typed read fixture interception actual productionHTTP adapter, no realbackend/fallback",
+    "reports": [
+      {
+        "path": "docs/poc/evidence/WU-25/attempts/http-04/report.json",
+        "bytes": 182934,
+        "sha256": "65fe80a776cb4af8f751705a1453ea88f6cb31b9aa9f038126f79ad946bdc356"
+      },
+      {
+        "path": "docs/poc/evidence/WU-25/attempts/http-05/report.json",
+        "bytes": 170397,
+        "sha256": "419aba6654e471f4ff4a34f1a0b48c2854bda6c986265360dd410903497fabc5"
+      },
+      {
+        "path": "docs/poc/evidence/WU-25/attempts/http-06/report.json",
+        "bytes": 175977,
+        "sha256": "e48b3ae2b0d0283ea3f3e8f193a1dceae26e1fcd5397a522186f001c871a823d"
+      }
+    ],
+    "projectedByteAudit": "HTTP04 original20 paths and currentHTTP05/06 18+14 paths all unique/actualSHA+size; current immutable request index reserved beforeawait/write-wx"
+  },
+  "rejectedAndDebts": {
+    "http03": {
+      "report": {
+        "path": "docs/poc/evidence/WU-25/attempts/http-03/report.json",
+        "bytes": 169900,
+        "sha256": "abf9e3548f6ce8c4eb8699933bc026bdd9f2d39b949af780a6155aee684cc709"
+      },
+      "executed": "PASS but projection byte acceptance FAILED_UNACCEPTED_WU29",
+      "mismatchedReferences": 4,
+      "missingOriginalBodies": 2,
+      "expectedBytesEach": 33067,
+      "recovery": "No reconstruction/recovery claim; freshH5 owns separate bytes"
+    },
+    "cleanup01": {
+      "report": {
+        "path": "docs/poc/evidence/WU-25/attempts/cleanup-01/report.json",
+        "bytes": 7715,
+        "sha256": "f3a4b8d619135d11d82f6c2f195c52a659155826271d9dad9153d2216bf4760e"
+      },
+      "scope": "Wrong lockedpath lookup. Internal Git/ss logs persisted; outer directtool traceback not independently persisted beforeparse, explicit WU29diagnosticgap/noSHA/recovery"
+    },
+    "historicalFailures": "All original core01\u201305/smoke01\u201302/matrix01/HTTP01\u201302/loading01 raw/report/archive preserved with original actual statuses. Inherited WU19\u201324 debts in PROGRESS/VISUAL_PARITY remain unaccepted for29."
+  },
+  "cleanup": {
+    "path": "docs/poc/evidence/WU-25/attempts/cleanup-02/report.json",
+    "bytes": 8762,
+    "sha256": "3a501fbe9a905bebb387b8ab029716e31cf21a779ed408535c6c1162da5c8bd9"
+  },
+  "runtime": {
+    "path": "docs/poc/evidence/WU-25/runtime-final.json",
+    "bytes": 357,
+    "sha256": "e51ff4626df9cab75ee55a7f0e8ed5fab45f1c3ae1e574aec153e8a6baa8de48"
+  },
+  "stage": {
+    "index": {
+      "path": "docs/poc/evidence/WU-25/attempts/index-02/report.json",
+      "bytes": 6511666,
+      "sha256": "c69932c0498e7726f06c6633ae37aed042f7e8ceeb85638082b29b7aabf6fbb5"
+    },
+    "verifiedBlobs": 24104,
+    "bytes": 251547578,
+    "cachedWhitespaceExit": 0,
+    "cachedWhitespaceOutputBytes": 0,
+    "filesSchema": "Nested file records with sha256/gitBlob/bytes; scalar counts outside files",
+    "literalOwnedEvidenceWhitespaceExceptions": 179,
+    "initialPartialIndex": {
+      "path": "docs/poc/evidence/WU-25/attempts/index-01/report.json",
+      "bytes": 3156679,
+      "sha256": "690b308a1a63e18d8bcb1cfea25b32d8f43da0314cda6b3bbf22b9d42dd5930c"
+    },
+    "qualification": "Force-added onlyWU25 frozen .reference/dist archive copies previouslyignored; lockedSource untouched. Final index excludes its own emitted four records and candidate/ownfreeze, independently staged/streamed separately. No recursive self-index."
+  },
+  "progress": {
+    "path": "docs/poc/PROGRESS.md",
+    "bytes": 317640,
+    "sha256": "6facb36136918f9db28281a7b6d9e3af7c773559570129de2818799e16bc9fdf"
+  },
+  "visualLedger": {
+    "path": "docs/poc/VISUAL_PARITY.md",
+    "bytes": 102835,
+    "sha256": "df064a6b41cabd314ede040d2adda305a4b837e12b783a8acabd34aee329466d"
+  },
+  "decisions": "Source per-row revoke immediate, only revoke-all confirmation; any6ASCIIcode format-demo; plan header fixed$12/month preserved; paymentinfoonly; no cardentry/download/annualtoggle; actual lockedseed804205 retained, handoff904205 wrong",
+  "blockers": "Root technical pass and actual commits/push/checkpoint pending; no production blocker. STOP25 afteractualproof."
+}
