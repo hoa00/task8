@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-Dk72oS4N.js";import{t}from"./AuthPage-Bq3Am2D7.js";var n=e(),r=()=>(0,n.jsx)(t,{screen:`verify`});export{r as component};

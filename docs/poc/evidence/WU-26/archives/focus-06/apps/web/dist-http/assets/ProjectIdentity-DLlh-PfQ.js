@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-Dk72oS4N.js";import{x as t}from"./src-LnkZ4Job.js";var n=e();function r({project:e}){return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(t,{className:`size-2! rounded-[3px]!`,color:e.color}),(0,n.jsx)(`span`,{className:`truncate`,children:e.name})]})}export{r as t};

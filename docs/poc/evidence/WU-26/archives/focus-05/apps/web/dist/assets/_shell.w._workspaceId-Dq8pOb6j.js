@@ -1,0 +1,1 @@
+import{a as e}from"./Boundaries-C7uSX-YH.js";var t=e;export{t as notFoundComponent};

@@ -1,0 +1,43 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+A [Error]: expect(page).toHaveURL(expected) failed
+
+Expected pattern: /\/forgot-password$/
+Received string:  "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home"
+Timeout: 5000ms
+
+Call log:
+  - Expect "to.have.url" with timeout 5000ms
+    9 × unexpected value "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home"
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/tests/visual/auth/interactions.mjs:44:254
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:472:9)
+    at async probe (file:///workspace/task8/tests/visual/auth/interactions.mjs:15:77)
+    at async file:///workspace/task8/tests/visual/auth/interactions.mjs:40:3 {
+  matcherResult: {
+    name: 'toHaveURL',
+    expected: /\/forgot-password$/,
+    message: 'expect(page).toHaveURL(expected) failed\n' +
+      '\n' +
+      'Expected pattern: /\\/forgot-password$/\n' +
+      'Received string:  "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home"\n' +
+      'Timeout: 5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.have.url" with timeout 5000ms\n' +
+      '    9 × unexpected value "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home"\n',
+    pass: false,
+    actual: 'http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home',
+    log: [
+      '  - Expect "to.have.url" with timeout 5000ms',
+      '    9 × unexpected value "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/home"'
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

@@ -1,0 +1,41 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+A [Error]: expect(page).toHaveURL(expected) failed
+
+Expected: "http://127.0.0.1:5173/onboarding"
+Received: "http://127.0.0.1:5173/onboarding?step=0"
+Timeout:  5000ms
+
+Call log:
+  - Expect "to.have.url" with timeout 5000ms
+    9 × unexpected value "http://127.0.0.1:5173/onboarding?step=0"
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/tests/visual/auth/interactions.mjs:26:136
+    at async probe (file:///workspace/task8/tests/visual/auth/interactions.mjs:15:77)
+    at async file:///workspace/task8/tests/visual/auth/interactions.mjs:22:3 {
+  matcherResult: {
+    name: 'toHaveURL',
+    expected: 'http://127.0.0.1:5173/onboarding',
+    message: 'expect(page).toHaveURL(expected) failed\n' +
+      '\n' +
+      'Expected: "http://127.0.0.1:5173/onboarding"\n' +
+      'Received: "http://127.0.0.1:5173/onboarding?step=0"\n' +
+      'Timeout:  5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.have.url" with timeout 5000ms\n' +
+      '    9 × unexpected value "http://127.0.0.1:5173/onboarding?step=0"\n',
+    pass: false,
+    actual: 'http://127.0.0.1:5173/onboarding?step=0',
+    log: [
+      '  - Expect "to.have.url" with timeout 5000ms',
+      '    9 × unexpected value "http://127.0.0.1:5173/onboarding?step=0"'
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

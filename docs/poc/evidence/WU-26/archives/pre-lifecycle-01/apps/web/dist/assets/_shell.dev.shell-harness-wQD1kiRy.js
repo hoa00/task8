@@ -1,0 +1,1 @@
+import{n as e}from"./PendingPage-Z4gkF0K-.js";var t=e;export{t as component};

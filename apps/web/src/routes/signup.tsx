@@ -1,3 +1,3 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { PendingPage } from '../app/shell/PendingPage';
-export const Route=createFileRoute('/signup')({component:PendingPage});
+import { AuthPage } from '../features/auth/AuthPage';
+export const Route = createFileRoute('/signup')({ component: () => <AuthPage screen="signup" /> });

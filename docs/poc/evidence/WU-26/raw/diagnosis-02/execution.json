@@ -1,0 +1,25 @@
+{
+  "command": {
+    "path": "docs/poc/evidence/WU-26/raw/diagnosis-02/command.txt",
+    "bytes": 366,
+    "sha256": "c52eea62224503901f2176a4551fe5c591d3362e7be83c0692046b628aa535ed"
+  },
+  "argv": [
+    "python",
+    "-c",
+    "import json; r=json.load(open('docs/poc/evidence/WU-26/attempts/core-07/report.json')); print([(c['id'],c['exitStatus']) for c in r['commands']]); print(open('docs/poc/evidence/WU-26/attempts/core-07/lint.stdout').read()[-4000:]); print(open('docs/poc/evidence/WU-26/attempts/core-07/lint.stderr').read()[-1000:])"
+  ],
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-26/raw/diagnosis-02/stdout",
+    "bytes": 4644,
+    "sha256": "7bd6844d7ce90aff29542e04cfd1253007d1c4f0dd78e328f9374c7510c17539"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-26/raw/diagnosis-02/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

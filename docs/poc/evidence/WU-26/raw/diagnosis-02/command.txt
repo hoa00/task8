@@ -1,0 +1,1 @@
+'python' '-c' 'import json; r=json.load(open('\''docs/poc/evidence/WU-26/attempts/core-07/report.json'\'')); print([(c['\''id'\''],c['\''exitStatus'\'']) for c in r['\''commands'\'']]); print(open('\''docs/poc/evidence/WU-26/attempts/core-07/lint.stdout'\'').read()[-4000:]); print(open('\''docs/poc/evidence/WU-26/attempts/core-07/lint.stderr'\'').read()[-1000:])'

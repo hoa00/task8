@@ -1,0 +1,11 @@
+file:///workspace/task8/tests/visual/auth/gates.mjs:4
+const attempt=process.argv.find(arg=>arg.startsWith('--attempt='))?.slice(10);if(!attempt)throw Error('Unique attempt required');const output=`docs/poc/evidence/WU-26/attempts/${attempt}`;if(fs.existsSync(output))throw Error('Never overwrite');fs.mkdirSync(output,{recursive:true});fs.copyFileSync('tests/visual/settings/../auth/gates.mjs',`${output}/executed-harness.mjs`);
+                                                                                                ^
+
+Error: Unique attempt required
+    at file:///workspace/task8/tests/visual/auth/gates.mjs:4:97
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.13.0

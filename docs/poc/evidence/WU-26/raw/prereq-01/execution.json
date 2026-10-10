@@ -1,0 +1,25 @@
+{
+  "command": {
+    "path": "docs/poc/evidence/WU-26/raw/prereq-01/command.txt",
+    "bytes": 399,
+    "sha256": "c7810cbd13ffdb1d1c632f3194f07a64dc26bddc17cc8746662bdcc44291cd31"
+  },
+  "argv": [
+    "bash",
+    "-c",
+    "git rev-parse HEAD HEAD^{tree} HEAD^ origin/main; git status --porcelain; git remote get-url origin; git branch --show-current; git ls-remote origin refs/heads/main; git rev-list --left-right --count HEAD...origin/main; git -C .reference/gr8r-studio rev-parse HEAD HEAD^{tree}; git -C .reference/gr8r-studio status --porcelain; git -C .reference/gr8r-studio ls-files | wc -l; ss -ltnp"
+  ],
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-26/raw/prereq-01/stdout",
+    "bytes": 530,
+    "sha256": "4887c1e88c2cb5864ddeecc2c504296ebc3f016f6893ff75d1e172cc08467d3e"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-26/raw/prereq-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

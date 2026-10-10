@@ -1,0 +1,17 @@
+file:///workspace/task8/tests/visual/auth/verify.mjs:95
+    report.samples.push({ sample, sourceFixture, targetFixture, boxes, clips, geometryEqual: JSON.stringify(boxes[0]) === JSON.stringify(boxes[1]), images, changedPixels, sourceRepeatPixels, targetRepeatPixels, geometry, timerProjection: ['loading', 'social-loading', 'cooldown'].includes(sample.state) ? 'Actual Source and Target handlers, clock paused after bootstrap then runFor40; infinite animation phase0 raster only.' : null, fonts: { responses, loaded: await Promise.all([a.page, b.page].map(page => page.evaluate(() => [...document.fonts].filter(face => face.status === 'loaded').map(face => ({ family: face.family, weight: face.weight, status: face.status })))) }, activeElements: await Promise.all([a.page, b.page].map(page => page.evaluate(() => ({ id: document.activeElement?.id, tag: document.activeElement?.tagName })))) });
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^
+
+SyntaxError: missing ) after argument list
+    at compileSourceTextModule (node:internal/modules/esm/utils:318:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:111:18)
+    at #translate (node:internal/modules/esm/loader:473:20)
+    at afterLoad (node:internal/modules/esm/loader:529:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:534:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:571:36)
+    at afterResolve (node:internal/modules/esm/loader:624:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:630:12)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:649:32)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+
+Node.js v24.13.0

@@ -1,0 +1,89 @@
+{
+  "path": "apps/web/src/features/auth/AuthPage.tsx",
+  "oldArchive": "docs/poc/evidence/WU-26/archives/final-02/apps/web/src/features/auth/AuthPage.tsx",
+  "beforeSha256": "133292c73d4ef97c87f5a8ea6073f2b1caa514d5df5507269d5325251d8b895b",
+  "afterSha256": "34430e758e3fbcd408d57349da04bd2d212c9390f79ffc99af2957a1c112b360",
+  "transformations": [
+    {
+      "before": "  async function go(next: AuthScreen) {\n",
+      "after": "  async function go(next: AuthScreen) {\n    const intent = ++sequence.current; setPending(undefined);\n",
+      "occurrences": 1
+    },
+    {
+      "before": "    setTimeout(() => document.querySelector<HTMLInputElement>('[data-auth-card] input')?.focus(), 20);",
+      "after": "    setTimeout(() => { if (sequence.current === intent) document.querySelector<HTMLInputElement>(`[data-auth-card=\"${next}\"] input`)?.focus(); }, 20);",
+      "occurrences": 1
+    },
+    {
+      "before": "export interface AuthPageProps",
+      "after": "interface AuthLinkProps { children: ReactNode; next: AuthScreen; onNavigate: (screen: AuthScreen) => Promise<void>; className?: string }\nfunction AuthLink({ children, next, onNavigate, className = '' }: AuthLinkProps) { return <button type=\"button\" className={`${authLinkClass} ${className}`} onClick={() => void onNavigate(next)}>{children}</button>; }\ninterface AuthActionProps { children: ReactNode; kind: string; enabled: boolean; pending: string | undefined; next?: AuthScreen; onNavigate: (screen: AuthScreen) => Promise<void> }\nfunction AuthAction({ children, kind, enabled, pending, next, onNavigate }: AuthActionProps) { return <Button size=\"lg\" variant=\"primary\" block type={next ? 'button' : 'submit'} id={`${kind}-btn`} disabled={!enabled} loading={pending === kind} onClick={next ? () => void onNavigate(next) : undefined}>{children}</Button>; }\n\nexport interface AuthPageProps",
+      "occurrences": 1
+    },
+    {
+      "before": "  const link = (text: ReactNode, next: AuthScreen, className = '') => <button type=\"button\" className={`${authLinkClass} ${className}`} onClick={() => void go(next)}>{text}</button>;\n",
+      "after": "",
+      "occurrences": 1
+    },
+    {
+      "before": "  const action = (text: string, kind: string, callback?: () => void) => <Button size=\"lg\" variant=\"primary\" block type={callback ? 'button' : 'submit'} id={`${kind}-btn`} disabled={!enabled} loading={pending === kind} onClick={callback}>{text}</Button>;\n",
+      "after": "",
+      "occurrences": 1
+    },
+    {
+      "before": "{link('Forgot password?', 'forgot', 'text-[12.5px]')}",
+      "after": "<AuthLink next=\"forgot\" onNavigate={go} className=\"text-[12.5px]\">Forgot password?</AuthLink>",
+      "occurrences": 1
+    },
+    {
+      "before": "{link('Sign up', 'signup')}",
+      "after": "<AuthLink next=\"signup\" onNavigate={go}>Sign up</AuthLink>",
+      "occurrences": 1
+    },
+    {
+      "before": "{link('Sign in', 'login')}",
+      "after": "<AuthLink next=\"login\" onNavigate={go}>Sign in</AuthLink>",
+      "occurrences": 1
+    },
+    {
+      "before": "{link('Change it', 'signup')}",
+      "after": "<AuthLink next=\"signup\" onNavigate={go}>Change it</AuthLink>",
+      "occurrences": 1
+    },
+    {
+      "before": "link(<><Icon name=\"arrow-left\" size={14} />Back to sign in</>, 'login', 'inline-flex items-center gap-[6px]')",
+      "after": "<AuthLink next=\"login\" onNavigate={go} className=\"inline-flex items-center gap-[6px]\"><><Icon name=\"arrow-left\" size={14} />Back to sign in</></AuthLink>",
+      "occurrences": 2
+    },
+    {
+      "before": "{action('Sign in', 'login')}",
+      "after": "<AuthAction kind=\"login\" enabled={enabled} pending={pending} onNavigate={go}>Sign in</AuthAction>",
+      "occurrences": 1
+    },
+    {
+      "before": "{action('Create account', 'signup')}",
+      "after": "<AuthAction kind=\"signup\" enabled={enabled} pending={pending} onNavigate={go}>Create account</AuthAction>",
+      "occurrences": 1
+    },
+    {
+      "before": "{action('Send reset link', 'forgot')}",
+      "after": "<AuthAction kind=\"forgot\" enabled={enabled} pending={pending} onNavigate={go}>Send reset link</AuthAction>",
+      "occurrences": 1
+    },
+    {
+      "before": "{action('Reset password', 'reset')}",
+      "after": "<AuthAction kind=\"reset\" enabled={enabled} pending={pending} onNavigate={go}>Reset password</AuthAction>",
+      "occurrences": 1
+    },
+    {
+      "before": "{action('Open reset link', 'reset', () => void go('reset'))}",
+      "after": "<AuthAction kind=\"reset\" enabled={enabled} pending={pending} onNavigate={go} next=\"reset\">Open reset link</AuthAction>",
+      "occurrences": 1
+    },
+    {
+      "before": "{action('Sign in', 'login', () => void go('login'))}",
+      "after": "<AuthAction kind=\"login\" enabled={enabled} pending={pending} onNavigate={go} next=\"login\">Sign in</AuthAction>",
+      "occurrences": 1
+    }
+  ],
+  "scope": "Only synchronous navigation cancellation/scoped focus plus typed JSX event boundaries. Exact same button/Button markup, props and classes; no static styling, copy, fields, facade, fonts or Source changes."
+}

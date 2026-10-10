@@ -1,0 +1,2 @@
+line51-column265: e.locator('#resend-btn').click(); await expect(page.locator('#resend-t')).toHaveText('30'); await expect(page.getByText('Demo verification link reques
+facadezero-wait: export function createAuthDemo(wait: (milliseconds: number) => Promise<void> = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds)), scenario: 'normal' | 'login-error' = 'normal'): AuthDemoAdapter {

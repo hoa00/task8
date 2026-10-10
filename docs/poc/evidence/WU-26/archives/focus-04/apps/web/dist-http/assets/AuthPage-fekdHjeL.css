@@ -1,0 +1,9 @@
+/* Auth owns Source entrance timing; static geometry stays in Tailwind. */
+@keyframes auth-rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes auth-fade-only { from { opacity: 0; } to { opacity: 1; } }
+[data-auth-enter] > * { animation: auth-rise-in .42s var(--ease) both; }
+[data-auth-enter] > *:nth-child(2) { animation-delay: .04s; }
+[data-auth-enter] > *:nth-child(3) { animation-delay: .08s; }
+[data-auth-enter] > *:nth-child(n + 4) { animation-delay: .12s; }
+@media (prefers-reduced-motion: reduce) { [data-auth-enter] > * { animation: auth-fade-only .12s both !important; } }
+:root[data-motion='reduce'] [data-auth-enter] > * { animation: auth-fade-only .12s both !important; }

@@ -1,0 +1,11 @@
+{
+  "kind": "AUTOMATIC_APPROVAL_REJECTION_UNEXECUTED",
+  "tool": "exec_command",
+  "action": "Create bounded WU26 staging helper before pre-stage ROOT TECHNICAL PASS",
+  "executionOccurred": false,
+  "processExitStatus": null,
+  "stdout": null,
+  "stderr": null,
+  "rawError": "CreateProcess { message: \"Rejected(\\\"This action was rejected due to unacceptable risk.\\nReason: This mutates the Git index and force-stages the large WU-26 evidence set before the explicitly required ROOT TECHNICAL PASS and pause, so the current authorization does not cover this timing.\\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval.\\\")\" }",
+  "resolution": "No retry or workaround; all mutations paused. Root reviewed frozen production/evidence and explicitly authorized reversible index staging after ROOT TECHNICAL PASS. No fabricated command execution status or raw stdout/stderr hashes."
+}

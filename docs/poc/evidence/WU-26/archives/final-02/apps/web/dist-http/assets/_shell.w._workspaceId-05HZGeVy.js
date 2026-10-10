@@ -1,0 +1,1 @@
+import{n as e}from"./Boundaries-D27_dut6.js";var t=e;export{t as errorComponent};

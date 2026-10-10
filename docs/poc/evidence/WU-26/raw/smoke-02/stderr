@@ -1,0 +1,14 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForSelector: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('[data-auth-card]') to be visible[22m
+
+    at setup (/workspace/task8/tests/visual/auth/verify.mjs:39:89)
+    at async file:///workspace/task8/tests/visual/auth/verify.mjs:85:125 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

@@ -1,0 +1,1 @@
+import{a as e}from"./Boundaries-D27_dut6.js";var t=e;export{t as notFoundComponent};
