@@ -1,0 +1,1542 @@
+{
+  "workUnit": "WU-32",
+  "status": "IMPLEMENTATION_PUSHED_ROOT_DOCS_GATE_PENDING",
+  "implementation": {
+    "reportReceipt": {
+      "path": "/tmp/task8-wu32-implementation01/report.json",
+      "bytes": 14065,
+      "sha256": "a861aaf400d7ff8391bafde592140c94375a788a3d12624e8a4fc7aa862db1b4"
+    },
+    "actualReportWithOriginalStreams": {
+      "workUnit": "WU-32",
+      "status": "IMPLEMENTATION_COMMIT_AND_NORMAL_PUSH_PASS",
+      "base": "b3779efe90f651c730a1807c2749e0a4dbe924ee",
+      "implementationCommit": "417424bcb0fec86a71b856bfe253a7e660a43725",
+      "tree": "7c5c8d2618af80565c2992f5966d3a0ac44cb493",
+      "parent": "b3779efe90f651c730a1807c2749e0a4dbe924ee",
+      "target": "https://github.com/hoa00/task8.git",
+      "branch": "work",
+      "push": [
+        "git",
+        "push",
+        "origin",
+        "HEAD:main"
+      ],
+      "commands": [
+        {
+          "name": "head-before",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:43.239392+00:00",
+          "completedAt": "2026-10-10T18:39:43.241110+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/head-before.stdout.log",
+            "bytes": 41,
+            "sha256": "7cfa26ce693bed6f2889f5bac52eec80bfbc586b8fb9b5cbc7d6e40cc0cd4398",
+            "originalUtf8Text": "b3779efe90f651c730a1807c2749e0a4dbe924ee\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/head-before.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "tree-before",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD^{tree}"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:43.241337+00:00",
+          "completedAt": "2026-10-10T18:39:43.243090+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/tree-before.stdout.log",
+            "bytes": 41,
+            "sha256": "087b4c959925d8acf56b08ddceec8a70381dc795f66d47783d691fd47a63d170",
+            "originalUtf8Text": "260e65467e2cca1a4d17bf234ef8ace116286d0a\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/tree-before.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "target",
+          "argv": [
+            "git",
+            "remote",
+            "get-url",
+            "origin"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:43.243259+00:00",
+          "completedAt": "2026-10-10T18:39:43.244863+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/target.stdout.log",
+            "bytes": 35,
+            "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348",
+            "originalUtf8Text": "https://github.com/hoa00/task8.git\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/target.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "branch",
+          "argv": [
+            "git",
+            "branch",
+            "--show-current"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:43.245008+00:00",
+          "completedAt": "2026-10-10T18:39:43.246245+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/branch.stdout.log",
+            "bytes": 5,
+            "sha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2",
+            "originalUtf8Text": "work\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/branch.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "fresh-main-before",
+          "argv": [
+            "git",
+            "ls-remote",
+            "origin",
+            "refs/heads/main"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:43.246400+00:00",
+          "completedAt": "2026-10-10T18:39:43.587657+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/fresh-main-before.stdout.log",
+            "bytes": 57,
+            "sha256": "da01ac9e3c39fa982c3ef315c21cb2482aa9b02828ddcbed8342782802e47ecd",
+            "originalUtf8Text": "b3779efe90f651c730a1807c2749e0a4dbe924ee\trefs/heads/main\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/fresh-main-before.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "cached-check",
+          "argv": [
+            "git",
+            "diff",
+            "--cached",
+            "--check"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:43.587979+00:00",
+          "completedAt": "2026-10-10T18:39:44.016030+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/cached-check.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/cached-check.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "commit",
+          "argv": [
+            "git",
+            "commit",
+            "--quiet",
+            "-m",
+            "feat(api): implement atomic task commands and undo (WU-32)"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:44.016349+00:00",
+          "completedAt": "2026-10-10T18:39:44.194214+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/commit.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/commit.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "head",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:44.194595+00:00",
+          "completedAt": "2026-10-10T18:39:44.195967+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/head.stdout.log",
+            "bytes": 41,
+            "sha256": "d3426e6e9785a1ee3a0a10d4ee2962d4811eb04f786d465a41ea608cae88319a",
+            "originalUtf8Text": "417424bcb0fec86a71b856bfe253a7e660a43725\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/head.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "tree",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD^{tree}"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:44.196229+00:00",
+          "completedAt": "2026-10-10T18:39:44.198158+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/tree.stdout.log",
+            "bytes": 41,
+            "sha256": "5035508f439881efa33aea916a1d76094e0e07e560f3966c24aa956519e3f352",
+            "originalUtf8Text": "7c5c8d2618af80565c2992f5966d3a0ac44cb493\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/tree.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "parent",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD^"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:44.198371+00:00",
+          "completedAt": "2026-10-10T18:39:44.200190+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/parent.stdout.log",
+            "bytes": 41,
+            "sha256": "7cfa26ce693bed6f2889f5bac52eec80bfbc586b8fb9b5cbc7d6e40cc0cd4398",
+            "originalUtf8Text": "b3779efe90f651c730a1807c2749e0a4dbe924ee\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/parent.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "clean-before-push",
+          "argv": [
+            "git",
+            "status",
+            "--porcelain=v1",
+            "-uall"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:44.200400+00:00",
+          "completedAt": "2026-10-10T18:39:44.421143+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/clean-before-push.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/clean-before-push.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "normal-push",
+          "argv": [
+            "git",
+            "push",
+            "origin",
+            "HEAD:main"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:44.421590+00:00",
+          "completedAt": "2026-10-10T18:39:47.876830+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/normal-push.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/normal-push.stderr.log",
+            "bytes": 74,
+            "sha256": "e35448008c175fe02e570d45f151c3adec6e8bb8468bf2fded329e049fd3c0a3",
+            "originalUtf8Text": "To https://github.com/hoa00/task8.git\n   b3779efe..417424bc  HEAD -> main\n"
+          }
+        },
+        {
+          "name": "fresh-main",
+          "argv": [
+            "git",
+            "ls-remote",
+            "origin",
+            "refs/heads/main"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:47.877592+00:00",
+          "completedAt": "2026-10-10T18:39:48.240315+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/fresh-main.stdout.log",
+            "bytes": 57,
+            "sha256": "05125319ce6d07d83ca65bcfa3c4e1d2763f35fe68858e80b613a0ecca446db3",
+            "originalUtf8Text": "417424bcb0fec86a71b856bfe253a7e660a43725\trefs/heads/main\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/fresh-main.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "origin-main",
+          "argv": [
+            "git",
+            "rev-parse",
+            "origin/main"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:48.240767+00:00",
+          "completedAt": "2026-10-10T18:39:48.247742+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/origin-main.stdout.log",
+            "bytes": 41,
+            "sha256": "d3426e6e9785a1ee3a0a10d4ee2962d4811eb04f786d465a41ea608cae88319a",
+            "originalUtf8Text": "417424bcb0fec86a71b856bfe253a7e660a43725\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/origin-main.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "divergence",
+          "argv": [
+            "git",
+            "rev-list",
+            "--left-right",
+            "--count",
+            "HEAD...origin/main"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:48.248088+00:00",
+          "completedAt": "2026-10-10T18:39:48.254934+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/divergence.stdout.log",
+            "bytes": 4,
+            "sha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c",
+            "originalUtf8Text": "0\t0\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/divergence.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "clean-after-push",
+          "argv": [
+            "git",
+            "status",
+            "--porcelain=v1",
+            "-uall"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:48.255264+00:00",
+          "completedAt": "2026-10-10T18:39:48.786898+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/clean-after-push.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/clean-after-push.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "source-check",
+          "argv": [
+            "/tmp/task8-node-runtime/node_modules/node/bin/node",
+            "tests/visual/reference/source-check.mjs"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:39:48.787348+00:00",
+          "completedAt": "2026-10-10T18:39:48.896829+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-implementation01/source-check.stdout.log",
+            "bytes": 153,
+            "sha256": "b87157a6b73193599f8b8c4b16793d4a357771d6e46c384b0ee93d6e8327121b",
+            "originalUtf8Text": "{\n  \"commit\": \"904205c626918ee96054eb35495c394a60c0c601\",\n  \"tree\": \"5db5f992886b2345881946cf85fac098307953a5\",\n  \"verifiedFiles\": 86,\n  \"clean\": true\n}\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-implementation01/source-check.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        }
+      ],
+      "source": {
+        "commit": "904205c626918ee96054eb35495c394a60c0c601",
+        "tree": "5db5f992886b2345881946cf85fac098307953a5",
+        "verifiedFiles": 86,
+        "clean": true
+      },
+      "locked": [
+        {
+          "path": "docs/poc/reference/baseline-manifest.json",
+          "bytes": 69302,
+          "sha256": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe"
+        },
+        {
+          "path": "docs/poc/reference/font-assets.json",
+          "bytes": 21805,
+          "sha256": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4"
+        },
+        {
+          "path": "docs/poc/reference/source-fixture.json",
+          "bytes": 54153,
+          "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80"
+        },
+        {
+          "path": "docs/poc/reference/source-lock.json",
+          "bytes": 7870,
+          "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+        }
+      ],
+      "ports": [
+        {
+          "port": 4173,
+          "listening": false
+        },
+        {
+          "port": 5173,
+          "listening": false
+        },
+        {
+          "port": 5174,
+          "listening": false
+        },
+        {
+          "port": 8787,
+          "listening": false
+        }
+      ],
+      "completedAt": "2026-10-10T18:39:48.955377+00:00",
+      "note": "Actual finite outside proof. Locked file comparisons read baseline bytes in memory, not claimed as separately persisted original command streams. No future documentation SHA/push claim."
+    },
+    "originalToolObjects": {
+      "tool-completion.json": {
+        "receipt": {
+          "path": "/tmp/task8-wu32-implementation01/tool-completion.json",
+          "bytes": 553,
+          "sha256": "4e8ebe9f03ac235e94d253c7d6eded37fd0d10bd0da951cc3d2f04fff3f614c9"
+        },
+        "originalReturnedObject": {
+          "chunk_id": "02443a",
+          "wall_time_seconds": 2.8212e-05,
+          "exit_code": 0,
+          "original_token_count": 99,
+          "output": "{\"status\": \"IMPLEMENTATION_COMMIT_AND_NORMAL_PUSH_PASS\", \"commit\": \"417424bcb0fec86a71b856bfe253a7e660a43725\", \"tree\": \"7c5c8d2618af80565c2992f5966d3a0ac44cb493\", \"parent\": \"b3779efe90f651c730a1807c2749e0a4dbe924ee\", \"commands\": 17, \"report\": {\"path\": \"/tmp/task8-wu32-implementation01/report.json\", \"bytes\": 14065, \"sha256\": \"a861aaf400d7ff8391bafde592140c94375a788a3d12624e8a4fc7aa862db1b4\"}}\n"
+        }
+      },
+      "tool-start.json": {
+        "receipt": {
+          "path": "/tmp/task8-wu32-implementation01/tool-start.json",
+          "bytes": 131,
+          "sha256": "48e5411687cca1de9bad5c2f4a6af59e0b03db598fea85bb082d746d669f2afb"
+        },
+        "originalReturnedObject": {
+          "chunk_id": "4b2c39",
+          "wall_time_seconds": 1.000584006,
+          "session_id": 47076,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    }
+  },
+  "rootGates": {
+    "physicalCapture": null,
+    "technicalAndAllIndexReportedMetadata": {
+      "workUnit": "WU-32",
+      "status": "ROOT_TECHNICAL_AND_ALL_INDEX_PASS_METADATA_GATE_PENDING",
+      "base": "b3779efe90f651c730a1807c2749e0a4dbe924ee",
+      "reviewSource": "Actual Root read-only reported technical/all-index observations; no invented physical Root capture",
+      "physicalCapture": null,
+      "technical": {
+        "filesExcludingCandidate": 3146,
+        "bytesExcludingCandidateBeforeEofRepair": 105095711,
+        "ownedPaths": 3147,
+        "verification": {
+          "path": "docs/poc/evidence/WU-32/verification.json",
+          "bytes": 114974,
+          "sha256": "bc0fa7c1f3bd8c18407c477789b8a002b515064bd9b51c3c77e7a172ce6f4fad"
+        },
+        "selectedProbes": 316,
+        "selectedCommands": 6,
+        "currentByteMatches": 41,
+        "zeroEffectFull24TablePairs": 12,
+        "requiredGates": 9,
+        "maxQueries": 20,
+        "maxParameters": 59,
+        "status": "PASS"
+      },
+      "allIndex": {
+        "status": "PASS",
+        "rows": 135861,
+        "baseRows": 132723,
+        "changedPaths": 3147,
+        "changedBlobBytes": 105733421,
+        "physicalChangedBlobMatches": 3147,
+        "unchangedModeOidPathRows": 132714,
+        "excludedMetadataPaths": [
+          "docs/poc/PROGRESS.md",
+          "docs/poc/evidence/WU-32/root-pass.json"
+        ],
+        "fingerprintExcludingMetadata": "0cd6e5bb8f503a224b6ef7c70b76a4f704b8c54f930e1e37bcc67b10c2fe7fa3",
+        "rowsExcludingMetadata": 135860,
+        "cachedCheck": 0,
+        "unstagedPaths": 0,
+        "untrackedPaths": 0
+      },
+      "candidateOriginal": {
+        "path": "/tmp/task8-wu32-stage02/original-candidate.json",
+        "bytes": 635989,
+        "sha256": "e7c5507a6e78650324e555c8b2426c42a916bd4269b2b25baa38d46427391eef"
+      },
+      "candidateRefreshed": {
+        "path": "docs/poc/evidence/WU-32/candidate.json",
+        "bytes": 635990,
+        "sha256": "48f721e36dde114a7693acfbfb630b15e7d833be41e46a00c70e1c9848b86102"
+      },
+      "gitattributes": {
+        "current": {
+          "path": ".gitattributes",
+          "bytes": 101382,
+          "sha256": "98c5f4e49d2398f0c6d5908e954b4fa7a2c79b2e36e5b120bfec1bc25b723ae4"
+        },
+        "basePrefixBytes": 98638,
+        "basePrefixSha256": "9765c52c10b84e4a280284dd4105eacd526f24976f9081e6a205a5de10a4cea8",
+        "intermediatePrefixBytes": 99662,
+        "intermediatePrefixSha256": "6c0266bc6de697e0bc7deb2febfb311470ff5a0ad338b40d8988c010282ec910",
+        "literalRawLogExceptions": 40,
+        "initial15Proposal": {
+          "path": "docs/poc/evidence/WU-32/raw-whitespace-proposal.json",
+          "bytes": 3112,
+          "sha256": "10649a1b3012650f093b7ccd87b5cbea44983ddb35ffcccfd3f3cb175d9d0c9a"
+        },
+        "additional25Evidence": {
+          "path": "/tmp/task8-wu32-stage01/cached-check.stdout.log",
+          "bytes": 2071,
+          "sha256": "e900145799454691da606128cf78883f8a0242bb8d50e4d28864ec6e35d9899f"
+        },
+        "scope": "Exact immutable original stdout/stderr only; no wildcard, active-code or archived-code waiver"
+      },
+      "outsideProof": {
+        "prestage": {
+          "path": "/tmp/task8-wu32-prestage01/report.json",
+          "bytes": 7015,
+          "sha256": "7b5e3237342e54b54ac14539ebfafee0910580c45ef2ce7f403b909dcfac4a5e"
+        },
+        "failedStage01Commands": {
+          "path": "/tmp/task8-wu32-stage01/commands.json",
+          "bytes": 2064,
+          "sha256": "88b8acec2098ab4a45ace9cdf9920cecb9dae2b84de82b5f80b1b0661e657a9c"
+        },
+        "stage02": {
+          "path": "/tmp/task8-wu32-stage02/report.json",
+          "bytes": 10984,
+          "sha256": "bf3b39c48badbfe4e0805bb69f8fa9580e719bbd183cc44b8947631048fb08ed"
+        },
+        "stage02Commands": 6,
+        "stage02RawStreams": 12,
+        "stage02RawBytes": 739199,
+        "originalToolObjects": "Available original returned start/completion objects retained outside Git; stage02 completed on first call with original completion only"
+      },
+      "boundedDone": "WU32 AC1\u20135 task core/atomic commands/query/schema/Worker sanitizer/current relation/completion/recurrence/task Undo, with selected current D1 and required gates",
+      "qualifications": {
+        "failedStage01": "Exact owned gitadd0 followed by cachedcheck2 on25 EOFblank raw logs; preserved unchanged and resolved by Root-authorized literal suffix only",
+        "earlierFailures": "All D1/type/lint failures and status0 EPERM partial webbuild/evidence attempts remain immutable/unaccepted; earlier-byte passes superseded",
+        "historicalM2": "Inherited bounded/failed/missing-byte/SVG/default/Darwin qualifications unchanged and unrecovered",
+        "future": "Nested task operations WU33 and remaining WU34\u201336 unavailable; no remote auth/provider/provisioning/R2/CI/deployment/browser campaign",
+        "candidateProgress": "Candidate PROGRESS is original preparatory snapshot; current metadata hash is verified separately"
+      },
+      "nextGate": "ONLY PROGRESS+root-pass staged bytes/other OID fingerprint before actual implementation commit and normal push",
+      "recordedAt": "2026-10-10T18:38:14.381103+00:00"
+    },
+    "fastTwoMetadata": {
+      "status": "PASS",
+      "progressBytes": 411948,
+      "progressSha256": "da7da00ed7eb2b368504c8025cc97119d122fdce5d0258f87d658c3518e78df2",
+      "progressOidPrefix": "fcf21084",
+      "rootPassBytes": 4754,
+      "rootPassSha256": "1a108b82c7fa0ecce6329519cf62efe56ecafd9929a9a1f5c34ea40313a83c6c",
+      "rootPassOidPrefix": "30aabdfa",
+      "indexRows": 135862,
+      "otherRows": 135860,
+      "otherFingerprint": "0cd6e5bb8f503a224b6ef7c70b76a4f704b8c54f930e1e37bcc67b10c2fe7fa3",
+      "cachedCheck": 0,
+      "unstagedPaths": 0,
+      "untrackedPaths": 0,
+      "source": "Actual Root reported observations, not a fabricated Root tool transcript"
+    }
+  },
+  "selectedVerification": {
+    "path": "docs/poc/evidence/WU-32/verification.json",
+    "bytes": 114974,
+    "sha256": "bc0fa7c1f3bd8c18407c477789b8a002b515064bd9b51c3c77e7a172ce6f4fad"
+  },
+  "prefreeze": {
+    "actualReportWithOriginalStreams": {
+      "workUnit": "WU-32",
+      "status": "PREFREEZE_PASS",
+      "base": "b3779efe90f651c730a1807c2749e0a4dbe924ee",
+      "commands": [
+        {
+          "name": "head",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:31:54.634160+00:00",
+          "completedAt": "2026-10-10T18:31:54.636187+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-prestage01/head.stdout.log",
+            "bytes": 41,
+            "sha256": "7cfa26ce693bed6f2889f5bac52eec80bfbc586b8fb9b5cbc7d6e40cc0cd4398",
+            "originalUtf8Text": "b3779efe90f651c730a1807c2749e0a4dbe924ee\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-prestage01/head.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "branch",
+          "argv": [
+            "git",
+            "branch",
+            "--show-current"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:31:54.636347+00:00",
+          "completedAt": "2026-10-10T18:31:54.638261+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-prestage01/branch.stdout.log",
+            "bytes": 5,
+            "sha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2",
+            "originalUtf8Text": "work\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-prestage01/branch.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "target",
+          "argv": [
+            "git",
+            "remote",
+            "get-url",
+            "origin"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:31:54.638386+00:00",
+          "completedAt": "2026-10-10T18:31:54.639732+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-prestage01/target.stdout.log",
+            "bytes": 35,
+            "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348",
+            "originalUtf8Text": "https://github.com/hoa00/task8.git\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-prestage01/target.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "fresh-main",
+          "argv": [
+            "git",
+            "ls-remote",
+            "origin",
+            "refs/heads/main"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:31:54.639832+00:00",
+          "completedAt": "2026-10-10T18:31:54.952476+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-prestage01/fresh-main.stdout.log",
+            "bytes": 57,
+            "sha256": "da01ac9e3c39fa982c3ef315c21cb2482aa9b02828ddcbed8342782802e47ecd",
+            "originalUtf8Text": "b3779efe90f651c730a1807c2749e0a4dbe924ee\trefs/heads/main\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-prestage01/fresh-main.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "staged",
+          "argv": [
+            "git",
+            "diff",
+            "--cached",
+            "--name-only"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:31:54.952716+00:00",
+          "completedAt": "2026-10-10T18:31:54.973971+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-prestage01/staged.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-prestage01/staged.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "diffcheck",
+          "argv": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:31:54.974171+00:00",
+          "completedAt": "2026-10-10T18:31:55.068550+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-prestage01/diffcheck.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-prestage01/diffcheck.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "source-check",
+          "argv": [
+            "/tmp/task8-node-runtime/node_modules/node/bin/node",
+            "tests/visual/reference/source-check.mjs"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:31:55.068773+00:00",
+          "completedAt": "2026-10-10T18:31:55.113082+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-prestage01/source-check.stdout.log",
+            "bytes": 153,
+            "sha256": "b87157a6b73193599f8b8c4b16793d4a357771d6e46c384b0ee93d6e8327121b",
+            "originalUtf8Text": "{\n  \"commit\": \"904205c626918ee96054eb35495c394a60c0c601\",\n  \"tree\": \"5db5f992886b2345881946cf85fac098307953a5\",\n  \"verifiedFiles\": 86,\n  \"clean\": true\n}\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-prestage01/source-check.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        }
+      ],
+      "lockedBaseMatches": [
+        {
+          "path": "docs/poc/reference/baseline-manifest.json",
+          "bytes": 69302,
+          "sha256": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe"
+        },
+        {
+          "path": "docs/poc/reference/font-assets.json",
+          "bytes": 21805,
+          "sha256": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4"
+        },
+        {
+          "path": "docs/poc/reference/source-fixture.json",
+          "bytes": 54153,
+          "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80"
+        },
+        {
+          "path": "docs/poc/reference/source-lock.json",
+          "bytes": 7870,
+          "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+        },
+        {
+          "path": "apps/api/src/db/schema.ts",
+          "bytes": 24094,
+          "sha256": "46f6f0678229daea7330e2f5eb0ff698eeda8056dda8873c7b5478eaf11a2734"
+        },
+        {
+          "path": "apps/api/src/db/migrations/0000_freezing_greymalkin.sql",
+          "bytes": 25846,
+          "sha256": "912bc07a7379a1eccedb61d6ecfd26b2106297d86057b63050242ecce4aa3571"
+        },
+        {
+          "path": "pnpm-lock.yaml",
+          "bytes": 144032,
+          "sha256": "ce6dfcd13399c35523c70c5efc9ac2a0ec099ad74923d2d18452c610cabc2fbf"
+        }
+      ],
+      "source": {
+        "commit": "904205c626918ee96054eb35495c394a60c0c601",
+        "tree": "5db5f992886b2345881946cf85fac098307953a5",
+        "verifiedFiles": 86,
+        "clean": true
+      },
+      "ports": [
+        {
+          "port": 4173,
+          "listening": false
+        },
+        {
+          "port": 5173,
+          "listening": false
+        },
+        {
+          "port": 5174,
+          "listening": false
+        },
+        {
+          "port": 8787,
+          "listening": false
+        }
+      ],
+      "gitattributesPrefix": {
+        "bytes": 98638,
+        "sha256": "9765c52c10b84e4a280284dd4105eacd526f24976f9081e6a205a5de10a4cea8"
+      },
+      "gitattributes": {
+        "path": ".gitattributes",
+        "bytes": 99662,
+        "sha256": "6c0266bc6de697e0bc7deb2febfb311470ff5a0ad338b40d8988c010282ec910"
+      },
+      "literalRawExceptions": 15,
+      "completedAt": "2026-10-10T18:31:55.570198+00:00"
+    },
+    "originalToolObjects": {
+      "tool-completion.json": {
+        "receipt": {
+          "path": "/tmp/task8-wu32-prestage01/tool-completion.json",
+          "bytes": 756,
+          "sha256": "d83ac146559f7111c22dea7ed3b5b890f939581dc2fa30100250ebdbbde5f7dc"
+        },
+        "originalReturnedObject": {
+          "chunk_id": "a371f8",
+          "wall_time_seconds": 2.818e-05,
+          "exit_code": 0,
+          "original_token_count": 146,
+          "output": "{\"status\": \"WRITES_PAUSED_ROOT_TECHNICAL_GATE_PENDING\", \"candidate\": {\"path\": \"docs/poc/evidence/WU-32/candidate.json\", \"bytes\": 635989, \"sha256\": \"e7c5507a6e78650324e555c8b2426c42a916bd4269b2b25baa38d46427391eef\"}, \"owned\": {\"path\": \"docs/poc/evidence/WU-32/OWNED_PATHS.txt\", \"bytes\": 213823, \"sha256\": \"f4346f6925c7867974606cae0075437eff5b500a23e5a2ba9e1d525298f5af33\"}, \"fileCount\": 3147, \"totalBytesExcludingSelf\": 105095711, \"proof\": {\"path\": \"/tmp/task8-wu32-prestage01/report.json\", \"bytes\": 7015, \"sha256\": \"7b5e3237342e54b54ac14539ebfafee0910580c45ef2ce7f403b909dcfac4a5e\"}}\n"
+        }
+      },
+      "tool-start.json": {
+        "receipt": {
+          "path": "/tmp/task8-wu32-prestage01/tool-start.json",
+          "bytes": 131,
+          "sha256": "53cfde98a43120919fd86bbb0ac7b8155846a2cbcec7e0db5d1a2fdc3aacceac"
+        },
+        "originalReturnedObject": {
+          "chunk_id": "36f099",
+          "wall_time_seconds": 1.000666616,
+          "session_id": 49347,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    }
+  },
+  "failedStage01": {
+    "actualCommandsWithOriginalStreams": [
+      {
+        "name": "staged-before",
+        "argv": [
+          "git",
+          "diff",
+          "--cached",
+          "--name-only"
+        ],
+        "cwd": "/workspace/task8",
+        "startedAt": "2026-10-10T18:34:20.722765+00:00",
+        "completedAt": "2026-10-10T18:34:20.742907+00:00",
+        "exitCode": 0,
+        "stdout": {
+          "path": "/tmp/task8-wu32-stage01/staged-before.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "originalUtf8Text": ""
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu32-stage01/staged-before.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "originalUtf8Text": ""
+        }
+      },
+      {
+        "name": "stage-owned",
+        "argv": [
+          "git",
+          "--literal-pathspecs",
+          "add",
+          "-f",
+          "--pathspec-from-file=/workspace/task8/docs/poc/evidence/WU-32/OWNED_PATHS.txt"
+        ],
+        "cwd": "/workspace/task8",
+        "startedAt": "2026-10-10T18:34:20.743257+00:00",
+        "completedAt": "2026-10-10T18:34:25.867974+00:00",
+        "exitCode": 0,
+        "stdout": {
+          "path": "/tmp/task8-wu32-stage01/stage-owned.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "originalUtf8Text": ""
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu32-stage01/stage-owned.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "originalUtf8Text": ""
+        }
+      },
+      {
+        "name": "cached-check",
+        "argv": [
+          "git",
+          "diff",
+          "--cached",
+          "--check"
+        ],
+        "cwd": "/workspace/task8",
+        "startedAt": "2026-10-10T18:34:25.868301+00:00",
+        "completedAt": "2026-10-10T18:34:26.297112+00:00",
+        "exitCode": 2,
+        "stdout": {
+          "path": "/tmp/task8-wu32-stage01/cached-check.stdout.log",
+          "bytes": 2071,
+          "sha256": "e900145799454691da606128cf78883f8a0242bb8d50e4d28864ec6e35d9899f",
+          "originalUtf8Text": "docs/poc/evidence/WU-32/attempts/d1-01/migrate.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-01/seed.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-02/migrate.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-02/seed.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-03/migrate.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-03/seed.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-04/migrate.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-04/owner.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-04/seed.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-05/isolation.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-05/migrate.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-05/restart.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-05/seed.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-06/isolation.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-06/member.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-06/migrate.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-06/restart.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-06/seed.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-07/isolation.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-07/member.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-07/migrate.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-07/restart.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/attempts/d1-07/seed.stderr.log:2: new blank line at EOF.\ndocs/poc/evidence/WU-32/commands/build-01/stderr.log:3: new blank line at EOF.\ndocs/poc/evidence/WU-32/commands/lint-01/stdout.log:14: new blank line at EOF.\n"
+        },
+        "stderr": {
+          "path": "/tmp/task8-wu32-stage01/cached-check.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "originalUtf8Text": ""
+        }
+      }
+    ],
+    "originalToolObjects": {
+      "tool-completion.json": {
+        "receipt": {
+          "path": "/tmp/task8-wu32-stage01/tool-completion.json",
+          "bytes": 733,
+          "sha256": "1abe14de236f514b468a979a46933ae200cdf9022b4f747f12d76bc2413e6fad"
+        },
+        "originalReturnedObject": {
+          "chunk_id": "124336",
+          "wall_time_seconds": 5.2566e-05,
+          "exit_code": 1,
+          "original_token_count": 148,
+          "output": "Traceback (most recent call last):\n  File \"/tmp/task8-wu32-stage.py\", line 16, in <module>\n    assert run('cached-check',['git','diff','--cached','--check'])==b''\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/task8-wu32-stage.py\", line 9, in run\n    commands.append(row);(out/'commands.json').write_text(json.dumps(commands,indent=2)+'\\n');assert p.returncode==0,(name,p.stderr.decode());return p.stdout\n                                                                                                     ^^^^^^^^^^^^^^^\nAssertionError: ('cached-check', '')\n"
+        }
+      },
+      "tool-start.json": {
+        "receipt": {
+          "path": "/tmp/task8-wu32-stage01/tool-start.json",
+          "bytes": 131,
+          "sha256": "e12d6e5c29944a48a293f4469ca1e23d9e4dadee14537270599b7b654a8fb84a"
+        },
+        "originalReturnedObject": {
+          "chunk_id": "3afdc0",
+          "wall_time_seconds": 1.001426535,
+          "session_id": 26510,
+          "original_token_count": 0,
+          "output": ""
+        }
+      }
+    },
+    "qualification": "Exact frozen owned add0 followed by raw EOFblank cachedcheck2; original bytes preserved; Root-authorized25 literal raw rules resolved it"
+  },
+  "stage02": {
+    "actualFiniteReport": {
+      "workUnit": "WU-32",
+      "status": "STAGING_PASS_ROOT_ALL_INDEX_PENDING",
+      "base": "b3779efe90f651c730a1807c2749e0a4dbe924ee",
+      "commands": [
+        {
+          "name": "restage-two",
+          "argv": [
+            "git",
+            "--literal-pathspecs",
+            "add",
+            "--",
+            ".gitattributes",
+            "docs/poc/evidence/WU-32/candidate.json"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:36:05.487695+00:00",
+          "completedAt": "2026-10-10T18:36:05.613382+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-stage02/restage-two.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-stage02/restage-two.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "name": "cached-check",
+          "argv": [
+            "git",
+            "diff",
+            "--cached",
+            "--check"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:36:05.613669+00:00",
+          "completedAt": "2026-10-10T18:36:06.031220+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-stage02/cached-check.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-stage02/cached-check.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "name": "changed-paths",
+          "argv": [
+            "git",
+            "diff",
+            "--cached",
+            "--name-only",
+            "-z"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:36:06.031904+00:00",
+          "completedAt": "2026-10-10T18:36:06.057353+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-stage02/changed-paths.stdout.log",
+            "bytes": 213823,
+            "sha256": "49d1bcfd13a24294a0edf0e6153c0c01d31babefc56d7cc6b709d2a809cf62f2"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-stage02/changed-paths.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "name": "changed-raw-base",
+          "argv": [
+            "git",
+            "diff",
+            "--cached",
+            "--raw",
+            "--abbrev=40",
+            "-z",
+            "b3779efe90f651c730a1807c2749e0a4dbe924ee"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:36:06.058171+00:00",
+          "completedAt": "2026-10-10T18:36:06.081063+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-stage02/changed-raw-base.stdout.log",
+            "bytes": 525376,
+            "sha256": "3419f016e05d9c4ab6f6b791ebaa362d269752329ee750471867ba4c542ede0a"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-stage02/changed-raw-base.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "name": "unstaged",
+          "argv": [
+            "git",
+            "diff",
+            "--name-only"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:36:06.081861+00:00",
+          "completedAt": "2026-10-10T18:36:06.180275+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-stage02/unstaged.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-stage02/unstaged.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "name": "untracked",
+          "argv": [
+            "git",
+            "ls-files",
+            "--others",
+            "--exclude-standard"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:36:06.180608+00:00",
+          "completedAt": "2026-10-10T18:36:06.311555+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-stage02/untracked.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-stage02/untracked.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      ],
+      "candidateBeforeUpdate": {
+        "path": "/tmp/task8-wu32-stage02/original-candidate.json",
+        "bytes": 635989,
+        "sha256": "e7c5507a6e78650324e555c8b2426c42a916bd4269b2b25baa38d46427391eef"
+      },
+      "candidate": {
+        "path": "/workspace/task8/docs/poc/evidence/WU-32/candidate.json",
+        "bytes": 635990,
+        "sha256": "48f721e36dde114a7693acfbfb630b15e7d833be41e46a00c70e1c9848b86102"
+      },
+      "owned": {
+        "path": "/workspace/task8/docs/poc/evidence/WU-32/OWNED_PATHS.txt",
+        "bytes": 213823,
+        "sha256": "f4346f6925c7867974606cae0075437eff5b500a23e5a2ba9e1d525298f5af33"
+      },
+      "gitattributes": {
+        "path": "/workspace/task8/.gitattributes",
+        "bytes": 101382,
+        "sha256": "98c5f4e49d2398f0c6d5908e954b4fa7a2c79b2e36e5b120bfec1bc25b723ae4"
+      },
+      "priorGitattributesPrefix": {
+        "bytes": 99662,
+        "sha256": "6c0266bc6de697e0bc7deb2febfb311470ff5a0ad338b40d8988c010282ec910"
+      },
+      "additionalLiteralRawExceptions": [
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-01/migrate.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-01/seed.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-02/migrate.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-02/seed.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-03/migrate.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-03/seed.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-04/migrate.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-04/owner.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-04/seed.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-05/isolation.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-05/migrate.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-05/restart.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-05/seed.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-06/isolation.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-06/member.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-06/migrate.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-06/restart.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-06/seed.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-07/isolation.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-07/member.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-07/migrate.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-07/restart.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/attempts/d1-07/seed.stderr.log",
+          "bytes": 136,
+          "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/commands/build-01/stderr.log",
+          "bytes": 178,
+          "sha256": "98f562258abb1ba00558ab591696b1230919f159f54fa56504ab411328f5af7a"
+        },
+        {
+          "path": "/workspace/task8/docs/poc/evidence/WU-32/commands/lint-01/stdout.log",
+          "bytes": 623,
+          "sha256": "c0840818c515c1127a73fd053fb64c403da9ea797bc2e5fc1923389eba9a54d6"
+        }
+      ],
+      "totalLiteralRawExceptions": 40,
+      "stagedPaths": 3147,
+      "failedStage01": "/tmp/task8-wu32-stage01/commands.json",
+      "note": "Original failed stage and candidate preserved. Only attributes+candidate refreshed/restaged under Root authorization; all other frozen bytes unchanged.",
+      "completedAt": "2026-10-10T18:36:06.313723+00:00"
+    },
+    "originalToolObjects": {
+      "tool-completion.json": {
+        "receipt": {
+          "path": "/tmp/task8-wu32-stage02/tool-completion.json",
+          "bytes": 746,
+          "sha256": "de76912d0294805aa574a38f4fdaf1d6f8ce1f0d64541869c25b8433c8051719"
+        },
+        "originalReturnedObject": {
+          "chunk_id": "01e52b",
+          "wall_time_seconds": 0.768570153,
+          "exit_code": 0,
+          "original_token_count": 144,
+          "output": "{\"status\": \"STAGING_PASS_ROOT_ALL_INDEX_PENDING\", \"stagedPaths\": 3147, \"commands\": 6, \"candidate\": {\"path\": \"/workspace/task8/docs/poc/evidence/WU-32/candidate.json\", \"bytes\": 635990, \"sha256\": \"48f721e36dde114a7693acfbfb630b15e7d833be41e46a00c70e1c9848b86102\"}, \"gitattributes\": {\"path\": \"/workspace/task8/.gitattributes\", \"bytes\": 101382, \"sha256\": \"98c5f4e49d2398f0c6d5908e954b4fa7a2c79b2e36e5b120bfec1bc25b723ae4\"}, \"report\": {\"path\": \"/tmp/task8-wu32-stage02/report.json\", \"bytes\": 10984, \"sha256\": \"bf3b39c48badbfe4e0805bb69f8fa9580e719bbd183cc44b8947631048fb08ed\"}}\n"
+        }
+      }
+    },
+    "largeChangedPathAndRawIndexStreams": "Exact original external streams were hash/size/status verified by Root and owner. Their receipt metadata is retained here; their 739199 bytes are not rearchived into this portable checkpoint. No inherited index/blob corpus copied."
+  },
+  "metadata01": {
+    "actualReportWithOriginalStreams": {
+      "status": "METADATA_STAGED_ROOT_FAST_GATE_PENDING",
+      "commands": [
+        {
+          "name": "stage-two-metadata",
+          "argv": [
+            "git",
+            "--literal-pathspecs",
+            "add",
+            "--",
+            "docs/poc/PROGRESS.md",
+            "docs/poc/evidence/WU-32/root-pass.json"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:38:14.382787+00:00",
+          "completedAt": "2026-10-10T18:38:14.490411+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-metadata01/stage-two-metadata.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-metadata01/stage-two-metadata.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "cached-check",
+          "argv": [
+            "git",
+            "diff",
+            "--cached",
+            "--check"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:38:14.490647+00:00",
+          "completedAt": "2026-10-10T18:38:14.917343+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-metadata01/cached-check.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-metadata01/cached-check.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "unstaged",
+          "argv": [
+            "git",
+            "diff",
+            "--name-only"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:38:14.917594+00:00",
+          "completedAt": "2026-10-10T18:38:15.014878+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-metadata01/unstaged.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-metadata01/unstaged.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "untracked",
+          "argv": [
+            "git",
+            "ls-files",
+            "--others",
+            "--exclude-standard"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:38:15.015109+00:00",
+          "completedAt": "2026-10-10T18:38:15.171208+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-metadata01/untracked.stdout.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-metadata01/untracked.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        },
+        {
+          "name": "metadata-index",
+          "argv": [
+            "git",
+            "ls-files",
+            "--stage",
+            "--",
+            "docs/poc/PROGRESS.md",
+            "docs/poc/evidence/WU-32/root-pass.json"
+          ],
+          "cwd": "/workspace/task8",
+          "startedAt": "2026-10-10T18:38:15.171451+00:00",
+          "completedAt": "2026-10-10T18:38:15.193389+00:00",
+          "exitCode": 0,
+          "stdout": {
+            "path": "/tmp/task8-wu32-metadata01/metadata-index.stdout.log",
+            "bytes": 160,
+            "sha256": "822a8b758ab6aab2bd34a3cce62d80978f6d31dbe38dda9c81dd8a2b7a7b1cf8",
+            "originalUtf8Text": "100644 fcf21084bf9a8e7528cf5156c3524aff32edb69e 0\tdocs/poc/PROGRESS.md\n100644 30aabdfa3c559df00007dcad86733984d00acd9c 0\tdocs/poc/evidence/WU-32/root-pass.json\n"
+          },
+          "stderr": {
+            "path": "/tmp/task8-wu32-metadata01/metadata-index.stderr.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "originalUtf8Text": ""
+          }
+        }
+      ],
+      "progress": {
+        "path": "docs/poc/PROGRESS.md",
+        "bytes": 411948,
+        "sha256": "da7da00ed7eb2b368504c8025cc97119d122fdce5d0258f87d658c3518e78df2"
+      },
+      "rootPass": {
+        "path": "docs/poc/evidence/WU-32/root-pass.json",
+        "bytes": 4754,
+        "sha256": "1a108b82c7fa0ecce6329519cf62efe56ecafd9929a9a1f5c34ea40313a83c6c"
+      },
+      "note": "Only two authorized metadata paths written/staged. All other frozen code/evidence/candidate/attributes unchanged."
+    },
+    "originalToolObjects": {
+      "tool-completion.json": {
+        "receipt": {
+          "path": "/tmp/task8-wu32-metadata01/tool-completion.json",
+          "bytes": 675,
+          "sha256": "a2f57b3c59451dfa1f9de30307cfd4d043fb412f2260f7c9ad137b957c163f38"
+        },
+        "originalReturnedObject": {
+          "chunk_id": "ede0bb",
+          "wall_time_seconds": 0.739998712,
+          "exit_code": 0,
+          "original_token_count": 127,
+          "output": "{\"status\": \"METADATA_STAGED_ROOT_FAST_GATE_PENDING\", \"progress\": {\"path\": \"docs/poc/PROGRESS.md\", \"bytes\": 411948, \"sha256\": \"da7da00ed7eb2b368504c8025cc97119d122fdce5d0258f87d658c3518e78df2\"}, \"rootPass\": {\"path\": \"docs/poc/evidence/WU-32/root-pass.json\", \"bytes\": 4754, \"sha256\": \"1a108b82c7fa0ecce6329519cf62efe56ecafd9929a9a1f5c34ea40313a83c6c\"}, \"report\": {\"path\": \"/tmp/task8-wu32-metadata01/report.json\", \"bytes\": 4239, \"sha256\": \"587247001c8dd4d656900389daacc77ac3ab6b179dce37b9f28f2c9afeada80a\"}}\n"
+        }
+      }
+    }
+  },
+  "qualifications": {
+    "history": "All failed D1/type/lint/stage and EPERM status0 incomplete originals preserved; earlier-byte passes superseded, missing early outer/diagnosis bytes unrecovered",
+    "historicalM2": "Bounded/failed/missing-byte/SVG/default/Darwin obligations unchanged and unaccepted/unrecovered",
+    "scope": "Only WU32 AC1\u20135 task core and six task Undo kinds; coarse tasks capability unavailable pending WU33; remaining WU34\u201336/provider/R2/deploy/CI not implemented",
+    "futureDocumentation": "This checkpoint intentionally does not assert its own future commit SHA or push. Actual documentation commit/normal push/fresh clean result will be reported externally after Root two-doc gate."
+  },
+  "recordedAt": "2026-10-10T18:40:56.929840+00:00"
+}
