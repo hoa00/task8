@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện tại
 
-- Current work unit: `WU-21` — **DONE — qualified Linux content/dialog/action-controls**; ROOT TECHNICAL PASS recorded, implementation/checkpoint push follows below.
+- Current work unit: `WU-21` — **DONE — qualified Linux content/dialog/action-controls**; ROOT TECHNICAL PASS and implementation push verified; documentation-only checkpoint follows below.
 - Last completed implementation unit: `WU-21`.
 - Next permitted unit: `WU-22` after this owner stops and root assigns a fresh implementation subagent.
 - Source audit: đã thực hiện khi lập handoff; source clone/build thành công và đã xem README preview.
@@ -37,7 +37,7 @@
 | [WU-18](work-units/WU-18.md) | DONE — qualified Linux content/overlays | `a88452cbe8946a8a76c34fc0d2f9b5bc4927edab` | [21 required actual0](evidence/WU-18/commands.json), [45 archived +2+2 bounded visual bridges](evidence/WU-18/verification.json), final11 executions0; [ROOT TECHNICAL PASS](evidence/WU-18/review.json); all failed bytes retained |
 | [WU-19](work-units/WU-19.md) | DONE — qualified Linux content/fullpreview | `5b19e814e5c18b9d16aab4dc19637852f052a162` | [13 required actual0](evidence/WU-19/commands.json), [35 explicit27+7+1 strict aggregate](evidence/WU-19/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-19/review.json); default59/13 unaccepted WU29 |
 | [WU-20](work-units/WU-20.md) | DONE — qualified Linux content/controls | `63d1d274482ea2f7bb4b861ccc26a7d06a191ba5` | [15 actual0](evidence/WU-20/commands.json), [36 explicit24+9+3 strict scopes](evidence/WU-20/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-20/review.json); wholepopup11 and prior debts remain WU29 |
-| [WU-21](work-units/WU-21.md) | DONE — qualified Linux content/dialog/action-controls | — | [Seven required actual0](evidence/WU-21/commands.json), [36 qualified scopes](evidence/WU-21/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-21/root-pass.json); footer15/fullprose/default debts remain WU29 |
+| [WU-21](work-units/WU-21.md) | DONE — qualified Linux content/dialog/action-controls | `b33bc4c0c7de5c3f76d0a8c9137247157c3c3130` | [Seven required actual0](evidence/WU-21/commands.json), [36 qualified scopes](evidence/WU-21/visual-verification.json), [ROOT TECHNICAL PASS](evidence/WU-21/root-pass.json); footer15/fullprose/default debts remain WU29 |
 | [WU-22](work-units/WU-22.md) | NOT_STARTED | — | — |
 | [WU-23](work-units/WU-23.md) | NOT_STARTED | — | — |
 | [WU-24](work-units/WU-24.md) | NOT_STARTED | — | — |
@@ -878,3 +878,6 @@ Không xóa lịch sử evidence/decisions. Nếu sửa unit đã done, ghi reop
 - **AC/results:** single primary-team transfer/unselect/update/delete/Undo and CAS/name/workspace/persistence/bounds/lifecycle/ABA/idempotence guards achieved through canonical shared queue. Sidebar/Teams/Members tab/detail/project choices/Invite choices consume current same records and invalidations. Empty/deleted/validation/modal/mobile/compact rows have actual reference/native coverage. Team identity/grid/form contracts exported for24, integration pending there. No multi-team/nested hierarchy or onboarding workstyle rewrite.
 - Every FAILED attempt, original private-p6 comparisons, live type-export mutation during qualified01, whole confirmation prose/footer15 and all historical default/raster/missing-byte WU29 debts remain retained and unaccepted. No default/Darwin/fullshell/device/user/fullproject/backend/D1/R2/email/account acceptance. Earlier pending statements describe preserved working phases.
 - Implementation commit and normal authorized push occur after this approval; actual SHA/tree/remote proof will be recorded in a documentation-only checkpoint. Owner21 will STOP21 after that final verification; no WU22 implementation here.
+- **Implementation actual commit/push:** `b33bc4c0c7de5c3f76d0a8c9137247157c3c3130`, tree `50326d03e1f12dc3681b79245a56a58616e239e8`, parent `fe6ac199890290378f7d5d09e803861a1bde7d2b`, branchwork. Normal `git push origin HEAD:main` actualexit0; fresh actualremoteMain, origin/main and HEAD all equal implementationSHA, divergence0/0, target clean immediately after push. No force/Source push.
+- **Post-push proof:** Source904205/tree5db5/86tracked clean and no4173/5173listeners. [Checkpoint](evidence/WU-21/checkpoint.json) stores actual implementation SHA/tree/parent, push output+SHA, fresh remote equality and root review/verification/visual/functional/closure hashes. Frozen pre-review/verification copies remain unchanged.
+- This documentation-only checkpoint changes exactly PROGRESS and checkpoint.json; its own final SHA/tree/parent/remote/clean will be verified after real commit+normal push and reported to root. Owner21 stops after21; root assigns a different fresh owner for22.
