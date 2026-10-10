@@ -1,0 +1,155 @@
+[
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "d1",
+      "migrations",
+      "apply",
+      "DB",
+      "--local",
+      "--persist-to",
+      "/tmp/task8-wu36-visual02"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:21:48.605Z",
+    "completedAt": "2026-10-10T21:21:55.557Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "migrate.stdout.log",
+      "bytes": 1456,
+      "sha256": "795449b1b0289e537e276b941b555e70a291c7d09e9384a39ed64e4f4cd459fc"
+    },
+    "stderr": {
+      "path": "migrate.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "seed",
+    "argv": [
+      "node",
+      "scripts/seed-local.mjs",
+      "--persist-to",
+      "/tmp/task8-wu36-visual02"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:21:55.574Z",
+    "completedAt": "2026-10-10T21:22:02.632Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "seed.stdout.log",
+      "bytes": 48590,
+      "sha256": "6a1a959af7d59baafb44c32012f0a65f72e0f5785e4b420073d4722051474e7c"
+    },
+    "stderr": {
+      "path": "seed.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "source",
+    "argv": [
+      "node",
+      "node_modules/vite/bin/vite.js",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "4173",
+      "--strictPort"
+    ],
+    "cwd": "/workspace/task8/.reference/gr8r-studio",
+    "startedAt": "2026-10-10T21:22:05.698Z",
+    "completedAt": "2026-10-10T21:22:20.712Z",
+    "exitCode": 143,
+    "signal": null,
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite checks",
+    "stdout": {
+      "path": "source.stdout.log",
+      "bytes": 72,
+      "sha256": "0692b72a764198023e67f71e3604c51ba090e10ef951f188e4c289916fd8e3ec"
+    },
+    "stderr": {
+      "path": "source.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "http-preview",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vite",
+      "preview",
+      "--outDir",
+      "dist-http",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "5173",
+      "--strictPort"
+    ],
+    "cwd": "/workspace/task8/apps/web",
+    "startedAt": "2026-10-10T21:22:04.679Z",
+    "completedAt": "2026-10-10T21:22:20.722Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite checks",
+    "stdout": {
+      "path": "http-preview.stdout.log",
+      "bytes": 39,
+      "sha256": "bd8dbfcb51bb080233543196528006cdfd7b1571bfe995d605a3c3bf02ba543e"
+    },
+    "stderr": {
+      "path": "http-preview.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "visual-worker",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu36-config-visual02/visual.json",
+      "--persist-to",
+      "/tmp/task8-wu36-visual02"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:22:02.648Z",
+    "completedAt": "2026-10-10T21:22:20.765Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite checks",
+    "stdout": {
+      "path": "visual-worker.stdout.log",
+      "bytes": 9109,
+      "sha256": "135878fa838c65829c889814d0bea0ac648ede87b641cdaa052e07c719d56b13"
+    },
+    "stderr": {
+      "path": "visual-worker.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  }
+]

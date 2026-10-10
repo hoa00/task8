@@ -1,0 +1,16 @@
+{
+  "path": "apps/api/tests/wu36/visual.mjs",
+  "reason": "Lint04 found obsolete declared global Node after the executed TreeWalker uses NodeFilter. Remove only six-byte comment token; runtime statements/imports/suffix are byte-exact. Selected visual04 executed original bytes stay retained; no runtime rerun is implied.",
+  "executed": {
+    "bytes": 13140,
+    "sha256": "024816ed2b44b62f8f37297011b096f069573d50493906c45cffdaf727fa06f5",
+    "firstLine": "/* global document, Node, NodeFilter, getComputedStyle */"
+  },
+  "current": {
+    "bytes": 13134,
+    "sha256": "9f3695daced24de241b14d67658c6c11053a1ed6fc28cc117f4bb9cc06e59002",
+    "firstLine": "/* global document, NodeFilter, getComputedStyle */"
+  },
+  "unchangedSuffixBytes": 13082,
+  "unchangedSuffixSha256": "cbd3b2899fb86a47d159b117f77cd57f3d3a91b5f91c2046694dfcad9d787aa5"
+}

@@ -1,0 +1,43 @@
+{
+  "name": "undo-race-grant-authorized-replay",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a127b0-9aca-790e-9302-e7f8d7869b9c",
+  "method": "POST",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "4",
+    "x-wu35-queries": "8"
+  },
+  "budget": {
+    "queries": 8,
+    "parameters": 4
+  },
+  "response": {
+    "data": {
+      "undoId": "01a127b0-9aca-790e-9302-e7f8d7869b9c",
+      "kind": "file.delete",
+      "appliedAt": "2026-10-10T21:20:47.846Z",
+      "affected": {
+        "taskIds": [
+          "01a11abd-aa80-7a97-849a-5913d69d66d7"
+        ],
+        "projectIds": [
+          "01a11abd-aa80-7d11-86d8-e6545859cd14"
+        ],
+        "teamIds": [],
+        "memberIds": [],
+        "commentIds": [],
+        "fileIds": [
+          "01a127b0-9ab5-7d98-b925-d04449329e17"
+        ]
+      }
+    }
+  },
+  "raw": {
+    "path": "undo-race-grant-authorized-replay.response.json",
+    "bytes": 331,
+    "sha256": "fa4b1bab6c30bf91339e3fb036f0306e48bdd1b9aadaf48794fd2e1f80c2d897"
+  }
+}

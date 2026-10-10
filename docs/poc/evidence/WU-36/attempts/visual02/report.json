@@ -1,0 +1,1467 @@
+{
+  "status": "FAIL",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu36-visual02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T21:21:48.605Z",
+      "completedAt": "2026-10-10T21:21:55.557Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1456,
+        "sha256": "795449b1b0289e537e276b941b555e70a291c7d09e9384a39ed64e4f4cd459fc"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu36-visual02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T21:21:55.574Z",
+      "completedAt": "2026-10-10T21:22:02.632Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48590,
+        "sha256": "6a1a959af7d59baafb44c32012f0a65f72e0f5785e4b420073d4722051474e7c"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "source",
+      "argv": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4173",
+        "--strictPort"
+      ],
+      "cwd": "/workspace/task8/.reference/gr8r-studio",
+      "startedAt": "2026-10-10T21:22:05.698Z",
+      "completedAt": "2026-10-10T21:22:20.712Z",
+      "exitCode": 143,
+      "signal": null,
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "source.stdout.log",
+        "bytes": 72,
+        "sha256": "0692b72a764198023e67f71e3604c51ba090e10ef951f188e4c289916fd8e3ec"
+      },
+      "stderr": {
+        "path": "source.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "http-preview",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vite",
+        "preview",
+        "--outDir",
+        "dist-http",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "5173",
+        "--strictPort"
+      ],
+      "cwd": "/workspace/task8/apps/web",
+      "startedAt": "2026-10-10T21:22:04.679Z",
+      "completedAt": "2026-10-10T21:22:20.722Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "http-preview.stdout.log",
+        "bytes": 39,
+        "sha256": "bd8dbfcb51bb080233543196528006cdfd7b1571bfe995d605a3c3bf02ba543e"
+      },
+      "stderr": {
+        "path": "http-preview.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "visual-worker",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu36-config-visual02/visual.json",
+        "--persist-to",
+        "/tmp/task8-wu36-visual02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T21:22:02.648Z",
+      "completedAt": "2026-10-10T21:22:20.765Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "visual-worker.stdout.log",
+        "bytes": 9109,
+        "sha256": "135878fa838c65829c889814d0bea0ac648ede87b641cdaa052e07c719d56b13"
+      },
+      "stderr": {
+        "path": "visual-worker.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [],
+  "checks": [],
+  "runtime": "actual Wrangler local R2+D1; actual Chromium UI",
+  "samples": [
+    {
+      "id": "list-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "list-wrap",
+              "rect": {
+                "x": 252,
+                "y": 195,
+                "width": 1188,
+                "height": 1242,
+                "top": 195,
+                "right": 1440,
+                "bottom": 1437,
+                "left": 252
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "e977828b088bd9bc958222d57b27ce5a619a3fab5ca43027dc90ea00588faa9e",
+      "targetSha256": "e977828b088bd9bc958222d57b27ce5a619a3fab5ca43027dc90ea00588faa9e"
+    },
+    {
+      "id": "board-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "board",
+              "rect": {
+                "x": 252,
+                "y": 195,
+                "width": 1188,
+                "height": 805,
+                "top": 195,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 252
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 666,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "e0fee2f7ecf32e35a6cec3e2ed2f11da007654caaab3a93dc41ba8897c88e0ff",
+      "targetSha256": "588e2fdd44f570d4b042799e5233f1953256fb9534dc6f69336c31ae976b15f9"
+    },
+    {
+      "id": "table-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "tbl-wrap hide-m",
+              "rect": {
+                "x": 252,
+                "y": 195,
+                "width": 1188,
+                "height": 805,
+                "top": 195,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 252
+              }
+            },
+            {
+              "className": "only-m",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "b558e433309e263aafd7fafcfc87884944b97006135bdd02a6425347f34750a3",
+      "targetSha256": "b558e433309e263aafd7fafcfc87884944b97006135bdd02a6425347f34750a3"
+    },
+    {
+      "id": "calendar-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "cal",
+              "rect": {
+                "x": 252,
+                "y": 195,
+                "width": 1188,
+                "height": 805,
+                "top": 195,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 252
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "1c7312f109eb6664b66d30f55fc45cbc65eb80759912f4f80654eb36fafd8a82",
+      "targetSha256": "1c7312f109eb6664b66d30f55fc45cbc65eb80759912f4f80654eb36fafd8a82"
+    },
+    {
+      "id": "timeline-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 196,
+            "width": 300,
+            "height": 804,
+            "top": 196,
+            "right": 552,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "tl-head",
+              "rect": {
+                "x": 252,
+                "y": 196,
+                "width": 299,
+                "height": 52,
+                "top": 196,
+                "right": 551,
+                "bottom": 248,
+                "left": 252
+              }
+            },
+            {
+              "className": "tl-rows",
+              "rect": {
+                "x": 252,
+                "y": 248,
+                "width": 299,
+                "height": 752,
+                "top": 248,
+                "right": 551,
+                "bottom": 1000,
+                "left": 252
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 196,
+            "width": 300,
+            "height": 804,
+            "top": 196,
+            "right": 552,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "timeline-head flex items-end pb-2 pl-[var(--gutter)] pr-3 text-xs font-medium text-muted",
+              "rect": {
+                "x": 252,
+                "y": 196,
+                "width": 299,
+                "height": 52,
+                "top": 196,
+                "right": 551,
+                "bottom": 248,
+                "left": 252
+              }
+            },
+            {
+              "className": "overflow-hidden",
+              "rect": {
+                "x": 252,
+                "y": 248,
+                "width": 299,
+                "height": 752,
+                "top": 248,
+                "right": 551,
+                "bottom": 1000,
+                "left": 252
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 196,
+          "width": 300,
+          "height": 804
+        },
+        {
+          "x": 252,
+          "y": 196,
+          "width": 300,
+          "height": 804
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "6034ba64feb9336ce8b47ba72978d3f839752c27108a213596c0cb2582360b67",
+      "targetSha256": "6034ba64feb9336ce8b47ba72978d3f839752c27108a213596c0cb2582360b67"
+    }
+  ],
+  "httpResponses": [
+    {
+      "id": "http-0001",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0002",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0003",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0004",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0005",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0006",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0007",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0008",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0009",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0010",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0011",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0012",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0013",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0014",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0015",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0016",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0017",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0018",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0019",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0020",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0021",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0022",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0023",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0024",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0025",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0026",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0027",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0028",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0029",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0030",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0031",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0032",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0033",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0034",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0035",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0036",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0037",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0038",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0039",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0040",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0041",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-28&rangeTo=2026-11-01&rangeBasis=due",
+      "status": 200,
+      "sha256": "4128549df8a1e38648707ffaf9e812603f92847cd919a3c17050ddd7ec333eaa",
+      "bytes": 240
+    },
+    {
+      "id": "http-0042",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2026-09-28&to=2026-11-01&projectId=01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "sha256": "ac6fdfbeb12d714296970071c97a0f979db65d13b955727abedbc399cb8ea9f3",
+      "bytes": 475
+    },
+    {
+      "id": "http-0043",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-28&rangeTo=2026-11-01&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "1b5ffd4c84ad8699aa7bf7e089fa330769db9488fafcacdb7767059fb9492f97",
+      "bytes": 11401
+    },
+    {
+      "id": "http-0044",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0045",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0046",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0047",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0048",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0049",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0050",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0051",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0052",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0053",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0054",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-14&rangeTo=2026-12-13&rangeBasis=overlap",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0055",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-14&rangeTo=2026-12-13&rangeBasis=overlap&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0056",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0057",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0058",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0059",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0060",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0061",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0062",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0063",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0064",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0065",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0066",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?limit=200&q=&sort=recent",
+      "status": 200,
+      "sha256": "79ad0bd22ba6b3a241d95b4a0f23c4872c411935ff51102c46e64e0e6b4da74c",
+      "bytes": 3463
+    }
+  ],
+  "threshold": 0,
+  "includeAA": true,
+  "maxDiffPixels": 0,
+  "masks": [],
+  "environment": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "fixtureSha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+  "qualification": "Linux Chromium145 with --disable-partial-raster BOTH Source/Target; content/renderers only. No inherited default/Darwin/whole-shell/device/full-project debt recovery.",
+  "browser": "145.0.7632.6",
+  "actualLaunchArguments": [
+    "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+    "--disable-field-trial-config",
+    "--disable-background-networking",
+    "--disable-background-timer-throttling",
+    "--disable-backgrounding-occluded-windows",
+    "--disable-back-forward-cache",
+    "--disable-breakpad",
+    "--disable-client-side-phishing-detection",
+    "--disable-component-extensions-with-background-pages",
+    "--disable-component-update",
+    "--no-default-browser-check",
+    "--disable-default-apps",
+    "--disable-dev-shm-usage",
+    "--disable-extensions",
+    "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+    "--enable-features=CDPScreenshotNewSurface",
+    "--allow-pre-commit-input",
+    "--disable-hang-monitor",
+    "--disable-ipc-flooding-protection",
+    "--disable-popup-blocking",
+    "--disable-prompt-on-repost",
+    "--disable-renderer-backgrounding",
+    "--force-color-profile=srgb",
+    "--metrics-recording-only",
+    "--no-first-run",
+    "--password-store=basic",
+    "--use-mock-keychain",
+    "--no-service-autorun",
+    "--export-tagged-pdf",
+    "--disable-search-engine-choice-screen",
+    "--unsafely-disable-devtools-self-xss-warnings",
+    "--edge-skip-compat-layer-relaunch",
+    "--enable-automation",
+    "--disable-infobars",
+    "--disable-search-engine-choice-screen",
+    "--disable-sync",
+    "--enable-unsafe-swiftshader",
+    "--headless",
+    "--hide-scrollbars",
+    "--mute-audio",
+    "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+    "--no-sandbox",
+    "--disable-partial-raster",
+    "--user-data-dir=/tmp/playwright_chromiumdev_profile-OALFrr",
+    "--remote-debugging-pipe",
+    "--no-startup-window",
+    "--use-gl=angle",
+    "--use-angle=swiftshader-webgl",
+    "--ozone-platform=headless",
+    "--allow-pre-commit-input"
+  ],
+  "capCorrection": {
+    "decision": "docs/poc/DECISIONS.md:34",
+    "original": "250 MB",
+    "canonical": "10 MiB",
+    "scope": "Source harness text only; no stylesheet/template/fixture change",
+    "actual": {
+      "before": "Drop files here or browse — up to 250 MB each",
+      "after": "Drop files here or browse — up to 250 MB each"
+    }
+  },
+  "error": "AssertionError [ERR_ASSERTION]: false == true\n    at file:///workspace/task8/apps/api/tests/wu36/visual.mjs:37:643"
+}

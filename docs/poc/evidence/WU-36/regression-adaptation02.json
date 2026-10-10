@@ -1,0 +1,81 @@
+[
+  {
+    "unit": "32",
+    "original": "apps/api/tests/wu32/verify.mjs",
+    "originalBytes": 38617,
+    "originalSha256": "9d5c22b69bbaddb89354e9ca6b32196d808bebdd429e2329fc29bd280d3ae8ac",
+    "currentCopy": "apps/api/tests/wu36/tasks-regression.mjs",
+    "bytes": 38617,
+    "sha256": "0d21ec0fdb4b33ef01f9916cf8913c89ba7d62c7b1e76889d17f06fa6e559130",
+    "changes": [
+      [
+        "docs/poc/evidence/WU-32/attempts",
+        "docs/poc/evidence/WU-36/attempts"
+      ],
+      [
+        "Obsolete later-unit endpoint expectations status501",
+        "Current implemented operations status200; assertions retained"
+      ]
+    ],
+    "note": "Test suite adapted only for evidence destination/import provenance and completed later capabilities; all mutation/failure/atomicity assertions preserved."
+  },
+  {
+    "unit": "33",
+    "original": "apps/api/tests/wu33/verify.mjs",
+    "originalBytes": 28972,
+    "originalSha256": "0f6c5db2fddbcc21378b7faa33cb0b56d4df43e8bc0cb71d8b7932219c6e33fb",
+    "currentCopy": "apps/api/tests/wu36/collaboration-regression.mjs",
+    "bytes": 28976,
+    "sha256": "3fece157806cd789ef99b2a67b53c384717afd37cd4f8eff218cee464b1eacd7",
+    "changes": [
+      [
+        "docs/poc/evidence/WU-33/attempts",
+        "docs/poc/evidence/WU-36/attempts"
+      ],
+      [
+        "from './provenance.mjs'",
+        "from '../wu33/provenance.mjs'"
+      ],
+      [
+        "Obsolete later-unit endpoint expectations status501",
+        "Current implemented operations status200; assertions retained"
+      ],
+      [
+        "WU33 coarse projects/notificationState unavailable",
+        "Current implemented capabilities"
+      ]
+    ],
+    "note": "Test suite adapted only for evidence destination/import provenance and completed later capabilities; all mutation/failure/atomicity assertions preserved."
+  },
+  {
+    "unit": "34",
+    "original": "apps/api/tests/wu34/verify.mjs",
+    "originalBytes": 30931,
+    "originalSha256": "65472df578ba3cc8361b18c742f7fa12ea4fd8d192f271008c9e203b2d9fc667",
+    "currentCopy": "apps/api/tests/wu36/projections-regression.mjs",
+    "bytes": 30913,
+    "sha256": "de6b4a0e15ef244f341083bd89c5ddb1dd6d6e6cb8ba12e34263600b3771d1f5",
+    "changes": [
+      [
+        "WU34 fileMetadata unavailable/listProjectFiles501",
+        "WU35 actual fileMetadata implemented/listProjectFiles200"
+      ],
+      [
+        "Obsolete listProjectFiles unavailable rejection",
+        "Current private file404 rejection; actual HTTP error still never falls back to Mock"
+      ]
+    ],
+    "note": "Test suite adapted only for evidence destination/import provenance and completed later capabilities; all mutation/failure/atomicity assertions preserved."
+  },
+  {
+    "unit": "35",
+    "original": "apps/api/tests/wu35/verify.mjs",
+    "originalBytes": 28149,
+    "originalSha256": "d455bfd6d6d7ef042cc3da99c7d2a3ea6b91147ad3bc35ce21c0da2fe99008e2",
+    "currentCopy": "apps/api/tests/wu36/files-regression.mjs",
+    "bytes": 28149,
+    "sha256": "d455bfd6d6d7ef042cc3da99c7d2a3ea6b91147ad3bc35ce21c0da2fe99008e2",
+    "changes": [],
+    "note": "Test suite adapted only for evidence destination/import provenance and completed later capabilities; all mutation/failure/atomicity assertions preserved."
+  }
+]

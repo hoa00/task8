@@ -1,0 +1,28 @@
+{
+  "name": "oversize",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+  "method": "POST",
+  "status": 413,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "4",
+    "x-wu35-queries": "2"
+  },
+  "budget": {
+    "queries": 2,
+    "parameters": 4
+  },
+  "response": {
+    "error": {
+      "code": "PAYLOAD_TOO_LARGE",
+      "message": "File exceeds 10 MiB"
+    }
+  },
+  "raw": {
+    "path": "oversize.response.json",
+    "bytes": 70,
+    "sha256": "61f0159fe298a8a80c8fa08674f66549bb3e8340aa286467d5990c5e7ca7b21a"
+  }
+}

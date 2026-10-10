@@ -1,0 +1,7 @@
+{
+  "chunk_id": "5242b2",
+  "wall_time_seconds": 0.723728793,
+  "exit_code": 1,
+  "original_token_count": 240,
+  "output": "(node:677481) ExperimentalWarning: Transform Types is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\nfile:///workspace/task8/apps/api/tests/wu36/workspace-race.mjs:29\nconst secondWorkspace=seed.isolation.workspaceId,secondName=seed.rows.workspaces.find(w=>w.id===secondWorkspace).name;\n                                                                                                                ^\n\nTypeError: Cannot read properties of undefined (reading 'name')\n    at file:///workspace/task8/apps/api/tests/wu36/workspace-race.mjs:29:113\n    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.13.0\n"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "task8-api",
+  "main": "/workspace/task8/apps/api/tests/wu33/worker.ts",
+  "compatibility_date": "2026-10-08",
+  "vars": {
+    "STUDIO_ENV": "local",
+    "LOCAL_USER_ID": "01a11abd-aa80-786e-8116-7c6e3927d385",
+    "LOCAL_WORKSPACE_ID": "01a11abd-aa80-7290-8c9b-7aa9af2af468"
+  },
+  "send_metrics": false,
+  "r2_buckets": [
+    {
+      "binding": "FILES",
+      "bucket_name": "task8-local-files"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "task8-local",
+      "database_id": "00000000-0000-4000-8000-000000000030",
+      "migrations_dir": "/workspace/task8/apps/api/src/db/migrations"
+    }
+  ]
+}

@@ -1,0 +1,5146 @@
+{
+  "status": "FAIL",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu36-journey03"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T20:58:59.806Z",
+      "completedAt": "2026-10-10T20:59:06.862Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1457,
+        "sha256": "448c35d166a4466ff73c7b1451e7bee708e6e4669c597b04c8d79132c8c31a75"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu36-journey03"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T20:59:06.876Z",
+      "completedAt": "2026-10-10T20:59:14.068Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48591,
+        "sha256": "ccecd7422fadb11a1af9b94096c5c733d2c769b8091291f144312d23f4a307a3"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "http-preview",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vite",
+        "preview",
+        "--outDir",
+        "dist-http",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "5173",
+        "--strictPort"
+      ],
+      "cwd": "/workspace/task8/apps/web",
+      "startedAt": "2026-10-10T20:59:16.320Z",
+      "completedAt": "2026-10-10T20:59:28.538Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "http-preview.stdout.log",
+        "bytes": 39,
+        "sha256": "bd8dbfcb51bb080233543196528006cdfd7b1571bfe995d605a3c3bf02ba543e"
+      },
+      "stderr": {
+        "path": "http-preview.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu36-config-journey03/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu36-journey03"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T20:59:14.083Z",
+      "completedAt": "2026-10-10T20:59:28.582Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 20651,
+        "sha256": "6fc56322b776ccdffdeac5cadf4fb74e1a40c1c06fd28e667346152d57d7bc8d"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "8",
+        "x-wu36-queries": "13"
+      },
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "response": {
+        "data": {
+          "workspace": {
+            "planLabel": "Team",
+            "id": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "name": "Gr8r Studio",
+            "slug": "gr8rstudio",
+            "iconColor": "#1D1C1A",
+            "brand": true,
+            "timezone": "UTC",
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "version": 1
+          },
+          "currentMember": {
+            "id": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77",
+            "name": "Tanjim Islam",
+            "email": "hello@gr8rstudio.com",
+            "title": "Head of Product",
+            "avatarColor": "#5A67D8",
+            "timezone": "San Francisco",
+            "role": "Owner",
+            "status": "active",
+            "teamId": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+            "lastSeenAt": "2026-10-08T09:00:00.000Z",
+            "version": 1
+          },
+          "members": [
+            {
+              "id": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "name": "Tanjim Islam",
+              "avatarColor": "#5A67D8"
+            },
+            {
+              "id": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "name": "Emma Wilson",
+              "avatarColor": "#23918A"
+            },
+            {
+              "id": "01a11abd-aa80-7470-803a-d8637be26509",
+              "name": "Priya Patel",
+              "avatarColor": "#C48A1E"
+            },
+            {
+              "id": "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+              "name": "Lena Fischer",
+              "avatarColor": "#3D8E5F"
+            },
+            {
+              "id": "01a11abd-aa80-7567-80df-64683f5c3572",
+              "name": "Marcus Lee",
+              "avatarColor": "#8662C9"
+            },
+            {
+              "id": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+              "name": "John Carter",
+              "avatarColor": "#3B82C4"
+            },
+            {
+              "id": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "name": "Sarah Chen",
+              "avatarColor": "#C54B78"
+            },
+            {
+              "id": "01a11abd-aa80-7a8a-8271-af0df3499721",
+              "name": "Diego Alvarez",
+              "avatarColor": "#C0612B"
+            }
+          ],
+          "teams": [
+            {
+              "id": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "name": "Design",
+              "description": "Product design, brand, and research",
+              "icon": "palette",
+              "color": "#8662C9",
+              "memberIds": [
+                "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                "01a11abd-aa80-7947-8d13-2178f1cc4d45"
+              ],
+              "createdAt": "2026-10-08T09:00:00.000Z",
+              "updatedAt": "2026-10-08T09:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "name": "Marketing",
+              "description": "Campaigns, content, and growth",
+              "icon": "megaphone",
+              "color": "#C54B78",
+              "memberIds": [
+                "01a11abd-aa80-7470-803a-d8637be26509",
+                "01a11abd-aa80-7a8a-8271-af0df3499721"
+              ],
+              "createdAt": "2026-10-08T09:00:00.000Z",
+              "updatedAt": "2026-10-08T09:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "name": "Product",
+              "description": "Roadmap, planning, and QA",
+              "icon": "target",
+              "color": "#C48A1E",
+              "memberIds": [
+                "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+              ],
+              "createdAt": "2026-10-08T09:00:00.000Z",
+              "updatedAt": "2026-10-08T09:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "name": "Engineering",
+              "description": "Web, mobile, and platform engineering",
+              "icon": "code",
+              "color": "#3B82C4",
+              "memberIds": [
+                "01a11abd-aa80-7567-80df-64683f5c3572",
+                "01a11abd-aa80-7606-8d4c-58e60fb7e5a4"
+              ],
+              "createdAt": "2026-10-08T09:00:00.000Z",
+              "updatedAt": "2026-10-08T09:00:00.000Z",
+              "version": 1
+            }
+          ],
+          "projects": [
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "WEB",
+                "name": "Website Redesign",
+                "description": "Rebuild gr8rstudio.com with a clearer information architecture, a responsive component library, and a faster CMS-driven blog.",
+                "icon": "globe",
+                "color": "#5A67D8",
+                "status": "active",
+                "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+                "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                "startDate": "2026-09-08",
+                "dueDate": "2026-11-01",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                  "01a11abd-aa80-7470-803a-d8637be26509",
+                  "01a11abd-aa80-7567-80df-64683f5c3572",
+                  "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-7311-8fd4-d485e62a5f45",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                    "name": "Wireframes signed off",
+                    "date": "2026-10-10",
+                    "position": 0
+                  },
+                  {
+                    "id": "01a11abd-aa80-7282-82b9-12bf7f3694c0",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                    "name": "Dev handoff",
+                    "date": "2026-10-22",
+                    "position": 100
+                  },
+                  {
+                    "id": "01a11abd-aa80-77d3-8551-ab806d5c3f55",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                    "name": "Public launch",
+                    "date": "2026-11-01",
+                    "position": 200
+                  }
+                ],
+                "isFavorite": true,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T08:48:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "taskSummary": {
+                  "total": 18,
+                  "byStatus": {
+                    "backlog": 4,
+                    "todo": 5,
+                    "progress": 3,
+                    "review": 2,
+                    "done": 4
+                  },
+                  "byPriority": {
+                    "urgent": 1,
+                    "high": 5,
+                    "medium": 8,
+                    "low": 4,
+                    "none": 0
+                  },
+                  "overdue": 3,
+                  "completed": 4,
+                  "completionRate": 22,
+                  "subtaskTotals": {
+                    "total": 12,
+                    "completed": 6
+                  }
+                },
+                "progress": 22
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "MOB",
+                "name": "Mobile App",
+                "description": "Native iOS and Android client for field teams with offline sync, push notifications, and biometric sign-in.",
+                "icon": "smartphone",
+                "color": "#3B82C4",
+                "status": "active",
+                "teamId": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+                "leadId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                "startDate": "2026-08-24",
+                "dueDate": "2026-11-29",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                  "01a11abd-aa80-7567-80df-64683f5c3572",
+                  "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-73de-8352-a37eda1f6804",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                    "name": "Beta build",
+                    "date": "2026-10-17",
+                    "position": 0
+                  },
+                  {
+                    "id": "01a11abd-aa80-7968-841d-52612a365a0b",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                    "name": "App Store submission",
+                    "date": "2026-11-22",
+                    "position": 100
+                  }
+                ],
+                "isFavorite": true,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T08:12:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "taskSummary": {
+                  "total": 9,
+                  "byStatus": {
+                    "backlog": 1,
+                    "todo": 4,
+                    "progress": 2,
+                    "review": 1,
+                    "done": 1
+                  },
+                  "byPriority": {
+                    "urgent": 2,
+                    "high": 3,
+                    "medium": 3,
+                    "low": 1,
+                    "none": 0
+                  },
+                  "overdue": 2,
+                  "completed": 1,
+                  "completionRate": 11,
+                  "subtaskTotals": {
+                    "total": 0,
+                    "completed": 0
+                  }
+                },
+                "progress": 11
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-784d-8681-7daf87297886",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "MKT",
+                "name": "Marketing Campaign",
+                "description": "Q4 awareness campaign across paid social, email, and a launch webinar targeting operations leads.",
+                "icon": "megaphone",
+                "color": "#C54B78",
+                "status": "planning",
+                "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+                "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+                "startDate": "2026-09-28",
+                "dueDate": "2026-11-17",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                  "01a11abd-aa80-7470-803a-d8637be26509",
+                  "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+                  "01a11abd-aa80-7a8a-8271-af0df3499721"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-715d-8c2b-2f959e3c70b1",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                    "name": "Creative lock",
+                    "date": "2026-10-20",
+                    "position": 0
+                  },
+                  {
+                    "id": "01a11abd-aa80-7392-8a33-b21e8347d051",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                    "name": "Campaign live",
+                    "date": "2026-10-29",
+                    "position": 100
+                  }
+                ],
+                "isFavorite": false,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T06:50:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "taskSummary": {
+                  "total": 7,
+                  "byStatus": {
+                    "backlog": 1,
+                    "todo": 3,
+                    "progress": 1,
+                    "review": 1,
+                    "done": 1
+                  },
+                  "byPriority": {
+                    "urgent": 1,
+                    "high": 1,
+                    "medium": 4,
+                    "low": 1,
+                    "none": 0
+                  },
+                  "overdue": 1,
+                  "completed": 1,
+                  "completionRate": 14,
+                  "subtaskTotals": {
+                    "total": 0,
+                    "completed": 0
+                  }
+                },
+                "progress": 14
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "LCH",
+                "name": "Product Launch",
+                "description": "Coordinate the Workflows 2.0 launch: pricing, docs, press, and sales enablement across teams.",
+                "icon": "rocket",
+                "color": "#C48A1E",
+                "status": "risk",
+                "teamId": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+                "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "startDate": "2026-09-17",
+                "dueDate": "2026-10-20",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-7470-803a-d8637be26509",
+                  "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-7b1e-8750-aee019ec403a",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                    "name": "Go / no-go",
+                    "date": "2026-10-19",
+                    "position": 0
+                  },
+                  {
+                    "id": "01a11abd-aa80-78b5-8b54-7109f0699ea3",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                    "name": "Launch day",
+                    "date": "2026-10-20",
+                    "position": 100
+                  }
+                ],
+                "isFavorite": false,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T08:25:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "taskSummary": {
+                  "total": 6,
+                  "byStatus": {
+                    "backlog": 1,
+                    "todo": 3,
+                    "progress": 1,
+                    "review": 1,
+                    "done": 0
+                  },
+                  "byPriority": {
+                    "urgent": 1,
+                    "high": 2,
+                    "medium": 2,
+                    "low": 1,
+                    "none": 0
+                  },
+                  "overdue": 1,
+                  "completed": 0,
+                  "completionRate": 0,
+                  "subtaskTotals": {
+                    "total": 4,
+                    "completed": 2
+                  }
+                },
+                "progress": 0
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "DS",
+                "name": "Design System",
+                "description": "Shared tokens, components, and documentation used by web and mobile teams.",
+                "icon": "component",
+                "color": "#8662C9",
+                "status": "active",
+                "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+                "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                "startDate": "2026-08-09",
+                "dueDate": "2026-12-17",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-72e4-8e93-62c2ece91c47"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-7e21-8112-2b24976a5e2a",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                    "name": "v2 tokens",
+                    "date": "2026-10-11",
+                    "position": 0
+                  }
+                ],
+                "isFavorite": false,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T04:00:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                "taskSummary": {
+                  "total": 6,
+                  "byStatus": {
+                    "backlog": 1,
+                    "todo": 2,
+                    "progress": 1,
+                    "review": 1,
+                    "done": 1
+                  },
+                  "byPriority": {
+                    "urgent": 0,
+                    "high": 2,
+                    "medium": 3,
+                    "low": 1,
+                    "none": 0
+                  },
+                  "overdue": 0,
+                  "completed": 1,
+                  "completionRate": 17,
+                  "subtaskTotals": {
+                    "total": 0,
+                    "completed": 0
+                  }
+                },
+                "progress": 17
+              }
+            },
+            {
+              "access": "restricted",
+              "project": {
+                "id": "01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "name": "Customer Portal",
+                "key": "CP",
+                "icon": "building-2",
+                "color": "#23918A",
+                "status": "hold",
+                "dueDate": "2027-01-06",
+                "lead": {
+                  "id": "01a11abd-aa80-7567-80df-64683f5c3572",
+                  "name": "Marcus Lee",
+                  "avatarColor": "#8662C9"
+                },
+                "catalogSummary": "Self-serve billing and support portal for enterprise customers. Restricted during contract review."
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7d99-849a-abec9340dc89",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "MW",
+                "name": "Marketing Website",
+                "description": "Launch site for the spring release. Shipped and handed to the web team for maintenance.",
+                "icon": "layout-grid",
+                "color": "#3D8E5F",
+                "status": "complete",
+                "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+                "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+                "startDate": "2026-07-20",
+                "dueDate": "2026-09-20",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-7470-803a-d8637be26509"
+                ],
+                "milestones": [],
+                "isFavorite": false,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-09-20T07:40:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7d99-849a-abec9340dc89",
+                "taskSummary": {
+                  "total": 2,
+                  "byStatus": {
+                    "backlog": 0,
+                    "todo": 0,
+                    "progress": 0,
+                    "review": 0,
+                    "done": 2
+                  },
+                  "byPriority": {
+                    "urgent": 0,
+                    "high": 1,
+                    "medium": 1,
+                    "low": 0,
+                    "none": 0
+                  },
+                  "overdue": 0,
+                  "completed": 2,
+                  "completionRate": 100,
+                  "subtaskTotals": {
+                    "total": 0,
+                    "completed": 0
+                  }
+                },
+                "progress": 100
+              }
+            }
+          ],
+          "catalogs": {
+            "taskStatuses": [
+              {
+                "id": "backlog",
+                "name": "Backlog"
+              },
+              {
+                "id": "todo",
+                "name": "To Do"
+              },
+              {
+                "id": "progress",
+                "name": "In Progress"
+              },
+              {
+                "id": "review",
+                "name": "Review"
+              },
+              {
+                "id": "done",
+                "name": "Done"
+              }
+            ],
+            "priorities": [
+              {
+                "id": "urgent",
+                "name": "Urgent",
+                "weight": 4
+              },
+              {
+                "id": "high",
+                "name": "High",
+                "weight": 3
+              },
+              {
+                "id": "medium",
+                "name": "Medium",
+                "weight": 2
+              },
+              {
+                "id": "low",
+                "name": "Low",
+                "weight": 1
+              },
+              {
+                "id": "none",
+                "name": "No priority",
+                "weight": 0
+              }
+            ],
+            "projectStatuses": [
+              {
+                "id": "planning",
+                "name": "Planning",
+                "colorToken": "gray"
+              },
+              {
+                "id": "active",
+                "name": "In Progress",
+                "colorToken": "blue"
+              },
+              {
+                "id": "risk",
+                "name": "At Risk",
+                "colorToken": "red"
+              },
+              {
+                "id": "hold",
+                "name": "On Hold",
+                "colorToken": "amber"
+              },
+              {
+                "id": "complete",
+                "name": "Completed",
+                "colorToken": "green"
+              }
+            ],
+            "labels": [
+              {
+                "id": "design",
+                "name": "Design",
+                "colorToken": "violet"
+              },
+              {
+                "id": "frontend",
+                "name": "Frontend",
+                "colorToken": "blue"
+              },
+              {
+                "id": "backend",
+                "name": "Backend",
+                "colorToken": "teal"
+              },
+              {
+                "id": "research",
+                "name": "Research",
+                "colorToken": "amber"
+              },
+              {
+                "id": "content",
+                "name": "Content",
+                "colorToken": "rose"
+              },
+              {
+                "id": "bug",
+                "name": "Bug",
+                "colorToken": "red"
+              },
+              {
+                "id": "qa",
+                "name": "QA",
+                "colorToken": "green"
+              },
+              {
+                "id": "growth",
+                "name": "Growth",
+                "colorToken": "orange"
+              }
+            ],
+            "recurrences": [
+              {
+                "id": "daily",
+                "name": "Daily"
+              },
+              {
+                "id": "weekly",
+                "name": "Weekly"
+              },
+              {
+                "id": "biweekly",
+                "name": "Every 2 weeks"
+              },
+              {
+                "id": "monthly",
+                "name": "Monthly"
+              }
+            ],
+            "projectColors": [
+              {
+                "id": "indigo",
+                "color": "#5A67D8"
+              },
+              {
+                "id": "blue",
+                "color": "#3B82C4"
+              },
+              {
+                "id": "violet",
+                "color": "#8662C9"
+              },
+              {
+                "id": "teal",
+                "color": "#23918A"
+              },
+              {
+                "id": "rose",
+                "color": "#C54B78"
+              },
+              {
+                "id": "amber",
+                "color": "#C48A1E"
+              },
+              {
+                "id": "green",
+                "color": "#3D8E5F"
+              },
+              {
+                "id": "slate",
+                "color": "#6B7280"
+              }
+            ],
+            "projectIcons": [
+              "globe",
+              "smartphone",
+              "megaphone",
+              "rocket",
+              "component",
+              "building-2",
+              "layout-grid",
+              "palette",
+              "code",
+              "briefcase",
+              "target",
+              "layers",
+              "zap",
+              "heart",
+              "folder",
+              "sparkles"
+            ],
+            "estimates": [
+              "30m",
+              "1h",
+              "2h",
+              "4h",
+              "1d",
+              "2d",
+              "3d",
+              "5d",
+              "8d"
+            ],
+            "templates": [
+              {
+                "id": "blank",
+                "name": "Blank project",
+                "icon": "file",
+                "description": "Start from scratch",
+                "tasks": []
+              },
+              {
+                "id": "product",
+                "name": "Product Development",
+                "icon": "target",
+                "description": "Discovery to launch",
+                "tasks": [
+                  "Define problem statement",
+                  "User research plan",
+                  "Write PRD",
+                  "Design exploration",
+                  "Build MVP",
+                  "Beta launch"
+                ]
+              },
+              {
+                "id": "web",
+                "name": "Website",
+                "icon": "globe",
+                "description": "IA, design, build, launch",
+                "tasks": [
+                  "Sitemap & information architecture",
+                  "Wireframes",
+                  "Visual design",
+                  "Build page templates",
+                  "Content migration",
+                  "QA & launch"
+                ]
+              },
+              {
+                "id": "mkt",
+                "name": "Marketing Campaign",
+                "icon": "megaphone",
+                "description": "Brief, assets, channels",
+                "tasks": [
+                  "Campaign brief",
+                  "Audience research",
+                  "Creative assets",
+                  "Channel plan",
+                  "Launch campaign",
+                  "Performance report"
+                ]
+              },
+              {
+                "id": "design",
+                "name": "Design Project",
+                "icon": "palette",
+                "description": "Discovery to handoff",
+                "tasks": [
+                  "Discovery workshop",
+                  "Moodboard",
+                  "Concept directions",
+                  "Refinement",
+                  "Developer handoff"
+                ]
+              },
+              {
+                "id": "software",
+                "name": "Software Development",
+                "icon": "code",
+                "description": "Spec, build, ship",
+                "tasks": [
+                  "Technical spec",
+                  "Set up repo & CI",
+                  "Implement core API",
+                  "Write tests",
+                  "Code review",
+                  "Deploy to staging"
+                ]
+              },
+              {
+                "id": "personal",
+                "name": "Personal Project",
+                "icon": "heart",
+                "description": "Plan your own goals",
+                "tasks": [
+                  "Brain dump ideas",
+                  "Pick top 3 priorities",
+                  "Schedule focus time",
+                  "Weekly review"
+                ]
+              }
+            ]
+          },
+          "preferences": {
+            "theme": "light",
+            "accent": "indigo",
+            "side": "comfortable",
+            "density": "comfortable",
+            "weekStart": 1,
+            "dateFmt": "MMM d",
+            "lang": "English (US)",
+            "tz": "(GMT-07:00) Pacific Time",
+            "timeFmt": "12",
+            "spell": true,
+            "motion": "system",
+            "home": "home",
+            "openTasks": "drawer",
+            "confirmDel": true,
+            "defaultTab": "board",
+            "showDoneBoard": true
+          },
+          "notificationPreferences": {
+            "emailMention": true,
+            "emailAssign": true,
+            "emailDigest": true,
+            "emailComment": false,
+            "pushMention": true,
+            "pushAssign": true,
+            "pushComment": true,
+            "pushDue": true,
+            "mentionAll": true,
+            "mentionTeam": true,
+            "mentionWorkspace": false,
+            "assignSelf": true,
+            "assignStatus": true,
+            "assignOverdue": true
+          },
+          "unreadCount": 6,
+          "navigationCounts": {
+            "inbox": 4,
+            "myTasks": 3,
+            "archive": 0
+          }
+        }
+      },
+      "raw": {
+        "path": "bootstrap.response.json",
+        "bytes": 16623,
+        "sha256": "b58ff8e74c98844df1f744b996650169405187aa686f7d3bfb4be4a29b4a6b6a"
+      }
+    },
+    {
+      "name": "session",
+      "path": "/api/v1/session",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "4",
+        "x-wu36-queries": "1"
+      },
+      "budget": {
+        "queries": 1,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "user": {
+            "id": "01a11abd-aa80-7d3f-879a-dd89204bcd77",
+            "name": "Tanjim Islam",
+            "email": "hello@gr8rstudio.com",
+            "title": "Head of Product",
+            "avatarColor": "#5A67D8",
+            "timezone": "San Francisco",
+            "version": 1
+          },
+          "currentWorkspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "capabilities": {
+            "dataMode": "http",
+            "identityMode": "development",
+            "features": {
+              "projects": "implemented",
+              "tasks": "implemented",
+              "teams": "implemented",
+              "comments": "implemented",
+              "notificationState": "implemented",
+              "fileMetadata": "implemented",
+              "fileBytes": "implemented",
+              "workspaceProvisioning": "unavailable",
+              "invitations": "unavailable",
+              "projectSharing": "unavailable",
+              "authentication": "unavailable",
+              "accountSecurity": "unavailable",
+              "billing": "unavailable"
+            },
+            "limits": {
+              "taskPageSize": 50,
+              "maxTaskPageSize": 200,
+              "maxBulkItems": 20,
+              "maxUndoTargets": 128,
+              "maxUndoPayloadBytes": 65536,
+              "maxUploadBytes": 10485760
+            }
+          }
+        }
+      },
+      "raw": {
+        "path": "session.response.json",
+        "bytes": 853,
+        "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c"
+      }
+    },
+    {
+      "name": "sql-1",
+      "path": "/__wu36/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 1,
+          "changes": 0,
+          "last_row_id": 28,
+          "changed_db": false,
+          "size_after": 610304,
+          "rows_read": 99,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "number": 201,
+            "title": "WU36 M3 native task",
+            "descriptionHtml": "<p>M3 initial description</p>",
+            "descriptionText": "M3 initial description",
+            "status": "todo",
+            "priority": "medium",
+            "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "startDate": null,
+            "dueDate": null,
+            "estimate": null,
+            "recurrence": null,
+            "position": 5000,
+            "completedAt": null,
+            "previousStatus": null,
+            "recurrenceSourceTaskId": null,
+            "cancelledByUndoId": null,
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createRequestId": "2d2a6981-f538-46b2-abb5-218ff728b36b",
+            "createRequestHash": "55e665c4721f1c398d208722cdb8f2e4b379bed0deb07caf9ce8c51aa0fe1ae2",
+            "createdAt": 1791665958402,
+            "updatedAt": 1791665958578,
+            "archivedAt": null,
+            "deletedAt": null,
+            "deletedBy": null,
+            "version": 2,
+            "lastMutationId": "01a1279c-eeb8-78f6-bb26-c1726c44abdd"
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-1.response.json",
+        "bytes": 1096,
+        "sha256": "70709df722762882a25699a734d2ccc9f07b4b864f3c5387622e645cdfe7c71a"
+      }
+    },
+    {
+      "name": "sql-2",
+      "path": "/__wu36/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 28,
+          "changed_db": false,
+          "size_after": 610304,
+          "rows_read": 25,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "id": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "name": "m3-native.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "objectKey": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a1279c-eeb8-7aec-9990-fcea7a19567c",
+            "contentSha256": "7c9e723775fc86e3bd260892d5fe7d84b1689026e0d167a98470c0c57172c25e",
+            "uploadRequestId": "31ff0b19-3b31-412b-b88f-bb2a4222cab1",
+            "uploadRequestHash": "f00dd361164402120bd8629fbb43fdbb92fdffab077f3f1aaa24b682df3d0ea2",
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": 1791665958578,
+            "updatedAt": 1791665958578,
+            "deletedAt": null,
+            "deletedBy": null,
+            "version": 1,
+            "lastMutationId": "01a1279c-eeb8-78f6-bb26-c1726c44abdd"
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-2.response.json",
+        "bytes": 1077,
+        "sha256": "47d4e7f3b55a15e65ebbe672d5b3ca9c1d1cb85d48f2d1db744e0583dbca8610"
+      }
+    },
+    {
+      "name": "native-created-content",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a1279c-eeb8-7aec-9990-fcea7a19567c/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''m3-native.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"e5f155df94eb452a02e3745462be53bb\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu36-parameters": "4",
+        "x-wu36-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "7c9e723775fc86e3bd260892d5fe7d84b1689026e0d167a98470c0c57172c25e"
+      },
+      "raw": {
+        "path": "native-created-content.response.bin",
+        "bytes": 47,
+        "sha256": "7c9e723775fc86e3bd260892d5fe7d84b1689026e0d167a98470c0c57172c25e"
+      }
+    },
+    {
+      "name": "current-task-3",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "5",
+        "x-wu36-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-201",
+            "title": "WU36 M3 native task",
+            "descriptionHtml": "<p>M3 initial description</p>",
+            "status": "progress",
+            "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "priority": "medium",
+            "startDate": null,
+            "dueDate": null,
+            "estimate": null,
+            "recurrence": null,
+            "labelIds": [],
+            "dependencyIds": [],
+            "position": 5000,
+            "completedAt": null,
+            "archivedAt": null,
+            "createdAt": "2026-10-10T20:59:18.402Z",
+            "updatedAt": "2026-10-10T20:59:20.143Z",
+            "version": 3,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 1,
+              "completed": 0
+            },
+            "attachmentCount": 1,
+            "commentCount": 0
+          },
+          "subtasks": [
+            {
+              "id": "01a1279c-ee07-7d8d-99b7-c1426b4015da",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 form child",
+              "done": false,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "",
+              "position": 0
+            }
+          ],
+          "attachments": [
+            {
+              "id": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "name": "m3-native.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:59:18.578Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "current-task-3.response.json",
+        "bytes": 1355,
+        "sha256": "bae74bd8838327f2059fa867adb41b83e2629e5f57b5c5532c12125e3a6a030b"
+      }
+    },
+    {
+      "name": "current-task-4",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "5",
+        "x-wu36-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-201",
+            "title": "WU36 M3 native task",
+            "descriptionHtml": "<p>M3 initial description</p>",
+            "status": "progress",
+            "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "priority": "medium",
+            "startDate": null,
+            "dueDate": "2026-10-10",
+            "estimate": null,
+            "recurrence": null,
+            "labelIds": [],
+            "dependencyIds": [],
+            "position": 5000,
+            "completedAt": null,
+            "archivedAt": null,
+            "createdAt": "2026-10-10T20:59:18.402Z",
+            "updatedAt": "2026-10-10T20:59:21.020Z",
+            "version": 5,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 1,
+              "completed": 0
+            },
+            "attachmentCount": 1,
+            "commentCount": 0
+          },
+          "subtasks": [
+            {
+              "id": "01a1279c-ee07-7d8d-99b7-c1426b4015da",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 form child",
+              "done": false,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "",
+              "position": 0
+            }
+          ],
+          "attachments": [
+            {
+              "id": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "name": "m3-native.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:59:18.578Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "current-task-4.response.json",
+        "bytes": 1363,
+        "sha256": "695365c8ef11b1323ac10d32ad2423769cf0e08066d2e1c91513b101e4dbb543"
+      }
+    },
+    {
+      "name": "current-task-5",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "5",
+        "x-wu36-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-201",
+            "title": "WU36 M3 native task",
+            "descriptionHtml": "<p>M3 initial description</p>",
+            "status": "progress",
+            "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "priority": "medium",
+            "startDate": "2026-10-10",
+            "dueDate": "2026-10-10",
+            "estimate": null,
+            "recurrence": null,
+            "labelIds": [],
+            "dependencyIds": [],
+            "position": 5000,
+            "completedAt": null,
+            "archivedAt": null,
+            "createdAt": "2026-10-10T20:59:18.402Z",
+            "updatedAt": "2026-10-10T20:59:21.488Z",
+            "version": 6,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 1,
+              "completed": 0
+            },
+            "attachmentCount": 1,
+            "commentCount": 0
+          },
+          "subtasks": [
+            {
+              "id": "01a1279c-ee07-7d8d-99b7-c1426b4015da",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 form child",
+              "done": false,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "",
+              "position": 0
+            }
+          ],
+          "attachments": [
+            {
+              "id": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "name": "m3-native.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:59:18.578Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "current-task-5.response.json",
+        "bytes": 1371,
+        "sha256": "39e08a2bacdd7598e3d89440269786da6e9e3569c82c329956fabaf3fa5f74b2"
+      }
+    },
+    {
+      "name": "current-task-6",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "5",
+        "x-wu36-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-201",
+            "title": "WU36 M3 native task",
+            "descriptionHtml": "<p><strong>M3 persisted rich description</strong></p>",
+            "status": "progress",
+            "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "priority": "medium",
+            "startDate": "2026-10-10",
+            "dueDate": "2026-10-10",
+            "estimate": null,
+            "recurrence": null,
+            "labelIds": [],
+            "dependencyIds": [],
+            "position": 5000,
+            "completedAt": null,
+            "archivedAt": null,
+            "createdAt": "2026-10-10T20:59:18.402Z",
+            "updatedAt": "2026-10-10T20:59:21.640Z",
+            "version": 7,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 1,
+              "completed": 0
+            },
+            "attachmentCount": 1,
+            "commentCount": 0
+          },
+          "subtasks": [
+            {
+              "id": "01a1279c-ee07-7d8d-99b7-c1426b4015da",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 form child",
+              "done": false,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "",
+              "position": 0
+            }
+          ],
+          "attachments": [
+            {
+              "id": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "name": "m3-native.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:59:18.578Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "current-task-6.response.json",
+        "bytes": 1395,
+        "sha256": "2fa0b365c29c9b5c63794c8b37162b8dd712f574685677b2a8a5979a7469c370"
+      }
+    },
+    {
+      "name": "current-task-7",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "5",
+        "x-wu36-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-201",
+            "title": "WU36 M3 native task",
+            "descriptionHtml": "<p><strong>M3 persisted rich description</strong></p>",
+            "status": "progress",
+            "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "priority": "medium",
+            "startDate": "2026-10-10",
+            "dueDate": "2026-10-10",
+            "estimate": null,
+            "recurrence": null,
+            "labelIds": [],
+            "dependencyIds": [],
+            "position": 5000,
+            "completedAt": null,
+            "archivedAt": null,
+            "createdAt": "2026-10-10T20:59:18.402Z",
+            "updatedAt": "2026-10-10T20:59:21.640Z",
+            "version": 7,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 1,
+              "completed": 0
+            },
+            "attachmentCount": 1,
+            "commentCount": 0
+          },
+          "subtasks": [
+            {
+              "id": "01a1279c-ee07-7d8d-99b7-c1426b4015da",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 form child",
+              "done": false,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "",
+              "position": 0
+            }
+          ],
+          "attachments": [
+            {
+              "id": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "name": "m3-native.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:59:18.578Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "current-task-7.response.json",
+        "bytes": 1395,
+        "sha256": "2fa0b365c29c9b5c63794c8b37162b8dd712f574685677b2a8a5979a7469c370"
+      }
+    },
+    {
+      "name": "current-task-8",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "5",
+        "x-wu36-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-201",
+            "title": "WU36 M3 native task",
+            "descriptionHtml": "<p><strong>M3 persisted rich description</strong></p>",
+            "status": "review",
+            "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "priority": "medium",
+            "startDate": "2026-10-10",
+            "dueDate": "2026-10-10",
+            "estimate": null,
+            "recurrence": null,
+            "labelIds": [],
+            "dependencyIds": [],
+            "position": 200,
+            "completedAt": null,
+            "archivedAt": null,
+            "createdAt": "2026-10-10T20:59:18.402Z",
+            "updatedAt": "2026-10-10T20:59:24.492Z",
+            "version": 13,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 2,
+              "completed": 1
+            },
+            "attachmentCount": 1,
+            "commentCount": 1
+          },
+          "subtasks": [
+            {
+              "id": "01a1279c-ee07-7d8d-99b7-c1426b4015da",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 form child",
+              "done": false,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "",
+              "position": 0
+            },
+            {
+              "id": "01a1279c-fb27-7a24-bb30-9fe16c017f91",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 native child",
+              "done": true,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "M3 persisted child note",
+              "position": 100
+            }
+          ],
+          "attachments": [
+            {
+              "id": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "name": "m3-native.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:59:18.578Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "current-task-8.response.json",
+        "bytes": 1606,
+        "sha256": "11b14a388981281b269be271bd51668556b1f0c0001e29f57077ee8e5e4e9980"
+      }
+    },
+    {
+      "name": "current-task-9",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "5",
+        "x-wu36-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-201",
+            "title": "WU36 M3 native task",
+            "descriptionHtml": "<p><strong>M3 persisted rich description</strong></p>",
+            "status": "review",
+            "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "priority": "urgent",
+            "startDate": "2026-10-10",
+            "dueDate": "2026-10-10",
+            "estimate": null,
+            "recurrence": null,
+            "labelIds": [],
+            "dependencyIds": [],
+            "position": 200,
+            "completedAt": null,
+            "archivedAt": null,
+            "createdAt": "2026-10-10T20:59:18.402Z",
+            "updatedAt": "2026-10-10T20:59:25.520Z",
+            "version": 14,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 2,
+              "completed": 1
+            },
+            "attachmentCount": 1,
+            "commentCount": 1
+          },
+          "subtasks": [
+            {
+              "id": "01a1279c-ee07-7d8d-99b7-c1426b4015da",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 form child",
+              "done": false,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "",
+              "position": 0
+            },
+            {
+              "id": "01a1279c-fb27-7a24-bb30-9fe16c017f91",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "title": "M3 native child",
+              "done": true,
+              "assigneeId": null,
+              "dueDate": null,
+              "note": "M3 persisted child note",
+              "position": 100
+            }
+          ],
+          "attachments": [
+            {
+              "id": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+              "name": "m3-native.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:59:18.578Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "current-task-9.response.json",
+        "bytes": 1606,
+        "sha256": "60aad3df87aeab0545b0ec269104ce2f5c9ea2ef31758faac20cb290d91ff9be"
+      }
+    },
+    {
+      "name": "projection-getTaskSummary",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "4",
+        "x-wu36-queries": "6"
+      },
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "total": 49,
+          "byStatus": {
+            "backlog": 8,
+            "todo": 17,
+            "progress": 8,
+            "review": 7,
+            "done": 9
+          },
+          "byPriority": {
+            "urgent": 6,
+            "high": 14,
+            "medium": 21,
+            "low": 8,
+            "none": 0
+          },
+          "overdue": 7,
+          "completed": 9,
+          "completionRate": 18,
+          "subtaskTotals": {
+            "total": 18,
+            "completed": 9
+          }
+        }
+      },
+      "raw": {
+        "path": "projection-getTaskSummary.response.json",
+        "bytes": 243,
+        "sha256": "4e950b24f258bf388e42ea680c6dd811128ff3f728226a516ac8cd8d8a669d83"
+      }
+    },
+    {
+      "name": "projection-getProjectSummary",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "4",
+        "x-wu36-queries": "11"
+      },
+      "budget": {
+        "queries": 11,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskSummary": {
+            "total": 19,
+            "byStatus": {
+              "backlog": 4,
+              "todo": 5,
+              "progress": 3,
+              "review": 3,
+              "done": 4
+            },
+            "byPriority": {
+              "urgent": 2,
+              "high": 5,
+              "medium": 8,
+              "low": 4,
+              "none": 0
+            },
+            "overdue": 3,
+            "completed": 4,
+            "completionRate": 21,
+            "subtaskTotals": {
+              "total": 14,
+              "completed": 7
+            }
+          },
+          "progress": 21
+        }
+      },
+      "raw": {
+        "path": "projection-getProjectSummary.response.json",
+        "bytes": 321,
+        "sha256": "7ee070b08c2d7b7a419f56da7767721b0d38037bab93da57269afa3c78ee5cbe"
+      }
+    },
+    {
+      "name": "projection-getHome",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "8",
+        "x-wu36-queries": "18"
+      },
+      "budget": {
+        "queries": 18,
+        "parameters": 8
+      },
+      "response": {
+        "data": {
+          "counters": {
+            "totalTasks": 49,
+            "completedThisWeek": 7,
+            "overdue": 7,
+            "activeProjects": 5
+          },
+          "myTasks": {
+            "items": [
+              {
+                "id": "01a11abd-aa80-7e0b-80e9-fa442d8387b6",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-106",
+                "title": "Summarize stakeholder interviews",
+                "descriptionHtml": "",
+                "status": "done",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "medium",
+                "startDate": "2026-09-25",
+                "dueDate": "2026-09-29",
+                "estimate": "1d",
+                "recurrence": null,
+                "labelIds": [
+                  "research"
+                ],
+                "dependencyIds": [],
+                "position": 200,
+                "completedAt": "2026-10-07T10:00:00.000Z",
+                "archivedAt": null,
+                "createdAt": "2026-09-12T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7b0b-8be3-f143433c220a",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-118",
+                "title": "Prepare design system tokens",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "medium",
+                "startDate": "2026-10-10",
+                "dueDate": "2026-10-14",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "design"
+                ],
+                "dependencyIds": [],
+                "position": 600,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-74a3-8f79-c2df99f99a68",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-145",
+                "title": "Weekly design sync notes",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "low",
+                "startDate": "2026-10-06",
+                "dueDate": "2026-10-10",
+                "estimate": "30m",
+                "recurrence": "weekly",
+                "labelIds": [
+                  "content"
+                ],
+                "dependencyIds": [],
+                "position": 1500,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7180-8cb6-edfb5a174fd3",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "key": "MOB-124",
+                "title": "Triage beta tester feedback",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "medium",
+                "startDate": "2026-10-07",
+                "dueDate": "2026-10-08",
+                "estimate": "4h",
+                "recurrence": "weekly",
+                "labelIds": [
+                  "research"
+                ],
+                "dependencyIds": [],
+                "position": 2600,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7a1f-8e76-3337cd53db35",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "key": "MKT-118",
+                "title": "Launch webinar deck",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "medium",
+                "startDate": "2026-10-19",
+                "dueDate": "2026-10-23",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "content"
+                ],
+                "dependencyIds": [],
+                "position": 3300,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7c13-835b-efe81f8e9f85",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "key": "MKT-121",
+                "title": "Budget approval",
+                "descriptionHtml": "",
+                "status": "review",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "urgent",
+                "startDate": "2026-10-05",
+                "dueDate": "2026-10-06",
+                "estimate": "1h",
+                "recurrence": null,
+                "labelIds": [],
+                "dependencyIds": [],
+                "position": 3400,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 1
+              },
+              {
+                "id": "01a11abd-aa80-7141-8795-482a25f9352f",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "key": "LCH-103",
+                "title": "Launch readiness checklist",
+                "descriptionHtml": "",
+                "status": "progress",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "urgent",
+                "startDate": "2026-10-01",
+                "dueDate": "2026-10-11",
+                "estimate": "1d",
+                "recurrence": null,
+                "labelIds": [
+                  "qa"
+                ],
+                "dependencyIds": [],
+                "position": 3500,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 4,
+                  "completed": 2
+                },
+                "attachmentCount": 0,
+                "commentCount": 1
+              },
+              {
+                "id": "01a11abd-aa80-7842-8d10-525c4f9d8903",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "key": "LCH-118",
+                "title": "Go / no-go meeting",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "high",
+                "startDate": "2026-10-15",
+                "dueDate": "2026-10-19",
+                "estimate": "1h",
+                "recurrence": null,
+                "labelIds": [],
+                "dependencyIds": [],
+                "position": 4000,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-201",
+                "title": "WU36 M3 native task",
+                "descriptionHtml": "<p><strong>M3 persisted rich description</strong></p>",
+                "status": "review",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "urgent",
+                "startDate": "2026-10-10",
+                "dueDate": "2026-10-10",
+                "estimate": null,
+                "recurrence": null,
+                "labelIds": [],
+                "dependencyIds": [],
+                "position": 200,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-10-10T20:59:18.402Z",
+                "updatedAt": "2026-10-10T20:59:25.520Z",
+                "version": 14,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 2,
+                  "completed": 1
+                },
+                "attachmentCount": 1,
+                "commentCount": 1
+              }
+            ],
+            "total": 9
+          },
+          "deadlines": {
+            "items": [
+              {
+                "id": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-201",
+                "title": "WU36 M3 native task",
+                "descriptionHtml": "<p><strong>M3 persisted rich description</strong></p>",
+                "status": "review",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "urgent",
+                "startDate": "2026-10-10",
+                "dueDate": "2026-10-10",
+                "estimate": null,
+                "recurrence": null,
+                "labelIds": [],
+                "dependencyIds": [],
+                "position": 200,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-10-10T20:59:18.402Z",
+                "updatedAt": "2026-10-10T20:59:25.520Z",
+                "version": 14,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 2,
+                  "completed": 1
+                },
+                "attachmentCount": 1,
+                "commentCount": 1
+              },
+              {
+                "id": "01a11abd-aa80-7db9-8e23-68e1f0867a33",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "key": "MOB-118",
+                "title": "Biometric sign-in",
+                "descriptionHtml": "",
+                "status": "review",
+                "assigneeId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                "priority": "high",
+                "startDate": "2026-10-04",
+                "dueDate": "2026-10-10",
+                "estimate": "3d",
+                "recurrence": null,
+                "labelIds": [
+                  "frontend"
+                ],
+                "dependencyIds": [],
+                "position": 2400,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 1
+              },
+              {
+                "id": "01a11abd-aa80-7053-8b60-25b2f102f0b0",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                "key": "DS-118",
+                "title": "Dark mode palette",
+                "descriptionHtml": "",
+                "status": "review",
+                "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                "priority": "high",
+                "startDate": "2026-10-06",
+                "dueDate": "2026-10-10",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "design"
+                ],
+                "dependencyIds": [],
+                "position": 4600,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-79d9-8534-c0f3a10842da",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-142",
+                "title": "Image optimization pipeline",
+                "descriptionHtml": "",
+                "status": "review",
+                "assigneeId": "01a11abd-aa80-7567-80df-64683f5c3572",
+                "priority": "low",
+                "startDate": "2026-10-05",
+                "dueDate": "2026-10-10",
+                "estimate": "1d",
+                "recurrence": null,
+                "labelIds": [
+                  "backend"
+                ],
+                "dependencyIds": [],
+                "position": 1400,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-74a3-8f79-c2df99f99a68",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-145",
+                "title": "Weekly design sync notes",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "low",
+                "startDate": "2026-10-06",
+                "dueDate": "2026-10-10",
+                "estimate": "30m",
+                "recurrence": "weekly",
+                "labelIds": [
+                  "content"
+                ],
+                "dependencyIds": [],
+                "position": 1500,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7141-8795-482a25f9352f",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "key": "LCH-103",
+                "title": "Launch readiness checklist",
+                "descriptionHtml": "",
+                "status": "progress",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "urgent",
+                "startDate": "2026-10-01",
+                "dueDate": "2026-10-11",
+                "estimate": "1d",
+                "recurrence": null,
+                "labelIds": [
+                  "qa"
+                ],
+                "dependencyIds": [],
+                "position": 3500,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 4,
+                  "completed": 2
+                },
+                "attachmentCount": 0,
+                "commentCount": 1
+              },
+              {
+                "id": "01a11abd-aa80-73ec-81cb-4a182efff13f",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-115",
+                "title": "Design responsive navigation",
+                "descriptionHtml": "",
+                "status": "progress",
+                "assigneeId": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                "priority": "medium",
+                "startDate": "2026-10-05",
+                "dueDate": "2026-10-11",
+                "estimate": "3d",
+                "recurrence": null,
+                "labelIds": [
+                  "design"
+                ],
+                "dependencyIds": [],
+                "position": 500,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 2,
+                  "completed": 1
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7a26-8945-078168bb20a8",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "key": "MOB-109",
+                "title": "Offline mode sync",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                "priority": "urgent",
+                "startDate": "2026-10-03",
+                "dueDate": "2026-10-13",
+                "estimate": "8d",
+                "recurrence": null,
+                "labelIds": [
+                  "backend",
+                  "frontend"
+                ],
+                "dependencyIds": [
+                  "01a11abd-aa80-7d91-8dd7-e321600cb8c7"
+                ],
+                "position": 2100,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-790e-8fd4-e069f1291c4f",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "key": "MOB-103",
+                "title": "Onboarding flow prototype",
+                "descriptionHtml": "",
+                "status": "progress",
+                "assigneeId": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                "priority": "high",
+                "startDate": "2026-10-06",
+                "dueDate": "2026-10-12",
+                "estimate": "3d",
+                "recurrence": null,
+                "labelIds": [
+                  "design"
+                ],
+                "dependencyIds": [],
+                "position": 1900,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7d91-8dd7-e321600cb8c7",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "key": "MOB-106",
+                "title": "Push notification service",
+                "descriptionHtml": "",
+                "status": "progress",
+                "assigneeId": "01a11abd-aa80-7567-80df-64683f5c3572",
+                "priority": "high",
+                "startDate": "2026-10-05",
+                "dueDate": "2026-10-14",
+                "estimate": "5d",
+                "recurrence": null,
+                "labelIds": [
+                  "backend"
+                ],
+                "dependencyIds": [],
+                "position": 2000,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7fd3-8e96-2f367d1c66b6",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "key": "MKT-109",
+                "title": "Paid social creatives",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                "priority": "high",
+                "startDate": "2026-10-10",
+                "dueDate": "2026-10-15",
+                "estimate": "3d",
+                "recurrence": null,
+                "labelIds": [
+                  "design",
+                  "growth"
+                ],
+                "dependencyIds": [],
+                "position": 3000,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7b51-84ce-22a02cc7c075",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "key": "LCH-106",
+                "title": "Pricing page update",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                "priority": "high",
+                "startDate": "2026-10-10",
+                "dueDate": "2026-10-14",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "design",
+                  "frontend"
+                ],
+                "dependencyIds": [],
+                "position": 3600,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7b0b-8be3-f143433c220a",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-118",
+                "title": "Prepare design system tokens",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "priority": "medium",
+                "startDate": "2026-10-10",
+                "dueDate": "2026-10-14",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "design"
+                ],
+                "dependencyIds": [],
+                "position": 600,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7880-80af-a6a7ec65ffac",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "key": "WEB-121",
+                "title": "Review responsive layouts",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                "priority": "medium",
+                "startDate": "2026-10-13",
+                "dueDate": "2026-10-16",
+                "estimate": "1d",
+                "recurrence": null,
+                "labelIds": [
+                  "design",
+                  "qa"
+                ],
+                "dependencyIds": [],
+                "position": 700,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-79be-8a89-e5bc00000bbb",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "key": "MOB-121",
+                "title": "Settings screen redesign",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                "priority": "medium",
+                "startDate": "2026-10-13",
+                "dueDate": "2026-10-17",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "design"
+                ],
+                "dependencyIds": [],
+                "position": 2500,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7c05-8d90-bc1643ef1227",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "key": "MKT-106",
+                "title": "Landing page copy",
+                "descriptionHtml": "",
+                "status": "progress",
+                "assigneeId": "01a11abd-aa80-7470-803a-d8637be26509",
+                "priority": "medium",
+                "startDate": "2026-10-08",
+                "dueDate": "2026-10-12",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "content"
+                ],
+                "dependencyIds": [],
+                "position": 2900,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-750d-8f02-b784e9ac1644",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "key": "MKT-112",
+                "title": "Email nurture sequence",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-7a8a-8271-af0df3499721",
+                "priority": "medium",
+                "startDate": "2026-10-13",
+                "dueDate": "2026-10-17",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "content"
+                ],
+                "dependencyIds": [],
+                "position": 3100,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7a62-8e95-8d53117cb6e7",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "key": "LCH-112",
+                "title": "Sales enablement docs",
+                "descriptionHtml": "",
+                "status": "todo",
+                "assigneeId": "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+                "priority": "medium",
+                "startDate": "2026-10-12",
+                "dueDate": "2026-10-16",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "content"
+                ],
+                "dependencyIds": [],
+                "position": 3800,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              },
+              {
+                "id": "01a11abd-aa80-7775-89ff-744eaae335f7",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                "key": "DS-106",
+                "title": "Button component audit",
+                "descriptionHtml": "",
+                "status": "progress",
+                "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                "priority": "medium",
+                "startDate": "2026-10-09",
+                "dueDate": "2026-10-13",
+                "estimate": "2d",
+                "recurrence": null,
+                "labelIds": [
+                  "design",
+                  "frontend"
+                ],
+                "dependencyIds": [],
+                "position": 4200,
+                "completedAt": null,
+                "archivedAt": null,
+                "createdAt": "2026-09-26T09:00:00.000Z",
+                "updatedAt": "2026-10-07T03:00:00.000Z",
+                "version": 1,
+                "isFavorite": false,
+                "subtaskSummary": {
+                  "total": 0,
+                  "completed": 0
+                },
+                "attachmentCount": 0,
+                "commentCount": 0
+              }
+            ],
+            "total": 19
+          },
+          "projects": {
+            "items": [
+              {
+                "access": "allowed",
+                "project": {
+                  "id": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                  "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                  "key": "WEB",
+                  "name": "Website Redesign",
+                  "description": "Rebuild gr8rstudio.com with a clearer information architecture, a responsive component library, and a faster CMS-driven blog.",
+                  "icon": "globe",
+                  "color": "#5A67D8",
+                  "status": "active",
+                  "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+                  "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                  "startDate": "2026-09-08",
+                  "dueDate": "2026-11-01",
+                  "visibility": "workspace",
+                  "memberIds": [
+                    "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                    "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                    "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                    "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                    "01a11abd-aa80-7470-803a-d8637be26509",
+                    "01a11abd-aa80-7567-80df-64683f5c3572",
+                    "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                  ],
+                  "milestones": [
+                    {
+                      "id": "01a11abd-aa80-7311-8fd4-d485e62a5f45",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                      "name": "Wireframes signed off",
+                      "date": "2026-10-10",
+                      "position": 0
+                    },
+                    {
+                      "id": "01a11abd-aa80-7282-82b9-12bf7f3694c0",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                      "name": "Dev handoff",
+                      "date": "2026-10-22",
+                      "position": 100
+                    },
+                    {
+                      "id": "01a11abd-aa80-77d3-8551-ab806d5c3f55",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                      "name": "Public launch",
+                      "date": "2026-11-01",
+                      "position": 200
+                    }
+                  ],
+                  "isFavorite": true,
+                  "archivedAt": null,
+                  "createdAt": "2026-10-08T09:00:00.000Z",
+                  "updatedAt": "2026-10-08T09:00:00.000Z",
+                  "lastActivityAt": "2026-10-08T08:48:00.000Z",
+                  "version": 1
+                },
+                "summary": {
+                  "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                  "taskSummary": {
+                    "total": 19,
+                    "byStatus": {
+                      "backlog": 4,
+                      "todo": 5,
+                      "progress": 3,
+                      "review": 3,
+                      "done": 4
+                    },
+                    "byPriority": {
+                      "urgent": 2,
+                      "high": 5,
+                      "medium": 8,
+                      "low": 4,
+                      "none": 0
+                    },
+                    "overdue": 3,
+                    "completed": 4,
+                    "completionRate": 21,
+                    "subtaskTotals": {
+                      "total": 14,
+                      "completed": 7
+                    }
+                  },
+                  "progress": 21
+                }
+              },
+              {
+                "access": "allowed",
+                "project": {
+                  "id": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                  "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                  "key": "MOB",
+                  "name": "Mobile App",
+                  "description": "Native iOS and Android client for field teams with offline sync, push notifications, and biometric sign-in.",
+                  "icon": "smartphone",
+                  "color": "#3B82C4",
+                  "status": "active",
+                  "teamId": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+                  "leadId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "startDate": "2026-08-24",
+                  "dueDate": "2026-11-29",
+                  "visibility": "workspace",
+                  "memberIds": [
+                    "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                    "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                    "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                    "01a11abd-aa80-7567-80df-64683f5c3572",
+                    "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                  ],
+                  "milestones": [
+                    {
+                      "id": "01a11abd-aa80-73de-8352-a37eda1f6804",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                      "name": "Beta build",
+                      "date": "2026-10-17",
+                      "position": 0
+                    },
+                    {
+                      "id": "01a11abd-aa80-7968-841d-52612a365a0b",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                      "name": "App Store submission",
+                      "date": "2026-11-22",
+                      "position": 100
+                    }
+                  ],
+                  "isFavorite": true,
+                  "archivedAt": null,
+                  "createdAt": "2026-10-08T09:00:00.000Z",
+                  "updatedAt": "2026-10-08T09:00:00.000Z",
+                  "lastActivityAt": "2026-10-08T08:12:00.000Z",
+                  "version": 1
+                },
+                "summary": {
+                  "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                  "taskSummary": {
+                    "total": 9,
+                    "byStatus": {
+                      "backlog": 1,
+                      "todo": 4,
+                      "progress": 2,
+                      "review": 1,
+                      "done": 1
+                    },
+                    "byPriority": {
+                      "urgent": 2,
+                      "high": 3,
+                      "medium": 3,
+                      "low": 1,
+                      "none": 0
+                    },
+                    "overdue": 2,
+                    "completed": 1,
+                    "completionRate": 11,
+                    "subtaskTotals": {
+                      "total": 0,
+                      "completed": 0
+                    }
+                  },
+                  "progress": 11
+                }
+              },
+              {
+                "access": "allowed",
+                "project": {
+                  "id": "01a11abd-aa80-784d-8681-7daf87297886",
+                  "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                  "key": "MKT",
+                  "name": "Marketing Campaign",
+                  "description": "Q4 awareness campaign across paid social, email, and a launch webinar targeting operations leads.",
+                  "icon": "megaphone",
+                  "color": "#C54B78",
+                  "status": "planning",
+                  "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+                  "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+                  "startDate": "2026-09-28",
+                  "dueDate": "2026-11-17",
+                  "visibility": "workspace",
+                  "memberIds": [
+                    "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                    "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                    "01a11abd-aa80-7470-803a-d8637be26509",
+                    "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+                    "01a11abd-aa80-7a8a-8271-af0df3499721"
+                  ],
+                  "milestones": [
+                    {
+                      "id": "01a11abd-aa80-715d-8c2b-2f959e3c70b1",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                      "name": "Creative lock",
+                      "date": "2026-10-20",
+                      "position": 0
+                    },
+                    {
+                      "id": "01a11abd-aa80-7392-8a33-b21e8347d051",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                      "name": "Campaign live",
+                      "date": "2026-10-29",
+                      "position": 100
+                    }
+                  ],
+                  "isFavorite": false,
+                  "archivedAt": null,
+                  "createdAt": "2026-10-08T09:00:00.000Z",
+                  "updatedAt": "2026-10-08T09:00:00.000Z",
+                  "lastActivityAt": "2026-10-08T06:50:00.000Z",
+                  "version": 1
+                },
+                "summary": {
+                  "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                  "taskSummary": {
+                    "total": 7,
+                    "byStatus": {
+                      "backlog": 1,
+                      "todo": 3,
+                      "progress": 1,
+                      "review": 1,
+                      "done": 1
+                    },
+                    "byPriority": {
+                      "urgent": 1,
+                      "high": 1,
+                      "medium": 4,
+                      "low": 1,
+                      "none": 0
+                    },
+                    "overdue": 1,
+                    "completed": 1,
+                    "completionRate": 14,
+                    "subtaskTotals": {
+                      "total": 0,
+                      "completed": 0
+                    }
+                  },
+                  "progress": 14
+                }
+              },
+              {
+                "access": "allowed",
+                "project": {
+                  "id": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                  "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                  "key": "LCH",
+                  "name": "Product Launch",
+                  "description": "Coordinate the Workflows 2.0 launch: pricing, docs, press, and sales enablement across teams.",
+                  "icon": "rocket",
+                  "color": "#C48A1E",
+                  "status": "risk",
+                  "teamId": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+                  "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "startDate": "2026-09-17",
+                  "dueDate": "2026-10-20",
+                  "visibility": "workspace",
+                  "memberIds": [
+                    "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                    "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                    "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                    "01a11abd-aa80-7470-803a-d8637be26509",
+                    "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                  ],
+                  "milestones": [
+                    {
+                      "id": "01a11abd-aa80-7b1e-8750-aee019ec403a",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                      "name": "Go / no-go",
+                      "date": "2026-10-19",
+                      "position": 0
+                    },
+                    {
+                      "id": "01a11abd-aa80-78b5-8b54-7109f0699ea3",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                      "name": "Launch day",
+                      "date": "2026-10-20",
+                      "position": 100
+                    }
+                  ],
+                  "isFavorite": false,
+                  "archivedAt": null,
+                  "createdAt": "2026-10-08T09:00:00.000Z",
+                  "updatedAt": "2026-10-08T09:00:00.000Z",
+                  "lastActivityAt": "2026-10-08T08:25:00.000Z",
+                  "version": 1
+                },
+                "summary": {
+                  "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                  "taskSummary": {
+                    "total": 6,
+                    "byStatus": {
+                      "backlog": 1,
+                      "todo": 3,
+                      "progress": 1,
+                      "review": 1,
+                      "done": 0
+                    },
+                    "byPriority": {
+                      "urgent": 1,
+                      "high": 2,
+                      "medium": 2,
+                      "low": 1,
+                      "none": 0
+                    },
+                    "overdue": 1,
+                    "completed": 0,
+                    "completionRate": 0,
+                    "subtaskTotals": {
+                      "total": 4,
+                      "completed": 2
+                    }
+                  },
+                  "progress": 0
+                }
+              },
+              {
+                "access": "allowed",
+                "project": {
+                  "id": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                  "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                  "key": "DS",
+                  "name": "Design System",
+                  "description": "Shared tokens, components, and documentation used by web and mobile teams.",
+                  "icon": "component",
+                  "color": "#8662C9",
+                  "status": "active",
+                  "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+                  "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                  "startDate": "2026-08-09",
+                  "dueDate": "2026-12-17",
+                  "visibility": "workspace",
+                  "memberIds": [
+                    "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                    "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                    "01a11abd-aa80-72e4-8e93-62c2ece91c47"
+                  ],
+                  "milestones": [
+                    {
+                      "id": "01a11abd-aa80-7e21-8112-2b24976a5e2a",
+                      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                      "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                      "name": "v2 tokens",
+                      "date": "2026-10-11",
+                      "position": 0
+                    }
+                  ],
+                  "isFavorite": false,
+                  "archivedAt": null,
+                  "createdAt": "2026-10-08T09:00:00.000Z",
+                  "updatedAt": "2026-10-08T09:00:00.000Z",
+                  "lastActivityAt": "2026-10-08T04:00:00.000Z",
+                  "version": 1
+                },
+                "summary": {
+                  "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                  "taskSummary": {
+                    "total": 6,
+                    "byStatus": {
+                      "backlog": 1,
+                      "todo": 2,
+                      "progress": 1,
+                      "review": 1,
+                      "done": 1
+                    },
+                    "byPriority": {
+                      "urgent": 0,
+                      "high": 2,
+                      "medium": 3,
+                      "low": 1,
+                      "none": 0
+                    },
+                    "overdue": 0,
+                    "completed": 1,
+                    "completionRate": 17,
+                    "subtaskTotals": {
+                      "total": 0,
+                      "completed": 0
+                    }
+                  },
+                  "progress": 17
+                }
+              }
+            ],
+            "total": 5
+          },
+          "recentActivity": {
+            "items": [
+              {
+                "id": "01a1279d-09d0-7565-bf1f-b6aa0871090b",
+                "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "eventType": "task.updated",
+                "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "createdAt": "2026-10-10T20:59:25.520Z",
+                "payload": {
+                  "taskTitle": "WU36 M3 native task",
+                  "status": "review"
+                }
+              },
+              {
+                "id": "01a1279d-05d3-7502-ba8f-184bc153b5a6",
+                "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "eventType": "task.moved",
+                "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "createdAt": "2026-10-10T20:59:24.492Z",
+                "payload": {
+                  "taskTitle": "WU36 M3 native task",
+                  "status": "review"
+                }
+              },
+              {
+                "id": "01a1279c-fccf-7ab4-9587-7f41f1a98da4",
+                "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "eventType": "comment.created",
+                "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "createdAt": "2026-10-10T20:59:22.183Z",
+                "payload": {
+                  "taskKey": "WEB-201",
+                  "taskTitle": "WU36 M3 native task"
+                }
+              },
+              {
+                "id": "01a1279c-fbd3-7bc6-8e3d-a5f76c6bf673",
+                "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "eventType": "task.updated",
+                "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "createdAt": "2026-10-10T20:59:21.933Z",
+                "payload": {
+                  "taskKey": "WEB-201",
+                  "taskTitle": "WU36 M3 native task",
+                  "detail": "completed subtask “M3 native child”"
+                }
+              },
+              {
+                "id": "01a1279c-fb29-7344-9bef-81143794c8e3",
+                "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "eventType": "task.updated",
+                "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "createdAt": "2026-10-10T20:59:21.763Z",
+                "payload": {
+                  "taskKey": "WEB-201",
+                  "taskTitle": "WU36 M3 native task",
+                  "detail": "added subtask “M3 native child”"
+                }
+              },
+              {
+                "id": "01a1279c-faaa-78b4-9563-becc71536775",
+                "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "eventType": "task.updated",
+                "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "createdAt": "2026-10-10T20:59:21.640Z",
+                "payload": {
+                  "taskTitle": "WU36 M3 native task",
+                  "status": "progress"
+                }
+              },
+              {
+                "id": "01a1279c-fa12-7d64-bb50-60e8a238bd4b",
+                "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "eventType": "task.updated",
+                "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "createdAt": "2026-10-10T20:59:21.488Z",
+                "payload": {
+                  "taskTitle": "WU36 M3 native task",
+                  "status": "progress"
+                }
+              }
+            ],
+            "total": 25
+          }
+        }
+      },
+      "raw": {
+        "path": "projection-getHome.response.json",
+        "bytes": 29854,
+        "sha256": "dac7429464656343e456cc7279b8ece88ec1c87da980604bb10930be185f99c8"
+      }
+    },
+    {
+      "name": "projection-getOverview",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/overview",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "8",
+        "x-wu36-queries": "17"
+      },
+      "budget": {
+        "queries": 17,
+        "parameters": 8
+      },
+      "response": {
+        "data": {
+          "taskSummary": {
+            "total": 49,
+            "byStatus": {
+              "backlog": 8,
+              "todo": 17,
+              "progress": 8,
+              "review": 7,
+              "done": 9
+            },
+            "byPriority": {
+              "urgent": 6,
+              "high": 14,
+              "medium": 21,
+              "low": 8,
+              "none": 0
+            },
+            "overdue": 7,
+            "completed": 9,
+            "completionRate": 18,
+            "subtaskTotals": {
+              "total": 18,
+              "completed": 9
+            }
+          },
+          "projects": [
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "WEB",
+                "name": "Website Redesign",
+                "description": "Rebuild gr8rstudio.com with a clearer information architecture, a responsive component library, and a faster CMS-driven blog.",
+                "icon": "globe",
+                "color": "#5A67D8",
+                "status": "active",
+                "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+                "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                "startDate": "2026-09-08",
+                "dueDate": "2026-11-01",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                  "01a11abd-aa80-7470-803a-d8637be26509",
+                  "01a11abd-aa80-7567-80df-64683f5c3572",
+                  "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-7311-8fd4-d485e62a5f45",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                    "name": "Wireframes signed off",
+                    "date": "2026-10-10",
+                    "position": 0
+                  },
+                  {
+                    "id": "01a11abd-aa80-7282-82b9-12bf7f3694c0",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                    "name": "Dev handoff",
+                    "date": "2026-10-22",
+                    "position": 100
+                  },
+                  {
+                    "id": "01a11abd-aa80-77d3-8551-ab806d5c3f55",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                    "name": "Public launch",
+                    "date": "2026-11-01",
+                    "position": 200
+                  }
+                ],
+                "isFavorite": true,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T08:48:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "taskSummary": {
+                  "total": 19,
+                  "byStatus": {
+                    "backlog": 4,
+                    "todo": 5,
+                    "progress": 3,
+                    "review": 3,
+                    "done": 4
+                  },
+                  "byPriority": {
+                    "urgent": 2,
+                    "high": 5,
+                    "medium": 8,
+                    "low": 4,
+                    "none": 0
+                  },
+                  "overdue": 3,
+                  "completed": 4,
+                  "completionRate": 21,
+                  "subtaskTotals": {
+                    "total": 14,
+                    "completed": 7
+                  }
+                },
+                "progress": 21
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "MOB",
+                "name": "Mobile App",
+                "description": "Native iOS and Android client for field teams with offline sync, push notifications, and biometric sign-in.",
+                "icon": "smartphone",
+                "color": "#3B82C4",
+                "status": "active",
+                "teamId": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+                "leadId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                "startDate": "2026-08-24",
+                "dueDate": "2026-11-29",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                  "01a11abd-aa80-7567-80df-64683f5c3572",
+                  "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-73de-8352-a37eda1f6804",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                    "name": "Beta build",
+                    "date": "2026-10-17",
+                    "position": 0
+                  },
+                  {
+                    "id": "01a11abd-aa80-7968-841d-52612a365a0b",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                    "name": "App Store submission",
+                    "date": "2026-11-22",
+                    "position": 100
+                  }
+                ],
+                "isFavorite": true,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T08:12:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "taskSummary": {
+                  "total": 9,
+                  "byStatus": {
+                    "backlog": 1,
+                    "todo": 4,
+                    "progress": 2,
+                    "review": 1,
+                    "done": 1
+                  },
+                  "byPriority": {
+                    "urgent": 2,
+                    "high": 3,
+                    "medium": 3,
+                    "low": 1,
+                    "none": 0
+                  },
+                  "overdue": 2,
+                  "completed": 1,
+                  "completionRate": 11,
+                  "subtaskTotals": {
+                    "total": 0,
+                    "completed": 0
+                  }
+                },
+                "progress": 11
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-784d-8681-7daf87297886",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "MKT",
+                "name": "Marketing Campaign",
+                "description": "Q4 awareness campaign across paid social, email, and a launch webinar targeting operations leads.",
+                "icon": "megaphone",
+                "color": "#C54B78",
+                "status": "planning",
+                "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+                "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+                "startDate": "2026-09-28",
+                "dueDate": "2026-11-17",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                  "01a11abd-aa80-7470-803a-d8637be26509",
+                  "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+                  "01a11abd-aa80-7a8a-8271-af0df3499721"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-715d-8c2b-2f959e3c70b1",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                    "name": "Creative lock",
+                    "date": "2026-10-20",
+                    "position": 0
+                  },
+                  {
+                    "id": "01a11abd-aa80-7392-8a33-b21e8347d051",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                    "name": "Campaign live",
+                    "date": "2026-10-29",
+                    "position": 100
+                  }
+                ],
+                "isFavorite": false,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T06:50:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "taskSummary": {
+                  "total": 7,
+                  "byStatus": {
+                    "backlog": 1,
+                    "todo": 3,
+                    "progress": 1,
+                    "review": 1,
+                    "done": 1
+                  },
+                  "byPriority": {
+                    "urgent": 1,
+                    "high": 1,
+                    "medium": 4,
+                    "low": 1,
+                    "none": 0
+                  },
+                  "overdue": 1,
+                  "completed": 1,
+                  "completionRate": 14,
+                  "subtaskTotals": {
+                    "total": 0,
+                    "completed": 0
+                  }
+                },
+                "progress": 14
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "LCH",
+                "name": "Product Launch",
+                "description": "Coordinate the Workflows 2.0 launch: pricing, docs, press, and sales enablement across teams.",
+                "icon": "rocket",
+                "color": "#C48A1E",
+                "status": "risk",
+                "teamId": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+                "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "startDate": "2026-09-17",
+                "dueDate": "2026-10-20",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-7470-803a-d8637be26509",
+                  "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-7b1e-8750-aee019ec403a",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                    "name": "Go / no-go",
+                    "date": "2026-10-19",
+                    "position": 0
+                  },
+                  {
+                    "id": "01a11abd-aa80-78b5-8b54-7109f0699ea3",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                    "name": "Launch day",
+                    "date": "2026-10-20",
+                    "position": 100
+                  }
+                ],
+                "isFavorite": false,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T08:25:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "taskSummary": {
+                  "total": 6,
+                  "byStatus": {
+                    "backlog": 1,
+                    "todo": 3,
+                    "progress": 1,
+                    "review": 1,
+                    "done": 0
+                  },
+                  "byPriority": {
+                    "urgent": 1,
+                    "high": 2,
+                    "medium": 2,
+                    "low": 1,
+                    "none": 0
+                  },
+                  "overdue": 1,
+                  "completed": 0,
+                  "completionRate": 0,
+                  "subtaskTotals": {
+                    "total": 4,
+                    "completed": 2
+                  }
+                },
+                "progress": 0
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "DS",
+                "name": "Design System",
+                "description": "Shared tokens, components, and documentation used by web and mobile teams.",
+                "icon": "component",
+                "color": "#8662C9",
+                "status": "active",
+                "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+                "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                "startDate": "2026-08-09",
+                "dueDate": "2026-12-17",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-72e4-8e93-62c2ece91c47"
+                ],
+                "milestones": [
+                  {
+                    "id": "01a11abd-aa80-7e21-8112-2b24976a5e2a",
+                    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                    "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                    "name": "v2 tokens",
+                    "date": "2026-10-11",
+                    "position": 0
+                  }
+                ],
+                "isFavorite": false,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-10-08T04:00:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                "taskSummary": {
+                  "total": 6,
+                  "byStatus": {
+                    "backlog": 1,
+                    "todo": 2,
+                    "progress": 1,
+                    "review": 1,
+                    "done": 1
+                  },
+                  "byPriority": {
+                    "urgent": 0,
+                    "high": 2,
+                    "medium": 3,
+                    "low": 1,
+                    "none": 0
+                  },
+                  "overdue": 0,
+                  "completed": 1,
+                  "completionRate": 17,
+                  "subtaskTotals": {
+                    "total": 0,
+                    "completed": 0
+                  }
+                },
+                "progress": 17
+              }
+            },
+            {
+              "access": "allowed",
+              "project": {
+                "id": "01a11abd-aa80-7d99-849a-abec9340dc89",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "key": "MW",
+                "name": "Marketing Website",
+                "description": "Launch site for the spring release. Shipped and handed to the web team for maintenance.",
+                "icon": "layout-grid",
+                "color": "#3D8E5F",
+                "status": "complete",
+                "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+                "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+                "startDate": "2026-07-20",
+                "dueDate": "2026-09-20",
+                "visibility": "workspace",
+                "memberIds": [
+                  "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                  "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                  "01a11abd-aa80-7470-803a-d8637be26509"
+                ],
+                "milestones": [],
+                "isFavorite": false,
+                "archivedAt": null,
+                "createdAt": "2026-10-08T09:00:00.000Z",
+                "updatedAt": "2026-10-08T09:00:00.000Z",
+                "lastActivityAt": "2026-09-20T07:40:00.000Z",
+                "version": 1
+              },
+              "summary": {
+                "projectId": "01a11abd-aa80-7d99-849a-abec9340dc89",
+                "taskSummary": {
+                  "total": 2,
+                  "byStatus": {
+                    "backlog": 0,
+                    "todo": 0,
+                    "progress": 0,
+                    "review": 0,
+                    "done": 2
+                  },
+                  "byPriority": {
+                    "urgent": 0,
+                    "high": 1,
+                    "medium": 1,
+                    "low": 0,
+                    "none": 0
+                  },
+                  "overdue": 0,
+                  "completed": 2,
+                  "completionRate": 100,
+                  "subtaskTotals": {
+                    "total": 0,
+                    "completed": 0
+                  }
+                },
+                "progress": 100
+              }
+            }
+          ],
+          "workload": [
+            {
+              "member": {
+                "id": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "name": "Tanjim Islam",
+                "avatarColor": "#5A67D8"
+              },
+              "openTasks": 8
+            },
+            {
+              "member": {
+                "id": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+                "name": "Emma Wilson",
+                "avatarColor": "#23918A"
+              },
+              "openTasks": 8
+            },
+            {
+              "member": {
+                "id": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                "name": "John Carter",
+                "avatarColor": "#3B82C4"
+              },
+              "openTasks": 8
+            },
+            {
+              "member": {
+                "id": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+                "name": "Sarah Chen",
+                "avatarColor": "#C54B78"
+              },
+              "openTasks": 5
+            },
+            {
+              "member": {
+                "id": "01a11abd-aa80-7470-803a-d8637be26509",
+                "name": "Priya Patel",
+                "avatarColor": "#C48A1E"
+              },
+              "openTasks": 4
+            },
+            {
+              "member": {
+                "id": "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+                "name": "Lena Fischer",
+                "avatarColor": "#3D8E5F"
+              },
+              "openTasks": 3
+            },
+            {
+              "member": {
+                "id": "01a11abd-aa80-7567-80df-64683f5c3572",
+                "name": "Marcus Lee",
+                "avatarColor": "#8662C9"
+              },
+              "openTasks": 3
+            }
+          ],
+          "milestones": [
+            {
+              "id": "01a11abd-aa80-7311-8fd4-d485e62a5f45",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "name": "Wireframes signed off",
+              "date": "2026-10-10",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-7e21-8112-2b24976a5e2a",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+              "name": "v2 tokens",
+              "date": "2026-10-11",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-73de-8352-a37eda1f6804",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+              "name": "Beta build",
+              "date": "2026-10-17",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-7b1e-8750-aee019ec403a",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+              "name": "Go / no-go",
+              "date": "2026-10-19",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-715d-8c2b-2f959e3c70b1",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+              "name": "Creative lock",
+              "date": "2026-10-20",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-78b5-8b54-7109f0699ea3",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+              "name": "Launch day",
+              "date": "2026-10-20",
+              "position": 100
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "projection-getOverview.response.json",
+        "bytes": 11659,
+        "sha256": "485b3615fc42c4704fded211274b0647d86fb8c1def28ab35ed70f609df7d7e7"
+      }
+    },
+    {
+      "name": "active-files-after-archive",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu36-parameters": "4",
+        "x-wu36-queries": "4"
+      },
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "items": [
+            {
+              "id": "01a11abd-aa80-7dc8-8353-eb86fc8c9d9c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+              "name": "homepage-wireframes-v3.fig",
+              "fileType": "fig",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "4.2 MB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "createdAt": "2026-10-08T04:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-759f-8628-669fb2662c4c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "analytics-events.json",
+              "fileType": "code",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "12 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7567-80df-64683f5c3572",
+              "createdAt": "2026-10-07T21:20:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7fb9-8ce6-c1b36fd3aa50",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "hero-exploration.png",
+              "fileType": "img",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "2.1 MB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "createdAt": "2026-10-07T09:40:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-71d7-890b-a58a3695bdd8",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "brand-photography-set.zip",
+              "fileType": "zip",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "128 MB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "createdAt": "2026-10-06T07:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7f88-81e7-86d21193d2a3",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+              "name": "nav-audit-findings.pdf",
+              "fileType": "pdf",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "860 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "createdAt": "2026-10-02T19:40:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-727b-8b09-6ab214d42f11",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "content-inventory.xlsx",
+              "fileType": "sheet",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "310 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7470-803a-d8637be26509",
+              "createdAt": "2026-10-02T03:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7359-8316-d80c17248bc6",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "sitemap-v2.pdf",
+              "fileType": "pdf",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "540 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-09-30T01:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-71c4-8155-df180ff2bfa8",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "interview-notes.docx",
+              "fileType": "doc",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "96 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-09-24T11:40:00.000Z",
+              "version": 1
+            }
+          ],
+          "nextCursor": null,
+          "total": 8
+        }
+      },
+      "raw": {
+        "path": "active-files-after-archive.response.json",
+        "bytes": 3463,
+        "sha256": "79ad0bd22ba6b3a241d95b4a0f23c4872c411935ff51102c46e64e0e6b4da74c"
+      }
+    }
+  ],
+  "checks": [
+    "M3-J01 actual server principal/bootstrap/schema/capabilities",
+    "M3-J02 native List full form creates one task/subtask/actual R2 attachment",
+    "M3-J03/J04 native Drawer assignee/status/dates/rich description/subtask/comment/reaction/file download",
+    "M3-J03 same mutation in Board/Table/Calendar/Timeline/MyTasks/projections"
+  ],
+  "runtime": "actual Wrangler local R2+D1; actual Chromium UI",
+  "bootstrap": {
+    "workspace": {
+      "planLabel": "Team",
+      "id": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "name": "Gr8r Studio",
+      "slug": "gr8rstudio",
+      "iconColor": "#1D1C1A",
+      "brand": true,
+      "timezone": "UTC",
+      "createdAt": "2026-10-08T09:00:00.000Z",
+      "updatedAt": "2026-10-08T09:00:00.000Z",
+      "version": 1
+    },
+    "currentMember": {
+      "id": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77",
+      "name": "Tanjim Islam",
+      "email": "hello@gr8rstudio.com",
+      "title": "Head of Product",
+      "avatarColor": "#5A67D8",
+      "timezone": "San Francisco",
+      "role": "Owner",
+      "status": "active",
+      "teamId": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+      "lastSeenAt": "2026-10-08T09:00:00.000Z",
+      "version": 1
+    },
+    "members": [
+      {
+        "id": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "name": "Tanjim Islam",
+        "avatarColor": "#5A67D8"
+      },
+      {
+        "id": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+        "name": "Emma Wilson",
+        "avatarColor": "#23918A"
+      },
+      {
+        "id": "01a11abd-aa80-7470-803a-d8637be26509",
+        "name": "Priya Patel",
+        "avatarColor": "#C48A1E"
+      },
+      {
+        "id": "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+        "name": "Lena Fischer",
+        "avatarColor": "#3D8E5F"
+      },
+      {
+        "id": "01a11abd-aa80-7567-80df-64683f5c3572",
+        "name": "Marcus Lee",
+        "avatarColor": "#8662C9"
+      },
+      {
+        "id": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+        "name": "John Carter",
+        "avatarColor": "#3B82C4"
+      },
+      {
+        "id": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+        "name": "Sarah Chen",
+        "avatarColor": "#C54B78"
+      },
+      {
+        "id": "01a11abd-aa80-7a8a-8271-af0df3499721",
+        "name": "Diego Alvarez",
+        "avatarColor": "#C0612B"
+      }
+    ],
+    "teams": [
+      {
+        "id": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "Design",
+        "description": "Product design, brand, and research",
+        "icon": "palette",
+        "color": "#8662C9",
+        "memberIds": [
+          "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+          "01a11abd-aa80-7947-8d13-2178f1cc4d45"
+        ],
+        "createdAt": "2026-10-08T09:00:00.000Z",
+        "updatedAt": "2026-10-08T09:00:00.000Z",
+        "version": 1
+      },
+      {
+        "id": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "Marketing",
+        "description": "Campaigns, content, and growth",
+        "icon": "megaphone",
+        "color": "#C54B78",
+        "memberIds": [
+          "01a11abd-aa80-7470-803a-d8637be26509",
+          "01a11abd-aa80-7a8a-8271-af0df3499721"
+        ],
+        "createdAt": "2026-10-08T09:00:00.000Z",
+        "updatedAt": "2026-10-08T09:00:00.000Z",
+        "version": 1
+      },
+      {
+        "id": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "Product",
+        "description": "Roadmap, planning, and QA",
+        "icon": "target",
+        "color": "#C48A1E",
+        "memberIds": [
+          "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+        ],
+        "createdAt": "2026-10-08T09:00:00.000Z",
+        "updatedAt": "2026-10-08T09:00:00.000Z",
+        "version": 1
+      },
+      {
+        "id": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "Engineering",
+        "description": "Web, mobile, and platform engineering",
+        "icon": "code",
+        "color": "#3B82C4",
+        "memberIds": [
+          "01a11abd-aa80-7567-80df-64683f5c3572",
+          "01a11abd-aa80-7606-8d4c-58e60fb7e5a4"
+        ],
+        "createdAt": "2026-10-08T09:00:00.000Z",
+        "updatedAt": "2026-10-08T09:00:00.000Z",
+        "version": 1
+      }
+    ],
+    "projects": [
+      {
+        "access": "allowed",
+        "project": {
+          "id": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "key": "WEB",
+          "name": "Website Redesign",
+          "description": "Rebuild gr8rstudio.com with a clearer information architecture, a responsive component library, and a faster CMS-driven blog.",
+          "icon": "globe",
+          "color": "#5A67D8",
+          "status": "active",
+          "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+          "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "startDate": "2026-09-08",
+          "dueDate": "2026-11-01",
+          "visibility": "workspace",
+          "memberIds": [
+            "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+            "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+            "01a11abd-aa80-7470-803a-d8637be26509",
+            "01a11abd-aa80-7567-80df-64683f5c3572",
+            "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+          ],
+          "milestones": [
+            {
+              "id": "01a11abd-aa80-7311-8fd4-d485e62a5f45",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "name": "Wireframes signed off",
+              "date": "2026-10-10",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-7282-82b9-12bf7f3694c0",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "name": "Dev handoff",
+              "date": "2026-10-22",
+              "position": 100
+            },
+            {
+              "id": "01a11abd-aa80-77d3-8551-ab806d5c3f55",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "name": "Public launch",
+              "date": "2026-11-01",
+              "position": 200
+            }
+          ],
+          "isFavorite": true,
+          "archivedAt": null,
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "lastActivityAt": "2026-10-08T08:48:00.000Z",
+          "version": 1
+        },
+        "summary": {
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskSummary": {
+            "total": 18,
+            "byStatus": {
+              "backlog": 4,
+              "todo": 5,
+              "progress": 3,
+              "review": 2,
+              "done": 4
+            },
+            "byPriority": {
+              "urgent": 1,
+              "high": 5,
+              "medium": 8,
+              "low": 4,
+              "none": 0
+            },
+            "overdue": 3,
+            "completed": 4,
+            "completionRate": 22,
+            "subtaskTotals": {
+              "total": 12,
+              "completed": 6
+            }
+          },
+          "progress": 22
+        }
+      },
+      {
+        "access": "allowed",
+        "project": {
+          "id": "01a11abd-aa80-7f23-849c-94f63946ff17",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "key": "MOB",
+          "name": "Mobile App",
+          "description": "Native iOS and Android client for field teams with offline sync, push notifications, and biometric sign-in.",
+          "icon": "smartphone",
+          "color": "#3B82C4",
+          "status": "active",
+          "teamId": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+          "leadId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+          "startDate": "2026-08-24",
+          "dueDate": "2026-11-29",
+          "visibility": "workspace",
+          "memberIds": [
+            "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+            "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+            "01a11abd-aa80-7567-80df-64683f5c3572",
+            "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+          ],
+          "milestones": [
+            {
+              "id": "01a11abd-aa80-73de-8352-a37eda1f6804",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+              "name": "Beta build",
+              "date": "2026-10-17",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-7968-841d-52612a365a0b",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+              "name": "App Store submission",
+              "date": "2026-11-22",
+              "position": 100
+            }
+          ],
+          "isFavorite": true,
+          "archivedAt": null,
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "lastActivityAt": "2026-10-08T08:12:00.000Z",
+          "version": 1
+        },
+        "summary": {
+          "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+          "taskSummary": {
+            "total": 9,
+            "byStatus": {
+              "backlog": 1,
+              "todo": 4,
+              "progress": 2,
+              "review": 1,
+              "done": 1
+            },
+            "byPriority": {
+              "urgent": 2,
+              "high": 3,
+              "medium": 3,
+              "low": 1,
+              "none": 0
+            },
+            "overdue": 2,
+            "completed": 1,
+            "completionRate": 11,
+            "subtaskTotals": {
+              "total": 0,
+              "completed": 0
+            }
+          },
+          "progress": 11
+        }
+      },
+      {
+        "access": "allowed",
+        "project": {
+          "id": "01a11abd-aa80-784d-8681-7daf87297886",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "key": "MKT",
+          "name": "Marketing Campaign",
+          "description": "Q4 awareness campaign across paid social, email, and a launch webinar targeting operations leads.",
+          "icon": "megaphone",
+          "color": "#C54B78",
+          "status": "planning",
+          "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+          "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+          "startDate": "2026-09-28",
+          "dueDate": "2026-11-17",
+          "visibility": "workspace",
+          "memberIds": [
+            "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+            "01a11abd-aa80-7470-803a-d8637be26509",
+            "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+            "01a11abd-aa80-7a8a-8271-af0df3499721"
+          ],
+          "milestones": [
+            {
+              "id": "01a11abd-aa80-715d-8c2b-2f959e3c70b1",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+              "name": "Creative lock",
+              "date": "2026-10-20",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-7392-8a33-b21e8347d051",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+              "name": "Campaign live",
+              "date": "2026-10-29",
+              "position": 100
+            }
+          ],
+          "isFavorite": false,
+          "archivedAt": null,
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "lastActivityAt": "2026-10-08T06:50:00.000Z",
+          "version": 1
+        },
+        "summary": {
+          "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+          "taskSummary": {
+            "total": 7,
+            "byStatus": {
+              "backlog": 1,
+              "todo": 3,
+              "progress": 1,
+              "review": 1,
+              "done": 1
+            },
+            "byPriority": {
+              "urgent": 1,
+              "high": 1,
+              "medium": 4,
+              "low": 1,
+              "none": 0
+            },
+            "overdue": 1,
+            "completed": 1,
+            "completionRate": 14,
+            "subtaskTotals": {
+              "total": 0,
+              "completed": 0
+            }
+          },
+          "progress": 14
+        }
+      },
+      {
+        "access": "allowed",
+        "project": {
+          "id": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "key": "LCH",
+          "name": "Product Launch",
+          "description": "Coordinate the Workflows 2.0 launch: pricing, docs, press, and sales enablement across teams.",
+          "icon": "rocket",
+          "color": "#C48A1E",
+          "status": "risk",
+          "teamId": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+          "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "startDate": "2026-09-17",
+          "dueDate": "2026-10-20",
+          "visibility": "workspace",
+          "memberIds": [
+            "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+            "01a11abd-aa80-7470-803a-d8637be26509",
+            "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+          ],
+          "milestones": [
+            {
+              "id": "01a11abd-aa80-7b1e-8750-aee019ec403a",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+              "name": "Go / no-go",
+              "date": "2026-10-19",
+              "position": 0
+            },
+            {
+              "id": "01a11abd-aa80-78b5-8b54-7109f0699ea3",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+              "name": "Launch day",
+              "date": "2026-10-20",
+              "position": 100
+            }
+          ],
+          "isFavorite": false,
+          "archivedAt": null,
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "lastActivityAt": "2026-10-08T08:25:00.000Z",
+          "version": 1
+        },
+        "summary": {
+          "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+          "taskSummary": {
+            "total": 6,
+            "byStatus": {
+              "backlog": 1,
+              "todo": 3,
+              "progress": 1,
+              "review": 1,
+              "done": 0
+            },
+            "byPriority": {
+              "urgent": 1,
+              "high": 2,
+              "medium": 2,
+              "low": 1,
+              "none": 0
+            },
+            "overdue": 1,
+            "completed": 0,
+            "completionRate": 0,
+            "subtaskTotals": {
+              "total": 4,
+              "completed": 2
+            }
+          },
+          "progress": 0
+        }
+      },
+      {
+        "access": "allowed",
+        "project": {
+          "id": "01a11abd-aa80-7232-8a34-286c60c1a535",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "key": "DS",
+          "name": "Design System",
+          "description": "Shared tokens, components, and documentation used by web and mobile teams.",
+          "icon": "component",
+          "color": "#8662C9",
+          "status": "active",
+          "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+          "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "startDate": "2026-08-09",
+          "dueDate": "2026-12-17",
+          "visibility": "workspace",
+          "memberIds": [
+            "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+            "01a11abd-aa80-72e4-8e93-62c2ece91c47"
+          ],
+          "milestones": [
+            {
+              "id": "01a11abd-aa80-7e21-8112-2b24976a5e2a",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+              "name": "v2 tokens",
+              "date": "2026-10-11",
+              "position": 0
+            }
+          ],
+          "isFavorite": false,
+          "archivedAt": null,
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "lastActivityAt": "2026-10-08T04:00:00.000Z",
+          "version": 1
+        },
+        "summary": {
+          "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+          "taskSummary": {
+            "total": 6,
+            "byStatus": {
+              "backlog": 1,
+              "todo": 2,
+              "progress": 1,
+              "review": 1,
+              "done": 1
+            },
+            "byPriority": {
+              "urgent": 0,
+              "high": 2,
+              "medium": 3,
+              "low": 1,
+              "none": 0
+            },
+            "overdue": 0,
+            "completed": 1,
+            "completionRate": 17,
+            "subtaskTotals": {
+              "total": 0,
+              "completed": 0
+            }
+          },
+          "progress": 17
+        }
+      },
+      {
+        "access": "restricted",
+        "project": {
+          "id": "01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "name": "Customer Portal",
+          "key": "CP",
+          "icon": "building-2",
+          "color": "#23918A",
+          "status": "hold",
+          "dueDate": "2027-01-06",
+          "lead": {
+            "id": "01a11abd-aa80-7567-80df-64683f5c3572",
+            "name": "Marcus Lee",
+            "avatarColor": "#8662C9"
+          },
+          "catalogSummary": "Self-serve billing and support portal for enterprise customers. Restricted during contract review."
+        }
+      },
+      {
+        "access": "allowed",
+        "project": {
+          "id": "01a11abd-aa80-7d99-849a-abec9340dc89",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "key": "MW",
+          "name": "Marketing Website",
+          "description": "Launch site for the spring release. Shipped and handed to the web team for maintenance.",
+          "icon": "layout-grid",
+          "color": "#3D8E5F",
+          "status": "complete",
+          "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+          "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+          "startDate": "2026-07-20",
+          "dueDate": "2026-09-20",
+          "visibility": "workspace",
+          "memberIds": [
+            "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+            "01a11abd-aa80-7470-803a-d8637be26509"
+          ],
+          "milestones": [],
+          "isFavorite": false,
+          "archivedAt": null,
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "lastActivityAt": "2026-09-20T07:40:00.000Z",
+          "version": 1
+        },
+        "summary": {
+          "projectId": "01a11abd-aa80-7d99-849a-abec9340dc89",
+          "taskSummary": {
+            "total": 2,
+            "byStatus": {
+              "backlog": 0,
+              "todo": 0,
+              "progress": 0,
+              "review": 0,
+              "done": 2
+            },
+            "byPriority": {
+              "urgent": 0,
+              "high": 1,
+              "medium": 1,
+              "low": 0,
+              "none": 0
+            },
+            "overdue": 0,
+            "completed": 2,
+            "completionRate": 100,
+            "subtaskTotals": {
+              "total": 0,
+              "completed": 0
+            }
+          },
+          "progress": 100
+        }
+      }
+    ],
+    "catalogs": {
+      "taskStatuses": [
+        {
+          "id": "backlog",
+          "name": "Backlog"
+        },
+        {
+          "id": "todo",
+          "name": "To Do"
+        },
+        {
+          "id": "progress",
+          "name": "In Progress"
+        },
+        {
+          "id": "review",
+          "name": "Review"
+        },
+        {
+          "id": "done",
+          "name": "Done"
+        }
+      ],
+      "priorities": [
+        {
+          "id": "urgent",
+          "name": "Urgent",
+          "weight": 4
+        },
+        {
+          "id": "high",
+          "name": "High",
+          "weight": 3
+        },
+        {
+          "id": "medium",
+          "name": "Medium",
+          "weight": 2
+        },
+        {
+          "id": "low",
+          "name": "Low",
+          "weight": 1
+        },
+        {
+          "id": "none",
+          "name": "No priority",
+          "weight": 0
+        }
+      ],
+      "projectStatuses": [
+        {
+          "id": "planning",
+          "name": "Planning",
+          "colorToken": "gray"
+        },
+        {
+          "id": "active",
+          "name": "In Progress",
+          "colorToken": "blue"
+        },
+        {
+          "id": "risk",
+          "name": "At Risk",
+          "colorToken": "red"
+        },
+        {
+          "id": "hold",
+          "name": "On Hold",
+          "colorToken": "amber"
+        },
+        {
+          "id": "complete",
+          "name": "Completed",
+          "colorToken": "green"
+        }
+      ],
+      "labels": [
+        {
+          "id": "design",
+          "name": "Design",
+          "colorToken": "violet"
+        },
+        {
+          "id": "frontend",
+          "name": "Frontend",
+          "colorToken": "blue"
+        },
+        {
+          "id": "backend",
+          "name": "Backend",
+          "colorToken": "teal"
+        },
+        {
+          "id": "research",
+          "name": "Research",
+          "colorToken": "amber"
+        },
+        {
+          "id": "content",
+          "name": "Content",
+          "colorToken": "rose"
+        },
+        {
+          "id": "bug",
+          "name": "Bug",
+          "colorToken": "red"
+        },
+        {
+          "id": "qa",
+          "name": "QA",
+          "colorToken": "green"
+        },
+        {
+          "id": "growth",
+          "name": "Growth",
+          "colorToken": "orange"
+        }
+      ],
+      "recurrences": [
+        {
+          "id": "daily",
+          "name": "Daily"
+        },
+        {
+          "id": "weekly",
+          "name": "Weekly"
+        },
+        {
+          "id": "biweekly",
+          "name": "Every 2 weeks"
+        },
+        {
+          "id": "monthly",
+          "name": "Monthly"
+        }
+      ],
+      "projectColors": [
+        {
+          "id": "indigo",
+          "color": "#5A67D8"
+        },
+        {
+          "id": "blue",
+          "color": "#3B82C4"
+        },
+        {
+          "id": "violet",
+          "color": "#8662C9"
+        },
+        {
+          "id": "teal",
+          "color": "#23918A"
+        },
+        {
+          "id": "rose",
+          "color": "#C54B78"
+        },
+        {
+          "id": "amber",
+          "color": "#C48A1E"
+        },
+        {
+          "id": "green",
+          "color": "#3D8E5F"
+        },
+        {
+          "id": "slate",
+          "color": "#6B7280"
+        }
+      ],
+      "projectIcons": [
+        "globe",
+        "smartphone",
+        "megaphone",
+        "rocket",
+        "component",
+        "building-2",
+        "layout-grid",
+        "palette",
+        "code",
+        "briefcase",
+        "target",
+        "layers",
+        "zap",
+        "heart",
+        "folder",
+        "sparkles"
+      ],
+      "estimates": [
+        "30m",
+        "1h",
+        "2h",
+        "4h",
+        "1d",
+        "2d",
+        "3d",
+        "5d",
+        "8d"
+      ],
+      "templates": [
+        {
+          "id": "blank",
+          "name": "Blank project",
+          "icon": "file",
+          "description": "Start from scratch",
+          "tasks": []
+        },
+        {
+          "id": "product",
+          "name": "Product Development",
+          "icon": "target",
+          "description": "Discovery to launch",
+          "tasks": [
+            "Define problem statement",
+            "User research plan",
+            "Write PRD",
+            "Design exploration",
+            "Build MVP",
+            "Beta launch"
+          ]
+        },
+        {
+          "id": "web",
+          "name": "Website",
+          "icon": "globe",
+          "description": "IA, design, build, launch",
+          "tasks": [
+            "Sitemap & information architecture",
+            "Wireframes",
+            "Visual design",
+            "Build page templates",
+            "Content migration",
+            "QA & launch"
+          ]
+        },
+        {
+          "id": "mkt",
+          "name": "Marketing Campaign",
+          "icon": "megaphone",
+          "description": "Brief, assets, channels",
+          "tasks": [
+            "Campaign brief",
+            "Audience research",
+            "Creative assets",
+            "Channel plan",
+            "Launch campaign",
+            "Performance report"
+          ]
+        },
+        {
+          "id": "design",
+          "name": "Design Project",
+          "icon": "palette",
+          "description": "Discovery to handoff",
+          "tasks": [
+            "Discovery workshop",
+            "Moodboard",
+            "Concept directions",
+            "Refinement",
+            "Developer handoff"
+          ]
+        },
+        {
+          "id": "software",
+          "name": "Software Development",
+          "icon": "code",
+          "description": "Spec, build, ship",
+          "tasks": [
+            "Technical spec",
+            "Set up repo & CI",
+            "Implement core API",
+            "Write tests",
+            "Code review",
+            "Deploy to staging"
+          ]
+        },
+        {
+          "id": "personal",
+          "name": "Personal Project",
+          "icon": "heart",
+          "description": "Plan your own goals",
+          "tasks": [
+            "Brain dump ideas",
+            "Pick top 3 priorities",
+            "Schedule focus time",
+            "Weekly review"
+          ]
+        }
+      ]
+    },
+    "preferences": {
+      "theme": "light",
+      "accent": "indigo",
+      "side": "comfortable",
+      "density": "comfortable",
+      "weekStart": 1,
+      "dateFmt": "MMM d",
+      "lang": "English (US)",
+      "tz": "(GMT-07:00) Pacific Time",
+      "timeFmt": "12",
+      "spell": true,
+      "motion": "system",
+      "home": "home",
+      "openTasks": "drawer",
+      "confirmDel": true,
+      "defaultTab": "board",
+      "showDoneBoard": true
+    },
+    "notificationPreferences": {
+      "emailMention": true,
+      "emailAssign": true,
+      "emailDigest": true,
+      "emailComment": false,
+      "pushMention": true,
+      "pushAssign": true,
+      "pushComment": true,
+      "pushDue": true,
+      "mentionAll": true,
+      "mentionTeam": true,
+      "mentionWorkspace": false,
+      "assignSelf": true,
+      "assignStatus": true,
+      "assignOverdue": true
+    },
+    "unreadCount": 6,
+    "navigationCounts": {
+      "inbox": 4,
+      "myTasks": 3,
+      "archive": 0
+    }
+  },
+  "browser": "145.0.7632.6",
+  "identity": {
+    "taskId": "01a1279c-ee07-7c0c-b486-2d2fcbe10392",
+    "version": 2,
+    "fileId": "01a1279c-eeb8-7aec-9990-fcea7a19567c",
+    "checksum": "7c9e723775fc86e3bd260892d5fe7d84b1689026e0d167a98470c0c57172c25e"
+  },
+  "error": "AssertionError [ERR_ASSERTION]: Archived task attachment remains visible in warm Files query\n\n1 !== 0\n\n    at file:///workspace/task8/apps/api/tests/wu36/journey.mjs:55:920\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)",
+  "alerts": []
+}

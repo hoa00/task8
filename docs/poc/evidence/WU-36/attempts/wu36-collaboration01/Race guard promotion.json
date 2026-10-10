@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127ac-0b41-712a-94ab-fd235c169f00/subtasks/01a127ac-0b59-7857-8862-bc85214e6505/promote",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu33-test": "{\"sql\":\"UPDATE subtasks SET taskId=? WHERE id=?\",\"parameters\":[\"01a127ac-0260-7661-ae98-647ccaca884f\",\"01a127ac-0b59-7857-8862-bc85214e6505\"]}"
+  },
+  "body": "{\"expectedTaskVersion\":2}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Version, authorization or command scope changed"
+    }
+  },
+  "budget": {
+    "queries": 13,
+    "parameters": 33
+  }
+}

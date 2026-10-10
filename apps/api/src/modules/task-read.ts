@@ -12,7 +12,7 @@ import type { TaskRow, SubtaskRow } from './read-model.ts';
 export type TaskProjection = TaskRow & {projectKey:string;labelsJson:string;dependenciesJson:string;visibleDependenciesJson:string;subtaskTotal:number;subtaskDone:number;attachmentCount:number;commentCount:number;favorite:number};
 // One projection is used by reads and the final SELECT inside command batches.
 export const taskSelect = `SELECT t.*,p.key projectKey,
- (SELECT json_group_array(labelId) FROM (SELECT labelId FROM taskLabels WHERE workspaceId=t.workspaceId AND taskId=t.id ORDER BY labelId)) labelsJson,
+ (SELECT json_group_array(labelId) FROM (SELECT labelId FROM taskLabels WHERE workspaceId=t.workspaceId AND taskId=t.id ORDER BY rowid)) labelsJson,
  (SELECT json_group_array(dependsOnTaskId) FROM (SELECT dependsOnTaskId FROM taskDependencies WHERE workspaceId=t.workspaceId AND taskId=t.id ORDER BY dependsOnTaskId)) dependenciesJson,
  (SELECT json_group_array(d.dependsOnTaskId) FROM taskDependencies d JOIN tasks dep ON dep.workspaceId=d.workspaceId AND dep.id=d.dependsOnTaskId JOIN projects dp ON dp.workspaceId=dep.workspaceId AND dp.id=dep.projectId WHERE d.workspaceId=t.workspaceId AND d.taskId=t.id AND dep.archivedAt IS NULL AND dep.deletedAt IS NULL AND dp.archivedAt IS NULL AND dp.deletedAt IS NULL AND (dp.visibility='workspace' OR EXISTS (SELECT 1 FROM projectMembers pm WHERE pm.workspaceId=dp.workspaceId AND pm.projectId=dp.id AND pm.memberId=?))) visibleDependenciesJson,
  (SELECT count(*) FROM subtasks WHERE workspaceId=t.workspaceId AND taskId=t.id) subtaskTotal,

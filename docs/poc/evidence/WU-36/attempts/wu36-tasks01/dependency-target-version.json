@@ -1,0 +1,59 @@
+{
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127aa-3ee4-77e0-a9f3-e105fad2ffe2",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a127aa-3ee4-77e0-a9f3-e105fad2ffe2",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a127aa-3e32-7ee0-bf43-ff8565d7d96f",
+        "key": "TA-206",
+        "title": "Intent",
+        "descriptionHtml": "<p>x &amp; y <em>em</em><a>plain</a><a href=\"http://example.com\">ok</a></p>",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "high",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [
+          "design"
+        ],
+        "dependencyIds": [],
+        "position": 5500,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T21:13:51.072Z",
+        "updatedAt": "2026-10-10T21:13:51.470Z",
+        "version": 4,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 1
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "subtasks": [
+        {
+          "id": "01a127aa-3ee4-797b-b6d4-2e112a59cbd4",
+          "taskId": "01a127aa-3ee4-77e0-a9f3-e105fad2ffe2",
+          "title": "First",
+          "done": true,
+          "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "dueDate": null,
+          "note": "note",
+          "position": 0
+        }
+      ],
+      "attachments": []
+    }
+  },
+  "budget": {
+    "queries": 5,
+    "parameters": 5
+  }
+}

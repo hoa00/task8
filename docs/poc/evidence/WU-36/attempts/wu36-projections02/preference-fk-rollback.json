@@ -1,0 +1,21 @@
+{
+  "name": "preference-fk-rollback",
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu34-test": "fail"
+  },
+  "body": "{\"theme\":\"light\"}",
+  "status": 500,
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Request failed"
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 6
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "markall-noop-lost-actor",
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/read-all",
+  "headers": {
+    "x-wu34-test": "{\"sql\":\"UPDATE workspaceMembers SET status='invited' WHERE workspaceId=? AND id=?\",\"parameters\":[\"01a11abd-aa80-72ea-8b87-b31ad015a24e\",\"01a11abd-aa80-7249-8034-93bbfb2174a2\"],\"snapshot\":true,\"restore\":{\"sql\":\"UPDATE workspaceMembers SET status='active' WHERE workspaceId=? AND id=?\",\"parameters\":[\"01a11abd-aa80-72ea-8b87-b31ad015a24e\",\"01a11abd-aa80-7249-8034-93bbfb2174a2\"]}}"
+  },
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Notification membership changed"
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 6
+  }
+}

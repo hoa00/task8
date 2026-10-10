@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127aa-486a-7c16-974f-de4d4ebb26e6/move",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu32-test": "{\"sql\":\"UPDATE tasks SET version=version+1 WHERE id=?\",\"parameters\":[\"01a127aa-4818-7da7-9202-064fe4de750f\"]}"
+  },
+  "body": "{\"expectedVersion\":1,\"scope\":{\"projectId\":\"01a127aa-3e4a-72df-b580-876fe9e6f747\"},\"targetProjectId\":\"01a127aa-3e4a-72df-b580-876fe9e6f747\",\"beforeId\":\"01a127aa-4818-7da7-9202-064fe4de750f\"}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Task version, access, relations or command scope changed"
+    }
+  },
+  "budget": {
+    "queries": 15,
+    "parameters": 40
+  }
+}

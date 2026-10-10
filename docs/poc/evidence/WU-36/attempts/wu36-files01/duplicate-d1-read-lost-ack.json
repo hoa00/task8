@@ -1,0 +1,28 @@
+{
+  "name": "duplicate-d1-read-lost-ack",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a127b0-98e2-7c28-8e09-c48bfcdbae81/duplicate",
+  "method": "POST",
+  "status": 500,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "16",
+    "x-wu35-queries": "10"
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 16
+  },
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Duplicate outcome is unconfirmed; inspect the recorded copy intent"
+    }
+  },
+  "raw": {
+    "path": "duplicate-d1-read-lost-ack.response.json",
+    "bytes": 114,
+    "sha256": "b47a0e2c775702e6c6a0511c548d47c9dd78ed9ab5429a0dbdfc81e698c9edbe"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "sql-6",
+  "method": "POST",
+  "path": "/__wu34/sql",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"sql\":\"UPDATE projects SET taskSequence=11000 WHERE workspaceId=? AND id IN (SELECT value FROM json_each(?))\",\"parameters\":[\"01a11abd-aa80-7290-8c9b-7aa9af2af468\",\"[\\\"01a11abd-aa80-7ae7-8304-32062c509b49\\\",\\\"01a11abd-aa80-7a85-83f6-743301013d5d\\\"]\"]}",
+  "status": 200,
+  "response": {
+    "success": true,
+    "meta": {
+      "served_by": "miniflare.db",
+      "duration": 1,
+      "changes": 2,
+      "last_row_id": 568,
+      "changed_db": true,
+      "size_after": 1118208,
+      "rows_read": 10,
+      "rows_written": 2
+    },
+    "results": []
+  },
+  "budget": null
+}

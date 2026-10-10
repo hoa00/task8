@@ -1,0 +1,96 @@
+{
+  "name": "current-task-8",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127a3-c400-71f4-82f1-4c780d37e432",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu36-parameters": "5",
+    "x-wu36-queries": "5"
+  },
+  "budget": {
+    "queries": 5,
+    "parameters": 5
+  },
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a127a3-c400-71f4-82f1-4c780d37e432",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+        "key": "WEB-201",
+        "title": "WU36 M3 native task",
+        "descriptionHtml": "<p><strong>M3 persisted rich description</strong></p>",
+        "status": "review",
+        "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "priority": "medium",
+        "startDate": "2026-10-10",
+        "dueDate": "2026-10-10",
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 200,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T21:06:46.396Z",
+        "updatedAt": "2026-10-10T21:06:52.915Z",
+        "version": 13,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 2,
+          "completed": 1
+        },
+        "attachmentCount": 1,
+        "commentCount": 1
+      },
+      "subtasks": [
+        {
+          "id": "01a127a3-c401-7558-895a-3df2f4627644",
+          "taskId": "01a127a3-c400-71f4-82f1-4c780d37e432",
+          "title": "M3 form child",
+          "done": false,
+          "assigneeId": null,
+          "dueDate": null,
+          "note": "",
+          "position": 0
+        },
+        {
+          "id": "01a127a3-d1f4-788d-bfed-192f75140682",
+          "taskId": "01a127a3-c400-71f4-82f1-4c780d37e432",
+          "title": "M3 native child",
+          "done": true,
+          "assigneeId": null,
+          "dueDate": null,
+          "note": "M3 persisted child note",
+          "position": 100
+        }
+      ],
+      "attachments": [
+        {
+          "id": "01a127a3-c494-7d5e-867b-cd9b309d194f",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a127a3-c400-71f4-82f1-4c780d37e432",
+          "name": "m3-native.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T21:06:46.543Z",
+          "version": 1
+        }
+      ]
+    }
+  },
+  "raw": {
+    "path": "current-task-8.response.json",
+    "bytes": 1606,
+    "sha256": "53207941ca405b4b95716e78b8a83a2960f04dac1c82f632b4a953f7ad8b86c1"
+  }
+}

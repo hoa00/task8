@@ -1,0 +1,17 @@
+{
+  "name": "search-duplicate-q",
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=x&q=y",
+  "headers": {},
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Repeated query field"
+    }
+  },
+  "budget": {
+    "queries": 2,
+    "parameters": 4
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"operation\":\"archive\",\"columnScope\":{\"kind\":\"project\",\"projectId\":\"900f46d3-73a3-4c17-b428-93d777cf3d59\",\"status\":\"done\"},\"items\":[]}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid request"
+    }
+  },
+  "budget": {
+    "queries": 2,
+    "parameters": 4
+  }
+}

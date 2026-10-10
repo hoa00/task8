@@ -1,0 +1,52 @@
+{
+  "name": "projection-getProjectSummary",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu36-parameters": "4",
+    "x-wu36-queries": "11"
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 4
+  },
+  "response": {
+    "data": {
+      "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "taskSummary": {
+        "total": 19,
+        "byStatus": {
+          "backlog": 4,
+          "todo": 5,
+          "progress": 3,
+          "review": 3,
+          "done": 4
+        },
+        "byPriority": {
+          "urgent": 2,
+          "high": 5,
+          "medium": 8,
+          "low": 4,
+          "none": 0
+        },
+        "overdue": 3,
+        "completed": 4,
+        "completionRate": 21,
+        "subtaskTotals": {
+          "total": 14,
+          "completed": 7
+        }
+      },
+      "progress": 21
+    }
+  },
+  "raw": {
+    "path": "projection-getProjectSummary.response.json",
+    "bytes": 321,
+    "sha256": "7ee070b08c2d7b7a419f56da7767721b0d38037bab93da57269afa3c78ee5cbe"
+  }
+}

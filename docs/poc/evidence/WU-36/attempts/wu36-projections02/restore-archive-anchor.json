@@ -1,0 +1,53 @@
+{
+  "name": "restore-archive-anchor",
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01d00000-0000-7000-8000-0000000003ea/restore",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01d00000-0000-7000-8000-0000000003ea",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+        "key": "WEB-10003",
+        "title": "WU34 needle %_ quote' 002",
+        "descriptionHtml": "<p>WU34 descriptionOnly %_ literal</p>",
+        "status": "progress",
+        "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "priority": "medium",
+        "startDate": "2028-01-25",
+        "dueDate": "2028-02-01",
+        "estimate": "2d",
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 20200,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T21:18:19.131Z",
+        "updatedAt": "2026-10-10T21:18:21.895Z",
+        "version": 3,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a11abd-aa80-7d11-86d8-e6545859cd14"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 28
+  }
+}

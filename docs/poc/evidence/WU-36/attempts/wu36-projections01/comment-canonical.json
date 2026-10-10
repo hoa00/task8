@@ -1,0 +1,71 @@
+{
+  "name": "comment-canonical",
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59/comments",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "items": [
+        {
+          "id": "01a11abd-aa80-72d8-8b35-00ba50c929d8",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+          "authorId": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+          "bodyText": "Tablet layout feels crowded around the logo strip. Could we drop to four logos under 1024px?",
+          "mentionedMemberIds": [],
+          "createdAt": "2026-10-08T04:40:00.000Z",
+          "version": 1,
+          "reactions": [
+            {
+              "key": "👍",
+              "count": 2,
+              "memberIds": [
+                "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+                "01a11abd-aa80-7947-8d13-2178f1cc4d45"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "01a11abd-aa80-72d9-8935-00838926d254",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+          "authorId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "bodyText": "Good call. Updated in v3 — @Tanjim Islam can you review before Thursday?",
+          "mentionedMemberIds": [
+            "01a11abd-aa80-7249-8034-93bbfb2174a2"
+          ],
+          "createdAt": "2026-10-08T05:30:00.000Z",
+          "version": 1,
+          "reactions": []
+        },
+        {
+          "id": "01a11abd-aa80-7bef-899f-c66ef2db81e9",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+          "authorId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+          "bodyText": "Hero spacing maps cleanly to our 8pt scale. No blockers from engineering.",
+          "mentionedMemberIds": [],
+          "createdAt": "2026-10-08T07:25:00.000Z",
+          "version": 1,
+          "reactions": [
+            {
+              "key": "🎉",
+              "count": 1,
+              "memberIds": [
+                "01a11abd-aa80-7947-8d13-2178f1cc4d45"
+              ]
+            }
+          ]
+        }
+      ],
+      "nextCursor": null,
+      "total": 3
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 5
+  }
+}

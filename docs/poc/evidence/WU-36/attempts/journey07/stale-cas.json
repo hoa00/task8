@@ -1,0 +1,28 @@
+{
+  "name": "stale-cas",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127a3-c400-71f4-82f1-4c780d37e432",
+  "method": "PATCH",
+  "status": 409,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu36-parameters": "5",
+    "x-wu36-queries": "3"
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 5
+  },
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Task version changed"
+    }
+  },
+  "raw": {
+    "path": "stale-cas.response.json",
+    "bytes": 62,
+    "sha256": "77a59d90aced30738f33668b9cdde58db95d0aeefd7d578cfa2bdd0feebc832d"
+  }
+}

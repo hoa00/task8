@@ -1,0 +1,87 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"operation\":\"delete\",\"items\":[{\"id\":\"01a127aa-4c1c-7257-a7ce-f6e5aa5f3d32\",\"expectedVersion\":1},{\"id\":\"01a127aa-4c27-7872-847a-4d1d4bb5408e\",\"expectedVersion\":1}]}",
+  "status": 200,
+  "response": {
+    "data": {
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a127aa-3e32-7ee0-bf43-ff8565d7d96f"
+      ],
+      "undo": {
+        "id": "01a127aa-4c37-725c-b094-04053fc2c2e8",
+        "kind": "tasks.bulkDelete"
+      },
+      "tasks": [
+        {
+          "id": "01a127aa-4c1c-7257-a7ce-f6e5aa5f3d32",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a127aa-3e32-7ee0-bf43-ff8565d7d96f",
+          "key": "TA-227",
+          "title": "Delete success1",
+          "descriptionHtml": "",
+          "status": "todo",
+          "assigneeId": null,
+          "priority": "none",
+          "startDate": null,
+          "dueDate": null,
+          "estimate": null,
+          "recurrence": null,
+          "labelIds": [],
+          "dependencyIds": [],
+          "position": 14700,
+          "completedAt": null,
+          "archivedAt": null,
+          "createdAt": "2026-10-10T21:13:54.459Z",
+          "updatedAt": "2026-10-10T21:13:54.481Z",
+          "version": 2,
+          "isFavorite": false,
+          "subtaskSummary": {
+            "total": 0,
+            "completed": 0
+          },
+          "attachmentCount": 0,
+          "commentCount": 0
+        },
+        {
+          "id": "01a127aa-4c27-7872-847a-4d1d4bb5408e",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a127aa-3e32-7ee0-bf43-ff8565d7d96f",
+          "key": "TA-228",
+          "title": "Delete success2",
+          "descriptionHtml": "",
+          "status": "todo",
+          "assigneeId": null,
+          "priority": "none",
+          "startDate": null,
+          "dueDate": null,
+          "estimate": null,
+          "recurrence": null,
+          "labelIds": [],
+          "dependencyIds": [],
+          "position": 14800,
+          "completedAt": null,
+          "archivedAt": null,
+          "createdAt": "2026-10-10T21:13:54.466Z",
+          "updatedAt": "2026-10-10T21:13:54.481Z",
+          "version": 2,
+          "isFavorite": false,
+          "subtaskSummary": {
+            "total": 0,
+            "completed": 0
+          },
+          "attachmentCount": 0,
+          "commentCount": 0
+        }
+      ]
+    }
+  },
+  "budget": {
+    "queries": 13,
+    "parameters": 28
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "method": "POST",
+  "path": "/__wu33/sql",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"sql\":\"UPDATE projects SET visibility='private' WHERE id=?\",\"parameters\":[\"01a127ac-0e84-7f49-9918-7170dfb96a47\"]}",
+  "status": 200,
+  "response": {
+    "success": true,
+    "meta": {
+      "served_by": "miniflare.db",
+      "duration": 0,
+      "changes": 1,
+      "last_row_id": 20,
+      "changed_db": true,
+      "size_after": 753664,
+      "rows_read": 1,
+      "rows_written": 1
+    },
+    "results": []
+  },
+  "budget": null
+}

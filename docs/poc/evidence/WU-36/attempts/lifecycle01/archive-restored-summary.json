@@ -1,0 +1,42 @@
+{
+  "name": "archive-restored-summary",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked"
+  },
+  "response": {
+    "data": {
+      "total": 67,
+      "byStatus": {
+        "backlog": 8,
+        "todo": 35,
+        "progress": 8,
+        "review": 7,
+        "done": 9
+      },
+      "byPriority": {
+        "urgent": 9,
+        "high": 21,
+        "medium": 27,
+        "low": 10,
+        "none": 0
+      },
+      "overdue": 13,
+      "completed": 9,
+      "completionRate": 13,
+      "subtaskTotals": {
+        "total": 18,
+        "completed": 9
+      }
+    }
+  },
+  "raw": {
+    "path": "archive-restored-summary.response.json",
+    "bytes": 245,
+    "sha256": "1b9f2658fa82c54a750700211916de2e3fbb10fcfc821521e03e233982bdf3bf"
+  }
+}

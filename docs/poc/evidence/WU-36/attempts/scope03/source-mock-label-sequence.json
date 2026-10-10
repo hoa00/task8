@@ -1,0 +1,92 @@
+{
+  "name": "source-mock-label-sequence",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-7d34-868d-53e735cd70aa",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu36-parameters": "5",
+    "x-wu36-queries": "5"
+  },
+  "budget": {
+    "queries": 5,
+    "parameters": 5
+  },
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a11abd-aa80-7d34-868d-53e735cd70aa",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+        "key": "WEB-112",
+        "title": "Finalize navigation",
+        "descriptionHtml": "",
+        "status": "progress",
+        "assigneeId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+        "priority": "high",
+        "startDate": "2026-10-04",
+        "dueDate": "2026-10-08",
+        "estimate": "2d",
+        "recurrence": null,
+        "labelIds": [
+          "design",
+          "frontend"
+        ],
+        "dependencyIds": [],
+        "position": 400,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-09-26T09:00:00.000Z",
+        "updatedAt": "2026-10-07T03:00:00.000Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 3,
+          "completed": 1
+        },
+        "attachmentCount": 0,
+        "commentCount": 2
+      },
+      "subtasks": [
+        {
+          "id": "01a11abd-aa80-7a12-8cd0-8a4537e6d04a",
+          "taskId": "01a11abd-aa80-7d34-868d-53e735cd70aa",
+          "title": "Primary nav structure",
+          "done": true,
+          "assigneeId": null,
+          "dueDate": null,
+          "note": "",
+          "position": 0
+        },
+        {
+          "id": "01a11abd-aa80-7de3-8cec-9c8485427e38",
+          "taskId": "01a11abd-aa80-7d34-868d-53e735cd70aa",
+          "title": "Mega-menu content",
+          "done": false,
+          "assigneeId": null,
+          "dueDate": null,
+          "note": "",
+          "position": 100
+        },
+        {
+          "id": "01a11abd-aa80-76e7-87cf-9bfe186d2978",
+          "taskId": "01a11abd-aa80-7d34-868d-53e735cd70aa",
+          "title": "Mobile drawer behavior",
+          "done": false,
+          "assigneeId": null,
+          "dueDate": null,
+          "note": "",
+          "position": 200
+        }
+      ],
+      "attachments": []
+    }
+  },
+  "raw": {
+    "path": "source-mock-label-sequence.response.json",
+    "bytes": 1314,
+    "sha256": "1cf62786ca2fdbb26c9d1b232d68becb1e1bd43c7a1211446192fdc5a87924b0"
+  }
+}

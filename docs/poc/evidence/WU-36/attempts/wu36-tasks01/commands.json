@@ -1,0 +1,192 @@
+[
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "d1",
+      "migrations",
+      "apply",
+      "DB",
+      "--local",
+      "--persist-to",
+      "/tmp/task8-wu32-wu36-tasks01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:13:34.081Z",
+    "completedAt": "2026-10-10T21:13:40.888Z",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "migrate.stdout.log",
+      "bytes": 1460,
+      "sha256": "df652077a9025c806e151da3feb9c81475300fdfbe966d057a979ac8bacc8b9b"
+    },
+    "stderr": {
+      "path": "migrate.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "seed",
+    "argv": [
+      "node",
+      "scripts/seed-local.mjs",
+      "--persist-to",
+      "/tmp/task8-wu32-wu36-tasks01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:13:40.888Z",
+    "completedAt": "2026-10-10T21:13:47.933Z",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "seed.stdout.log",
+      "bytes": 48594,
+      "sha256": "5dbacbb13a71f0e2dd184d0a51a58dde3facb7b1060940af2d26bfa25324ca6f"
+    },
+    "stderr": {
+      "path": "seed.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "owner",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu32-config-wu36-tasks01/owner.json",
+      "--persist-to",
+      "/tmp/task8-wu32-wu36-tasks01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:13:47.933Z",
+    "completedAt": "2026-10-10T21:13:54.810Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "shutdown": "SIGTERM after bounded probes",
+    "stdout": {
+      "path": "owner.stdout.log",
+      "bytes": 35369,
+      "sha256": "025174395de8b8a286840926148ce9f45a2236207ce361264146845696d8fc40"
+    },
+    "stderr": {
+      "path": "owner.stderr.log",
+      "bytes": 7299,
+      "sha256": "2e8150f6f0e2f6c26fa9a3a7508c1b34fe32635d487cb91439dce9fbdb0b26cf"
+    }
+  },
+  {
+    "name": "member",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu32-config-wu36-tasks01/member.json",
+      "--persist-to",
+      "/tmp/task8-wu32-wu36-tasks01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:13:54.811Z",
+    "completedAt": "2026-10-10T21:14:01.154Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "shutdown": "SIGTERM after bounded probes",
+    "stdout": {
+      "path": "member.stdout.log",
+      "bytes": 3023,
+      "sha256": "55882ac2c68d085118c86855c311d50171debec680db78dc8a0fdca170b2b12d"
+    },
+    "stderr": {
+      "path": "member.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "isolation",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu32-config-wu36-tasks01/isolation.json",
+      "--persist-to",
+      "/tmp/task8-wu32-wu36-tasks01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:14:01.155Z",
+    "completedAt": "2026-10-10T21:14:07.440Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "shutdown": "SIGTERM after bounded probes",
+    "stdout": {
+      "path": "isolation.stdout.log",
+      "bytes": 2792,
+      "sha256": "c13a0e59684eb0b0f4cea9756fa4ec649f5d805d75208580bce36a18a9e97bbb"
+    },
+    "stderr": {
+      "path": "isolation.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "restart",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu32-config-wu36-tasks01/restart.json",
+      "--persist-to",
+      "/tmp/task8-wu32-wu36-tasks01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T21:14:07.441Z",
+    "completedAt": "2026-10-10T21:14:13.785Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "shutdown": "SIGTERM after bounded probes",
+    "stdout": {
+      "path": "restart.stdout.log",
+      "bytes": 3194,
+      "sha256": "410e3b46458f7fa86ef58d00027acf2603f31417f8b9bf15d61c46189da83668"
+    },
+    "stderr": {
+      "path": "restart.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "name": "deleted-summary",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked"
+  },
+  "response": {
+    "data": {
+      "total": 48,
+      "byStatus": {
+        "backlog": 4,
+        "todo": 30,
+        "progress": 5,
+        "review": 4,
+        "done": 5
+      },
+      "byPriority": {
+        "urgent": 8,
+        "high": 15,
+        "medium": 19,
+        "low": 6,
+        "none": 0
+      },
+      "overdue": 10,
+      "completed": 5,
+      "completionRate": 10,
+      "subtaskTotals": {
+        "total": 4,
+        "completed": 2
+      }
+    }
+  },
+  "raw": {
+    "path": "deleted-summary.response.json",
+    "bytes": 243,
+    "sha256": "afe87e7d620559923c0d48bf551f32dcd735fb1536e5fb5f790262b53a06862e"
+  }
+}

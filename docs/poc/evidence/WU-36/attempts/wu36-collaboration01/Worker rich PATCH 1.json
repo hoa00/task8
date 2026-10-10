@@ -1,0 +1,52 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127ac-09cd-749e-923e-c251c44e6cab",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"descriptionHtml\":\"<math><annotation-xml encoding=\\\"text/html\\\"><script>x</script></annotation-xml></math><p>safe</p>\"}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a127ac-09cd-749e-923e-c251c44e6cab",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a127ac-0228-7acd-b76a-740a2f1a6723",
+        "key": "WM-207",
+        "title": "Worker rich 1",
+        "descriptionHtml": "<p>safe</p>",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 5600,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T21:15:48.555Z",
+        "updatedAt": "2026-10-10T21:15:48.565Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a127ac-0228-7acd-b76a-740a2f1a6723"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 28
+  }
+}

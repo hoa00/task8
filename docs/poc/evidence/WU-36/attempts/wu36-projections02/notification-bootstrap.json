@@ -1,0 +1,941 @@
+{
+  "name": "notification-bootstrap",
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "workspace": {
+        "planLabel": "Team",
+        "id": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "name": "Gr8r Studio",
+        "slug": "gr8rstudio",
+        "iconColor": "#1D1C1A",
+        "brand": true,
+        "timezone": "UTC",
+        "createdAt": "2026-10-08T09:00:00.000Z",
+        "updatedAt": "2026-10-08T09:00:00.000Z",
+        "version": 1
+      },
+      "currentMember": {
+        "id": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77",
+        "name": "Tanjim Islam",
+        "email": "hello@gr8rstudio.com",
+        "title": "Head of Product",
+        "avatarColor": "#5A67D8",
+        "timezone": "San Francisco",
+        "role": "Owner",
+        "status": "active",
+        "teamId": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+        "lastSeenAt": "2026-10-08T09:00:00.000Z",
+        "version": 1
+      },
+      "members": [
+        {
+          "id": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "name": "Tanjim Islam",
+          "avatarColor": "#5A67D8"
+        },
+        {
+          "id": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+          "name": "Emma Wilson",
+          "avatarColor": "#23918A"
+        },
+        {
+          "id": "01a11abd-aa80-7470-803a-d8637be26509",
+          "name": "Priya Patel",
+          "avatarColor": "#C48A1E"
+        },
+        {
+          "id": "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+          "name": "Lena Fischer",
+          "avatarColor": "#3D8E5F"
+        },
+        {
+          "id": "01a11abd-aa80-7567-80df-64683f5c3572",
+          "name": "Marcus Lee",
+          "avatarColor": "#8662C9"
+        },
+        {
+          "id": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+          "name": "John Carter",
+          "avatarColor": "#3B82C4"
+        },
+        {
+          "id": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "name": "Sarah Chen",
+          "avatarColor": "#C54B78"
+        },
+        {
+          "id": "01a11abd-aa80-7a8a-8271-af0df3499721",
+          "name": "Diego Alvarez",
+          "avatarColor": "#C0612B"
+        }
+      ],
+      "teams": [
+        {
+          "id": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "name": "Design",
+          "description": "Product design, brand, and research",
+          "icon": "palette",
+          "color": "#8662C9",
+          "memberIds": [
+            "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+            "01a11abd-aa80-7947-8d13-2178f1cc4d45"
+          ],
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "version": 1
+        },
+        {
+          "id": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "name": "Marketing",
+          "description": "Campaigns, content, and growth",
+          "icon": "megaphone",
+          "color": "#C54B78",
+          "memberIds": [
+            "01a11abd-aa80-7470-803a-d8637be26509",
+            "01a11abd-aa80-7a8a-8271-af0df3499721"
+          ],
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "version": 1
+        },
+        {
+          "id": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "name": "Product",
+          "description": "Roadmap, planning, and QA",
+          "icon": "target",
+          "color": "#C48A1E",
+          "memberIds": [
+            "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+          ],
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "version": 1
+        },
+        {
+          "id": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "name": "Engineering",
+          "description": "Web, mobile, and platform engineering",
+          "icon": "code",
+          "color": "#3B82C4",
+          "memberIds": [
+            "01a11abd-aa80-7567-80df-64683f5c3572",
+            "01a11abd-aa80-7606-8d4c-58e60fb7e5a4"
+          ],
+          "createdAt": "2026-10-08T09:00:00.000Z",
+          "updatedAt": "2026-10-08T09:00:00.000Z",
+          "version": 1
+        }
+      ],
+      "projects": [
+        {
+          "access": "allowed",
+          "project": {
+            "id": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "key": "WEB",
+            "name": "Website Redesign",
+            "description": "Rebuild gr8rstudio.com with a clearer information architecture, a responsive component library, and a faster CMS-driven blog.",
+            "icon": "globe",
+            "color": "#5A67D8",
+            "status": "active",
+            "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+            "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "startDate": "2026-09-08",
+            "dueDate": "2026-11-01",
+            "visibility": "workspace",
+            "memberIds": [
+              "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+              "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "01a11abd-aa80-7470-803a-d8637be26509",
+              "01a11abd-aa80-7567-80df-64683f5c3572",
+              "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+            ],
+            "milestones": [
+              {
+                "id": "01a11abd-aa80-7311-8fd4-d485e62a5f45",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "name": "Wireframes signed off",
+                "date": "2026-10-10",
+                "position": 0
+              },
+              {
+                "id": "01a11abd-aa80-7282-82b9-12bf7f3694c0",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "name": "Dev handoff",
+                "date": "2026-10-22",
+                "position": 100
+              },
+              {
+                "id": "01a11abd-aa80-77d3-8551-ab806d5c3f55",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "name": "Public launch",
+                "date": "2026-11-01",
+                "position": 200
+              }
+            ],
+            "isFavorite": true,
+            "archivedAt": null,
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "lastActivityAt": "2026-10-08T08:48:00.000Z",
+            "version": 1
+          },
+          "summary": {
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskSummary": {
+              "total": 136,
+              "byStatus": {
+                "backlog": 28,
+                "todo": 28,
+                "progress": 27,
+                "review": 25,
+                "done": 28
+              },
+              "byPriority": {
+                "urgent": 25,
+                "high": 28,
+                "medium": 32,
+                "low": 27,
+                "none": 24
+              },
+              "overdue": 3,
+              "completed": 28,
+              "completionRate": 21,
+              "subtaskTotals": {
+                "total": 12,
+                "completed": 6
+              }
+            },
+            "progress": 21
+          }
+        },
+        {
+          "access": "allowed",
+          "project": {
+            "id": "01a11abd-aa80-7f23-849c-94f63946ff17",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "key": "MOB",
+            "name": "Mobile App",
+            "description": "Native iOS and Android client for field teams with offline sync, push notifications, and biometric sign-in.",
+            "icon": "smartphone",
+            "color": "#3B82C4",
+            "status": "active",
+            "teamId": "01a11abd-aa80-7f1b-87c9-4f06efe7d086",
+            "leadId": "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+            "startDate": "2026-08-24",
+            "dueDate": "2026-11-29",
+            "visibility": "workspace",
+            "memberIds": [
+              "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+              "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "01a11abd-aa80-7567-80df-64683f5c3572",
+              "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+            ],
+            "milestones": [
+              {
+                "id": "01a11abd-aa80-73de-8352-a37eda1f6804",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "name": "Beta build",
+                "date": "2026-10-17",
+                "position": 0
+              },
+              {
+                "id": "01a11abd-aa80-7968-841d-52612a365a0b",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+                "name": "App Store submission",
+                "date": "2026-11-22",
+                "position": 100
+              }
+            ],
+            "isFavorite": true,
+            "archivedAt": null,
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "lastActivityAt": "2026-10-08T08:12:00.000Z",
+            "version": 1
+          },
+          "summary": {
+            "projectId": "01a11abd-aa80-7f23-849c-94f63946ff17",
+            "taskSummary": {
+              "total": 126,
+              "byStatus": {
+                "backlog": 24,
+                "todo": 28,
+                "progress": 25,
+                "review": 25,
+                "done": 24
+              },
+              "byPriority": {
+                "urgent": 25,
+                "high": 27,
+                "medium": 26,
+                "low": 25,
+                "none": 23
+              },
+              "overdue": 2,
+              "completed": 24,
+              "completionRate": 19,
+              "subtaskTotals": {
+                "total": 0,
+                "completed": 0
+              }
+            },
+            "progress": 19
+          }
+        },
+        {
+          "access": "allowed",
+          "project": {
+            "id": "01a11abd-aa80-784d-8681-7daf87297886",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "key": "MKT",
+            "name": "Marketing Campaign",
+            "description": "Q4 awareness campaign across paid social, email, and a launch webinar targeting operations leads.",
+            "icon": "megaphone",
+            "color": "#C54B78",
+            "status": "planning",
+            "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+            "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+            "startDate": "2026-09-28",
+            "dueDate": "2026-11-17",
+            "visibility": "workspace",
+            "memberIds": [
+              "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "01a11abd-aa80-7470-803a-d8637be26509",
+              "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a",
+              "01a11abd-aa80-7a8a-8271-af0df3499721"
+            ],
+            "milestones": [
+              {
+                "id": "01a11abd-aa80-715d-8c2b-2f959e3c70b1",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "name": "Creative lock",
+                "date": "2026-10-20",
+                "position": 0
+              },
+              {
+                "id": "01a11abd-aa80-7392-8a33-b21e8347d051",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+                "name": "Campaign live",
+                "date": "2026-10-29",
+                "position": 100
+              }
+            ],
+            "isFavorite": false,
+            "archivedAt": null,
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "lastActivityAt": "2026-10-08T06:50:00.000Z",
+            "version": 1
+          },
+          "summary": {
+            "projectId": "01a11abd-aa80-784d-8681-7daf87297886",
+            "taskSummary": {
+              "total": 7,
+              "byStatus": {
+                "backlog": 1,
+                "todo": 3,
+                "progress": 1,
+                "review": 1,
+                "done": 1
+              },
+              "byPriority": {
+                "urgent": 1,
+                "high": 1,
+                "medium": 4,
+                "low": 1,
+                "none": 0
+              },
+              "overdue": 1,
+              "completed": 1,
+              "completionRate": 14,
+              "subtaskTotals": {
+                "total": 0,
+                "completed": 0
+              }
+            },
+            "progress": 14
+          }
+        },
+        {
+          "access": "allowed",
+          "project": {
+            "id": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "key": "LCH",
+            "name": "Product Launch",
+            "description": "Coordinate the Workflows 2.0 launch: pricing, docs, press, and sales enablement across teams.",
+            "icon": "rocket",
+            "color": "#C48A1E",
+            "status": "risk",
+            "teamId": "01a11abd-aa80-7c4b-88b5-79c301cf70d7",
+            "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "startDate": "2026-09-17",
+            "dueDate": "2026-10-20",
+            "visibility": "workspace",
+            "memberIds": [
+              "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+              "01a11abd-aa80-7470-803a-d8637be26509",
+              "01a11abd-aa80-74bd-8f5c-8b0dacdf2f8a"
+            ],
+            "milestones": [
+              {
+                "id": "01a11abd-aa80-7b1e-8750-aee019ec403a",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "name": "Go / no-go",
+                "date": "2026-10-19",
+                "position": 0
+              },
+              {
+                "id": "01a11abd-aa80-78b5-8b54-7109f0699ea3",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+                "name": "Launch day",
+                "date": "2026-10-20",
+                "position": 100
+              }
+            ],
+            "isFavorite": false,
+            "archivedAt": null,
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "lastActivityAt": "2026-10-08T08:25:00.000Z",
+            "version": 1
+          },
+          "summary": {
+            "projectId": "01a11abd-aa80-7f26-8251-02c59e29c3b1",
+            "taskSummary": {
+              "total": 6,
+              "byStatus": {
+                "backlog": 1,
+                "todo": 3,
+                "progress": 1,
+                "review": 1,
+                "done": 0
+              },
+              "byPriority": {
+                "urgent": 1,
+                "high": 2,
+                "medium": 2,
+                "low": 1,
+                "none": 0
+              },
+              "overdue": 1,
+              "completed": 0,
+              "completionRate": 0,
+              "subtaskTotals": {
+                "total": 4,
+                "completed": 2
+              }
+            },
+            "progress": 0
+          }
+        },
+        {
+          "access": "allowed",
+          "project": {
+            "id": "01a11abd-aa80-7232-8a34-286c60c1a535",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "key": "DS",
+            "name": "Design System",
+            "description": "Shared tokens, components, and documentation used by web and mobile teams.",
+            "icon": "component",
+            "color": "#8662C9",
+            "status": "active",
+            "teamId": "01a11abd-aa80-7215-8b3f-9c5f78a7b7e2",
+            "leadId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "startDate": "2026-08-09",
+            "dueDate": "2026-12-17",
+            "visibility": "workspace",
+            "memberIds": [
+              "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+              "01a11abd-aa80-72e4-8e93-62c2ece91c47"
+            ],
+            "milestones": [
+              {
+                "id": "01a11abd-aa80-7e21-8112-2b24976a5e2a",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+                "name": "v2 tokens",
+                "date": "2026-10-11",
+                "position": 0
+              }
+            ],
+            "isFavorite": false,
+            "archivedAt": null,
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "lastActivityAt": "2026-10-08T04:00:00.000Z",
+            "version": 1
+          },
+          "summary": {
+            "projectId": "01a11abd-aa80-7232-8a34-286c60c1a535",
+            "taskSummary": {
+              "total": 6,
+              "byStatus": {
+                "backlog": 1,
+                "todo": 2,
+                "progress": 1,
+                "review": 1,
+                "done": 1
+              },
+              "byPriority": {
+                "urgent": 0,
+                "high": 2,
+                "medium": 3,
+                "low": 1,
+                "none": 0
+              },
+              "overdue": 0,
+              "completed": 1,
+              "completionRate": 17,
+              "subtaskTotals": {
+                "total": 0,
+                "completed": 0
+              }
+            },
+            "progress": 17
+          }
+        },
+        {
+          "access": "restricted",
+          "project": {
+            "id": "01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "name": "Customer Portal",
+            "key": "CP",
+            "icon": "building-2",
+            "color": "#23918A",
+            "status": "hold",
+            "dueDate": "2027-01-06",
+            "lead": {
+              "id": "01a11abd-aa80-7567-80df-64683f5c3572",
+              "name": "Marcus Lee",
+              "avatarColor": "#8662C9"
+            },
+            "catalogSummary": "Self-serve billing and support portal for enterprise customers. Restricted during contract review."
+          }
+        },
+        {
+          "access": "allowed",
+          "project": {
+            "id": "01a11abd-aa80-7d99-849a-abec9340dc89",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "key": "MW",
+            "name": "Marketing Website",
+            "description": "Launch site for the spring release. Shipped and handed to the web team for maintenance.",
+            "icon": "layout-grid",
+            "color": "#3D8E5F",
+            "status": "complete",
+            "teamId": "01a11abd-aa80-78fc-8df2-e8f729329cc7",
+            "leadId": "01a11abd-aa80-7470-803a-d8637be26509",
+            "startDate": "2026-07-20",
+            "dueDate": "2026-09-20",
+            "visibility": "workspace",
+            "memberIds": [
+              "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "01a11abd-aa80-7606-8d4c-58e60fb7e5a4",
+              "01a11abd-aa80-7470-803a-d8637be26509"
+            ],
+            "milestones": [],
+            "isFavorite": false,
+            "archivedAt": null,
+            "createdAt": "2026-10-08T09:00:00.000Z",
+            "updatedAt": "2026-10-08T09:00:00.000Z",
+            "lastActivityAt": "2026-09-20T07:40:00.000Z",
+            "version": 1
+          },
+          "summary": {
+            "projectId": "01a11abd-aa80-7d99-849a-abec9340dc89",
+            "taskSummary": {
+              "total": 2,
+              "byStatus": {
+                "backlog": 0,
+                "todo": 0,
+                "progress": 0,
+                "review": 0,
+                "done": 2
+              },
+              "byPriority": {
+                "urgent": 0,
+                "high": 1,
+                "medium": 1,
+                "low": 0,
+                "none": 0
+              },
+              "overdue": 0,
+              "completed": 2,
+              "completionRate": 100,
+              "subtaskTotals": {
+                "total": 0,
+                "completed": 0
+              }
+            },
+            "progress": 100
+          }
+        }
+      ],
+      "catalogs": {
+        "taskStatuses": [
+          {
+            "id": "backlog",
+            "name": "Backlog"
+          },
+          {
+            "id": "todo",
+            "name": "To Do"
+          },
+          {
+            "id": "progress",
+            "name": "In Progress"
+          },
+          {
+            "id": "review",
+            "name": "Review"
+          },
+          {
+            "id": "done",
+            "name": "Done"
+          }
+        ],
+        "priorities": [
+          {
+            "id": "urgent",
+            "name": "Urgent",
+            "weight": 4
+          },
+          {
+            "id": "high",
+            "name": "High",
+            "weight": 3
+          },
+          {
+            "id": "medium",
+            "name": "Medium",
+            "weight": 2
+          },
+          {
+            "id": "low",
+            "name": "Low",
+            "weight": 1
+          },
+          {
+            "id": "none",
+            "name": "No priority",
+            "weight": 0
+          }
+        ],
+        "projectStatuses": [
+          {
+            "id": "planning",
+            "name": "Planning",
+            "colorToken": "gray"
+          },
+          {
+            "id": "active",
+            "name": "In Progress",
+            "colorToken": "blue"
+          },
+          {
+            "id": "risk",
+            "name": "At Risk",
+            "colorToken": "red"
+          },
+          {
+            "id": "hold",
+            "name": "On Hold",
+            "colorToken": "amber"
+          },
+          {
+            "id": "complete",
+            "name": "Completed",
+            "colorToken": "green"
+          }
+        ],
+        "labels": [
+          {
+            "id": "design",
+            "name": "Design",
+            "colorToken": "violet"
+          },
+          {
+            "id": "frontend",
+            "name": "Frontend",
+            "colorToken": "blue"
+          },
+          {
+            "id": "backend",
+            "name": "Backend",
+            "colorToken": "teal"
+          },
+          {
+            "id": "research",
+            "name": "Research",
+            "colorToken": "amber"
+          },
+          {
+            "id": "content",
+            "name": "Content",
+            "colorToken": "rose"
+          },
+          {
+            "id": "bug",
+            "name": "Bug",
+            "colorToken": "red"
+          },
+          {
+            "id": "qa",
+            "name": "QA",
+            "colorToken": "green"
+          },
+          {
+            "id": "growth",
+            "name": "Growth",
+            "colorToken": "orange"
+          }
+        ],
+        "recurrences": [
+          {
+            "id": "daily",
+            "name": "Daily"
+          },
+          {
+            "id": "weekly",
+            "name": "Weekly"
+          },
+          {
+            "id": "biweekly",
+            "name": "Every 2 weeks"
+          },
+          {
+            "id": "monthly",
+            "name": "Monthly"
+          }
+        ],
+        "projectColors": [
+          {
+            "id": "indigo",
+            "color": "#5A67D8"
+          },
+          {
+            "id": "blue",
+            "color": "#3B82C4"
+          },
+          {
+            "id": "violet",
+            "color": "#8662C9"
+          },
+          {
+            "id": "teal",
+            "color": "#23918A"
+          },
+          {
+            "id": "rose",
+            "color": "#C54B78"
+          },
+          {
+            "id": "amber",
+            "color": "#C48A1E"
+          },
+          {
+            "id": "green",
+            "color": "#3D8E5F"
+          },
+          {
+            "id": "slate",
+            "color": "#6B7280"
+          }
+        ],
+        "projectIcons": [
+          "globe",
+          "smartphone",
+          "megaphone",
+          "rocket",
+          "component",
+          "building-2",
+          "layout-grid",
+          "palette",
+          "code",
+          "briefcase",
+          "target",
+          "layers",
+          "zap",
+          "heart",
+          "folder",
+          "sparkles"
+        ],
+        "estimates": [
+          "30m",
+          "1h",
+          "2h",
+          "4h",
+          "1d",
+          "2d",
+          "3d",
+          "5d",
+          "8d"
+        ],
+        "templates": [
+          {
+            "id": "blank",
+            "name": "Blank project",
+            "icon": "file",
+            "description": "Start from scratch",
+            "tasks": []
+          },
+          {
+            "id": "product",
+            "name": "Product Development",
+            "icon": "target",
+            "description": "Discovery to launch",
+            "tasks": [
+              "Define problem statement",
+              "User research plan",
+              "Write PRD",
+              "Design exploration",
+              "Build MVP",
+              "Beta launch"
+            ]
+          },
+          {
+            "id": "web",
+            "name": "Website",
+            "icon": "globe",
+            "description": "IA, design, build, launch",
+            "tasks": [
+              "Sitemap & information architecture",
+              "Wireframes",
+              "Visual design",
+              "Build page templates",
+              "Content migration",
+              "QA & launch"
+            ]
+          },
+          {
+            "id": "mkt",
+            "name": "Marketing Campaign",
+            "icon": "megaphone",
+            "description": "Brief, assets, channels",
+            "tasks": [
+              "Campaign brief",
+              "Audience research",
+              "Creative assets",
+              "Channel plan",
+              "Launch campaign",
+              "Performance report"
+            ]
+          },
+          {
+            "id": "design",
+            "name": "Design Project",
+            "icon": "palette",
+            "description": "Discovery to handoff",
+            "tasks": [
+              "Discovery workshop",
+              "Moodboard",
+              "Concept directions",
+              "Refinement",
+              "Developer handoff"
+            ]
+          },
+          {
+            "id": "software",
+            "name": "Software Development",
+            "icon": "code",
+            "description": "Spec, build, ship",
+            "tasks": [
+              "Technical spec",
+              "Set up repo & CI",
+              "Implement core API",
+              "Write tests",
+              "Code review",
+              "Deploy to staging"
+            ]
+          },
+          {
+            "id": "personal",
+            "name": "Personal Project",
+            "icon": "heart",
+            "description": "Plan your own goals",
+            "tasks": [
+              "Brain dump ideas",
+              "Pick top 3 priorities",
+              "Schedule focus time",
+              "Weekly review"
+            ]
+          }
+        ]
+      },
+      "preferences": {
+        "theme": "light",
+        "accent": "indigo",
+        "side": "comfortable",
+        "density": "comfortable",
+        "weekStart": 1,
+        "dateFmt": "MMM d",
+        "lang": "English (US)",
+        "tz": "(GMT-07:00) Pacific Time",
+        "timeFmt": "12",
+        "spell": true,
+        "motion": "system",
+        "home": "home",
+        "openTasks": "drawer",
+        "confirmDel": true,
+        "defaultTab": "board",
+        "showDoneBoard": true
+      },
+      "notificationPreferences": {
+        "emailMention": true,
+        "emailAssign": true,
+        "emailDigest": true,
+        "emailComment": false,
+        "pushMention": true,
+        "pushAssign": true,
+        "pushComment": true,
+        "pushDue": true,
+        "mentionAll": true,
+        "mentionTeam": true,
+        "mentionWorkspace": false,
+        "assignSelf": true,
+        "assignStatus": true,
+        "assignOverdue": true
+      },
+      "unreadCount": 71,
+      "navigationCounts": {
+        "inbox": 36,
+        "myTasks": 3,
+        "archive": 0
+      }
+    }
+  },
+  "budget": {
+    "queries": 13,
+    "parameters": 8
+  }
+}

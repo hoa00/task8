@@ -1,0 +1,2988 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu36-visual04"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T21:25:25.553Z",
+      "completedAt": "2026-10-10T21:25:32.482Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1456,
+        "sha256": "a07e3cfa41bf5f0a99c51f8254cb40fad6fef492632e8e49b3cd1716f026398f"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu36-visual04"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T21:25:32.496Z",
+      "completedAt": "2026-10-10T21:25:39.581Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48590,
+        "sha256": "dadd4e7ac2824e400e73c111ab4b507616d7c3376f2b1b01097facaaf75c0a14"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "source",
+      "argv": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4173",
+        "--strictPort"
+      ],
+      "cwd": "/workspace/task8/.reference/gr8r-studio",
+      "startedAt": "2026-10-10T21:25:42.653Z",
+      "completedAt": "2026-10-10T21:26:14.946Z",
+      "exitCode": 143,
+      "signal": null,
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "source.stdout.log",
+        "bytes": 72,
+        "sha256": "1244e4401e98ef7f65921eb1a5b256bb5832b71840d9cdf30b449226989caf0f"
+      },
+      "stderr": {
+        "path": "source.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "http-preview",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vite",
+        "preview",
+        "--outDir",
+        "dist-http",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "5173",
+        "--strictPort"
+      ],
+      "cwd": "/workspace/task8/apps/web",
+      "startedAt": "2026-10-10T21:25:41.533Z",
+      "completedAt": "2026-10-10T21:26:14.962Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "http-preview.stdout.log",
+        "bytes": 39,
+        "sha256": "bd8dbfcb51bb080233543196528006cdfd7b1571bfe995d605a3c3bf02ba543e"
+      },
+      "stderr": {
+        "path": "http-preview.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "visual-worker",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu36-config-visual04/visual.json",
+        "--persist-to",
+        "/tmp/task8-wu36-visual04"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T21:25:39.596Z",
+      "completedAt": "2026-10-10T21:26:14.991Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "visual-worker.stdout.log",
+        "bytes": 15623,
+        "sha256": "fed3b8a32bbee45e373f4fc9c69310e55adfc14767a322ce8d34573c77c9fc8d"
+      },
+      "stderr": {
+        "path": "visual-worker.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [],
+  "checks": [],
+  "runtime": "actual Wrangler local R2+D1; actual Chromium UI",
+  "samples": [
+    {
+      "id": "list-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "List"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "list-wrap",
+              "rect": {
+                "x": 252,
+                "y": 195,
+                "width": 1188,
+                "height": 1242,
+                "top": 195,
+                "right": 1440,
+                "bottom": 1437,
+                "left": 252
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "e977828b088bd9bc958222d57b27ce5a619a3fab5ca43027dc90ea00588faa9e",
+      "targetSha256": "e977828b088bd9bc958222d57b27ce5a619a3fab5ca43027dc90ea00588faa9e"
+    },
+    {
+      "id": "board-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "List",
+          "Board"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "board",
+              "rect": {
+                "x": 252,
+                "y": 195,
+                "width": 1188,
+                "height": 805,
+                "top": 195,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 252
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "6d51d8921ad9b9fc0d389edf2cd62ac4ba97aa2df2047e9917971967ef4c7de3",
+      "targetSha256": "6d51d8921ad9b9fc0d389edf2cd62ac4ba97aa2df2047e9917971967ef4c7de3"
+    },
+    {
+      "id": "table-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "Table"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "tbl-wrap hide-m",
+              "rect": {
+                "x": 252,
+                "y": 195,
+                "width": 1188,
+                "height": 805,
+                "top": 195,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 252
+              }
+            },
+            {
+              "className": "only-m",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "b558e433309e263aafd7fafcfc87884944b97006135bdd02a6425347f34750a3",
+      "targetSha256": "b558e433309e263aafd7fafcfc87884944b97006135bdd02a6425347f34750a3"
+    },
+    {
+      "id": "calendar-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "Calendar"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "cal",
+              "rect": {
+                "x": 252,
+                "y": 195,
+                "width": 1188,
+                "height": 805,
+                "top": 195,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 252
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "1c7312f109eb6664b66d30f55fc45cbc65eb80759912f4f80654eb36fafd8a82",
+      "targetSha256": "1c7312f109eb6664b66d30f55fc45cbc65eb80759912f4f80654eb36fafd8a82"
+    },
+    {
+      "id": "timeline-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "selectedScope": "visible Timeline left rail (SVG/full container unaccepted)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "Timeline"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 196,
+            "width": 300,
+            "height": 804,
+            "top": 196,
+            "right": 552,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "tl-head",
+              "rect": {
+                "x": 252,
+                "y": 196,
+                "width": 299,
+                "height": 52,
+                "top": 196,
+                "right": 551,
+                "bottom": 248,
+                "left": 252
+              }
+            },
+            {
+              "className": "tl-rows",
+              "rect": {
+                "x": 252,
+                "y": 248,
+                "width": 299,
+                "height": 752,
+                "top": 248,
+                "right": 551,
+                "bottom": 1000,
+                "left": 252
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 196,
+            "width": 300,
+            "height": 804,
+            "top": 196,
+            "right": 552,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "timeline-head flex items-end pb-2 pl-[var(--gutter)] pr-3 text-xs font-medium text-muted",
+              "rect": {
+                "x": 252,
+                "y": 196,
+                "width": 299,
+                "height": 52,
+                "top": 196,
+                "right": 551,
+                "bottom": 248,
+                "left": 252
+              }
+            },
+            {
+              "className": "overflow-hidden",
+              "rect": {
+                "x": 252,
+                "y": 248,
+                "width": 299,
+                "height": 752,
+                "top": 248,
+                "right": 551,
+                "bottom": 1000,
+                "left": 252
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 196,
+          "width": 300,
+          "height": 804
+        },
+        {
+          "x": 252,
+          "y": 196,
+          "width": 300,
+          "height": 804
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "6034ba64feb9336ce8b47ba72978d3f839752c27108a213596c0cb2582360b67",
+      "targetSha256": "6034ba64feb9336ce8b47ba72978d3f839752c27108a213596c0cb2582360b67"
+    },
+    {
+      "id": "files-1440",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "Files"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 252,
+                "y": 151,
+                "width": 1188,
+                "height": 44,
+                "top": 151,
+                "right": 1440,
+                "bottom": 195,
+                "left": 252
+              }
+            },
+            {
+              "className": "page wide",
+              "rect": {
+                "x": 653,
+                "y": 195,
+                "width": 386,
+                "height": 2372.625,
+                "top": 195,
+                "right": 1039,
+                "bottom": 2567.625,
+                "left": 653
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 252,
+            "y": 151,
+            "width": 1188,
+            "height": 849,
+            "top": 151,
+            "right": 1440,
+            "bottom": 1000,
+            "left": 252
+          },
+          "children": [
+            {
+              "className": "contents",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        },
+        {
+          "x": 252,
+          "y": 151,
+          "width": 1188,
+          "height": 849
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "8439a9b1d4ac35185eb1f62632766420dc453d01fc68d7c8655e1918006154cb",
+      "targetSha256": "8439a9b1d4ac35185eb1f62632766420dc453d01fc68d7c8655e1918006154cb"
+    },
+    {
+      "id": "list-390",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "List"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 0,
+                "y": 225,
+                "width": 390,
+                "height": 44,
+                "top": 225,
+                "right": 390,
+                "bottom": 269,
+                "left": 0
+              }
+            },
+            {
+              "className": "list-wrap",
+              "rect": {
+                "x": 0,
+                "y": 269,
+                "width": 390,
+                "height": 3005.875,
+                "top": 269,
+                "right": 390,
+                "bottom": 3274.875,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        },
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "12178d1967eb417b9caf611c0d548c58d281a4583707ccaeb450fbd507c43977",
+      "targetSha256": "12178d1967eb417b9caf611c0d548c58d281a4583707ccaeb450fbd507c43977"
+    },
+    {
+      "id": "board-390",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "List",
+          "Board"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 0,
+                "y": 225,
+                "width": 390,
+                "height": 73,
+                "top": 225,
+                "right": 390,
+                "bottom": 298,
+                "left": 0
+              }
+            },
+            {
+              "className": "board",
+              "rect": {
+                "x": 0,
+                "y": 298,
+                "width": 390,
+                "height": 546,
+                "top": 298,
+                "right": 390,
+                "bottom": 844,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        },
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "01ad218e2633dfb3d0f1b807e4ad171c1518fec0b0520fa06270d55dc38e6247",
+      "targetSha256": "01ad218e2633dfb3d0f1b807e4ad171c1518fec0b0520fa06270d55dc38e6247"
+    },
+    {
+      "id": "table-390",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "Table"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 0,
+                "y": 225,
+                "width": 390,
+                "height": 44,
+                "top": 225,
+                "right": 390,
+                "bottom": 269,
+                "left": 0
+              }
+            },
+            {
+              "className": "tbl-wrap hide-m",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            },
+            {
+              "className": "only-m",
+              "rect": {
+                "x": 0,
+                "y": 269,
+                "width": 390,
+                "height": 1735.15625,
+                "top": 269,
+                "right": 390,
+                "bottom": 2004.15625,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        },
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "10f9d871e557b4c8dd86532d73d471e6cc04d40ba8c2d67bef8ca5ca98fd5240",
+      "targetSha256": "10f9d871e557b4c8dd86532d73d471e6cc04d40ba8c2d67bef8ca5ca98fd5240"
+    },
+    {
+      "id": "calendar-390",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "Calendar"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 0,
+                "y": 225,
+                "width": 390,
+                "height": 44,
+                "top": 225,
+                "right": 390,
+                "bottom": 269,
+                "left": 0
+              }
+            },
+            {
+              "className": "cal",
+              "rect": {
+                "x": 0,
+                "y": 269,
+                "width": 390,
+                "height": 640,
+                "top": 269,
+                "right": 390,
+                "bottom": 909,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        },
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "0c3f222ce83700773222467bd0251f741a89446659743a1108ed19ca23cfbca9",
+      "targetSha256": "0c3f222ce83700773222467bd0251f741a89446659743a1108ed19ca23cfbca9"
+    },
+    {
+      "id": "timeline-390",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "Timeline"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 0,
+                "y": 225,
+                "width": 390,
+                "height": 105,
+                "top": 225,
+                "right": 390,
+                "bottom": 330,
+                "left": 0
+              }
+            },
+            {
+              "className": "tl",
+              "rect": {
+                "x": 0,
+                "y": 330,
+                "width": 390,
+                "height": 514,
+                "top": 330,
+                "right": 390,
+                "bottom": 844,
+                "left": 0
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "task-page contents!",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        },
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "2ffe68ab389691b6eaca708f59e24abaaa33c79f68a026deaa30a503101491b2",
+      "targetSha256": "2ffe68ab389691b6eaca708f59e24abaaa33c79f68a026deaa30a503101491b2"
+    },
+    {
+      "id": "files-390",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "selectedScope": "project body visible viewport (Timeline mobile rail responsive-hidden)",
+      "nativeEntry": {
+        "initial": "Board",
+        "sequence": [
+          "Files"
+        ],
+        "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+      },
+      "geometry": [
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "toolbar",
+              "rect": {
+                "x": 0,
+                "y": 225,
+                "width": 390,
+                "height": 44,
+                "top": 225,
+                "right": 390,
+                "bottom": 269,
+                "left": 0
+              }
+            },
+            {
+              "className": "page wide",
+              "rect": {
+                "x": 10,
+                "y": 269,
+                "width": 370,
+                "height": 2396.625,
+                "top": 269,
+                "right": 380,
+                "bottom": 2665.625,
+                "left": 10
+              }
+            }
+          ]
+        },
+        {
+          "rect": {
+            "x": 0,
+            "y": 225,
+            "width": 390,
+            "height": 619,
+            "top": 225,
+            "right": 390,
+            "bottom": 844,
+            "left": 0
+          },
+          "children": [
+            {
+              "className": "contents",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ]
+        }
+      ],
+      "clips": [
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        },
+        {
+          "x": 0,
+          "y": 225,
+          "width": 390,
+          "height": 619
+        }
+      ],
+      "changedPixels": 0,
+      "repeatabilityPixels": 0,
+      "sourceSha256": "c3afb7f00645cfbc83394c240e1e71869f7da57d3a946a9f76e2f1a8c887f927",
+      "targetSha256": "c3afb7f00645cfbc83394c240e1e71869f7da57d3a946a9f76e2f1a8c887f927"
+    }
+  ],
+  "httpResponses": [
+    {
+      "id": "http-0001",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0002",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0003",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0004",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0005",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0006",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0007",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0008",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0009",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0010",
+      "sample": {
+        "width": 1440,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0011",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0012",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0013",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0014",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0015",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0016",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0017",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0018",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0019",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0020",
+      "sample": {
+        "width": 1440,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0021",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0022",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0023",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0024",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0025",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0026",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0027",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0028",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0029",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0030",
+      "sample": {
+        "width": 1440,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0031",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0032",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0033",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0034",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0035",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0036",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0037",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0038",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0039",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0040",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0041",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-28&rangeTo=2026-11-01&rangeBasis=due",
+      "status": 200,
+      "sha256": "4128549df8a1e38648707ffaf9e812603f92847cd919a3c17050ddd7ec333eaa",
+      "bytes": 240
+    },
+    {
+      "id": "http-0042",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-28&rangeTo=2026-11-01&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "1b5ffd4c84ad8699aa7bf7e089fa330769db9488fafcacdb7767059fb9492f97",
+      "bytes": 11401
+    },
+    {
+      "id": "http-0043",
+      "sample": {
+        "width": 1440,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2026-09-28&to=2026-11-01&projectId=01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "sha256": "ac6fdfbeb12d714296970071c97a0f979db65d13b955727abedbc399cb8ea9f3",
+      "bytes": 475
+    },
+    {
+      "id": "http-0044",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0045",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0046",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0047",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0048",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0049",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0050",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0051",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0052",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0053",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0054",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-14&rangeTo=2026-12-13&rangeBasis=overlap",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0055",
+      "sample": {
+        "width": 1440,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-14&rangeTo=2026-12-13&rangeBasis=overlap&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0056",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0057",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0058",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0059",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0060",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0061",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0062",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0063",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0064",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0065",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0066",
+      "sample": {
+        "width": 1440,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?limit=200&q=&sort=recent",
+      "status": 200,
+      "sha256": "79ad0bd22ba6b3a241d95b4a0f23c4872c411935ff51102c46e64e0e6b4da74c",
+      "bytes": 3463
+    },
+    {
+      "id": "http-0067",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0068",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0069",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0070",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0071",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0072",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0073",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0074",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0075",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0076",
+      "sample": {
+        "width": 390,
+        "tab": "list"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0077",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0078",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0079",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0080",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0081",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0082",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0083",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0084",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0085",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0086",
+      "sample": {
+        "width": 390,
+        "tab": "board"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0087",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0088",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0089",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0090",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0091",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0092",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0093",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0094",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0095",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0096",
+      "sample": {
+        "width": 390,
+        "tab": "table"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0097",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0098",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0099",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0100",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0101",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0102",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0103",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0104",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0105",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0106",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0107",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2026-09-28&to=2026-11-01&projectId=01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "sha256": "ac6fdfbeb12d714296970071c97a0f979db65d13b955727abedbc399cb8ea9f3",
+      "bytes": 475
+    },
+    {
+      "id": "http-0108",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-28&rangeTo=2026-11-01&rangeBasis=due",
+      "status": 200,
+      "sha256": "4128549df8a1e38648707ffaf9e812603f92847cd919a3c17050ddd7ec333eaa",
+      "bytes": 240
+    },
+    {
+      "id": "http-0109",
+      "sample": {
+        "width": 390,
+        "tab": "calendar"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-28&rangeTo=2026-11-01&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "1b5ffd4c84ad8699aa7bf7e089fa330769db9488fafcacdb7767059fb9492f97",
+      "bytes": 11401
+    },
+    {
+      "id": "http-0110",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0111",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0112",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0113",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0114",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0115",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0116",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0117",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0118",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0119",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0120",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-14&rangeTo=2026-12-13&rangeBasis=overlap",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0121",
+      "sample": {
+        "width": 390,
+        "tab": "timeline"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2026-09-14&rangeTo=2026-12-13&rangeBasis=overlap&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0122",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/session",
+      "status": 200,
+      "sha256": "07b70c2d0e3432291ea578e7eda2b018ff4244a0c7a085482b49f7f7bd910f3c",
+      "bytes": 853
+    },
+    {
+      "id": "http-0123",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "sha256": "208bfe466801ec080563424617e486130b04c451d03afbd25050903968913316",
+      "bytes": 16623
+    },
+    {
+      "id": "http-0124",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces",
+      "status": 200,
+      "sha256": "51b2e031a30c96068aaf7a6dd105c3ca42e7f25d0307ddf8240ab15b708ab6e3",
+      "bytes": 258
+    },
+    {
+      "id": "http-0125",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members?limit=200&q=",
+      "status": 200,
+      "sha256": "32f72210cda5f14c2bb6108ac4b6f5a343c409fc1325bf1f82766d7c0cdd5bfe",
+      "bytes": 3258
+    },
+    {
+      "id": "http-0126",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "530b650bd76998218edab2e9709bf0e7b0f5f6be69df1a64e4deb69bf1cf282d",
+      "bytes": 33067
+    },
+    {
+      "id": "http-0127",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/members",
+      "status": 200,
+      "sha256": "2d1b612e5bf31a450d4f50d9186676d450c19a88dcbd396f0323019c4861074c",
+      "bytes": 3051
+    },
+    {
+      "id": "http-0128",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "sha256": "a860d2e51d06423f131522a71a538be1b50ca0f993701e9c55c0d03815727f26",
+      "bytes": 343
+    },
+    {
+      "id": "http-0129",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0130",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "sha256": "713e12251196664a1686a0967fc9512c49ed4be91ff6ffa285e2b6631a5c2468",
+      "bytes": 12776
+    },
+    {
+      "id": "http-0131",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14&favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "sha256": "4702fff75c6b9b98e29ea64e846255383c73a8a330cfbb54a42db57449a5d2cc",
+      "bytes": 240
+    },
+    {
+      "id": "http-0132",
+      "sample": {
+        "width": 390,
+        "tab": "files"
+      },
+      "url": "http://127.0.0.1:5173/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?limit=200&q=&sort=recent",
+      "status": 200,
+      "sha256": "79ad0bd22ba6b3a241d95b4a0f23c4872c411935ff51102c46e64e0e6b4da74c",
+      "bytes": 3463
+    }
+  ],
+  "threshold": 0,
+  "includeAA": true,
+  "maxDiffPixels": 0,
+  "masks": [],
+  "environment": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "fixtureSha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+  "qualification": "Linux Chromium145 with --disable-partial-raster BOTH Source/Target; content/renderers only. No inherited default/Darwin/whole-shell/device/full-project debt recovery.",
+  "browser": "145.0.7632.6",
+  "actualLaunchArguments": [
+    "/tmp/task8-xdg-cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell",
+    "--disable-field-trial-config",
+    "--disable-background-networking",
+    "--disable-background-timer-throttling",
+    "--disable-backgrounding-occluded-windows",
+    "--disable-back-forward-cache",
+    "--disable-breakpad",
+    "--disable-client-side-phishing-detection",
+    "--disable-component-extensions-with-background-pages",
+    "--disable-component-update",
+    "--no-default-browser-check",
+    "--disable-default-apps",
+    "--disable-dev-shm-usage",
+    "--disable-extensions",
+    "--disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints",
+    "--enable-features=CDPScreenshotNewSurface",
+    "--allow-pre-commit-input",
+    "--disable-hang-monitor",
+    "--disable-ipc-flooding-protection",
+    "--disable-popup-blocking",
+    "--disable-prompt-on-repost",
+    "--disable-renderer-backgrounding",
+    "--force-color-profile=srgb",
+    "--metrics-recording-only",
+    "--no-first-run",
+    "--password-store=basic",
+    "--use-mock-keychain",
+    "--no-service-autorun",
+    "--export-tagged-pdf",
+    "--disable-search-engine-choice-screen",
+    "--unsafely-disable-devtools-self-xss-warnings",
+    "--edge-skip-compat-layer-relaunch",
+    "--enable-automation",
+    "--disable-infobars",
+    "--disable-search-engine-choice-screen",
+    "--disable-sync",
+    "--enable-unsafe-swiftshader",
+    "--headless",
+    "--hide-scrollbars",
+    "--mute-audio",
+    "--blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4",
+    "--no-sandbox",
+    "--disable-partial-raster",
+    "--user-data-dir=/tmp/playwright_chromiumdev_profile-UmouBw",
+    "--remote-debugging-pipe",
+    "--no-startup-window",
+    "--use-gl=angle",
+    "--use-angle=swiftshader-webgl",
+    "--ozone-platform=headless",
+    "--allow-pre-commit-input"
+  ],
+  "nativeEntry": {
+    "initial": "Board",
+    "sequence": [
+      "Files"
+    ],
+    "qualification": "Both sides use the same native tab-entry sequence; Board avoids asymmetric Source route-fill vs delayed HTTP first-query lifecycle"
+  },
+  "capCorrection": {
+    "decision": "docs/poc/DECISIONS.md:34",
+    "original": "250 MB",
+    "canonical": "10 MiB",
+    "scope": "Source harness text only; no stylesheet/template/fixture change",
+    "actual": {
+      "before": "Drop files here or browse — up to 250 MB each",
+      "after": "Drop files here or browse — up to 10 MiB each",
+      "beforeGeometry": {
+        "x": 21.5,
+        "y": 285,
+        "width": 347,
+        "height": 56.125,
+        "top": 285,
+        "right": 368.5,
+        "bottom": 341.125,
+        "left": 21.5
+      },
+      "afterGeometry": {
+        "x": 26,
+        "y": 285,
+        "width": 338,
+        "height": 56.125,
+        "top": 285,
+        "right": 364,
+        "bottom": 341.125,
+        "left": 26
+      }
+    }
+  }
+}

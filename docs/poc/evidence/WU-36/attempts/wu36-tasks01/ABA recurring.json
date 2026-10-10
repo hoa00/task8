@@ -1,0 +1,52 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"6aee29f7-5384-47d1-836a-b19865b1b846\",\"projectId\":\"01a127aa-4a01-78b3-bf95-1264a5e4cc3b\",\"title\":\"ABA recurring\",\"dueDate\":\"2026-05-01\",\"recurrence\":\"daily\"}",
+  "status": 201,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a127aa-4a11-7e45-9d4a-ee4f0479158b",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a127aa-4a01-78b3-bf95-1264a5e4cc3b",
+        "key": "AC-201",
+        "title": "ABA recurring",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": "2026-05-01",
+        "estimate": null,
+        "recurrence": "daily",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 13800,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T21:13:53.936Z",
+        "updatedAt": "2026-10-10T21:13:53.936Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a127aa-4a01-78b3-bf95-1264a5e4cc3b"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 22
+  }
+}

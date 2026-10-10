@@ -1,0 +1,47 @@
+{
+  "name": "production-comments",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127b6-7167-7cd4-83dc-7f0f6787e9bb/comments",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked"
+  },
+  "budget": {
+    "queries": 0,
+    "parameters": 0
+  },
+  "response": {
+    "data": {
+      "items": [
+        {
+          "id": "01a127b6-801f-7f16-91ac-849d82c92a7c",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "taskId": "01a127b6-7167-7cd4-83dc-7f0f6787e9bb",
+          "authorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "bodyText": "M3 native comment",
+          "mentionedMemberIds": [],
+          "createdAt": "2026-10-10T21:27:14.204Z",
+          "version": 2,
+          "reactions": [
+            {
+              "key": "🚀",
+              "count": 1,
+              "memberIds": [
+                "01a11abd-aa80-7249-8034-93bbfb2174a2"
+              ]
+            }
+          ]
+        }
+      ],
+      "nextCursor": null,
+      "total": 1
+    }
+  },
+  "raw": {
+    "path": "production-comments.response.json",
+    "bytes": 443,
+    "sha256": "dffcc633851626f5e8884e2f682040c55bdc2899373e988bd7b600e7873fb8e8"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127aa-4542-7f77-bbe4-60e7dba4ac49/restore-deleted",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Task lifecycle changed"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 5
+  }
+}

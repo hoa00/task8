@@ -1,0 +1,55 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127ac-0cc8-7a10-b12f-24ef525f48af",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":3}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a127ac-0cc8-7a10-b12f-24ef525f48af",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a127ac-0cb7-75fe-86b3-8d0785635314",
+        "key": "ULT-201",
+        "title": "Undo lifecycle task task-delete",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 6600,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T21:15:49.319Z",
+        "updatedAt": "2026-10-10T21:15:49.358Z",
+        "version": 4,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a127ac-0cb7-75fe-86b3-8d0785635314"
+      ],
+      "undo": {
+        "id": "01a127ac-0cee-78f0-a763-4b896fe76828",
+        "kind": "task.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 28
+  }
+}

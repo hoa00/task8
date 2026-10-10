@@ -1,0 +1,33 @@
+{
+  "name": "notification-page1",
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications?unreadOnly=true&limit=1",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "items": [
+        {
+          "id": "01d00000-0000-7000-8000-000000000bf8",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "recipientId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "actorId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01d00000-0000-7000-8000-0000000003e8",
+          "type": "update",
+          "text": "WU34 notification 64",
+          "snippet": "same canonical task",
+          "createdAt": "2026-10-10T21:18:20.104Z",
+          "readAt": null
+        }
+      ],
+      "nextCursor": "eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiMDc3Nzk2MGQ1MTdjN2VmZWQ1YjIyZDgzOTcyZTNlN2MyNzY4YWFjZmRmZGIzOGE1ZmVjYTllZWFjNmRkNjVkYSIsInNvcnRGaWVsZCI6InVwZGF0ZWQiLCJzb3J0RGlyZWN0aW9uIjoiZGVzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTBUMjE6MTg6MjAuMTA0WiIsImlkIjoiMDFkMDAwMDAtMDAwMC03MDAwLTgwMDAtMDAwMDAwMDAwYmY4In0",
+      "total": 71,
+      "unreadCount": 71
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 4
+  }
+}

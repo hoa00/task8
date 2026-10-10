@@ -1,0 +1,20 @@
+{
+  "name": "archived-view-update",
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/views/01a127ae-5c14-723f-bf64-1395559c9922",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2,\"name\":\"No\"}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Restore project before changing views"
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 4
+  }
+}

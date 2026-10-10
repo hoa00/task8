@@ -1,0 +1,87 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127ac-024c-71ce-b2c6-4c77df7ab7b5/subtasks/01a127ac-0271-7508-90a4-86b9d3842454/promote",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedTaskVersion\":3}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a127ac-024c-71ce-b2c6-4c77df7ab7b5",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a127ac-0228-7acd-b76a-740a2f1a6723",
+        "key": "WM-201",
+        "title": "Subtasks parent",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+        "priority": "high",
+        "startDate": null,
+        "dueDate": "2028-02-29",
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [
+          "design"
+        ],
+        "dependencyIds": [],
+        "position": 5000,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T21:15:46.634Z",
+        "updatedAt": "2026-10-10T21:15:46.989Z",
+        "version": 4,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [
+        {
+          "id": "01a127ac-03b0-76ce-ac3e-c09a1270f1dd",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a127ac-0228-7acd-b76a-740a2f1a6723",
+          "key": "WM-203",
+          "title": "First child",
+          "descriptionHtml": "<p>&lt;script&gt;alert(1)&lt;/script&gt;<br>&lt;b onclick=\"bad()\"&gt;literal &amp; text&lt;/b&gt;</p>",
+          "status": "done",
+          "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "priority": "high",
+          "startDate": null,
+          "dueDate": "2028-02-29",
+          "estimate": null,
+          "recurrence": null,
+          "labelIds": [
+            "design"
+          ],
+          "dependencyIds": [],
+          "position": 5200,
+          "completedAt": "2026-10-10T21:15:46.989Z",
+          "archivedAt": null,
+          "createdAt": "2026-10-10T21:15:46.989Z",
+          "updatedAt": "2026-10-10T21:15:46.989Z",
+          "version": 1,
+          "isFavorite": false,
+          "subtaskSummary": {
+            "total": 0,
+            "completed": 0
+          },
+          "attachmentCount": 0,
+          "commentCount": 0
+        }
+      ],
+      "affectedProjectIds": [
+        "01a127ac-0228-7acd-b76a-740a2f1a6723"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 14,
+    "parameters": 33
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "final-comments",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a127a3-c400-71f4-82f1-4c780d37e432/comments",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu36-parameters": "5",
+    "x-wu36-queries": "4"
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 5
+  },
+  "response": {
+    "data": {
+      "items": [
+        {
+          "id": "01a127a3-d3aa-75d4-9922-bd8f74544e27",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "taskId": "01a127a3-c400-71f4-82f1-4c780d37e432",
+          "authorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "bodyText": "M3 native comment",
+          "mentionedMemberIds": [],
+          "createdAt": "2026-10-10T21:06:50.407Z",
+          "version": 2,
+          "reactions": [
+            {
+              "key": "🚀",
+              "count": 1,
+              "memberIds": [
+                "01a11abd-aa80-7249-8034-93bbfb2174a2"
+              ]
+            }
+          ]
+        }
+      ],
+      "nextCursor": null,
+      "total": 1
+    }
+  },
+  "raw": {
+    "path": "final-comments.response.json",
+    "bytes": 443,
+    "sha256": "5d03d7ac67960743e4d4031404d238a1576b98f51a6eb644e88f3d9e3ec69ce7"
+  }
+}

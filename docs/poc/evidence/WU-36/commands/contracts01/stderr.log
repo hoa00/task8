@@ -1,0 +1,2 @@
+$ pnpm --filter @studio/contracts test
+$ node --experimental-strip-types --test --test-isolation=none ../../tests/contracts/*.test.ts && node ../../tests/contracts/generate-source-identities.mjs --check

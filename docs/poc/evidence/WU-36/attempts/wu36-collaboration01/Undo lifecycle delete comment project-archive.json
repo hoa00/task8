@@ -1,0 +1,62 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a127ac-0d60-7428-80c2-506c3a2ef0e7",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "comment": {
+        "id": "01a127ac-0d60-7428-80c2-506c3a2ef0e7",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a127ac-0d56-7518-93c2-ab9103a7a470",
+        "authorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "bodyText": "Undo lifecycle comment project-archive",
+        "mentionedMemberIds": [],
+        "createdAt": "2026-10-10T21:15:49.470Z",
+        "version": 2,
+        "reactions": []
+      },
+      "task": {
+        "id": "01a127ac-0d56-7518-93c2-ab9103a7a470",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a127ac-0d46-7a7d-b78a-9117ca1da97b",
+        "key": "ULP-201",
+        "title": "Undo lifecycle task project-archive",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 6700,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T21:15:49.461Z",
+        "updatedAt": "2026-10-10T21:15:49.481Z",
+        "version": 3,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "undo": {
+        "id": "01a127ac-0d6c-7ade-95f4-0322d94e68d9",
+        "kind": "comment.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 16
+  }
+}

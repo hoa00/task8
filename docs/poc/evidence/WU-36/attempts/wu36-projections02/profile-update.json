@@ -1,0 +1,25 @@
+{
+  "name": "profile-update",
+  "method": "PATCH",
+  "path": "/api/v1/me/profile",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"name\":\"WU34 Current User\",\"title\":\"Updated title\",\"avatarColor\":\"#123456\"}",
+  "status": 200,
+  "response": {
+    "data": {
+      "id": "01a11abd-aa80-7d3f-879a-dd89204bcd77",
+      "name": "WU34 Current User",
+      "email": "hello@gr8rstudio.com",
+      "title": "Updated title",
+      "avatarColor": "#123456",
+      "timezone": "San Francisco",
+      "version": 2
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 8
+  }
+}

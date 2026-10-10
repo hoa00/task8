@@ -92,7 +92,11 @@
     "verify:onboarding": "node tests/visual/onboarding/gates.mjs",
     "visual:auth": "node tests/visual/auth/verify.mjs",
     "test:auth:interactions": "node tests/visual/auth/interactions.mjs",
-    "verify:auth": "node tests/visual/auth/gates.mjs"
+    "verify:auth": "node tests/visual/auth/gates.mjs",
+    "test:m3:journey": "node --experimental-transform-types apps/api/tests/wu36/journey.mjs",
+    "test:m3:scope": "node --experimental-transform-types apps/api/tests/wu36/workspace-race.mjs",
+    "test:m3:visual": "node --experimental-transform-types apps/api/tests/wu36/visual.mjs",
+    "test:m3:regression": "node --experimental-transform-types apps/api/tests/wu36/regression.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

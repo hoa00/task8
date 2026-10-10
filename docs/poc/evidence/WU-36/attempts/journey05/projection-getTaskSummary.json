@@ -1,0 +1,48 @@
+{
+  "name": "projection-getTaskSummary",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu36-parameters": "4",
+    "x-wu36-queries": "6"
+  },
+  "budget": {
+    "queries": 6,
+    "parameters": 4
+  },
+  "response": {
+    "data": {
+      "total": 49,
+      "byStatus": {
+        "backlog": 8,
+        "todo": 17,
+        "progress": 8,
+        "review": 7,
+        "done": 9
+      },
+      "byPriority": {
+        "urgent": 6,
+        "high": 14,
+        "medium": 21,
+        "low": 8,
+        "none": 0
+      },
+      "overdue": 7,
+      "completed": 9,
+      "completionRate": 18,
+      "subtaskTotals": {
+        "total": 18,
+        "completed": 9
+      }
+    }
+  },
+  "raw": {
+    "path": "projection-getTaskSummary.response.json",
+    "bytes": 243,
+    "sha256": "4e950b24f258bf388e42ea680c6dd811128ff3f728226a516ac8cd8d8a669d83"
+  }
+}
