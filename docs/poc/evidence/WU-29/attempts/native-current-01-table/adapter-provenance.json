@@ -1,0 +1,34 @@
+{
+  "input": "tests/visual/task-table/interactions.mjs",
+  "inputBytes": 18369,
+  "inputSha256": "5ea8ac48c0d445990eff5056e2d905cfc8ae8340a91cb5b5590630c7d41580f8",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-current-01-table/executed-adapter.mjs",
+  "adapterBytes": 18590,
+  "adapterSha256": "d10dcee9b624794c148b497215da247613c419927a1a57504c8b81295c7a99c5",
+  "remapped": [
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    },
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    }
+  ],
+  "assertionUpdates": [],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-current-01-table/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

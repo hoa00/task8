@@ -1,0 +1,61 @@
+{
+  "input": "tests/visual/search/interactions.mjs",
+  "inputBytes": 23075,
+  "inputSha256": "b9839934316a280c0582112e2534708f0e6cd9d00b7bdcd50d8f6157c416ea07",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-search-04-search/executed-adapter.mjs",
+  "adapterBytes": 23620,
+  "adapterSha256": "d05f888942a8eeb7aef3b32c1393723ef0b565be139a75863db99132d8269e1c",
+  "remapped": [
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    },
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/data/adapters/mock.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/data/adapters/mock.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/features/search/commands.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/features/search/commands.ts"
+    }
+  ],
+  "assertionUpdates": [
+    {
+      "before": "await page.locator('[data-task-drawer]').waitFor({ state: 'detached' });\n  await page.getByRole('textbox', { name: 'Search', exact: true }).fill('fig');",
+      "after": "await page.locator('[data-task-drawer]').waitFor({ state: 'detached' });\n  await palette('search'); await query('fig'); await page.getByRole('option', { name: 'View all results for “fig”', exact: true }).click(); await page.waitForSelector('[data-search-page]');\n  await page.getByRole('textbox', { name: 'Search', exact: true }).fill('fig');",
+      "reason": "Keep native File Preview, attached-task link and nested Escape assertions. WU-22 canonical File route requires actual Palette View all results navigation before the Search-page half",
+      "occurrences": 1
+    },
+    {
+      "before": "await page.locator('[data-search-result=files]').first().click(); await page.locator('[data-file-preview]').waitFor(); await page.keyboard.press('Escape');",
+      "after": "await page.locator('[data-search-result=files]').first().click(); await page.locator('[data-file-preview]').waitFor(); await page.keyboard.press('Escape'); await palette('search'); await query('fig'); await page.getByRole('option', { name: 'View all results for “fig”', exact: true }).click(); await page.waitForSelector('[data-search-page]');",
+      "reason": "The Search-page File result also enters the canonical Files URL. Return through the actual Palette View all results option before the following Search input/contentEditable/global keyboard assertions",
+      "occurrences": 1
+    }
+  ],
+  "precreatedEvidenceDirectories": [
+    "docs/poc/evidence/WU-29/attempts/native-search-04-search/legacy/WU-18"
+  ],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt",
+    "Precreate the finite exact redirected report directories read from the original literal evidence paths so report writes cannot mask an underlying error with ENOENT",
+    "Keep native File Preview, attached-task link and nested Escape assertions. WU-22 canonical File route requires actual Palette View all results navigation before the Search-page half",
+    "The Search-page File result also enters the canonical Files URL. Return through the actual Palette View all results option before the following Search input/contentEditable/global keyboard assertions"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-search-04-search/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

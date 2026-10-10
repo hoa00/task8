@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('menuitemradio', { name: 'M2 Draft isolation', exact: true })[22m
+
+    at switchWorkspace (/workspace/task8/tests/visual/m2/inbox-probes.mjs:67:195)
+    at async checkDraftIsolation (/workspace/task8/tests/visual/m2/inbox-probes.mjs:68:2)
+    at async probe (/workspace/task8/tests/visual/m2/inbox.mjs:23:48)
+    at async file:///workspace/task8/tests/visual/m2/inbox.mjs:64:3 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

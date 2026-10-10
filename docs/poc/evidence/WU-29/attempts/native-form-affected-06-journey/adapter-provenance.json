@@ -1,0 +1,53 @@
+{
+  "input": "tests/visual/task-board/journey.mjs",
+  "inputBytes": 15169,
+  "inputSha256": "4bc96c8a2a698cfe54d3c0b918428be5aa6838380480105eae130b9177d9afbe",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-form-affected-06-journey/executed-adapter.mjs",
+  "adapterBytes": 15622,
+  "adapterSha256": "d3398d299ce360250816d80a8e3e9f19c726f4995d5e40cdbd7876266a0c2f1d",
+  "remapped": [
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    },
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    }
+  ],
+  "assertionUpdates": [
+    {
+      "before": "await page.locator('[data-file-preview]').getByRole('button',{name:'Close',exact:true}).last().click();",
+      "after": "await page.locator('[data-file-preview]').getByRole('button',{name:task.title,exact:true}).click();await drawer.waitFor();assert.equal(await drawer.getAttribute('data-task-drawer'),task.id);assert.ok(new URL(page.url()).pathname.endsWith('/files'));",
+      "reason": "WU-22 canonical File URL navigation intentionally replaces the old nested-Drawer retention. Use the native attached-task link to return to the same shared Drawer, retaining exact task/file identity and all rich content assertions",
+      "occurrences": 1
+    },
+    {
+      "before": "await step('M1-I03-I07-board-drag-completion-Undo-reflects-List',async()=>{await page.getByRole",
+      "after": "await step('M1-I03-I07-board-drag-completion-Undo-reflects-List',async()=>{await page.getByRole('navigation',{name:'Main',exact:true}).getByRole('link',{name:'Tasks',exact:true}).click();await page.waitForSelector('[data-list-scope=workspace]');await page.getByRole",
+      "reason": "Return through the actual Main Tasks link after the canonical Files route before continuing the unchanged Board/List completion and recurrence journey",
+      "occurrences": 1
+    }
+  ],
+  "precreatedEvidenceDirectories": [
+    "docs/poc/evidence/WU-29/attempts/native-form-affected-06-journey/legacy/WU-12"
+  ],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt",
+    "Precreate the finite exact redirected report directories read from the original literal evidence paths so report writes cannot mask an underlying error with ENOENT",
+    "WU-22 canonical File URL navigation intentionally replaces the old nested-Drawer retention. Use the native attached-task link to return to the same shared Drawer, retaining exact task/file identity and all rich content assertions",
+    "Return through the actual Main Tasks link after the canonical Files route before continuing the unchanged Board/List completion and recurrence journey"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-form-affected-06-journey/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

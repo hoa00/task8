@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "node",
+    "-e",
+    "const fs=require(\"fs\"); for(const p of [\"apps/web/src/features/dashboards/dashboards.css\",\"apps/web/src/app/shell/route-entry-context.ts\",\"apps/web/src/features/projects/project-motion.ts\",\"apps/web/src/features/dashboards/HomePage.tsx\",\"apps/web/src/features/projects/format.ts\",\"apps/web/src/features/tasks/date-display.ts\",\"apps/web/src/features/notifications/InboxPage.tsx\",\"apps/web/src/features/notifications/InboxPreview.tsx\",\"apps/web/src/features/tasks/Comments.tsx\"]){console.log(\"FILE \"+p);try{console.log(fs.readFileSync(p,\"utf8\"))}catch(e){console.log(e.message)}}"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/next-fix-read-01/command.txt",
+    "bytes": 592,
+    "sha256": "b458f179156034aff6349409f624849f917c4949c1b53932ab591f97ae313cb1"
+  },
+  "startedAt": "2026-10-10T12:54:04.868Z",
+  "finishedAt": "2026-10-10T12:54:04.900Z",
+  "node": "v24.19.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/next-fix-read-01/stdout",
+    "bytes": 32561,
+    "sha256": "728d67cfc89afa8ea4b4cb9a75b71e63bfe146c56269d7af9ba90728970791c3"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/next-fix-read-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\"docs/poc/evidence/WU-29/attempts/visual-shell-01/report.json\")); for(const id of [\"SC-07\",\"SC-08\",\"SC-12\",\"SC-15\",\"SC-17\",\"PR-01\"]) { const s=r.samples.find(s=>s.id.startsWith(id)&&s.id.endsWith(\"1440\")); console.log(JSON.stringify({id:s.id,animations:s.geometry.map(side=>side.animations.map(a=>({name:a.name,target:a.target}))),text:s.geometry.map(x=>x.text)},null,2)); }"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/motion-layer-read-01/command.txt",
+    "bytes": 472,
+    "sha256": "2151f0e1f4ba7e1edd51d455497f59800fe9ac44e2e122b20b05afbdbd3c8ea2"
+  },
+  "startedAt": "2026-10-10T12:35:05.396Z",
+  "finishedAt": "2026-10-10T12:35:05.589Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/motion-layer-read-01/stdout",
+    "bytes": 62488,
+    "sha256": "7f69d443d18df31a688c603c277bd30145378e857288320259e9b2877fe1c645"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/motion-layer-read-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

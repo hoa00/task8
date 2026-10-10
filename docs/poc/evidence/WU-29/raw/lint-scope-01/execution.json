@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; p=Path(\"package.json\"); s=p.read_text(); needle=\"tests/visual/archive eslint.config.mjs\"; assert s.count(needle)==1; p.write_text(s.replace(needle,\"tests/visual/archive tests/visual/m2 eslint.config.mjs\")); p=Path(\"eslint.config.mjs\"); s=p.read_text(); needle=\"\\x27tests/visual/archive/**/*.mjs\\x27]\"; assert s.count(needle)==1; p.write_text(s.replace(needle,\"\\x27tests/visual/archive/**/*.mjs\\x27, \\x27tests/visual/m2/**/*.mjs\\x27]\"))"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/lint-scope-01/command.txt",
+    "bytes": 479,
+    "sha256": "44c37da180db151eb49532aafb0ff8620d1d299e25559a4992cb07e7d31ecdd7"
+  },
+  "startedAt": "2026-10-10T12:16:38.528Z",
+  "finishedAt": "2026-10-10T12:16:38.550Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/lint-scope-01/stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/lint-scope-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\np=Path(\"apps/web/src/app/shell/Sidebar.tsx\"); s=p.read_text(); s=\"import { projectStatuses } from \\x27@studio/contracts/api\\x27;\\n\"+s; s=s.replace(\"color={statusColors[project.status]}\",\"color={`var(--${projectStatuses.find(status => status.id === project.status)!.colorToken})`}\"); p.write_text(s)\np=Path(\"apps/web/src/features/tasks/TaskListPages.tsx\"); s=p.read_text(); s=s.replace(\"Feature harness · full Project wrapper pending WU-16\",\"Project task views\"); p.write_text(s)\np=Path(\"apps/web/src/app/shell/README.md\"); s=p.read_text(); s=s.replace(\"this unit does not render drawer content or fake a successful task read.\",\"TaskOverlayHost renders the shared drawer and task forms against canonical reads.\").replace(\"## Pending feature and action ledger\",\"## Integrated feature and action ownership\")\nchanges={\"Pending route outlet\":\"Shared task list renderer with canonical workspace/project/my-task scope\",\"Single overlay slot; no drawer business UI\":\"Single overlay slot with shared drawer, comments, files and canonical task forms\",\"Fixed route hosts\":\"Shared view engines composed by workspace, project and My Tasks consumers\",\"Minimal project context/outlet; identity read only; action controls aria-disabled\":\"Full project wrapper, header, fixed/saved tabs and canonical project commands\",\"Search link resolves Search; palette remains pending\":\"Canonical search/activity pages and shared command palette\",\"Navigation and aggregate badges only\":\"Canonical notification pages, Inbox task preview and shared comments\",\"Entity route validation; future action controls aria-disabled\":\"Canonical people/team pages, forms and shared identity components\",\"Validated identity search seam; content pending\":\"Shared project/task files, preview and typed file commands\",\"Validated section hosts\":\"Preferences and workspace settings with typed capability boundaries\",\"Routes/search validation; content pending\":\"Complete auth/onboarding presentation with canonical session/setup flows\",\"Reachable route hosts; gallery content/extra commands pending\":\"Archive and both dev galleries with implemented commands\",\"Visible source control, aria-disabled; no fake success toast\":\"Task/project/team forms and canonical extras\"}\nfor a,b in changes.items(): s=s.replace(a,b)\ns=s.replace(\"page consumers remain with their owners\",\"composed by task pages, drawer, Inbox and project consumers\").replace(\"Drawer contents remain pending WU-10.\",\"TaskOverlayHost renders the shared drawer for that task intent.\"); p.write_text(s)"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/owner-cleanup-01/command.txt",
+    "bytes": 2555,
+    "sha256": "8ae4b96a09ec8739d8b6e831d633a978f84e0a8477ea5971a6e84f4f80e358d4"
+  },
+  "startedAt": "2026-10-10T12:56:48.711Z",
+  "finishedAt": "2026-10-10T12:56:48.734Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/owner-cleanup-01/stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/owner-cleanup-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

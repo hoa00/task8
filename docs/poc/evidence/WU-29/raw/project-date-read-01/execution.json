@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "bash",
+    "-c",
+    "sed -n \"1,112p\" .reference/gr8r-studio/src/core/utils.js; cat .reference/gr8r-studio/src/pages/activity.js; sed -n \"1,90p\" .reference/gr8r-studio/src/views/project-overview.js; rg -n \"projectDate\\(\" apps/web/src; cat docs/poc/evidence/WU-29/raw/shell-live-02/stdout"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/project-date-read-01/command.txt",
+    "bytes": 280,
+    "sha256": "cdef12122102b1f753a300fa22c7f48997a0fd2e94f1cb8c857ff44d498ad5f1"
+  },
+  "startedAt": "2026-10-10T12:36:49.597Z",
+  "finishedAt": "2026-10-10T12:36:49.611Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/project-date-read-01/stdout",
+    "bytes": 26323,
+    "sha256": "91f2769a251b87ee80713038d7b335c0b39d012103cb0e88f6ecc5fbe0fd557e"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/project-date-read-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

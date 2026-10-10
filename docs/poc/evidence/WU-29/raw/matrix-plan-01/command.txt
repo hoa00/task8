@@ -1,0 +1,1 @@
+'node' '--input-type=module' '-e' 'import {shellMatrix} from "./tests/visual/m2/matrix.mjs"; console.log(JSON.stringify({count:shellMatrix.length,groups:Object.fromEntries([...new Set(shellMatrix.map(x=>x.family))].map(f=>[f,shellMatrix.filter(x=>x.family===f).length]))},null,2))'

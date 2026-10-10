@@ -1,0 +1,153 @@
+{
+  "status": "failed",
+  "commands": [
+    {
+      "id": "syntax",
+      "argv": [
+        "node",
+        "--check",
+        "tests/visual/m2/visual.mjs"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/syntax.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/syntax.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "typecheck",
+      "argv": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/typecheck.stdout",
+        "bytes": 790,
+        "sha256": "4d9e344e7c9d6aef28e46351b16ce34044de8e928528288c396074b306ecb9ab"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/typecheck.stderr",
+        "bytes": 22,
+        "sha256": "bf18c62cdc9924cebfa985a804c2b55e5fabcdec27ab2707fe215d547b85ec16"
+      }
+    },
+    {
+      "id": "test",
+      "argv": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/test.stdout",
+        "bytes": 34732,
+        "sha256": "d33c62e46d45bde92ff59dfd659f4668f74167630597410bec7cc9a958c93643"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/test.stderr",
+        "bytes": 152,
+        "sha256": "0da6e8095dee124ad6481edbfaa850d6d9d1580bdf4c1972bda28ed9d1b35f3c"
+      }
+    },
+    {
+      "id": "lint",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/lint.stdout",
+        "bytes": 76,
+        "sha256": "f5649f16cdaddad3a4de3d9574e183e83d390fc856c0de309d1b07929cf56a6b"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/lint.stderr",
+        "bytes": 637,
+        "sha256": "f9cc92aadd66adea8f6a21ee8b4e2f2982ebf03d95ee52540902f3b4d0265773"
+      }
+    },
+    {
+      "id": "build",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/build.stdout",
+        "bytes": 27540,
+        "sha256": "6da7a796835b7f8f839e01af19d8b6376e3d3404acbc5452a7c50b42c7cbc3f3"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/build.stderr",
+        "bytes": 18,
+        "sha256": "c7ae53061ae01873a9768eadfdff2c192fb4acbd5744d4eb0741e66c8469a052"
+      }
+    },
+    {
+      "id": "HTTPbuild",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/HTTPbuild.stdout",
+        "bytes": 18752,
+        "sha256": "3c3de0512f5bbd3743413cbe32eca32e1c88adcc95b556d47936b31ccea07f59"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/HTTPbuild.stderr",
+        "bytes": 50,
+        "sha256": "7565e095260c7d52d09978ace1e2ea7aab1846150749be88f487e94db03369db"
+      }
+    },
+    {
+      "id": "HTTPbundle",
+      "argv": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-29",
+        "--evidence-suffix=core-01-http-bundle"
+      ],
+      "exitStatus": 1,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/HTTPbundle.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-01/HTTPbundle.stderr",
+        "bytes": 696,
+        "sha256": "e37428f950a7bbc2632ccb78901ed6c2a49eeecc8adafa049e8693b1d4a587e2"
+      }
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0"
+  }
+}

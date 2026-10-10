@@ -1,0 +1,309 @@
+import { readFileSync } from 'node:fs';
+import { chromium } from '@playwright/test';
+import { artifacts, readJson, sha256 } from './source-check.mjs';
+
+export const environment = {
+  clock: '2026-10-08T09:00:00.000Z', randomSeed: 804205,
+  locale: 'en-US', timezoneId: 'UTC', deviceScaleFactor: 1,
+  platform: 'MacIntel', modKey: '⌘',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36',
+};
+export const origin = 'http://127.0.0.1:4173';
+export const launch = () => {
+  if (process.version !== 'v24.13.0') throw new Error('Capture runner requires Node v24.13.0 from .node-version');
+  return chromium.launch({ headless: true });
+};
+
+export async function newPage(browser, scenario = {}, fixture, offlineFonts = true, baseUrl = origin) {
+  const context = await browser.newContext({
+    viewport: scenario.viewport || { width: 1440, height: 1000 },
+    locale: environment.locale, timezoneId: environment.timezoneId,
+    deviceScaleFactor: 1, userAgent: environment.userAgent,
+    colorScheme: scenario.colorScheme || 'light', hasTouch: !!scenario.mobile,
+    isMobile: !!scenario.mobile, reducedMotion: 'no-preference',
+  });
+  const requests = [];
+  if (offlineFonts) {
+    const manifest = readJson(`${artifacts}/font-assets.json`);
+    for (const asset of manifest.assets) {
+      const body = readFileSync(`${artifacts}/${asset.path}`);
+      if (sha256(body) !== asset.sha256) throw new Error(`Font hash differs: ${asset.path}`);
+    }
+    await context.route(/^https:\/\/(fonts\.googleapis\.com|fonts\.gstatic\.com)\//, route => {
+      const asset = manifest.assets.find(item => item.url === route.request().url());
+      if (!asset) return route.abort('failed');
+      const body = readFileSync(`${artifacts}/${asset.path}`);
+      requests.push({ url: asset.url, sha256: asset.sha256, status: 200 });
+      return route.fulfill({ status: 200, body, contentType: asset.contentType, headers: { 'access-control-allow-origin': '*' } });
+    });
+  }
+  await context.addInitScript(({ config, fixture, baseUrl }) => {
+    // Date is fixed before source imports; performance/timers remain real so countUp and motion can settle.
+    const OriginalDate = Date;
+    class FixedDate extends OriginalDate {
+      constructor(...args) { super(...(args.length ? args : [config.clock])); }
+      static now() { return new OriginalDate(config.clock).getTime(); }
+    }
+    window.Date = FixedDate;
+    let state = config.randomSeed;
+    Math.random = () => { state = (Math.imul(1664525, state) + 1013904223) >>> 0; return state / 4294967296; };
+    Object.defineProperty(navigator, 'platform', { get: () => config.platform });
+    if (fixture && location.origin === baseUrl) localStorage.setItem('gr8r.v2', JSON.stringify(fixture));
+  }, { config: environment, fixture, baseUrl });
+  const page = await context.newPage();
+  return { context, page, requests };
+}
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { spawn } from 'node:child_process';
+import { chromium } from '@playwright/test';
+import { PNG } from 'pngjs';
+import pixelmatch from 'pixelmatch';
+import { sourceServer } from '../reference/source-server.mjs';
+import { newPage, environment } from '../reference/environment.mjs';
+import { artifacts, checkSource, sha256, readJson } from '../reference/source-check.mjs';
+import { sourcePreferences } from '../foundation/source-sample.mjs';
+import { sourceTaskControls, sourceQueryFixtures } from './source-sample.mjs';
+export async function ready(page) { await page.evaluate(async () => { for (const family of ['Geist', 'Geist Mono']) for (const weight of [400, 500, 600]) await document.fonts.load(`${weight} 13.5px "${family}"`); await document.fonts.ready; document.body.getBoundingClientRect(); await Promise.all(document.getAnimations().filter(animation => animation.playState !== 'idle' && animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished.catch(() => {}))); await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))); }); }
+export async function targetServer() {
+  const server = spawn(process.execPath, ['./node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '5173', '--strictPort'], { cwd: path.resolve('apps/web'), stdio: 'pipe' }); let logs = ''; server.stdout.on('data', value => logs += value); server.stderr.on('data', value => logs += value);
+  const stop = async () => { if (server.exitCode === null) { const exited = new Promise(resolve => server.once('exit', resolve)); server.kill('SIGTERM'); await exited; } };
+  try { for (let i = 0; i < 40; i++) { try { if ((await fetch('http://127.0.0.1:5173/task-fields.html')).ok) return stop; } catch { /* starting */ } if (server.exitCode !== null) throw Error(logs); await new Promise(resolve => setTimeout(resolve, 100)); } throw Error('Target startup timed out'); } catch (error) { await stop(); throw error; }
+}
+async function verify() {
+ const evidence = path.resolve(process.argv.includes('--wu12-regression')?'docs/poc/evidence/WU-12/toolbar-regression':'docs/poc/evidence/WU-08'), output = path.resolve(process.argv.includes('--wu12-regression')?'test-results/WU-12/toolbar-regression':'test-results/WU-08'); fs.mkdirSync(output, { recursive: true }); fs.mkdirSync(evidence, { recursive: true });
+ const hashes = () => Object.fromEntries(['baseline-manifest.json', 'font-assets.json', 'source-fixture.json', 'source-lock.json'].map(name => [name, sha256(fs.readFileSync(`${artifacts}/${name}`))])); const before = hashes(); checkSource();
+ const stopSource = await sourceServer(), stopTarget = await targetServer(); let browser;
+ const report = { sourceSha: '904205c626918ee96054eb35495c394a60c0c601', runtime: { node: process.version, os: os.platform(), ...environment }, samples: [], immutableBefore: before, threshold: 0, includeAA: true, maxDiffPixels: 0, masks: [], provenance: 'Source-only actual locked viewToolbar/popHtml/FIELDS/select enhancer and original helpers/CSS/fonts; independent QA state, original source roots retained. Target is controlled React toolbar.', limitations: ['Scoped Linux samples do not establish Darwin173 whole-page parity.', 'Programmatic state setup is separate from real keyboard/mouse probes.', 'No full task list/board/table or named saved-view persistence UI in WU-08.'] };
+ const compare = (a, b, name) => { const x = PNG.sync.read(a), y = PNG.sync.read(b); assert.equal(x.width, y.width); assert.equal(x.height, y.height); const diff = new PNG({ width: x.width, height: x.height }); const pixels = pixelmatch(x.data, y.data, diff.data, x.width, x.height, { threshold: 0, includeAA: true }); if (pixels) fs.writeFileSync(`${output}/${name}-diff.png`, PNG.sync.write(diff)); return pixels; };
+ const cases = [{ id: 'default' }, { id: 'chips', filtered: true }, { id: 'filter-empty', menu: 'filter' }, { id: 'filter-rows', menu: 'filter', filtered: true }, { id: 'filter-expanded', menu: 'filter', filtered: true, expanded: true }, { id: 'sort', menu: 'sort' }, { id: 'group', menu: 'group' }, { id: 'columns', menu: 'cols' }];
+ const matrix = [...['light', 'dark'].flatMap(theme => cases.map(sample => ({ ...sample, theme, width: 1000, height: 700 }))), ...['default', 'chips', 'filter-rows'].map(id => ({ ...cases.find(sample => sample.id === id), theme: 'light', width: 390, height: 844 })), ...[639, 640, 641].map(width => ({ id: 'default', theme: 'light', width, height: 844 }))];
+ try {
+  browser = await chromium.launch({ headless: true }); report.runtime.browser = browser.version(); const fixture = readJson(`${artifacts}/source-fixture.json`);
+  for (const sample of matrix) {
+   const id = `${sample.id}-${sample.theme}-${sample.width}`; const a = await newPage(browser, { viewport: { width: sample.width, height: sample.height }, mobile: sample.width <= 640 }, fixture); const b = await newPage(browser, { viewport: { width: sample.width, height: sample.height }, mobile: sample.width <= 640 }, undefined, true, 'http://127.0.0.1:5173');
+   await b.context.addInitScript(theme => localStorage.setItem('task8.ui.theme.v1', JSON.stringify({ theme, accent: 'indigo', side: 'comfortable', density: 'comfortable', motion: 'system' })), sample.theme);
+   await a.page.goto('http://127.0.0.1:4173'); await sourcePreferences(a.page, { theme: sample.theme, accent: 'indigo', motion: 'system' }); const sourceGeometry = await sourceTaskControls(a.page, sample);
+   if (id === 'default-light-1000') { const actual = await sourceQueryFixtures(a.page); assert.deepEqual(actual, { dueGroups: [['overdue', ['QA-1']], ['today', ['QA-2']], ['week', ['QA-2', 'QA-3']], ['later', ['QA-4']], ['nodate', ['QA-5']]], unassigned: ['QA-1', 'QA-2', 'QA-3', 'QA-4', 'QA-5', 'QA-6'], dueAsc: ['QA-2', 'QA-1', 'QA-3'], dueDesc: ['QA-3', 'QA-2', 'QA-1'], manualTies: ['QA-3', 'QA-2', 'QA-1'] }); report.sourceDecisionFixtures = { actual, canonical: { dueAsc: ['QA-1', 'QA-2', 'QA-3'], dueDesc: ['QA-3', 'QA-1', 'QA-2'], manualTies: ['QA-1', 'QA-2', 'QA-3'] }, decision: 'API_CONTRACT285 stable ascending ID tie-breaker intentionally differs from source stable input order. DATA-08 due/null semantics unchanged.' }; }
+   const config = { query: { filters: sample.filtered ? [{ field: 'status', op: 'is', values: ['progress'] }, { field: 'assignee', op: 'not', values: [null] }] : [] } };
+   await b.page.goto(`http://127.0.0.1:5173/task-fields.html?visual=1&view=${encodeURIComponent(JSON.stringify(config))}`); await b.page.waitForSelector('#task-toolbar-sample [role=toolbar]');
+   if (sample.menu) { const names = { filter: /^Filter/, sort: /^Sort:/, group: /^Group:/, cols: /^Columns$/ }; await b.page.locator('[role=toolbar]').getByRole('button', { name: names[sample.menu] }).evaluate(element => element.click()); if (sample.expanded) await b.page.getByRole('button', { name: 'Filter values' }).first().evaluate(element => element.click()); }
+   for (const page of [a.page, b.page]) { await page.evaluate(() => document.activeElement?.blur()); await page.mouse.move(sample.width - 1, sample.height - 1); await ready(page); }
+   const targetGeometry = await b.page.evaluate(() => ({ toolbar: document.querySelector('#task-toolbar-sample').getBoundingClientRect().toJSON(), popover: document.querySelector('[data-overlay-kind=popover]')?.getBoundingClientRect().toJSON() ?? null }));
+   const height = Math.ceil(Math.max(sourceGeometry.toolbar.bottom, sourceGeometry.popover?.bottom ?? 0) + (sample.menu ? 24 : 0)); const clip = { x: 0, y: 0, width: sample.width, height };
+   for (const page of [a.page, b.page]) { await page.screenshot({ clip, animations: 'disabled', caret: 'hide' }); await page.screenshot({ clip, animations: 'disabled', caret: 'hide' }); }
+   const source = await a.page.screenshot({ clip, animations: 'disabled', caret: 'hide' }), sourceRepeat = await a.page.screenshot({ clip, animations: 'disabled', caret: 'hide' }), target = await b.page.screenshot({ clip, animations: 'disabled', caret: 'hide' }), targetRepeat = await b.page.screenshot({ clip, animations: 'disabled', caret: 'hide' });
+   fs.writeFileSync(`${output}/${id}-source.png`, source); fs.writeFileSync(`${output}/${id}-target.png`, target); const changedPixels = compare(source, target, id), repeatabilityPixels = compare(source, sourceRepeat, `${id}-source-repeat`) + compare(target, targetRepeat, `${id}-target-repeat`);
+   report.samples.push({ id, clip, changedPixels, repeatabilityPixels, sourceGeometry, targetGeometry, sourceSha256: sha256(source), targetSha256: sha256(target) }); console.log(`${id}: ${changedPixels} pixels, repeat ${repeatabilityPixels}`); await a.context.close(); await b.context.close();
+  }
+  report.immutableAfter = hashes(); assert.deepEqual(report.immutableBefore, report.immutableAfter); checkSource(); report.status = report.samples.some(sample => sample.changedPixels || sample.repeatabilityPixels) ? 'failed' : 'passed'; fs.writeFileSync(`${evidence}/${process.argv.includes('audit') ? 'audit' : 'visual-verification'}.json`, JSON.stringify(report, null, 2) + '\n'); assert.equal(report.status, 'passed', 'Full matrix classified; raster failures remain');
+ } catch (error) { report.error = String(error.stack); fs.writeFileSync(`${output}/failed-visual.json`, JSON.stringify(report, null, 2) + '\n'); throw error; }
+ finally { await browser?.close(); await stopTarget(); await stopSource(); }
+}
+if (process.argv[1] === new URL(import.meta.url).pathname) await verify();
+export async function setupScenario(page, scenario) {
+  await page.evaluate(async scenario => {
+    const { S, A, go, render } = window.__gr8r;
+    const { viewOf } = await import('/src/shell/view-engine.js');
+    const { openModal } = await import('/src/overlays/modals.js');
+    const { toast } = await import('/src/ui/toast.js');
+    Object.assign(S.prefs, scenario.prefs || {});
+    go(scenario.route, scenario.params || {});
+    Object.assign(S.ui, scenario.ui || {});
+    S.ui.auth = scenario.auth || null;
+    if (scenario.taskMode) viewOf('tasks').mode = scenario.taskMode;
+    if (scenario.selected) S.ui.sel = new Set(S.data.tasks.filter(t => t.project === 'p1').slice(0, 3).map(t => t.id));
+    render();
+    if (scenario.drawer) {
+      A.openTask({ dataset: { id: scenario.drawer } });
+      S.ui.drawerFull = !!scenario.drawerFull;
+      S.ui.drawerTab = scenario.drawerTab || 'comments';
+      if (scenario.subtask) S.ui.subOpen = { tid: scenario.drawer, sid: S.data.tasks.find(t => t.id === scenario.drawer).subtasks[0].id };
+      render();
+    }
+    if (scenario.modal) {
+      const el = { dataset: { id: scenario.params?.id || 'p1', key: 'p:p1' } };
+      const actions = { task: 'newTask', project: 'newProject', share: 'share', invite: 'invite', shortcuts: 'shortcuts', team: 'newTeam', filePreview: 'previewFile', saveView: 'saveView' };
+      if (scenario.modal === 'filePreview') el.dataset.id = S.data.files[0].id;
+      if (actions[scenario.modal]) A[actions[scenario.modal]](el);
+      else if (scenario.modal === 'prompt') openModal({ type: 'prompt', title: 'Rename project', label: 'Project name', value: S.data.projects[0].name });
+      else openModal({ type: 'confirm', title: 'Delete project?', body: 'This action cannot be undone.', ok: 'Delete project', danger: true, typeName: S.data.projects[0].name });
+    }
+    if (scenario.palette) A[scenario.palette === 'search' ? 'openSearch' : 'openPalette']();
+    if (scenario.popover) {
+      const type = scenario.popover;
+      if (type === 'fvals') viewOf('tasks').filters = [{ f: 'status', op: 'is', v: ['todo'] }];
+      if (type.startsWith('bulk-')) S.ui.sel = new Set([S.data.tasks[0].id]);
+      render();
+      const selector = type === 'ctx' ? '[data-a="ctxBtn"][data-ctx="task"]' : `[data-pop="${type}"]`;
+      const owner = scenario.drawer ? document.querySelector('.drawer') : document;
+      const anchor = [...owner.querySelectorAll(selector)].find(el => {
+        const rect = el.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0 && getComputedStyle(el).display !== 'none';
+      });
+      if (!anchor) throw new Error(`Unavailable source opener: ${type}`);
+      anchor.scrollIntoView({ block: 'nearest' });
+      if (type === 'ctx') A.ctxBtn(anchor);
+      else A.pop(anchor);
+    }
+    if (scenario.drawerScroll !== undefined) {
+      const scroller = document.querySelector('.drawer-b');
+      scroller.scrollTop = scenario.drawerScroll === 'bottom' ? scroller.scrollHeight : scenario.drawerScroll;
+    }
+    if (scenario.toast) toast('Link copied', { kind: 'ok', ms: 60000 });
+  }, scenario);
+  for (const selector of scenario.clicks || []) await page.locator(selector).first().click();
+  if (scenario.drawer) await page.locator('.drawer').waitFor();
+  if (scenario.modal) await page.locator('.modal').last().waitFor();
+  if (scenario.popover) await page.locator('.pop.floating').waitFor();
+  if (scenario.palette) await page.locator('#pal-in').waitFor();
+}
+
+export async function readiness(page) {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    for (const spec of ['400 13.5px Geist', '500 13.5px Geist', '600 13.5px Geist', '400 13.5px "Geist Mono"']) {
+      const faces = await document.fonts.load(spec, 'Gr8r Studio 123');
+      if (!faces.length || faces.some(face => face.status !== 'loaded')) throw new Error(`Font fallback: ${spec}`);
+    }
+    await Promise.all([...document.images].map(img => img.decode()));
+    await Promise.all(document.getAnimations().filter(animation => Number.isFinite(animation.effect.getComputedTiming().iterations)).map(animation => animation.finished.catch(() => {})));
+    // Loading shimmer/spinners have no settled end; capture their original first frame at a fixed phase.
+    for (const animation of document.getAnimations().filter(animation => !Number.isFinite(animation.effect.getComputedTiming().iterations))) {
+      animation.pause();
+      animation.currentTime = 0;
+    }
+  });
+  // countUp uses requestAnimationFrame for 520ms; compare settled text AND geometry before accepting a frame.
+  await page.waitForTimeout(600);
+  const measure = () => page.evaluate(() => ({
+    text: document.querySelector('#app').innerText,
+    boxes: [...document.querySelectorAll('.page,.ph,.topbar,.side,.drawer,.modal,.pop,.stat .v,.board-col,.set-body')].map(el => {
+      const r = el.getBoundingClientRect();
+      return [el.className, r.x, r.y, r.width, r.height];
+    }),
+  }));
+  let previous = await measure();
+  let stable = false;
+  for (let attempt = 0; attempt < 10; attempt++) {
+    await page.waitForTimeout(100);
+    const current = await measure();
+    if (JSON.stringify(current) === JSON.stringify(previous)) { stable = true; break; }
+    previous = current;
+  }
+  if (!stable || previous.text.length < 60) throw new Error('Empty or unsettled source surface');
+  return page.evaluate(() => ({
+    fonts: [...document.fonts].map(face => ({ family: face.family, weight: face.weight, status: face.status, unicodeRange: face.unicodeRange })),
+    images: [...document.images].map(img => ({ src: img.currentSrc, decoded: img.complete && img.naturalWidth > 0 })),
+    title: document.title, platform: navigator.platform, userAgent: navigator.userAgent,
+    fontFamily: getComputedStyle(document.body).fontFamily, fontSize: getComputedStyle(document.body).fontSize,
+    animations: document.getAnimations().map(animation => ({ name: animation.animationName || null, playState: animation.playState, currentTime: animation.currentTime, iterations: Number.isFinite(animation.effect.getComputedTiming().iterations) ? animation.effect.getComputedTiming().iterations : 'infinite' })),
+    icon: (() => { const el = document.querySelector('svg.i'); return el ? { viewBox: el.getAttribute('viewBox'), strokeWidth: el.getAttribute('stroke-width'), samplePath: el.innerHTML } : null; })(),
+    scroll: [...document.querySelectorAll('[data-keep],.content')].map(el => ({ key: el.dataset.keep || el.className, top: el.scrollTop, left: el.scrollLeft })),
+    geometry: [...document.querySelectorAll('.page,.topbar,.side,.drawer,.modal,.pop,.cal-g')].map(el => {
+      const r = el.getBoundingClientRect(), style = getComputedStyle(el);
+      return { selector: el.className, x: r.x, y: r.y, width: r.width, height: r.height, display: style.display, gridTemplateRows: style.gridTemplateRows };
+    }),
+    state: (() => { const { S } = window.__gr8r; return { route: S.ui.route, params: S.ui.params, auth: S.ui.auth, onb: S.ui.onb, prefs: S.prefs, drawer: S.ui.drawer, drawerFull: S.ui.drawerFull, pop: S.ui.pop, modals: S.ui.modals, palette: S.ui.palette }; })(),
+  }));
+}
+docs/poc/ACCEPTANCE.md:3:**Tại thời điểm bàn giao: chưa chạy nghiệm thu target.** Source đã được đọc và build; React app, API và bộ runtime screenshots chưa được triển khai trong gói tài liệu này. Tất cả gate M1/M2/M3 dưới đây là yêu cầu cho người thực hiện, không phải kết quả đã đạt.
+docs/poc/ACCEPTANCE.md:55:| M1-I04 | Select một phần/toàn bộ List; bulk field edit/delete | Checkbox partial đúng; bulk bar chỉ Status/Assignee/Priority/Delete/Clear theo nguồn; confirm/Undo đúng contract |
+docs/poc/ACCEPTANCE.md:58:| M1-I07 | Complete/reopen/Undo, gồm task lặp lại | Source-visible feedback được giữ; recurrence/Undo theo canonical rules; không tạo successor trùng |
+docs/poc/ACCEPTANCE.md:64:## 4. Gate M2 — toàn bộ UI và hành vi nguồn
+docs/poc/ACCEPTANCE.md:79:| SC-15/16 | WU-21 | Team grid/form/detail; compact project rows; primary-team transition; Undo delete |
+docs/poc/ACCEPTANCE.md:81:| SC-18; SE-01…21 | WU-23/24/25 | Đủ từng section và state nguồn; compact members/TeamGrid/PermissionMatrix dùng lại; payment/invoices giữ đúng scope demo |
+docs/poc/ACCEPTANCE.md:84:| SC-19/20/21 | WU-28 | Hai gallery nằm trong AppShell/current workspace; Archive restore/purge states; không blank placeholder |
+docs/poc/ACCEPTANCE.md:85:| DR-01…08; MD-01…10; toàn popover groups | WU-05 và feature owner | Đúng nội dung, anchor/layer/focus/keyboard, validation, nested confirm, toast/Undo |
+docs/poc/ACCEPTANCE.md:88:Số lượng được kiểm đếm từ source là 21 renderer route keys, 8 project tabs cố định, 21 Settings sections, 7 auth states, 6 onboarding steps, 10 modal types và 28 popover switch types. Chúng là các chiều coverage khác nhau; không cộng thành một “tổng số màn hình”. Select, mention menu, palette, context variants và các trạng thái phát sinh vẫn phải có scenario riêng khi áp dụng.
+docs/poc/ACCEPTANCE.md:90:### M2-R: bằng chứng tái sử dụng
+docs/poc/ACCEPTANCE.md:105:### M2-A: action coverage
+docs/poc/ACCEPTANCE.md:107:WU-28 lập bảng từ action handlers, keyboard handlers, modal/popover/context commands và các native events trong source. Mỗi hàng cần `source anchor → user action → React owner → StudioApi/DemoAdapter operation hoặc local intent → scenario → result`. Con số regex action assignment trong REFERENCE_AUDIT chỉ hỗ trợ kiểm đếm; không phải toàn bộ interaction inventory.
+docs/poc/ACCEPTANCE.md:109:Phải giữ toast **Undo tại các thao tác nguồn có Undo**: complete task, archive/delete task/project, bulk delete, complete/archive trong column, delete comment/file/team và các demo remove-member tương ứng. PATCH status hoặc bulk field update thông thường không được tự thêm Undo nếu source không có. Implementation bù theo phạm vi/version của API_CONTRACT; không chụp/khôi phục toàn workspace snapshot.
+docs/poc/ACCEPTANCE.md:111:M2 fail nếu còn control chính là `onClick={() => {}}`, route placeholder, modal mất field, native select không khớp renderer, file preview không mở được hoặc keyboard command chưa có owner. Service demo được phép theo capability matrix; event bị bỏ quên không trở thành “demo” chỉ để qua gate.
+docs/poc/ACCEPTANCE.md:145:| M3-C10 | Undo success/retry/conflict | Inverse giới hạn đúng command; replay không áp hai lần; association/entity đã đổi thì conflict toàn phần, không overwrite dữ liệu khác |
+docs/poc/ACCEPTANCE.md:160:| M3-F06 | Delete/Undo và private content | Tombstone/bytes đủ cho Undo trong phạm vi; mọi content request kiểm tra workspace/project quyền; không public URL bỏ qua policy |
+docs/poc/ACCEPTANCE.md:172:5. Chạy một conflict/Undo và một failure upload/batch có kiểm soát; xác nhận không có partial entity state, duplicate task hoặc lost draft.
+docs/poc/work-units/WU-29.md:3:**Trạng thái ban đầu:** NOT_STARTED. **Mốc:** M2. **Một session làm một unit.**
+docs/poc/work-units/WU-29.md:11:WU-28 phải **DONE**, có bằng chứng nghiệm thu và code checkpoint hiện hữu. Tất cả unit trước đó cũng đã hoàn tất theo chuỗi chuẩn.
+docs/poc/work-units/WU-29.md:37:4. Sửa regression trong phạm vi UI đã triển khai. Nếu còn feature/content/interaction thiếu, ghi blocker và trả về owner, chưa đóng M2; mọi pending integration của các unit trước phải được giải quyết.
+docs/poc/work-units/WU-29.md:42:- **WU-29-AC1:** Mỗi inventory item có status và evidence; không tùy tiện đánh dấu source functionality là không áp dụng. Full ProjectPage, Files và các dev/demo surfaces đều được kiểm tra tại M2.
+docs/poc/work-units/WU-29.md:44:- **WU-29-AC3:** Reuse được chứng minh qua imports/ownership và behavior ở nhiều context; mọi feature UI chạy đúng trên mock, action/Undo ledger đã đóng. Kết quả không được mô tả là backend đã sẵn sàng.
+docs/poc/work-units/WU-29.md:45:- **WU-29-AC4:** Không còn placeholder hoặc future-unit dependency trong M2 scope. Report chỉ ghi các gate thực sự đã chạy, command/exit status/artifact và giới hạn còn lại.
+docs/poc/work-units/WU-29.md:59:- M2 acceptance report tự chứa kết quả và ngoại lệ cụ thể.
+docs/poc/SCREEN_INVENTORY.md:12:- `renderPage()` mapping: **21** route keys, đã bao gồm `project`.
+docs/poc/SCREEN_INVENTORY.md:15:- Settings: **21** sections.
+docs/poc/SCREEN_INVENTORY.md:17:- Modal switch: **10** types; popover switch: **28** types, chưa tính select menu và mention menu độc lập.
+docs/poc/SCREEN_INVENTORY.md:29:### 2.1. 21 route keys của shell
+docs/poc/SCREEN_INVENTORY.md:50:| SC-18 | `settings`, `{sec}` | `/w/$workspaceId/settings/$section` | SettingsLayout + 21 sections bên dưới, own scroller, mobile navigation | [Settings][s-settings] |
+docs/poc/SCREEN_INVENTORY.md:53:| SC-21 | `archive` | `/w/$workspaceId/archive` | Tasks/Projects tabs, restore/delete permanently, empty states | [Archive][s-archive] |
+docs/poc/SCREEN_INVENTORY.md:79:### 2.3. 21 Settings sections
+docs/poc/SCREEN_INVENTORY.md:105:| SE-21 | Billing | `invoices` | Invoice table readonly, horizontal scroll khi cần |
+docs/poc/SCREEN_INVENTORY.md:174:| DR-01 | Side panel, full centered panel, mobile viewport; open từ List/Board/Table/Calendar/Search/Inbox dùng cùng TaskDrawer |
+docs/poc/SCREEN_INVENTORY.md:175:| DR-02 | Normal/overdue/completed notice; title edit; favorite; copy link; context menu; close; mark complete/reopen |
+docs/poc/SCREEN_INVENTORY.md:176:| DR-03 | 10 properties: status, priority, assignee, due, start, project, labels, repeat, estimate, dependencies |
+docs/poc/SCREEN_INVENTORY.md:177:| DR-04 | Description hiện có: contentEditable và 6 format commands bold/italic/unordered/ordered/heading/link; giữ HTML behavior vừa đủ cho source |
+docs/poc/SCREEN_INVENTORY.md:178:| DR-05 | Subtask list và detail; completion, title, assignee, due, note, parent backlink; previous/next disabled ở biên; convert-to-task; delete |
+docs/poc/SCREEN_INVENTORY.md:179:| DR-06 | Attachment cards, empty dropzone, simulated upload progress, remove, preview |
+docs/poc/SCREEN_INVENTORY.md:180:| DR-07 | Comments/Activity tabs; empty comments; comment draft/post/delete của mình; mention menu; reaction toggle/count |
+docs/poc/SCREEN_INVENTORY.md:181:| DR-08 | Popover trên drawer; modal trên drawer; nested confirm; focus return; scroll position không mất khi edit |
+docs/poc/SCREEN_INVENTORY.md:204:28 switch types trong [popovers source][s-popovers], nhóm theo owner:
+docs/poc/SCREEN_INVENTORY.md:218:Ngoài 28 types: Select control dùng native hidden select + custom popup trong nguồn; mention menu và command palette có renderer riêng. Bản React dùng Select/Popover primitives chung, không giữ `enhanceSelects()` post-render DOM replacement. [Select source][s-select]. Context menu có 6 targets: task, project, column, member, file, savedview. [Context menus][s-context].
+docs/poc/SCREEN_INVENTORY.md:220:Command palette modes `cmd/search/ws`, six search scopes, recent commands/results, keyboard highlight/up/down/enter, Tab/backspace switching và full search action. Toast queue gồm action Undo khi source có; tooltip giữ vị trí/visibility/focus theo component. [Palette][s-palette], [Keyboard][s-keyboard].
+docs/poc/SCREEN_INVENTORY.md:230:| DIM-03 | <=900px | Sidebar offcanvas 280px, gutter 16px, stats 2 cột, Settings horizontal nav, Inbox preview fullscreen, timeline rail 170px |
+docs/poc/SCREEN_INVENTORY.md:289:[s-modals]: https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/overlays/modals.js#L28-L290
+.reference/gr8r-studio/src/shell/layout.js:121:            <div class="sitem ${on ? 'on' : ''}" draggable="true" data-drag-proj="${p.id}" data-a="go" data-r="project" data-id="${p.id}" data-ctx="project" role="link" tabindex="0" ${u.collapsed ? `data-tip="${esc(p.name)}" data-tip-pos="right"` : ''}>
+.reference/gr8r-studio/src/shell/layout.js:138:                    `<button class="sitem ${on && u.params.tab === tab ? 'on' : ''}" data-a="go" data-r="project" data-id="${p.id}" data-tab="${tab}">${ic(i, 14)}<span>${n}</span></button>`,
+.reference/gr8r-studio/src/shell/layout.js:169:    out.push(c('Projects', 'data-a="go" data-r="projects"'));
+.reference/gr8r-studio/src/shell/layout.js:174:          `data-a="go" data-r="project" data-id="${p.id}" data-tab="overview"`,
+.reference/gr8r-studio/src/shell/layout.js:180:    out.push(c('Members', 'data-a="go" data-r="members"'));
+.reference/gr8r-studio/src/shell/layout.js:183:    out.push(c('Teams', 'data-a="go" data-r="teams"'));
+.reference/gr8r-studio/src/shell/layout.js:197:    <button class="ibtn" data-a="go" data-r="notifications" data-tip="Notifications" aria-label="Notifications">${ic('bell', 16)}${D().notifs.some(n => !n.read) ? '<span style="position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2px var(--surface)"></span>' : ''}</button>
+.reference/gr8r-studio/src/shell/layout.js:206:    `<button class="${r === route ? 'on' : ''}" data-a="go" data-r="${route}">${ic(icon, 19)}<span>${label}</span>${extra}</button>`;
+.reference/gr8r-studio/src/styles/motion.css:263:@media (prefers-reduced-motion: reduce) {
+.reference/gr8r-studio/src/styles/motion.css:280:    animation: fadeOnly 0.12s both !important;
+.reference/gr8r-studio/src/styles/motion.css:299::root[data-motion='reduce'] .fx-route > .page > *,
+.reference/gr8r-studio/src/styles/motion.css:300::root[data-motion='reduce'] .pbody.fx-tab > *,
+.reference/gr8r-studio/src/styles/motion.css:301::root[data-motion='reduce'] .auth-card.fx-auth > *,
+.reference/gr8r-studio/src/styles/motion.css:302::root[data-motion='reduce'] .onb.fx-step > *,
+.reference/gr8r-studio/src/styles/motion.css:303::root[data-motion='reduce'] .drawer.enter .drawer-b > *,
+.reference/gr8r-studio/src/styles/motion.css:304::root[data-motion='reduce'] .kcard.fx-moved {
+.reference/gr8r-studio/src/styles/motion.css:305:  animation: fadeOnly 0.12s both !important;
+.reference/gr8r-studio/src/styles/motion.css:307::root[data-motion='reduce'] .fx-route .prog > i,
+.reference/gr8r-studio/src/styles/motion.css:308::root[data-motion='reduce'] .fx-route .stackbar i {
+.reference/gr8r-studio/src/styles/motion.css:311::root[data-motion='reduce'] .pcard:hover,
+.reference/gr8r-studio/src/styles/motion.css:312::root[data-motion='reduce'] .kcard:hover {
+import { readJson, artifacts } from '../reference/source-check.mjs';
+import { sourceId } from '../../../packages/contracts/src/source-identities.ts';
+
+export const workspaceId = sourceId('workspaces', 'w1');
+export const shellBase = readJson(`${artifacts}/scenario-registry.json`).scenarios.filter(row => /^(SC-|PR-|SE-)/.test(row.id));
+export function targetPath(row) {
+  const root = `/w/${workspaceId}`;
+  if (row.route === 'system') return '/dev/design-system';
+  if (row.route === 'states') return '/dev/system-states';
+  if (row.route === 'project') {
+    const base = `${root}/projects/${sourceId('projects', row.params.id)}`;
+    return row.params.tab.startsWith('v:') ? `${base}/views/${sourceId('savedViews', row.params.tab.slice(2))}` : `${base}/${row.params.tab}`;
+  }
+  if (row.route === 'member') return `${root}/members/${sourceId('members', row.params.id)}`;
+  if (row.route === 'team') return `${root}/teams/${sourceId('teams', row.params.id)}`;
+  if (row.route === 'settings') return `${root}/settings/${row.params?.sec ?? 'appearance'}`;
+  return `${root}/${row.route === 'mytasks' ? 'my-tasks' : row.route}`;
+}
+export const shellMatrix = [1440, 390].flatMap(width => shellBase.map(row => ({ ...row, width, id: `${row.id}-${width}` })));
+const add = (id, route, extra = {}) => shellMatrix.push({ id, family: id.startsWith('DIM') ? id.split('-').slice(0, 2).join('-') : 'VW', route, width: 1440, ...extra });
+for (const width of [639, 640, 641, 899, 900, 901, 1099, 1100, 1101]) add(`DIM-BOUNDARY-${width}`, 'home', { width, height: width <= 641 ? 844 : 1000 });
+for (const theme of ['light', 'dark']) for (const accent of ['indigo', 'blue', 'violet', 'teal', 'rose', 'graphite']) add(`DIM-05-${theme}-${accent}`, 'tasks', { prefs: { theme, accent }, targetMode: 'list' });
+for (const colorScheme of ['light', 'dark']) add(`DIM-05-system-${colorScheme}`, 'home', { prefs: { theme: 'system' }, colorScheme });
+for (const side of ['comfortable', 'compact']) for (const density of ['comfortable', 'compact']) add(`DIM-density-${side}-${density}`, 'tasks', { prefs: { side, density }, targetMode: 'list' });
+for (const width of [1440, 390]) {
+  for (const targetMode of ['board', 'table']) add(`VW-${targetMode}-${width}`, 'tasks', { width, taskMode: targetMode, targetMode });
+  add(`VW-projects-list-${width}`, 'projects', { width, ui: { projView: 'list' }, catalogueMode: 'List' });
+  add(`VW-projects-table-${width}`, 'projects', { width, ui: { projView: 'table' }, catalogueMode: 'Table' });
+  add(`VW-files-list-${width}`, 'project', { width, params: { id: 'p1', tab: 'files' }, ui: { fileView: 'list' }, filesList: true });
+  add(`VW-calendar-week-${width}`, 'calendar', { width, ui: { calMode: 'week' }, week: true });
+  add(`VW-mytasks-calendar-${width}`, 'mytasks', { width, ui: { myView: 'calendar' }, myCalendar: true });
+}

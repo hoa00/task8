@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import {shellMatrix} from \"./tests/visual/m2/matrix.mjs\"; console.log(JSON.stringify({count:shellMatrix.length,groups:Object.fromEntries([...new Set(shellMatrix.map(x=>x.family))].map(f=>[f,shellMatrix.filter(x=>x.family===f).length]))},null,2))"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/matrix-plan-01/command.txt",
+    "bytes": 282,
+    "sha256": "5b1167a3778145a8d4ed2f1a338d79207c60b3ed890fad6a26ac8ca92460b757"
+  },
+  "startedAt": "2026-10-10T12:14:21.379Z",
+  "finishedAt": "2026-10-10T12:14:21.509Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/matrix-plan-01/stdout",
+    "bytes": 930,
+    "sha256": "880536accc38d8156dfd77c8ca244c4d65e05e8b2ad2ce2b98f91f5d5c055994"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/matrix-plan-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

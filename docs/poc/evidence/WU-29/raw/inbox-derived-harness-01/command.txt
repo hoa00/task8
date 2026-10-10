@@ -1,0 +1,21 @@
+'python3' '-c' 'from pathlib import Path
+p=Path("tests/visual/m2/inbox.mjs"); assert not p.exists(); s=Path("tests/visual/notifications/http.mjs").read_text()
+s=s.replace("import { newPage }", "import { newPage, environment }")
+a="const root = \x27docs/poc/evidence/WU-19\x27, attempt = process.argv.find(arg => arg.startsWith(\x27--attempt=\x27))?.slice(10);"; assert a in s
+s=s.replace(a,"import { checkCategoryBadges, checkLateReplyAndReuse } from \x27./inbox-probes.mjs\x27;\nimport { immutableInputs, implementationAssets, httpBuildAssets, sourceAssets } from \x27../settings/assets.mjs\x27;\nimport { sha256 } from \x27../reference/source-check.mjs\x27;\nconst root = \x27docs/poc/evidence/WU-29\x27, attempt = process.argv[2];")
+s=s.replace("if (!attempt) throw", "if (!/^[a-z0-9-]+$/.test(attempt ?? \x27\x27)) throw").replace("fs.copyFileSync(\x27tests/visual/notifications/http.mjs\x27, `${output}/executed-harness.mjs`);", "fs.copyFileSync(import.meta.filename, `${output}/executed-harness.mjs`); fs.copyFileSync(\x27tests/visual/m2/inbox-probes.mjs\x27, `${output}/executed-inbox-probes.mjs`); fs.copyFileSync(\x27tests/visual/notifications/http.mjs\x27, `${output}/original-http-harness.mjs`);")
+s=s.replace("runtime: { node: process.version }", "runtime: { node: process.version, ...environment }, immutableBefore: immutableInputs(), assetsBefore: { ...implementationAssets(), ...httpBuildAssets(), ...sourceAssets() }, derivation: { original: \x27tests/visual/notifications/http.mjs\x27, originalSha256: sha256(fs.readFileSync(\x27tests/visual/notifications/http.mjs\x27)), changes: [\x27WU29 namespace and unique positional attempt\x27, \x27current ownership snapshots\x27, \x27two explicit category/late-reply/shared-comment checks\x27, \x27persist actual request lifecycle before holds and response outcomes\x27, \x27server raw stdout/stderr direct to files\x27] }")
+a="const server = spawn(process.execPath,"; assert a in s
+s=s.replace(a,"const serverOut = fs.openSync(`${output}/server.stdout`, \x27wx\x27), serverErr = fs.openSync(`${output}/server.stderr`, \x27wx\x27);\n"+a)
+s=s.replace("stdio: \x27pipe\x27 }); let logs = \x27\x27; server.stdout.on(\x27data\x27, bytes => logs += bytes); server.stderr.on(\x27data\x27, bytes => logs += bytes);", "stdio: [\x27ignore\x27, serverOut, serverErr] });")
+s=s.replace("throw Error(logs);", "throw Error(fs.readFileSync(`${output}/server.stderr`, \x27utf8\x27));")
+s=s.replace("report.requests.push(entry); const fault", "report.requests.push(entry); save(); const fault")
+s=s.replace("entry.outcome = \x27error\x27; await route.fulfill", "entry.outcome = \x27error\x27; save(); await route.fulfill")
+s=s.replace("entry.outcome = \x27fulfilled\x27; await route.fulfill", "entry.outcome = \x27fulfilled\x27; save(); await route.fulfill")
+s=s.replace("entry.error = String(error); await route.fulfill", "entry.error = String(error); save(); await route.fulfill")
+a="  await probe(\x27Q19-02-read-error"; assert a in s
+s=s.replace(a,"  await probe(\x27M2-INBOX-01-complete-category-badges-all-tabs-and-unread\x27, () => checkCategoryBadges({ page, client, workspaceId }));\n"+a)
+a="  await probe(\x27Q19-05-data-error"; assert a in s
+s=s.replace(a,"  await probe(\x27M2-INBOX-02-held-success-Back-reopen-new-draft-shared-reaction-delete-Undo\x27, () => checkLateReplyAndReuse({ page, client, workspaceId, taskId, notificationId: n1, hold, release, isHeld: operation => held.has(operation) }));\n"+a)
+s=s.replace("} finally { await browser?.close(); await stop(); }", "} finally { await browser?.close(); await stop(); fs.closeSync(serverOut); fs.closeSync(serverErr); report.immutableAfter = immutableInputs(); report.assetsAfter = { ...implementationAssets(), ...httpBuildAssets(), ...sourceAssets() }; report.server = { exitCode: server.exitCode, signal: server.signalCode, stdout: { path: `${output}/server.stdout`, bytes: fs.statSync(`${output}/server.stdout`).size, sha256: sha256(fs.readFileSync(`${output}/server.stdout`)) }, stderr: { path: `${output}/server.stderr`, bytes: fs.statSync(`${output}/server.stderr`).size, sha256: sha256(fs.readFileSync(`${output}/server.stderr`)) } }; save(); assert.deepEqual(report.immutableBefore, report.immutableAfter); assert.deepEqual(report.assetsBefore, report.assetsAfter); checkSource(); }")
+p.write_text(s)'

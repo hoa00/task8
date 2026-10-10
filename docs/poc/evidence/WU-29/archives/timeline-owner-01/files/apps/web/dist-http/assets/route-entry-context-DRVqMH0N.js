@@ -1,0 +1,1 @@
+import{i as e,o as t}from"./useRouter-BOAPZDg1.js";var n=t(e(),1),r=(0,n.createContext)(!1);function i(){return(0,n.useContext)(r)}export{i as n,r as t};

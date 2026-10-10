@@ -1,0 +1,46 @@
+{
+  "input": "tests/visual/onboarding/interactions.mjs",
+  "inputBytes": 11639,
+  "inputSha256": "00f2bb64a68ce944aeb7506159332b5d451c7061edc72ccaf8dd7d86fd717eb3",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-current-01-onboarding/executed-adapter.mjs",
+  "adapterBytes": 11856,
+  "adapterSha256": "e3c6ec3a6668099ba00f1135464b9717e4ad3c9916bd68c2bcc43589155d9c68",
+  "remapped": [
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    },
+    {
+      "reference": "../settings/assets.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/settings/assets.mjs"
+    },
+    {
+      "reference": "../../../apps/web/src/data/mock/seed.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/data/mock/seed.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/data/onboarding-demo.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/data/onboarding-demo.ts"
+    },
+    {
+      "reference": "../reference/source-check.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/source-check.mjs"
+    }
+  ],
+  "assertionUpdates": [],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-current-01-onboarding/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "bash",
+    "-c",
+    "sed -n \"1,175p\" .reference/gr8r-studio/src/styles/motion.css; sed -n \"245,335p\" .reference/gr8r-studio/src/styles/motion.css; cat apps/web/src/features/dashboards/dashboards.css; cat apps/web/src/features/projects/projects.css; sed -n \"26,125p\" apps/web/src/features/tasks/TaskListPages.tsx; rg --files apps/web/src/features/calendar apps/web/src/features/timeline apps/web/src/features/dashboards | sort"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/route-motion-source-read-01/command.txt",
+    "bytes": 419,
+    "sha256": "c123e4174dd9b172e70a269d326997aba541e0a73c68199a791a77a5a9dd3c11"
+  },
+  "startedAt": "2026-10-10T12:42:37.260Z",
+  "finishedAt": "2026-10-10T12:42:37.279Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/route-motion-source-read-01/stdout",
+    "bytes": 25468,
+    "sha256": "1b77f9defb84ec34a4e11bb24a1a0c30617d6416851d2b1dea87fa46bb0bec4b"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/route-motion-source-read-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

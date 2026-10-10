@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\"docs/poc/evidence/WU-29/attempts/visual-shell-01/report.json\")); console.log(JSON.stringify({status:r.status,completed:r.samples.filter(s=>s.status!==\"running\").length,total:r.matrix.length,failed:r.samples.filter(s=>s.status===\"failed\").map(s=>({id:s.id,pixels:s.captures[0]?.comparison.pixels,error:s.error})),last:r.samples.at(-1)?.id}));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/shell-live-04/command.txt",
+    "bytes": 440,
+    "sha256": "ee40e2bb366219d190f586ba3099060966c6c702d4e91b3b2fce3fa0290bcf49"
+  },
+  "startedAt": "2026-10-10T12:41:27.739Z",
+  "finishedAt": "2026-10-10T12:41:28.063Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/shell-live-04/stdout",
+    "bytes": 5014,
+    "sha256": "bd17febc4b7bd318f67a134f649d044ca733f74cb77efef6a146f7881cd4b753"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/shell-live-04/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

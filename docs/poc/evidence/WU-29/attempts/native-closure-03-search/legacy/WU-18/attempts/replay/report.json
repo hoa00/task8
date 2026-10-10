@@ -1,0 +1,60 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "S18-N01-global-single-registration-navigation-create",
+      "status": "passed",
+      "activityRows": 13,
+      "taskDialogs": 1,
+      "navigation": [
+        "home",
+        "my-tasks",
+        "projects",
+        "calendar"
+      ]
+    },
+    {
+      "id": "S18-N02-activity-type-person-project-scope-links",
+      "status": "passed",
+      "actorRows": 3,
+      "canonicalProjectScope": true,
+      "taskDrawerAndEdit": true,
+      "projectNavigation": true
+    },
+    {
+      "id": "S18-N03-palette-focus-arrows-modes-escape-return",
+      "status": "passed",
+      "selectedRestored": true,
+      "inputFocus": true,
+      "TabBackspace": true,
+      "EscapeReturnFocus": true
+    },
+    {
+      "id": "S18-N04-shared-search-semantics-category-and-recent-live",
+      "status": "passed",
+      "paletteFirstTasks": [
+        "Create homepage wireframesWebsite RedesignWEB-109"
+      ],
+      "sharedRecent": "homepage wireframes",
+      "samePageNode": true,
+      "SourceViewAllOnlyRemember": true,
+      "existingRecentOrderPreserved": true,
+      "reloadPersistence": true,
+      "whitespaceNoResults": true
+    },
+    {
+      "id": "S18-N05-existing-file-preview-native-link-and-nested-Escape",
+      "status": "passed",
+      "palettePreview": "WU10 FilePreviewDialog",
+      "taskLink": true,
+      "paletteAboveDrawerEscape": true,
+      "pagePreview": true
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Actual native keyboard/mouse commands, shared Search/Palette history and WU10 file preview; default browser runtime, no pixel claim.",
+  "error": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: 'Search', exact: true })\u001b[22m\n\n    at /workspace/task8/docs/poc/evidence/WU-29/attempts/native-closure-03-search/executed-adapter.mjs:65:89\n    at probe (/workspace/task8/docs/poc/evidence/WU-29/attempts/native-closure-03-search/executed-adapter.mjs:15:139)\n    at /workspace/task8/docs/poc/evidence/WU-29/attempts/native-closure-03-search/executed-adapter.mjs:64:8"
+}

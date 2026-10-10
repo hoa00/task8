@@ -1,0 +1,208 @@
+/* =====================================================================
+   QUIRE — core: utils, icons, seed data, store, render loop, events
+   ===================================================================== */
+// Web fonts load without blocking first paint (the link starts as media=print).
+document.querySelectorAll('link[data-font]').forEach(l => {
+  l.media = 'all';
+});
+export const $ = (s, r = document) => r.querySelector(s);
+export const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+export const uid = (p = 'x') => p + Math.random().toString(36).slice(2, 8);
+export const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+export const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+export const MOD = isMac ? '⌘' : 'Ctrl';
+
+/* ---------- dates ---------- */
+export const DAY = 864e5;
+export const sod = d => {
+  const x = new Date(d);
+  x.setHours(0, 0, 0, 0);
+  return x;
+};
+export const TODAY = sod(new Date());
+export const iso = d => {
+  const x = new Date(d);
+  return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
+};
+export const parse = s => {
+  if (!s) return null;
+  const [y, m, d] = s.split('-').map(Number);
+  return new Date(y, m - 1, d);
+};
+export const addD = (d, n) => {
+  const x = new Date(d);
+  x.setDate(x.getDate() + n);
+  return x;
+};
+export const dOff = n => iso(addD(TODAY, n));
+export const diffD = (a, b) => Math.round((sod(a) - sod(b)) / DAY);
+export const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+export const MONL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export const WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export const WDL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+/* Set from preferences on every render (core/theme.js), so utils never depends on the store. */
+export let dateFormat = 'MMM d';
+export function setDateFormat(f) {
+  dateFormat = f || 'MMM d';
+}
+export function fmtDate(s, long) {
+  const d = typeof s === 'string' ? parse(s) : s;
+  if (!d) return '';
+  const fmt = dateFormat;
+  if (fmt === 'd/M') return `${d.getDate()}/${d.getMonth() + 1}${long ? '/' + d.getFullYear() : ''}`;
+  if (fmt === 'M/d') return `${d.getMonth() + 1}/${d.getDate()}${long ? '/' + d.getFullYear() : ''}`;
+  if (fmt === 'yyyy-MM-dd') return iso(d);
+  return `${MON[d.getMonth()]} ${d.getDate()}${long || d.getFullYear() !== TODAY.getFullYear() ? ', ' + d.getFullYear() : ''}`;
+}
+export function relDate(s) {
+  if (!s) return '';
+  const n = diffD(parse(s), TODAY);
+  if (n === 0) return 'Today';
+  if (n === 1) return 'Tomorrow';
+  if (n === -1) return 'Yesterday';
+  if (n > 1 && n < 7) return WD[parse(s).getDay()];
+  return fmtDate(s);
+}
+export function ago(ts) {
+  const m = Math.round((Date.now() - ts) / 6e4);
+  if (m < 1) return 'just now';
+  if (m < 60) return m + 'm ago';
+  const h = Math.round(m / 60);
+  if (h < 24) return h + 'h ago';
+  const d = Math.round(h / 24);
+  if (d < 7) return d + 'd ago';
+  return fmtDate(iso(new Date(ts)));
+}
+export const minsAgo = m => Date.now() - m * 6e4;
+export function dayBucket(ts) {
+  const n = diffD(new Date(ts), TODAY);
+  if (n === 0) return 'Today';
+  if (n === -1) return 'Yesterday';
+  if (n > -7) return 'This week';
+  return 'Earlier';
+}
+/* ---------- ACTIVITY ---------- */
+import { dayBucket, esc } from '../core/utils.js';
+import { D, S, canSee, proj } from '../core/store.js';
+import { empty } from '../ui/helpers.js';
+import { actHtml } from '../components/task-list.js';
+
+export function pageActivity() {
+  const f = S.ui.actFilter || 'all';
+  const who = S.ui.actWho || 'all';
+  let as = D().activity.filter(a => !a.project || canSee(proj(a.project)));
+  if (f !== 'all')
+    as = as.filter(a =>
+      f === 'comments'
+        ? a.verb.includes('comment')
+        : f === 'status'
+          ? /moved|completed|reopened/.test(a.verb)
+          : f === 'projects'
+            ? a.verb.includes('project')
+            : true,
+    );
+  if (who !== 'all') as = as.filter(a => a.by === who);
+  const b = {};
+  as.forEach(a => (b[dayBucket(a.at)] ||= []).push(a));
+  return `<div class="page" style="max-width:820px">
+    <div class="ph"><div><h1>Activity</h1><p>Everything that's changed across the workspace.</p></div></div>
+    <div class="row" style="gap:8px;margin-bottom:6px;flex-wrap:wrap"><div class="seg">${[
+      ['all', 'All'],
+      ['status', 'Status changes'],
+      ['comments', 'Comments'],
+      ['projects', 'Projects'],
+    ]
+      .map(([k, n]) => `<button class="${f === k ? 'on' : ''}" data-a="set" data-k="actFilter" data-v="${k}">${n}</button>`)
+      .join('')}</div>
+    <select class="select" style="height:26px;width:auto;font-size:12px" data-in="actWho" aria-label="Filter by person"><option value="all">Everyone</option>${D()
+      .members.map(m => `<option value="${m.id}" ${who === m.id ? 'selected' : ''}>${esc(m.name)}</option>`)
+      .join('')}</select></div>
+    ${
+      as.length
+        ? Object.entries(b)
+            .map(([k, list]) => `<div class="day-h">${k}</div><div class="feed lined">${list.map(a => actHtml(a, { proj: true })).join('')}</div>`)
+            .join('')
+        : empty('activity', 'No activity yet', 'Changes to tasks and projects will appear here.')
+    }
+  </div>`;
+}
+/* ---------- OVERVIEW ---------- */
+import { TODAY, dayBucket, diffD, esc, fmtDate, parse } from '../core/utils.js';
+import { ic } from '../core/icons.js';
+import { STATUSES } from '../core/constants.js';
+import { D, TM, isOver, mem, pColor, progressOf, task, tasksOf } from '../core/store.js';
+import { av, avStack, empty, pStatus, stIcon } from '../ui/helpers.js';
+import { sortTasks } from '../shell/view-engine.js';
+import { actHtml, miniRow } from '../components/task-list.js';
+
+export function projOverview(p) {
+  const ts = tasksOf(p.id);
+  const pr = progressOf(p.id);
+  const cnt = STATUSES.map(s => ({ s, n: ts.filter(t => t.status === s.id).length }));
+  const over = ts.filter(isOver);
+  const soon = sortTasks(
+    ts.filter(t => t.status !== 'done' && t.due),
+    { f: 'due', dir: 1 },
+  ).slice(0, 6);
+  const acts = D()
+    .activity.filter(a => a.project === p.id)
+    .slice(0, 6);
+  const daysLeft = diffD(parse(p.due), TODAY);
+  return `<div class="page" style="max-width:1160px;padding-top:22px">
+    <div class="grid2">
+      <div class="stack">
+        <section class="panel"><div class="panel-h"><h2>About</h2><div class="acts"><button class="btn btn-sm btn-ghost" data-a="editProject" data-id="${p.id}">${ic('pencil', 13)}Edit</button></div></div><div class="panel-b" style="font-size:14px;line-height:1.6;color:var(--text)">${esc(p.desc)}</div></section>
+        <section class="panel"><div class="panel-h"><h2>Progress</h2><div class="acts"><span class="faint" style="font-size:12px">${ts.filter(t => t.status === 'done').length} of ${ts.length} tasks done</span></div></div>
+          <div class="panel-b">
+            <div class="row" style="align-items:baseline;gap:10px;margin-bottom:10px"><span style="font-size:30px;font-weight:600;letter-spacing:-.03em" class="num">${pr}%</span><span class="muted">${daysLeft >= 0 ? `${daysLeft} days until ${fmtDate(p.due)}` : `Ended ${fmtDate(p.due)}`}</span>${over.length ? `<span class="badge red">${ic('clock-alert', 11)}${over.length} overdue</span>` : ''}</div>
+            <div class="stackbar" style="height:8px;margin-bottom:12px">${cnt.map(c => `<i style="width:${(c.n / Math.max(ts.length, 1)) * 100}%;background:var(--st-${c.s.id})" title="${c.s.name}: ${c.n}"></i>`).join('')}</div>
+            <div class="row" style="flex-wrap:wrap;gap:14px;font-size:12.5px">${cnt.map(c => `<button class="row" style="gap:5px" data-a="goFilteredList" data-id="${p.id}" data-st="${c.s.id}">${stIcon(c.s.id, 12)}<span class="muted">${c.s.name}</span><b class="num" style="font-weight:600">${c.n}</b></button>`).join('')}</div>
+          </div></section>
+        <section class="panel"><div class="panel-h"><h2>Coming up</h2><div class="acts"><button class="btn btn-sm btn-ghost" data-a="go" data-r="project" data-id="${p.id}" data-tab="list">View list</button></div></div>${soon.map(t => miniRow(t, { noProj: true })).join('') || empty('circle-check', 'Nothing scheduled', 'Tasks with due dates will show up here.', '', 'sm')}</section>
+      </div>
+      <div class="stack">
+        <section class="panel"><div class="panel-h"><h2>Details</h2></div><div class="panel-b"><dl class="kv">
+          <dt>${ic('circle-dot', 14)}Status</dt><dd><button class="pillbtn" data-a="pop" data-pop="pstatus" data-id="${p.id}">${pStatus(p.status)}</button></dd>
+          <dt>${ic('user', 14)}Lead</dt><dd><span class="pillbtn">${av(p.lead, 'sm', false)}${esc(mem(p.lead)?.name)}</span></dd>
+          <dt>${ic('users', 14)}Team</dt><dd><button class="pillbtn" data-a="go" data-r="team" data-id="${p.team}">${ic(TM[p.team].icon, 13)}${TM[p.team].name}</button></dd>
+          <dt>${ic('calendar', 14)}Start</dt><dd><span class="pillbtn num">${fmtDate(p.start, true)}</span></dd>
+          <dt>${ic('flag', 14)}Due</dt><dd><span class="pillbtn num">${fmtDate(p.due, true)}</span></dd>
+          <dt>${ic('user-plus', 14)}Members</dt><dd><button class="pillbtn" data-a="share" data-id="${p.id}">${avStack(p.members, 6)}<span class="faint">${p.members.length}</span></button></dd>
+        </dl></div></section>
+        <section class="panel"><div class="panel-h"><h2>Milestones</h2></div><div class="panel-b">${
+          (p.milestones || [])
+            .map(m => {
+              const n = diffD(parse(m.date), TODAY);
+              return `<div class="row" style="height:32px;font-size:13px"><span style="width:9px;height:9px;transform:rotate(45deg);border-radius:2px;flex-shrink:0;margin:0 3px;background:${n < 0 ? 'var(--green)' : pColor(p)}"></span><span class="grow trunc ${n < 0 ? 'faint' : ''}">${esc(m.name)}</span><span class="num muted">${fmtDate(m.date)}</span></div>`;
+            })
+            .join('') || '<span class="faint">No milestones yet</span>'
+        }</div></section>
+        <section class="panel"><div class="panel-h"><h2>Recent activity</h2><div class="acts"><button class="btn btn-sm btn-ghost" data-a="go" data-r="project" data-id="${p.id}" data-tab="activity">View all</button></div></div><div class="panel-b feed">${acts.map(a => actHtml(a)).join('') || '<span class="faint">No activity yet</span>'}</div></section>
+      </div>
+    </div>
+  </div>`;
+}
+export function projActivity(p) {
+  const as = D().activity.filter(a => a.project === p.id);
+  const cs = D()
+    .comments.filter(c => task(c.task)?.project === p.id)
+    .map(c => ({ id: c.id, by: c.by, verb: 'commented on', task: c.task, project: p.id, at: c.at, extra: '' }));
+  const all = [...as, ...cs].sort((a, b) => b.at - a.at);
+  const b = {};
+  all.forEach(a => (b[dayBucket(a.at)] ||= []).push(a));
+  return `<div class="page" style="max-width:780px;padding-top:18px">${
+    all.length
+      ? Object.entries(b)
+          .map(([k, list]) => `<div class="day-h">${k}</div><div class="feed lined">${list.map(a => actHtml(a)).join('')}</div>`)
+          .join('')
+      : empty('activity', 'No activity yet', 'Changes to this project will appear here.')
+  }</div>`;
+}
+apps/web/src/features/dashboards/ProjectProgressTable.tsx:7:export function ProjectProgressTable({ items, data, portfolio = false, onOpen }: ProjectProgressTableProps) { return <div className="overflow-x-auto"><table data-dashboard-projects className={`project-table ${portfolio ? 'min-w-[600px]' : 'min-w-[560px]'}`}><thead><tr><th className="pl-[14px]! text-left!">Project</th>{portfolio && <th className="text-left!">Lead</th>}<th className="text-left!">Status</th><th className={`text-left! ${portfolio ? 'w-[22%]' : 'w-[26%]'}`}>Progress</th>{portfolio && <><th>Open</th><th>Overdue</th></>}<th className="text-left!">Due</th>{!portfolio && <th className="pr-[14px]! text-right!">Team</th>}</tr></thead><tbody>{items.map(item => { if (item.access !== 'allowed') return null; const p = item.project, summary = item.summary.taskSummary; return <tr key={p.id} data-dashboard-project={p.id} className="cursor-pointer" role="link" tabIndex={0} onClick={() => onOpen(p.id)} onKeyDown={event => { if (event.key === 'Enter') onOpen(p.id); }}><td className="pl-[14px]! text-left!"><span className="flex items-center gap-2"><ProjectIcon project={p} size={14} /><span className={`${portfolio ? 'truncate' : ''} font-medium`}>{p.name}</span></span></td>{portfolio && <td className="text-left!"><span className="flex items-center gap-2"><MemberIdentity member={data.members.find(member => member.id === p.leadId) ?? null} avatarOnly /><span className="truncate text-secondary">{data.members.find(member => member.id === p.leadId)?.name.split(' ')[0]}</span></span></td>}<td className="text-left!"><ProjectStatus status={p.status} /></td><td><span className="flex items-center gap-2"><Progress value={item.summary.progress} label={`${p.name} progress`} tone={portfolio && p.status === 'complete' ? 'green' : p.status === 'risk' ? 'red' : 'accent'} /><span className="w-[30px] text-[11.5px] tabular-nums text-muted">{item.summary.progress}%</span></span></td>{portfolio && <><td className="tabular-nums" data-project-open>{summary.total - summary.completed}</td><td className={`tabular-nums ${summary.overdue ? 'text-red' : 'text-muted'}`} data-project-overdue>{summary.overdue}</td></>}<td className="text-left! tabular-nums text-secondary">{projectDate(p.dueDate)}</td>{!portfolio && <td className="pr-[14px]! text-right!"><ProjectMemberStack memberIds={p.memberIds} data={data} /></td>}</tr>; })}</tbody></table></div>; }
+apps/web/src/features/projects/ProjectOverview.tsx:26: return <div className="mx-auto max-w-[1160px] px-[var(--gutter)] pb-[72px] pt-[22px]" data-project-overview><div className="project-overview-grid"><div className="flex flex-col gap-4"><Panel><PanelHeader heading="About" actions={<Button variant="ghost" size="sm" onClick={() => projects.editProject(projectId)}><Icon name="pencil" size={13} />Edit</Button>} /><PanelBody className="text-[14px] leading-[1.6]">{project.description}</PanelBody></Panel><Panel><PanelHeader heading="Progress" actions={<span className="text-xs text-muted">{totals.completed} of {totals.total} tasks done</span>} /><PanelBody><div className="mb-[10px] flex items-baseline gap-[10px]"><span className="text-[30px] font-semibold tracking-[-.03em] tabular-nums">{summary.data.data.progress}%</span><span className="text-secondary">{days === null ? 'No target date' : days >= 0 ? `${days} days until ${projectDate(project.dueDate)}` : `Ended ${projectDate(project.dueDate)}`}</span>{totals.overdue > 0 && <Badge tone="red"><Icon name="clock-alert" size={11} />{totals.overdue} overdue</Badge>}</div><StackedBar data-project-stackedbar className="mb-3 h-2!" label="Project task statuses" segments={taskStatuses.map(status => ({ value: totals.byStatus[status.id] / Math.max(1, totals.total) * 100, color: `var(--st-${status.id})` }))} /><div className="flex flex-wrap items-center gap-[14px] text-sm">{taskStatuses.map(status => <button key={status.id} className="flex items-center gap-[5px]" onClick={() => { const next = { ...view, query: { ...view.query, filters: [{ field: 'status' as const, op: 'is' as const, values: [status.id] }] } }; onViewChange(next); void navigate({ to: links.project(workspaceId, projectId, 'list'), search: { view: JSON.stringify(next) } }); }}><TaskStatusIcon status={status.id} size={12} /><span className="text-secondary">{status.name}</span><b className="font-semibold tabular-nums">{totals.byStatus[status.id]}</b></button>)}</div></PanelBody></Panel><Panel><PanelHeader heading="Coming up" actions={<Button variant="ghost" size="sm" onClick={openList}>View list</Button>} />{soon.length ? soon.map(task => <TaskMiniRow key={task.id} task={task} project={project} today={clock.today()} member={data.members.find(member => member.id === task.assigneeId) ?? null} showProject={false} onOpen={intents.openTask} onComplete={task => { void complete(task); }} />) : <EmptyState icon="circle-check" heading="Nothing scheduled" description="Tasks with due dates will show up here." size="sm" />}</Panel></div><div className="flex flex-col gap-4"><Panel><PanelHeader heading="Details" /><PanelBody><dl className="mt-[1em] mb-[1em] ml-0 mr-0 grid grid-cols-[112px_minmax(0,1fr)] max-[640px]:grid-cols-[96px_minmax(0,1fr)] items-center gap-y-[2px] text-sm text-muted">{[['circle-dot', 'Status'], ['user', 'Lead'], ['users', 'Team'], ['calendar', 'Start'], ['flag', 'Due'], ['user-plus', 'Members']].map(([icon, label]) => <div key={label} className="contents"><dt className="m-0 flex h-[30px] items-center gap-[7px] text-secondary"><Icon name={icon as Parameters<typeof Icon>[0]['name']} size={14} className="text-faint" />{label}</dt><dd className="m-0 flex min-h-[30px] min-w-0 flex-wrap items-center gap-1">{label === 'Status' ? <ProjectStatusPicker project={project} overview /> : label === 'Lead' ? <button onClick={() => { void navigate({ to: `/w/${workspaceId}/members/${project.leadId}` }); }} className="inline-flex h-[26px] items-center gap-[6px] rounded-sm px-[7px] text-foreground"><MemberIdentity className="static!" member={data.members.find(member => member.id === project.leadId) ?? null} /></button> : label === 'Team' ? <button className="inline-flex h-[26px] items-center gap-[6px] rounded-sm px-[7px] text-foreground source-hover:bg-surface-2" onClick={() => { if (project.teamId) void navigate({ to: `/w/${workspaceId}/teams/${project.teamId}` }); }}>{project.teamId && <Icon name={data.teams.find(team => team.id === project.teamId)!.icon as Parameters<typeof Icon>[0]['name']} size={13} />}{data.teams.find(team => team.id === project.teamId)?.name ?? 'No team'}</button> : label === 'Members' ? <button className="inline-flex h-[26px] items-center gap-[6px] rounded-sm px-[7px] source-hover:bg-surface-2" onClick={() => projects.shareProject(projectId)}><ProjectMemberStack memberIds={project.memberIds} max={6} data={data} /><span className="text-muted">{project.memberIds.length}</span></button> : <span className="inline-flex h-[26px] items-center rounded-sm px-[7px] tabular-nums text-foreground">{projectDate(label === 'Start' ? project.startDate : project.dueDate, true)}</span>}</dd></div>)}</dl></PanelBody></Panel><Panel><PanelHeader heading="Milestones" /><PanelBody>{project.milestones.length ? project.milestones.map(milestone => <div key={milestone.id} className="flex h-8 items-center gap-2 text-[13px]"><span className="mx-[3px] size-[9px] shrink-0 rotate-45 rounded-[2px]" style={{ background: milestone.date < clock.today() ? 'var(--green)' : project.color }} /><span className={`grow truncate ${milestone.date < clock.today() ? 'text-muted' : ''}`}>{milestone.name}</span><span className="tabular-nums text-secondary">{projectDate(milestone.date)}</span></div>) : <span className="text-muted">No milestones yet</span>}</PanelBody></Panel><Panel><PanelHeader heading="Recent activity" actions={<Button variant="ghost" size="sm" onClick={() => { void navigate({ to: links.project(workspaceId, projectId, 'activity'), search: { view: JSON.stringify(view) } }); }}>View all</Button>} /><PanelBody>{feed.data.activities.length ? <ActivityFeed records={feed.data.activities.slice(0, 6)} {...commonFeed} /> : <span className="text-muted">No activity yet</span>}</PanelBody></Panel></div></div>{commands.error && <Alert tone="danger">{commands.error}</Alert>}</div>; }
+apps/web/src/features/projects/ProjectComponents.tsx:23:  <div className="flex items-center gap-[10px] border-0 border-t border-solid border-divider pt-[10px] text-xs text-muted"><span className="flex items-center gap-1"><Icon name="circle-check" size={12} />{allowed ? `${allowed.summary.taskSummary.completed}/${allowed.summary.taskSummary.total}` : '—'}</span><span className="flex items-center gap-1"><Icon name="calendar" size={12} />{projectDate(p.dueDate)}</span>{allowed && <span className="project-hide-mobile flex items-center gap-1"><Icon name="clock" size={12} />{ago(allowed.project.lastActivityAt, now)}</span>}<span className="flex-1" />{allowed && <ProjectMemberStack memberIds={allowed.project.memberIds} data={data} />}</div>
+apps/web/src/features/projects/ProjectComponents.tsx:26:export function ProjectRow({ item, data, onOpen, onMenu }: ProjectSurfaceProps) { const p = item.project, allowed = item.access === 'allowed' ? item : null, restricted = item.access === 'restricted' ? item : null; return <div role="link" tabIndex={0} data-project-row={p.id} data-project-access={item.access} className="project-row flex min-h-[52px] cursor-pointer items-center gap-3 px-[14px] py-0 source-hover:bg-surface-2" onClick={() => onOpen(p.id)} onKeyDown={event => { if (event.target === event.currentTarget && event.key === 'Enter') onOpen(p.id); }}><ProjectIcon project={p} /><div className="min-w-0 flex-1"><div className="flex items-center gap-[6px]"><b className="font-medium">{p.name}</b>{(!allowed || allowed.project.visibility === 'private') && <Icon name="lock" size={12} />}</div><div className="truncate text-xs text-muted">{allowed ? allowed.project.description : restricted!.project.catalogSummary}</div></div><span className="project-hide-mobile"><ProjectStatus status={p.status} /></span><span className="project-hide-mobile flex w-[140px] shrink-0 items-center gap-2">{allowed ? <><Progress data-project-progress value={allowed.summary.progress} label={`${p.name} progress`} /><span className="text-[11.5px] tabular-nums text-muted">{allowed.summary.progress}%</span></> : <span className="text-xs text-muted">Restricted</span>}</span><span className="project-hide-mobile w-[70px] shrink-0 text-xs tabular-nums text-secondary">{projectDate(p.dueDate)}</span>{allowed && <><ProjectMemberStack memberIds={allowed.project.memberIds} data={data} /><IconButton size="sm" aria-label="Options" onClick={event => { event.stopPropagation(); onMenu(p.id, event.currentTarget); }}><Icon name="ellipsis" size={14} /></IconButton></>}</div>; }
+apps/web/src/features/projects/ProjectComponents.tsx:28:export function ProjectTable({ items, data, now, onOpen, onMenu }: ProjectTableProps) { return <div className="overflow-x-auto rounded-lg border border-solid border-border bg-surface"><table className="project-table min-w-[860px]"><thead><tr>{['Project', 'Status', 'Lead', 'Team', 'Progress', 'Tasks', 'Start', 'Due', 'Last activity', ''].map(label => <th key={label} className={label === 'Tasks' ? '' : 'text-left!'} style={label === 'Project' ? { paddingLeft: 14 } : label === 'Progress' ? { width: '16%' } : undefined}>{label}</th>)}</tr></thead><tbody>{items.map(item => { const p = item.project, allowed = item.access === 'allowed' ? item : null, restricted = item.access === 'restricted' ? item : null; return <tr key={p.id} data-project-table-row={p.id} data-project-access={item.access} onClick={() => onOpen(p.id)} className="cursor-pointer" tabIndex={0} onKeyDown={event => { if (event.target === event.currentTarget && event.key === 'Enter') onOpen(p.id); }}><td className="pl-[14px]! text-left!"><span className="flex items-center gap-2"><ProjectIcon project={p} size={14} /><span className="font-medium">{p.name}</span></span></td><td className="text-left!"><ProjectStatus status={p.status} /></td><td className="text-left!"><span className="flex items-center gap-2 [&>span:last-child]:whitespace-normal [&>span:last-child]:overflow-visible"><MemberIdentity member={allowed ? data.members.find(member => member.id === allowed.project.leadId) ?? null : restricted!.project.lead} /></span></td><td className="text-left! text-secondary">{allowed ? data.teams.find(team => team.id === allowed.project.teamId)?.name : '—'}</td><td>{allowed ? <span className="flex items-center gap-2"><Progress data-project-progress value={allowed.summary.progress} label={`${p.name} progress`} /><span className="text-[11.5px] tabular-nums text-muted">{allowed.summary.progress}%</span></span> : <span className="text-muted">Restricted</span>}</td><td className="tabular-nums">{allowed ? allowed.summary.taskSummary.total : '—'}</td><td className="text-left! tabular-nums text-secondary">{allowed ? projectDate(allowed.project.startDate) : '—'}</td><td className="text-left! tabular-nums text-secondary">{projectDate(p.dueDate)}</td><td className="text-left! text-secondary">{allowed ? ago(allowed.project.lastActivityAt, now) : '—'}</td><td>{allowed && <IconButton size="sm" aria-label="Options" onClick={event => { event.stopPropagation(); onMenu(p.id, event.currentTarget); }}><Icon name="ellipsis" size={14} /></IconButton>}</td></tr>; })}</tbody></table></div>; }
+apps/web/src/features/projects/format.ts:1:export function projectDate(date: string | null, year = false) { if (!date) return '—'; return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', ...(year ? { year: 'numeric' } : {}), timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`)); }
+{"status":"running","completed":94,"total":143,"failed":[{"id":"SC-03-base-1440","pixels":940},{"id":"SC-07-base-1440","pixels":7},{"id":"SC-08-base-1440","pixels":20184},{"id":"SC-10-base-1440","pixels":1179},{"id":"SC-11-base-1440","pixels":13841},{"id":"SC-12-base-1440","pixels":3855},{"id":"SC-13-base-1440","pixels":103},{"id":"SC-15-base-1440","pixels":399},{"id":"SC-17-base-1440","pixels":12774},{"id":"SC-19-base-1440","pixels":1940},{"id":"SC-20-base-1440","pixels":6718},{"id":"SC-21-base-1440","pixels":340},{"id":"PR-01-overview-1440","pixels":2726},{"id":"SE-06-teams-1440","pixels":399},{"id":"SC-03-base-390","pixels":3},{"id":"SC-07-base-390","pixels":3},{"id":"SC-10-base-390","pixels":1},{"id":"SC-11-base-390","pixels":2},{"id":"SC-12-base-390","pixels":2652},{"id":"SC-15-base-390","pixels":399},{"id":"SC-17-base-390","pixels":364},{"id":"SC-19-base-390","pixels":2072},{"id":"SC-20-base-390","pixels":35},{"id":"SC-21-base-390","pixels":256},{"id":"PR-01-overview-390","pixels":124},{"id":"SE-06-teams-390","pixels":399}],"last":"SE-14-preferences-390"}

@@ -1,0 +1,1 @@
+import{r as e}from"./useRouter-BOAPZDg1.js";import{t}from"./forgot-password-J6VLLHbB.js";import{t as n}from"./AuthPage-DZ0WcK5_.js";var r=e();function i(){let{state:e}=t.useSearch();return(0,r.jsx)(n,{screen:e===`sent`?`forgot-sent`:`forgot`})}export{i as component};

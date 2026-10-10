@@ -1,0 +1,13 @@
+'python3' '-c' 'from pathlib import Path
+p=Path("apps/web/src/features/notifications/InboxPreview.tsx")
+s=p.read_text(); assert "onPosted={() => onDraftChange(\x27\x27)}" in s
+p.write_text(s.replace("onPosted={() => onDraftChange(\x27\x27)}", "onPosted={onDraftPosted}"))
+p=Path("apps/web/src/features/notifications/InboxPage.tsx")
+s=p.read_text(); a="  const mobile = useSyncExternalStore"; assert a in s
+s=s.replace(a,"  const draftRevisions = useRef<Record<string, number>>({});\n"+a)
+a="  useLayoutEffect(() => { if (tabs.current)"; assert a in s
+s=s.replace(a,"  const selectedDraftRevision = selected?.taskId ? draftRevisions.current[selected.taskId] ?? 0 : 0;\n"+a)
+s=s.replace("records.filter(notification => (row.value", "model.records.filter(notification => (row.value")
+a="onDraftChange={value => { const id = selected.taskId; if (id) setDrafts(previous => ({ ...previous, [id]: value })); }}"; assert a in s
+b="onDraftChange={value => { const id = selected.taskId; if (id) { draftRevisions.current[id] = (draftRevisions.current[id] ?? 0) + 1; setDrafts(previous => ({ ...previous, [id]: value })); } }} onDraftPosted={() => { const id = selected.taskId; if (id && (draftRevisions.current[id] ?? 0) === selectedDraftRevision) { draftRevisions.current[id] = selectedDraftRevision + 1; setDrafts(previous => ({ ...previous, [id]: \x27\x27 })); } }}"
+s=s.replace(a,b); p.write_text(s)'

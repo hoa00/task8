@@ -1,0 +1,1 @@
+'node' '--input-type=module' '-e' 'import fs from "node:fs"; const r=JSON.parse(fs.readFileSync("docs/poc/evidence/WU-29/raw/shell-diagnostic-01/stdout")); for(const s of r.failed) console.log(s.id,s.pixels,JSON.stringify(s.bbox),s.animations.map(a=>a.length).join("/"));'

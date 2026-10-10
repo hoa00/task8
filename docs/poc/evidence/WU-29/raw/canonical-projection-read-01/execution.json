@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "node",
+    "-e",
+    "const fs=require(\"fs\"), f=JSON.parse(fs.readFileSync(\"docs/poc/reference/source-fixture.json\",\"utf8\"));console.log(Object.keys(f));console.log(Object.keys(f.data));console.log(JSON.stringify({projects:f.data.projects.map(p=>({id:p.id,name:p.name,members:p.members,team:p.team,privacy:p.private,last:p.last})),activity:f.data.activity.slice(0,20)},null,2)); console.log(fs.readFileSync(\".reference/gr8r-studio/src/pages/activity.js\",\"utf8\")); console.log(fs.readFileSync(\".reference/gr8r-studio/src/pages/project.js\",\"utf8\").split(\"\\n\").filter(x=>/activity|slice\\(0, 6\\)/.test(x)).join(\"\\n\"));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/canonical-projection-read-01/command.txt",
+    "bytes": 607,
+    "sha256": "0b62098968051ad32c598f1499aa816a5f8c0fad3cd4a408c68ba525423c225c"
+  },
+  "startedAt": "2026-10-10T13:03:34.297Z",
+  "finishedAt": "2026-10-10T13:03:34.330Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/canonical-projection-read-01/stdout",
+    "bytes": 6166,
+    "sha256": "eb3b601db0659ea163035cac2b2fdb435cf01d152816cac5bfec2e41fea31deb"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/canonical-projection-read-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

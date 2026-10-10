@@ -1,0 +1,99 @@
+{
+  "status": "failed",
+  "commands": [
+    {
+      "id": "syntax",
+      "argv": [
+        "node",
+        "--check",
+        "tests/visual/m2/visual.mjs"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-09/syntax.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-09/syntax.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "typecheck",
+      "argv": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-09/typecheck.stdout",
+        "bytes": 806,
+        "sha256": "f93cd11382eb1ea918e6282c91f71283ba3f1a68e3084d659e62ffe481e23dfa"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-09/typecheck.stderr",
+        "bytes": 22,
+        "sha256": "bf18c62cdc9924cebfa985a804c2b55e5fabcdec27ab2707fe215d547b85ec16"
+      }
+    },
+    {
+      "id": "test",
+      "argv": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-09/test.stdout",
+        "bytes": 34741,
+        "sha256": "164ba83d4908f801fd8a0a128cb27b3fc6b05f30bf5e11cea11cbc583dc747f8"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-09/test.stderr",
+        "bytes": 152,
+        "sha256": "0da6e8095dee124ad6481edbfaa850d6d9d1580bdf4c1972bda28ed9d1b35f3c"
+      }
+    },
+    {
+      "id": "lint",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 1,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-09/lint.stdout",
+        "bytes": 332,
+        "sha256": "d2d039ea43a4dd0cbf4ca84c6d180563e1e10540de6046aad59c2a52eac3a9c1"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/core-09/lint.stderr",
+        "bytes": 653,
+        "sha256": "17cf3fcb1256f3906a7a73a3eaf8c7fd0c62b27d2f273d68d2830858b7c2d92b"
+      }
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0"
+  },
+  "selectedCommands": [
+    "syntax",
+    "typecheck",
+    "test",
+    "lint",
+    "build",
+    "HTTPbuild",
+    "HTTPbundle",
+    "reference"
+  ]
+}

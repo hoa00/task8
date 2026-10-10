@@ -1,0 +1,54 @@
+{
+  "input": "tests/visual/dashboards/interactions.mjs",
+  "inputBytes": 12842,
+  "inputSha256": "f56ba02866f7a731ed8fff1dac2645674847f322a995fcee59f320c9ba8b91fa",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-current-01-dashboards/executed-adapter.mjs",
+  "adapterBytes": 13051,
+  "adapterSha256": "38c7b7a7d66b0610bb2895b27703e215d0778fade08a1167d6ae321db89b11df",
+  "remapped": [
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    },
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/data/mock/seed.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/data/mock/seed.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/data/mock/dashboards.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/data/mock/dashboards.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/data/mock/persistence.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/data/mock/persistence.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/features/tasks/current-view.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/features/tasks/current-view.ts"
+    },
+    {
+      "reference": "../../../packages/contracts/src/models.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/models.ts"
+    }
+  ],
+  "assertionUpdates": [],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-current-01-dashboards/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

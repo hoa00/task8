@@ -1,0 +1,140 @@
+{
+  "scope": "Full collaboration",
+  "status": "passed",
+  "probes": [
+    {
+      "id": "editor-exact-six-commands-selection-and-canonical-serialization",
+      "status": "passed",
+      "results": [
+        {
+          "label": "Bold",
+          "html": "<p><strong>bold content</strong></p>",
+          "selection": "bold content"
+        },
+        {
+          "label": "Italic",
+          "html": "<p><strong><em>italic content</em></strong></p>",
+          "selection": "italic content"
+        },
+        {
+          "label": "Bulleted list",
+          "html": "<p></p><ul><li><strong><em>list content</em></strong></li></ul><p></p>",
+          "selection": "list content"
+        },
+        {
+          "label": "Numbered list",
+          "html": "<p></p><ol><li><strong><em>ordered content</em></strong></li></ol><p></p>",
+          "selection": "ordered content"
+        },
+        {
+          "label": "Heading",
+          "html": "<p></p><h4><ol><li><strong><em>heading content</em></strong></li></ol></h4><p></p>",
+          "selection": "heading content"
+        },
+        {
+          "label": "Link",
+          "html": "<p></p><h4><ol><li><strong><em><a href=\"https://example.com/path?a=1&amp;b=2\">https://example.com/path?a=1&amp;b=2</a></em></strong></li></ol></h4><p></p>",
+          "selection": "https://example.com/path?a=1&b=2"
+        }
+      ],
+      "invalidLinkSharedToast": true
+    },
+    {
+      "id": "editor-paste-tree-boundary-caret-and-sibling-invalidation",
+      "status": "passed",
+      "retained": {
+        "html": "<p></p><h4><p>retained rich draft</p></h4><p></p>",
+        "text": "ained",
+        "anchor": 3,
+        "focus": 8,
+        "active": "task-description",
+        "scroll": 220
+      },
+      "safePasteBeforeInsertion": true,
+      "plainHtml": "<p></p><h4><p>&lt;script&gt;literal&lt;/script&gt;<br>A&amp;B<br>second</p></h4><p></p>",
+      "plainText": "<script>literal</script> A&B second",
+      "plainCaret": {
+        "collapsed": true,
+        "inside": true,
+        "before": "<script>literal</script>A&Bsecond",
+        "text": "<script>literal</script>A&Bsecond"
+      }
+    },
+    {
+      "id": "subtask-add-detail-completion-title-assignee-due-note-navigation",
+      "status": "passed",
+      "childId": "01a11abd-aa80-7a25-8683-37107e568363",
+      "parentVersion": 16,
+      "progress": {
+        "total": 5,
+        "completed": 4
+      },
+      "canonicalChild": {
+        "id": "01a11abd-aa80-7a25-8683-37107e568363",
+        "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "title": "Renamed native child",
+        "done": true,
+        "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+        "dueDate": "2026-10-10",
+        "note": "Acceptance <literal> & links",
+        "position": 400
+      }
+    },
+    {
+      "id": "held-child-write-disables-overlap-and-failed-drafts-survive-close-reopen",
+      "status": "passed",
+      "overlapPrevented": true,
+      "escapeNoImplicitRetry": true,
+      "failedTitleAndNoteRecoverable": true
+    },
+    {
+      "id": "subtask-validation-promotion-canonical-new-task-and-row-progress",
+      "status": "passed",
+      "createdId": "01a11abd-aa80-7352-92c4-d7f77999056b",
+      "createdKey": "WEB-201",
+      "parentSummary": {
+        "total": 4,
+        "completed": 3
+      }
+    },
+    {
+      "id": "comment-keyboard-mention-mod-enter-error-retry-reaction-delete-undo-reload",
+      "status": "passed",
+      "commentId": "01a11abd-aa80-769c-895e-bbe520bd81ec",
+      "mentionIds": [
+        "01a11abd-aa80-7947-8d13-2178f1cc4d45"
+      ],
+      "errorDraftRetained": true,
+      "undoSameIdAfterReload": true,
+      "reactionToggle": true
+    },
+    {
+      "id": "late-comment-cannot-clear-new-draft-on-reopened-or-other-task",
+      "status": "passed",
+      "reopenedDraftRetained": true,
+      "otherTaskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+      "otherDraftRetained": true,
+      "oldCanonicalCommentsConfirmed": true
+    },
+    {
+      "id": "composer-chooser-drop-upload-progress-failure-retry-preview-remove-count",
+      "status": "passed",
+      "fileId": "01a11abd-aa80-7d65-95c0-dae89769816c",
+      "confirmedCount": true,
+      "previewRealId": true,
+      "dropHandler": true,
+      "metadataOnly": true
+    },
+    {
+      "id": "same-edit-form-child-controls-use-canonical-parent-crud",
+      "status": "passed",
+      "createdChildId": "01a11abd-aa80-7ca0-9db2-d59d00a69cc6",
+      "scalarPatchKeepsChildren": true,
+      "parentVersion": 33
+    }
+  ],
+  "notes": [
+    "Native mouse/keyboard/chooser primary flows; precision Range selection, QA hold/fault and sibling typed mutation are explicit programmatic setup.",
+    "Synthetic clipboard/DataTransfer proves component handlers, not OS native drag. Mock file metadata sample/contentAvailable:false; no HTTP/R2 bytes."
+  ]
+}

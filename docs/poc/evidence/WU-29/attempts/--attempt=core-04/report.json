@@ -1,0 +1,89 @@
+{
+  "status": "failed",
+  "commands": [
+    {
+      "id": "syntax",
+      "argv": [
+        "node",
+        "--check",
+        "tests/visual/m2/visual.mjs"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/--attempt=core-04/syntax.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/--attempt=core-04/syntax.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "typecheck",
+      "argv": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/--attempt=core-04/typecheck.stdout",
+        "bytes": 805,
+        "sha256": "a9ac0f3be5308436b82bedfaab0fc7c9daef525532250ecb8a1ec74b733bc1b0"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/--attempt=core-04/typecheck.stderr",
+        "bytes": 22,
+        "sha256": "bf18c62cdc9924cebfa985a804c2b55e5fabcdec27ab2707fe215d547b85ec16"
+      }
+    },
+    {
+      "id": "test",
+      "argv": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/--attempt=core-04/test.stdout",
+        "bytes": 34735,
+        "sha256": "d182f6361450f7e3fdacb9a5c099e7a31f69f53919791d014ce28e6751f6be71"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/--attempt=core-04/test.stderr",
+        "bytes": 152,
+        "sha256": "0da6e8095dee124ad6481edbfaa850d6d9d1580bdf4c1972bda28ed9d1b35f3c"
+      }
+    },
+    {
+      "id": "lint",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 1,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "docs/poc/evidence/WU-29/attempts/--attempt=core-04/lint.stdout",
+        "bytes": 1531,
+        "sha256": "c89ee8e5ff774709d25585dbfa52b1283fad4488232cfeed58ba466e59495603"
+      },
+      "stderr": {
+        "path": "docs/poc/evidence/WU-29/attempts/--attempt=core-04/lint.stderr",
+        "bytes": 653,
+        "sha256": "17cf3fcb1256f3906a7a73a3eaf8c7fd0c62b27d2f273d68d2830858b7c2d92b"
+      }
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0"
+  }
+}

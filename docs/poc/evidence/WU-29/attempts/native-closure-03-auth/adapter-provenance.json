@@ -1,0 +1,46 @@
+{
+  "input": "tests/visual/auth/interactions.mjs",
+  "inputBytes": 14178,
+  "inputSha256": "312ae5726e27032b92f7afb351c7a2b84c4d76538d9c69fcf12251977ae5b569",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-closure-03-auth/executed-adapter.mjs",
+  "adapterBytes": 14485,
+  "adapterSha256": "cd6405efe39f157ba8b6991c1ab74e249e047d0b9a31a784790a83a6ba9eccfc",
+  "remapped": [
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    },
+    {
+      "reference": "../settings/assets.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/settings/assets.mjs"
+    }
+  ],
+  "assertionUpdates": [
+    {
+      "before": "await expect(page.getByText('Pending · WU-27 owns the six-step onboarding flow.')).toBeVisible();",
+      "after": "await expect(page.locator('[data-onboarding-step=\"0\"]')).toHaveCount(1); await expect(page.getByRole('heading', { name: 'What are you working on?', exact: true })).toBeVisible();",
+      "reason": "Legacy onboarding alias and verification action resolve to the implemented step-zero body and exact heading; all seven auth states, aliases, validation and capability assertions remain",
+      "occurrences": 2
+    }
+  ],
+  "precreatedEvidenceDirectories": [
+    "docs/poc/evidence/WU-29/attempts/native-closure-03-auth/legacy/WU-26/attempts"
+  ],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt",
+    "Precreate the finite exact redirected report directories read from the original literal evidence paths so report writes cannot mask an underlying error with ENOENT",
+    "Legacy onboarding alias and verification action resolve to the implemented step-zero body and exact heading; all seven auth states, aliases, validation and capability assertions remain"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-closure-03-auth/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

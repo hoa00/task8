@@ -1,0 +1,7 @@
+{
+  "chunk_id": "3e4d9d",
+  "wall_time_seconds": 0.000033048,
+  "exit_code": 0,
+  "original_token_count": 247,
+  "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n2 !== 1\n\n    at replaceAssertion (file:///workspace/task8/tests/visual/m2/replay-native.mjs:24:62)\n    at file:///workspace/task8/tests/visual/m2/replay-native.mjs:47:53\n    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 2,\n  expected: 1,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.13.0\nauth occurrences 2\ndirs [('docs/poc/evidence/WU-29/attempts/native-closure-02-auth/ownership-before.json', False), ('docs/poc/evidence/WU-29/attempts/native-closure-02-auth/original-harness.mjs', False), ('docs/poc/evidence/WU-29/attempts/native-closure-02-auth/executed-runner.mjs', False)]\n"
+}

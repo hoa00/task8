@@ -1,0 +1,183 @@
+FILE apps/web/src/app/shell/Sidebar.tsx
+import { ProfileMenu } from './ProfileMenu';
+import { useSearchIntents } from '../../features/search/search-intents';
+import { useDevScenario } from '../../features/dev/dev-context';
+import { usePeopleIntents } from '../../features/people/people-intents';
+import { useTeamIntents } from '../../features/teams/team-intents';
+import { useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { Link, useLocation, useNavigate } from '@tanstack/react-router';
+import { AvatarBase, BrandMark, ColorDot, Icon, IconButton, KeyHint, Menu, MenuGroup, MenuItem, MenuSeparator, Tooltip } from '@studio/ui';
+import type { IconName } from '@studio/ui';
+import { useStudioQuery } from '../../data/queries';
+import { useWorkspaceBootstrap, useWorkspaceId } from './workspace-context';
+import { useProjectIntents } from '../../features/projects/project-intents';
+import { links } from '../navigation';
+import type { WorkspacePage } from '../navigation';
+
+const mainItems: readonly [WorkspacePage, string, IconName][] = [['home','Home','house'],['inbox','Inbox','inbox'],['my-tasks','My Tasks','circle-check'],['favorites','Favorites','star'],['notifications','Notifications','bell']];
+const workspaceItems: readonly [WorkspacePage, string, IconName][] = [['overview','Overview','layout-dashboard'],['projects','Projects','folder-kanban'],['tasks','Tasks','list-checks'],['calendar','Calendar','calendar'],['timeline','Timeline','chart-gantt'],['members','Members','users'],['activity','Activity','activity']];
+const statusColors = { planning: 'var(--gray)', active: 'var(--blue)', risk: 'var(--red)', hold: 'var(--amber)', complete: 'var(--green)' };
+export interface NavigationItemProps { to: string; label: string; icon: IconName; selected: boolean; count?: number | undefined; dot?: boolean; iconSize?: number; collapsed: boolean }
+export function NavigationItem({ to, label, icon, selected, count, dot, collapsed, iconSize=16 }: NavigationItemProps) {
+  const anchor=useRef<HTMLAnchorElement>(null); const [tooltip,setTooltip]=useState(false);
+  const item = <Link ref={anchor} to={to} activeOptions={{ exact: true }} className="shell-item group relative flex h-[var(--side-row)] w-full items-center gap-[9px] whitespace-nowrap rounded-sm px-2 text-left text-body font-[450] text-secondary transition-[background,color] source-hover:bg-surface-3 source-hover:text-foreground" aria-current={selected ? 'page' : undefined} aria-label={label}><Icon name={icon} size={iconSize} className="text-faint group-hover:text-secondary" /><span className={iconSize===14?"shell-label":"shell-label min-w-0 truncate"}>{label}</span>{!!count && <span className={`shell-count ml-auto text-2xs text-muted [font-variant-numeric:tabular-nums] ${dot ? 'grid h-4 min-w-4 place-items-center rounded-lg bg-accent px-1 font-semibold text-on-accent' : ''}`}>{count}</span>}</Link>;
+  return <>{item}{collapsed && <Tooltip open={tooltip} onOpenChange={setTooltip} anchor={anchor} label={label} placement="right"/>}</>;
+}
+export interface SidebarProps { collapsed: boolean; onCollapsedChange: (value: boolean) => void; navigationRef: React.RefObject<HTMLElement | null>; mobileClosed: boolean }
+export function Sidebar({ collapsed, onCollapsedChange, navigationRef, mobileClosed }: SidebarProps) {
+  const search = useSearchIntents(), dev = useDevScenario(), people = usePeopleIntents();
+  const workspaceId = useWorkspaceId(), projectIntents = useProjectIntents(), teamIntents = useTeamIntents();
+  const dragProject = useRef<string | null>(null); const [dropProject, setDropProject] = useState<string | null>(null);
+  const data = useWorkspaceBootstrap().data!.data;
+  const catalog = useStudioQuery('listWorkspaces', {}).data?.data ?? [];
+  const pathname = useLocation({ select: location => location.pathname });
+  const navigate = useNavigate();
+  const workspaceButton = useRef<HTMLButtonElement>(null), helpButton = useRef<HTMLButtonElement>(null), profileButton = useRef<HTMLButtonElement>(null);
+  const [workspaceMenu, setWorkspaceMenu] = useState(false), [helpMenu, setHelpMenu] = useState(false), [profileMenu, setProfileMenu] = useState(false);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>(()=>data.projects[0]?{[data.projects[0].project.id]:true}:{});
+  const counts: Partial<Record<WorkspacePage, number>> = { inbox: data.navigationCounts.inbox, 'my-tasks': data.navigationCounts.myTasks, notifications: data.unreadCount, archive: data.navigationCounts.archive };
+  const item = ([page,label,icon]: readonly [WorkspacePage,string,IconName]) => <NavigationItem key={page} to={links.workspace(workspaceId,page)} label={label} icon={icon} count={counts[page]} dot={page === 'inbox'} selected={pathname === links.workspace(workspaceId,page)} collapsed={collapsed} />;
+  return <nav ref={navigationRef} inert={mobileClosed || undefined} className="shell-sidebar flex min-h-0 select-none flex-col overflow-hidden border-0 border-r border-solid border-border bg-[var(--bg-side)]" aria-label="Main">
+    <div className="px-2 pb-1 pt-2"><div className="flex items-center gap-[2px]"><button ref={workspaceButton} className="shell-workspace flex w-full min-w-0 flex-1 items-center gap-2 rounded-sm px-[6px] py-[5px] text-left transition-[background] source-hover:bg-surface-3" aria-haspopup="menu" aria-expanded={workspaceMenu} aria-label="Switch workspace" onClick={() => setWorkspaceMenu(value=>!value)}>{data.workspace.brand ? <span className="flex size-[22px] shrink-0 overflow-hidden rounded-[28%] bg-[#000] [&>svg]:block"><BrandMark /></span> : <span className="grid size-[22px] shrink-0 place-items-center rounded-sm text-[11px] font-semibold text-[#fff]" style={{ background: data.workspace.iconColor }}>{data.workspace.name[0]}</span>}<span className="shell-label truncate text-body font-semibold">{data.workspace.name}</span><span className="shell-label text-muted"><Icon name="chevrons-up-down" size={13} /></span></button>{!collapsed && <IconButton size="sm" className="shell-hide-mobile" aria-label="Collapse sidebar" onClick={() => onCollapsedChange(true)}><Icon name="panel-left" size={15} /></IconButton>}</div></div>
+    <div className="shell-side-scroll min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-2 pb-3 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-scroll-restoration-id="sidebar">
+      {collapsed && <button className="shell-item flex h-[var(--side-row)] w-full items-center justify-center rounded-sm text-secondary source-hover:bg-surface-3" aria-label="Expand sidebar" onClick={() => onCollapsedChange(false)}><Icon name="panel-left" size={16} className="text-faint"/></button>}
+      {mainItems.map(item)}<div className="shell-group mt-[14px]"><div className="shell-group-heading flex h-6 items-center px-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted">Workspace</div>{workspaceItems.map(item)}</div>
+      <div className="shell-group group mt-[14px]" id="side-projects"><div className="shell-group-heading flex h-6 items-center px-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted"><span>Projects</span><span className="flex-1"/><IconButton size="xs" className="shell-pending-action opacity-0 group-hover:opacity-100 focus-visible:opacity-100" aria-label="New project" onClick={projectIntents.newProject}><Icon name="plus" size={14}/></IconButton></div>
+      {data.projects.filter(item=>item.project.status!=='complete').map(item=>{const project=item.project; const selected=pathname.startsWith(`/w/${workspaceId}/projects/${project.id}/`);const open=expanded[project.id];return <div key={project.id} onContextMenu={event=>{if(item.access!=="allowed"||event.target instanceof Element&&event.target.closest("input,textarea,[contenteditable]"))return;event.preventDefault();projectIntents.projectMenu(project.id,event.currentTarget,{x:event.clientX,y:event.clientY});}} draggable={!collapsed} data-project-nav={project.id} onDragStart={event=>{dragProject.current=project.id;event.dataTransfer.effectAllowed="move";event.dataTransfer.setData("text/plain",project.id);}} onDragEnd={()=>{dragProject.current=null;setDropProject(null);}} onDragOver={event=>{if(dragProject.current&&dragProject.current!==project.id){event.preventDefault();setDropProject(project.id);}}} onDrop={event=>{event.preventDefault();const moving=dragProject.current;dragProject.current=null;setDropProject(null);if(!moving||moving===project.id)return;const ids: string[]=data.projects.map(row=>row.project.id).filter(id=>id!==moving);ids.splice(ids.indexOf(project.id),0,moving);void projectIntents.reorderProjects(ids);}} style={dropProject===project.id?{boxShadow:"inset 0 2px 0 var(--accent)"}:undefined}>
+        <div className="shell-item group/project relative flex h-[var(--side-row)] w-full items-center gap-[9px] whitespace-nowrap rounded-sm px-2 text-body font-[450] text-secondary transition-[background,color] source-hover:bg-surface-3 source-hover:text-foreground" data-active={selected || undefined} style={{'--project-color':project.color} as CSSProperties}>
+          <button className="shell-project-icon grid size-[18px] shrink-0 place-items-center rounded-[5px] bg-[color-mix(in_srgb,var(--project-color)_16%,transparent)]" aria-label={collapsed?`Open ${project.name}`:`Toggle ${project.name} sub-pages`} title={collapsed?project.name:undefined} aria-expanded={!!open} onClick={()=>{if(collapsed)void navigate({to:links.project(workspaceId,project.id,data.preferences.defaultTab)});else setExpanded({...expanded,[project.id]:!open});}}><Icon name={project.icon as IconName} size={12}/></button>
+          <Link to={links.project(workspaceId,project.id,data.preferences.defaultTab)} aria-current={selected?'page':undefined} className="shell-label min-w-0 truncate" aria-label={project.name}>{project.name}</Link>
+          {item.access==='allowed' && item.project.isFavorite && <span className="shell-project-decoration ml-1 text-amber"><Icon name="star" size={11} className={selected ? "text-secondary" : "text-faint group-hover/project:text-secondary"}/></span>}{(item.access==='restricted' || item.project.visibility==='private') && <span className="shell-project-decoration ml-1 text-muted"><Icon name="lock" size={11} className={selected ? "text-secondary" : "text-faint group-hover/project:text-secondary"}/></span>}
+          <ColorDot className="shell-project-dot ml-auto group-hover/project:hidden" color={statusColors[project.status]}/><span className="shell-project-decoration ml-auto hidden group-hover/project:flex"><IconButton size="xs" aria-label={`${project.name} options`} onClick={event=>projectIntents.projectMenu(project.id,event.currentTarget)} disabled={item.access==='restricted'}><Icon name="ellipsis" size={14}/></IconButton><IconButton size="xs" aria-label={`Expand ${project.name}`} onClick={()=>setExpanded({...expanded,[project.id]:!open})}><Icon name="chevron-right" size={13} className={open?'rotate-90':''}/></IconButton></span>
+        </div>
+        {open && !collapsed && <div className="ml-2 border-0 border-l border-solid border-border pl-[14px]">{(['board','list','timeline','files'] as const).map(tab=><NavigationItem key={tab} to={links.project(workspaceId,project.id,tab)} label={tab[0]!.toUpperCase()+tab.slice(1)} icon={{board:'square-kanban',list:'list',timeline:'chart-gantt',files:'paperclip'}[tab] as IconName} selected={pathname===links.project(workspaceId,project.id,tab)} collapsed={false} iconSize={14}/>)}</div>}
+      </div>})}{item(['archive','Archive','archive'])}</div>
+      <div className="shell-group group mt-[14px]"><div className="shell-group-heading flex h-6 items-center px-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted"><span>Teams</span><span className="flex-1"/><IconButton size="xs" className="opacity-0 group-hover:opacity-100 focus-visible:opacity-100" aria-label="New team" onClick={teamIntents.newTeam}><Icon name="plus" size={14}/></IconButton></div>{data.teams.map(team=><NavigationItem key={team.id} to={`/w/${workspaceId}/teams/${team.id}`} label={team.name} icon={team.icon as IconName} selected={pathname===`/w/${workspaceId}/teams/${team.id}`} collapsed={collapsed}/>)}</div>
+FILE apps/web/src/features/tasks/TaskListPages.tsx
+import { useRef, useState } from 'react';
+import { Alert, Button, Icon, SegmentedControl } from '@studio/ui';
+import { addDateDays, evaluateTaskView, normalizeTaskView } from '@studio/domain';
+import type { TaskViewState } from '@studio/domain';
+import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useDataRuntime } from '../../data/context';
+import { useStudioQuery } from '../../data/queries';
+import { useWorkspaceId } from '../../app/shell/workspace-context';
+import { useWorkspaceIntents } from '../../app/shell/transient-context';
+import { useTaskListDataset } from './useTaskListDataset';
+import { TaskList } from './TaskList';
+import { TaskBoard } from './TaskBoard';
+import { TaskTable } from './TaskTable';
+import { CalendarPanel } from '../calendar/CalendarPages';
+import type { TaskFormDefaults } from './field-types';
+import type { CalendarPanelProps } from '../calendar/CalendarPages';
+import { persistTaskColumns, restoreTaskColumns, taskTablePreferenceKey } from './table-view';
+import { useTaskBoardDataset } from './useTaskBoardDataset';
+import type { TaskBoardComposerHandle } from './TaskBoard';
+import type { TaskBoardUiState } from './board-types';
+import type { TaskListComposerHandle } from './TaskList';
+import { TaskViewToolbar } from './TaskViewToolbar';
+import { decodeCurrentTaskView, encodeCurrentTaskView } from './current-view';
+import type { ListGroup, TaskListScope, TaskListUiState, TaskListModel } from './list-types';
+function useCurrentViewChange() { const location = useLocation(), navigate = useNavigate(); return (view: TaskViewState) => { void navigate({ to: location.pathname, search: previous => ({ ...previous, view: JSON.stringify(view) }), replace: true }); }; }
+function useCurrentMode(mine = false) { const location=useLocation(),navigate=useNavigate(),requested=new URLSearchParams(location.searchStr).get('mode'); const controlledMode=mine ? requested === 'calendar' ? 'calendar' as const : 'list' as const : requested === 'table' ? 'table' as const : requested === 'board' ? 'board' as const : 'list' as const; return {controlledMode,onModeChange:(mode:'list'|'board'|'table'|'calendar')=>{void navigate({to:location.pathname,search:previous=>({...previous,mode}),replace:true});}}; }
+export function WorkspaceTasks() { const currentMode=useCurrentMode(); const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), onCurrentViewChange = useCurrentViewChange(); return <TaskListPage workspaceId={workspaceId} scope={{ kind: 'workspace' }} selectedIds={intents.selectedTaskIds} onSelectionChange={intents.selectTasks} onTaskOpen={intents.openTask} onTitleEdit={intents.closeTask} onNewTask={() => intents.openTaskForm()} onCalendarNewTask={defaults => intents.openTaskForm(undefined, defaults)} onTaskMenu={intents.openTaskMenu} onTaskEdit={id => intents.openTaskForm(id)} onCurrentViewChange={onCurrentViewChange} {...currentMode} />; }
+export function MyTasksList() { const currentMode=useCurrentMode(true); const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), onCurrentViewChange = useCurrentViewChange(); return <TaskListPage workspaceId={workspaceId} scope={{ kind: 'mine' }} selectedIds={[]} onSelectionChange={() => {}} onTaskOpen={intents.openTask} onTitleEdit={intents.closeTask} onNewTask={() => intents.openTaskForm()} onCalendarNewTask={defaults => intents.openTaskForm(undefined, defaults)} onTaskMenu={intents.openTaskMenu} onTaskEdit={id => intents.openTaskForm(id)} onCurrentViewChange={onCurrentViewChange} {...currentMode} />; }
+export interface TaskListPageProps { workspaceId: string; scope: TaskListScope; selectedIds: readonly string[]; onSelectionChange: (ids: readonly string[]) => void; onTaskOpen: (id: string) => void; onTitleEdit?: () => void; initialView?: TaskViewState; controlledView?: TaskViewState; showHeading?: boolean; initialListState?: TaskListUiState | undefined; onCurrentViewChange?: (view: TaskViewState) => void; onNewTask?: () => void; onCalendarNewTask?: (defaults: TaskFormDefaults) => void; onTaskMenu?: TaskListModel['onTaskMenu']; onTaskEdit?: (id: string) => void; onModeChange?: (mode: 'list' | 'board' | 'table' | 'calendar') => void; controlledMode?: 'list' | 'board' | 'table' | 'calendar'; initialMode?: 'list' | 'board' | 'table' | 'calendar'; initialBoardState?: TaskBoardUiState; initialCalendarState?: Pick<CalendarPanelProps, 'initialDate' | 'initialMode' | 'weekStart'> }
+export function TaskListPage({ workspaceId, scope, selectedIds, onSelectionChange, onTaskOpen, onTitleEdit = () => {}, initialView, controlledView, showHeading = true, initialListState, onCurrentViewChange, onNewTask, onCalendarNewTask, onTaskMenu, onTaskEdit, onModeChange, controlledMode, initialMode, initialBoardState, initialCalendarState }: TaskListPageProps) {
+ const { clock } = useDataRuntime(), bootstrap = useStudioQuery('getBootstrap', { workspaceId });
+ const composer = useRef<TaskListComposerHandle>(null), boardComposer = useRef<TaskBoardComposerHandle>(null);
+ const [localMode, setMode] = useState<'list' | 'board' | 'table' | 'calendar'>(() => initialMode ?? (new URLSearchParams(location.search).get('mode') === 'calendar' ? 'calendar' : new URLSearchParams(location.search).get('mode') === 'table' ? 'table' : new URLSearchParams(location.search).get('mode') === 'board' ? 'board' : 'list'));
+ const preferenceKey = taskTablePreferenceKey(workspaceId, scope);
+ const [localView, setView] = useState(() => restoreTaskColumns(initialView ?? decodeCurrentTaskView(location.search), preferenceKey, scope.kind === 'project' || scope.kind === 'saved', (() => { try { return localStorage; } catch { return null; } })()));
+ const view = controlledView ?? localView;
+ const requestedMode = controlledMode ?? localMode;
+ const mode = scope.kind === 'mine' ? requestedMode === 'calendar' ? 'calendar' : 'list' : requestedMode === 'calendar' ? 'list' : requestedMode;
+ const mine = scope.kind === 'mine', project = scope.kind === 'project' || scope.kind === 'saved';
+ const query = normalizeTaskView({ query: { ...view.query, ...(project ? { projectId: scope.projectId } : {}), ...(mine && bootstrap.data ? { assigneeId: bootstrap.data.data.currentMember.id, ...(view.query.sortField === 'manual' ? { sortField: 'due' } : {}) } : {}) } }).query;
+ const dataset = useTaskListDataset(workspaceId, query);
+ const columnQuery = normalizeTaskView({query:{...(project ? {projectId:scope.projectId} : {})}}).query;
+ const columnsDataset = useTaskBoardDataset(workspaceId, columnQuery, mode === 'board' || mode === 'table');
+ if (bootstrap.error || dataset.error || columnsDataset.error) return <Alert tone="danger">{(bootstrap.error ?? dataset.error ?? columnsDataset.error)!.message}</Alert>;
+ if (!bootstrap.data || !dataset.data || ((mode === 'board' || mode === 'table') && !columnsDataset.data)) return <div className="p-6" role="status">Loading tasks…</div>;
+ const data = bootstrap.data.data, tasks = dataset.data, projects = data.projects.filter(item => item.access === 'allowed').map(item => item.project), env = { today: clock.today(), now: Date.parse(clock.now()), lookups: { members: data.members, projects } };
+ const evaluated = evaluateTaskView(tasks, { ...view, query }, env);
+ const groups: readonly ListGroup[] = mine ? [
+ { key: 'overdue', name: 'Overdue', taskIds: tasks.filter(task => task.status !== 'done' && task.dueDate && task.dueDate < clock.today()).map(task => task.id) },
+ { key: 'today', name: 'Today', taskIds: tasks.filter(task => task.status !== 'done' && task.dueDate === clock.today()).map(task => task.id), createPatch: { dueDate: clock.today() } },
+ { key: 'upcoming', name: 'Upcoming', taskIds: tasks.filter(task => task.status !== 'done' && (!task.dueDate || task.dueDate > clock.today())).map(task => task.id), createPatch: { dueDate: addDateDays(clock.today(), 3) } },
+ { key: 'completed', name: 'Completed', taskIds: tasks.filter(task => task.status === 'done').map(task => task.id), createPatch: { status: 'done' }, collapsed: true },
+ ] : evaluated.groups;
+ function changeMode(next: string) {if(next !== 'list' && next !== 'board' && next !== 'table' && next !== 'calendar')return;if(mine ? next !== 'list' && next !== 'calendar' : next === 'calendar')return;setMode(next);if(onModeChange)onModeChange(next);else {const url=new URL(location.href);url.searchParams.set('mode',next);history.replaceState(history.state,'',url);}}
+ function change(next: TaskViewState) { setView(next); persistTaskColumns(next, preferenceKey); if (onCurrentViewChange) { onCurrentViewChange(next); return; } const url = new URL(location.href); url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!); history.replaceState(history.state, '', url); }
+ const title = mine ? 'My Tasks' : project ? scope.kind === 'saved' ? 'Saved List' : 'Project List' : 'Tasks';
+ return <main className={project && !showHeading ? 'task-page contents!' : 'task-page'} data-project-task-page={project && !showHeading || undefined} data-list-scope={scope.kind} aria-busy={dataset.isFetching} data-query-coverage={dataset.isPlaceholderData ? 'pending' : 'complete'}>{showHeading && <div className="task-page-heading"><div><h1>{title}</h1><p>{mine ? `${groups[1]!.taskIds.length} due today · ${groups[0]!.taskIds.length} overdue · ${groups[2]!.taskIds.length} upcoming` : project ? 'Feature harness · full Project wrapper pending WU-16' : `Every task across ${projects.length} projects.`}</p></div><div className="task-page-actions">{mine && <SegmentedControl label="View" value={mode} items={[{ value: 'list', label: 'List', icon: <Icon name="list" size={13} /> }, { value: 'calendar', label: 'Calendar', icon: <Icon name="calendar" size={13} />, }]} onValueChange={changeMode} />}<Button variant="primary" disabled={!projects.length} onClick={() => onNewTask ? onNewTask() : mode === 'board' ? boardComposer.current?.begin() : composer.current?.begin()}><Icon name="plus" size={14} />New task</Button></div></div>}
+ <TaskViewToolbar value={view} onChange={change} lookups={{ members: data.members, projects, currentMemberId: data.currentMember.id }} group={!mine && mode !== 'board' && mode !== 'calendar'} columns={mode === 'table'} right={!mine && !project ? <SegmentedControl label="Task view" value={mode} items={[{ value: 'list', label: <span className="task-hide-mobile">List</span>, icon: <Icon name="list" size={13} /> }, { value: 'board', label: <span className="task-hide-mobile">Board</span>, icon: <Icon name="square-kanban" size={13} /> }, { value: 'table', label: <span className="task-hide-mobile">Table</span>, icon: <Icon name="table-2" size={13} /> }]} onValueChange={changeMode} /> : project && onNewTask ? <Button variant="primary" size="sm" onClick={onNewTask}><Icon name="plus" size={13} />New task</Button> : undefined} />
+ {mode === 'calendar' ? <CalendarPanel {...initialCalendarState} workspaceId={workspaceId} scope={{ kind: 'mine' }} query={query} onTaskOpen={onTaskOpen} {...(onTaskMenu ? { onTaskMenu } : {})} onNewTask={defaults => onCalendarNewTask ? onCalendarNewTask(defaults) : onNewTask?.()} onProjectOpen={() => {}} /> : mode === 'table' && scope.kind !== 'mine' ? <TaskTable model={{scope,data,tasks: evaluated.taskIds.map(id => evaluated.rows.get(id)!.task),dependencyTasks:columnsDataset.data!.items,groups,view,onViewChange:change,onTaskOpen,onTitleEdit,onNewTask:onNewTask ?? (() => composer.current?.begin()),onTaskMenu:onTaskMenu ?? ((id) => onTaskOpen(id))}} /> : mode === 'board' && scope.kind !== 'mine' ? <TaskBoard ref={boardComposer} initialState={initialBoardState} model={{scope,data,tasks,columnTasks:columnsDataset.data!.items,query,onTaskOpen,onTaskEdit:onTaskEdit ?? onTaskOpen,onTaskMenu:onTaskMenu ?? ((id) => onTaskOpen(id))}} /> : <div className="task-list-wrap"><TaskList ref={composer} initialState={initialListState} model={{ scope, data, tasks, groups, view, onViewChange: change, selection: { kind: mine ? 'completion' : 'bulk', selectedIds, onChange: onSelectionChange }, onTaskOpen, onTitleEdit, ...(onTaskMenu ? { onTaskMenu } : {}) }} columns={mine ? ['project', 'status', 'priority', 'due'] : ['status', 'assignee', 'priority', 'due', project ? 'labels' : 'project']} /></div>}</main>;
+}
+
+FILE apps/web/src/app/shell/README.md
+# WU-07 shell and navigation ownership
+
+One pathless `_shell` route keeps AppShell mounted across workspace pages,
+project outlets and both `/dev` galleries. WorkspaceContext carries only the
+workspace ID. Components subscribe to the WU-06 Query bootstrap; no DTO is copied
+into context or a UI store. Query keys, cancellation and the typed StudioClient
+remain the data boundary.
+
+The POC Vite build includes `/dev/design-system` and `/dev/system-states`.
+Their direct entry resolves the session workspace; Help preserves the current
+workspace through validated `workspaceId` search. Gallery content belongs to
+WU-28. Standalone WU-03/04/05 harnesses retain their existing verification role.
+
+Canonical builders and exact source startup aliases live in `navigation.ts`.
+Unknown fragments, prototype keys and `#project/<id>` are never interpreted.
+Aliases replace history before Router initialization. Root/workspace/project/
+settings indexes use a complete destination and replace the intermediate entry.
+The project `$view` allowlist contains exactly eight tabs. Static `views` is a
+separate route and validates saved-view ownership through `listSavedViews`.
+
+Router owns `taskId`. `useWorkspaceIntents().openTask/closeTask` is the typed
+contract for WU-09/10. There is one overlay provider and one task overlay slot;
+this unit does not render drawer content or fake a successful task read.
+Workspace changes cancel old requests, clear scoped selection and replace stale
+task intent in the destination URL. The router's navigation scope is a transient
+route identity, never a copy of session or bootstrap server data.
+
+ContentViewport is the nested scroll host. TanStack restoration uses its stable
+`main-content` ID; normal navigation starts at zero and history restores the
+saved position. Title/live region, first-tab skip control, mobile focus trap,
+Escape/scrim focus return and closed offcanvas inertness belong to the shell.
+Mobile and desktop keep the source inclusive 900/640 boundaries, dimensions and
+safe-area CSS. Emulated viewport checks do not prove physical device insets.
+
+## Pending feature and action ledger
+
+| Surface/action | Owner | Current behavior |
+|---|---|---|
+| Home / Workspace Overview content | WU-17 | Separate dashboard compositions with complete canonical aggregates/cursor reads; content acceptance independent of shell crops |
+| Task fields/filter engine | WU-08 | Shared controlled fields/domain engine and standalone QA gallery implemented; page consumers remain with their owners |
+| Workspace/Project/My Tasks lists | WU-09 | Pending route outlet |
+| Task drawer/forms | WU-10/11 | Single overlay slot; no drawer business UI |
+| Board / Table / Calendar / Timeline | WU-12/13/14/15 | Fixed route hosts |
+| ProjectHeader, tabs, ProjectPage, project CRUD/reorder/options, Favorites/saved-view composition | WU-16 | Minimal project context/outlet; identity read only; action controls aria-disabled |
+| Palette / Search / Activity | WU-18 | Search link resolves Search; palette remains pending |
+| Inbox / Notifications | WU-19 | Navigation and aggregate badges only |
+| Member/profile/account / Teams/new team | WU-20/21 | Entity route validation; future action controls aria-disabled |
+| Files / preview `fileId` | WU-22 | Validated identity search seam; content pending |
+| Settings/preferences/security/billing | WU-23/24/25 | Validated section hosts |
+| Auth / Onboarding | WU-26/27 | Routes/search validation; content pending |
+| Archive, Design system/System states, shortcuts/help extras | WU-28 | Reachable route hosts; gallery content/extra commands pending |
+| Topbar New/Create | WU-10/16/21/28 | Visible source control, aria-disabled; no fake success toast |
+
+`ShellHarness` and `shell-harness.html` contain only controlled test fixtures.
+The latter supplies a synthetic empty second workspace and delayed old response
+through the same validated StudioClient/Query/Router. They do not change the
+ordinary mock adapter, which returns404 for catalog workspaces lacking data.
+The harness HTML is excluded from the main/HTTP-only entry graph.
+
+WU-09 List pages preserve their feature-owned normalized `view` search string
+through canonical task-open/close navigation. The shell validates its bounded
+string shape; task features own decoding. Title edit closes the task intent before
+focusing the inline input. Drawer contents remain pending WU-10.
+

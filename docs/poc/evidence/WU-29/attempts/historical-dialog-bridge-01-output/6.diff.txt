@@ -1,0 +1,39 @@
+--- 537912fe78c6d91e0c122e4918ff90aae331d81b:packages/ui/src/overlays.tsx
++++ current:packages/ui/src/overlays.tsx
+@@ -74,12 +74,12 @@
+ export function Portal({ children }: PortalProps) { const { host } = useOverlayController(); return host ? createPortal(children, host) : null; }
+ export interface DialogProps extends Omit<ComponentPropsWithRef<'section'>, 'onChange'> {
+   open: boolean; onOpenChange: (open: boolean, reason: OverlayDismissReason) => void; size?: 'sm' | 'md' | 'lg';
+-  mode?: 'modal' | 'drawer'; modal?: boolean; initialFocus?: RefObject<HTMLElement | null>; returnFocus?: RefObject<HTMLElement | null>;
++  mode?: 'modal' | 'drawer' | 'palette'; modal?: boolean; initialFocus?: RefObject<HTMLElement | null>; returnFocus?: RefObject<HTMLElement | null>;
+   /** Keep the finite first entrance until a controlled owner action changes this revision. */
+   entryRevision?: string;
+ }
+ const dialogSizes = { sm: 'max-w-[420px]', md: 'max-w-[560px]', lg: 'max-w-[720px]' };
+-export function Dialog({ open, onOpenChange, size = 'md', mode = 'modal', modal = mode === 'modal', initialFocus, returnFocus, entryRevision, ref, children, className = '', ...props }: DialogProps) {
++export function Dialog({ open, onOpenChange, size = 'md', mode = 'modal', modal = mode !== 'drawer', initialFocus, returnFocus, entryRevision, ref, children, className = '', ...props }: DialogProps) {
+   const node = useRef<HTMLElement>(null), scrim = useRef<HTMLDivElement>(null); const { scope, id } = useOverlayLayer({ open, node, modal, initialFocus, returnFocus, onOpenChange });
+   useImperativeHandle(ref, () => node.current!);
+   const initiallySettled = useOverlayController().initiallySettled;
+@@ -88,10 +88,10 @@
+     if (open && previousEntry.current.open && entryRevision !== previousEntry.current.revision) { node.current?.setAttribute('data-entered', ''); scrim.current?.setAttribute('data-entered', ''); }
+     previousEntry.current = { open, revision: entryRevision };
+   }, [open, entryRevision]);
+-  const depth = mode === 'drawer' ? scope.dialogDepth : scope.dialogDepth + 1; const z = mode === 'drawer' ? 50 : 61 + 2 * depth;
++  const depth = mode === 'drawer' ? scope.dialogDepth : scope.dialogDepth + 1; const z = mode === 'palette' ? 90 : mode === 'drawer' ? 50 : 61 + 2 * depth;
+   if (!open) return null;
+-  const content = <section {...props} ref={node} role="dialog" aria-modal={modal || undefined} tabIndex={-1} data-overlay-kind={mode} data-overlay-initial-state={initiallySettled ? 'settled' : undefined} data-entered={initiallySettled ? '' : undefined} onAnimationEnd={event => { props.onAnimationEnd?.(event); if (entryRevision === undefined && event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className={`${mode === 'drawer' ? 'ui-drawer fixed inset-y-0 right-0 flex w-[min(620px,100vw)] flex-col border-0 border-l border-solid border-border bg-surface [box-shadow:-18px_0_40px_-24px_rgba(0,0,0,0.25)]' : `ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] ${dialogSizes[size]}`} ${className}`} style={{ ...props.style, ...(mode === 'drawer' ? { zIndex: z } : {}) }}>{children}</section>;
+-  return <Portal><OverlayScopeContext value={{ id, dialogDepth: depth }}>{(modal || mode === 'modal') && <div ref={scrim} data-overlay-scrim="" data-entered={initiallySettled ? '' : undefined} onAnimationEnd={event => { if (entryRevision === undefined && event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className="ui-overlay-scrim fixed inset-0 bg-overlay" style={{ zIndex: z - 1 }} />}{mode === 'drawer' ? content : <div className="ui-dialog-wrap fixed inset-0 flex items-start justify-center overflow-y-auto px-4 pb-4 pt-[10vh]" style={{ zIndex: z }}>{content}</div>}</OverlayScopeContext></Portal>;
++  const content = <section {...props} ref={node} role="dialog" aria-modal={modal || undefined} tabIndex={-1} data-overlay-kind={mode} data-overlay-initial-state={initiallySettled ? 'settled' : undefined} data-entered={initiallySettled ? '' : undefined} onAnimationEnd={event => { props.onAnimationEnd?.(event); if (entryRevision === undefined && event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className={`${mode === 'drawer' ? 'ui-drawer fixed inset-y-0 right-0 flex w-[min(620px,100vw)] flex-col border-0 border-l border-solid border-border bg-surface [box-shadow:-18px_0_40px_-24px_rgba(0,0,0,0.25)]' : mode === 'palette' ? 'fixed left-1/2 top-[12vh] flex max-h-[70vh] w-[min(640px,calc(100vw-32px))] [transform:translateX(-50%)] flex-col overflow-hidden rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] source-mobile:top-2' : `ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] ${dialogSizes[size]}`} ${className}`} style={{ ...props.style, ...(mode !== 'modal' ? { zIndex: z } : {}) }}>{children}</section>;
++  return <Portal><OverlayScopeContext value={{ id, dialogDepth: depth }}>{(modal || mode === 'modal') && <div ref={scrim} data-overlay-scrim="" data-entered={initiallySettled ? '' : undefined} onAnimationEnd={event => { if (entryRevision === undefined && event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className="ui-overlay-scrim fixed inset-0 bg-overlay" style={{ zIndex: z - 1 }} />}{mode !== 'modal' ? content : <div className="ui-dialog-wrap fixed inset-0 flex items-start justify-center overflow-y-auto px-4 pb-4 pt-[10vh]" style={{ zIndex: z }}>{content}</div>}</OverlayScopeContext></Portal>;
+ }
+ export interface DialogHeaderProps extends Omit<ComponentPropsWithRef<'div'>, 'title'> { title: ReactNode; titleId: string; /** An explicit empty string groups the title without adding subtitle spacing. */ description?: ReactNode; onClose: () => void }
+ export function DialogHeader({ title, titleId, description, onClose, className = '', ...props }: DialogHeaderProps) { const heading = <h2 id={titleId} className="m-0 text-md font-semibold">{title}</h2>; return <div {...props} className={`flex items-center gap-2 px-4 pt-[14px] ${className}`}>{description === undefined ? heading : <div>{heading}{description !== '' && <div className="mt-[2px] text-[12.5px] text-secondary">{description}</div>}</div>}<IconButton size="sm" aria-label="Close" className="ml-auto" onClick={onClose}><Icon name="x" size={16} /></IconButton></div>; }
+@@ -140,6 +140,7 @@
+   const node = useRef<HTMLDivElement>(null); const { id, scope } = useOverlayLayer({ open, node, anchor, initialFocus, returnFocus, focus, onOpenChange });
+   useImperativeHandle(ref, () => node.current!);
+   usePlacement(open, node, anchor, placement, point);
++  useEffect(() => { if (!open) return; const resize = () => onOpenChange(false, 'outside'); window.addEventListener('resize', resize); return () => window.removeEventListener('resize', resize); }, [open, onOpenChange]);
+   if (!open) return null;
+   return <Portal><OverlayScopeContext value={{ ...scope, id }}><div {...props} ref={node} tabIndex={-1} data-overlay-kind="popover" onAnimationEnd={event => { props.onAnimationEnd?.(event); if (event.target === event.currentTarget) event.currentTarget.setAttribute('data-entered', ''); }} className={`ui-popover fixed z-[80] max-h-[min(420px,70vh)] min-w-[200px] max-w-[320px] origin-top-left overflow-y-auto rounded-lg bg-surface p-1 text-body [box-shadow:var(--shadow-pop)] ${className}`}>{children}</div></OverlayScopeContext></Portal>;
+ }

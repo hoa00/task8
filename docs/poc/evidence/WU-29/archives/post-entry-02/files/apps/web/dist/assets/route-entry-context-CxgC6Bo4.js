@@ -1,0 +1,1 @@
+import{i as e,n as t}from"./jsx-runtime-Dk72oS4N.js";var n=e(t(),1),r=(0,n.createContext)(!0);function i(){return(0,n.useContext)(r)}export{i as n,r as t};

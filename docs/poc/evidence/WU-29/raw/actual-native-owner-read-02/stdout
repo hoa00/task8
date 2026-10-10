@@ -1,0 +1,270 @@
+FILE apps/web/src/features/tasks/TaskListPages.tsx
+import { useRef, useState } from 'react';
+import { Alert, Button, Icon, SegmentedControl } from '@studio/ui';
+import { addDateDays, evaluateTaskView, normalizeTaskView } from '@studio/domain';
+import type { TaskViewState } from '@studio/domain';
+import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useDataRuntime } from '../../data/context';
+import { useStudioQuery } from '../../data/queries';
+import { useWorkspaceId } from '../../app/shell/workspace-context';
+import { useWorkspaceIntents } from '../../app/shell/transient-context';
+import { useTaskListDataset } from './useTaskListDataset';
+import { TaskList } from './TaskList';
+import { TaskBoard } from './TaskBoard';
+import { TaskTable } from './TaskTable';
+import { CalendarPanel } from '../calendar/CalendarPages';
+import type { TaskFormDefaults } from './field-types';
+import type { CalendarPanelProps } from '../calendar/CalendarPages';
+import { persistTaskColumns, restoreTaskColumns, taskTablePreferenceKey } from './table-view';
+import { useTaskBoardDataset } from './useTaskBoardDataset';
+import type { TaskBoardComposerHandle } from './TaskBoard';
+import type { TaskBoardUiState } from './board-types';
+import type { TaskListComposerHandle } from './TaskList';
+import { TaskViewToolbar } from './TaskViewToolbar';
+import { decodeCurrentTaskView, encodeCurrentTaskView } from './current-view';
+import type { ListGroup, TaskListScope, TaskListUiState, TaskListModel } from './list-types';
+function useCurrentViewChange() { const location = useLocation(), navigate = useNavigate(); return (view: TaskViewState) => { void navigate({ to: location.pathname, search: previous => ({ ...previous, view: JSON.stringify(view) }), replace: true }); }; }
+function useCurrentMode(mine = false) { const location=useLocation(),navigate=useNavigate(),requested=new URLSearchParams(location.searchStr).get('mode'); const controlledMode=mine ? requested === 'calendar' ? 'calendar' as const : 'list' as const : requested === 'table' ? 'table' as const : requested === 'board' ? 'board' as const : 'list' as const; return {controlledMode,onModeChange:(mode:'list'|'board'|'table'|'calendar')=>{void navigate({to:location.pathname,search:previous=>({...previous,mode}),replace:true});}}; }
+export function WorkspaceTasks() { const currentMode=useCurrentMode(); const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), onCurrentViewChange = useCurrentViewChange(); return <TaskListPage workspaceId={workspaceId} scope={{ kind: 'workspace' }} selectedIds={intents.selectedTaskIds} onSelectionChange={intents.selectTasks} onTaskOpen={intents.openTask} onTitleEdit={intents.closeTask} onNewTask={() => intents.openTaskForm()} onCalendarNewTask={defaults => intents.openTaskForm(undefined, defaults)} onTaskMenu={intents.openTaskMenu} onTaskEdit={id => intents.openTaskForm(id)} onCurrentViewChange={onCurrentViewChange} {...currentMode} />; }
+export function MyTasksList() { const currentMode=useCurrentMode(true); const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), onCurrentViewChange = useCurrentViewChange(); return <TaskListPage workspaceId={workspaceId} scope={{ kind: 'mine' }} selectedIds={[]} onSelectionChange={() => {}} onTaskOpen={intents.openTask} onTitleEdit={intents.closeTask} onNewTask={() => intents.openTaskForm()} onCalendarNewTask={defaults => intents.openTaskForm(undefined, defaults)} onTaskMenu={intents.openTaskMenu} onTaskEdit={id => intents.openTaskForm(id)} onCurrentViewChange={onCurrentViewChange} {...currentMode} />; }
+export interface TaskListPageProps { workspaceId: string; scope: TaskListScope; selectedIds: readonly string[]; onSelectionChange: (ids: readonly string[]) => void; onTaskOpen: (id: string) => void; onTitleEdit?: () => void; initialView?: TaskViewState; controlledView?: TaskViewState; showHeading?: boolean; initialListState?: TaskListUiState | undefined; onCurrentViewChange?: (view: TaskViewState) => void; onNewTask?: () => void; onCalendarNewTask?: (defaults: TaskFormDefaults) => void; onTaskMenu?: TaskListModel['onTaskMenu']; onTaskEdit?: (id: string) => void; onModeChange?: (mode: 'list' | 'board' | 'table' | 'calendar') => void; controlledMode?: 'list' | 'board' | 'table' | 'calendar'; initialMode?: 'list' | 'board' | 'table' | 'calendar'; initialBoardState?: TaskBoardUiState; initialCalendarState?: Pick<CalendarPanelProps, 'initialDate' | 'initialMode' | 'weekStart'> }
+export function TaskListPage({ workspaceId, scope, selectedIds, onSelectionChange, onTaskOpen, onTitleEdit = () => {}, initialView, controlledView, showHeading = true, initialListState, onCurrentViewChange, onNewTask, onCalendarNewTask, onTaskMenu, onTaskEdit, onModeChange, controlledMode, initialMode, initialBoardState, initialCalendarState }: TaskListPageProps) {
+ const { clock } = useDataRuntime(), bootstrap = useStudioQuery('getBootstrap', { workspaceId });
+ const composer = useRef<TaskListComposerHandle>(null), boardComposer = useRef<TaskBoardComposerHandle>(null);
+ const [localMode, setMode] = useState<'list' | 'board' | 'table' | 'calendar'>(() => initialMode ?? (new URLSearchParams(location.search).get('mode') === 'calendar' ? 'calendar' : new URLSearchParams(location.search).get('mode') === 'table' ? 'table' : new URLSearchParams(location.search).get('mode') === 'board' ? 'board' : 'list'));
+ const preferenceKey = taskTablePreferenceKey(workspaceId, scope);
+ const [localView, setView] = useState(() => restoreTaskColumns(initialView ?? decodeCurrentTaskView(location.search), preferenceKey, scope.kind === 'project' || scope.kind === 'saved', (() => { try { return localStorage; } catch { return null; } })()));
+ const view = controlledView ?? localView;
+ const requestedMode = controlledMode ?? localMode;
+ const mode = scope.kind === 'mine' ? requestedMode === 'calendar' ? 'calendar' : 'list' : requestedMode === 'calendar' ? 'list' : requestedMode;
+ const mine = scope.kind === 'mine', project = scope.kind === 'project' || scope.kind === 'saved';
+ const query = normalizeTaskView({ query: { ...view.query, ...(project ? { projectId: scope.projectId } : {}), ...(mine && bootstrap.data ? { assigneeId: bootstrap.data.data.currentMember.id, ...(view.query.sortField === 'manual' ? { sortField: 'due' } : {}) } : {}) } }).query;
+ const dataset = useTaskListDataset(workspaceId, query);
+ const columnQuery = normalizeTaskView({query:{...(project ? {projectId:scope.projectId} : {})}}).query;
+ const columnsDataset = useTaskBoardDataset(workspaceId, columnQuery, mode === 'board' || mode === 'table');
+ if (bootstrap.error || dataset.error || columnsDataset.error) return <Alert tone="danger">{(bootstrap.error ?? dataset.error ?? columnsDataset.error)!.message}</Alert>;
+ if (!bootstrap.data || !dataset.data || ((mode === 'board' || mode === 'table') && !columnsDataset.data)) return <div className="p-6" role="status">Loading tasks…</div>;
+ const data = bootstrap.data.data, tasks = dataset.data, projects = data.projects.filter(item => item.access === 'allowed').map(item => item.project), env = { today: clock.today(), now: Date.parse(clock.now()), lookups: { members: data.members, projects } };
+ const evaluated = evaluateTaskView(tasks, { ...view, query }, env);
+ const groups: readonly ListGroup[] = mine ? [
+ { key: 'overdue', name: 'Overdue', taskIds: tasks.filter(task => task.status !== 'done' && task.dueDate && task.dueDate < clock.today()).map(task => task.id) },
+ { key: 'today', name: 'Today', taskIds: tasks.filter(task => task.status !== 'done' && task.dueDate === clock.today()).map(task => task.id), createPatch: { dueDate: clock.today() } },
+ { key: 'upcoming', name: 'Upcoming', taskIds: tasks.filter(task => task.status !== 'done' && (!task.dueDate || task.dueDate > clock.today())).map(task => task.id), createPatch: { dueDate: addDateDays(clock.today(), 3) } },
+ { key: 'completed', name: 'Completed', taskIds: tasks.filter(task => task.status === 'done').map(task => task.id), createPatch: { status: 'done' }, collapsed: true },
+ ] : evaluated.groups;
+ function changeMode(next: string) {if(next !== 'list' && next !== 'board' && next !== 'table' && next !== 'calendar')return;if(mine ? next !== 'list' && next !== 'calendar' : next === 'calendar')return;setMode(next);if(onModeChange)onModeChange(next);else {const url=new URL(location.href);url.searchParams.set('mode',next);history.replaceState(history.state,'',url);}}
+ function change(next: TaskViewState) { setView(next); persistTaskColumns(next, preferenceKey); if (onCurrentViewChange) { onCurrentViewChange(next); return; } const url = new URL(location.href); url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!); history.replaceState(history.state, '', url); }
+ const title = mine ? 'My Tasks' : project ? scope.kind === 'saved' ? 'Saved List' : 'Project List' : 'Tasks';
+ return <main className={project && !showHeading ? 'task-page contents!' : 'task-page'} data-project-task-page={project && !showHeading || undefined} data-list-scope={scope.kind} aria-busy={dataset.isFetching} data-query-coverage={dataset.isPlaceholderData ? 'pending' : 'complete'}>{showHeading && <div className="task-page-heading"><div><h1>{title}</h1><p>{mine ? `${groups[1]!.taskIds.length} due today · ${groups[0]!.taskIds.length} overdue · ${groups[2]!.taskIds.length} upcoming` : project ? 'Project task views' : `Every task across ${projects.length} projects.`}</p></div><div className="task-page-actions">{mine && <SegmentedControl label="View" value={mode} items={[{ value: 'list', label: 'List', icon: <Icon name="list" size={13} /> }, { value: 'calendar', label: 'Calendar', icon: <Icon name="calendar" size={13} />, }]} onValueChange={changeMode} />}<Button variant="primary" disabled={!projects.length} onClick={() => onNewTask ? onNewTask() : mode === 'board' ? boardComposer.current?.begin() : composer.current?.begin()}><Icon name="plus" size={14} />New task</Button></div></div>}
+ <TaskViewToolbar value={view} onChange={change} lookups={{ members: data.members, projects, currentMemberId: data.currentMember.id }} group={!mine && mode !== 'board' && mode !== 'calendar'} columns={mode === 'table'} right={!mine && !project ? <SegmentedControl label="Task view" value={mode} items={[{ value: 'list', label: <span className="task-hide-mobile">List</span>, icon: <Icon name="list" size={13} /> }, { value: 'board', label: <span className="task-hide-mobile">Board</span>, icon: <Icon name="square-kanban" size={13} /> }, { value: 'table', label: <span className="task-hide-mobile">Table</span>, icon: <Icon name="table-2" size={13} /> }]} onValueChange={changeMode} /> : project && onNewTask ? <Button variant="primary" size="sm" onClick={onNewTask}><Icon name="plus" size={13} />New task</Button> : undefined} />
+ {mode === 'calendar' ? <CalendarPanel {...initialCalendarState} workspaceId={workspaceId} scope={{ kind: 'mine' }} query={query} onTaskOpen={onTaskOpen} {...(onTaskMenu ? { onTaskMenu } : {})} onNewTask={defaults => onCalendarNewTask ? onCalendarNewTask(defaults) : onNewTask?.()} onProjectOpen={() => {}} /> : mode === 'table' && scope.kind !== 'mine' ? <TaskTable model={{scope,data,tasks: evaluated.taskIds.map(id => evaluated.rows.get(id)!.task),dependencyTasks:columnsDataset.data!.items,groups,view,onViewChange:change,onTaskOpen,onTitleEdit,onNewTask:onNewTask ?? (() => composer.current?.begin()),onTaskMenu:onTaskMenu ?? ((id) => onTaskOpen(id))}} /> : mode === 'board' && scope.kind !== 'mine' ? <TaskBoard ref={boardComposer} initialState={initialBoardState} model={{scope,data,tasks,columnTasks:columnsDataset.data!.items,query,onTaskOpen,onTaskEdit:onTaskEdit ?? onTaskOpen,onTaskMenu:onTaskMenu ?? ((id) => onTaskOpen(id))}} /> : <div className="task-list-wrap"><TaskList ref={composer} initialState={initialListState} model={{ scope, data, tasks, groups, view, onViewChange: change, selection: { kind: mine ? 'completion' : 'bulk', selectedIds, onChange: onSelectionChange }, onTaskOpen, onTitleEdit, ...(onTaskMenu ? { onTaskMenu } : {}) }} columns={mine ? ['project', 'status', 'priority', 'due'] : ['status', 'assignee', 'priority', 'due', project ? 'labels' : 'project']} /></div>}</main>;
+}
+
+FILE apps/web/src/features/calendar/CalendarPages.tsx
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useLocation, useNavigate } from '@tanstack/react-router';
+import { Alert, Button, Icon, ToastViewport } from '@studio/ui';
+import type { ToastMessage } from '@studio/ui';
+import { buildCalendarCells, normalizeTaskView, rescheduleDateOnly } from '@studio/domain';
+import type { CalendarMode, TaskViewState, WeekStart } from '@studio/domain';
+import type { DateOnly, TaskQuery } from '@studio/contracts/api';
+import { useWorkspaceId } from '../../app/shell/workspace-context';
+import { useWorkspaceIntents } from '../../app/shell/transient-context';
+import { links } from '../../app/navigation';
+import { useDataRuntime } from '../../data/context';
+import { useStudioQuery } from '../../data/queries';
+import { queryKeys } from '../../data/query-keys';
+import { loadTaskViewDataset } from '../tasks/loadTaskViewDataset';
+import { useTaskListCommands } from '../tasks/useTaskListCommands';
+import { TaskViewToolbar } from '../tasks/TaskViewToolbar';
+import { decodeCurrentTaskView, encodeCurrentTaskView } from '../tasks/current-view';
+import { calendarDateLabel } from './date-format';
+import { CalendarView } from './CalendarView';
+import type { CalendarModel, CalendarScope } from './types';
+
+export interface CalendarPanelProps {
+  workspaceId: string; scope: CalendarScope; query: TaskQuery;
+  onTaskOpen: CalendarModel['onTaskOpen']; onTaskMenu?: CalendarModel['onTaskMenu'];
+  onNewTask: CalendarModel['onNewTask']; onProjectOpen: CalendarModel['onProjectOpen'];
+  initialDate?: DateOnly; initialMode?: CalendarMode; weekStart?: WeekStart;
+}
+export function CalendarPanel({ workspaceId, scope, query, onTaskOpen, onTaskMenu, onNewTask, onProjectOpen, initialDate, initialMode = 'month', weekStart }: CalendarPanelProps) {
+  const { client, clock } = useDataRuntime(), bootstrap = useStudioQuery('getBootstrap', { workspaceId }), commands = useTaskListCommands(workspaceId);
+  const [date, setDate] = useState(initialDate ?? clock.today()), [mode, setMode] = useState<CalendarMode>(initialMode), [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const cells = buildCalendarCells(date, mode, weekStart ?? bootstrap.data?.data.preferences.weekStart ?? 1, clock.today());
+  const range = { from: cells[0]!.date, to: cells.at(-1)!.date };
+  const scopeQuery = normalizeTaskView({ query: { ...query, ...(scope.kind === 'project' ? { projectId: scope.projectId } : {}), ...(scope.kind === 'mine' && bootstrap.data ? { assigneeId: bootstrap.data.data.currentMember.id } : {}) } }).query;
+  const scopedQuery = { ...scopeQuery, rangeFrom: range.from, rangeTo: range.to, rangeBasis: 'due' as const };
+  const dataset = useQuery({ enabled: !!bootstrap.data, queryKey: [...queryKeys.workspace(workspaceId), 'tasks', 'complete-view', scopedQuery], queryFn: ({ signal }) => loadTaskViewDataset(client, workspaceId, scopedQuery, signal) });
+  // Source legend uses all filtered scope tasks, even outside the visible dates.
+  // Share the same complete loader/cache; range data alone owns chips/overflow.
+  const legend = useQuery({ enabled: !!bootstrap.data, queryKey: [...queryKeys.workspace(workspaceId), 'tasks', 'complete-view', scopeQuery], queryFn: ({ signal }) => loadTaskViewDataset(client, workspaceId, scopeQuery, signal) });
+  const events = useQuery({ enabled: scope.kind !== 'mine', queryKey: [...queryKeys.workspace(workspaceId), 'events', range, scopeQuery.projectId], queryFn: ({ signal }) => client.execute('listCalendarEvents', { workspaceId, query: { ...range, ...(scopeQuery.projectId ? { projectId: scopeQuery.projectId } : {}) } }, { signal }) });
+  if (bootstrap.error || dataset.error || legend.error || events.error) return <Alert tone="danger">{(bootstrap.error ?? dataset.error ?? legend.error ?? events.error)!.message}</Alert>;
+  if (!bootstrap.data || !dataset.data || !legend.data || (scope.kind !== 'mine' && !events.data)) return <div className="p-6" role="status">Loading calendar…</div>;
+  const data = bootstrap.data.data;
+  const visibleEvents = (scope.kind === 'mine' ? [] : events.data!.data).filter(event => scopeQuery.filters.filter(filter => filter.field === 'project' && filter.values.length).every(filter => filter.op === 'is' ? (filter.values as readonly (string | null)[]).includes(event.projectId) : !(filter.values as readonly (string | null)[]).includes(event.projectId)));
+  return <><div data-calendar-coverage={dataset.data.coverage} data-calendar-count={dataset.data.matchedCount} data-calendar-range={`${range.from}/${range.to}`} className="contents"><CalendarView model={{ data, tasks: dataset.data.items, legendTasks: legend.data.items, events: visibleEvents, scope, date, today: clock.today(), mode, weekStart: weekStart ?? data.preferences.weekStart, pending: commands.pending, onDateChange: setDate, onModeChange: setMode, onTaskOpen, ...(onTaskMenu ? { onTaskMenu } : {}), onNewTask, onProjectOpen, onTaskDrop: async (task, nextDate) => {
+    const result = await commands.run('updateTask', { workspaceId, taskId: task.id, body: { expectedVersion: task.version, ...rescheduleDateOnly(task, nextDate) } });
+    if (!result) return false;
+    // Date PATCH has no Undo in source or the canonical whitelist (API §7.2).
+    setToasts(current => [{ id: crypto.randomUUID(), message: `Rescheduled “${task.title}” to ${calendarDateLabel(nextDate, clock.today(), data.preferences.dateFmt)}`, duration: 2200 }, ...current]); return true;
+  } }} /></div>{commands.error && <Alert tone="danger">{commands.error}</Alert>}<ToastViewport items={toasts} onDismiss={id => setToasts(current => current.filter(row => row.id !== id))} /></>;
+}
+export interface CalendarPageProps extends Omit<CalendarPanelProps, 'query'> { initialView?: TaskViewState; controlledView?: TaskViewState; showHeading?: boolean; onCurrentViewChange?: (view: TaskViewState) => void }
+export function CalendarPage({ initialView, controlledView, showHeading = true, onCurrentViewChange, ...props }: CalendarPageProps) {
+  const bootstrap = useStudioQuery('getBootstrap', { workspaceId: props.workspaceId }), [localView, setView] = useState(initialView ?? decodeCurrentTaskView(location.search));
+  if (!bootstrap.data) return bootstrap.error ? <Alert tone="danger">{bootstrap.error.message}</Alert> : <div className="p-6" role="status">Loading calendar…</div>;
+  const view = controlledView ?? localView;
+  const data = bootstrap.data.data, projects = data.projects.filter(row => row.access === 'allowed').map(row => row.project);
+  function change(next: TaskViewState) { setView(next); if (onCurrentViewChange) { onCurrentViewChange(next); return; } const url = new URL(location.href); url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!); history.replaceState(history.state, '', url); }
+  return <main className={!showHeading && props.scope.kind === 'project' ? 'task-page contents!' : 'task-page'} data-project-view-page={!showHeading && props.scope.kind === 'project' || undefined} data-calendar-page={props.scope.kind}>{showHeading && <div className="task-page-heading"><div><h1>Calendar</h1><p>Deadlines and events across every project.</p></div><div className="task-page-actions"><Button variant="primary" onClick={() => props.onNewTask({})}><Icon name="plus" size={14} />New task</Button></div></div>}<TaskViewToolbar value={view} onChange={change} lookups={{ members: data.members, projects, currentMemberId: data.currentMember.id }} group={false} right={props.scope.kind === 'project' ? <Button variant="primary" size="sm" onClick={() => props.onNewTask({})}><Icon name="plus" size={13} />New task</Button> : undefined} /><CalendarPanel {...props} query={view.query} /></main>;
+}
+export function WorkspaceCalendar() {
+  const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), navigate = useNavigate(), route = useLocation();
+  return <CalendarPage workspaceId={workspaceId} scope={{ kind: 'workspace' }} onCurrentViewChange={view => { void navigate({ to: route.pathname, search: previous => ({ ...previous, view: JSON.stringify(view) }), replace: true }); }} onTaskOpen={intents.openTask} onTaskMenu={intents.openTaskMenu} onNewTask={defaults => intents.openTaskForm(undefined, defaults)} onProjectOpen={(id, tab) => { void navigate({ to: links.project(workspaceId, id, tab) }); }} />;
+}
+
+FILE apps/web/src/features/timeline/TimelinePages.tsx
+import { useRef, useState } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useLocation, useNavigate } from '@tanstack/react-router';
+import { Alert, Button, Icon, SegmentedControl, Select, ToastViewport } from '@studio/ui';
+import type { ToastMessage } from '@studio/ui';
+import { addDateDays, buildTimelineGeometry, normalizeTaskView, rescheduleDateOnly, timelineRange } from '@studio/domain';
+import type { TaskViewState, TimelineGrouping, TimelineZoom, WeekStart } from '@studio/domain';
+import type { DateOnly, TaskQuery } from '@studio/contracts/api';
+import { useWorkspaceId } from '../../app/shell/workspace-context';
+import { useWorkspaceIntents } from '../../app/shell/transient-context';
+import { useDataRuntime } from '../../data/context';
+import { useStudioQuery } from '../../data/queries';
+import { queryKeys } from '../../data/query-keys';
+import { invalidateOperation } from '../../data/invalidation';
+import { loadTaskViewDataset } from '../tasks/loadTaskViewDataset';
+import { useTaskListCommands } from '../tasks/useTaskListCommands';
+import { TaskViewToolbar } from '../tasks/TaskViewToolbar';
+import { decodeCurrentTaskView, encodeCurrentTaskView } from '../tasks/current-view';
+import { TimelineView } from './TimelineView';
+import type { TimelineModel, TimelineScope } from './types';
+
+export interface TimelinePanelProps {
+  workspaceId: string; scope: TimelineScope; query: TaskQuery;
+  zoom: TimelineZoom; grouping: TimelineGrouping; todayRequest: number;
+  onTaskOpen: TimelineModel['onTaskOpen']; onTaskMenu?: TimelineModel['onTaskMenu']; onNewTask: TimelineModel['onNewTask'];
+  today?: DateOnly; weekStart?: WeekStart;
+}
+export function TimelinePanel({ workspaceId, scope, query, zoom, grouping, todayRequest, onTaskOpen, onTaskMenu, onNewTask, today: initialToday, weekStart }: TimelinePanelProps) {
+  const { client, clock } = useDataRuntime(), cache = useQueryClient(), bootstrap = useStudioQuery('getBootstrap', { workspaceId }), commands = useTaskListCommands(workspaceId), [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const scrollPositions = useRef(new Map<string, { left: number; top: number }>());
+  const today = initialToday ?? clock.today(), start = weekStart ?? bootstrap.data?.data.preferences.weekStart ?? 1, range = timelineRange(today, zoom, start);
+  const scopeQuery = normalizeTaskView({ query: { ...query, ...(scope.kind === 'project' ? { projectId: scope.projectId } : {}), rangeFrom: range.start, rangeTo: range.end, rangeBasis: 'overlap' } }).query;
+  const dataset = useQuery({ enabled: !!bootstrap.data, queryKey: [...queryKeys.workspace(workspaceId), 'tasks', 'complete-view', scopeQuery], queryFn: ({ signal }) => loadTaskViewDataset(client, workspaceId, scopeQuery, signal) });
+  if (bootstrap.error || dataset.error) return <Alert tone="danger">{(bootstrap.error ?? dataset.error)!.message}</Alert>;
+  if (!bootstrap.data || !dataset.data) return <div className="p-6" role="status">Loading timeline…</div>;
+  const data = bootstrap.data.data, projects = data.projects.flatMap(row => row.access === 'allowed' && !row.project.archivedAt ? [row.project] : []), scopedProjects = scope.kind === 'project' ? projects.filter(project => project.id === scope.projectId) : projects;
+  const geometry = buildTimelineGeometry({ tasks: dataset.data.items, milestones: scopedProjects.flatMap(project => project.milestones), lookups: { members: data.members, projects }, today, weekStart: start, zoom, grouping, ...(scope.kind === 'project' ? { projectId: scope.projectId } : {}) });
+  return <><div className="contents" data-timeline-coverage={dataset.data.coverage} data-timeline-count={dataset.data.matchedCount} data-timeline-bars={geometry.bars.length} data-timeline-range={`${range.start}/${range.end}`}><TimelineView model={{ data, geometry, scope, grouping, scrollPositions, zoom, todayRequest, pending: commands.pending, onTaskOpen, ...(onTaskMenu ? { onTaskMenu } : {}), onNewTask, onTaskMove: async (task, days) => {
+    if (!task.dueDate || !days) return false;
+    const input = { workspaceId, taskId: task.id, body: { expectedVersion: task.version, ...rescheduleDateOnly(task, addDateDays(task.dueDate, days)) } };
+    const result = await commands.run('updateTask', input);
+    // A real CAS conflict leaves the current Query projection stale. Refetch
+    // through the same operation invalidation map before permitting a retry.
+    if (!result) { await invalidateOperation(cache, 'updateTask', input); return false; }
+    // Locked source pointer drag uses a plain Moved toast; PATCH has no Undo.
+    setToasts(current => [{ id: crypto.randomUUID(), message: `Moved “${task.title}” ${Math.abs(days)} day${Math.abs(days) > 1 ? 's' : ''} ${days > 0 ? 'later' : 'earlier'}`, duration: 2200 }, ...current]); return true;
+  } }} /></div>{commands.error && <Alert tone="danger">{commands.error}</Alert>}<ToastViewport items={toasts} onDismiss={id => setToasts(current => current.filter(row => row.id !== id))} /></>;
+}
+export interface TimelinePageProps extends Omit<TimelinePanelProps, 'query' | 'zoom' | 'grouping' | 'todayRequest'> { initialView?: TaskViewState; controlledView?: TaskViewState; initialZoom?: TimelineZoom; initialGrouping?: TimelineGrouping; showHeading?: boolean; onCurrentViewChange?: (view: TaskViewState) => void }
+export function TimelinePage({ initialView, controlledView, initialZoom = 'week', initialGrouping, showHeading = true, onCurrentViewChange, ...props }: TimelinePageProps) {
+  const bootstrap = useStudioQuery('getBootstrap', { workspaceId: props.workspaceId }), [localView, setView] = useState(initialView ?? decodeCurrentTaskView(location.search)), [zoom, setZoom] = useState(initialZoom), [grouping, setGrouping] = useState<TimelineGrouping>(initialGrouping ?? (props.scope.kind === 'workspace' ? 'project' : 'status')), [todayRequest, setTodayRequest] = useState(0);
+  if (!bootstrap.data) return bootstrap.error ? <Alert tone="danger">{bootstrap.error.message}</Alert> : <div className="p-6" role="status">Loading timeline…</div>;
+  const view = controlledView ?? localView;
+  const data = bootstrap.data.data, projects = data.projects.filter(row => row.access === 'allowed').map(row => row.project);
+  function change(next: TaskViewState) { setView(next); if (onCurrentViewChange) { onCurrentViewChange(next); return; } const url = new URL(location.href); url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!); history.replaceState(history.state, '', url); }
+  const controls = <><SegmentedControl label="Timeline zoom" className="ml-1" value={zoom} onValueChange={value => setZoom(value as TimelineZoom)} items={[{ value: 'week', label: 'Weeks' }, { value: 'month', label: 'Months' }]} /><Select label="Group by" className="ml-1 h-[26px]! w-auto! text-xs!" value={grouping} options={[{ value: 'status', label: 'Group: Status' }, { value: 'assignee', label: 'Group: Assignee' }, { value: 'project', label: 'Group: Project' }, { value: 'none', label: 'No grouping' }]} onValueChange={value => setGrouping(value as TimelineGrouping)} /><Button variant="ghost" size="sm" className="text-xs!" onClick={() => setTodayRequest(value => value + 1)}><Icon name="crosshair" size={14} />Today</Button></>;
+  return <main className={!showHeading && props.scope.kind === 'project' ? 'task-page contents!' : 'task-page'} data-project-view-page={!showHeading && props.scope.kind === 'project' || undefined} data-timeline-page={props.scope.kind}>{showHeading && <div className="task-page-heading"><div><h1>Timeline</h1><p>Schedules, dependencies, and milestones across projects.</p></div></div>}<TaskViewToolbar value={view} onChange={change} lookups={{ members: data.members, projects, currentMemberId: data.currentMember.id }} group={false} extra={controls} right={props.scope.kind === 'project' ? <Button variant="primary" size="sm" onClick={() => props.onNewTask({})}><Icon name="plus" size={13} />New task</Button> : undefined} /><TimelinePanel {...props} query={view.query} zoom={zoom} grouping={grouping} todayRequest={todayRequest} /></main>;
+}
+export function WorkspaceTimeline() {
+  const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), navigate = useNavigate(), route = useLocation();
+  return <TimelinePage controlledView={decodeCurrentTaskView(route.searchStr)} workspaceId={workspaceId} scope={{ kind: 'workspace' }} onCurrentViewChange={view => { void navigate({ to: route.pathname, search: previous => ({ ...previous, view: JSON.stringify(view) }), replace: true }); }} onTaskOpen={intents.openTask} onTaskMenu={intents.openTaskMenu} onNewTask={defaults => intents.openTaskForm(undefined, defaults)} />;
+}
+
+FILE tests/visual/projects/owner-motion.mjs
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { chromium } from '@playwright/test';
+import { sourceIdentities } from '../../../packages/contracts/src/source-identities.ts';
+import { newPage } from '../reference/environment.mjs';
+import { artifacts, readJson, checkSource } from '../reference/source-check.mjs';
+import { sourceServer } from '../reference/source-server.mjs';
+import { ready, targetServer } from '../tasks/verify.mjs';
+const root='docs/poc/evidence/WU-16/diagnostics',report={purpose:'Actual Source-owned Card/Color hover transitions and Project NewTask/TaskMenu entry consumption; no raster cause claim.',profiles:[]},sid=(collection,id)=>sourceIdentities.find(row=>row.collection===collection&&row.sourceId===id).id,ws=sid('workspaces','w1'),stopSource=await sourceServer(),stopTarget=await targetServer();let browser;
+const style=el=>{const css=getComputedStyle(el);return Object.fromEntries(['transitionProperty','transitionDuration','transitionTimingFunction','transform','scale','translate','rotate','borderColor','boxShadow'].map(key=>[key,css[key]]));};
+async function pageEntry(page){return page.evaluate(()=>({targetFlag:document.querySelector('[data-project-host],[data-project-page-motion]')?.dataset.projectTransition??null,sourceTab:document.querySelector('.pbody')?.classList.contains('fx-tab')??null,sourceRoute:document.querySelector('.content')?.classList.contains('fx-route')??null,bodyAnimation:getComputedStyle(document.querySelector('.pbody,[data-project-body],.page,[data-favorites]')).animationName,starts:window.__ownerStarts}));}
+try{
+ browser=await chromium.launch();const a=await newPage(browser,{},readJson(`${artifacts}/source-fixture.json`)),b=await newPage(browser,{},undefined,true,'http://127.0.0.1:5173');
+ for(const{page}of[a,b])await page.addInitScript(()=>{window.__ownerStarts=0;document.addEventListener('animationstart',event=>{if(event.target.closest('.pbody,[data-project-host]'))window.__ownerStarts++;});});
+ await a.page.goto('http://127.0.0.1:4173');await b.page.goto(`http://127.0.0.1:5173/project-routes.html?path=/w/${ws}/home`);for(const{page}of[a,b])await ready(page);
+ report.liveRegion=await Promise.all([a.page,b.page].map(page=>page.evaluate(()=>{const el=document.getElementById('sr-live'),css=getComputedStyle(el);return{margin:css.margin,rect:el.getBoundingClientRect().toJSON(),documentHeight:document.documentElement.scrollHeight,bodyHeight:document.body.clientHeight,scrollY,ariaLive:el.getAttribute('aria-live')};})));
+ if(process.argv.includes('--verify')){assert.equal(report.liveRegion[1].margin,report.liveRegion[0].margin);assert.equal(report.liveRegion[1].documentHeight,report.liveRegion[0].documentHeight);assert.equal(report.liveRegion[1].scrollY,0);assert.equal(report.liveRegion[1].ariaLive,'polite');}
+ await a.page.getByRole('navigation',{name:'Main',exact:true}).getByRole('button',{name:'Projects',exact:true}).click();await b.page.getByRole('navigation',{name:'Main',exact:true}).getByRole('link',{name:'Projects',exact:true}).click();await b.page.waitForSelector('[data-project-coverage=complete]');for(const{page}of[a,b])await ready(page);
+ const cards=[a.page.locator('.pcard[data-id=p1]'),b.page.locator(`[data-project-card="${sid('projects','p1')}"]`)];
+ const card={kind:'Card',initial:await Promise.all(cards.map(el=>el.evaluate(style)))};for(const el of cards)await el.hover();for(const{page}of[a,b])await ready(page);card.hovered=await Promise.all(cards.map(el=>el.evaluate(style)));for(const{page}of[a,b])await page.mouse.move(1439,999);for(const{page}of[a,b])await ready(page);card.blurred=await Promise.all(cards.map(el=>el.evaluate(style)));report.profiles.push(card);
+ const stackBoxes=el=>[...el.querySelectorAll('.avs .av,span[role=img]')].map(avatar=>({label:avatar.getAttribute('aria-label'),text:avatar.textContent,rect:avatar.getBoundingClientRect().toJSON(),position:getComputedStyle(avatar).position}));report.stackBefore=await Promise.all(cards.map(el=>el.evaluate(stackBoxes)));
+ const memberAvatars=[cards[0].locator('.avs .av[data-tip]').first(),cards[1].locator('span[role=img]').first()];report.memberTooltip=[];for(let index=0;index<2;index++){await memberAvatars[index].hover();if(index===1&&process.argv.includes('--verify'))await b.page.getByRole('tooltip',{name:'Tanjim Islam',exact:true}).waitFor({state:'visible'});await ready([a,b][index].page);report.memberTooltip.push(await memberAvatars[index].evaluate(el=>({label:el.getAttribute('aria-label'),sourcePseudo:getComputedStyle(el,'::after').content,sourceOpacity:getComputedStyle(el,'::after').opacity,targetTooltip:document.querySelector('[role=tooltip]')?.textContent??null})));await [a,b][index].page.mouse.move(1439,999);await ready([a,b][index].page);}
+ report.stackAfter=await Promise.all(cards.map(el=>el.evaluate(stackBoxes)));report.optionsHit=await Promise.all(cards.map(el=>el.evaluate(card=>{const option=card.querySelector('[aria-label="Project options"]'),rect=option.getBoundingClientRect();return{rect:rect.toJSON(),opacity:getComputedStyle(option).opacity,hitLabel:document.elementFromPoint(rect.x+rect.width/2,rect.y+rect.height/2)?.closest('button')?.getAttribute('aria-label')};})));
+ for(const el of cards)await el.click();await b.page.waitForSelector('[data-query-coverage=complete]');for(const{page}of[a,b])await ready(page);
+ await a.page.getByRole('button',{name:'Project settings',exact:true}).click();await b.page.getByRole('button',{name:'Project settings',exact:true}).click();for(const{page}of[a,b])await ready(page);
+ const colors=[a,b].map(({page})=>page.getByRole('radiogroup',{name:'Color',exact:true}).getByRole('radio',{name:'blue',exact:true}));
+ const color={kind:'Color',initial:await Promise.all(colors.map(el=>el.evaluate(style)))};for(const el of colors)await el.hover();for(const{page}of[a,b])await ready(page);color.hovered=await Promise.all(colors.map(el=>el.evaluate(style)));for(const{page}of[a,b])await page.mouse.move(1439,999);for(const{page}of[a,b])await ready(page);color.blurred=await Promise.all(colors.map(el=>el.evaluate(style)));report.profiles.push(color);for(const{page}of[a,b])await page.keyboard.press('Escape');
+ report.surfaces=[];
+ for(const kind of['NewTask','TaskMenu']){
+  for(const label of['Overview','List']){await a.page.getByRole('navigation',{name:'Project views',exact:true}).getByRole('button',{name:label,exact:true}).click();await b.page.getByRole('navigation',{name:'Project views',exact:true}).getByRole('link',{name:label,exact:true}).click();for(const{page}of[a,b])await ready(page);}
+  const before=await Promise.all([a.page,b.page].map(pageEntry));
+  if(kind==='NewTask'){for(const{page}of[a,b])await page.getByRole('button',{name:'New task',exact:true}).click();await b.page.locator('[data-task-form]').waitFor();}
+  else{for(const{page}of[a,b])await page.locator('[data-task-row]').first().click({button:'right'});await b.page.getByRole('menu',{name:'Task actions',exact:true}).waitFor();}
+  for(const{page}of[a,b])await ready(page);const opened=await Promise.all([a.page,b.page].map(pageEntry));for(const{page}of[a,b])await page.keyboard.press('Escape');for(const{page}of[a,b])await ready(page);const closed=await Promise.all([a.page,b.page].map(pageEntry));report.surfaces.push({kind,before,opened,closed});
+ }
+ await a.page.getByRole('navigation',{name:'Main',exact:true}).getByRole('button',{name:'Favorites',exact:true}).click();await b.page.getByRole('navigation',{name:'Main',exact:true}).getByRole('link',{name:'Favorites',exact:true}).click();await b.page.waitForSelector('[data-favorites]');await b.page.getByText('Loading favorites…',{exact:true}).waitFor({state:'hidden'});for(const{page}of[a,b])await ready(page);report.favoritesDrawer={before:await Promise.all([a.page,b.page].map(pageEntry))};for(const{page}of[a,b])await page.locator('.mini,.task-mini').filter({hasText:'Create homepage wireframes'}).click();for(const{page}of[a,b])await ready(page);report.favoritesDrawer.opened=await Promise.all([a.page,b.page].map(pageEntry));for(const{page}of[a,b])await page.keyboard.press('Escape');for(const{page}of[a,b])await ready(page);report.favoritesDrawer.closed=await Promise.all([a.page,b.page].map(pageEntry));
+ if(process.argv.includes('--verify')){assert.equal(report.memberTooltip[1].targetTooltip,report.memberTooltip[0].label);assert.equal(report.favoritesDrawer.before[1].targetFlag,'route');assert.equal(report.favoritesDrawer.opened[0].sourceRoute,false);assert.equal(report.favoritesDrawer.opened[1].targetFlag,null);assert.equal(report.favoritesDrawer.closed[1].targetFlag,null);assert.deepEqual(report.stackBefore,report.stackAfter);assert.equal(report.stackBefore[1].at(-1).text,'+4');for(const profile of report.profiles)for(const stage of['initial','hovered','blurred'])assert.deepEqual(profile[stage][1],profile[stage][0]);for(const surface of report.surfaces){assert.equal(surface.before[1].targetFlag,'tab');assert.equal(surface.opened[0].sourceTab,false);assert.equal(surface.opened[1].targetFlag,null);assert.equal(surface.closed[1].targetFlag,null);assert.equal(surface.closed[1].starts,surface.opened[1].starts);}}
+ checkSource();report.status=process.argv.includes('--verify')?'passed':'recorded';await a.context.close();await b.context.close();
+}catch(error){report.status='failed';report.error=String(error);throw error;}
+finally{fs.mkdirSync(root,{recursive:true});fs.writeFileSync(`${root}/owner-motion.json`,JSON.stringify(report,null,2)+'\n');await browser?.close();await stopTarget();await stopSource();}
+
+SOURCE
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.pbody.fx-tab > * {
+  animation: riseIn 0.26s var(--ease) both;
+}
+.pbody.fx-tab .kcard {
+  animation: riseIn 0.32s var(--ease) both;
+}
+.pbody.fx-tab .bcol:nth-child(2) .kcard {
+  animation-delay: 0.03s;
+}
+.pbody.fx-tab .bcol:nth-child(3) .kcard {
+  animation-delay: 0.06s;
+}
+.pbody.fx-tab .bcol:nth-child(n + 4) .kcard {
+  animation-delay: 0.09s;
+}
+/* task completed */
+.trow.fx-done,
+.mini.fx-done {
+  animation: doneWash 1s var(--ease) both;
+}
+.kcard.fx-done {
+  animation: doneRing 1s var(--ease) both;
+}
+.fx-done .check,
+.fx-done .done-ic {
+  animation: popCheck 0.42s var(--spring) both;
+}
+.fx-done .tt,
+.fx-done .title {
+  text-decoration: none !important;
+  background: linear-gradient(currentColor, currentColor) 0 58%/0 1.5px no-repeat;

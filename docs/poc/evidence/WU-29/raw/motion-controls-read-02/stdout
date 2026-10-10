@@ -1,0 +1,400 @@
+FILE apps/web/src/app/shell/Sidebar.tsx
+import { ProfileMenu } from './ProfileMenu';
+import { useSearchIntents } from '../../features/search/search-intents';
+import { useDevScenario } from '../../features/dev/dev-context';
+import { usePeopleIntents } from '../../features/people/people-intents';
+import { useTeamIntents } from '../../features/teams/team-intents';
+import { useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { Link, useLocation, useNavigate } from '@tanstack/react-router';
+import { AvatarBase, BrandMark, ColorDot, Icon, IconButton, KeyHint, Menu, MenuGroup, MenuItem, MenuSeparator, Tooltip } from '@studio/ui';
+import type { IconName } from '@studio/ui';
+import { useStudioQuery } from '../../data/queries';
+import { useWorkspaceBootstrap, useWorkspaceId } from './workspace-context';
+import { useProjectIntents } from '../../features/projects/project-intents';
+import { links } from '../navigation';
+import type { WorkspacePage } from '../navigation';
+
+const mainItems: readonly [WorkspacePage, string, IconName][] = [['home','Home','house'],['inbox','Inbox','inbox'],['my-tasks','My Tasks','circle-check'],['favorites','Favorites','star'],['notifications','Notifications','bell']];
+const workspaceItems: readonly [WorkspacePage, string, IconName][] = [['overview','Overview','layout-dashboard'],['projects','Projects','folder-kanban'],['tasks','Tasks','list-checks'],['calendar','Calendar','calendar'],['timeline','Timeline','chart-gantt'],['members','Members','users'],['activity','Activity','activity']];
+const statusColors = { planning: 'var(--gray)', active: 'var(--blue)', risk: 'var(--red)', hold: 'var(--amber)', complete: 'var(--green)' };
+export interface NavigationItemProps { to: string; label: string; icon: IconName; selected: boolean; count?: number | undefined; dot?: boolean; iconSize?: number; collapsed: boolean }
+export function NavigationItem({ to, label, icon, selected, count, dot, collapsed, iconSize=16 }: NavigationItemProps) {
+  const anchor=useRef<HTMLAnchorElement>(null); const [tooltip,setTooltip]=useState(false);
+  const item = <Link ref={anchor} to={to} activeOptions={{ exact: true }} className="shell-item group relative flex h-[var(--side-row)] w-full items-center gap-[9px] whitespace-nowrap rounded-sm px-2 text-left text-body font-[450] text-secondary transition-[background,color] source-hover:bg-surface-3 source-hover:text-foreground" aria-current={selected ? 'page' : undefined} aria-label={label}><Icon name={icon} size={iconSize} className="text-faint group-hover:text-secondary" /><span className={iconSize===14?"shell-label":"shell-label min-w-0 truncate"}>{label}</span>{!!count && <span className={`shell-count ml-auto text-2xs text-muted [font-variant-numeric:tabular-nums] ${dot ? 'grid h-4 min-w-4 place-items-center rounded-lg bg-accent px-1 font-semibold text-on-accent' : ''}`}>{count}</span>}</Link>;
+  return <>{item}{collapsed && <Tooltip open={tooltip} onOpenChange={setTooltip} anchor={anchor} label={label} placement="right"/>}</>;
+}
+export interface SidebarProps { collapsed: boolean; onCollapsedChange: (value: boolean) => void; navigationRef: React.RefObject<HTMLElement | null>; mobileClosed: boolean }
+export function Sidebar({ collapsed, onCollapsedChange, navigationRef, mobileClosed }: SidebarProps) {
+  const search = useSearchIntents(), dev = useDevScenario(), people = usePeopleIntents();
+  const workspaceId = useWorkspaceId(), projectIntents = useProjectIntents(), teamIntents = useTeamIntents();
+  const dragProject = useRef<string | null>(null); const [dropProject, setDropProject] = useState<string | null>(null);
+  const data = useWorkspaceBootstrap().data!.data;
+  const catalog = useStudioQuery('listWorkspaces', {}).data?.data ?? [];
+  const pathname = useLocation({ select: location => location.pathname });
+  const navigate = useNavigate();
+  const workspaceButton = useRef<HTMLButtonElement>(null), helpButton = useRef<HTMLButtonElement>(null), profileButton = useRef<HTMLButtonElement>(null);
+  const [workspaceMenu, setWorkspaceMenu] = useState(false), [helpMenu, setHelpMenu] = useState(false), [profileMenu, setProfileMenu] = useState(false);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>(()=>data.projects[0]?{[data.projects[0].project.id]:true}:{});
+  const counts: Partial<Record<WorkspacePage, number>> = { inbox: data.navigationCounts.inbox, 'my-tasks': data.navigationCounts.myTasks, notifications: data.unreadCount, archive: data.navigationCounts.archive };
+  const item = ([page,label,icon]: readonly [WorkspacePage,string,IconName]) => <NavigationItem key={page} to={links.workspace(workspaceId,page)} label={label} icon={icon} count={counts[page]} dot={page === 'inbox'} selected={pathname === links.workspace(workspaceId,page)} collapsed={collapsed} />;
+  return <nav ref={navigationRef} inert={mobileClosed || undefined} className="shell-sidebar flex min-h-0 select-none flex-col overflow-hidden border-0 border-r border-solid border-border bg-[var(--bg-side)]" aria-label="Main">
+    <div className="px-2 pb-1 pt-2"><div className="flex items-center gap-[2px]"><button ref={workspaceButton} className="shell-workspace flex w-full min-w-0 flex-1 items-center gap-2 rounded-sm px-[6px] py-[5px] text-left transition-[background] source-hover:bg-surface-3" aria-haspopup="menu" aria-expanded={workspaceMenu} aria-label="Switch workspace" onClick={() => setWorkspaceMenu(value=>!value)}>{data.workspace.brand ? <span className="flex size-[22px] shrink-0 overflow-hidden rounded-[28%] bg-[#000] [&>svg]:block"><BrandMark /></span> : <span className="grid size-[22px] shrink-0 place-items-center rounded-sm text-[11px] font-semibold text-[#fff]" style={{ background: data.workspace.iconColor }}>{data.workspace.name[0]}</span>}<span className="shell-label truncate text-body font-semibold">{data.workspace.name}</span><span className="shell-label text-muted"><Icon name="chevrons-up-down" size={13} /></span></button>{!collapsed && <IconButton size="sm" className="shell-hide-mobile" aria-label="Collapse sidebar" onClick={() => onCollapsedChange(true)}><Icon name="panel-left" size={15} /></IconButton>}</div></div>
+    <div className="shell-side-scroll min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-2 pb-3 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-scroll-restoration-id="sidebar">
+      {collapsed && <button className="shell-item flex h-[var(--side-row)] w-full items-center justify-center rounded-sm text-secondary source-hover:bg-surface-3" aria-label="Expand sidebar" onClick={() => onCollapsedChange(false)}><Icon name="panel-left" size={16} className="text-faint"/></button>}
+      {mainItems.map(item)}<div className="shell-group mt-[14px]"><div className="shell-group-heading flex h-6 items-center px-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted">Workspace</div>{workspaceItems.map(item)}</div>
+      <div className="shell-group group mt-[14px]" id="side-projects"><div className="shell-group-heading flex h-6 items-center px-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted"><span>Projects</span><span className="flex-1"/><IconButton size="xs" className="shell-pending-action opacity-0 group-hover:opacity-100 focus-visible:opacity-100" aria-label="New project" onClick={projectIntents.newProject}><Icon name="plus" size={14}/></IconButton></div>
+      {data.projects.filter(item=>item.project.status!=='complete').map(item=>{const project=item.project; const selected=pathname.startsWith(`/w/${workspaceId}/projects/${project.id}/`);const open=expanded[project.id];return <div key={project.id} onContextMenu={event=>{if(item.access!=="allowed"||event.target instanceof Element&&event.target.closest("input,textarea,[contenteditable]"))return;event.preventDefault();projectIntents.projectMenu(project.id,event.currentTarget,{x:event.clientX,y:event.clientY});}} draggable={!collapsed} data-project-nav={project.id} onDragStart={event=>{dragProject.current=project.id;event.dataTransfer.effectAllowed="move";event.dataTransfer.setData("text/plain",project.id);}} onDragEnd={()=>{dragProject.current=null;setDropProject(null);}} onDragOver={event=>{if(dragProject.current&&dragProject.current!==project.id){event.preventDefault();setDropProject(project.id);}}} onDrop={event=>{event.preventDefault();const moving=dragProject.current;dragProject.current=null;setDropProject(null);if(!moving||moving===project.id)return;const ids: string[]=data.projects.map(row=>row.project.id).filter(id=>id!==moving);ids.splice(ids.indexOf(project.id),0,moving);void projectIntents.reorderProjects(ids);}} style={dropProject===project.id?{boxShadow:"inset 0 2px 0 var(--accent)"}:undefined}>
+        <div className="shell-item group/project relative flex h-[var(--side-row)] w-full items-center gap-[9px] whitespace-nowrap rounded-sm px-2 text-body font-[450] text-secondary transition-[background,color] source-hover:bg-surface-3 source-hover:text-foreground" data-active={selected || undefined} style={{'--project-color':project.color} as CSSProperties}>
+          <button className="shell-project-icon grid size-[18px] shrink-0 place-items-center rounded-[5px] bg-[color-mix(in_srgb,var(--project-color)_16%,transparent)]" aria-label={collapsed?`Open ${project.name}`:`Toggle ${project.name} sub-pages`} title={collapsed?project.name:undefined} aria-expanded={!!open} onClick={()=>{if(collapsed)void navigate({to:links.project(workspaceId,project.id,data.preferences.defaultTab)});else setExpanded({...expanded,[project.id]:!open});}}><Icon name={project.icon as IconName} size={12}/></button>
+          <Link to={links.project(workspaceId,project.id,data.preferences.defaultTab)} aria-current={selected?'page':undefined} className="shell-label min-w-0 truncate" aria-label={project.name}>{project.name}</Link>
+          {item.access==='allowed' && item.project.isFavorite && <span className="shell-project-decoration ml-1 text-amber"><Icon name="star" size={11} className={selected ? "text-secondary" : "text-faint group-hover/project:text-secondary"}/></span>}{(item.access==='restricted' || item.project.visibility==='private') && <span className="shell-project-decoration ml-1 text-muted"><Icon name="lock" size={11} className={selected ? "text-secondary" : "text-faint group-hover/project:text-secondary"}/></span>}
+          <ColorDot className="shell-project-dot ml-auto group-hover/project:hidden" color={statusColors[project.status]}/><span className="shell-project-decoration ml-auto hidden group-hover/project:flex"><IconButton size="xs" aria-label={`${project.name} options`} onClick={event=>projectIntents.projectMenu(project.id,event.currentTarget)} disabled={item.access==='restricted'}><Icon name="ellipsis" size={14}/></IconButton><IconButton size="xs" aria-label={`Expand ${project.name}`} onClick={()=>setExpanded({...expanded,[project.id]:!open})}><Icon name="chevron-right" size={13} className={open?'rotate-90':''}/></IconButton></span>
+        </div>
+        {open && !collapsed && <div className="ml-2 border-0 border-l border-solid border-border pl-[14px]">{(['board','list','timeline','files'] as const).map(tab=><NavigationItem key={tab} to={links.project(workspaceId,project.id,tab)} label={tab[0]!.toUpperCase()+tab.slice(1)} icon={{board:'square-kanban',list:'list',timeline:'chart-gantt',files:'paperclip'}[tab] as IconName} selected={pathname===links.project(workspaceId,project.id,tab)} collapsed={false} iconSize={14}/>)}</div>}
+      </div>})}{item(['archive','Archive','archive'])}</div>
+      <div className="shell-group group mt-[14px]"><div className="shell-group-heading flex h-6 items-center px-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted"><span>Teams</span><span className="flex-1"/><IconButton size="xs" className="opacity-0 group-hover:opacity-100 focus-visible:opacity-100" aria-label="New team" onClick={teamIntents.newTeam}><Icon name="plus" size={14}/></IconButton></div>{data.teams.map(team=><NavigationItem key={team.id} to={`/w/${workspaceId}/
+FILE packages/contracts/src/catalogs.ts
+import { z } from 'zod';
+
+export const taskStatuses = [{ id: 'backlog', name: 'Backlog' }, { id: 'todo', name: 'To Do' }, { id: 'progress', name: 'In Progress' }, { id: 'review', name: 'Review' }, { id: 'done', name: 'Done' }] as const;
+export const priorities = [{ id: 'urgent', name: 'Urgent', weight: 4 }, { id: 'high', name: 'High', weight: 3 }, { id: 'medium', name: 'Medium', weight: 2 }, { id: 'low', name: 'Low', weight: 1 }, { id: 'none', name: 'No priority', weight: 0 }] as const;
+export const projectStatuses = [{ id: 'planning', name: 'Planning', colorToken: 'gray' }, { id: 'active', name: 'In Progress', colorToken: 'blue' }, { id: 'risk', name: 'At Risk', colorToken: 'red' }, { id: 'hold', name: 'On Hold', colorToken: 'amber' }, { id: 'complete', name: 'Completed', colorToken: 'green' }] as const;
+export const labels = [{ id: 'design', name: 'Design', colorToken: 'violet' }, { id: 'frontend', name: 'Frontend', colorToken: 'blue' }, { id: 'backend', name: 'Backend', colorToken: 'teal' }, { id: 'research', name: 'Research', colorToken: 'amber' }, { id: 'content', name: 'Content', colorToken: 'rose' }, { id: 'bug', name: 'Bug', colorToken: 'red' }, { id: 'qa', name: 'QA', colorToken: 'green' }, { id: 'growth', name: 'Growth', colorToken: 'orange' }] as const;
+export const recurrences = [{ id: 'daily', name: 'Daily' }, { id: 'weekly', name: 'Weekly' }, { id: 'biweekly', name: 'Every 2 weeks' }, { id: 'monthly', name: 'Monthly' }] as const;
+export const projectColors = [{ id: 'indigo', color: '#5A67D8' }, { id: 'blue', color: '#3B82C4' }, { id: 'violet', color: '#8662C9' }, { id: 'teal', color: '#23918A' }, { id: 'rose', color: '#C54B78' }, { id: 'amber', color: '#C48A1E' }, { id: 'green', color: '#3D8E5F' }, { id: 'slate', color: '#6B7280' }] as const;
+export const projectIcons = ['globe', 'smartphone', 'megaphone', 'rocket', 'component', 'building-2', 'layout-grid', 'palette', 'code', 'briefcase', 'target', 'layers', 'zap', 'heart', 'folder', 'sparkles'] as const;
+export const estimates = ['30m', '1h', '2h', '4h', '1d', '2d', '3d', '5d', '8d'] as const;
+export const templates = [
+  { id: 'blank', name: 'Blank project', icon: 'file', description: 'Start from scratch', tasks: [] },
+  { id: 'product', name: 'Product Development', icon: 'target', description: 'Discovery to launch', tasks: ['Define problem statement', 'User research plan', 'Write PRD', 'Design exploration', 'Build MVP', 'Beta launch'] },
+  { id: 'web', name: 'Website', icon: 'globe', description: 'IA, design, build, launch', tasks: ['Sitemap & information architecture', 'Wireframes', 'Visual design', 'Build page templates', 'Content migration', 'QA & launch'] },
+  { id: 'mkt', name: 'Marketing Campaign', icon: 'megaphone', description: 'Brief, assets, channels', tasks: ['Campaign brief', 'Audience research', 'Creative assets', 'Channel plan', 'Launch campaign', 'Performance report'] },
+  { id: 'design', name: 'Design Project', icon: 'palette', description: 'Discovery to handoff', tasks: ['Discovery workshop', 'Moodboard', 'Concept directions', 'Refinement', 'Developer handoff'] },
+  { id: 'software', name: 'Software Development', icon: 'code', description: 'Spec, build, ship', tasks: ['Technical spec', 'Set up repo & CI', 'Implement core API', 'Write tests', 'Code review', 'Deploy to staging'] },
+  { id: 'personal', name: 'Personal Project', icon: 'heart', description: 'Plan your own goals', tasks: ['Brain dump ideas', 'Pick top 3 priorities', 'Schedule focus time', 'Weekly review'] },
+] as const;
+export const TaskStatusSchema = z.enum(taskStatuses.map(item => item.id));
+export const PrioritySchema = z.enum(priorities.map(item => item.id));
+export const ProjectStatusSchema = z.enum(projectStatuses.map(item => item.id));
+export const LabelIdSchema = z.enum(labels.map(item => item.id));
+export const RecurrenceSchema = z.enum(recurrences.map(item => item.id));
+export const ProjectIconSchema = z.enum(projectIcons);
+// Source New team defaults to users; its selectable icons share the project picker.
+export const TeamIconSchema = z.enum(['users', ...projectIcons]);
+export const EstimateSchema = z.enum(estimates);
+export const TemplateIdSchema = z.enum(templates.map(item => item.id));
+export const RoleSchema = z.enum(['Owner', 'Admin', 'Member', 'Guest']);
+export const VisibilitySchema = z.enum(['workspace', 'private']);
+export const MemberStatusSchema = z.enum(['active', 'invited']);
+export type TaskStatus = z.infer<typeof TaskStatusSchema>;
+export type Priority = z.infer<typeof PrioritySchema>;
+export type Recurrence = z.infer<typeof RecurrenceSchema>;
+export type LabelId = z.infer<typeof LabelIdSchema>;
+export type TemplateId = z.infer<typeof TemplateIdSchema>;
+export const CatalogsSchema = z.strictObject({
+  taskStatuses: z.array(z.strictObject({ id: TaskStatusSchema, name: z.string() })),
+  priorities: z.array(z.strictObject({ id: PrioritySchema, name: z.string(), weight: z.number().int() })),
+  projectStatuses: z.array(z.strictObject({ id: ProjectStatusSchema, name: z.string(), colorToken: z.string() })),
+  labels: z.array(z.strictObject({ id: LabelIdSchema, name: z.string(), colorToken: z.string() })),
+  recurrences: z.array(z.strictObject({ id: RecurrenceSchema, name: z.string() })),
+  projectColors: z.array(z.strictObject({ id: z.enum(projectColors.map(item => item.id)), color: z.string() })),
+  projectIcons: z.array(ProjectIconSchema), estimates: z.array(EstimateSchema),
+  templates: z.array(z.strictObject({ id: TemplateIdSchema, name: z.string(), icon: z.string(), description: z.string(), tasks: z.array(z.string()) })),
+});
+export const catalogs = CatalogsSchema.parse({ taskStatuses, priorities, projectStatuses, labels, recurrences, projectColors, projectIcons, estimates, templates });
+
+FILE .reference/gr8r-studio/src/core/utils.js
+/* =====================================================================
+   QUIRE — core: utils, icons, seed data, store, render loop, events
+   ===================================================================== */
+// Web fonts load without blocking first paint (the link starts as media=print).
+document.querySelectorAll('link[data-font]').forEach(l => {
+  l.media = 'all';
+});
+export const $ = (s, r = document) => r.querySelector(s);
+export const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+export const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+export const uid = (p = 'x') => p + Math.random().toString(36).slice(2, 8);
+export const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+export const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+export const MOD = isMac ? '⌘' : 'Ctrl';
+
+/* ---------- dates ---------- */
+export const DAY = 864e5;
+export const sod = d => {
+  const x = new Date(d);
+  x.setHours(0, 0, 0, 0);
+  return x;
+};
+export const TODAY = sod(new Date());
+export const iso = d => {
+  const x = new Date(d);
+  return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
+};
+export const parse = s => {
+  if (!s) return null;
+  const [y, m, d] = s.split('-').map(Number);
+  return new Date(y, m - 1, d);
+};
+export const addD = (d, n) => {
+  const x = new Date(d);
+  x.setDate(x.getDate() + n);
+  return x;
+};
+export const dOff = n => iso(addD(TODAY, n));
+export const diffD = (a, b) => Math.round((sod(a) - sod(b)) / DAY);
+export const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+export const MONL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export const WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export const WDL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+/* Set from preferences on every render (core/theme.js), so utils never depends on the store. */
+export let dateFormat = 'MMM d';
+export function setDateFormat(f) {
+  dateFormat = f || 'MMM d';
+}
+export function fmtDate(s, long) {
+  const d = typeof s === 'string' ? parse(s) : s;
+  if (!d) return '';
+  const fmt = dateFormat;
+  if (fmt === 'd/M') return `${d.getDate()}/${d.getMonth() + 1}${long ? '/' + d.getFullYear() : ''}`;
+  if (fmt === 'M/d') return `${d.getMonth() + 1}/${d.getDate()}${long ? '/' + d.getFullYear() : ''}`;
+  if (fmt === 'yyyy-MM-dd') return iso(d);
+  return `${MON[d.getMonth()]} ${d.getDate()}${long || d.getFullYear() !== TODAY.getFullYear() ? ', ' + d.getFullYear() : ''}`;
+}
+export function relDate(s) {
+  if (!s) return '';
+  const n = diffD(parse(s), TODAY);
+  if (n === 0) return 'Today';
+  if (n === 1) return 'Tomorrow';
+  if (n === -1) return 'Yesterday';
+  if (n > 1 && n < 7) return WD[parse(s).getDay()];
+  return fmtDate(s);
+}
+export function ago(ts) {
+  const m = Math.round((Date.now() - ts) / 6e4);
+  if (m < 1) return 'just now';
+  if (m < 60) return m + 'm ago';
+  const h = Math.round(m / 60);
+  if (h < 24) return h + 'h ago';
+  const d = Math.round(h / 24);
+  if (d < 7) return d + 'd ago';
+  return fmtDate(iso(new Date(ts)));
+}
+export const minsAgo = m => Date.now() - m * 6e4;
+export function dayBucket(ts) {
+  const n = diffD(new Date(ts), TODAY);
+  if (n === 0) return 'Today';
+  if (n === -1) return 'Yesterday';
+  if (n > -7) return 'This week';
+  return 'Earlier';
+}
+
+FILE tests/visual/m2/home-motion.mjs
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { chromium } from '@playwright/test';
+import { PNG } from 'pngjs';
+import pixelmatch from 'pixelmatch';
+import { sourceServer } from '../reference/source-server.mjs';
+import { targetServer, ready } from '../tasks/verify.mjs';
+import { readiness } from '../reference/source-driver.mjs';
+import { newPage, environment } from '../reference/environment.mjs';
+import { artifacts, readJson, sha256, checkSource } from '../reference/source-check.mjs';
+import { immutableInputs, implementationAssets, httpBuildAssets, sourceAssets } from '../settings/assets.mjs';
+import { createSeedDataset, seedProvenance } from '../../../apps/web/src/data/mock/seed.ts';
+import { mockStorageKey } from '../../../apps/web/src/data/mock/persistence.ts';
+import { workspaceId } from './matrix.mjs';
+
+const attempt = process.argv[2], output = `docs/poc/evidence/WU-29/attempts/${attempt}`;
+if (!/^[a-z0-9-]+$/.test(attempt ?? '') || fs.existsSync(output)) throw Error('Unique attempt required');
+fs.mkdirSync(output, { recursive: true });
+fs.copyFileSync(import.meta.filename, `${output}/executed-harness.mjs`);
+const assets = () => ({ ...implementationAssets(), ...httpBuildAssets(), ...sourceAssets() });
+const only = process.argv.find(arg => arg.startsWith('--only='))?.slice(7);
+const matrix = [1440, 390].flatMap(width => ['normal', 'stored-reduce', 'os-reduce'].map(mode => ({ width, mode, id: `${mode}-${width}` }))).filter(row => !only || only.split(',').includes(row.id));
+const report = { status: 'running', scope: 'Home startup versus actual native entry, root/hash normalization, refresh and canonical Back/Forward. Source go does not update browser history; the matching Source navigation is recorded separately.', runtime: { node: process.version, os: 'linux', ...environment }, immutableBefore: immutableInputs(), assetsBefore: assets(), profiles: [], threshold: 0, includeAA: true, masks: [] };
+const save = () => fs.writeFileSync(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
+const store = (name, bytes) => { const path = `${output}/${name}`; fs.writeFileSync(path, bytes, { flag: 'wx' }); return { path, bytes: bytes.length, sha256: sha256(bytes) }; };
+const diff = (a, b, name) => { const x = PNG.sync.read(a), y = PNG.sync.read(b); assert.equal(x.width, y.width); assert.equal(x.height, y.height); const image = new PNG({ width: x.width, height: x.height }); return { pixels: pixelmatch(x.data, y.data, image.data, x.width, x.height, { threshold: 0, includeAA: true }), image: store(`${name}-diff.png`, PNG.sync.write(image)) }; };
+const measure = page => page.evaluate(() => ({ url: location.href, route: window.__gr8r?.S.ui.route ?? null, text: document.body.innerText, motion: document.documentElement.dataset.motion, animations: document.getAnimations().map(animation => ({ name: animation.animationName ?? null, playState: animation.playState, time: animation.currentTime, timing: animation.effect?.getTiming(), frames: animation.effect?.getKeyframes(), target: animation.effect?.target?.outerHTML?.slice(0, 300) })), nestedOwners: [...document.querySelectorAll('.grid2 > * > *,.dashboard-grid > * > *')].map(el => { const css = getComputedStyle(el); return { html: el.outerHTML.slice(0, 500), rect: el.getBoundingClientRect().toJSON(), name: css.animationName, duration: css.animationDuration, delay: css.animationDelay, fill: css.animationFillMode, easing: css.animationTimingFunction, animations: el.getAnimations().map(animation => ({ name: animation.animationName, playState: animation.playState, timing: animation.effect.getTiming() })) }; }), flags: [...document.querySelectorAll('.fx-route,.fx-tab,[data-project-transition]')].map(el => ({ class: el.className, transition: el.dataset.projectTransition })) }));
+async function settle(a, b) { await readiness(a.page); await ready(b.page); await b.page.waitForFunction(() => ![...document.querySelectorAll('main [role=status]')].some(el => /^Loading /.test(el.textContent.trim()))); await b.page.waitForTimeout(300); for (const { page } of [a, b]) { await page.evaluate(() => document.activeElement?.blur()); await page.mouse.move(1, 1); } }
+let browser, stopSource, stopTarget;
+try {
+ stopSource = await sourceServer(); stopTarget = await targetServer(); checkSource();
+ browser = await chromium.launch({ headless: true, args: ['--disable-partial-raster'] }); report.runtime.browser = browser.version(); const cdp = await browser.newBrowserCDPSession(); report.runtime.arguments = (await cdp.send('Browser.getBrowserCommandLine')).arguments; await cdp.detach();
+ for (const { width, mode } of matrix) {
+  const id = `${mode}-${width}`, motion = mode === 'stored-reduce' ? 'reduce' : 'system', osMotion = mode === 'os-reduce' ? 'reduce' : 'no-preference';
+  const prefs = { theme: 'light', accent: 'indigo', side: 'comfortable', density: 'comfortable', motion }, fixture = readJson(`${artifacts}/source-fixture.json`), dataset = createSeedDataset(); Object.assign(fixture.prefs, prefs); Object.assign(dataset.preferences, prefs);
+  const profile = { id, width, prefs, osMotion, status: 'running', samples: [], actions: [], fixtures: { source: store(`${id}-source-fixture.json`, Buffer.from(`${JSON.stringify(fixture)}\n`)), target: store(`${id}-target-fixture.json`, Buffer.from(`${JSON.stringify(dataset)}\n`)), seedProvenance } }; report.profiles.push(profile); save();
+  const config = { viewport: { width, height: width === 390 ? 844 : 1000 }, mobile: width === 390 }, a = await newPage(browser, config, fixture), b = await newPage(browser, config, undefined, true, 'http://127.0.0.1:5173');
+  const fonts = [[], []], errors = [[], []], pending = [];
+  for (const [session, side] of [[a, 0], [b, 1]]) { session.page.setDefaultTimeout(12000); await session.page.emulateMedia({ reducedMotion: osMotion }); session.page.on('pageerror', error => errors[side].push(String(error))); session.page.on('response', response => { if (/\.woff2(?:\?|$)/.test(response.url())) pending.push((async () => { const bytes = await response.body(); fonts[side].push({ url: response.url(), status: response.status(), bytes: bytes.length, sha256: sha256(bytes) }); })()); }); }
+  await b.context.addInitScript(({ prefs, dataset, key, fixtureSha256 }) => { localStorage.setItem('task8.ui.theme.v1', JSON.stringify(prefs)); localStorage.setItem(key, JSON.stringify({ schemaVersion: 1, fixtureSha256, dataset })); }, { prefs, dataset, key: mockStorageKey(workspaceId), fixtureSha256: seedProvenance.fixtureSha256 });
+  const capture = async label => {
+   await settle(a, b); await Promise.all(pending);
+   const state = await Promise.all([a.page, b.page].map(measure));
+   const source = await a.page.screenshot({ animations: 'allow', caret: 'hide' }), sourceRepeat = await a.page.screenshot({ animations: 'allow', caret: 'hide' }), target = await b.page.screenshot({ animations: 'allow', caret: 'hide' }), targetRepeat = await b.page.screenshot({ animations: 'allow', caret: 'hide' }); const name = `${id}-${label}`;
+   const sample = { label, state, source: store(`${name}-source.png`, source), target: store(`${name}-target.png`, target), sourceRepeat: store(`${name}-source-repeat.png`, sourceRepeat), targetRepeat: store(`${name}-target-repeat.png`, targetRepeat), comparison: diff(source, target, name), repeats: [diff(source, sourceRepeat, `${name}-source-repeat`), diff(target, targetRepeat, `${name}-target-repeat`)] }; profile.samples.push(sample); save();
+  };
+  const clickRoute = async route => {
+   const source = a.page.locator(`${width === 390 ? '.bottomnav' : '.side'} [data-a="go"][data-r="${route}"]`).first(); const target = b.page.getByRole('navigation', { name: width === 390 ? 'Primary' : 'Main', exact: true }).getByRole('link', { name: route === 'home' ? 'Home' : 'Projects', exact: true });
+   await source.click(); await target.click(); await a.page.waitForFunction(route => window.__gr8r.S.ui.route === route, route); await b.page.waitForURL(`**/${route}`); profile.actions.push({ kind: 'native mouse', source: await source.count() ? `${route} sidebar/bottomnav` : route, target: route, url: b.page.url() }); save();
+  };
+  try {
+   for (const [label, sourceUrl, targetUrl] of [['canonical-cold', '/', `/w/${workspaceId}/home`], ['root-cold', '/', '/'], ['hash-cold', '/#home', '/#home']]) { await a.page.goto(`http://127.0.0.1:4173${sourceUrl}`); await a.page.waitForFunction(() => !!window.__gr8r); await b.page.goto(`http://127.0.0.1:5173${targetUrl}`); await b.page.waitForSelector('[data-dashboard-ready]'); await capture(label); assert.equal(profile.samples.at(-1).state[0].animations.length, 0); assert.equal(profile.samples.at(-1).state[1].animations.length, 0); }
+   await clickRoute('projects'); await settle(a, b); profile.actions.push({ kind: 'transit state', state: await Promise.all([a.page, b.page].map(measure)) }); save();
+   await clickRoute('home'); await capture('native-return'); for (const state of profile.samples.at(-1).state) assert.ok(state.animations.length > 0, 'Native entrance retained');
+   await b.page.goBack(); await b.page.waitForURL('**/projects'); await a.page.locator(`${width === 390 ? '.bottomnav' : '.side'} [data-a="go"][data-r="projects"]`).first().click(); profile.actions.push({ kind: 'canonical browser Back; Source actual Projects click because original go has no browser history', targetUrl: b.page.url() }); save(); await settle(a, b);
+   await b.page.goForward(); await b.page.waitForURL('**/home'); await a.page.locator(`${width === 390 ? '.bottomnav' : '.side'} [data-a="go"][data-r="home"]`).first().click(); profile.actions.push({ kind: 'canonical browser Forward; Source actual Home click', targetUrl: b.page.url() }); save(); await capture('forward-return');
+   await a.page.reload(); await b.page.reload(); await a.page.waitForFunction(() => !!window.__gr8r); await b.page.waitForSelector('[data-dashboard-ready]'); profile.actions.push({ kind: 'actual reload both; startup Home' }); await capture('refresh-cold');
+   profile.fonts = { responses: fonts, loaded: await Promise.all([a.page, b.page].map(page => page.evaluate(() => [...document.fonts].filter(face => face.status === 'loaded').map(face => ({ family: face.family, weight: face.weight }))))) }; profile.errors = errors; save();
+   const lockedFonts = readJson(`${artifacts}/font-assets.json`).assets; for (const side of fonts) { assert.ok(side.length >= 2); for (const font of side) { assert.equal(font.status, 200); assert.ok(lockedFonts.some(asset => asset.sha256 === font.sha256)); } } for (const faces of profile.fonts.loaded) for (const spec of ['Geist:400', 'Geist:500', 'Geist:600', 'Geist Mono:400']) assert.ok(faces.some(face => `${face.family.replaceAll('"', '')}:${face.weight}` === spec)); assert.deepEqual(errors, [[], []]);
+   for (const sample of profile.samples) { assert.equal(sample.comparison.pixels, 0, `${id}-${sample.label} whole viewport`); for (const repeat of sample.repeats) assert.equal(repeat.pixels, 0); } profile.status = 'passed';
+  } catch (error) { profile.status = 'failed'; profile.error = String(error.stack); profile.errors = errors; profile.fonts ??= { responses: fonts }; }
+  save(); console.log(`${id}: ${profile.status} ${profile.samples.map(sample => `${sample.label}=${sample.comparison.pixels}`).join(',')}`); await a.context.close(); await b.context.close();
+ }
+ report.selectedMatrix = matrix; report.immutableAfter = immutableInputs(); report.assetsAfter = assets(); assert.deepEqual(report.immutableBefore, report.immutableAfter); assert.deepEqual(report.assetsBefore, report.assetsAfter); checkSource(); report.status = report.profiles.length === matrix.length && report.profiles.every(profile => profile.status === 'passed') ? 'passed' : 'failed'; save(); if (report.status !== 'passed') process.exitCode = 1;
+} catch (error) { report.status = 'failed'; report.error = String(error.stack); save(); throw error; }
+finally { await browser?.close(); await stopTarget?.(); await stopSource?.(); }
+
+FILE tests/visual/m2/visual.mjs
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { chromium } from '@playwright/test';
+import { PNG } from 'pngjs';
+import pixelmatch from 'pixelmatch';
+import { shellMatrix, targetPath, workspaceId } from './matrix.mjs';
+import { newPage, environment } from '../reference/environment.mjs';
+import { sourceServer } from '../reference/source-server.mjs';
+import { setupScenario, readiness } from '../reference/source-driver.mjs';
+import { artifacts, readJson, sha256, checkSource } from '../reference/source-check.mjs';
+import { ready, targetServer } from '../tasks/verify.mjs';
+import { immutableInputs, implementationAssets, httpBuildAssets, sourceAssets } from '../settings/assets.mjs';
+import { createSeedDataset, seedProvenance } from '../../../apps/web/src/data/mock/seed.ts';
+import { mockStorageKey } from '../../../apps/web/src/data/mock/persistence.ts';
+
+const attempt = process.argv[2];
+const output = `docs/poc/evidence/WU-29/attempts/${attempt}`;
+if (!attempt || fs.existsSync(output)) throw Error('Unique attempt required');
+fs.mkdirSync(output, { recursive: true });
+fs.copyFileSync(import.meta.filename, `${output}/executed-harness.mjs`);
+fs.copyFileSync('tests/visual/m2/matrix.mjs', `${output}/executed-matrix.mjs`);
+const assets = () => ({ ...implementationAssets(), ...httpBuildAssets(), ...sourceAssets() });
+const normal = process.argv.includes('--normal');
+const natural = process.argv.includes('--natural');
+const startup = process.argv.includes('--startup');
+const only = process.argv.find(arg => arg.startsWith('--only='))?.slice(7);
+const matrix = shellMatrix.filter(row => !only || only.split(',').some(id => row.id.includes(id)));
+const report = { status: 'running', scope: 'Full viewport shell/project/settings/modifiers on current production Mock; Linux source-only matching capture, immutable Darwin173. BOTH --disable-partial-raster and explicitly reported OS motion. Source CAPTURE settled render protocol; no stylesheet/template mutations, tolerance, masks, Target goldens or picked pairs.', runtime: { node: process.version, os: 'linux', ...environment, reducedMotion: normal ? 'no-preference' : 'reduce' }, immutableBefore: immutableInputs(), assetsBefore: assets(), matrix, samples: [], threshold: 0, includeAA: true, masks: [] };
+report.sourceLifecycle = startup ? 'Matched startup: original Source boot hash for supported parameterless aliases; parameterized routes use explicitly recorded QA transient route/params plus original render without go/fx. Target direct-cold canonical route. Native go/navigation is tested separately.' : natural ? 'Original first route lifecycle: initial Home kept; other configured routes use original go once after setting transient controls; no extra render. Separate from CAPTURE rerender cohort.' : 'CAPTURE setupScenario and additional settled render; source flag consumption recorded separately from Target first-cold lifecycle.';
+const save = () => fs.writeFileSync(`${output}/report.json`, `${JSON.stringify(report, null, 2)}\n`);
+const store = (name, bytes) => { const path = `${output}/${name}`; fs.writeFileSync(path, bytes, { flag: 'wx' }); return { path, bytes: bytes.length, sha256: sha256(bytes) }; };
+function compare(a, b, name) {
+  const x = PNG.sync.read(a), y = PNG.sync.read(b);
+  assert.equal(x.width, y.width); assert.equal(x.height, y.height);
+  const diff = new PNG({ width: x.width, height: x.height });
+  const pixels = pixelmatch(x.data, y.data, diff.data, x.width, x.height, { threshold: 0, includeAA: true });
+  return { pixels, image: store(`${name}-diff.png`, PNG.sync.write(diff)) };
+}
+async function settled(page) {
+  await ready(page);
+  await page.waitForFunction(() => ![...document.querySelectorAll('main [role=status],#main-content [role=status]')].some(el => /^Loading /.test(el.textContent.trim())));
+  let last = '', stable = 0;
+  for (let index = 0; index < 20 && stable < 3; index++) {
+    await page.waitForTimeout(100);
+    const current = await page.evaluate(() => JSON.stringify({ text: document.body.innerText, boxes: [...document.querySelectorAll('h1,h2,main,.page,.pbody')].map(el => el.getBoundingClientRect().toJSON()) }));
+    stable = current === last ? stable + 1 : 0; last = current;
+  }
+  assert.ok(stable >= 3, 'Unsettled text or geometry');
+  await page.evaluate(() => { document.activeElement?.blur(); for (const animation of document.getAnimations()) if (animation.effect?.getTiming().iterations === Infinity) { animation.pause(); animation.currentTime = 0; } });
+}
+let browser, stopSource, stopTarget;
+try {
+  stopSource = await sourceServer(); stopTarget = await targetServer();
+  checkSource(); browser = await chromium.launch({ headless: true, args: ['--disable-partial-raster'] });
+  report.runtime.browser = browser.version(); const cdp = await browser.newBrowserCDPSession(); report.runtime.arguments = (await cdp.send('Browser.getBrowserCommandLine')).arguments; await cdp.detach();
+  for (const row of matrix) {
+    const sample = { id: row.id, family: row.family, status: 'running', setup: row, captures: [] };
+    report.samples.push(sample); save();
+    const height = row.height ?? (row.width <= 640 ? 844 : 1000), config = { viewport: { width: row.width, height }, mobile: row.width <= 640, colorScheme: row.colorScheme ?? 'light' };
+    sample.configuration = config;
+    const fixture = readJson(`${artifacts}/source-fixture.json`), dataset = createSeedDataset();
+    const prefs = { theme: 'light', accent: 'indigo', side: 'comfortable', density: 'comfortable', motion: 'system', ...row.prefs };
+    Object.assign(fixture.prefs, prefs);
+    Object.assign(dataset.preferences, prefs);
+    sample.fixtures = { source: store(`${row.id}-source-fixture.json`, Buffer.from(`${JSON.stringify(fixture, null, 2)}\n`)), target: store(`${row.id}-target-fixture.json`, Buffer.from(`${JSON.stringify(dataset, null, 2)}\n`)), seedProvenance };
+    const a = await newPage(browser, config, fixture), b = await newPage(browser, config, undefined, true, 'http://127.0.0.1:5173');
+    const responses = [[], []], pending = [], errors = [[], []];
+    for (const [session, side] of [[a, 0], [b, 1]]) {
+      session.page.setDefaultTimeout(12000);
+      session.page.on('pageerror', error => errors[side].push(String(error)));
+      session.page.on('response', response => { if (/\.woff2(?:\?|$)/.test(response.url())) pending.push((async () => { const bytes = await response.body(); responses[side].push({ url: response.url(), status: response.status(), bytes: bytes.length, sha256: sha256(bytes) }); })()); });
+      await session.page.emulateMedia({ reducedMotion: report.runtime.reducedMotion });
+    }
+    await b.context.addInitScript(({ prefs, dataset, key, fixtureSha256 }) => { localStorage.setItem('task8.ui.theme.v1', JSON.stringify(prefs)); localStorage.setItem(key, JSON.stringify({ schemaVersion: 1, fixtureSha256, dataset })); }, { prefs, dataset, key: mockStorageKey(workspaceId), fixtureSha256: seedProvenance.fixtureSha256 });
+    try {
+      const parameterized = Object.keys(row.params ?? {}).length > 0;
+      await a.page.goto(`http://127.0.0.1:4173${startup && !parameterized ? `/#${row.route}` : ''}`); await a.page.waitForFunction(() => !!window.__gr8r);
+      sample.sourceTrigger = startup ? parameterized ? 'QA transient params + original render; no go/fx, not a supported Source canonical startup URL' : `Actual original startup #${row.route}` : natural ? 'Original initial Home or first go' : 'CAPTURE settled rerender';
+      if (startup) {
+        if (parameterized || row.ui || row.taskMode) await a.page.evaluate(async row => {
+          const { S, render } = window.__gr8r;
+          S.ui.route = row.route; S.ui.params = row.params ?? {};
+          Object.assign(S.ui, row.ui ?? {});
+          if (row.taskMode) (await import('/src/shell/view-engine.js')).viewOf('tasks').mode = row.taskMode;
+          render();
+        }, row);
+        await readiness(a.page);
+      } else if (natural) {
+        if (row.route !== 'home' || row.ui || row.taskMode) await a.page.evaluate(async row => {
+          const { S, go } = window.__gr8r;
+          Object.assign(S.ui, row.ui ?? {});
+          if (row.taskMode) (await import('/src/shell/view-engine.js')).viewOf('tasks').mode = row.taskMode;
+          go(row.route, row.params ?? {});
+        }, row);
+        await readiness(a.page);
+      } else {
+        await setupScenario(a.page, row); await readiness(a.page);
+        await a.page.evaluate(() => window.__gr8r.render()); await readiness(a.page);
+      }
+      let path = targetPath(row);
+      if (row.targetMode) path += `?mode=${row.targetMode}`;
+      await b.page.goto(`http://127.0.0.1:5173${path}`);
+      await b.page.waitForSelector('.shell-layout'); await settled(b.page);
+      if (row.catalogueMode) await b.page.getByRole('radio', { name: row.catalogueMode, exact: true }).click();
+      if (row.filesList) await b.page.getByRole('radio', { name: 'List', exact: true }).click();
+      if (row.week) await b.page.getByRole('radio', { name: 'Week', exact: true }).click();
+      if (row.myCalendar) await b.page.getByRole('radio', { name: 'Calendar', exact: true }).click();
+      await Promise.all([a.page, b.page].map(settled)); await Promise.all(pending);
+      sample.fonts = { responses, loaded: await Promise.all([a.page, b.page].map(page => page.evaluate(() => [...document.fonts].filter(face => face.status === 'loaded').map(face => ({ family: face.family, weight: face.weight, status: face.status }))))) }; save();
+      const fontAssets = readJson(`${artifacts}/font-assets.json`).assets;
+      for (const side of responses) { assert.ok(side.length >= 2); for (const response of side) { assert.equal(response.status, 200); assert.ok(fontAssets.some(asset => asset.sha256 === response.sha256)); } }
+      for (const faces of sample.fonts.loaded) for (const spec of ['Geist:400', 'Geist:500', 'Geist:600', 'Geist Mono:400']) assert.ok(faces.some(face => `${face.family.replaceAll('"', '')}:${face.weight}` === spec));
+      const pages = [a.page, b.page];
+      sample.geometry = await Promise.all(pages.map(page => page.evaluate(() => ({
+        html: document.documentElement.outerHTML, text: document.body.innerText,
+        rects: [...document.querySelectorAll('h1,h2,h3,main,.page,.pbody,.set,.set-body,[data-settings-body],.side,.shell-layout,.topbar,.topbar,.board-col,.cal-g,.tl')].map(el => {
+          const css = getComputedStyle(el);
+          return { tag: el.tagName, class: el.className, rect: el.getBoundingClientRect().toJSON(), computed: Object.fromEntries(['display','padding','margin','fontFamily','fontSize','lineHeight','fontWeight','color','backgroundColor','gridTemplateColumns','overflow','transform'].map(key => [key, css[key]])) };
+        }),
+        scrollers: [...document.querySelectorAll('*')].filter(el => el.scrollHeight > el.clientHeight + 1 && ['auto','scroll'].includes(getComputedStyle(el).overflowY)).map(el => ({ tag: el.tagName, class: el.className, id: el.id, top: el.scrollTop, height: el.scrollHeight, client: el.clientHeight })),
+        animations: document.getAnimations().map(animation => ({ name: animation.animationName ?? null, playState: animation.playState, currentTime: animation.currentTime, timing: animation.effect?.getTiming(), keyframes: animation.effect?.getKeyframes(), target: animation.effect?.target?.outerHTML?.slice(0, 300) })),
+        art: [...document.querySelectorAll('.fprev,.art,.file-preview,.file-art,.fprev svg,.file-art svg,.fprev svg path,.file-art svg path,.fprev svg circle,.file-art svg circle')].map(el => ({ html: el.outerHTML, rect: el.getBoundingClientRect().toJSON(), css: Object.fromEntries([...getComputedStyle(el)].map(key => [key, getComputedStyle(el).getPropertyValue(key)])), svgCtm: el.getScreenCTM?.()?.toString() ?? null })),
+      }))));
+      for (const page of pages) await page.mouse.move(row.width - 1, height - 1);
+      const source = await a.page.screenshot({ animations: 'allow', caret: 'hide' }), sourceRepeat = await a.page.screenshot({ animations: 'allow', caret: 'hide' }), target = await b.page.screenshot({ animations: 'allow', caret: 'hide' }), targetRepeat = await b.page.screenshot({ animations: 'allow', caret: 'hide' });
+      sample.captures.push({ source: store(`${row.id}-source.png`, source), sourceRepeat: store(`${row.id}-source-repeat.png`, sourceRepeat), target: store(`${row.id}-target.png`, target), targetRepeat: store(`${row.id}-target-repeat.png`, targetRepeat), comparison: compare(source, target, row.id), sourceRepeatComparison: compare(source, sourceRepeat, `${row.id}-source-repeat`), targetRepeatComparison: compare(target, targetRepeat, `${row.id}-target-repeat`) });
+      sample.pageErrors = errors;
+      sample.status = sample.captures.every(capture => !capture.comparison.pixels && !capture.sourceRepeatComparison.pixels && !capture.targetRepeatComparison.pixels) && !errors[1].length ? 'passed' : 'failed';
+    } catch (error) { sample.status = 'failed'; sample.error = String(error.stack); sample.pageErrors = errors; sample.fontResponses = responses; }
+    save(); console.log(`${sample.id}: ${sample.status} ${sample.captures[0]?.comparison.pixels ?? 'no comparison'}`);
+    await a.context.close(); await b.context.close();
+  }
+  report.immutableAfter = immutableInputs(); report.assetsAfter = assets(); assert.deepEqual(report.immutableBefore, report.immutableAfter); assert.deepEqual(report.assetsBefore, report.assetsAfter); checkSource();
+  report.status = report.samples.length === matrix.length && report.samples.every(sample => sample.status === 'passed') ? 'passed' : 'failed'; save();
+  if (report.status !== 'passed') process.exitCode = 1;
+} catch (error) { report.status = 'failed'; report.error = String(error.stack); save(); throw error; }
+finally { await browser?.close(); await stopTarget?.(); await stopSource?.(); }
+
+CONSUMERS

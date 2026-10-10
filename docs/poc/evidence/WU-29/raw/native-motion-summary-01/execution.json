@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "node",
+    "-e",
+    "const fs=require(\"fs\"),r=JSON.parse(fs.readFileSync(\"docs/poc/evidence/WU-29/attempts/native-task-motion-01/report.json\",\"utf8\")); console.log(JSON.stringify({status:r.status,profiles:r.profiles.map(p=>({id:p.id,status:p.status,error:p.error,samples:p.samples.map(s=>({label:s.label,pixels:s.comparison.pixels,repeats:s.repeats.map(r=>r.pixels),animations:s.state.map(x=>x.animations.map(a=>({name:a.name,timing:a.timing,html:a.html.slice(0,120)})))}))}))},null,2));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/native-motion-summary-01/command.txt",
+    "bytes": 481,
+    "sha256": "61e1f0e9666190536861ecded3e0d7c48288095cc685bb8655c270866ffc5e3c"
+  },
+  "startedAt": "2026-10-10T13:02:36.649Z",
+  "finishedAt": "2026-10-10T13:02:36.672Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/native-motion-summary-01/stdout",
+    "bytes": 7910,
+    "sha256": "56efedfa67af75f155d3fe24c40d792f2b46d05b7ed92600aecfd16d26353e52"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/native-motion-summary-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-BVJ_peNi.js";var t=e;export{t as component};

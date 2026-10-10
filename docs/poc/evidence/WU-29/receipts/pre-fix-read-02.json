@@ -1,0 +1,32 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "6bbc13",
+      "wall_time_seconds": 0.000043104,
+      "exit_code": 0,
+      "original_token_count": 641,
+      "output": "import { useLayoutEffect, useRef } from 'react';\nimport type { AnimationEvent } from 'react';\n\n// An embedded renderer can expose multiple visual siblings through display:\n// contents. Only boxes that really animate own completion; hidden/table and\n// coverage wrappers cannot emit an animationend event.\nfunction animatedBoxes(parent: Element | null): HTMLElement[] {\n  return [...(parent?.children ?? [])].flatMap(child => {\n    if (!(child instanceof HTMLElement)) return [];\n    const css = getComputedStyle(child);\n    if (css.display === 'none') return [];\n    if (css.display === 'contents') return animatedBoxes(child);\n    return css.animationName === 'none' ? [] : [child];\n  });\n}\n\n// Source go()/render() consumes a route/tab flag once. Its original animation\n// remains on that DOM until the next render; canonical updates never replay it.\nexport function useProjectMotion(pathname: string, revision: string, scope: 'project' | 'page' = 'project', interactionRevision = '') {\n  const host = useRef<HTMLDivElement>(null), state = useRef({ pathname: '', revision: '', interactionRevision, complete: false });\n  useLayoutEffect(() => {\n    const node = host.current; if (!node) return;\n    if (state.current.pathname !== pathname) {\n      const first = !state.current.pathname;\n      node.dataset.projectTransition = first ? 'route' : 'tab';\n      const parent = first ? node : node.querySelector('[data-project-body]');\n      const owners = animatedBoxes(parent).filter(child => !(first && scope === 'project') || child.hasAttribute('data-project-header') || child.hasAttribute('data-project-body'));\n      state.current = { pathname, revision, interactionRevision, complete: owners.length === 0 };\n    } else if (state.current.revision !== revision) { state.current.revision = revision; if (state.current.complete) delete node.dataset.projectTransition; }\n    if (state.current.interactionRevision !== interactionRevision) { state.current.interactionRevision = interactionRevision; delete node.dataset.projectTransition; }\n  });\n  const onAnimationEnd = (event: AnimationEvent<HTMLDivElement>) => {\n    const node = host.current, target = event.target;\n    if (!node || !(target instanceof HTMLElement)) return;\n    const owners = animatedBoxes(node.dataset.projectTransition === 'route' ? node : node.querySelector('[data-project-body]'));\n    if (owners.includes(target)) state.current.complete = owners.every(owner => owner.getAnimations().every(animation => animation.playState === 'finished'));\n  };\n  return { hostRef: host, onAnimationEnd };\n}\n\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "947f05",
+      "wall_time_seconds": 0.000031492,
+      "exit_code": 2,
+      "original_token_count": 528,
+      "output": "rg: apps/web/src/features/home/HomePage.tsx: No such file or directory (os error 2)\napps/web/src/app/shell/Sidebar.tsx:8:import { Link, useLocation, useNavigate } from '@tanstack/react-router';\napps/web/src/app/shell/Sidebar.tsx:24:  return <>{item}{collapsed && <Tooltip open={tooltip} onOpenChange={setTooltip} anchor={anchor} label={label} placement=\"right\"/>}</>;\napps/web/src/app/shell/Sidebar.tsx:33:  const pathname = useLocation({ select: location => location.pathname });\napps/web/src/app/shell/Sidebar.tsx:40:  return <nav ref={navigationRef} inert={mobileClosed || undefined} className=\"shell-sidebar flex min-h-0 select-none flex-col overflow-hidden border-0 border-r border-solid border-border bg-[var(--bg-side)]\" aria-label=\"Main\">\napps/web/src/app/shell/Sidebar.tsx:46:      {data.projects.filter(item=>item.project.status!=='complete').map(item=>{const project=item.project; const selected=pathname.startsWith(`/w/${workspaceId}/projects/${project.id}/`);const open=expanded[project.id];return <div key={project.id} onContextMenu={event=>{if(item.access!==\"allowed\"||event.target instanceof Element&&event.target.closest(\"input,textarea,[contenteditable]\"))return;event.preventDefault();projectIntents.projectMenu(project.id,event.currentTarget,{x:event.clientX,y:event.clientY});}} draggable={!collapsed} data-project-nav={project.id} onDragStart={event=>{dragProject.current=project.id;event.dataTransfer.effectAllowed=\"move\";event.dataTransfer.setData(\"text/plain\",project.id);}} onDragEnd={()=>{dragProject.current=null;setDropProject(null);}} onDragOver={event=>{if(dragProject.current&&dragProject.current!==project.id){event.preventDefault();setDropProject(project.id);}}} onDrop={event=>{event.preventDefault();const moving=dragProject.current;dragProject.current=null;setDropProject(null);if(!moving||moving===project.id)return;const ids: string[]=data.projects.map(row=>row.project.id).filter(id=>id!==moving);ids.splice(ids.indexOf(project.id),0,moving);void projectIntents.reorderProjects(ids);}} style={dropProject===project.id?{boxShadow:\"inset 0 2px 0 var(--accent)\"}:undefined}>\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "b71ce5",
+      "wall_time_seconds": 0.000039127,
+      "exit_code": 1,
+      "original_token_count": 23,
+      "output": "cat: docs/poc/evidence/WU-29/raw/archive-pre-ui-01/stdout.txt: No such file or directory\n"
+    }
+  }
+]

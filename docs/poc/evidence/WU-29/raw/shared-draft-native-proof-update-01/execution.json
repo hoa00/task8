@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\np=Path(\"tests/visual/m2/inbox-probes.mjs\");s=p.read_text();s=s.replace(\"WU29 independent drawer draft\", \"WU29 shared draft edited in Drawer\")\na=\"await drawerComment.getByRole(\\x27button\\x27, { name: \\x27👍 1\\x27, exact: true }).waitFor(); await drawer.getByRole(\\x27textbox\\x27\";assert a in s;s=s.replace(a,\"await drawerComment.getByRole(\\x27button\\x27, { name: \\x27👍 1\\x27, exact: true }).waitFor(); await expect(drawer.getByRole(\\x27textbox\\x27, { name: \\x27Comment\\x27, exact: true })).toHaveValue(inboxDraft); await drawer.getByRole(\\x27textbox\\x27\")\na=\"await expect(preview.getByRole(\\x27textbox\\x27, { name: \\x27Reply\\x27, exact: true })).toHaveValue(inboxDraft);\";assert s.count(a)==3\nfirst=s.index(a);s=s[:first+len(a)]+s[first+len(a):].replace(a,a.replace(\"inboxDraft\", \"drawerDraft\"))\na=\" return { commentId: canonical.id\";assert a in s\ns=s.replace(a,\" await preview.getByRole(\\x27button\\x27, { name: \\x27Back\\x27, exact: true }).click();\\n for (const route of [\\x27notifications\\x27, \\x27inbox\\x27]) { await page.getByRole(\\x27navigation\\x27, { name: \\x27Main\\x27, exact: true }).locator(`a[href=\\\"/w/${workspaceId}/${route}\\\"]`).click(); await page.waitForSelector(\\x27[data-notifications-ready]\\x27); }\\n await page.locator(`[data-notification-id=\\\"${notificationId}\\\"]`).click(); await page.waitForSelector(\\x27[data-conversation-ready]\\x27); await expect(preview.getByRole(\\x27textbox\\x27, { name: \\x27Reply\\x27, exact: true })).toHaveValue(drawerDraft);\\n\"+a)\ns=s.replace(\"ownership: \\x27Independent feature-owned drafts survive their preview/drawer remount; shared composer has controlled values\\x27\", \"ownership: \\x27One workspace/task comment draft and revision owner; native Inbox to Drawer edit to Inbox and route away/back retain the same unposted text\\x27\");p.write_text(s)"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/shared-draft-native-proof-update-01/command.txt",
+    "bytes": 1844,
+    "sha256": "e7a88a78654587e755ff31066317cea80339fc182e72134c332f46364b0130a9"
+  },
+  "startedAt": "2026-10-10T13:18:47.255Z",
+  "finishedAt": "2026-10-10T13:18:47.281Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/shared-draft-native-proof-update-01/stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/shared-draft-native-proof-update-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

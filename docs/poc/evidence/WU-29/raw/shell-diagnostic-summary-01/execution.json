@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\"docs/poc/evidence/WU-29/raw/shell-diagnostic-01/stdout\")); for(const s of r.failed) console.log(s.id,s.pixels,JSON.stringify(s.bbox),s.animations.map(a=>a.length).join(\"/\"));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/shell-diagnostic-summary-01/command.txt",
+    "bytes": 273,
+    "sha256": "f58aa814cdab12a70ca1e4e7fea18a00e06ca0133d4c520bb024961b81c52992"
+  },
+  "startedAt": "2026-10-10T12:34:30.763Z",
+  "finishedAt": "2026-10-10T12:34:30.787Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/shell-diagnostic-summary-01/stdout",
+    "bytes": 614,
+    "sha256": "9f1ac5ed65cb9dad573509d59dc883105ac83e6175d6a3f03369bc982eedea2e"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/shell-diagnostic-summary-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

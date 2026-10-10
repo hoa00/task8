@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "node",
+    "-e",
+    "const fs=require(\"fs\"); for(const p of [\"apps/web/src/app/shell/Sidebar.tsx\",\"packages/contracts/src/catalogs.ts\",\".reference/gr8r-studio/src/core/utils.js\",\"tests/visual/m2/home-motion.mjs\",\"tests/visual/m2/visual.mjs\"]){const s=fs.readFileSync(p,\"utf8\");console.log(\"FILE \"+p);console.log(p.includes(\"m2/\")?s:s.slice(0,12000))} console.log(\"CONSUMERS\");"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/motion-controls-read-02/command.txt",
+    "bytes": 370,
+    "sha256": "6a37c98086cc46a13d133e1caedc478ba44096847f6ed4d679a9f612ffd6673b"
+  },
+  "startedAt": "2026-10-10T12:55:44.864Z",
+  "finishedAt": "2026-10-10T12:55:44.894Z",
+  "node": "v24.19.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/motion-controls-read-02/stdout",
+    "bytes": 47446,
+    "sha256": "e6d53f0d97db837869cbdaee57bc46b4573d664dc3223c11f671dd14b6b35024"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/motion-controls-read-02/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

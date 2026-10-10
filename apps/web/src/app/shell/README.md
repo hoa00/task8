@@ -20,7 +20,7 @@ separate route and validates saved-view ownership through `listSavedViews`.
 
 Router owns `taskId`. `useWorkspaceIntents().openTask/closeTask` is the typed
 contract for WU-09/10. There is one overlay provider and one task overlay slot;
-this unit does not render drawer content or fake a successful task read.
+TaskOverlayHost renders the shared drawer and task forms against canonical reads.
 Workspace changes cancel old requests, clear scoped selection and replace stale
 task intent in the destination URL. The router's navigation scope is a transient
 route identity, never a copy of session or bootstrap server data.
@@ -32,24 +32,24 @@ Escape/scrim focus return and closed offcanvas inertness belong to the shell.
 Mobile and desktop keep the source inclusive 900/640 boundaries, dimensions and
 safe-area CSS. Emulated viewport checks do not prove physical device insets.
 
-## Pending feature and action ledger
+## Integrated feature and action ownership
 
 | Surface/action | Owner | Current behavior |
 |---|---|---|
 | Home / Workspace Overview content | WU-17 | Separate dashboard compositions with complete canonical aggregates/cursor reads; content acceptance independent of shell crops |
-| Task fields/filter engine | WU-08 | Shared controlled fields/domain engine and standalone QA gallery implemented; page consumers remain with their owners |
-| Workspace/Project/My Tasks lists | WU-09 | Pending route outlet |
-| Task drawer/forms | WU-10/11 | Single overlay slot; no drawer business UI |
-| Board / Table / Calendar / Timeline | WU-12/13/14/15 | Fixed route hosts |
-| ProjectHeader, tabs, ProjectPage, project CRUD/reorder/options, Favorites/saved-view composition | WU-16 | Minimal project context/outlet; identity read only; action controls aria-disabled |
-| Palette / Search / Activity | WU-18 | Search link resolves Search; palette remains pending |
-| Inbox / Notifications | WU-19 | Navigation and aggregate badges only |
-| Member/profile/account / Teams/new team | WU-20/21 | Entity route validation; future action controls aria-disabled |
-| Files / preview `fileId` | WU-22 | Validated identity search seam; content pending |
-| Settings/preferences/security/billing | WU-23/24/25 | Validated section hosts |
-| Auth / Onboarding | WU-26/27 | Routes/search validation; content pending |
-| Archive, Design system/System states, shortcuts/help extras | WU-28 | Reachable route hosts; gallery content/extra commands pending |
-| Topbar New/Create | WU-10/16/21/28 | Visible source control, aria-disabled; no fake success toast |
+| Task fields/filter engine | WU-08 | Shared controlled fields/domain engine and standalone QA gallery implemented; composed by task pages, drawer, Inbox and project consumers |
+| Workspace/Project/My Tasks lists | WU-09 | Shared task list renderer with canonical workspace/project/my-task scope |
+| Task drawer/forms | WU-10/11 | Single overlay slot with shared drawer, comments, files and canonical task forms |
+| Board / Table / Calendar / Timeline | WU-12/13/14/15 | Shared view engines composed by workspace, project and My Tasks consumers |
+| ProjectHeader, tabs, ProjectPage, project CRUD/reorder/options, Favorites/saved-view composition | WU-16 | Full project wrapper, header, fixed/saved tabs and canonical project commands |
+| Palette / Search / Activity | WU-18 | Canonical search/activity pages and shared command palette |
+| Inbox / Notifications | WU-19 | Canonical notification pages, Inbox task preview and shared comments |
+| Member/profile/account / Teams/new team | WU-20/21 | Canonical people/team pages, forms and shared identity components |
+| Files / preview `fileId` | WU-22 | Shared project/task files, preview and typed file commands |
+| Settings/preferences/security/billing | WU-23/24/25 | Preferences and workspace settings with typed capability boundaries |
+| Auth / Onboarding | WU-26/27 | Complete auth/onboarding presentation with canonical session/setup flows |
+| Archive, Design system/System states, shortcuts/help extras | WU-28 | Archive and both dev galleries with implemented commands |
+| Topbar New/Create | WU-10/16/21/28 | Task/project/team forms and canonical extras |
 
 `ShellHarness` and `shell-harness.html` contain only controlled test fixtures.
 The latter supplies a synthetic empty second workspace and delayed old response
@@ -60,4 +60,4 @@ The harness HTML is excluded from the main/HTTP-only entry graph.
 WU-09 List pages preserve their feature-owned normalized `view` search string
 through canonical task-open/close navigation. The shell validates its bounded
 string shape; task features own decoding. Title edit closes the task intent before
-focusing the inline input. Drawer contents remain pending WU-10.
+focusing the inline input. TaskOverlayHost renders the shared drawer for that task intent.

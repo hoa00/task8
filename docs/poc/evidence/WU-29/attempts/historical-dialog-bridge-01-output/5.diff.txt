@@ -1,0 +1,45 @@
+--- 537912fe78c6d91e0c122e4918ff90aae331d81b:packages/ui/src/controls.tsx
++++ current:packages/ui/src/controls.tsx
+@@ -44,9 +44,10 @@
+     {typeof children === 'function' ? children({ id, 'aria-invalid': error ? true : undefined, 'aria-describedby': error || hint ? descriptionId : undefined }) : children}
+     {error ? <span id={descriptionId} className="flex items-center gap-1 text-xs text-red"><Icon name="circle-alert" size={12} />{error}</span> : hint ? <span id={descriptionId} className="text-xs text-muted">{hint}</span> : null}</div>;
+ }
+-export interface PasswordInputProps extends Omit<InputProps, 'type'> { revealed: boolean; onRevealedChange: (revealed: boolean) => void }
+-export function PasswordInput({ revealed, onRevealedChange, className = '', ...props }: PasswordInputProps) {
+-  return <div className="relative flex items-center"><Input {...props} type={revealed ? 'text' : 'password'} className={`pl-[30px] pr-[38px] ${className}`} /><span className="absolute right-[5px]"><IconButton size="sm" disabled={props.disabled} aria-label={revealed ? 'Hide password' : 'Show password'} aria-pressed={revealed} onClick={() => onRevealedChange(!revealed)}><Icon name={revealed ? 'eye-off' : 'eye'} size={15} /></IconButton></span></div>;
++export type PasswordInputProps = Omit<InputProps, 'type'> & ({ revealControl: false; revealed?: never; onRevealedChange?: never } | { revealControl?: true; revealed: boolean; onRevealedChange: (revealed: boolean) => void });
++export function PasswordInput({ revealed, onRevealedChange, revealControl = true, className = '', ...props }: PasswordInputProps) {
++  if (!revealControl) return <Input {...props} type="password" className={className} />;
++  return <div className="relative flex items-center"><Input {...props} type={revealed ? 'text' : 'password'} className={`pl-[30px] pr-[38px] ${className}`} /><span className="absolute right-[5px]"><IconButton size="sm" disabled={props.disabled} aria-label={revealed ? 'Hide password' : 'Show password'} aria-pressed={revealed} onClick={() => onRevealedChange?.(!revealed)}><Icon name={revealed ? 'eye-off' : 'eye'} size={15} /></IconButton></span></div>;
+ }
+ export interface CheckboxProps extends Omit<ComponentPropsWithRef<'input'>, 'type' | 'checked' | 'defaultChecked' | 'onChange' | 'size'> { checked: boolean; indeterminate?: boolean; round?: boolean; onCheckedChange: (checked: boolean) => void }
+ export function Checkbox({ checked, indeterminate = false, round = false, onCheckedChange, ref, className = '', ...props }: CheckboxProps) {
+@@ -62,21 +63,23 @@
+ }
+ export interface ChoiceItem { ariaLabel?: string; value: string; label: ReactNode; icon?: ReactNode; count?: number | undefined; disabled?: boolean; panelId?: string }
+ export interface TabsProps extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> { items: readonly ChoiceItem[]; value: string; onValueChange: (value: string) => void; label: string }
+-function Choices({ items, value, onValueChange, label, segmented, ref, className = '', ...props }: TabsProps & { segmented: boolean }) {
++export interface SegmentedControlProps extends TabsProps { semantics?: 'radio' | 'tabs' }
++function Choices({ items, value, onValueChange, label, segmented, semantics, ref, className = '', ...props }: SegmentedControlProps & { segmented: boolean }) {
++  const tabs = !segmented || semantics === 'tabs';
+   const root = useRef<HTMLDivElement>(null);
+   useImperativeHandle(ref, () => root.current!, []);
+-  return <div {...props} ref={root} role={segmented ? 'radiogroup' : 'tablist'} aria-label={label} className={`${segmented ? 'inline-flex gap-[2px] rounded-sm bg-surface-3 p-[2px]' : 'flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'} ${className}`}>
+-    {items.map(item => <button key={item.value} type="button" aria-label={item.ariaLabel} role={segmented ? 'radio' : 'tab'} aria-checked={segmented ? value === item.value : undefined} aria-selected={!segmented ? value === item.value : undefined} aria-controls={item.panelId} disabled={item.disabled} tabIndex={item.value === value ? 0 : -1} onClick={() => onValueChange(item.value)}
++  return <div {...props} ref={root} role={tabs ? 'tablist' : 'radiogroup'} aria-label={label} className={`${segmented ? 'inline-flex gap-[2px] rounded-sm bg-surface-3 p-[2px]' : 'flex gap-[2px] overflow-x-auto border-0 border-b border-solid border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'} ${className}`}>
++    {items.map(item => <button key={item.value} type="button" aria-label={item.ariaLabel} role={tabs ? 'tab' : 'radio'} aria-checked={!tabs ? value === item.value : undefined} aria-selected={tabs ? value === item.value : undefined} aria-controls={item.panelId} disabled={item.disabled} tabIndex={item.value === value ? 0 : -1} onClick={() => onValueChange(item.value)}
+       onKeyDown={event => {
+         if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+         event.preventDefault(); const enabled = items.filter(choice => !choice.disabled); const current = enabled.findIndex(choice => choice.value === item.value);
+         const next = event.key === 'Home' ? 0 : event.key === 'End' ? enabled.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + enabled.length) % enabled.length;
+         const choice = enabled[next]; if (choice) { onValueChange(choice.value); root.current?.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')[next]?.focus(); }
+-      }} className={`${segmented ? 'h-[calc(var(--h-sm)-2px)] gap-[5px] rounded-[5px] px-[9px] text-xs transition-[background,color] aria-checked:bg-surface aria-checked:text-foreground aria-checked:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)]' : 'relative h-9 gap-[6px] whitespace-nowrap px-[10px] text-sm transition-colors aria-selected:text-foreground ui-tab'} inline-flex items-center font-medium text-secondary source-hover:text-foreground`}>
++      }} className={`${segmented ? 'h-[calc(var(--h-sm)-2px)] gap-[5px] rounded-[5px] px-[9px] text-xs transition-[background,color] aria-checked:bg-surface aria-checked:text-foreground aria-checked:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)] aria-selected:bg-surface aria-selected:text-foreground aria-selected:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)]' : 'relative h-9 gap-[6px] whitespace-nowrap px-[10px] text-sm transition-colors aria-selected:text-foreground ui-tab'} inline-flex items-center font-medium text-secondary source-hover:text-foreground`}>
+       {item.icon}{item.label}{item.count !== undefined && <span className="text-2xs font-medium text-muted">{item.count}</span>}</button>)}
+   </div>;
+ }
+ export function Tabs(props: TabsProps) { return <Choices {...props} segmented={false} />; }
+-export function SegmentedControl(props: TabsProps) { return <Choices {...props} segmented />; }
++export function SegmentedControl(props: SegmentedControlProps) { return <Choices {...props} segmented />; }
+ export type VisuallyHiddenProps = ComponentPropsWithRef<'span'>;
+ export function VisuallyHidden(props: VisuallyHiddenProps) { return <span {...props} className={`sr-only ${props.className ?? ''}`} />; }

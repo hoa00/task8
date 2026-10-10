@@ -1,0 +1,8 @@
+/* Sibling borders and finite entry descendants own no single Tailwind box.
+   Geometry from locked panels.css/responsive.css/motion.css; no legacy import. */
+.dashboard-stat + .dashboard-stat { border-left:1px solid var(--border); }
+@media(max-width:900px) { .dashboard-stat:nth-child(3) { border-left:0; } .dashboard-stat:nth-child(n+3) { border-top:1px solid var(--border); } }
+[data-project-transition=route] .dashboard-grid > * > *:nth-child(2), [data-project-transition=route] .dashboard-grid > *:nth-child(2) > *:first-child { animation:riseIn .4s .09s var(--ease) both; }
+/* Stored Reduce leaves nested route panels on their normal entrance. The OS
+   override owns all nested panels, including the first, with its full shorthand. */
+@media(prefers-reduced-motion:reduce) { :root:not([data-motion=full]) [data-project-transition] .dashboard-grid > * > * { animation:fadeOnly .12s both !important; } }

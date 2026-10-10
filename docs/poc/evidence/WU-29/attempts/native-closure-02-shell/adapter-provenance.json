@@ -1,0 +1,63 @@
+{
+  "input": "tests/visual/shell/routes.mjs",
+  "inputBytes": 16601,
+  "inputSha256": "31e3e830aaf3eeff4186654c763c13972749a01cc79434333a729ab619818d73",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-closure-02-shell/executed-adapter.mjs",
+  "adapterBytes": 18476,
+  "adapterSha256": "bc87838e9ccc66eb5282e090b26dc1c3a5718003a5a72f39ca08e7ec34ef2909",
+  "remapped": [
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    }
+  ],
+  "assertionUpdates": [
+    {
+      "before": "timeline:'[data-timeline-page]'};await expect(p.locator(regression&&owned[page]",
+      "after": "timeline:'[data-timeline-page]',inbox:'[data-inbox-page]',notifications:'[data-notifications-page]',search:'[data-search-page]',members:'[data-members-page]',teams:'[data-teams-page]',activity:'[data-workspace-activity]',archive:'[data-archive-page]'};await expect(p.locator(regression&&owned[page]",
+      "reason": "Retain all 15 canonical route body count assertions using current completed feature owners"
+    },
+    {
+      "before": "timeline:'[data-timeline-page]'};await expect(p.locator(regression&&owned[view]",
+      "after": "timeline:'[data-timeline-page]',files:'[data-project-files]'};await expect(p.locator(regression&&owned[view]",
+      "reason": "Retain all eight fixed Project tab body assertions including completed Files"
+    },
+    {
+      "before": "await goto(p,invalid);await expect(p.getByRole('heading',{name:'Page not found'})).toHaveCount(1);if(invalid.startsWith(root))await expect(p.locator('.shell-layout')).toHaveCount(1);await expect(p).toHaveTitle('Not found · Gr8r Studio');",
+      "after": "await goto(p,invalid);const memberUnavailable=invalid===`${root}/members/${missing}`;await expect(p.getByRole('heading',{name:memberUnavailable?'Member not found':'Page not found',exact:true})).toHaveCount(1);if(memberUnavailable)await expect(p.getByText('This membership is unavailable in this workspace.',{exact:true})).toBeVisible();if(invalid.startsWith(root))await expect(p.locator('.shell-layout')).toHaveCount(1);await expect(p).toHaveTitle(memberUnavailable?'Members · Gr8r Studio':'Not found · Gr8r Studio');report.invalidRoutes??=[];report.invalidRoutes.push({requested:invalid,url:p.url(),title:await p.title(),heading:memberUnavailable?'Member not found':'Page not found',bodyCount:await p.getByRole('heading',{name:memberUnavailable?'Member not found':'Page not found',exact:true}).count()});",
+      "reason": "Keep all 12 exact malformed/missing routes. Current MemberDetail owns the canonical unavailable-membership EmptyState and Members title; other invalid paths and missing entities retain full 404 body/title checks. Record actual URL/title/body outcome for each case"
+    },
+    {
+      "before": "await p.getByRole('button',{name:'Expand sidebar',exact:true}).click();pass('collapsed-preference-reload');",
+      "after": "for(const width of [900,640,390,901,1440]){await p.setViewportSize({width,height:width<=640?844:1000});await expect(p.locator('.shell-layout')).toHaveAttribute('data-collapsed','true');assert.equal(await p.evaluate(()=>localStorage.getItem('task8.ui.shell.v1')),'collapsed');if(width<=900){await p.getByRole('button',{name:'Open navigation',exact:true}).click();await expect(p.locator('.shell-layout')).toHaveAttribute('data-collapsed','true');await p.keyboard.press('Escape');}report.collapsedViewport??=[];report.collapsedViewport.push({width,height:width<=640?844:1000,collapsed:await p.locator('.shell-layout').getAttribute('data-collapsed'),stored:await p.evaluate(()=>localStorage.getItem('task8.ui.shell.v1'))});}await p.reload();await expect(p.locator('.shell-layout')).toHaveAttribute('data-collapsed','true');await p.getByRole('button',{name:'Expand sidebar',exact:true}).click();pass('collapsed-preference-reload-and-responsive-persistence');",
+      "reason": "Add the required DIM-08 native collapsed preference → 900/640/390 mobile navigation open/Escape → 901/1440 desktop → reload flow before the existing explicit expansion and mobile focus-trap probes"
+    },
+    {
+      "before": "p.getByRole('menuitemradio',{name:'Personal',exact:true})",
+      "after": "p.getByRole('menu',{name:'Workspaces',exact:true}).getByRole('menuitemradio').filter({has:p.getByText('Personal',{exact:true})})",
+      "reason": "Match exact workspace text within the actual menu while its accessible name also includes the plan label; preserve ordinary unavailable-workspace 404 assertion"
+    }
+  ],
+  "precreatedEvidenceDirectories": [],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt",
+    "Retain all 15 canonical route body count assertions using current completed feature owners",
+    "Retain all eight fixed Project tab body assertions including completed Files",
+    "Keep all 12 exact malformed/missing routes. Current MemberDetail owns the canonical unavailable-membership EmptyState and Members title; other invalid paths and missing entities retain full 404 body/title checks. Record actual URL/title/body outcome for each case",
+    "Add the required DIM-08 native collapsed preference → 900/640/390 mobile navigation open/Escape → 901/1440 desktop → reload flow before the existing explicit expansion and mobile focus-trap probes",
+    "Match exact workspace text within the actual menu while its accessible name also includes the plan label; preserve ordinary unavailable-workspace 404 assertion"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-closure-02-shell/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay",
+    "--wu17-regression"
+  ]
+}

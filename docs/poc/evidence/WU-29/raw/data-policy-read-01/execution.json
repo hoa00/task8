@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "bash",
+    "-c",
+    "cat apps/web/src/features/projects/format.ts apps/web/src/features/projects/catalogue.ts apps/web/src/features/activity/WorkspaceActivity.tsx apps/web/src/features/activity/project-feed.ts apps/web/src/features/activity/ActivityFeed.tsx apps/web/src/features/projects/ProjectOverview.tsx; rg -n \"export.*fmt|function fmt|const fmt|groupBy|groups|sort\" .reference/gr8r-studio/src/ui/helpers.js .reference/gr8r-studio/src/core/utils.js .reference/gr8r-studio/src/pages/activity.js .reference/gr8r-studio/src/pages/projects.js .reference/gr8r-studio/src/views/project-overview.js; sed -n \"630,694p\" docs/poc/API_CONTRACT.md; sed -n \"206,254p\" docs/poc/DECISIONS.md"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/data-policy-read-01/command.txt",
+    "bytes": 676,
+    "sha256": "4b9b486100b1d7a58b3c228e8b3bee6d343c6b43759febb144ab97c013eaefcb"
+  },
+  "startedAt": "2026-10-10T12:36:37.963Z",
+  "finishedAt": "2026-10-10T12:36:37.976Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/data-policy-read-01/stdout",
+    "bytes": 35649,
+    "sha256": "63c6b56889d8dc5d710fd8c5b4935997526c633fb840f1637d267981ea5ddeb7"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/data-policy-read-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

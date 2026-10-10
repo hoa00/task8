@@ -1,0 +1,1 @@
+'node' '-e' 'const fs=require("fs"); for(const p of ["apps/web/src/app/shell/Sidebar.tsx","packages/contracts/src/catalogs.ts",".reference/gr8r-studio/src/core/utils.js","tests/visual/m2/home-motion.mjs","tests/visual/m2/visual.mjs"]){const s=fs.readFileSync(p,"utf8");console.log("FILE "+p);console.log(p.includes("m2/")?s:s.slice(0,12000))} console.log("CONSUMERS");'

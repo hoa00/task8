@@ -1,3 +1,4 @@
+import { TaskCommentDraftProvider } from '../../features/comments/TaskCommentDraftProvider';
 import { DevScenarioHost } from '../../features/dev/DevScenarioHost';
 import { DevOfflineBar } from '../../features/dev/DevOfflineBar';
 import { FileOverlayHost } from '../../features/files/FileOverlayHost';
@@ -24,6 +25,7 @@ import type { TaskFormIntent, TaskMenuIntent } from '../../features/tasks/detail
 import { links } from '../navigation';
 import { LoadingBoundary } from './Boundaries';
 import { useDataRuntime } from '../../data/context';
+import { InitialRouteEntryContext } from './route-entry-context';
 
 export interface AppShellProps { workspaceId: string }
 function subscribeMobile(callback:()=>void){const media=matchMedia('(max-width: 900px)');media.addEventListener('change',callback);return ()=>media.removeEventListener('change',callback);}
@@ -40,6 +42,7 @@ function WorkspaceShell({workspaceId}:AppShellProps) {
  const queryClient=useQueryClient(),router=useRouter(),navigate=useNavigate();
  const mobile=useSyncExternalStore(subscribeMobile,()=>matchMedia('(max-width: 900px)').matches,()=>false);
  const location=useLocation();
+ const [initialRouteEntry,setInitialRouteEntry]=useState(true);
  const loading=useRouterState({select:state=>state.isLoading});
  const notFound=useRouterState({select:state=>state.matches.some(match=>match.status==='notFound'||isNotFound(match.error))});
  const data=useWorkspaceBootstrap().data?.data;
@@ -59,10 +62,11 @@ function WorkspaceShell({workspaceId}:AppShellProps) {
  const openTask=(taskId:string)=>{EntityIdSchema.parse(taskId);if(!search.taskId){const focused=document.activeElement;taskOpener.current=focused instanceof HTMLElement&&focused!==document.body?focused:document.getElementById('main-content');}void navigate({to:location.pathname,resetScroll:false,search:previous=>({...previous,taskId})});};
  useEffect(()=>{if(priorWorkspace.current!==workspaceId){void cancelWorkspaceQueries(queryClient,priorWorkspace.current);priorWorkspace.current=workspaceId;}},[queryClient,workspaceId]);
  useEffect(()=>router.subscribe('onBeforeNavigate',event=>{
+   if(event.toLocation.pathname!==location.pathname)setInitialRouteEntry(false);
    const destination=event.toLocation.pathname.match(/^\/w\/([^/]+)/)?.[1] ?? validateRouteSearch(event.toLocation.search).workspaceId ?? workspaceId;
    if(destination!==workspaceId){void cancelWorkspaceQueries(queryClient,workspaceId);setSelection({workspaceId:destination,ids:[]});setHomeTab({workspaceId:destination,tab:'upcoming'});}
    setMobileOpen(false);
- }),[router,queryClient,workspaceId]);
+ }),[router,queryClient,workspaceId,location.pathname]);
  useEffect(()=>{
    const segment=location.pathname.split('/')[3]??location.pathname.split('/').at(-1)??'';
    const project=segment==='projects'?data?.projects.find(item=>location.pathname.includes(item.project.id)):undefined;
@@ -73,12 +77,12 @@ function WorkspaceShell({workspaceId}:AppShellProps) {
  useEffect(()=>{const media=matchMedia('(max-width: 900px)');const resize=()=>{if(!media.matches)setMobileOpen(false);};media.addEventListener('change',resize);return()=>media.removeEventListener('change',resize);},[]);
  const toggleCollapsed=(value:boolean)=>{setCollapsed(value);try{localStorage.setItem('task8.ui.shell.v1',value?'collapsed':'expanded');}catch{/* preference is optional */}};
  if(!data)return <LoadingBoundary/>;
- return <WorkspaceTransientContext value={{homeTaskTab:homeTab.workspaceId===workspaceId?homeTab.tab:'upcoming',setHomeTaskTab:tab=>setHomeTab({workspaceId,tab}),selectedTaskIds:selection.workspaceId===workspaceId?selection.ids:[],selectTasks:ids=>setSelection({workspaceId,ids}),openTask,closeTask,openTaskForm:(taskId,defaults)=>setForm(current=>taskId?{open:true,taskId,generation:current.generation+1}:{open:true,generation:current.generation,...(defaults?{defaults}:{})}),openTaskMenu:(taskId,anchor,point)=>setTaskMenu({taskId,anchor,...(point?{point}:{})})}}><OverlayProvider><SelectionEscape mobileOpen={mobileOpen}/><ProjectOverlayHost key={workspaceId} data={data} onOpenOverlay={() => { setMobileOpen(false); return mobileOpen ? opener.current : null; }}><PeopleOverlayHost key={workspaceId} data={data}><TeamOverlayHost key={workspaceId} data={data} onOpenOverlay={() => { setMobileOpen(false); return mobileOpen ? opener.current : null; }}><FileOverlayHost data={data}><SearchOverlayHost key={workspaceId} data={data} toggleSidebar={() => toggleCollapsed(!collapsed)} onOpenOverlay={() => setMobileOpen(false)}>
+ return <InitialRouteEntryContext value={initialRouteEntry}><TaskCommentDraftProvider key={workspaceId}><WorkspaceTransientContext value={{homeTaskTab:homeTab.workspaceId===workspaceId?homeTab.tab:'upcoming',setHomeTaskTab:tab=>setHomeTab({workspaceId,tab}),selectedTaskIds:selection.workspaceId===workspaceId?selection.ids:[],selectTasks:ids=>setSelection({workspaceId,ids}),openTask,closeTask,openTaskForm:(taskId,defaults)=>setForm(current=>taskId?{open:true,taskId,generation:current.generation+1}:{open:true,generation:current.generation,...(defaults?{defaults}:{})}),openTaskMenu:(taskId,anchor,point)=>setTaskMenu({taskId,anchor,...(point?{point}:{})})}}><OverlayProvider><SelectionEscape mobileOpen={mobileOpen}/><ProjectOverlayHost key={workspaceId} data={data} onOpenOverlay={() => { setMobileOpen(false); return mobileOpen ? opener.current : null; }}><PeopleOverlayHost key={workspaceId} data={data}><TeamOverlayHost key={workspaceId} data={data} onOpenOverlay={() => { setMobileOpen(false); return mobileOpen ? opener.current : null; }}><FileOverlayHost data={data}><SearchOverlayHost key={workspaceId} data={data} toggleSidebar={() => toggleCollapsed(!collapsed)} onOpenOverlay={() => setMobileOpen(false)}>
  <DevScenarioHost data={data}><button className="shell-skip fixed left-3 -top-[60px] z-[300] rounded-sm bg-foreground px-3 py-2 text-sm font-medium text-[var(--text-inv)] transition-[top]" onClick={()=>document.getElementById('main-content')?.focus()}>Skip to content</button>
  <div className="shell-layout grid h-full grid-cols-[var(--side-w)_minmax(0,1fr)]" data-collapsed={collapsed||undefined} data-mobile-open={mobileOpen||undefined} data-workspace-id={workspaceId}>
   <Sidebar collapsed={collapsed} onCollapsedChange={toggleCollapsed} navigationRef={nav} mobileClosed={mobile&&!mobileOpen}/>{mobileOpen && <button tabIndex={-1} className="shell-scrim fixed inset-0 z-[69] bg-[var(--overlay)]" aria-label="Close navigation" onClick={closeNavigation}/>}
   <main className="relative flex min-h-0 min-w-0 flex-col bg-surface" id="main" inert={mobileOpen || undefined}><Topbar onOpenNavigation={openNavigation} openerRef={opener}/><DevOfflineBar/><ContentViewport><Outlet/></ContentViewport>{loading && <div className="absolute inset-x-0 bottom-0 top-[var(--topbar-h)] z-[4] bg-surface"><LoadingBoundary/></div>}</main>
   <MobileNavigation onOpenNavigation={openNavigation}/>
  </div><div className="sr-only [margin:0]" id="sr-live" aria-live="polite" aria-atomic="true"/><div data-task-overlay-slot data-task-id={search.taskId} data-workspace-id={workspaceId}/><TaskOverlayHost key={workspaceId} data={data} {...(search.taskId?{taskId:search.taskId}:{})} onTaskOpen={openTask} onTaskClose={closeTask} opener={taskOpener} form={form} onFormChange={setForm} menu={taskMenu} onMenuChange={setTaskMenu} onProjectOpen={projectId=>{closeTask();void navigate({to:links.project(workspaceId,projectId)});}}/>
- </DevScenarioHost></SearchOverlayHost></FileOverlayHost></TeamOverlayHost></PeopleOverlayHost></ProjectOverlayHost></OverlayProvider></WorkspaceTransientContext>;
+ </DevScenarioHost></SearchOverlayHost></FileOverlayHost></TeamOverlayHost></PeopleOverlayHost></ProjectOverlayHost></OverlayProvider></WorkspaceTransientContext></TaskCommentDraftProvider></InitialRouteEntryContext>;
 }

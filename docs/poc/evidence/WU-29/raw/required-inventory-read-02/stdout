@@ -1,0 +1,1171 @@
+# WU-29 — Nghiệm thu toàn bộ UI và reuse
+
+**Trạng thái ban đầu:** NOT_STARTED. **Mốc:** M2. **Một session làm một unit.**
+
+## Mục tiêu
+
+Nghiệm thu toàn bộ UI trên mock và chứng minh component reuse, với evidence cho từng surface/state thuộc inventory trước khi chuyển sang backend POC.
+
+## Prerequisites
+
+WU-28 phải **DONE**, có bằng chứng nghiệm thu và code checkpoint hiện hữu. Tất cả unit trước đó cũng đã hoàn tất theo chuỗi chuẩn.
+
+Nếu prerequisite thiếu, kiểm tra và ghi blocker; chỉ sửa lỗi trực tiếp ngăn unit hiện tại trong phạm vi tối thiểu. Không tự thực hiện unit tương lai để vượt blocker.
+
+## Read-set bắt buộc
+
+- [AGENTS.md](../../../AGENTS.md)
+- [PROGRESS.md](../PROGRESS.md)
+- [ACCEPTANCE.md](../ACCEPTANCE.md) — chỉ đọc phần liên quan đến unit.
+- [VISUAL_PARITY.md](../VISUAL_PARITY.md) — chỉ đọc phần liên quan đến unit.
+- [SCREEN_INVENTORY.md](../SCREEN_INVENTORY.md) — chỉ đọc phần liên quan đến unit.
+- [COMPONENT_CATALOG.md](../COMPONENT_CATALOG.md) — chỉ đọc phần liên quan đến unit.
+- [ARCHITECTURE.md](../ARCHITECTURE.md) — chỉ đọc phần liên quan đến unit.
+- [API_CONTRACT.md](../API_CONTRACT.md) — chỉ đọc phần liên quan đến unit.
+- [DECISIONS.md](../DECISIONS.md) — chỉ đọc phần liên quan đến unit.
+
+Mã nguồn tại SHA đã khóa:
+
+- [src/styles/responsive.css](https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/styles/responsive.css)
+- [src/styles/motion.css](https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/styles/motion.css)
+
+## Phạm vi triển khai
+
+1. Chạy screen/state/reference matrix đã chốt cho target, gồm viewport, theme, density, accent, focus, scroll, overlays và motion theo VISUAL_PARITY/ACCEPTANCE.
+2. Review việc dùng cùng fields/renderers/components giữa các page, dependency direction, CSS ngoại lệ và ownership. Không chấp nhận legacy stylesheet/global mutable store hoặc generated screens sao chép nhau.
+3. Chạy các luồng task liên màn hình cùng những critical interactions của từng feature. Đối chiếu source-known bugs/canonical corrections với DECISIONS, tách rõ lỗi target và khác biệt được chốt bằng evidence.
+4. Sửa regression trong phạm vi UI đã triển khai. Nếu còn feature/content/interaction thiếu, ghi blocker và trả về owner, chưa đóng M2; mọi pending integration của các unit trước phải được giải quyết.
+5. Tổng hợp acceptance report cho toàn bộ UI, evidence index và các ngoại lệ được chốt với lý do cụ thể. Không cập nhật baseline từ target để che mismatch, không ghi pass cho ảnh hoặc test chưa chạy.
+
+## Acceptance criteria
+
+- **WU-29-AC1:** Mỗi inventory item có status và evidence; không tùy tiện đánh dấu source functionality là không áp dụng. Full ProjectPage, Files và các dev/demo surfaces đều được kiểm tra tại M2.
+- **WU-29-AC2:** Không còn khác biệt visual chưa giải thích; reference đã khóa chạy trong môi trường tương ứng, thiếu baseline là gate fail. Các corrections có record rõ và không mở rộng sang redesign.
+- **WU-29-AC3:** Reuse được chứng minh qua imports/ownership và behavior ở nhiều context; mọi feature UI chạy đúng trên mock, action/Undo ledger đã đóng. Kết quả không được mô tả là backend đã sẵn sàng.
+- **WU-29-AC4:** Không còn placeholder hoặc future-unit dependency trong M2 scope. Report chỉ ghi các gate thực sự đã chạy, command/exit status/artifact và giới hạn còn lại.
+
+## Verification bắt buộc
+
+- Chạy các visual/interaction gates đã chốt cùng typecheck/build/lint; kiểm tra các critical flows trong ACCEPTANCE.
+- Xem diff images và các geometry đo được; xác minh action/evidence index, rồi dừng kiểm tra tùy chọn khi gates đã đủ bằng chứng.
+- Dùng script thực tế của repo; nếu tên script trong tài liệu chưa có, tạo hoặc ghi tên tương đương có thật trong phạm vi unit. Ghi command, exit status, artifact và lỗi còn lại. Không ghi “pass” khi chưa chạy.
+
+## Không thuộc unit này
+
+Không thêm feature, CI/CD, performance platform hoặc backend vào unit nghiệm thu UI.
+
+## Deliverables tối thiểu
+
+- M2 acceptance report tự chứa kết quả và ngoại lệ cụ thể.
+- Evidence index đầy đủ theo inventory/AC, không còn pending UI.
+- Code checkpoint toàn bộ UI sạch và sẵn sàng cho mốc backend theo roadmap.
+
+## Quy trình và điều kiện dừng
+
+Trước khi sửa: kiểm tra implementation và PROGRESS; xác minh prerequisite; đưa kế hoạch ngắn 3–7 bước. Sau đó triển khai trong session. Chỉ làm phạm vi unit hiện tại, theo conventions của repo; không refactor ngoài phạm vi và chỉ thêm kiểm tra cần thiết cho acceptance.
+
+Trước khi kết thúc: chạy verification, sửa lỗi do thay đổi của unit, cập nhật PROGRESS với acceptance, evidence, conflicts và blockers. Commit thay đổi thuộc unit, push repo đích `main` đã cấu hình theo AGENTS, báo kết quả bằng tiếng Việt rồi dừng.
+
+Chỉ đánh dấu **DONE** khi mọi acceptance criterion và gate bắt buộc đạt. Nếu thiếu browser, source baseline, DB binding hoặc quyền push, báo đúng bước bị chặn; không bịa kết quả. Code chưa đạt giữ **IN_PROGRESS** hoặc **BLOCKED**, không nhảy sang unit tiếp theo.
+
+[
+  {
+    "id": "SC-01-base",
+    "route": "home",
+    "params": {}
+  },
+  {
+    "id": "SC-02-base",
+    "route": "inbox",
+    "params": {}
+  },
+  {
+    "id": "SC-03-base",
+    "route": "mytasks",
+    "params": {}
+  },
+  {
+    "id": "SC-04-base",
+    "route": "favorites",
+    "params": {}
+  },
+  {
+    "id": "SC-05-base",
+    "route": "notifications",
+    "params": {}
+  },
+  {
+    "id": "SC-06-base",
+    "route": "search",
+    "params": {}
+  },
+  {
+    "id": "SC-07-base",
+    "route": "overview",
+    "params": {}
+  },
+  {
+    "id": "SC-08-base",
+    "route": "projects",
+    "params": {}
+  },
+  {
+    "id": "SC-09-base",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "board"
+    }
+  },
+  {
+    "id": "SC-10-base",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "SC-11-base",
+    "route": "calendar",
+    "params": {}
+  },
+  {
+    "id": "SC-12-base",
+    "route": "timeline",
+    "params": {}
+  },
+  {
+    "id": "SC-13-base",
+    "route": "members",
+    "params": {}
+  },
+  {
+    "id": "SC-14-base",
+    "route": "member",
+    "params": {
+      "id": "m1"
+    }
+  },
+  {
+    "id": "SC-15-base",
+    "route": "teams",
+    "params": {}
+  },
+  {
+    "id": "SC-16-base",
+    "route": "team",
+    "params": {
+      "id": "design"
+    }
+  },
+  {
+    "id": "SC-17-base",
+    "route": "activity",
+    "params": {}
+  },
+  {
+    "id": "SC-18-base",
+    "route": "settings",
+    "params": {}
+  },
+  {
+    "id": "SC-19-base",
+    "route": "system",
+    "params": {}
+  },
+  {
+    "id": "SC-20-base",
+    "route": "states",
+    "params": {}
+  },
+  {
+    "id": "SC-21-base",
+    "route": "archive",
+    "params": {}
+  },
+  {
+    "id": "PR-01-overview",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "overview"
+    }
+  },
+  {
+    "id": "PR-02-board",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "board"
+    }
+  },
+  {
+    "id": "PR-03-list",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "PR-04-table",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "table"
+    }
+  },
+  {
+    "id": "PR-05-calendar",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "calendar"
+    }
+  },
+  {
+    "id": "PR-06-timeline",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "timeline"
+    }
+  },
+  {
+    "id": "PR-07-files",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "files"
+    }
+  },
+  {
+    "id": "PR-08-activity",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "activity"
+    }
+  },
+  {
+    "id": "PR-SV-v1",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "v:v1"
+    }
+  },
+  {
+    "id": "SE-01-workspace",
+    "route": "settings",
+    "params": {
+      "sec": "workspace"
+    }
+  },
+  {
+    "id": "SE-02-appearance",
+    "route": "settings",
+    "params": {
+      "sec": "appearance"
+    }
+  },
+  {
+    "id": "SE-03-language",
+    "route": "settings",
+    "params": {
+      "sec": "language"
+    }
+  },
+  {
+    "id": "SE-04-datetime",
+    "route": "settings",
+    "params": {
+      "sec": "datetime"
+    }
+  },
+  {
+    "id": "SE-05-members",
+    "route": "settings",
+    "params": {
+      "sec": "members"
+    }
+  },
+  {
+    "id": "SE-06-teams",
+    "route": "settings",
+    "params": {
+      "sec": "teams"
+    }
+  },
+  {
+    "id": "SE-07-projects",
+    "route": "settings",
+    "params": {
+      "sec": "projects"
+    }
+  },
+  {
+    "id": "SE-08-permissions",
+    "route": "settings",
+    "params": {
+      "sec": "permissions"
+    }
+  },
+  {
+    "id": "SE-09-notif-email",
+    "route": "settings",
+    "params": {
+      "sec": "notif-email"
+    }
+  },
+  {
+    "id": "SE-10-notif-push",
+    "route": "settings",
+    "params": {
+      "sec": "notif-push"
+    }
+  },
+  {
+    "id": "SE-11-notif-mentions",
+    "route": "settings",
+    "params": {
+      "sec": "notif-mentions"
+    }
+  },
+  {
+    "id": "SE-12-notif-assign",
+    "route": "settings",
+    "params": {
+      "sec": "notif-assign"
+    }
+  },
+  {
+    "id": "SE-13-profile",
+    "route": "settings",
+    "params": {
+      "sec": "profile"
+    }
+  },
+  {
+    "id": "SE-14-preferences",
+    "route": "settings",
+    "params": {
+      "sec": "preferences"
+    }
+  },
+  {
+    "id": "SE-15-shortcuts",
+    "route": "settings",
+    "params": {
+      "sec": "shortcuts"
+    }
+  },
+  {
+    "id": "SE-16-password",
+    "route": "settings",
+    "params": {
+      "sec": "password"
+    }
+  },
+  {
+    "id": "SE-17-sessions",
+    "route": "settings",
+    "params": {
+      "sec": "sessions"
+    }
+  },
+  {
+    "id": "SE-18-2fa",
+    "route": "settings",
+    "params": {
+      "sec": "2fa"
+    }
+  },
+  {
+    "id": "SE-19-plan",
+    "route": "settings",
+    "params": {
+      "sec": "plan"
+    }
+  },
+  {
+    "id": "SE-20-payment",
+    "route": "settings",
+    "params": {
+      "sec": "payment"
+    }
+  },
+  {
+    "id": "SE-21-invoices",
+    "route": "settings",
+    "params": {
+      "sec": "invoices"
+    }
+  },
+  {
+    "id": "AU-01-login",
+    "route": "home"
+  },
+  {
+    "id": "AU-02-signup",
+    "route": "home"
+  },
+  {
+    "id": "AU-03-forgot",
+    "route": "home"
+  },
+  {
+    "id": "AU-04-forgot-sent",
+    "route": "home"
+  },
+  {
+    "id": "AU-05-reset",
+    "route": "home"
+  },
+  {
+    "id": "AU-06-reset-done",
+    "route": "home"
+  },
+  {
+    "id": "AU-07-verify",
+    "route": "home"
+  },
+  {
+    "id": "ON-01-step-0",
+    "route": "home",
+    "ui": {
+      "onb": 0,
+      "onbData": {
+        "use": "product",
+        "team": "kanban",
+        "size": "2-10",
+        "ws": "Gr8r Studio",
+        "proj": "Website Launch",
+        "tmpl": "web",
+        "invites": ""
+      }
+    }
+  },
+  {
+    "id": "ON-02-step-1",
+    "route": "home",
+    "ui": {
+      "onb": 1,
+      "onbData": {
+        "use": "product",
+        "team": "kanban",
+        "size": "2-10",
+        "ws": "Gr8r Studio",
+        "proj": "Website Launch",
+        "tmpl": "web",
+        "invites": ""
+      }
+    }
+  },
+  {
+    "id": "ON-03-step-2",
+    "route": "home",
+    "ui": {
+      "onb": 2,
+      "onbData": {
+        "use": "product",
+        "team": "kanban",
+        "size": "2-10",
+        "ws": "Gr8r Studio",
+        "proj": "Website Launch",
+        "tmpl": "web",
+        "invites": ""
+      }
+    }
+  },
+  {
+    "id": "ON-04-step-3",
+    "route": "home",
+    "ui": {
+      "onb": 3,
+      "onbData": {
+        "use": "product",
+        "team": "kanban",
+        "size": "2-10",
+        "ws": "Gr8r Studio",
+        "proj": "Website Launch",
+        "tmpl": "web",
+        "invites": ""
+      }
+    }
+  },
+  {
+    "id": "ON-05-step-4",
+    "route": "home",
+    "ui": {
+      "onb": 4,
+      "onbData": {
+        "use": "product",
+        "team": "kanban",
+        "size": "2-10",
+        "ws": "Gr8r Studio",
+        "proj": "Website Launch",
+        "tmpl": "web",
+        "invites": ""
+      }
+    }
+  },
+  {
+    "id": "ON-06-step-5",
+    "route": "home",
+    "ui": {
+      "onb": 5,
+      "onbData": {
+        "use": "product",
+        "team": "kanban",
+        "size": "2-10",
+        "ws": "Gr8r Studio",
+        "proj": "Website Launch",
+        "tmpl": "web",
+        "invites": ""
+      }
+    }
+  },
+  {
+    "id": "MD-01-task",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-02-project",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-03-share",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-04-invite",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-05-confirm",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-06-prompt",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-07-shortcuts",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-08-team",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-09-filePreview",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "MD-10-saveView",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "list"
+    }
+  },
+  {
+    "id": "PO-create",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-ws",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-user",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-help",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-status",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-priority",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-assignee",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-labels",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-project",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-recur",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-estimate",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-deps",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-date",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-subassignee",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-pstatus",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "board"
+    }
+  },
+  {
+    "id": "PO-role",
+    "route": "members",
+    "params": {}
+  },
+  {
+    "id": "PO-sort",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-group",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-cols",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-filter",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-fvals",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-daylist",
+    "route": "calendar",
+    "params": {}
+  },
+  {
+    "id": "PO-event",
+    "route": "calendar",
+    "params": {}
+  },
+  {
+    "id": "PO-emoji",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-ctx",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-bulk-status",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-bulk-priority",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "PO-bulk-assignee",
+    "route": "tasks",
+    "params": {}
+  },
+  {
+    "id": "DR-01-side",
+    "route": "tasks"
+  },
+  {
+    "id": "DR-02-full",
+    "route": "tasks"
+  },
+  {
+    "id": "DR-03-activity",
+    "route": "tasks"
+  },
+  {
+    "id": "DR-04-rich-text",
+    "route": "tasks"
+  },
+  {
+    "id": "DR-05-subtask",
+    "route": "tasks"
+  },
+  {
+    "id": "DR-06-attachment",
+    "route": "tasks"
+  },
+  {
+    "id": "DR-07-comment",
+    "route": "tasks"
+  },
+  {
+    "id": "DR-08-nested-modal",
+    "route": "tasks"
+  },
+  {
+    "id": "VW-board",
+    "route": "tasks"
+  },
+  {
+    "id": "VW-table",
+    "route": "tasks"
+  },
+  {
+    "id": "VW-calendar-week",
+    "route": "calendar",
+    "ui": {
+      "calMode": "week"
+    }
+  },
+  {
+    "id": "VW-mytasks-calendar",
+    "route": "mytasks",
+    "ui": {
+      "myView": "calendar"
+    }
+  },
+  {
+    "id": "VW-files-list",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "files"
+    },
+    "ui": {
+      "fileView": "list"
+    }
+  },
+  {
+    "id": "VW-projects-table",
+    "route": "projects",
+    "ui": {
+      "projView": "table"
+    }
+  },
+  {
+    "id": "VW-inbox-selected",
+    "route": "inbox",
+    "ui": {
+      "inboxSel": "n1"
+    }
+  },
+  {
+    "id": "ST-search-results",
+    "route": "search",
+    "ui": {
+      "searchQ": "design"
+    }
+  },
+  {
+    "id": "ST-search-empty",
+    "route": "search",
+    "ui": {
+      "searchQ": "zz-no-source-results"
+    }
+  },
+  {
+    "id": "ST-project-denied",
+    "route": "project",
+    "params": {
+      "id": "p6",
+      "tab": "board"
+    }
+  },
+  {
+    "id": "ST-project-missing",
+    "route": "project",
+    "params": {
+      "id": "missing-source-project",
+      "tab": "board"
+    }
+  },
+  {
+    "id": "ST-loading",
+    "route": "home",
+    "ui": {
+      "loading": true
+    }
+  },
+  {
+    "id": "ST-offline",
+    "route": "home",
+    "ui": {
+      "offline": true
+    }
+  },
+  {
+    "id": "ST-bulk",
+    "route": "tasks"
+  },
+  {
+    "id": "ST-palette",
+    "route": "home"
+  },
+  {
+    "id": "ST-palette-search",
+    "route": "home"
+  },
+  {
+    "id": "ST-toast",
+    "route": "home"
+  },
+  {
+    "id": "ST-auth-validation",
+    "route": "home"
+  },
+  {
+    "id": "ST-task-validation",
+    "route": "tasks"
+  },
+  {
+    "id": "ST-2fa-setup",
+    "route": "settings",
+    "params": {
+      "sec": "2fa"
+    }
+  },
+  {
+    "id": "MOBILE-home",
+    "route": "home"
+  },
+  {
+    "id": "MOBILE-inbox",
+    "route": "inbox"
+  },
+  {
+    "id": "MOBILE-tasks",
+    "route": "tasks"
+  },
+  {
+    "id": "MOBILE-calendar",
+    "route": "calendar"
+  },
+  {
+    "id": "MOBILE-timeline",
+    "route": "timeline"
+  },
+  {
+    "id": "MOBILE-settings",
+    "route": "settings"
+  },
+  {
+    "id": "MOBILE-board",
+    "route": "tasks"
+  },
+  {
+    "id": "MOBILE-table",
+    "route": "tasks"
+  },
+  {
+    "id": "MOBILE-files",
+    "route": "project",
+    "params": {
+      "id": "p1",
+      "tab": "files"
+    }
+  },
+  {
+    "id": "MOBILE-drawer",
+    "route": "tasks"
+  },
+  {
+    "id": "MOBILE-modal",
+    "route": "tasks"
+  },
+  {
+    "id": "MOBILE-nav",
+    "route": "home"
+  },
+  {
+    "id": "MOBILE-auth",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-639",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-640",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-641",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-899",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-900",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-901",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-1099",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-1100",
+    "route": "home"
+  },
+  {
+    "id": "BOUNDARY-1101",
+    "route": "home"
+  },
+  {
+    "id": "THEME-light-indigo",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-light-blue",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-light-violet",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-light-teal",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-light-rose",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-light-graphite",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-dark-indigo",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-dark-blue",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-dark-violet",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-dark-teal",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-dark-rose",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-dark-graphite",
+    "route": "tasks"
+  },
+  {
+    "id": "THEME-system-light",
+    "route": "home"
+  },
+  {
+    "id": "THEME-system-dark",
+    "route": "home"
+  },
+  {
+    "id": "DENSITY-content",
+    "route": "tasks"
+  },
+  {
+    "id": "DENSITY-sidebar",
+    "route": "tasks"
+  },
+  {
+    "id": "DENSITY-board",
+    "route": "tasks"
+  },
+  {
+    "id": "SIDEBAR-collapsed",
+    "route": "home",
+    "ui": {
+      "collapsed": true
+    }
+  },
+  {
+    "id": "MOTION-system",
+    "route": "tasks"
+  },
+  {
+    "id": "MOTION-reduce",
+    "route": "tasks"
+  },
+  {
+    "id": "MOTION-full",
+    "route": "tasks"
+  }
+]
+/* ---------- INBOX ---------- */
+import { MOD, ago, esc } from '../core/utils.js';
+import { ic } from '../core/icons.js';
+import { D, S, commentsOf, mem, pColor, proj, task } from '../core/store.js';
+import { av, empty, fmtComment } from '../ui/helpers.js';
+import { cellAssignee, cellDue, cellPrio, cellStatus } from '../components/task-list.js';
+import { commentHtml } from '../overlays/drawer.js';
+
+export function pageInbox() {
+  const cats = [
+    ['all', 'All'],
+    ['mention', 'Mentions'],
+    ['assign', 'Assignments'],
+    ['comment', 'Comments'],
+    ['update', 'Updates'],
+  ];
+  const cat = S.ui.inboxCat;
+  let ns = D()
+    .notifs.slice()
+    .sort((a, b) => b.at - a.at);
+  const count = k => ns.filter(n => (k === 'all' || n.type === k) && !n.read).length;
+  ns = ns.filter(n => cat === 'all' || n.type === cat);
+  if (S.ui.inboxUnread) ns = ns.filter(n => !n.read);
+  const sel = D().notifs.find(n => n.id === S.ui.inboxSel) || null;
+  return `<div class="page flush">
+    <div style="display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);flex:1;min-height:0" class="inbox-grid">
+      <style>@media(max-width:900px){.inbox-grid{grid-template-columns:minmax(0,1fr)!important}.inbox-prev{display:${sel ? 'flex' : 'none'}!important;position:fixed;inset:0;z-index:48;background:var(--surface)}}</style>
+      <div style="border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:0">
+        <div style="padding:18px var(--gutter) 0" class="row"><h1 style="font-size:var(--fs-xl);margin:0;font-weight:600;letter-spacing:-.015em">Inbox</h1><span class="sp"></span>
+          <label class="row" style="font-size:12px;color:var(--text-2);gap:6px;cursor:pointer"><input type="checkbox" class="toggle" data-a="toggleUnreadOnly" ${S.ui.inboxUnread ? 'checked' : ''}>Unread</label>
+          <button class="ibtn ibtn-sm" data-a="markAllRead" data-tip="Mark all as read" aria-label="Mark all as read">${ic('check-check', 15)}</button></div>
+        <div class="tabs inbox-tabs" role="tablist">${cats.map(([k, n]) => `<button role="tab" class="tab ${cat === k ? 'on' : ''}" data-a="set" data-k="inboxCat" data-v="${k}">${n}${count(k) ? `<span class="cnt">${count(k)}</span>` : ''}</button>`).join('')}</div>
+        <div class="inbox-list" data-keep="inbox-list">
+          ${ns.length ? ns.map(n => inboxItem(n, sel && sel.id === n.id)).join('') : empty('inbox', "You're all caught up.", S.ui.inboxUnread ? 'No unread notifications in this category.' : 'New mentions, assignments, and comments will show up here.', '', 'sm')}
+        </div>
+      </div>
+      <div class="inbox-prev" style="display:flex;flex-direction:column;min-height:0;overflow-y:auto">${sel ? inboxPreview(sel) : `<div class="fullstate"><div class="box"><div class="empty-state" style="padding:0"><div class="glyph">${ic('mail-open', 20)}</div><h2 class="es-h">Select a notification</h2><p>Read the conversation and reply without leaving your inbox.</p></div></div></div>`}</div>
+    </div>
+  </div>`;
+}
+export function notifText(n) {
+  const t = n.task ? task(n.task) : null;
+  const p = n.project ? proj(n.project) : t ? proj(t.project) : null;
+  const who = n.by ? `<b style="font-weight:600">${esc(mem(n.by)?.name)}</b>` : '';
+  if (!n.by && p && !t) return `<b style="font-weight:600">${esc(n.text)}</b>`;
+  if (!n.by && t) return `<b style="font-weight:600">${esc(t.title)}</b> <span class="muted">${esc(n.text)}</span>`;
+  return `${who} <span class="muted">${esc(n.text)}</span> ${t ? `<b style="font-weight:500">${esc(t.title)}</b>` : ''}`;
+}
+export function notifIcon(n) {
+  if (n.by) return av(n.by, 'md', false);
+  const i = n.type === 'update' && n.project ? 'triangle-alert' : 'clock';
+  return `<span class="av md" style="--c:${n.project ? 'var(--red)' : 'var(--amber)'}">${ic(i, 13)}</span>`;
+}
+export function inboxItem(n, on) {
+  const t = n.task ? task(n.task) : null;
+  const p = n.project ? proj(n.project) : t ? proj(t.project) : null;
+  const typeIc = { mention: 'at-sign', assign: 'user-plus', comment: 'message-square', update: 'refresh-cw' }[n.type];
+  return `<div class="row" style="align-items:flex-start;gap:10px;padding:12px var(--gutter);border-bottom:1px solid var(--divider);cursor:pointer;position:relative;${on ? 'background:var(--surface-2);' : ''}" data-a="selNotif" data-id="${n.id}" role="button" tabindex="0">
+    ${!n.read ? '<span style="position:absolute;left:6px;top:22px;width:6px;height:6px;border-radius:50%;background:var(--accent)" aria-label="Unread"></span>' : ''}
+    ${notifIcon(n)}
+    <div class="grow" style="font-size:13px;line-height:1.45">
+      <div>${notifText(n)}</div>
+      <div class="trunc muted" style="font-size:12.5px;margin-top:2px">${fmtComment(n.snippet)}</div>
+      <div class="row" style="gap:6px;margin-top:5px;font-size:11.5px;color:var(--text-3)">${ic(typeIc, 11)}${p ? `<span class="pdot" style="--c:${pColor(p)};width:6px;height:6px"></span>${esc(p.name)}` : ''}<span>·</span><span>${ago(n.at)}</span></div>
+    </div>
+    <button class="ibtn ibtn-xs" data-a="toggleRead" data-id="${n.id}" data-tip="${n.read ? 'Mark as unread' : 'Mark as read'}" aria-label="${n.read ? 'Mark as unread' : 'Mark as read'}">${ic(n.read ? 'mail' : 'mail-open', 13)}</button>
+  </div>`;
+}
+export function inboxPreview(n) {
+  const t = n.task ? task(n.task) : null;
+  const p = n.project ? proj(n.project) : t ? proj(t.project) : null;
+  if (!t)
+    return `<div style="padding:24px 28px"><button class="btn btn-sm btn-ghost" data-a="set" data-k="inboxSel" data-v="" style="margin:-4px 0 12px -8px">${ic('arrow-left', 14)}Back</button><div class="alert danger">${ic('triangle-alert', 16)}<div><b>${esc(n.text)}</b><div class="muted" style="margin-top:2px">${esc(n.snippet)}</div></div></div><div style="margin-top:14px"><button class="btn btn-secondary" data-a="go" data-r="project" data-id="${p.id}" data-tab="overview">Open project</button></div></div>`;
+  const cs = commentsOf(t.id).slice(-4);
+  return `<div class="row" style="height:46px;padding:0 16px;border-bottom:1px solid var(--border);gap:8px;flex-shrink:0">
+      <button class="ibtn ibtn-sm" data-a="set" data-k="inboxSel" data-v="" aria-label="Back">${ic('arrow-left', 15)}</button>
+      <span class="pdot" style="--c:${pColor(p)}"></span><span class="muted" style="font-size:12.5px">${esc(p.name)}</span><span class="faint mono">${t.key}</span><span class="sp"></span>
+      <button class="btn btn-sm btn-secondary" data-a="openTask" data-id="${t.id}">${ic('panel-right-open', 14)}Open task</button></div>
+    <div style="padding:24px 28px;max-width:720px;width:100%">
+      <h2 style="font-size:var(--fs-xl);margin:0 0 10px;font-weight:600;letter-spacing:-.015em">${esc(t.title)}</h2>
+      <div class="row" style="flex-wrap:wrap;gap:4px;margin-bottom:18px">${cellStatus(t)}${cellAssignee(t)}${cellPrio(t)}${cellDue(t)}</div>
+      <div class="eyebrow" style="margin-bottom:4px">Conversation</div>
+      ${cs.length ? cs.map(commentHtml).join('') : `<p class="muted">${esc(n.snippet)}</p>`}
+      <div class="cbox" style="margin-top:10px"><textarea id="inbox-reply" data-in="draft" data-id="${t.id}" data-key-mod-enter="postComment" placeholder="Reply… use @ to mention" aria-label="Reply">${esc(S.ui.drafts[t.id] || '')}</textarea>
+      <div class="row"><span class="faint" style="font-size:11.5px">${MOD}+Enter to send</span><span class="sp"></span><button class="btn btn-primary btn-sm" data-a="postComment" data-id="${t.id}">Reply</button></div></div>
+    </div>`;
+}
+

@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\"docs/poc/evidence/WU-29/attempts/visual-natural-02/report.json\")); console.log(JSON.stringify({status:r.status,samples:r.samples.map(s=>({id:s.id,status:s.status,pixels:s.captures[0].comparison.pixels,repeats:[s.captures[0].sourceRepeatComparison.pixels,s.captures[0].targetRepeatComparison.pixels],fonts:s.fonts.responses.map(x=>x.length),errors:s.pageErrors})),sourceLifecycle:r.sourceLifecycle},null,2));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/pilot-summary-03/command.txt",
+    "bytes": 506,
+    "sha256": "d4113d25421ab5a9263f8f5f1b5c13f7a00300fdc67a4b75d1f129f1ba9aa230"
+  },
+  "startedAt": "2026-10-10T12:30:42.348Z",
+  "finishedAt": "2026-10-10T12:30:42.412Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/pilot-summary-03/stdout",
+    "bytes": 2130,
+    "sha256": "5a8b81d6ae17c0012b70502176d5e3dd73e1f3b36a030f04f7f7f21369828f40"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/pilot-summary-03/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

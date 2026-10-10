@@ -1,0 +1,59 @@
+.reference/gr8r-studio/src/styles/motion.css:92:.fx-route > .page > *,
+.reference/gr8r-studio/src/styles/motion.css:93:.fx-route > .fullstate {
+.reference/gr8r-studio/src/styles/motion.css:96:.fx-route > .page > *:nth-child(2) {
+.reference/gr8r-studio/src/styles/motion.css:99:.fx-route > .page > *:nth-child(3) {
+.reference/gr8r-studio/src/styles/motion.css:102:.fx-route > .page > *:nth-child(n + 4) {
+.reference/gr8r-studio/src/styles/motion.css:105:.fx-route .grid2 > * > *:nth-child(2),
+.reference/gr8r-studio/src/styles/motion.css:106:.fx-route .grid2 > *:nth-child(2) > *:first-child {
+.reference/gr8r-studio/src/styles/motion.css:109:.fx-route .prog > i {
+.reference/gr8r-studio/src/styles/motion.css:112:.fx-route .stackbar i {
+.reference/gr8r-studio/src/styles/motion.css:116:.fx-route .bar {
+.reference/gr8r-studio/src/styles/motion.css:263:@media (prefers-reduced-motion: reduce) {
+.reference/gr8r-studio/src/styles/motion.css:264:  .fx-route > .page > *,
+.reference/gr8r-studio/src/styles/motion.css:265:  .fx-route > .fullstate,
+.reference/gr8r-studio/src/styles/motion.css:266:  .fx-route .grid2 > * > *,
+.reference/gr8r-studio/src/styles/motion.css:267:  .fx-route .bar,
+.reference/gr8r-studio/src/styles/motion.css:282:  .fx-route .prog > i,
+.reference/gr8r-studio/src/styles/motion.css:283:  .fx-route .stackbar i,
+.reference/gr8r-studio/src/styles/motion.css:299::root[data-motion='reduce'] .fx-route > .page > *,
+.reference/gr8r-studio/src/styles/motion.css:300::root[data-motion='reduce'] .pbody.fx-tab > *,
+.reference/gr8r-studio/src/styles/motion.css:301::root[data-motion='reduce'] .auth-card.fx-auth > *,
+.reference/gr8r-studio/src/styles/motion.css:302::root[data-motion='reduce'] .onb.fx-step > *,
+.reference/gr8r-studio/src/styles/motion.css:303::root[data-motion='reduce'] .drawer.enter .drawer-b > *,
+.reference/gr8r-studio/src/styles/motion.css:304::root[data-motion='reduce'] .kcard.fx-moved {
+.reference/gr8r-studio/src/styles/motion.css:307::root[data-motion='reduce'] .fx-route .prog > i,
+.reference/gr8r-studio/src/styles/motion.css:308::root[data-motion='reduce'] .fx-route .stackbar i {
+.reference/gr8r-studio/src/styles/motion.css:311::root[data-motion='reduce'] .pcard:hover,
+.reference/gr8r-studio/src/styles/motion.css:312::root[data-motion='reduce'] .kcard:hover {
+apps/web/src/features/tasks/TaskListPages.tsx:25:function useCurrentViewChange() { const location = useLocation(), navigate = useNavigate(); return (view: TaskViewState) => { void navigate({ to: location.pathname, search: previous => ({ ...previous, view: JSON.stringify(view) }), replace: true }); }; }
+apps/web/src/features/tasks/TaskListPages.tsx:26:function useCurrentMode(mine = false) { const location=useLocation(),navigate=useNavigate(),requested=new URLSearchParams(location.searchStr).get('mode'); const controlledMode=mine ? requested === 'calendar' ? 'calendar' as const : 'list' as const : requested === 'table' ? 'table' as const : requested === 'board' ? 'board' as const : 'list' as const; return {controlledMode,onModeChange:(mode:'list'|'board'|'table'|'calendar')=>{void navigate({to:location.pathname,search:previous=>({...previous,mode}),replace:true});}}; }
+apps/web/src/features/tasks/TaskListPages.tsx:27:export function WorkspaceTasks() { const currentMode=useCurrentMode(); const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), onCurrentViewChange = useCurrentViewChange(); return <TaskListPage workspaceId={workspaceId} scope={{ kind: 'workspace' }} selectedIds={intents.selectedTaskIds} onSelectionChange={intents.selectTasks} onTaskOpen={intents.openTask} onTitleEdit={intents.closeTask} onNewTask={() => intents.openTaskForm()} onCalendarNewTask={defaults => intents.openTaskForm(undefined, defaults)} onTaskMenu={intents.openTaskMenu} onTaskEdit={id => intents.openTaskForm(id)} onCurrentViewChange={onCurrentViewChange} {...currentMode} />; }
+apps/web/src/features/tasks/TaskListPages.tsx:28:export function MyTasksList() { const currentMode=useCurrentMode(true); const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), onCurrentViewChange = useCurrentViewChange(); return <TaskListPage workspaceId={workspaceId} scope={{ kind: 'mine' }} selectedIds={[]} onSelectionChange={() => {}} onTaskOpen={intents.openTask} onTitleEdit={intents.closeTask} onNewTask={() => intents.openTaskForm()} onCalendarNewTask={defaults => intents.openTaskForm(undefined, defaults)} onTaskMenu={intents.openTaskMenu} onTaskEdit={id => intents.openTaskForm(id)} onCurrentViewChange={onCurrentViewChange} {...currentMode} />; }
+apps/web/src/features/tasks/TaskListPages.tsx:30:export function TaskListPage({ workspaceId, scope, selectedIds, onSelectionChange, onTaskOpen, onTitleEdit = () => {}, initialView, controlledView, showHeading = true, initialListState, onCurrentViewChange, onNewTask, onCalendarNewTask, onTaskMenu, onTaskEdit, onModeChange, controlledMode, initialMode, initialBoardState, initialCalendarState }: TaskListPageProps) {
+apps/web/src/features/tasks/TaskListPages.tsx:45: if (!bootstrap.data || !dataset.data || ((mode === 'board' || mode === 'table') && !columnsDataset.data)) return <div className="p-6" role="status">Loading tasks…</div>;
+apps/web/src/features/tasks/TaskListPages.tsx:54: function changeMode(next: string) {if(next !== 'list' && next !== 'board' && next !== 'table' && next !== 'calendar')return;if(mine ? next !== 'list' && next !== 'calendar' : next === 'calendar')return;setMode(next);if(onModeChange)onModeChange(next);else {const url=new URL(location.href);url.searchParams.set('mode',next);history.replaceState(history.state,'',url);}}
+apps/web/src/features/tasks/TaskListPages.tsx:55: function change(next: TaskViewState) { setView(next); persistTaskColumns(next, preferenceKey); if (onCurrentViewChange) { onCurrentViewChange(next); return; } const url = new URL(location.href); url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!); history.replaceState(history.state, '', url); }
+.reference/gr8r-studio/src/shell/layout.js:28:export function renderShell() {
+.reference/gr8r-studio/src/shell/layout.js:36:      <div class="content ${u.fx.route ? 'fx-route' : ''}" id="main-content" tabindex="-1" data-keep="c:${u.route}:${u.params.id || ''}:${u.params.tab || ''}:${u.params.sec || ''}">${u.loading ? skeleton() : renderPage()}</div>
+.reference/gr8r-studio/src/shell/layout.js:41:export function renderPage() {
+.reference/gr8r-studio/src/shell/layout.js:74:export function sItem(route, label, icon, opt = {}) {
+.reference/gr8r-studio/src/shell/layout.js:78:export function renderSidebar() {
+.reference/gr8r-studio/src/shell/layout.js:162:export function crumbs() {
+.reference/gr8r-studio/src/shell/layout.js:190:export function renderTopbar() {
+.reference/gr8r-studio/src/shell/layout.js:202:export function renderBottomNav() {
+apps/web/src/features/projects/projects.css:29::root[data-motion=reduce] [data-project-host][data-project-transition] .ui-tab[aria-selected=true]::after { animation-name:fadeOnly; animation-duration:.12s; }
+apps/web/src/features/projects/projects.css:30:@media(prefers-reduced-motion:reduce) { :root:not([data-motion=full]) [data-project-host][data-project-transition] .ui-tab[aria-selected=true]::after { animation-name:fadeOnly; animation-duration:.12s; } }
+apps/web/src/features/projects/projects.css:37:[data-project-transition=tab] [data-project-view-page] > .task-view-toolbar, [data-project-transition=tab] [data-project-view-page] > [data-calendar-coverage] > .calendar-view, [data-project-transition=tab] [data-project-view-page] > [data-timeline-coverage] > .timeline-view { animation:riseIn .26s var(--ease) both; }
+apps/web/src/features/projects/projects.css:38::root[data-motion=reduce] [data-project-transition] > *, :root[data-motion=reduce] [data-project-transition] .project-overview-grid > div > section, :root[data-motion=reduce] [data-project-transition] [data-project-task-page] > *, :root[data-motion=reduce] [data-project-transition] [data-project-view-page] > .task-view-toolbar, :root[data-motion=reduce] [data-project-transition] [data-project-view-page] > [data-calendar-coverage] > .calendar-view, :root[data-motion=reduce] [data-project-transition] [data-project-view-page] > [data-timeline-coverage] > .timeline-view { animation-name:fadeOnly; animation-duration:.12s; animation-delay:0s; }
+apps/web/src/features/projects/projects.css:39:@media(prefers-reduced-motion:reduce) { :root:not([data-motion=full]) [data-project-transition] > *, :root:not([data-motion=full]) [data-project-transition] .project-overview-grid > div > section, :root:not([data-motion=full]) [data-project-transition] [data-project-task-page] > *, :root:not([data-motion=full]) [data-project-transition] [data-project-view-page] > .task-view-toolbar, :root:not([data-motion=full]) [data-project-transition] [data-project-view-page] > [data-calendar-coverage] > .calendar-view, :root:not([data-motion=full]) [data-project-transition] [data-project-view-page] > [data-timeline-coverage] > .timeline-view { animation-name:fadeOnly; animation-duration:.12s; animation-delay:0s; } }
+apps/web/src/features/projects/projects.css:46:/* Original .fx-route owns catalogue/Favorites direct-child entry and progress, Overview stack segments and Timeline bars. The shared scale-based
+apps/web/src/features/projects/projects.css:48:[data-project-page-motion][data-project-transition=route] > * { animation:riseIn .36s var(--ease) both; }
+apps/web/src/features/projects/projects.css:49:[data-project-page-motion][data-project-transition=route] > :nth-child(2) { animation-delay:.035s; }
+apps/web/src/features/projects/projects.css:50:[data-project-page-motion][data-project-transition=route] > :nth-child(3) { animation-delay:.07s; }
+apps/web/src/features/projects/projects.css:51:[data-project-page-motion][data-project-transition=route] > :nth-child(n+4) { animation-delay:.1s; }
+apps/web/src/features/projects/projects.css:53:[data-project-transition=route] [data-timeline-bar] { animation:riseIn .4s var(--ease) both; }
+apps/web/src/features/projects/projects.css:54::root[data-motion=reduce] [data-project-page-motion][data-project-transition] > *, :root[data-motion=reduce] [data-project-transition=route] [data-timeline-bar] { animation:fadeOnly .12s both; }
+apps/web/src/features/projects/projects.css:55::root[data-motion=reduce] [data-project-transition=route] [role=progressbar] > i, :root[data-motion=reduce] [data-project-transition=route] [data-project-stackedbar] i { animation:none; }
+apps/web/src/features/projects/projects.css:56:@media(prefers-reduced-motion:reduce) {
+apps/web/src/features/projects/projects.css:57: :root:not([data-motion=full]) [data-project-page-motion][data-project-transition] > *, :root:not([data-motion=full]) [data-project-transition=route] [data-timeline-bar] { animation:fadeOnly .12s both; }
+apps/web/src/features/projects/projects.css:58: :root:not([data-motion=full]) [data-project-transition=route] [role=progressbar] > i, :root:not([data-motion=full]) [data-project-transition=route] [data-project-stackedbar] i { animation:none; }

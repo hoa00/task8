@@ -1,0 +1,212 @@
+{
+  "runtime": {
+    "clock": "2026-10-08T09:00:00.000Z",
+    "randomSeed": 804205,
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "deviceScaleFactor": 1,
+    "platform": "MacIntel",
+    "modKey": "⌘",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36"
+  },
+  "probes": [
+    {
+      "id": "native-month-week-navigation35-42-today-weekStart",
+      "month35And42": true,
+      "week7": true,
+      "nextWeek": true,
+      "fixtureToday": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-date-drag-duration-canonical-Drawer-Table-Board-List-reload",
+      "taskId": "01a11abd-aa80-739e-81f1-1670a2cf5efb",
+      "dueDate": "2026-10-14",
+      "startDate": "2026-10-11",
+      "trustedEvents": [
+        {
+          "type": "dragstart",
+          "trusted": true
+        },
+        {
+          "type": "dragover",
+          "trusted": true
+        },
+        {
+          "type": "drop",
+          "trusted": true
+        }
+      ],
+      "sourceToastNoUndo": true,
+      "surfaces": [
+        "Drawer",
+        "Table",
+        "Board",
+        "List",
+        "reload"
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "native-same-date-invalid-drop-failure-rollback-retry",
+      "sameDateNoWrite": true,
+      "invalidDropNoWrite": true,
+      "failedDateAndVersionUnchanged": true,
+      "retry": true,
+      "noDrawer": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-event-preview-readonly-project-open",
+      "readOnly": true,
+      "openProjectIntent": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-project-overflow-preserves-scope-and-open",
+      "fixtureTaskIds": [
+        "01a11abd-aa80-7a97-849a-5913d69d66d7",
+        "01a11abd-aa80-7e0b-80e9-fa442d8387b6",
+        "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "01a11abd-aa80-7d34-868d-53e735cd70aa"
+      ],
+      "overflowTaskIds": [
+        "01a11abd-aa80-7a97-849a-5913d69d66d7",
+        "01a11abd-aa80-7e0b-80e9-fa442d8387b6",
+        "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+        "01a11abd-aa80-7d34-868d-53e735cd70aa"
+      ],
+      "noOutsideEvents": true,
+      "openOneDrawer": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-mine-overflow-preserves-scope-and-open",
+      "fixtureTaskIds": [
+        "01a11abd-aa80-7e0b-80e9-fa442d8387b6",
+        "01a11abd-aa80-7b0b-8be3-f143433c220a",
+        "01a11abd-aa80-74a3-8f79-c2df99f99a68",
+        "01a11abd-aa80-7180-8cb6-edfb5a174fd3"
+      ],
+      "overflowTaskIds": [
+        "01a11abd-aa80-7180-8cb6-edfb5a174fd3",
+        "01a11abd-aa80-74a3-8f79-c2df99f99a68",
+        "01a11abd-aa80-7b0b-8be3-f143433c220a",
+        "01a11abd-aa80-7e0b-80e9-fa442d8387b6"
+      ],
+      "noOutsideEvents": true,
+      "openOneDrawer": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-project-filter-events-and-search-overflow-same-dataset",
+      "projectFilterScopedEvents": true,
+      "queryChipsCountOverflowSameDataset": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-day-add-cancel-new-seed-reset-and-commit",
+      "cancelledProject": "01a11abd-aa80-7f23-849c-94f63946ff17",
+      "cancelledLabels": [
+        "Bug"
+      ],
+      "cancelledDraftReset": true,
+      "firstDue": "2026-10-09",
+      "nextDue": "2026-10-14",
+      "taskId": "01a11abd-aa80-7a62-9dac-dba0dbcb754e",
+      "sameFullForm": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-seeded-close-reopen-pending-and-frozen-recovery-do-not-overwrite",
+      "heldTaskId": "01a11abd-aa80-7f32-871c-25374c9b56d0",
+      "recoveryTaskId": "01a11abd-aa80-7f4a-aa05-97238440b8f5",
+      "sameRequestId": "637c25d4-b6cc-44b1-b13f-0a38153a6d5b",
+      "originalDuePreserved": "2026-10-09",
+      "freshNextDue": "2026-10-14",
+      "oneEach": true,
+      "noLateDrawer": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-231record-range-summary-overflow-no-first-page-truncation",
+      "createdFixtureCount": 231,
+      "matchedCount": 231,
+      "overflow": 231,
+      "eventFirst": true,
+      "primaryCursorComplete": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-actual-Workspace-MyTasks-route-normalization-and-completionUndo",
+      "actualWorkspaceCalendar": true,
+      "actualMyTasksCalendarList": true,
+      "noMyTaskEvents": true,
+      "invalidModeNormalization": true,
+      "existingCompletionUndo": true,
+      "status": "passed"
+    },
+    {
+      "id": "native-640-month-bars-week-stacking-scroll",
+      "inclusive640": true,
+      "monthChipHeight": 8,
+      "weekColumns": 1,
+      "nativeWheel": true,
+      "navigation": "native click",
+      "status": "passed"
+    },
+    {
+      "id": "native-641-month-bars-week-stacking-scroll",
+      "pointer": {
+        "clipping": {
+          "rect": {
+            "x": 75,
+            "y": 199.828125,
+            "width": 52,
+            "height": 24,
+            "top": 199.828125,
+            "right": 127,
+            "bottom": 223.828125,
+            "left": 75
+          },
+          "hit": "<div class=\"calendar-day calendar-out \" data-calendar-day=\"2026-09-29\"><span class=\"calendar-day-number \">29</span><button aria-label=\"Add task on Sep 29\" type=\"button\" class=\"relative inline-flex shrink-0 items-center justify-center text-secondary transition-[background,color] source-hover:bg-surface-2 source-hover:text-foreground active:bg-surface-3 active:text-foreground aria-pressed:bg-surface-3 aria-pressed:text-foreground disabled:opacity-40 disabled:pointer-events-none size-control-xs rounded-xs calendar-day-add absolute right-[5px] top-[5px] opacity-0\"><svg class=\"block shrink-0 \" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"M12 5v14\"></path></svg></button><button type=\"button\" class=\"calendar-chip calendar-done  \" draggable=\"true\" data-calendar-task=\"01a11abd-aa80-7e0b-80e9-fa442d8387b6\" data-task-key=\"WEB-106\" title=\"Summarize stakeholder interviews\" style=\"--calendar-color: #5A67D8;\"><svg width=\"11\" height=\"11\" viewBox=\"0 0 14 14\" aria-hidden=\"true\" class=\"shrink-0\"><circle cx=\"7\" cy=\"7\" r=\"6.2\" fill=\"var(--st-done)\"></circle><path d=\"M4.4 7.2 6.2 9 9.7 5.3\" fill=\"none\" stroke=\"var(--surface)\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg><span class=\"calendar-chip-title grow truncate\">Summarize stakeholder interviews</span><span role=\"img\" aria-label=\"Tanjim Islam\" class=\"relative inline-grid shrink-0 select-none place-items-center rounded-[50%] font-semibold leading-none tracking-[0.01em] bg-[color-mix(in_srgb,var(--avatar-color)_17%,var(--surface))] text-[color-mix(in_srgb,var(--avatar-color)_55%,var(--text))] [box-shadow:0_0_0_1.5px_var(--surface)] calendar-chip-avatar\" style=\"--avatar-color: #5A67D8; width: 22px; height: 22px; font-size: 8.8px;\">TI</span></button></div>",
+          "monthCell": true
+        },
+        "events": [
+          {
+            "trusted": true,
+            "target": "<div class=\"calendar-day calendar-out \" data-calendar-day=\"2026-09-29\"><span class=\"calendar-day-number \">29</span><button aria-label=\"Add task on Sep 29\" type=\"button\" class=\"relative inline-flex shrink-0 items-center justify-center text-secondary transition-[background,color] source-hover:bg-surface-2 source-hover:text-foreground active:bg-surface-3 active:text-foreground aria-pressed:bg-surface-3 aria-pressed:text-foreground disabled:opacity-40 disabled:pointer-events-none size-control-xs rounded-xs calendar-day-add absolute right-[5px] top-[5px] opacity-0\"><svg class=\"block shrink-0 \" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"></path><path d=\"M12 5v14\"></path></svg></button><button type=\"button\" class=\"calendar-chip calendar-done  \" draggable=\"true\" data-calendar-task=\"01a11abd-aa80-7e0b-80e9-fa442d8387b6\" data-task-key=\"WEB-106\" title=\"Summarize stakeholder interviews\" style=\"--calendar-color: #5A67D8;\"><svg width=\"11\" height=\"11\" viewBox=\"0 0 14 14\" aria-hidden=\"true\" class=\"shrink-0\"><circle cx=\"7\" cy=\"7\" r=\"6.2\" fill=\"var(--st-done)\"></circle><path d=\"M4.4 7.2 6.2 9 9.7 5.3\" fill=\"none\" stroke=\"var(--surface)\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg><span class=\"calendar-chip-title grow truncate\">Summarize stakeholder interviews</span><span role=\"img\" aria-label=\"Tanjim Islam\" class=\"relative inline-grid shrink-0 select-none place-items-center rounded-[50%] font-semibold leading-none tracking-[0.01em] bg-[color-mix(in_srgb,var(--avatar-color)_17%,var(--surface))] text-[color-mix(in_srgb,var(--avatar-color)_55%,var(--text))] [box-shadow:0_0_0_1.5px_var(--surface)] calendar-chip-avatar\" style=\"--avatar-color: #5A67D8; width: 22px; height: 22px; font-size: 8.8px;\">TI</span></button></div>",
+            "monthCell": true
+          }
+        ]
+      },
+      "inclusive640": false,
+      "monthChipHeight": 22,
+      "weekColumns": 7,
+      "nativeWheel": true,
+      "navigation": "native Shift+Tab/ArrowRight; source and target pointer center is clipped by month cell at641 (recorded source geometry bug)",
+      "status": "passed"
+    }
+  ],
+  "fixturePreparation": "Native gestures are primary. Explicit canonical API fixture setup is recorded per probe and does not substitute for native interaction.",
+  "limitations": [
+    "Project feature harness only; full wrapper WU16.",
+    "Date PATCH has no source-visible Undo; native existing completion Undo is verified separately."
+  ],
+  "browser": "145.0.7632.6",
+  "lastDragEvents": [
+    {
+      "type": "dragstart",
+      "trusted": true
+    },
+    {
+      "type": "dragover",
+      "trusted": true
+    },
+    {
+      "type": "drop",
+      "trusted": true
+    }
+  ],
+  "status": "passed"
+}

@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-SfP_JuDF.js";var t=e;export{t as component};

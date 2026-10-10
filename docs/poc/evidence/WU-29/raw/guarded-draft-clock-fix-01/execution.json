@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\np=Path(\"apps/web/src/features/notifications/InboxPage.tsx\"); s=p.read_text(); s=s.replace(\"useState<Record<string, string>>({})\", \"useState<Record<string, { value: string; revision: number }>>({})\"); s=s.replace(\"  const draftRevisions = useRef<Record<string, number>>({});\\n\", \"\"); s=s.replace(\"draftRevisions.current[selected.taskId] ?? 0\", \"drafts[selected.taskId]?.revision ?? 0\"); s=s.replace(\"drafts[selected.taskId] ?? \\x27\\x27\", \"drafts[selected.taskId]?.value ?? \\x27\\x27\")\na=\"onDraftChange={value => { const id = selected.taskId; if (id) { draftRevisions.current[id] = (draftRevisions.current[id] ?? 0) + 1; setDrafts(previous => ({ ...previous, [id]: value })); } }} onDraftPosted={() => { const id = selected.taskId; if (id && (draftRevisions.current[id] ?? 0) === selectedDraftRevision) { draftRevisions.current[id] = selectedDraftRevision + 1; setDrafts(previous => ({ ...previous, [id]: \\x27\\x27 })); } }}\"\nb=\"onDraftChange={value => { const id = selected.taskId; if (id) setDrafts(previous => ({ ...previous, [id]: { value, revision: (previous[id]?.revision ?? 0) + 1 } })); }} onDraftPosted={() => { const id = selected.taskId; if (id) setDrafts(previous => (previous[id]?.revision ?? 0) === selectedDraftRevision ? { ...previous, [id]: { value: \\x27\\x27, revision: selectedDraftRevision + 1 } } : previous); }}\"\nassert a in s; p.write_text(s.replace(a,b))\np=Path(\"apps/web/src/features/dashboards/metrics.tsx\");s=p.read_text();s=s.replace(\"import type { IconName } from \\x27@studio/ui\\x27;\", \"import type { IconName } from \\x27@studio/ui\\x27;\\nimport { useInitialRouteEntry } from \\x27../../app/shell/route-entry-context\\x27;\");s=s.replace(\" const first = useRef(true)\", \" const initialRouteEntry = useInitialRouteEntry();\\n const first = useRef(true)\");s=s.replace(\"if (!initial || value < 2 || reduced)\", \"if (!initial || initialRouteEntry || value < 2 || reduced)\");s=s.replace(\" }, [value]);\", \" }, [value, initialRouteEntry]);\");p.write_text(s)\np=Path(\"apps/web/src/features/tasks/date-display.ts\");s=p.read_text();s=s.replace(\"long = false): string\", \"long = false, today?: string): string\");s=s.replace(\"year !== new Date().getUTCFullYear()\", \"year !== (today ? Number(today.slice(0,4)) : new Date().getUTCFullYear())\");s=s.replace(\" : formatAbsoluteDate(value);\", \" : formatAbsoluteDate(value, undefined, false, today);\");s=s.replace(\"formatAbsoluteDate(new Date(instant).toISOString().slice(0,10))\", \"formatAbsoluteDate(new Date(instant).toISOString().slice(0,10), undefined, false, now.slice(0,10))\");p.write_text(s)\np=Path(\"apps/web/src/features/projects/format.ts\");s=p.read_text().replace(\"year = false)\", \"year = false, today?: string)\").replace(\"undefined, year)\", \"undefined, year, today)\");p.write_text(s)\np=Path(\"apps/web/src/features/projects/ProjectComponents.tsx\");s=p.read_text().replace(\"ProjectRow({ item, data, onOpen\", \"ProjectRow({ item, data, now, onOpen\");s=s.replace(\"projectDate(p.dueDate)\", \"projectDate(p.dueDate, false, now.slice(0,10))\").replace(\"projectDate(allowed.project.startDate)\", \"projectDate(allowed.project.startDate, false, now.slice(0,10))\");p.write_text(s)\np=Path(\"apps/web/src/features/projects/ProjectOverview.tsx\");s=p.read_text().replace(\"projectDate(project.dueDate)\", \"projectDate(project.dueDate, false, clock.today())\").replace(\"project.dueDate, true)\", \"project.dueDate, true, clock.today())\").replace(\"projectDate(milestone.date)\", \"projectDate(milestone.date, false, clock.today())\");p.write_text(s)"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/guarded-draft-clock-fix-01/command.txt",
+    "bytes": 3519,
+    "sha256": "fbd14d2c79df713b794507d8948cb5080d0254a62b0da64c1adf241e9a30fb4f"
+  },
+  "startedAt": "2026-10-10T12:58:25.713Z",
+  "finishedAt": "2026-10-10T12:58:25.740Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/guarded-draft-clock-fix-01/stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/guarded-draft-clock-fix-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

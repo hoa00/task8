@@ -1,0 +1,1 @@
+'bash' '-c' 'sed -n "48,115p" .reference/gr8r-studio/src/shell/render.js; rg -n "hashchange|popstate|location.hash|pushState|replaceState" .reference/gr8r-studio/src apps/web/src/app; cat apps/web/src/app/legacy.ts 2>/dev/null; sed -n "64,118p" docs/poc/ACCEPTANCE.md; sed -n "29,250p" docs/poc/SCREEN_INVENTORY.md'

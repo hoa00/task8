@@ -1,1 +1,3 @@
-export function projectDate(date: string | null, year = false) { if (!date) return '—'; return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', ...(year ? { year: 'numeric' } : {}), timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`)); }
+import { formatAbsoluteDate } from '../tasks/date-display';
+
+export function projectDate(date: string | null, year = false, today?: string) { return date ? formatAbsoluteDate(date, undefined, year, today) : '—'; }

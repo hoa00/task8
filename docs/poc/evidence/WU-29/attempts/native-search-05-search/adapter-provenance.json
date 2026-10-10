@@ -1,0 +1,82 @@
+{
+  "input": "tests/visual/search/interactions.mjs",
+  "inputBytes": 23075,
+  "inputSha256": "b9839934316a280c0582112e2534708f0e6cd9d00b7bdcd50d8f6157c416ea07",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-search-05-search/executed-adapter.mjs",
+  "adapterBytes": 24588,
+  "adapterSha256": "7d92e702af365ce003ad516386cc58126e838749e8b838908d4c90ef4ef4fcc8",
+  "remapped": [
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    },
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/data/adapters/mock.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/data/adapters/mock.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/features/search/commands.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/features/search/commands.ts"
+    }
+  ],
+  "assertionUpdates": [
+    {
+      "before": "await page.locator('[data-task-drawer]').waitFor({ state: 'detached' });\n  await page.getByRole('textbox', { name: 'Search', exact: true }).fill('fig');",
+      "after": "await page.locator('[data-task-drawer]').waitFor({ state: 'detached' });\n  await palette('search'); await query('fig'); await page.getByRole('option', { name: 'View all results for “fig”', exact: true }).click(); await page.waitForSelector('[data-search-page]');\n  await page.getByRole('textbox', { name: 'Search', exact: true }).fill('fig');",
+      "reason": "Keep native File Preview, attached-task link and nested Escape assertions. WU-22 canonical File route requires actual Palette View all results navigation before the Search-page half",
+      "occurrences": 1
+    },
+    {
+      "before": "await page.locator('[data-search-result=files]').first().click(); await page.locator('[data-file-preview]').waitFor(); await page.keyboard.press('Escape');",
+      "after": "await page.locator('[data-search-result=files]').first().click(); await page.locator('[data-file-preview]').waitFor(); await page.keyboard.press('Escape'); await palette('search'); await query('fig'); await page.getByRole('option', { name: 'View all results for “fig”', exact: true }).click(); await page.waitForSelector('[data-search-page]');",
+      "reason": "The Search-page File result also enters the canonical Files URL. Return through the actual Palette View all results option before the following Search input/contentEditable/global keyboard assertions",
+      "occurrences": 1
+    },
+    {
+      "before": "assert.equal(await page.getByRole('option', { name: 'Invite member', exact: true }).getAttribute('aria-disabled'), 'true'); await page.keyboard.press('Escape'); await palette(); await query('Sign out'); assert.equal(await page.getByRole('option', { name: 'Sign out', exact: true }).getAttribute('aria-disabled'), 'true'); await page.keyboard.press('Escape');",
+      "after": "const inviteOption=page.getByRole('option',{name:'Invite member',exact:true});assert.notEqual(await inviteOption.getAttribute('aria-disabled'),'true');await inviteOption.click();await page.locator('[data-invite-dialog]').waitFor();await page.getByLabel('Email addresses',{exact:true}).waitFor();assert.equal(await page.locator('[data-invite-dialog]').getByRole('button',{name:'Send invites',exact:true}).isEnabled(),true);await page.locator('[data-invite-dialog]').getByRole('button',{name:'Cancel',exact:true}).click();await palette();await query('Sign out');const signOutOption=page.getByRole('option',{name:'Sign out',exact:true});assert.notEqual(await signOutOption.getAttribute('aria-disabled'),'true');const principalBefore=await page.evaluate(()=>{const key=Object.keys(localStorage).find(key=>key.startsWith('task8.mock.v1:'));return JSON.parse(localStorage.getItem(key)).dataset.currentMemberId;});await signOutOption.click();await page.waitForURL(url=>url.pathname==='/login');await page.locator('[data-auth-card]').waitFor();assert.equal(await page.evaluate(()=>{const key=Object.keys(localStorage).find(key=>key.startsWith('task8.mock.v1:'));return JSON.parse(localStorage.getItem(key)).dataset.currentMemberId;}),principalBefore);",
+      "reason": "Close both historical pending integrations through native enabled owners: InviteDialog fields/submit availability/cancel and Mock sign-out local Login navigation with unchanged canonical principal; no invitation delivery or external identity sign-out claim",
+      "occurrences": 1
+    },
+    {
+      "before": "disabledPendingMutations: ['invite20', 'signout26'], workspaceInitializationOwner: [27, 31]",
+      "after": "implementedNativeOwners: ['InviteDialog fields/cancel','Mock sign-out Login/unchanged principal'], scope:'Local demos, no delivered email or external identity sign-out'",
+      "reason": "Report actual completed local owner behavior instead of obsolete disabled future-unit integrations",
+      "occurrences": 1
+    },
+    {
+      "before": "await page.getByRole('option', { name: 'Gr8r Studio', exact: true }).click();",
+      "after": "await page.locator(`[data-palette-item=\"${sourceId('workspaces','w1')}\"]`).click();",
+      "reason": "Workspace option accessible text includes plan metadata; use the existing canonical item ID while retaining native click, same-workspace URL and closed-palette assertions",
+      "occurrences": 1
+    }
+  ],
+  "precreatedEvidenceDirectories": [
+    "docs/poc/evidence/WU-29/attempts/native-search-05-search/legacy/WU-18"
+  ],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt",
+    "Precreate the finite exact redirected report directories read from the original literal evidence paths so report writes cannot mask an underlying error with ENOENT",
+    "Keep native File Preview, attached-task link and nested Escape assertions. WU-22 canonical File route requires actual Palette View all results navigation before the Search-page half",
+    "The Search-page File result also enters the canonical Files URL. Return through the actual Palette View all results option before the following Search input/contentEditable/global keyboard assertions",
+    "Close both historical pending integrations through native enabled owners: InviteDialog fields/submit availability/cancel and Mock sign-out local Login navigation with unchanged canonical principal; no invitation delivery or external identity sign-out claim",
+    "Report actual completed local owner behavior instead of obsolete disabled future-unit integrations",
+    "Workspace option accessible text includes plan metadata; use the existing canonical item ID while retaining native click, same-workspace URL and closed-palette assertions"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-search-05-search/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

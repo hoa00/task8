@@ -1,0 +1,42 @@
+{
+  "input": "tests/visual/settings/security-interactions.mjs",
+  "inputBytes": 14223,
+  "inputSha256": "f3b591952066e6c46741141d242d092b97297be213a3cfd5d4fd497c6a0fd756",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-current-01-security/executed-adapter.mjs",
+  "adapterBytes": 14433,
+  "adapterSha256": "cb148c4916231b3cbcbf5af91387099296e773418253f6e1fe316fd7b6efedac",
+  "remapped": [
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    },
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    },
+    {
+      "reference": "./assets.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/settings/assets.mjs"
+    },
+    {
+      "reference": "../reference/source-check.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/source-check.mjs"
+    }
+  ],
+  "assertionUpdates": [],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-current-01-security/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

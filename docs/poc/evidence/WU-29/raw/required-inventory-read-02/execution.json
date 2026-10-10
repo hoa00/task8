@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "node",
+    "-e",
+    "const fs=require(\"fs\");console.log(fs.readFileSync(\"docs/poc/work-units/WU-29.md\",\"utf8\")); const r=JSON.parse(fs.readFileSync(\"docs/poc/reference/scenario-registry.json\",\"utf8\"));console.log(JSON.stringify(r.scenarios.map(x=>({id:x.id,route:x.route,params:x.params,ui:x.ui,overlay:x.overlay,actions:x.actions})),null,2));console.log(fs.readFileSync(\".reference/gr8r-studio/src/pages/inbox.js\",\"utf8\"));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/required-inventory-read-02/command.txt",
+    "bytes": 418,
+    "sha256": "e976d34a75a5766509984e03904fc446d5022f524620300b9f538c34db51d0ae"
+  },
+  "startedAt": "2026-10-10T13:12:25.928Z",
+  "finishedAt": "2026-10-10T13:12:25.950Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/required-inventory-read-02/stdout",
+    "bytes": 28660,
+    "sha256": "a6fe7d5814fb1ee8ac68915eb22dab88f9075c18320a3576db811bcd6336f92e"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/required-inventory-read-02/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

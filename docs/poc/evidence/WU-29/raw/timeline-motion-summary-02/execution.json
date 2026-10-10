@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "node",
+    "-e",
+    "const fs=require(\"fs\"),r=JSON.parse(fs.readFileSync(\"docs/poc/evidence/WU-29/attempts/native-timeline-motion-02/report.json\",\"utf8\"));console.log(JSON.stringify(r.profiles.map(p=>({id:p.id,error:p.error,samples:p.samples.map(s=>({pixels:s.comparison.pixels,repeats:s.repeats.map(x=>x.pixels),animations:s.state.map(x=>x.animations.map(a=>({name:a.name,timing:a.timing,html:a.html.slice(0,120)})))}))})),null,2));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/timeline-motion-summary-02/command.txt",
+    "bytes": 427,
+    "sha256": "684dce5ed20b17cf4c684bde835240c87b798b8debdcb6b962c269cd3370b5be"
+  },
+  "startedAt": "2026-10-10T13:04:57.646Z",
+  "finishedAt": "2026-10-10T13:04:57.674Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/timeline-motion-summary-02/stdout",
+    "bytes": 26171,
+    "sha256": "21e91afc9bc903372ffb47fd6e55f04e36ed6c046b0b09500438912495e23b14"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/timeline-motion-summary-02/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

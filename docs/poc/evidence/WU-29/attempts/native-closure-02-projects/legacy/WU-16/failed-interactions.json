@@ -1,0 +1,13 @@
+{
+  "probes": [],
+  "runtime": {
+    "browser": "145.0.7632.6"
+  },
+  "limitations": [
+    "Real route hosts with a test-only controllable transport for CAS/held-request probes; no production global.",
+    "Share changes are local demo state; no invitation/public sharing or real grant changes.",
+    "Files header/slot only, body pending WU-22."
+  ],
+  "status": "failed",
+  "error": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Access restricted', { exact: true }) to be visible\u001b[22m\n\n    at /workspace/task8/docs/poc/evidence/WU-29/attempts/native-closure-02-projects/executed-adapter.mjs:18:888\n    at async probe (/workspace/task8/docs/poc/evidence/WU-29/attempts/native-closure-02-projects/executed-adapter.mjs:15:35)\n    at async file:///workspace/task8/docs/poc/evidence/WU-29/attempts/native-closure-02-projects/executed-adapter.mjs:18:2"
+}

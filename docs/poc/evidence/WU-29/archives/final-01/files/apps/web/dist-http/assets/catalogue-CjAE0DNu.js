@@ -1,0 +1,1 @@
+import"./catalogue-DO4xDJUl.js";

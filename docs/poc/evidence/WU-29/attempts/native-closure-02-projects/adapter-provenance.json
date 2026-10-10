@@ -1,0 +1,74 @@
+{
+  "input": "tests/visual/projects/interactions.mjs",
+  "inputBytes": 47777,
+  "inputSha256": "cdaabb9cc422187cba3fd68ad3aa4fc0eed5e70b874e37b7385191434dcdf8a7",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-closure-02-projects/executed-adapter.mjs",
+  "adapterBytes": 47965,
+  "adapterSha256": "3cd824db0f30b67a3c50a96ec88526df60df856255525006f92088d153102d06",
+  "remapped": [
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    },
+    {
+      "reference": "../../../packages/contracts/src/api.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/api.ts"
+    },
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    }
+  ],
+  "assertionUpdates": [
+    {
+      "before": "[data-project-files-pending]",
+      "after": "[data-project-files]",
+      "reason": "Files is implemented; retain exact owned body count rather than the historical pending-slot selector"
+    },
+    {
+      "before": "five reused task renderers and Files pending slot",
+      "after": "five reused task renderers and implemented Files body",
+      "reason": "Update probe label to the actual maintained assertion"
+    },
+    {
+      "before": "assert.ok(first.length>=2)",
+      "after": "assert.equal(first.length,0)",
+      "reason": "Original Source startup has no route FX; current canonical cold Project entry must have zero entrance owners, while the subsequent actual List/Activity tab motion assertions remain"
+    },
+    {
+      "before": "assert.equal(before,'route')",
+      "after": "assert.equal(before,null)",
+      "reason": "Cold canonical entry has no route transition to consume; retain each actual edit/share/menu/save native action and no-replay assertion"
+    },
+    {
+      "before": "assert.equal(await host.getAttribute('data-project-transition'),'route')",
+      "after": "assert.equal(await host.getAttribute('data-project-transition'),null)",
+      "reason": "Header and Overview status menus start from matched Source cold/no-FX entry; all native menu/no-replay checks remain"
+    }
+  ],
+  "precreatedEvidenceDirectories": [
+    "docs/poc/evidence/WU-29/attempts/native-closure-02-projects/legacy/WU-16",
+    "docs/poc/evidence/WU-29/attempts/native-closure-02-projects/legacy/WU-17/project-regression"
+  ],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt",
+    "Precreate the exact redirected Project report directories so original catch/report writes cannot mask an underlying error with ENOENT",
+    "Files is implemented; retain exact owned body count rather than the historical pending-slot selector",
+    "Update probe label to the actual maintained assertion",
+    "Original Source startup has no route FX; current canonical cold Project entry must have zero entrance owners, while the subsequent actual List/Activity tab motion assertions remain",
+    "Cold canonical entry has no route transition to consume; retain each actual edit/share/menu/save native action and no-replay assertion",
+    "Header and Overview status menus start from matched Source cold/no-FX entry; all native menu/no-replay checks remain"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-closure-02-projects/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

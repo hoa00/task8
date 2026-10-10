@@ -1,0 +1,7 @@
+{
+  "chunk_id": "e36175",
+  "wall_time_seconds": 0.00009009,
+  "exit_code": 2,
+  "original_token_count": 336,
+  "output": "rg: .reference/gr8r-studio/src/ui/motion.js: No such file or directory (os error 2)\napps/web/src/features/dashboards/metrics.tsx:15:  const start = performance.now(); let frame = 0; setStartedAt(start); setShown(0); setRunning(true);\napps/web/src/features/dashboards/metrics.tsx:16:  const step = (now: number) => { first.current = false; const k = Math.min(1, (now - start) / 520); setShown(Math.round(value * (1 - (1 - k) ** 3))); if (k < 1) frame = requestAnimationFrame(step); else setRunning(false); };\napps/web/src/features/dashboards/metrics.tsx:17:  frame = requestAnimationFrame(step); return () => cancelAnimationFrame(frame);\napps/web/src/features/dashboards/metrics.tsx:19: const content = <><span className=\"flex items-center gap-[6px] text-sm text-secondary\">{icon && <Icon name={icon} size={14} />}{label}</span><span data-metric={label} data-countup-state={running ? 'running' : 'ready'} data-countup-start={startedAt} data-metric-value={value} className={`text-[22px] font-semibold leading-[1.1] tracking-[-.02em] tabular-nums ${tone === 'red' ? 'text-red' : ''}`}>{shown}{suffix}</span><span className={`text-xs ${detailTone === 'red' ? 'text-red' : detailTone === 'green' ? 'text-green' : 'text-muted'}`}>{detail}</span></>;\nsed: can't read apps/web/src/features/dashboards/DashboardPrimitives.tsx: No such file or directory\n"
+}

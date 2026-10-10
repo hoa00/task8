@@ -1,0 +1,1 @@
+import{t as e}from"./Galleries-BPE-I5ZD.js";var t=e;export{t as component};

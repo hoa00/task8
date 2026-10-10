@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\"docs/poc/evidence/WU-29/attempts/home-motion-01/report.json\")); console.log(JSON.stringify({status:r.status,profiles:r.profiles.map(p=>({id:p.id,status:p.status,error:p.error,samples:p.samples.map(s=>({label:s.label,pixels:s.comparison.pixels,repeats:s.repeats.map(r=>r.pixels),animations:s.state.map(x=>x.animations.map(a=>a.name))}))}))},null,2));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/home-motion-summary-01/command.txt",
+    "bytes": 448,
+    "sha256": "c2fb877fcc4e2e5b89359cee618227feadb7d446526c846e9f801a1c39374b02"
+  },
+  "startedAt": "2026-10-10T12:43:52.911Z",
+  "finishedAt": "2026-10-10T12:43:52.945Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/home-motion-summary-01/stdout",
+    "bytes": 12685,
+    "sha256": "aee6dd13849adf12371cd0029e3a9ae93fee6c56d50f538cebc8a5168a0c4dbe"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/home-motion-summary-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

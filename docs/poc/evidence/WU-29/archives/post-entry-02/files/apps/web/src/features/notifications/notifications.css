@@ -1,0 +1,12 @@
+/* Inbox owns inclusive fullscreen preview and hidden rail scrollbars. These
+   structural selectors supplement literal utilities; no source CSS is imported. */
+.inbox-list { scrollbar-width:none; }
+.inbox-list::-webkit-scrollbar { display:none; }
+.inbox-tabs .ui-tab { padding:0; }
+.inbox-tabs .ui-tab[aria-selected=true]::after { left:0;right:0; }
+.notification-row + .notification-row { border-top:1px solid var(--divider); }
+@media(max-width:900px) {
+ .inbox-grid { grid-template-columns:minmax(0,1fr); }
+ .inbox-preview { display:none; }
+ .inbox-preview[data-selected] { display:flex;position:fixed;inset:0;z-index:48;background:var(--surface); }
+}

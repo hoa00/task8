@@ -1,0 +1,1 @@
+import{n as e}from"./Galleries-Bd1eYaZI.js";var t=e;export{t as component};

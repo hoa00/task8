@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "node",
+    "--input-type=module",
+    "-e",
+    "import fs from \"node:fs\"; const r=JSON.parse(fs.readFileSync(\"docs/poc/evidence/WU-29/attempts/visual-startup-pilot-01/report.json\")); console.log(JSON.stringify({status:r.status,completed:r.samples.filter(s=>s.status!==\"running\").length,total:r.matrix.length,results:r.samples.map(s=>({id:s.id,status:s.status,pixels:s.captures[0]?.comparison.pixels,animations:s.geometry?.map(side=>side.animations.length)}))}));"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/startup-live-01/command.txt",
+    "bytes": 451,
+    "sha256": "15b1dcdbda59c39e04133898451567340bc696437216f3ae014024654e2f3135"
+  },
+  "startedAt": "2026-10-10T12:49:02.451Z",
+  "finishedAt": "2026-10-10T12:49:02.521Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/startup-live-01/stdout",
+    "bytes": 1376,
+    "sha256": "2f6c4c02149862e59670df23707950cbc09a3ddd916dbe320c0a66962de2955f"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/startup-live-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

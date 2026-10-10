@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\np=Path(\"apps/web/src/app/shell/AppShell.tsx\");s=p.read_text();s=\"import { TaskCommentDraftProvider } from \\x27../../features/comments/draft-context\\x27;\\n\"+s;s=s.replace(\"<InitialRouteEntryContext value={initialRouteEntry}><WorkspaceTransientContext\", \"<InitialRouteEntryContext value={initialRouteEntry}><TaskCommentDraftProvider key={workspaceId}><WorkspaceTransientContext\");s=s.replace(\"</WorkspaceTransientContext></InitialRouteEntryContext>\", \"</WorkspaceTransientContext></TaskCommentDraftProvider></InitialRouteEntryContext>\");p.write_text(s)\np=Path(\"apps/web/src/features/notifications/InboxPage.tsx\");s=p.read_text();s=s.replace(\"import { InboxPreview } from \\x27./InboxPreview\\x27;\", \"import { InboxPreview } from \\x27./InboxPreview\\x27;\\nimport { useTaskCommentDraftStore } from \\x27../comments/draft-context\\x27;\");a=\", [drafts, setDrafts] = useState<Record<string, { value: string; revision: number }>>({})\";assert a in s;s=s.replace(a,\"\");a=\"  const mobile = useSyncExternalStore\";assert a in s;s=s.replace(a,\"  const commentDrafts = useTaskCommentDraftStore();\\n  if (!commentDrafts) throw new Error(\\x27Inbox drafts require the workspace comment draft owner\\x27);\\n  const { drafts, changeDraft } = commentDrafts;\\n\"+a)\na=\"onDraftChange={value => { const id = selected.taskId; if (id) setDrafts(previous => ({ ...previous, [id]: { value, revision: (previous[id]?.revision ?? 0) + 1 } })); }} onDraftPosted={() => { const id = selected.taskId; if (id) setDrafts(previous => (previous[id]?.revision ?? 0) === selectedDraftRevision ? { ...previous, [id]: { value: \\x27\\x27, revision: selectedDraftRevision + 1 } } : previous); }}\";assert a in s;s=s.replace(a,\"onDraftChange={value => { if (selected.taskId) changeDraft(selected.taskId, value); }} onDraftPosted={() => { if (selected.taskId) changeDraft(selected.taskId, \\x27\\x27, selectedDraftRevision); }}\");p.write_text(s)\np=Path(\"apps/web/src/features/tasks/detail/TaskOverlayHost.tsx\");s=p.read_text();s=s.replace(\"import { TaskDrawer } from \\x27./TaskDrawer\\x27;\", \"import { TaskDrawer } from \\x27./TaskDrawer\\x27;\\nimport { useTaskCommentDraftStore } from \\x27../../comments/draft-context\\x27;\");a=\"function DrawerController(props: DrawerControllerProps) { const [draft,\";assert a in s;s=s.replace(a,\"function DrawerController(props: DrawerControllerProps) { const commentDrafts = useTaskCommentDraftStore(); const [draft,\")\na=\"draft={draft} onDraftChange={(patch, expectedCommentRevision) => { const current = props.drafts.get(props.taskId) ?? draft;\";assert a in s\nb=\"draft={commentDrafts ? { ...draft, comment: commentDrafts.drafts[props.taskId]?.value ?? \\x27\\x27, commentRevision: commentDrafts.drafts[props.taskId]?.revision ?? 0 } : draft} onDraftChange={(patch, expectedCommentRevision) => { if (commentDrafts && patch.comment !== undefined) { commentDrafts.changeDraft(props.taskId, patch.comment, expectedCommentRevision); const ownPatch = { ...patch }; delete ownPatch.comment; delete ownPatch.commentRevision; if (!Object.keys(ownPatch).length) return; patch = ownPatch; expectedCommentRevision = undefined; } const current = props.drafts.get(props.taskId) ?? draft;\"\ns=s.replace(a,b);p.write_text(s)"
+  ],
+  "command": {
+    "path": "docs/poc/evidence/WU-29/raw/shared-comment-owner-fix-01/command.txt",
+    "bytes": 3225,
+    "sha256": "a3b881bb7d7a442d64b406ca5a768f6e38e07ebd4659e3e08bf49026998f3185"
+  },
+  "startedAt": "2026-10-10T13:18:12.456Z",
+  "finishedAt": "2026-10-10T13:18:12.489Z",
+  "node": "v24.13.0",
+  "exitStatus": 0,
+  "signal": null,
+  "error": null,
+  "stdout": {
+    "path": "docs/poc/evidence/WU-29/raw/shared-comment-owner-fix-01/stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/poc/evidence/WU-29/raw/shared-comment-owner-fix-01/stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

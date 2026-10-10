@@ -1,0 +1,11 @@
+--- 537912fe78c6d91e0c122e4918ff90aae331d81b:packages/ui/src/styles/overlays.css
++++ current:packages/ui/src/styles/overlays.css
+@@ -18,7 +18,7 @@
+   .ui-toast-viewport { left: 16px; right: 16px; bottom: 76px; align-items: stretch; }
+ }
+ @media (prefers-reduced-motion: reduce) {
+-  .ui-dialog,.ui-popover,.ui-drawer,.ui-toast { animation-name: fadeOnly !important; animation-duration: .12s !important; }
++  :root:not([data-motion='full']) :is(.ui-dialog,.ui-popover,.ui-drawer,.ui-toast) { animation-name: fadeOnly !important; animation-duration: .12s !important; }
+ }
+ :root[data-motion='reduce'] :is(.ui-dialog,.ui-popover,.ui-drawer,.ui-toast) { animation-name: fadeOnly !important; animation-duration: .12s !important; }
+ 

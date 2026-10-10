@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "steps": [
+    {
+      "id": "M1-I01-list-composer-and-complete-form-create-validation-identity",
+      "listTaskId": "01a11abd-aa80-78ef-9b69-def20dca98d9",
+      "listTaskKey": "WEB-201",
+      "formTaskId": "01a11abd-aa80-7016-a45b-7a3c65db9a05",
+      "oneCreate": true,
+      "status": "passed"
+    },
+    {
+      "id": "M1-I02-drawer-title-status-assignee-due-and-rich-edit",
+      "sameId": "01a11abd-aa80-78ef-9b69-def20dca98d9",
+      "title": "WU12 M1 edited rich task",
+      "taskStatus": "progress",
+      "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+      "dueDate": "2026-10-08",
+      "richHtml": "<strong>M1 release plan with rich content</strong>",
+      "status": "passed"
+    },
+    {
+      "id": "M1-I05-I06-subtask-detail-comment-mention-reaction-and-attachment-preview",
+      "taskId": "01a11abd-aa80-78ef-9b69-def20dca98d9",
+      "childId": "01a11abd-aa80-7329-b946-d9b7b09a9791",
+      "commentId": "01a11abd-aa80-7d12-a4fd-e9762fe14500",
+      "fileId": "01a11abd-aa80-7224-a1e8-38472559030c",
+      "metadataOnly": true,
+      "status": "passed"
+    },
+    {
+      "id": "M1-I03-I07-board-drag-completion-Undo-reflects-List",
+      "sameTask": "01a11abd-aa80-78ef-9b69-def20dca98d9",
+      "statusAfterDragAndUndo": "review",
+      "boardListSync": true,
+      "status": "passed"
+    },
+    {
+      "id": "M1-I07-native-recurring-complete-Undo-recomplete-reopen-and-reload",
+      "sameTask": "01a11abd-aa80-78ef-9b69-def20dca98d9",
+      "recurrence": "weekly",
+      "successorId": "01a11abd-aa80-7865-99d3-3a5ce2f72185",
+      "successorKey": "WEB-203",
+      "successorDueDate": "2026-10-15",
+      "exactlyOneSuccessor": true,
+      "singleUndoRetainsSuccessor": true,
+      "recompleteReopenNoDuplicate": true,
+      "listReload": true,
+      "status": "passed"
+    },
+    {
+      "id": "M1-I08-myTasks-reload-deeplink-one-Drawer-back-forward",
+      "deepLink": "http://127.0.0.1:5173/w/01a11abd-aa80-72ea-8b87-b31ad015a24e/my-tasks?taskId=01a11abd-aa80-78ef-9b69-def20dca98d9",
+      "reloadedSameEntity": true,
+      "oneDrawer": true,
+      "myTasksSameId": true,
+      "backForward": true,
+      "status": "passed"
+    }
+  ],
+  "notes": [
+    "Native mouse/keyboard/chooser through actual Workspace Tasks List/Board and My Tasks List/AppShell/one TaskOverlayHost. Assertions read persisted canonical mock records; no direct API mutation for primary journey. ContentAvailable:false sample file metadata; real HTTP/R2 bytes WU35."
+  ],
+  "finalTask": {
+    "id": "01a11abd-aa80-78ef-9b69-def20dca98d9",
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+    "key": "WEB-201",
+    "title": "WU12 M1 edited rich task",
+    "descriptionHtml": "<strong>M1 release plan with rich content</strong>",
+    "status": "review",
+    "assigneeId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "priority": "none",
+    "startDate": null,
+    "dueDate": "2026-10-08",
+    "estimate": null,
+    "recurrence": "weekly",
+    "labelIds": [],
+    "dependencyIds": [],
+    "position": 200,
+    "completedAt": null,
+    "archivedAt": null,
+    "createdAt": "2026-10-08T09:00:00Z",
+    "updatedAt": "2026-10-08T09:00:00Z",
+    "version": 20,
+    "isFavorite": false,
+    "subtaskSummary": {
+      "total": 1,
+      "completed": 1
+    },
+    "attachmentCount": 1,
+    "commentCount": 1
+  }
+}

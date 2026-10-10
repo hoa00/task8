@@ -1,0 +1,7 @@
+{
+  "chunk_id": "254e87",
+  "wall_time_seconds": 0.000029769,
+  "exit_code": 0,
+  "original_token_count": 238,
+  "output": "[\"ot: '/forgot-password', reset: '/reset-password', verify: '/verify-email', onboarding: '/onboarding?step=0' };\\n    for (const [alias, canonical] of Object.entries(aliases)) { await page.goto(`http://127.0.0.1:5173/#${alias}`); await expect(page).toHaveURL(`http://127.0.0.1:5173${canonical}`); }\\n    await expect(page.getByText('Pending \\u00b7 WU-27 owns the six-step onboarding flow.')).toBeVisible();\\n    for (const path of ['/forgot-password?state=invalid', '/re\", \"e).toHaveURL(/\\\\/login$/); await page.clock.runFor(1); await expect(page).toHaveURL(/\\\\/w\\\\/[^/]+\\\\/home$/); }\\n    await entry('/verify-email'); await page.getByRole('button', { name: \\\"I've verified my email\\\" }).click(); await page.clock.runFor(0); await expect(page).toHaveURL(/\\\\/onboarding\\\\?step=0$/); await expect(page.getByText('Pending \\u00b7 WU-27 owns the six-step onboarding flow.')).toBeVisible();\\n    return { providers: 3, socialAtMilliseconds: 800, pendingO\"]\n"
+}

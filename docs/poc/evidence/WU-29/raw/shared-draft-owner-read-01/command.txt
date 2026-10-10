@@ -1,0 +1,1 @@
+'node' '-e' 'const fs=require("fs");for(const p of ["apps/web/src/app/shell/transient-context.ts","apps/web/src/features/tasks/detail/TaskDrawer.tsx","apps/web/src/app/shell/AppShell.tsx"]){console.log("FILE "+p);console.log(fs.readFileSync(p,"utf8"))}'

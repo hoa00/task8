@@ -10,6 +10,7 @@ import { useWorkspaceId } from '../../app/shell/workspace-context';
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
 import { links } from '../../app/navigation';
 import { useDataRuntime } from '../../data/context';
+import { useProjectMotion } from '../projects/project-motion';
 import { useStudioQuery } from '../../data/queries';
 import { queryKeys } from '../../data/query-keys';
 import { loadTaskViewDataset } from '../tasks/loadTaskViewDataset';
@@ -52,11 +53,12 @@ export function CalendarPanel({ workspaceId, scope, query, onTaskOpen, onTaskMen
 export interface CalendarPageProps extends Omit<CalendarPanelProps, 'query'> { initialView?: TaskViewState; controlledView?: TaskViewState; showHeading?: boolean; onCurrentViewChange?: (view: TaskViewState) => void }
 export function CalendarPage({ initialView, controlledView, showHeading = true, onCurrentViewChange, ...props }: CalendarPageProps) {
   const bootstrap = useStudioQuery('getBootstrap', { workspaceId: props.workspaceId }), [localView, setView] = useState(initialView ?? decodeCurrentTaskView(location.search));
+  const { hostRef, onAnimationEnd } = useProjectMotion<HTMLElement>(location.pathname, `${JSON.stringify(controlledView ?? localView)}/${JSON.stringify(bootstrap.data)}`, 'page', JSON.stringify(controlledView ?? localView), !showHeading ? false : undefined);
   if (!bootstrap.data) return bootstrap.error ? <Alert tone="danger">{bootstrap.error.message}</Alert> : <div className="p-6" role="status">Loading calendar…</div>;
   const view = controlledView ?? localView;
   const data = bootstrap.data.data, projects = data.projects.filter(row => row.access === 'allowed').map(row => row.project);
   function change(next: TaskViewState) { setView(next); if (onCurrentViewChange) { onCurrentViewChange(next); return; } const url = new URL(location.href); url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!); history.replaceState(history.state, '', url); }
-  return <main className={!showHeading && props.scope.kind === 'project' ? 'task-page contents!' : 'task-page'} data-project-view-page={!showHeading && props.scope.kind === 'project' || undefined} data-calendar-page={props.scope.kind}>{showHeading && <div className="task-page-heading"><div><h1>Calendar</h1><p>Deadlines and events across every project.</p></div><div className="task-page-actions"><Button variant="primary" onClick={() => props.onNewTask({})}><Icon name="plus" size={14} />New task</Button></div></div>}<TaskViewToolbar value={view} onChange={change} lookups={{ members: data.members, projects, currentMemberId: data.currentMember.id }} group={false} right={props.scope.kind === 'project' ? <Button variant="primary" size="sm" onClick={() => props.onNewTask({})}><Icon name="plus" size={13} />New task</Button> : undefined} /><CalendarPanel {...props} query={view.query} /></main>;
+  return <main ref={hostRef} onAnimationEnd={onAnimationEnd} data-project-page-motion={showHeading || undefined} className={!showHeading && props.scope.kind === 'project' ? 'task-page contents!' : 'task-page'} data-project-view-page={!showHeading && props.scope.kind === 'project' || undefined} data-calendar-page={props.scope.kind}>{showHeading && <div className="task-page-heading"><div><h1>Calendar</h1><p>Deadlines and events across every project.</p></div><div className="task-page-actions"><Button variant="primary" onClick={() => props.onNewTask({})}><Icon name="plus" size={14} />New task</Button></div></div>}<TaskViewToolbar value={view} onChange={change} lookups={{ members: data.members, projects, currentMemberId: data.currentMember.id }} group={false} right={props.scope.kind === 'project' ? <Button variant="primary" size="sm" onClick={() => props.onNewTask({})}><Icon name="plus" size={13} />New task</Button> : undefined} /><CalendarPanel {...props} query={view.query} /></main>;
 }
 export function WorkspaceCalendar() {
   const workspaceId = useWorkspaceId(), intents = useWorkspaceIntents(), navigate = useNavigate(), route = useLocation();

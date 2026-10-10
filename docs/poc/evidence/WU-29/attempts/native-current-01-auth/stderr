@@ -1,0 +1,45 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+A [Error]: expect(locator).toBeVisible() failed
+
+Locator: getByText('Pending · WU-27 owns the six-step onboarding flow.')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "to.be.visible" with timeout 5000ms
+  - waiting for getByText('Pending · WU-27 owns the six-step onboarding flow.')
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/docs/poc/evidence/WU-29/attempts/native-current-01-auth/executed-adapter.mjs:28:88
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:472:9)
+    at async probe (file:///workspace/task8/docs/poc/evidence/WU-29/attempts/native-current-01-auth/executed-adapter.mjs:15:77)
+    at async file:///workspace/task8/docs/poc/evidence/WU-29/attempts/native-current-01-auth/executed-adapter.mjs:23:3 {
+  matcherResult: {
+    message: 'expect(locator).toBeVisible() failed\n' +
+      '\n' +
+      "Locator: getByText('Pending · WU-27 owns the six-step onboarding flow.')\n" +
+      'Expected: visible\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.be.visible" with timeout 5000ms\n' +
+      "  - waiting for getByText('Pending · WU-27 owns the six-step onboarding flow.')\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      '  - Expect "to.be.visible" with timeout 5000ms',
+      "  - waiting for getByText('Pending · WU-27 owns the six-step onboarding flow.')"
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

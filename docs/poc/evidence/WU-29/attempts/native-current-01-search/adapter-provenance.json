@@ -1,0 +1,42 @@
+{
+  "input": "tests/visual/search/interactions.mjs",
+  "inputBytes": 23075,
+  "inputSha256": "b9839934316a280c0582112e2534708f0e6cd9d00b7bdcd50d8f6157c416ea07",
+  "adapter": "docs/poc/evidence/WU-29/attempts/native-current-01-search/executed-adapter.mjs",
+  "adapterBytes": 23235,
+  "adapterSha256": "cf0e16cf4b98ae8373223cb68f7f99f23b6b01dddb0a53cefed688d7f8326dbc",
+  "remapped": [
+    {
+      "reference": "../reference/environment.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/reference/environment.mjs"
+    },
+    {
+      "reference": "../tasks/verify.mjs",
+      "resolved": "file:///workspace/task8/tests/visual/tasks/verify.mjs"
+    },
+    {
+      "reference": "../../../packages/contracts/src/source-identities.ts",
+      "resolved": "file:///workspace/task8/packages/contracts/src/source-identities.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/data/adapters/mock.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/data/adapters/mock.ts"
+    },
+    {
+      "reference": "../../../apps/web/src/features/search/commands.ts",
+      "resolved": "file:///workspace/task8/apps/web/src/features/search/commands.ts"
+    }
+  ],
+  "assertionUpdates": [],
+  "changes": [
+    "Resolve relative module imports to the original owner modules",
+    "Redirect all evidence and test-results namespaces into this unique WU-29 attempt"
+  ],
+  "scope": "Replay maintained native assertions against the current built application; exact completed-owner selector substitutions are listed above. Original entry routes and harness limitations remain; this replay alone does not establish inventory-wide action acceptance.",
+  "argv": [
+    "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "docs/poc/evidence/WU-29/attempts/native-current-01-search/executed-adapter.mjs",
+    "replay",
+    "--attempt=replay"
+  ]
+}

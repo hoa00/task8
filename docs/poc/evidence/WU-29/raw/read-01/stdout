@@ -1,0 +1,1503 @@
+# Kiến trúc chuyển đổi
+
+## 1. Quyết định cốt lõi
+
+Chuyển theo **component và feature**, giữ một thiết kế nguồn, một bộ domain data và một contract. Mỗi route chỉ ghép những phần sẵn có. React sở hữu DOM; TanStack Router sở hữu URL; TanStack Query sở hữu cache dữ liệu API. Style của component React dùng Tailwind từ lúc tạo.
+
+Source đã có các hàm chung như `listHtml`, `boardHtml`, `tableHtml`, `calendarHtml`, `timelineHtml`, `commentHtml`, `viewToolbar`. Vì vậy đây là một cuộc chuyển renderer/state ownership, không phải vẽ lại từng screenshot độc lập. Bằng chứng: [task-list.js](https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/components/task-list.js), [view-engine.js](https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/shell/view-engine.js), [project.js](https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/src/pages/project.js).
+
+## 2. Cấu trúc đích
+
+| Đường dẫn | Trách nhiệm | Không được phụ thuộc |
+| --- | --- | --- |
+| `apps/web/src/app` | Bootstrap, provider, router, session, shell, adapter chọn một lần | DB tables/Cloudflare bindings |
+| `apps/web/src/routes` | File routes, path/search validation, route-level loading/error, ghép feature page | SQL, business mutations inline |
+| `apps/web/src/features/tasks` | Task fields, views, detail, form, hooks/commands; dùng lại cho workspace/project/my tasks | Clone riêng theo route |
+| `apps/web/src/features/calendar`, `timeline` | Rendering riêng, controlled geometry, chung Task DTO và intents | Task store độc lập |
+| `apps/web/src/features/{projects,people,teams,files,comments,...}` | Business composite và controller của domain | Query logic copy giữa pages |
+| `apps/web/src/data` | `StudioApi`, HTTP adapter, query keys, feature repository hooks | DOM rendering |
+| `apps/web/src/mocks` | Seed mapper, deterministic fixture, mock adapter, capability scenarios | Được bundle vào mode HTTP production |
+| `apps/api/src` | Hono app, middleware principal/workspace, module routes/services/repositories | React, DOM, web app imports |
+| `apps/api/src/db` | Drizzle schema, migrations, query helpers, D1 batch implementation | UI/DTO tự suy ra từ table |
+| `packages/contracts/src` | Zod runtime schemas, inferred DTO, enums, request/response/error contracts | Hono, Drizzle, React, Query, Router |
+| `packages/domain/src` | Pure date/filter/order/group/progress semantics cần mock và server dùng giống nhau | DOM, storage, network, framework |
+| `packages/ui/src` | Tokens và primitive/component thuần, ref/controlled props/callbacks | Workspace/Task DTO, router, data hooks, app stores |
+| `tests/visual` | Capture source, target compare, scenario mapping, geometry assertions | Tự update baseline để pass |
+| `.reference/gr8r-studio` | Checkout bất biến của source | Không thuộc target bundle; không nhận edit |
+
+Workspace package names tạm: `@studio/ui`, `@studio/contracts`, `@studio/domain`; tất cả private. Không tạo thêm api-client/fixtures/db package trong POC: các thư mục đã có chủ sở hữu rõ, tránh sinh package chỉ để bọc một file. Khi có consumer thứ hai thật mới tách tiếp.
+
+## 3. Chiều phụ thuộc
+
+| Consumer | Import được |
+| --- | --- |
+| UI primitives | React, dependency headless đã chọn, local tokens/icons/utils |
+| Domain | Contracts kiểu thuần nếu cần, các pure utilities |
+| API | Contracts, domain, Hono/Drizzle/D1/R2 |
+| Web data layer | Contracts, domain dùng cho mock, TanStack Query, fetch |
+| Feature controlled views | UI, domain presentation helpers, typed models/callbacks |
+| Feature controllers/routes | Feature views, hooks/data layer, Router |
+
+Không có mũi tên từ package chung quay về app. Không dùng barrel export của cả app để xử lý import cycle. Contract không trở thành `export type AppType = typeof honoApp` kéo server implementation vào browser; nếu dùng Hono RPC về sau, chỉ là cơ chế client phụ trợ, DTO/runtime schema vẫn độc lập.
+
+## 4. Component dùng lại ở mức nào
+
+### Ba mức
+
+**Primitive:** Button, IconButton, Input, Field, Select, Checkbox, Toggle, Tabs, AvatarBase, Badge, Panel, EmptyState, Skeleton, Dialog, Popover/Menu, Tooltip, Toast. Chúng không biết task hay project.
+
+**Business composite:** TaskStatusField, AssigneeField, TaskList, TaskBoard, TaskTable, TaskMiniRow, TaskDrawer, CommentList, FileCard, ProjectCard, MemberTable, PermissionMatrix. Các component này hiểu nghiệp vụ nhưng nhận dữ liệu/callback thay vì tìm global store.
+
+**Page composition:** HomePage, WorkspaceTasksPage, MyTasksPage, ProjectPage, InboxPage. Ghép các business composite, cung cấp scope và quyền phù hợp. Mỗi page không tự định nghĩa lại row/card/task editor.
+
+### Ranh giới chủ ý
+
+- TaskListRow, TaskBoardCard, TaskTableRow và TaskMiniRow là bốn presentation khác nhau; chia sẻ field display/editor/intents, không gom vào một `UniversalTask` với nhiều boolean.
+- Home, Workspace Overview và Project Overview chia sẻ Metric/Panel/Progress/Activity nhưng giữ ba bố cục riêng.
+- Settings Members dùng compact member rows, chia sẻ MemberIdentity/RolePicker với directory; không nhét nguyên MemberTable vào bố cục khác. Settings Teams dùng TeamGrid, Settings Permissions dùng PermissionMatrix đã có.
+- TeamDetail dùng compact ProjectRow với ProjectIdentity/ProjectStatus/Progress; không thay hàng dự án nhỏ bằng ProjectCard của trang Projects.
+- Task drawer và Inbox dùng chung comment body/composer/reactions. Drawer root chỉ tồn tại một lần ở app layout.
+- Calendar và Timeline là component tùy chỉnh theo source. Không thay bằng FullCalendar hoặc Gantt library mặc định rồi chấp nhận khác geometry.
+
+### Ví dụ contract component TypeScript
+
+Đây là ví dụ kiến trúc, implementation sẽ dùng types canonical từ WU-02, không sao chép định nghĩa thành nguồn thứ hai.
+
+```ts
+type TaskScope = { workspaceId: string } & (
+  | { kind: 'workspace' }
+  | { kind: 'project'; projectId: string }
+  | { kind: 'assignee'; memberId: string }
+);
+
+type TaskViewIntent =
+  | { type: 'open'; taskId: string }
+  | { type: 'setStatus'; taskId: string; status: TaskStatus }
+  | { type: 'setCompletion'; taskId: string; completed: boolean }
+  | { type: 'setAssignee'; taskId: string; assigneeId: string | null }
+  | { type: 'move'; taskId: string; beforeId: string | null;
+      afterId: string | null; groupPatch?: TaskGroupPatch }
+  | { type: 'reschedule'; taskId: string;
+      startDate: DateOnly | null; dueDate: DateOnly | null };
+
+```
+
+Props chi tiết của TaskList nằm trong COMPONENT_CATALOG, mục 4.2. Workspace Tasks và Project List truyền selection kiểu `bulk`; My Tasks truyền kiểu `completion` và drag kiểu `none` theo source. Discriminated union giúp mỗi mode chỉ nhận callback phù hợp; UI chung không kiểm tra `location.pathname` sâu trong TaskRow.
+
+## 5. State ownership
+
+| Loại state | Chủ sở hữu | Ví dụ |
+| --- | --- | --- |
+| Dữ liệu nghiệp vụ | API; TanStack Query giữ cache ở web | Task, project, member, team, comment, file, unread, saved views |
+| Dữ liệu mock | Một mock adapter duy nhất, schema giống API | Fixture xác định; persistence riêng khi chạy demo |
+| URL | Router | workspace/project/member ID, tab/view, settings section, query/filter/sort/group, task deep link, calendar date/mode |
+| Preference đã lưu | Preference API + local cache chống flash | theme/accent/density/weekStart/sidebar/view widths |
+| Transient UI | Feature state hoặc app overlay controller nhỏ | hover, selection, drag preview, open popover, dialog stack |
+| Form draft | Component/form hook có ID, chỉ submit qua typed command | task/project form, comment draft, title đang edit |
+| Dữ liệu suy ra | Pure selectors/projection | progress, filtered groups, date positions, readable labels |
+
+Không dùng `useEffect` để copy query data vào store khác. Khi chuyển workspace, hủy request cũ phù hợp, đóng drawer/selection gắn workspace cũ, sử dụng queryKey chứa workspaceId. Không để response chậm từ workspace A ghi vào màn B.
+
+Form/edit state sống ổn định qua render. Lỗi API phải giữ draft và focus, hiển thị validation/error theo thiết kế, rollback optimistic state đúng entity. Không toàn app rerender/innerHTML như source.
+
+## 6. Hướng API và mock
+
+Mọi feature gọi một interface `StudioApi` qua controller/hook. `createHttpApi()` gọi REST; `createMockApi()` xử lý cùng request/response schemas và invariants trong memory. Chọn adapter một lần khi bootstrap. Mỗi feature WU bổ sung mock operation liên quan, không viết trước tất cả behavior của unit tương lai trong WU nền tảng.
+
+Cache keys dạng `['workspace', workspaceId, 'tasks', normalizedQuery]` hoặc `['workspace', workspaceId, 'task', taskId]`. Query DTO phải đủ cho các view; detail/comments/history có read riêng. Một mutation có thể ảnh hưởng nhiều projection: TaskDetail, lists/board/table, calendar/timeline, project summary, Home, My Tasks, member workload, search, activity. Dùng invalidation map theo operation; không sao chép response vào từng page bằng tay.
+
+**Toàn bộ dữ liệu và dữ liệu phân trang phải được phân biệt:** list endpoint có cursor, totals là số trên toàn bộ scope được phép. Board/Calendar/Timeline trong POC phải lấy đủ tập dữ liệu cần render trước khi tuyên bố ready; không chỉ lấy page đầu rồi tính các cột/statistics. Dataset không hoàn chỉnh phải có trạng thái rõ theo contract; không hiển thị count tưởng là tổng thật. Giữ scroll/list presentation nguồn, chưa tự thêm infinite-scroll UI.
+
+## 7. Routing
+
+Canonical app prefix `/w/$workspaceId`; source route keys map trong SCREEN_INVENTORY. Root `/` chuyển đến workspace/current home hợp lệ. Project route giữ 8 tab và saved view riêng. Settings section được validate theo allowlist.
+
+Chọn browser history với file-based routing. Source chỉ đọc hash khi init và `go()` không viết URL: không có một hệ deep link cũ hoàn chỉnh phải copy. Tạo bảng redirect cho hash nguồn thực sự hỗ trợ (`#home`, `#mytasks`, `#login`, v.v.), dùng replace để không thêm history rác; không phỏng đoán `#project/p1` là URL cũ.
+
+Task drawer liên màn hình có search param `taskId`; panel mode/tab là UI preference/search nếu cần phục hồi. Khi task được mở bằng click thì Back đóng drawer về đúng state trước; mở trực tiếp URL phải tải scope/task rồi hiện drawer. Action Close không gọi browser back mù nếu URL được mở trực tiếp. Test reload và Back/Forward riêng.
+
+File preview có canonical deep link `/w/$workspaceId/projects/$projectId/files?fileId=$fileId`. Loader phải kiểm tra file thuộc đúng workspace/project và principal được đọc trước khi mở dialog. Copy link, refresh, Back/Forward và Close giữ đúng Files view/filter/scroll trước đó. Khi mở trực tiếp URL, Close chỉ bỏ `fileId` bằng replace; khi mở từ grid/list, history có thể quay về state trước theo dấu điều hướng do app quản lý. Không gọi back mù hoặc để một file của project khác hiện trong dialog.
+
+Hai route `/dev/design-system` và `/dev/system-states` dùng **cùng AppShell và current-workspace provider** như source. Direct entry phải resolve workspace từ session/launch preference hoặc workspace seed hợp lệ trước khi render gallery; không tạo shell trắng riêng. Gallery chỉ bật trong mode POC/dev đã cấu hình; WU-04/05 có thể dùng harness cô lập trước khi AppShell ra đời, WU-07 ghép vào shell và WU-28 nghiệm thu đầy đủ.
+
+Các search param nghiệp vụ được parse/validate/normalize; malformed param trở về default an toàn hoặc validation state định nghĩa, không crash. Luồng list filter chưa Save view chỉ đổi URL/current config; không PATCH named saved view ngầm. Copy link dùng canonical URL thật thay chuỗi giả trong source.
+
+## 8. Tương tác và side effects
+
+- DnD board/list dùng cùng move intent có scope/neighbors; calendar/timeline dùng reschedule intent. Không có mutable array riêng trong mỗi view.
+- Completion checkbox/mark-complete dùng completion command riêng để giữ toast/Undo nguồn; status field PATCH và bulk field edit giữ semantics riêng của chúng. Undo nhận opaque descriptor từ adapter, được server áp theo phạm vi/version đã ghi; UI không gửi workspace snapshot làm payload.
+- Sidebar project reorder là preference theo user/workspace, không thay thứ tự task hoặc project key. AppShell có controlled reorder callback từ WU-07; WU-16 nối đầy đủ operation/persistence và kiểm tra reload.
+- State machine overlay nhỏ quy định opener/focus return/Escape/stack. Có thể dùng primitive headless đã kiểm chứng; không tự phát triển một framework overlay tổng quát.
+- Global shortcuts chỉ đăng ký một lần, bỏ qua textbox/contentEditable khi thích hợp, cleanup listener đúng. Giữ Mod key theo platform.
+- Rich text nằm trong editor adapter phạm vi nhỏ, chỉ 6 lệnh nguồn; không thêm cộng tác realtime/editor plugin system. Chỉ canonical sanitized content được render. Source markup/layout là chuẩn screenshot, implementation không bị ép giữ `execCommand` cũ.
+- Date geometry/domain helpers không phụ thuộc `new Date()` global trong component; nhận clock/today để fixture xác định.
+- CSS custom properties trong `style` được phép cho tọa độ timeline, color swatch, width resize và các giá trị động. Static styles không dùng nối class kiểu `bg-${color}` khiến Tailwind không sinh CSS.
+
+## 9. Cách ngăn component trùng lặp
+
+Mỗi WU phải tìm component gần nhất trong COMPONENT_CATALOG trước khi tạo mới. Nếu cần biến thể, phân biệt đó là cùng behavior/layout hay presentation khác. Component có một consumer vẫn được phép khi đó là phần nghiệp vụ độc lập; không chia vụn từng `div` thành file. Khi một row/editor lặp ở consumer thứ hai, ưu tiên nâng component/props hiện có thay copy markup.
+
+Gate M1 chứng minh cùng TaskStatusField/AssigneeField và cùng task mutation được dùng ở List, Drawer, Board. Gate M2 chứng minh reuse ở Settings Members, Inbox Comments, Calendar ba scope và Timeline hai scope. Review dựa trên import/ownership và hành vi, không dựa trên số lượng file component.
+
+## 10. Kiểm chứng và giới hạn
+
+Chiến lược ảnh/geometry trong VISUAL_PARITY là bắt buộc ở mỗi UI WU. Typecheck/build không thay bằng chứng visual. API contract test và D1 local integration test không thay nhau: fake DB không chứng minh binding, FK hay batch rollback thật.
+
+Handoff này chưa quyết định provider auth production hoặc topology deployment. Vite proxy local `/api` → Hono Worker dev đủ cho M3. Mở rộng Cloudflare sau có thể dùng Worker static assets/R2 production; không phải nhiệm vụ platform của POC.
+
+WU-10 controller checkpoint: AppShell mounts one TaskOverlayHost, passes canonical
+Router taskId/form/menu intents and opener ref. Controller queries details/files,
+invalidates shared workspace/task keys and stores only UI draft/scroll/File intents;
+DTOs remain Query cache. Serialized staged mock command owner from WU09 continues
+with create children, description canonicalization, lifecycle/file metadata operations
+and guarded bounded inverse. Pure domain adds DOM-less parse5 allowlist normalization;
+web and later Worker owners share this helper, without React/DOM/storage dependencies.
+
+
+WU-11 extends that same controller with per-child recoverable title/note drafts,
+subtask detail intent and comment revision. Late post success invalidates its
+original canonical scope, while clearing the UI draft requires the captured
+revision to match the current per-task draft. Escape uses the registered Dialog
+dismiss reason so a disabled child editor cannot accidentally dismiss its parent.
+Child edits disable overlapping controls during the canonical parent-CAS command;
+failed drafts stay recoverable. Comments/activity stay in Query infinite pages.
+The same pure parse5 tree normalizer runs before editor HTML enters the DOM and
+after each command/paste/drop, preserving logical selection offsets and direction.
+Native drop default is prevented before insertion; the same normalization handles
+external HTML/plain text. A same-editor live Range preserves internal move/copy
+text and the browser point caret, without an additional editor platform.
+
+### WU-12 TaskBoard ownership
+
+TaskBoard/TaskBoardColumn/TaskBoardCard share task atoms, field editors, query cache,
+commands and TaskOverlayHost with List/Drawer. Workspace selects List/Board through
+router search; MyTasks stays List. Project/saved Board use the same renderer in a
+controlled feature harness, with page wrappers left to WU16. Board UI owns collapse,
+composer intent/draft, native drag/drop/suppression and one-shot effects only.
+`useTaskBoardDataset` consumes complete scoped cursor pages with summary coverage
+before column commands; commands use full unfiltered columns even when toolbar
+filters hide rows. Canonical bulk owner stages complete/archive/sortPriority and
+bounded actor-owned Undo atomically. Browser move sends scope/status/neighbors,
+never raw positions. Shared integer representation uses100 sort gaps; source
+fractional positions may interleave differently in global manual List.
+
+### WU-13 Task Table ownership
+
+Workspace Tasks now admits List/Board/Table through its existing thin route and
+TaskListPage controller. The Table receives the canonical query rows and evaluated
+sort/groups, with unfiltered dependency candidates from the existing complete-view
+cursor+summary loader. TaskTable owns native table sizing, sticky title/header and
+transient pointer resize; TaskTableRow owns inline title/estimate drafts and reuses
+existing field controls with source table triggers. TaskTableMobileCard is a
+separate flat renderer at the inclusive640 breakpoint. No selection/bulk UI or
+additional table framework. Canonical commands invalidate the same List/Board/
+Drawer/task cache. Personal hidden columns/widths use scoped task8.ui keys and URL
+state; no saved-view server write or server-state copy. Project/saved variants are
+controlled feature harnesses; full Project wrappers remain WU-16.
+
+TaskTableFieldCell supplies a stable TD popupAnchorRef to the shared field owner;
+the owner keeps its internal button for keyboard and return focus. Date/search
+body and open-transition state remain in one field owner across contexts. Generic
+Menu excludes text editors from printable typeahead; source popup horizontal flip
+placement is shared UI logic. No Table-specific date body or overlay runtime copy.
+
+
+### WU-14 shared Calendar ownership
+
+`CalendarPanel` loads one complete canonical due-range dataset for chips/count/overflow,
+plus the same complete loader without range for the source first-five project legend.
+Both Query entries live under workspace/tasks and share mutation invalidation.
+`CalendarView` is controlled; Month/Week, task/event chips, DayOverflow and read-only
+event preview have one owner. Workspace Calendar and My Tasks use actual AppShell;
+Project uses the feature harness until WU16. My Tasks exposes only List/Calendar,
+Workspace Tasks only List/Board/Table. Calendar uses existing task fields,
+TaskOverlayHost, TaskFormDefaults and PATCH commands. `rescheduleDateOnly` belongs
+to pure domain, preserving the DateOnly interval without timezone conversion.
+No event CRUD, scheduler, duplicate drawer/form/overlay or endpoint is introduced.
+
+### WU-15 shared Timeline ownership
+
+`TimelinePanel` uses the same complete overlap loader, Query task projections,
+Bootstrap authorized project milestones and existing updateTask/invalidation.
+`TimelineView` receives pure DateOnly geometry and typed task-open/date intents;
+rail/header/bar/dependency/milestone rendering has one Workspace/Project owner.
+Workspace is an actual route; Project remains a feature harness until WU16.
+Panel owns scoped per-zoom UI scroll positions across loading/remounts. Pointer
+preview is transient UI only; duration-preserving PATCH does not create a task
+store, cascade dependent dates or add drag Undo. Failed CAS invalidates the
+existing projections before retry. Router search controls the actual mounted
+Workspace view on Back/Forward. Shared loader, API comparators, commands and
+Drawer/form/field components are reused without modification.
+
+## WU-16 Project consumers and canonical commands
+
+Catalogue/Favorites and actual Project routes compose shared `ProjectCard`,
+`ProjectRow`, `ProjectTable`, `CompactProjectRow`, Project identity/status/progress
+and existing Task List/Board/Table/Calendar/Timeline renderers. `ProjectLayout`
+owns route tabs plus personal `p:<project>`/`sv:<saved>` view keys; server saved
+definitions remain explicit List/Board/Table commands. Query owns complete
+canonical pages; Project Activity merges full activity and comment pages and
+Overview consumes activities only. Shared `features/activity/ActivityFeed` exports
+actor/entity formatting and day grouping for later Home/Activity consumers.
+
+Mock Project commands and existing Task commands share a per-client atomic staged
+transaction queue. CAS failure discards the staged clone; Project Undo stores
+bounded inverse fields and actor/postcondition data, never a whole-store snapshot.
+Project tombstones hide implemented child projections while retaining independent
+task/comment/file tombstones. Project edit intent remains edit when its canonical
+projection disappears, and local command failure refreshes versions without
+replacing drafts. Overlay host keys workspace and guards late completion.
+
+`SharingDemoAdapter` is a separate optional local service, available only with
+`projectSharing:demoOnly`. Search, guest/permission/access changes and remove Undo
+do not alter principal or canonical membership grants. HTTP remains unavailable
+for sharing; no invitation or public link service is implied. Files route/header
+slot is PR-07 pending WU-22. Teams/Profile and later business pages are untouched.
+
+### WU-16 parent lifecycle at existing task overlay boundaries
+
+Existing Task Drawer/Edit/Menu/Delete/Preview controllers treat a proven terminal
+StudioApiError403/404 as unavailable even when Query retains older child data.
+Transient errors may still render that cached data. Drawer needs a project
+identity; when the active-only Bootstrap navigation has no allowed parent, it
+queries the existing canonical getProject and supplies the controlled identity
+prop to TaskDrawer. An archived project is still readable and does not imply an
+ACL failure. No second task store, copied query cache or global authorization
+inference is introduced. The mounted Drawer parent-delete/late-response/Undo
+probe and existing task success-path regression are part of WU-16 evidence.
+
+WU16 Share data dependency is owned by the Project consumer: Header/menu exposure
+starts the same project-member/full catalogue/demo query keys that the Dialog
+reads. This avoids a dialog-only waterfall without await-opener, artificial
+readiness or server-state replication. Cold/held reads compose permitted Bootstrap
+display identities only; authoritative coverage plus demo capability gates Invite
+and Enter. Real displayed-projection changes retain owned finite-entry consumption.
+# Decision registry
+
+Các quyết định dưới là bản thiết kế cụ thể để review/triển khai. Chỉ những lựa chọn ghi “Người dùng chốt” mới là lời xác nhận trực tiếp của Hòa. Các lựa chọn kỹ thuật còn lại là đề xuất đã được đưa vào handoff; nếu điều kiện thực tế mâu thuẫn, ghi conflict trước khi đổi.
+
+## Stack, tổ chức và phương pháp
+
+| ID | Quyết định | Căn cứ | Gate |
+| --- | --- | --- | --- |
+| ADR-01 | React+TS+Vite+TanStack Router+Tailwind | Người dùng chốt | WU-01 |
+| ADR-02 | Tailwind ngay từ component đầu, không import stylesheet legacy toàn app | Người dùng chốt | WU-03…29 |
+| ADR-03 | API contract trước; backend Hono+Drizzle+D1/Cloudflare | Người dùng chốt | WU-02,30…36 |
+| ADR-04 | pnpm/Turborepo, packages ui/contracts/domain; adapters ở web, schema ở api | Quy ước đã có và boundary tối thiểu phục vụ yêu cầu | WU-01,29 |
+| ADR-05 | Exact source tokens/font/icon/copy và CSS ngoại lệ có owner; bỏ Preflight, source-equivalent base | Lựa chọn kỹ thuật phục vụ fidelity | WU-03,29 |
+| ADR-06 | Source SHA cố định, capture source riêng, target không tạo golden | Lựa chọn nghiệm thu; Playwright reference protocol | WU-00,29,36 |
+| ADR-07 | Browser-history routing và whitelist alias hash có thật | Source chỉ đọc hash startup; URL được React quản lý có kiểu | WU-07 |
+| ADR-08 | UI package không biết domain/router; feature controlled views dùng lại | Yêu cầu component reuse | M1/M2 |
+| ADR-09 | TanStack Query là cache API; transient UI độc lập | Tránh nhiều bản task state theo view | M1/M3 |
+| ADR-10 | Full UI giữ source; real auth/security/billing/invitations/ACL provisioning để sau | Scope POC từ source chỉ mô phỏng và provider chưa được chọn | WU-25…27,36 |
+| ADR-11 | Một workspace seed thường dùng; workspace thứ hai chỉ test isolation | POC nhỏ, schema có boundary từ đầu; chưa SaaS provisioning | WU-30 |
+| ADR-12 | R2 local cho file bytes; D1 chỉ metadata; một upload request/file | Cloudflare backend được chọn, source chưa lưu bytes | WU-35 |
+
+## Data corrections được thiết kế có chủ đích
+
+Các ID DATA dưới đồng bộ DATA_MODEL. Đây không phải quyền miễn mọi khác biệt visual. Mỗi scenario chịu ảnh hưởng phải ghi source initial state, action, source result, canonical result và vùng cần so layout. Không đổi màu/font/spacing của những vùng ấy.
+
+| ID | Source hiện tại | Quyết định đích | Kiểm chứng |
+| --- | --- | --- | --- |
+| DATA-01 | Task attachments và project files có identity trùng/khác; có xóa bằng name | Một file record có taskId nullable; thao tác theo ID | Hai tệp trùng tên vẫn độc lập; rename/delete xuất hiện đúng drawer/Files |
+| DATA-02 | `private` và `access` khác nhau; nhiều read path chỉ lọc client | Một visibility, server workspace/private checks cho mọi child/projection | Private task/comment/file/search không lộ; restricted shell giữ nguồn |
+| DATA-03 | Duplicate có thể cấp key hai lần hoặc giữ subtask/dependency IDs cũ | Server cấp ID/key mới, remap quan hệ đúng phạm vi | Uniqueness/copy/relationship tests |
+| DATA-04 | allTasks chưa loại task thuộc archived project | Active reads loại lifecycle của cả task và parent project | Archive project làm active metrics nhất quán |
+| DATA-05 | Monthly dùng +30 ngày | Cộng tháng lịch, clamp cuối tháng; canonical mock và HTTP cùng rule | 31/01 → 28/02 hoặc 29/02; source correction ghi riêng trong capture scenario |
+| DATA-06 | Nhiều Undo khôi phục toàn workspace snapshot; single completion chỉ reopen task | Giữ đúng các hành động có Undo trong source; bounded command record chứa inverse và version guards do adapter/server giữ, không nhận workspace snapshot từ client | One-shot/idempotent Undo; conflict toàn phần khi entity/association đã đổi. Single recurring completion Undo giữ successor như nguồn; column completion có inverse riêng theo contract. |
+| DATA-07 | Upload 250MB chỉ là demo text/timer/metadata | Real cap 10MiB từ capabilities; bytes R2 thực | Oversize trả HTTP 413; upload/download checksum; live limit text là deliberate difference |
+| DATA-08 | Due “Next 7 days” gồm today; groupToday và groupWeek có thể trùng; null sorting lạ | Giữ source semantics trong conversion; total unique không cộng group counts | Pure query fixtures; muốn sửa sau phải là yêu cầu riêng |
+| DATA-09 | TaskForm nguồn chỉ gắn metadata tệp; không có commit bytes thật | Tạo task một lần rồi upload từng draft file; clientRequestId/hash chống tạo trùng, giữ partial state và retry file lỗi | Double submit/mất response không nhân task/file; Create more/reset theo commit state; canonical mock/HTTP cùng flow |
+| DATA-10 | Source comparator trả0 khi bằng nhau nên giữ input order | Theo API_CONTRACT §6.2: mọi comparator kết thúc bằng ID tăng dần, kể cả sort desc; mock/server dùng cùng helper | WU-08 giữ expected source riêng và canonical riêng. Fixture tie/null có thể đổi thứ tự hàng; đây correction contract cho keyset pagination, không đổi source ảnh/baseline |
+
+## Source quirks khác cần ghi nhận khi capture
+
+| ID | Phát hiện | Quyết định cho conversion |
+| --- | --- | --- |
+| QUIRK-01 | Board tự sort theo order, có thể làm lựa chọn toolbar sort không thay card order | Giữ manual Board order trong parity; không tự phát minh sorting mới. Ghi source scenario và đề xuất sửa riêng nếu Hòa yêu cầu. |
+| QUIRK-02 | Calendar day-overflow lấy task/event toàn workspace thay vì scope đang xem | Canonical target giữ scope/project/filter của calendar đang mở và authorization. Đây là correction để không lộ/hiện task ngoài scope; ghi scenario/diff dữ liệu cụ thể, giữ popover style/layout. |
+| QUIRK-03 | Motion full bỏ data attribute trong theme.js, trong khi CSS dựa attribute để override reduced-motion | Chốt preference `full/reduce/system` hoạt động đúng tên ở target; visual snapshots dùng reduce hoặc chờ settled state; kiểm tra animation tách riêng. |
+| QUIRK-04 | Font resource chỉ request 400/500/600, CSS có 450 | Giữ đúng font bytes/descriptors và resolved geometry; không đổi sang variable range rộng chỉ vì tiện. |
+| QUIRK-05 | Table mobile có duplicate class attribute | JSX chỉ một className, ghép đúng computed classes mà browser nguồn thực dùng; so ảnh, không lấy union mọi attribute một cách mù quáng. |
+| QUIRK-06 | CSS <=900 nhưng JS đóng drawer khi navigation <900 | Giữ khác biệt tại boundary nếu capture xác nhận; không biến cả hai thành cùng Tailwind breakpoint. |
+| QUIRK-07 | Copy link dùng chuỗi domain giả; source navigation không giữ URL | Tạo canonical deep link thật theo Router, screen layout không đổi. |
+| QUIRK-08 | Table task không có bulk selection; Board card không có selection UI giống List | Không đưa checkbox/bulk bar vào Table/Board vì tái dùng List controller. List bulk chỉ Status/Assignee/Priority/Delete/Clear như source. |
+
+## Mock, DemoAdapter và source harness
+
+**Canonical MockAdapter và HTTP adapter phải có cùng business semantics.** Source harness chỉ để chụp/đo source, có thể chuẩn bị dữ liệu post-state đã tương đương theo correction registry. Mỗi source vs target khác data phải có expected result có thể kiểm tra, không mask tùy ý. Baseline nguồn ban đầu vẫn giữ nguyên để chứng minh không sửa template/style.
+
+`DemoAdapter` riêng chỉ dành auth/billing/invite/share/account management/provisioning chưa có real service. HTTP error không chuyển thành demo success. Thông báo sản phẩm dùng từ ngữ dễ hiểu như tính năng chưa sẵn sàng; không đưa tên binding, mock, migration hay chi tiết implementation vào luồng người dùng.
+
+## Những việc chưa chốt, không chặn giai đoạn phân tích/UI
+
+- Quyền dùng/phân phối code/logo/assets upstream: chưa thấy license rõ. Không tự gán MIT hoặc tuyên bố thương mại hóa được.
+- Repo đích, package public name và deployment: xác định khi Hòa muốn bắt đầu môi trường/publish tương ứng.
+- Auth provider production, real invitation delivery, subscription/payment và quản trị ACL đầy đủ: ngoài M3.
+- Sửa due-group overlap/Board toolbar sorting và thêm thư mục, custom fields, calendar event CRUD: cần yêu cầu sản phẩm mới.
+
+## WU-10 implementation decisions và handoff
+
+- TaskForm source edit submit replaces `base.subtasks` (`actions.js submitTask`),
+  nhưng API_CONTRACT6.4/6.6 chỉ atomic draft subtasks ở create. Task PATCH không nhận
+  subtasks. Phase10 create add/remove draft children hoạt động atomic; edit existing
+  children read-only/unavailable và giữ IDs/content. WU11 nối cùng form vào scoped
+  parent child operations; đây là integration pending, không loại tính năng khỏi dự án.
+- Description normalization dùng HTML5 parse5 tree allowlist trong pure domain,
+  không DOM/regex sanitizer. `descriptionText` được derive từ final sanitized tree;
+  internal mock map giữ canonical text, DTO contract không thêm field. Edit chỉ đổi
+  plain description khi text thay đổi; save other fields preserves rich seed HTML.
+- Single lifecycle commands dùng internal tombstones/actor-owned bounded inverse,
+  UUIDv7/key monotonic, file ID/version và parent-version touches. Upload actor/request
+  dedupe hashes actual bytes+metadata; duplicate filename không có nghĩa same identity.
+- DATA09 form flow freezes payload/request/file intents; metadata sessionStorage
+  scoped workspace/member, File bytes chỉ memory. Prepared:false giữ draft file rows
+  visible lúc hashing, failure làm editable draft và zero-create. Partial task/file
+  commit giữ successes, retry unconfirmed keys; reset/late response không redirect
+  target. Confirmed edit move/version survives later PATCH/refetch failure.
+- New uploads giới hạn canonical10MiB, source Files catalogue text250MB thuộc source
+  simulation/parity owner22; không đổi capability hay claim HTTP/R2 bytes tại10.
+- Pure domain boundary mở tối thiểu cho `parse5@8.0.0` (DOM-less HTML5 parser) để cùng
+  sanitizer chạy trong browser/Worker modules; vẫn cấm Node/React/app/storage/network.
+
+- WU10 visual acceptance is scoped original chrome/title/properties plus full panel
+  geometry and separate form/file component samples. Original full default mobile
+  context17/14 raster differences remain diagnostics pending WU11 full-body integration.
+  Symmetric owner-component composition removes only out-of-crop unowned sections,
+  with exact owned markup/rect/styles invariant; no production content, source CSS,
+  comparator, tolerance or masks are changed to force that diagnostic to pass.
+- Late file reselection captures state/files/intents before hash and checks identity
+  afterwards. Reset cannot queue a new same-file failed intent or apply old UI errors.
+  A hidden but mounted create form cannot dismiss/focus a later edit form after success.
+- WU05 deferred return-focus respects a newer connected meaningful focus target
+  outside the closing layer. Canonical List double-click creates an inline editor
+  before the closing Drawer RAF; unconditional restore stole focus and blur closed
+  that editor. Preserve that new focus; ordinary Close/Escape/nested return still
+  follows existing opener semantics and is covered by scoped42/17 regression.
+
+
+## WU-11 implementation decisions
+
+- WU10's read-only edit children are now active in the same form through scoped
+  create/delete commands and current canonical parent version. Child edits apply
+  immediately; cancel closes scalar form draft and does not undo committed child
+  commands. Task PATCH never replaces the child array. No new child Undo.
+- Exactly six source editor actions use the existing parse5 allowlist and canonical
+  description text. Link uses selected http/https URL, no prompt. Invalid selection
+  uses the one existing info Toast and does not change section geometry. Native
+  Range offsets/direction survive a sanitizer rebuild and sibling invalidation.
+- Source synchronous subtask notes save on input; canonical PATCH commits on blur
+  with parent CAS. Pending commands disable overlapping title/note/navigation.
+  Per-child UI drafts survive error/close/reopen. Empty title is retained with a
+  visible validation message instead of a successful write. Escape closes child
+  intent through the shared dismiss reason and does not implicitly retry a failed
+  blur write; canonical version/call-count regression proves this boundary.
+- Comments are oldest-first and activity newest-first, both stable createdAt/id
+  keysets with scope-bound cursors. Author derives from actor; mentions validate
+  workspace members and never send delivery. Reaction add/remove are own
+  set operations, idempotent, and touch parent version only when state changes.
+  Own comment delete/restore uses tombstone/version and bounded actor-owned Undo,
+  preserving reactions. Every child/comment/reaction write guards parent Undo.
+- Composer asynchronous success uses captured per-task comment revision. Closing,
+  reopening or switching tasks cannot let an old success clear a newer draft;
+  canonical original scope still updates. Existing file chooser/drop/controller
+  and real mock file IDs remain the sole attachment owner.
+- Minimal listMembers read supplies canonical mention titles. Full People pages
+  and global description/comment search remain later owners. Feature capability
+  remains unavailable until all declared owning scopes complete; implemented
+  operations do not return fake success for unavailable routes.
+
+- AC1 reopening after base implementation60ad5a9 and documentation285045a:
+  trusted native HTML drop inserted an img before the input boundary rebuilt the
+  editor. Chromium already stripped script/handler/javascript protocol; executed0
+  and finalForbiddenfalse do not erase the measured transient img gap. Prevent
+  native drop default and normalize through the same parse5/plainDescriptionHtml
+  helpers before insertion. Empty sanitized HTML is a no-op; use browser point
+  caret and same-editor live selection Range for move, modifiers for copy.
+  First internal native test copied MOVE twice while dropEffect reported none;
+  retain that failure and determine intent from the captured editor Range and
+  modifiers, with explicit dragOver cursor intent. Assertions use actual text,
+  caret and canonical values, rather than treating dropEffect as proof. Six
+  trusted native probes and two focused existing editor probes pass on Chromium;
+  no second sanitizer, source change, new command or generic DnD framework.
+
+## WU-12 implementation decisions
+
+- Shared TaskBoard/Column/Card reads canonical scoped Query data and existing task fields/commands. Column dataset consumes all cursor pages, checks matching summary count, and marks coverage complete only after success; toolbar-filtered rows are a separate view of the same records. Board always orders manually (QUIRK-01); no selected cards or List bulk bar (QUIRK-08).
+- Complete/archive/sortPriority require the complete unfiltered column set and versions, preserve max20 atomic rejection without chunking, and use one staged canonical owner. SortPriority extends the existing bulk operation rather than adding an endpoint; 83 operation bindings stay unchanged. Complete-column recurrence Undo differs from single checkbox Undo as declared in API §7.
+- Source colSort writes fractional base+i*.001 while PositionSchema is safe integer and move requires available spacing. Canonical adapter writes base+i*100 with priority-desc/ID-asc ties. Per-column order is preserved; global List interleaving with other statuses may differ. Native sort→drag→List/reload evidence validates canonical persistence, not fractional source positions.
+- Real source filtered drag retains filters, changes status and removes the card from the view. Target validates full unfiltered destination workspace/project/status + neighbors and access, keeps filters unchanged, and rejects collapsed-column drops rather than reusing a stale destination.
+- Composer locks cancel/switch intent while create is pending; successful old requests cannot clear a later unlocked draft. Drag/suppression timers are cleaned up on unmount. UI stores intents/drafts/effects only; failed drop never optimistically changes canonical records.
+- Captured card More point stays fixed when hover actions disappear, matching source ctxBtn. Native default browser drag image is the source ghost behavior; column drop line and card dragging opacity are production state. Project/saved variants are feature harnesses only until WU16.
+
+- WU-04 Input owner reopening: measured native search Input padding-block0px in
+  source and1px in target. Original components.css227–239 declares padding0 10px.
+  Add literal py-0 to shared Input only; Textarea keeps its explicit8px padding.
+  This fixes a missing source rule, not a demonstrated cause of previous tiny
+  pixel differences. Scoped Input/toolbar/List/Drawer/form/Board checks record
+  actual results separately and preserve historical accepted evidence.
+- M1-I07 is a native recurring journey on the same task, not only data tests:
+  Drawer Weekly selection, complete→exactly one successor, single Undo keeps
+  successor/slot, re-complete/reopen creates no duplicate, List/reload persist.
+  Column completion Undo separately cancels eligible newly-created successors,
+  as API7.4 specifies. No direct API mutation prepares the primary M1 journey.
+
+## WU-13 Table implementation decisions
+
+- Keep native HTML table/colgroup, one shared eleven-column registry and separate
+  mobile flat cards at≤640. No table framework/selection/bulk/pagination added.
+- Source Project _projHidden is initialization, not a permanent hidden-column rule.
+  Initialize in controller personal preferences; permit re-show and preserve it
+  per project/saved view. Title cannot hide; Reset widths preserves hidden columns.
+- Reopen the preparatory domain40..1000 width guard to finite≥64/unbounded, matching
+  actual source pointer resize. Measure rendered col/table widths because native
+  min-width100% stretches a narrowed preset. Commit integer width and source60ms
+  click suppression; pointer cancellation/unmount remove owned listeners/timer.
+- Keep canonical estimate enum and explicit WU13 draft/error retention. Source
+  arbitrary-estimate and empty-title discard are documented behavior corrections.
+  Editor mount focuses/selects once; pending/error/cache renders do not refocus a
+  newer search/menu/Drawer. Clear old command error when starting a new intent.
+- Current Table raster corrections: source faint maps to target muted (text3),
+  remove unintended inner button clipping while keeping td clipping, labels gap4,
+  and editing estimate drops display-only tabular numerals exactly as source.
+  No global Label/Input/font/token change or production paint workaround. These
+  results do not establish causes for historical WU10 mobile17/14 differences.
+# API contract cho Gr8r React POC
+
+## 1. Trạng thái, mục tiêu và ranh giới
+
+Đây là đặc tả để Codex triển khai, **chưa phải API đã chạy**. Thiết kế được đối chiếu với Gr8r Studio tại commit `904205c626918ee96054eb35495c394a60c0c601`.
+
+Mục tiêu gồm ba milestone: M1 chứng minh một luồng task hoàn chỉnh tại WU-12; M2 hoàn tất toàn bộ UI trên mock tại WU-29; M3 triển khai backend Hono + Drizzle + D1 ở WU-30–WU-36, bao gồm upload bytes thật vào R2 local ở WU-35 và tích hợp/kiểm chứng tại WU-36. React, TanStack Router và TanStack Query được dùng từ đầu. Mọi view task dùng cùng contract và domain operations.
+
+**Quy ước triển khai của bản đặc tả:**
+
+- Một seed workspace cho backend POC. Dữ liệu có `workspaceId`, mọi resource API phải xác minh workspace và quyền xem private project từ server.
+- Principal phát triển cố định do Worker inject từ cấu hình local. Browser không được tự chọn user bằng header/query/body. Login/OAuth của source vẫn là UI demo.
+- Real POC: dữ liệu project/task/subtask/team/comment/reaction/activity/notification state/saved view/favorite/preferences/file, các phép tính và search phục vụ UI.
+- Workspace provisioning, invitation/email delivery, OAuth, password, 2FA, session security, payment/subscription và thay đổi ACL/sharing chưa phải tính năng thật. Giữ nguyên màn hình qua `DemoAdapter` được chọn tường minh.
+- Không CI/CD, production deployment, queue, Durable Object, cron, generic workflow hoặc realtime collaboration.
+- `packages/contracts` chứa runtime schemas Zod và DTO; không import Hono, React, Drizzle hoặc Worker bindings. `packages/domain` chứa phép tính thuần giới hạn cho query semantics/date/progress dùng chung khi cần.
+
+Source hiện lưu `S.data`, `S.prefs`, `S.views` trong localStorage (`src/core/store.js`). Việc source báo “Invitation sent”, “Signed in”, “Uploaded” không chứng minh các dịch vụ này có thật. Chi tiết phân biệt hành vi nằm trong `SCREEN_INVENTORY.md` và phần 11 bên dưới.
+
+## 2. Quy ước HTTP và dữ liệu
+
+### 2.1 URL, payload, lỗi
+
+Base path: `/api/v1`. Resource trong workspace dùng `/api/v1/workspaces/{workspaceId}`. Các bảng endpoint bên dưới dùng tiền tố viết tắt `W` cho đường dẫn này.
+
+- JSON request/response dùng `Content-Type: application/json` và lowerCamelCase. Upload multipart và response file bytes được quy định riêng.
+- Query được encode bằng `URLSearchParams`; tham số `filters` là một chuỗi JSON đã validate, không phải SQL hoặc chuỗi biểu thức tự do.
+- `GET` trả `200`; tạo entity mới trả `201`; replay của create/upload idempotent trả `200` với đúng entity đã tạo; các mutation khác trả `200` với representation hoặc mutation result. Không trả body giả trong `204`.
+- Success envelope: `{ data: T }`. Error envelope riêng, không trộn lỗi với success `200`.
+- PATCH: field vắng mặt = giữ nguyên; `null` = xóa giá trị nullable. Chuỗi rỗng không thay thế `null`. Arrays được thay toàn bộ khi field xuất hiện, trừ endpoint riêng cho quan hệ.
+- Reject unknown mutation fields. `id`, `workspaceId`, `createdAt`, `createdBy`, `key`, `position`, `version`, counters và permissions không được client tự ghi qua PATCH thông thường.
+- Server không trả stack trace, SQL hay nội dung binding trong lỗi.
+
+```ts
+export interface ApiSuccess<T> { data: T }
+
+export interface ApiError {
+  error: {
+    code:
+      | 'VALIDATION_ERROR'
+      | 'UNAUTHENTICATED'
+      | 'FORBIDDEN'
+      | 'NOT_FOUND'
+      | 'CONFLICT'
+      | 'VIEW_SCOPE_TOO_LARGE'
+      | 'PAYLOAD_TOO_LARGE'
+      | 'CAPABILITY_UNAVAILABLE'
+      | 'INTERNAL_ERROR';
+    message: string;
+    fieldErrors?: Record<string, string[]>;
+  };
+}
+
+export interface CursorPage<T> {
+  items: T[];
+  nextCursor: string | null;
+  total: number; // exact count của toàn bộ tập match mà principal được phép thấy
+}
+```
+
+| HTTP status | Trường hợp |
+| --- | --- |
+| 400 | JSON/query/cursor sai; giá trị không hợp lệ; date-only không tồn tại; PATCH không có field hợp lệ |
+| 401 | Không có principal hợp lệ; dành sẵn cho auth provider sau này |
+| 403 | Principal hợp lệ nhưng không được thực hiện operation; private project hiện hữu có restricted summary cho UI |
+| 404 | Entity không tồn tại, đã bị xóa, thuộc workspace khác, hoặc child resource của project không được truy cập |
+| 409 | `expectedVersion` cũ; duplicate unique key; dependency tạo chu trình; Undo không còn áp dụng được; clientRequestId bị dùng lại với payload khác |
+| 413 | Body/file/bulk vượt giới hạn được capabilities công bố |
+| 422 | Không dùng trong POC; validation thống nhất là 400 để client không phải đoán hai format |
+| 501 | Operation có tên trong future contract nhưng capability chưa triển khai; không giả lập thành công ở live API |
+| 500 | Lỗi bất ngờ; client giữ draft, hiển thị lỗi và cho thử lại phù hợp |
+
+### 2.2 ID, ngày, thời gian
+
+- Entity ID mới là UUID v7 do server sinh. Seed có bảng ánh xạ deterministic từ `m1/p1/t3/...` sang UUID v7 hợp lệ. Giữ nguyên task key hiển thị như `WEB-109`; source ID ngắn chỉ tồn tại trong fixture mapper/baseline scenarios.
+- Foreign keys trong DTO dùng ID, không tên hiển thị. `assigneeId` và `leadId` là workspace membership ID.
+- `DateOnly`: chuỗi `YYYY-MM-DD`, kiểm tra ngày có thật. Áp dụng cho task/project start/due, subtask due, milestone, calendar event date.
+- `Instant`: ISO 8601 UTC, chuẩn hóa hậu tố `Z`, dùng cho created/updated/completed/archived/deleted/activity/readAt.
+- Không convert date-only qua `new Date(value).toISOString()`; timezone của máy không được làm đổi ngày.
+- Relative date/time trong fixture dùng `Clock` cố định và timezone được ghi ở baseline manifest. Backend lấy `todayDate` theo timezone đã cấu hình; không nhận `now` tùy ý từ public client.
+- IDs và timestamps không dùng làm thứ tự thủ công. `position` là dữ liệu riêng; `id` là tie-breaker cuối.
+
+## 3. Capability và hai adapter
+
+```ts
+export type DataMode = 'mock' | 'http';
+export type CapabilityState = 'implemented' | 'demoOnly' | 'unavailable';
+
+export interface CapabilitiesDto {
+  dataMode: DataMode;
+  identityMode: 'development';
+  features: {
+    projects: CapabilityState;
+    tasks: CapabilityState;
+    teams: CapabilityState;
+    comments: CapabilityState;
+    notificationState: CapabilityState;
+    fileMetadata: CapabilityState;
+    fileBytes: CapabilityState;
+    workspaceProvisioning: CapabilityState;
+    invitations: CapabilityState;
+    projectSharing: CapabilityState;
+    authentication: CapabilityState;
+    accountSecurity: CapabilityState;
+    billing: CapabilityState;
+  };
+  limits: {
+    taskPageSize: number;       // default 50
+    maxTaskPageSize: number;    // 200
+    maxBulkItems: number;      // 20 cho POC; không suy diễn từ D1 parameter limit
+    maxUndoTargets: number;    // 128 root/association targets cho một bounded compensation
+    maxUndoPayloadBytes: number; // 65536; reject original command trước mọi write nếu vượt
+    maxUploadBytes: number;    // 10 * 1024 * 1024 sau WU R2
+  };
+}
+```
+
+`mock` và `http` cùng implement `StudioApi` tại `apps/web/src/data`, cùng schemas, seed mapping, domain rules, sort/filter/null/date semantics và error shape. Components không đọc localStorage hay gọi fetch trực tiếp. Bootstrap chọn adapter một lần. Canonical mock áp dụng calendar-month recurrence và entity-scoped Undo giống HTTP ngay khi operation đó được triển khai; không có hai bộ business rules theo DataMode.
+
+Legacy source behavior chỉ tồn tại trong reference/capture harness: khi source có bug đã được chốt sửa, harness ghi rõ source state, expected target state và deliberate correction để đối chiếu. Không dùng một production mock adapter chạy bug cũ rồi âm thầm đổi semantics khi bật HTTP. Các differences nằm trong decision registry, không làm đổi visual tokens/layout.
+
+`DemoAdapter` là interface riêng cho các màn hình auth/security/billing/invite/sharing chưa có dịch vụ thật. Trong HTTP mode, những màn hình này vẫn dùng layout/component gốc nhưng có feedback mô phỏng tường minh. **Không fallback sang demo khi request thật lỗi. Không gọi live API rồi trả thành công giả cho email, đăng nhập, thanh toán hay 2FA.** Demo auth không được đổi principal của API.
+
+HTTP `fileBytes` chuyển từ `unavailable` sang `implemented` tại WU-35; trước đó upload thật không được báo thành công. Mock có thể đặt `fileBytes:'demoOnly'` và tạo metadata sample để kiểm chứng source flow; progress demo không chứng minh bytes đã được lưu, `contentAvailable` vẫn false nếu không có asset thật.
+
+## 4. Session, workspace và nguồn dữ liệu chung
+
+| Method + path | Input | Output | Ghi chú |
+| --- | --- | --- | --- |
+| `GET /api/v1/session` | Không | `SessionDto` | Dev identity cố định, current workspace ID, capabilities; không password/session giả |
+| `GET /api/v1/workspaces` | Không | `WorkspaceDto[]` | HTTP POC có một workspace seed; chooser demo có bộ fixture riêng |
+| `GET W/bootstrap` | Không | `BootstrapDto` | Workspace, current member, members nhẹ, teams, project navigation summaries, catalogs, preferences, unread count và `navigationCounts:{inbox,myTasks,archive}` |
+| `GET W` | Không | `WorkspaceDto` | Không tải toàn bộ tasks/comments/files |
+| `PATCH W` | `UpdateWorkspaceInput` | `WorkspaceDto` | name/slug/iconColor; expectedVersion; không provision workspace mới |
+| `GET /api/v1/me/profile` | Không | `UserProfileDto` | Một nguồn truth cho name/title/color; không bản sao trong prefs |
+| `PATCH /api/v1/me/profile` | name/title/avatarColor + expectedVersion | `UserProfileDto` | Email read-only |
+| `GET/PATCH W/me/preferences` | Validated preference fields | `MemberPreferencesDto` | Personal defaults; permission flags demo không nằm trong endpoint này |
+| `GET/PATCH W/me/notification-preferences` | Notification boolean fields | `NotificationPreferencesDto` | Chỉ lưu preference; không tuyên bố email/push đã hoạt động |
+
+`SessionDto` gồm `{ user, currentWorkspaceId, capabilities }`. `BootstrapDto` không đóng vai trò database dump. Query keys luôn có workspaceId; đổi workspace trong demo phải đổi data scope, không chỉ đổi logo như source.
+
+Catalogs cố định: task statuses `backlog/todo/progress/review/done`, priorities `urgent/high/medium/low/none`, project statuses `planning/active/risk/hold/complete`, labels, project icons/colors, estimate options, project templates. Catalog có stable IDs; tên hiển thị và màu giữ source. Template “Software Development” chứa title mẫu nhắc CI; đó là nội dung task mẫu, không phải chỉ thị triển khai CI cho POC.
+
+## 5. Project, member và team
+
+### 5.1 Project DTO và operations
+
+```ts
+export interface ProjectDto {
+  id: string;
+  workspaceId: string;
+  key: string;
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  status: 'planning' | 'active' | 'risk' | 'hold' | 'complete';
+  teamId: string | null;
+  leadId: string;
+  startDate: string | null;
+  dueDate: string | null;
+  visibility: 'workspace' | 'private';
+  memberIds: string[];
+  milestones: MilestoneDto[];
+  isFavorite: boolean;
+  archivedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  lastActivityAt: string;
+  version: number;
+}
+
+export type ProjectListItemDto =
+  | { access: 'allowed'; project: ProjectDto; summary: ProjectSummaryDto }
+  | { access: 'restricted'; project: RestrictedProjectDto };
+```
+
+Restricted summary dành cho card gốc: id/workspaceId/name/key/icon/color/status/dueDate/lead display và một mô tả đã xác định là catalog summary. Không kèm private task titles/counts/progress/comments/files/dependencies. Source private card có thông tin project công khai ở catalog; contract giới hạn rõ thông tin này thay vì gửi full ProjectDto rồi che CSS. Project detail private không được cấp quyền trả 403; child endpoint trả 404. Source card/list/table không nhất quán về thông tin private; tất cả các view React dùng cùng restricted DTO.
+
+| Method + path | Input | Output / semantics |
+# Component catalog và hợp đồng tái sử dụng
+
+## 1. Quyết định chính
+
+Chuyển source thành **React components thật**, sử dụng TypeScript và Tailwind ngay từ component đầu tiên. Cấu trúc thị giác, hierarchy, typography, spacing, color, icon, responsive layout và các hành vi POC đang có được lấy từ source đã ghim commit. Không tạo bản markup riêng cho từng route chỉ vì route khác nhau.
+
+Nguồn: [gr8r-studio tại commit 904205c626918ee96054eb35495c394a60c0c601](https://github.com/gr8rstudio/gr8r-studio/tree/904205c626918ee96054eb35495c394a60c0c601). Danh mục màn hình đầy đủ nằm trong [SCREEN_INVENTORY.md](./SCREEN_INVENTORY.md). Đây là thiết kế triển khai từ audit source; chưa phải kết quả pixel diff của bản React đã hoàn thành.
+
+Source đã có khả năng tái sử dụng: `listHtml/taskRow/miniRow`, `boardHtml/kcard`, `tableHtml`, `calendarHtml`, `timelineHtml`, task property cells, avatar/progress/status helpers và activity rows. Bản React giữ và làm rõ các ranh giới này. [Shared list source][c-list], [project view composition][c-project], [workspace task composition][c-tasks].
+
+### Nguyên tắc phân rã
+
+1. **UI primitives** thuộc `packages/ui`: không có task store, router, fetch, tenant/workspace ID hoặc dữ liệu seed.
+2. **DTO/types dùng giữa web và API** thuộc `packages/contracts`; không chứa React hoặc trình bày.
+3. **Tính toán thuần** thuộc `packages/domain`: filter/sort/group/date/progress/timeline geometry nhận input rõ ràng; không đọc DOM, localStorage hoặc gọi network.
+4. **Feature composites/controllers** thuộc `apps/web/src/features`: lấy dữ liệu qua repository/query layer, kết hợp domain và UI, phát typed actions.
+5. **Route components** chọn context, layout và điều hướng. Một route không tự sao chép task row/card/property menu.
+6. **API** thuộc `apps/api`, không import React/UI; không đưa code API vào component package chỉ vì cùng monorepo.
+
+Tách trách nhiệm trên là yêu cầu kỹ thuật, không phải yêu cầu tạo framework nhiều tầng. Mỗi package chỉ chứa phần đã có consumer cụ thể trong POC.
+
+## 2. Ownership và dependency
+
+| Layer | Được sở hữu | Không được sở hữu |
+|---|---|---|
+| `packages/contracts` | Entity IDs, DTOs, request/response schemas, discriminated unions chia sẻ | React nodes, DOM refs, CSS, store singleton |
+| `packages/domain` | Task filters/sort/groups, progress, date grouping, calendar/timeline calculations, permission rules theo scope POC | `window`, `document`, localStorage, React, hooks, fetch |
+| `packages/ui` | Tailwind-styled primitives, tokens, icons chung, controlled interfaces, focus/keyboard của primitive | Workspace/task lookup, app router, API client, fixture IDs, domain-specific task form |
+| `apps/web/src/app` | Providers, AppShell, route composition, global overlay host, preference application | Tự sinh nội dung từng feature bằng switch khổng lồ |
+| `apps/web/src/features/*` | Domain view models, query/action hooks, feature layouts, forms, shared domain components | Copy-paste renderer theo route; import trực tiếp internals của API |
+| `apps/api` | Repository/data mutation/API behavior được chốt cho POC | Frontend presentation, theme, screen state |
+
+Theo đường dependency: web → ui/contracts/domain; api → contracts/domain. UI không import web/domain/API. Domain có thể import contracts; contracts không import domain/UI. Các tên package là trách nhiệm tương ứng trong monorepo pnpm/Turborepo; dùng chính package names mà scaffold đã chốt trong tài liệu kiến trúc.
+
+## 3. Component catalog
+
+Các tên bên dưới là tên triển khai đề xuất. Được đổi tên để hợp project conventions, nhưng không đổi owner hoặc làm mất reuse. Không cần một file cho mỗi thẻ DOM; chỉ tách khi có API/state/behavior/visual invariant đáng bảo vệ.
+
+### 3.1. Primitives trong `packages/ui`
+
+| Component ID | Unit đề xuất | Props/contracts quan trọng | Nguồn |
+|---|---|---|---|
+| UI-01 | `Button`, `IconButton` | variant, size, loading, disabled, type; forward ref; icon slot/accessible label; hover/focus/pressed | [Buttons][c-components] |
+| UI-02 | `Input`, `Textarea`, `Field` | controlled value, onChange, error, hint, label, description; normal/error/disabled; textarea resize/autosize theo consumer | [Fields][c-components] |
+| UI-03 | `Checkbox`, `Toggle` | checked/indeterminate/disabled/onCheckedChange; round visual variant riêng | [Controls][c-components] |
+| UI-04 | `Select` | options, value, onValueChange, trigger; listbox keyboard/focus; không enhance DOM sau render | [Select][c-select] |
+| UI-05 | `Tabs`, `SegmentedControl` | value/items/onValueChange; count/icon slots; tabs điều hướng dùng adapter của app | [Tabs][c-components] |
+| UI-06 | `Badge`, `ColorDot`, `AvatarBase`, `AvatarStackBase` | generic label/initials/tone/CSS color; không nhận memberId rồi lookup | [Tokens/components][c-components] |
+| UI-07 | `Panel`, `PanelHeader`, `PanelBody` | heading/actions/content slots; preserve padding/border/radius | [Panels][c-panels] |
+| UI-08 | `ProgressBar`, `StackedBar`, `Meter` | numeric values, segments, accessible label; dynamic width/transform; variants theo source | [Progress][c-components] |
+| UI-09 | `EmptyState`, `Alert`, `Skeleton` | heading/description/action/icon/tone/size; page-level heading do caller chọn | [States][c-states] |
+| UI-10 | `Dialog`, `DialogHeader`, `DialogBody`, `DialogFooter` | open, onOpenChange, size, initial/return focus; controlled dismiss; layer registration | [Dialog][c-overlays] |
+| UI-11 | `Popover`, `Menu`, `MenuItem`, `MenuGroup`, `MenuSeparator` | open/anchor/placement, selection, keyboard; no app command registry | [Menus][c-overlays] |
+| UI-12 | `Tooltip`, `Toast`, `ToastViewport`, `KeyHint` | label/position, timer/action, label/focus; Undo callback do feature cung cấp | [Overlays][c-overlays] |
+| UI-13 | `Icon`, `VisuallyHidden`, `BrandLogo` | explicit size/stroke; generic Lucide subset; brand SVG source; accessible title nếu cần | [Icons][c-icons] |
+
+Nguồn UI primitives: [components.css][c-components], [panels.css][c-panels], [states.css][c-states], [overlays.css][c-overlays], [ui/select.js][c-select], [icons.js][c-icons]. Từng component UI-01…UI-13 phải liên kết được với gallery state thực tế ở `/dev/design-system` hoặc `/dev/system-states`.
+
+Không thay giao diện bằng skin ReUI/shadcn hoặc theme mặc định từ thư viện khác. Headless primitives có thể hỗ trợ hành vi nếu đã được dependency plan chọn; style và geometry vẫn lấy từ nguồn. Sở hữu ReUI PRO không làm thay đổi yêu cầu fidelity riêng của dự án này.
+
+### 3.2. App shell
+
+| Component ID | Owner / unit | Contract | Consumers/source |
+|---|---|---|---|
+| SH-01 | `app/shell/AppShell` | Sidebar/content/topbar/outlet slots; collapsed/mobile navigation state | Mọi workspace route và hai dev galleries với current-workspace provider; [layout.js28–39][c-shell] |
+| SH-02 | `Sidebar`, `NavigationItem`, `ProjectNavItem`, `TeamNavItem` | Typed destination + selected + counts; project expand/reorder/context actions | Một instance trong shell; [layout.js74–159][c-shell] |
+| SH-03 | `Topbar`, `Breadcrumbs` | Route metadata + actions; typed router links do app tạo | [layout.js162–200][c-shell] |
+| SH-04 | `MobileNavigation`, `NavigationScrim` | Same destinations, state; dismiss/focus return | [layout.js202–210][c-shell] |
+| SH-05 | `ContentViewport`, `OfflineBanner` | Nested scroll region, route identity, offline/retry local-demo state | [layout.js28–39][c-shell] |
+| SH-06 | `OverlayHost`, `DialogStack` | Typed registrations, topmost dismiss, layer/focus ownership | [drawer.js15–26][c-drawer]; [render focus restore][c-render] |
+
+`packages/ui` có Dialog/Popover primitive; `OverlayHost` của app mới biết task drawer, project form, invite, palette. TanStack Router được dùng ở app adapter, không trong shared Button/Tabs.
+
+### 3.3. Task entities, fields và shared views
+
+| Component ID | Owner / unit | Reuse bắt buộc | Nguồn |
+|---|---|---|---|
+| TK-01 | `features/tasks/atoms/TaskStatusIcon`, `PriorityIcon`, `TaskKey`, `TaskDue`, `TaskLabel` | Board/List/Table/Drawer/Calendar/Search | [helpers21–53][c-helpers] |
+| TK-02 | `features/people/MemberAvatar`, `MemberIdentity` | Adapts member data vào AvatarBase; mọi task/member surface | [helpers7–19][c-helpers] |
+| TK-03 | `features/tasks/fields/*` | Status, Assignee, Priority, Date, Labels, Project, Recurrence, Estimate, Dependency fields; shared selector behavior | [cells12–40][c-list], [table cells21–50][c-table], [drawer66–77][c-drawer], [inbox81][c-inbox] |
+| TK-04 | `TaskViewToolbar`, `FilterChipBar`, `FilterBuilder`, `SortMenu`, `GroupMenu`, `ColumnMenu` | Workspace+project+saved views; My Tasks giữ fixed grouping | [view-engine8–190][c-viewengine] |
+| TK-05 | `TaskList`, `TaskListRow`, `TaskListHeader`, `TaskGroupHeader`, `TaskListComposer` | Tasks/My Tasks/Project/Saved List; khác columns, selection, grouping bằng typed config | [list42–111][c-list] |
+| TK-06 | `BulkActionBar` | Selection trên shared TaskList; status/assignee/priority/delete/clear | [list113–121][c-list] |
+| TK-07 | `TaskBoard`, `TaskColumn`, `TaskCard`, `TaskCardComposer` | Workspace/Project/Saved Board; workspace thêm project indicator | [board9–50][c-board] |
+| TK-08 | `TaskTable`, `TaskTableHeader`, `TaskTableCell`, `TaskTableMobileCard` | Workspace/Project/Saved Table; một column registry; mobile renderer khác desktop | [table8–80][c-table] |
+| TK-09 | `TaskMiniRow` | Home/Favorites/Member/Team/Project Overview; explicit project/avatar variants | [list136–147][c-list] |
+| TK-10 | `TaskFormDialog` | New/Edit từ mọi page; property controls tái dùng; Create more | [modals65–92][c-modals] |
+| TK-11 | `TaskContextMenu` | List/Board/Table/Calendar/Timeline/Search/Favorites/Drawer | [context10–29][c-context] |
+
+Tránh các anti-pattern sau:
+
+- `ProjectTaskRow`, `WorkspaceTaskRow`, `MyTaskRow` chứa markup gần như trùng nhau. Đúng là một TaskListRow với cấu hình trường/selection.
+- `TaskCard` cố dùng chung cho Kanban card và compact row/table cell. Đúng là renderer riêng chia sẻ atoms/field controls.
+- Một `UniversalRecordView` hiểu projects, tasks, people, files và layout qua 80 boolean. Đúng là view engine theo domain + vài surface primitives.
+- Đưa `S`, `D()`, `proj()` hoặc `mem()` vào UI package để tiện lookup. Đúng là controller resolve view model.
+
+### 3.4. Calendar và Timeline
+
+| Component ID | Owner / unit | Contract và invariants | Consumers |
+|---|---|---|---|
+| CA-01 | `features/calendar/CalendarView` | tasks/legendTasks/events, scope, date, mode, weekStart, onDateChange/onModeChange, onTaskDrop, onTaskOpen | Workspace, Project, My Tasks |
+| CA-02 | `CalendarToolbar`, `MonthGrid`, `MonthCell`, `WeekColumns` | 35/42 cells, max 3 items+more; mobile bar chips/week stacking | CA-01 |
+| CA-03 | `TaskChip`, `EventChip`, shared Week card presentation, `DayOverflow` | Task and event differ; event time/read-only details; task date drag | CA-01 |
+| TL-01 | `features/timeline/TimelineView` | Precomputed rows/geometry, zoom, scroll callbacks, onTaskOpen/onDateChange | Workspace, Project |
+| TL-02 | `TimelineTaskRail`, `TimelineHeader`, `TimelineTaskBar` | Row 36px; rail 300px → 170px → hidden; day width 32/11px; header 52px | TL-01 |
+| TL-03 | `MilestoneLane`, `DependencyLayer` | Merge milestones same date; collision-aware labels; exact SVG paths/dashed reverse edges | TL-01 |
+
+Nguồn [Calendar][c-calendar] và [Timeline][c-timeline]. `packages/domain` giữ phép tính startOfWeek/date cells/timeline coordinates/row ordering, JSX chỉ vẽ kết quả. Giữ dynamic geometry qua style properties hoặc SVG attributes. Không tự thêm scheduler/Gantt dependency để thay một renderer có geometry đã xác định. Dependencies hiện là dữ liệu liên kết và đường vẽ; không thêm cascade rescheduling/critical-path engine.
+
+### 3.5. Drawer, comments, subtasks và files
+
+| Component ID | Owner / unit | Shared contract / consumers | Nguồn |
+|---|---|---|---|
+| DT-01 | `features/tasks/detail/TaskDrawer` | taskId + controlled presentation side/full; shared global host | [drawer30–130][c-drawer] |
+| DT-02 | `TaskDetailsBody`, `TaskPropertyGrid`, `TaskHeader` | Field components; edit actions; normal/overdue/done | [drawer64–77][c-drawer] |
+| DT-03 | `TaskDescriptionEditor` | Description HTML hiện có; 6 format commands; stable focus/selection; blur/input save theo contract | [drawer79–91][c-drawer] |
+| DT-04 | `SubtaskList`, `SubtaskDetail` | Task+subtask typed identity; previous/next/note/promote/delete | [drawer94–96][c-drawer]; [subtasks][c-subtasks] |
+| CM-01 | `features/comments/CommentList`, `CommentItem`, `CommentComposer` | Same comment model/action contract; Drawer+Inbox | [drawer104–144][c-drawer]; [inbox69–86][c-inbox] |
+| CM-02 | `MentionMenu`, `ReactionBar` | Mention/reaction state; current-user highlighting; proper keyboard handling | [drawer118–144][c-drawer] |
+| FL-01 | `features/files/FileTypeIcon`, `FilePreviewArt`, `FileCard`, `FileRow` | Typed file metadata; same file-type art in Files/Drawer/Preview | [helpers74–111][c-helpers]; [files7–55][c-files] |
+| FL-02 | `AttachmentCard`, `AttachmentList`, `FileDropzone`, `UploadProgress` | Draft/task/project upload target via callbacks; no real storage implied | [drawer99–101][c-drawer]; [files38–53][c-files] |
+| FL-03 | `FilePreviewDialog`, `FileContextMenu` | Image-like type art, metadata, task link/copy/close; rename/duplicate/delete | [modals283–289][c-modals]; [context74–82][c-context] |
+
+Description source có HTML và browser editing API; port chỉ cần tái tạo tính năng đó. Không dùng `dangerouslySetInnerHTML` để nhét toàn page, route hoặc source renderer vào React. Nếu dùng HTML insertion cho description, giới hạn ở một adapter có input/allowlist contract rõ ràng và kiểm tra editing; React DOM vẫn sở hữu toàn bộ layout. SVG icons/logo được chuyển thành React SVG components, không dùng generator string cho UI mới.
+
+File art hiện tại là CSS/SVG tạo theo type; giữ đúng hình nguồn. Không thay thành stock thumbnail/ảnh tạo mới, không thêm thư mục, preview PDF engine, asset manager hoặc network uploader chỉ để hoàn thiện một nút demo.
+
+### 3.6. Projects, dashboards, people, notifications và settings
+
+| Component ID | Owner / units | Reuse / ranh giới |
+|---|---|---|
+| PJ-01 | `features/projects/ProjectIdentity`, `ProjectStatus`, `ProjectCard`, `ProjectRow`, `ProjectTable` | Card reuse Projects+Favorites; identity/status/progress dùng trong sidebar/dashboard; 3 layouts giữ riêng |
+| PJ-02 | `ProjectHeader`, `ProjectTabs`, `ProjectFormDialog`, `ProjectShareDialog`, `SaveViewDialog` | One project wrapper; 8 fixed tabs+saved views; 3 saved-layout choices |
+| PJ-03 | `ProjectOverview` | Composition riêng About/Progress/Coming up/Details/Milestones/Activity; reuse shared smaller units |
+| DB-01 | `StatGroup`, `StatItem`, `ProjectProgressTable`, `TaskStatusBreakdown`, `WorkloadSummary` | Home và WorkspaceOverview dùng chung primitives/progress/identity; dashboard layout không gộp thành giant config |
+| AC-01 | `features/activity/ActivityItem`, `ActivityFeed`, `ActivityDayGroup` | Home/project/member/workspace; di chuyển logical ownership của `actHtml` ra khỏi task-list |
+| NT-01 | `features/notifications/NotificationContent`, `NotificationAvatar`, `ReadToggle` | Inbox+Notifications chung nội dung, actions, state |
+| NT-02 | `InboxListItem`, `InboxPreview`, `NotificationRow`, `NotificationDayGroup` | Giữ separate layouts; Inbox 420px split/mobile fullscreen |
+| SR-01 | `features/search/SearchPage`, `SearchResultContent`, `CommandPalette` | Chung search selectors/highlight/result models; palette có commands/workspaces riêng |
+| PE-01 | `features/people/MemberIdentity`, `MemberTable`, `MemberStatus`, `RolePicker` | Directory dùng MemberTable; Settings Members dùng compact rows chia sẻ Identity/RolePicker. Task fields/sharing dùng cùng identity; quyền thuộc domain/controller. |
+| PE-02 | `TeamCard`, `TeamGrid`, `TeamFormDialog`, `MemberDetail`, `TeamDetail` | TeamGrid reuse Members/Teams/Settings; TeamDetail dùng compact ProjectRow/Identity/Status/Progress và task mini rows; giữ composition riêng. |
+| PE-03 | `PermissionMatrix` | Cùng matrix ở Members và Settings; không copy 4 role columns |
+| AR-01 | `features/archive/ArchivedTaskRow`, `ArchivedProjectRow` | Reuse compact surface/action buttons; restore/purge entity-specific |
+| ST-01 | `features/settings/SettingsLayout`, `SettingsBlock`, `SettingRow`, `SectionHeading` | 21 sections; desktop sidebar/mobile horizontal nav; controls reusable |
+| ST-02 | `ThemePreviewCard`, `AccentSwatches`, `DensitySelector` | Appearance; theme previews thể hiện màu nguồn |
+| ST-03 | `SessionRow`, `PasswordStrength`, `PlanCard`, `UsageMeter`, `InvoiceTable` | Settings-specific views; PasswordStrength share với Auth; Payment Update/Edit vẫn demo toast |
+| AU-01 | `features/auth/AuthLayout`, `SocialAuthButtons`, `PasswordInput`, `AuthMessage` | 7 Auth screens giữ riêng controllers; layout/social/password/error shared |
+| ON-01 | `features/onboarding/OnboardingLayout`, `StepProgress`, `ChoiceCard`, `TemplateCard`, `OnboardingNavigation`, `SummaryRow` | 6 steps; draft xuyên steps; reuse template card với project form khi thật sự đồng hình thức |
+
+Nguồn: [Projects][c-projects], [Project Overview][c-projectoverview], [Home][c-home], [Workspace Overview][c-overview], [Members/Teams][c-members], [Settings][c-settings], [Auth/Onboarding][c-auth], [Notifications][c-notifications], [Search][c-search], [Palette][c-palette], [Archive][c-archive].
+
+Không gộp `ProjectCard` và `TeamCard` chỉ vì source dùng `.pcard`; có thể cùng `Panel`/`EntityCardSurface`, còn content có domain riêng. `.mini` cũng là CSS surface dùng cho task/search/archive/member/project; đó không phải bằng chứng chúng là cùng một business component.
+
+## 4. Hợp đồng TypeScript minh họa
+
+Các ví dụ mô tả trách nhiệm và discriminated unions, không thay thế DTO/API contract của toàn app. Definitions thực tế phải lấy types từ `packages/contracts` và share một implementation trong domain.
+
+### 4.1. Scope và view state
+
+```ts
+type TaskScope = { workspaceId: WorkspaceId } & (
+  | { kind: 'workspace' }
+  | { kind: 'project'; projectId: ProjectId }
+  | { kind: 'assignee'; memberId: MemberId }
+);
+
+type TaskViewKey =
+  | `workspace:${string}:tasks`
+  | `workspace:${string}:my-tasks`
+  | `workspace:${string}:project:${string}`
+  | `workspace:${string}:saved-view:${string}`;
+
+interface TaskCollection {
+  readonly scope: TaskScope;
+  readonly viewKey: TaskViewKey;
+  readonly taskIds: readonly TaskId[];
+  readonly totalBeforeFilters: number;
+  readonly groups: readonly TaskGroup[];
+}
+
+type TaskListSelection =
+  | {
+      kind: 'bulk';
+      selectedIds: ReadonlySet<TaskId>;
+      onToggle: (taskId: TaskId) => void;
+      onToggleAll: (taskIds: readonly TaskId[]) => void;
+    }
+  | {
+      kind: 'completion';
+      onToggleComplete: (taskId: TaskId) => void;
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .grid2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .topsearch {
+    width: auto;
+  }
+  .topsearch .lbltxt,
+  .topsearch .kbd {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .shell,
+  .shell.collapsed {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .side {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    z-index: 70;
+    transform: translateX(-100%);
+    transition: transform 0.22s var(--ease);
+    box-shadow: var(--shadow-pop);
+  }
+  .shell.mnav .side {
+    transform: none;
+  }
+  .shell.collapsed .side .sitem {
+    justify-content: flex-start;
+    padding: 0 8px;
+  }
+  .side-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: var(--overlay);
+    z-index: 69;
+    animation: fade 0.14s both;
+  }
+  :root {
+    --gutter: 16px;
+  }
+  .page {
+    padding: 20px var(--gutter) 96px;
+  }
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stat:nth-child(3) {
+    border-left: 0;
+  }
+  .stat:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
+  }
+  .set {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .set-nav {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 8px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .set-nav .gh {
+    display: none;
+  }
+  .set-nav .sitem {
+    width: auto;
+    flex-shrink: 0;
+  }
+  .set {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .set-in {
+    padding: 20px 16px 96px;
+  }
+  .tl {
+    grid-template-columns: 170px minmax(0, 1fr);
+  }
+  .board {
+    padding-bottom: 90px;
+  }
+  .proj-h {
+    padding-top: 16px;
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --topbar-h: 50px;
+  }
+  .bottomnav {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px));
+  }
+  .bottomnav button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 5px 0;
+    min-height: 48px;
+    font-size: 11px;
+    color: var(--text-3);
+    border-radius: var(--r-sm);
+    position: relative;
+  }
+  .bottomnav button.on {
+    color: var(--text);
+  }
+  .bottomnav .bdot {
+    position: absolute;
+    top: 3px;
+    left: calc(50% + 6px);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .hide-m {
+    display: none !important;
+  }
+  .ph h1 {
+    font-size: var(--fs-xl);
+  }
+  .ph .acts {
+    margin-left: 0;
+    width: 100%;
+  }
+  /* list & table become stacked cards */
+  .list-wrap {
+    padding-left: var(--gutter);
+  }
+  .tlist .thead {
+    display: none;
+  }
+  .tlist .trow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    padding: 10px 6px;
+    min-height: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    margin: 6px 0;
+  }
+  .tlist .trow > div {
+    padding: 0;
+  }
+  .tlist .trow .handle {
+    display: none;
+  }
+  .tlist .trow .ttl {
+    flex: 1 1 calc(100% - 30px);
+    order: 1;
+  }
+  .tlist .trow .c-check {
+    order: 0;
+  }
+  .tlist .trow .c-meta {
+    order: 2;
+  }
+  .tlist .trow > div.c-lbl:empty {
+    display: none;
+  }
+  .drawer,
+  .drawer.full {
+    width: 100vw;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: none;
+    border-radius: 0;
+    border: 0;
+  }
+  .drawer-b,
+  .drawer.full .drawer-b {
+    padding: 16px 16px 40px;
+  }
+  .modal-wrap {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .modal {
+    max-height: 92vh;
+    border-radius: 14px 14px 0 0;
+  }
+  .opts,
+  .tmpls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .themecards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fbuild {
+    min-width: 0;
+  }
+  .frow {
+    grid-template-columns: 1fr 1fr;
+  }
+  .frow .conj {
+    display: none;
+  }
+  .cal-g {
+    grid-auto-rows: minmax(72px, 1fr);
+  }
+  .cev .trunc,
+  .cev .av {
+    display: none;
+  }
+  .cev {
+    height: 8px;
+    padding: 0;
+    border-radius: 3px;
+    background: var(--c);
+  }
+  .week {
+    grid-template-columns: minmax(0, 1fr);
+    overflow-y: auto;
+  }
+  .wcol {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .tl-left {
+    display: none;
+  }
+  .tl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #toasts {
+    left: 16px;
+    right: 16px;
+    bottom: 76px;
+    align-items: stretch;
+  }
+  .kv {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+  .srow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .topsearch {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    width: var(--h-md);
+    justify-content: center;
+  }
+  .crumbs button:not(.cur),
+  .crumbs .sep {
+    display: none;
+  }
+  .crumbs .cur {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .crumbs .cur > span {
+    display: none !important;
+  }
+  .panel-h {
+    flex-wrap: wrap;
+  }
+  .panel-h h2 {
+    white-space: nowrap;
+  }
+  .topbar .ibtn,
+  .topbar .btn,
+  .topsearch {
+    min-width: 40px;
+    min-height: 40px;
+  }
+  .palette {
+    top: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='full']) {
+    --reduce: 1;
+  }
+}
+:root[data-motion='reduce'] {
+  --reduce: 1;
+}
+@keyframes fadeOnly {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal,
+  .drawer,
+  .pop,
+  .toast,
+  .bulkbar,
+  .tab.on::after {
+    animation-name: fadeOnly !important;
+    animation-duration: 0.12s !important;
+  }
+  .btn:active:not(:disabled) {
+    transform: none;
+  }
+  .prog > i,
+  .toggle::after,
+  .sitem .chev,
+  .skip {
+    transition: none;
+  }
+  .sk {
+    animation: none;
+    opacity: 0.85;
+  }
+}
+:root[data-motion='reduce'] .modal,
+:root[data-motion='reduce'] .drawer,
+:root[data-motion='reduce'] .pop,
+:root[data-motion='reduce'] .toast,
+:root[data-motion='reduce'] .bulkbar,
+:root[data-motion='reduce'] .tab.on::after {
+  animation-name: fadeOnly !important;
+  animation-duration: 0.12s !important;
+}
+:root[data-motion='reduce'] .btn:active:not(:disabled) {
+  transform: none;
+}
+:root[data-motion='reduce'] .prog > i,
+:root[data-motion='reduce'] .toggle::after {
+  transition: none;
+}
+:root[data-motion='reduce'] .sk {
+  animation: none;
+  opacity: 0.85;
+}
+/* ============================================================
+   MOTION: one-shot flow animations (gated to the render they belong to)
+   ============================================================ */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes slideInR {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes growX {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes popCheck {
+  0% {
+    transform: scale(0.55);
+  }
+  55% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes strike {
+  to {
+    background-size: 100% 1.5px;
+  }
+}
+@keyframes doneWash {
+  from {
+    background: var(--green-soft);
+  }
+  to {
+    background: transparent;
+  }
+}
+@keyframes doneRing {
+  from {
+    box-shadow:
+      0 0 0 2px var(--green),
+      var(--shadow-card);
+  }
+  to {
+    box-shadow: var(--shadow-card);
+  }
+}
+@keyframes land {
+  0% {
+    transform: scale(1.04) rotate(-1.2deg);
+    box-shadow: var(--shadow-drag);
+  }
+  100% {
+    transform: none;
+    box-shadow: var(--shadow-card);
+  }
+}
+@keyframes addWash {
+  from {
+    background: var(--accent-soft);
+  }
+  to {
+    background: transparent;
+  }
+}
+@keyframes addRing {
+  from {
+    box-shadow:
+      0 0 0 2px var(--accent-line),
+      var(--shadow-card);
+  }
+  to {
+    box-shadow: var(--shadow-card);
+  }
+}
+/* route change: content rises in, lightly staggered */
+.fx-route > .page > *,
+.fx-route > .fullstate {
+  animation: riseIn 0.36s var(--ease) both;
+}
+.fx-route > .page > *:nth-child(2) {
+  animation-delay: 0.035s;
+}
+.fx-route > .page > *:nth-child(3) {
+  animation-delay: 0.07s;
+}
+.fx-route > .page > *:nth-child(n + 4) {
+  animation-delay: 0.1s;
+}
+.fx-route .grid2 > * > *:nth-child(2),
+.fx-route .grid2 > *:nth-child(2) > *:first-child {
+  animation: riseIn 0.4s 0.09s var(--ease) both;
+}
+.fx-route .prog > i {
+  animation: growX 0.8s 0.12s var(--ease) both;
+}
+.fx-route .stackbar i {
+  transform-origin: left;
+  animation: growX 0.8s 0.12s var(--ease) both;
+}
+.fx-route .bar {
+  animation: riseIn 0.4s var(--ease) both;
+}
+.pbody {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.pbody.fx-tab > * {
+  animation: riseIn 0.26s var(--ease) both;
+}
+.pbody.fx-tab .kcard {
+  animation: riseIn 0.32s var(--ease) both;
+}
+.pbody.fx-tab .bcol:nth-child(2) .kcard {
+  animation-delay: 0.03s;
+}
+.pbody.fx-tab .bcol:nth-child(3) .kcard {
+  animation-delay: 0.06s;
+}
+.pbody.fx-tab .bcol:nth-child(n + 4) .kcard {
+  animation-delay: 0.09s;
+}
+/* task completed */
+.trow.fx-done,
+.mini.fx-done {
+  animation: doneWash 1s var(--ease) both;
+}
+.kcard.fx-done {
+  animation: doneRing 1s var(--ease) both;
+}
+.fx-done .check,
+.fx-done .done-ic {
+  animation: popCheck 0.42s var(--spring) both;
+}
+.fx-done .tt,
+.fx-done .title {
+  text-decoration: none !important;
+  background: linear-gradient(currentColor, currentColor) 0 58%/0 1.5px no-repeat;
+  animation: strike 0.38s 0.1s var(--ease) forwards;
+}
+/* dropped, created */
+.kcard.fx-moved {
+  animation: land 0.5s var(--spring) both;
+}
+.cev.fx-moved,
+.wcard.fx-moved {
+  animation: popCheck 0.4s var(--spring) both;
+}
+.trow.fx-added,
+.mini.fx-added {
+  animation:
+    riseIn 0.3s var(--ease) both,
+    addWash 1.4s var(--ease) both;
+}
+.kcard.fx-added {
+  animation:
+    riseIn 0.3s var(--ease) both,
+    addRing 1.4s var(--ease) both;
+}
+.subt.fx-added {
+  animation: riseIn 0.28s var(--ease) both;
+}
+/* auth + onboarding */
+.auth-card.fx-auth > * {
+  animation: riseIn 0.42s var(--ease) both;
+}
+.auth-card.fx-auth > *:nth-child(2) {
+  animation-delay: 0.04s;
+}
+.auth-card.fx-auth > *:nth-child(3) {
+  animation-delay: 0.08s;
+}
+.auth-card.fx-auth > *:nth-child(n + 4) {
+  animation-delay: 0.12s;
+}
+.onb.fx-step > *:not(.steps) {
+  animation: slideInR 0.36s var(--ease) both;
+}
+.onb.fx-step > *:nth-child(n + 4) {
+  animation-delay: 0.05s;
+}
+.steps i {
+  transform-origin: left;
+  transition: background 0.3s;
+}
+.onb.fx-step .steps i.cur {
+  animation: growX 0.45s var(--ease) both;
+}
+.onb.fx-step .ready-row {
+  animation: riseIn 0.4s var(--ease) both;
+}
+.onb.fx-step .ready-row:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.onb.fx-step .ready-row:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.onb.fx-step .ready-row .ok {
+  animation: popCheck 0.42s var(--spring) both;
+}
+.onb.fx-step .ready-row:nth-child(1) .ok {
+  animation-delay: 0.18s;
+}
+.onb.fx-step .ready-row:nth-child(2) .ok {
+  animation-delay: 0.3s;
+}
+.onb.fx-step .ready-row:nth-child(3) .ok {
+  animation-delay: 0.42s;
+}
+.onb.fx-step .ready-badge {
+  animation: popCheck 0.5s 0.05s var(--spring) both;
+}
+/* tactile micro-feedback */
+.check:active {
+  transform: scale(0.88);
+}
+.check {
+  transition:
+    background var(--dur),
+    border-color var(--dur),
+    transform 0.12s var(--ease);
+}
+.toggle::after {
+  transition: transform 0.28s var(--spring);
+}
+.pcard {
+  transition:
+    border-color var(--dur),
+    box-shadow 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+.pcard:hover {
+  transform: translateY(-2px);
+}
+.kcard {
+  transition:
+    box-shadow var(--dur),
+    transform 0.18s var(--ease);
+}
+.kcard:hover {
+  transform: translateY(-1px);
+}
+.stat .v {
+  font-variant-numeric: tabular-nums;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-route > .page > *,
+  .fx-route > .fullstate,
+  .fx-route .grid2 > * > *,
+  .fx-route .bar,
+  .pbody.fx-tab > *,
+  .pbody.fx-tab .kcard,
+  .auth-card.fx-auth > *,
+  .onb.fx-step > *,
+  .drawer.enter .drawer-b > *,
+  .kcard.fx-moved,
+  .cev.fx-moved,
+  .wcard.fx-moved,
+  .fx-done .check,
+  .onb.fx-step .ready-row,
+  .onb.fx-step .ready-row .ok,
+  .onb.fx-step .ready-badge {
+    animation: fadeOnly 0.12s both !important;
+  }
+  .fx-route .prog > i,
+  .fx-route .stackbar i,
+  .onb.fx-step .steps i.cur {
+    animation: none !important;
+  }
+  .fx-done .tt,
+  .fx-done .title {
+    animation: none;
+    background: none;
+    text-decoration: line-through !important;
+  }
+  .pcard:hover,
+  .kcard:hover,
+  .check:active {
+    transform: none;
+  }
+}
+:root[data-motion='reduce'] .fx-route > .page > *,
+:root[data-motion='reduce'] .pbody.fx-tab > *,
+:root[data-motion='reduce'] .auth-card.fx-auth > *,
+:root[data-motion='reduce'] .onb.fx-step > *,
+:root[data-motion='reduce'] .drawer.enter .drawer-b > *,
+:root[data-motion='reduce'] .kcard.fx-moved {
+  animation: fadeOnly 0.12s both !important;
+}
+:root[data-motion='reduce'] .fx-route .prog > i,
+:root[data-motion='reduce'] .fx-route .stackbar i {
+  animation: none !important;
+}
+:root[data-motion='reduce'] .pcard:hover,
+:root[data-motion='reduce'] .kcard:hover {
+  transform: none;
+}
