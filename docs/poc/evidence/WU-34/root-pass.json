@@ -1,0 +1,106 @@
+{
+  "workUnit": "WU-34",
+  "status": "DONE_ROOT_TECHNICAL_AND_ALL_INDEX_PASS",
+  "scope": "Only WU34 API projections/personal state; no WU35 file operations/bytes or WU36 full journey/deployment",
+  "reportedBy": "Root read-only coordinator; actual tool results were reported in collaboration messages",
+  "rootPhysicalCapture": null,
+  "technical": {
+    "exitCode": 0,
+    "candidate": {
+      "path": "docs/poc/evidence/WU-34/candidate.json",
+      "bytes": 180675,
+      "sha256": "10511f308b10296bb86aeee0ee4c9ccfc91ac8a456dab54f0b2ccc77ff29081d"
+    },
+    "ownedWhitelist": {
+      "path": "docs/poc/evidence/WU-34/OWNED_PATHS.txt",
+      "bytes": 59529,
+      "sha256": "911e9a6da590c4c01806e9cd464dcd621002127ced38e2de583a7ae0bda53f98"
+    },
+    "verification": {
+      "path": "docs/poc/evidence/WU-34/verification.json",
+      "bytes": 154498,
+      "sha256": "ce8c2be4da5c7497978e3e28c66e66f98423432ae71fb07e65b1b718a15ab563"
+    },
+    "finiteFiles": 882,
+    "finiteBytes": 64460737,
+    "ownedPaths": 883,
+    "verifiedReferences": 597,
+    "referencedBytes": 81849141,
+    "requiredGates": 7,
+    "requiredGateExitCodes": "all0/errornull",
+    "httpReceipts": 186,
+    "commands": 6,
+    "cliExit0": 2,
+    "plannedWorkerSigtermNullExitCode": 4,
+    "executedCurrentMatches": 78,
+    "outerSnapshotPairs24Tables": 14,
+    "innerFinalActorGuardPairs24Tables": 2,
+    "instrumentedRequests": 139,
+    "maximumQueries": 18,
+    "maximumParameters": 28,
+    "multiPage": {
+      "extraPrimaryTasks": 235,
+      "extraSecondaryTasks": 235,
+      "workspaceComplete": 283,
+      "calendarComplete": 234,
+      "timelineComplete": 234,
+      "literalSearchTotal": 235
+    },
+    "lockedBaseComparisons": 7,
+    "prefreezeCommands": 13,
+    "prefreezeRawStreams": 26,
+    "prefreezeRawBytes": 2746
+  },
+  "allIndex": {
+    "exitCode": 0,
+    "baseRows": 138823,
+    "indexRows": 139698,
+    "changedPaths": 883,
+    "changedBlobBytes": 64641412,
+    "changedPhysicalAndStagedExact": true,
+    "unchangedOtherRows": 138815,
+    "fingerprintExcludingProgressAndRootPass": "3898ba079dc87933e5f7ea48a4373f3130b0b54cf6c133211702feab2b982a65",
+    "rowsExcludingProgressAndRootPass": 139697,
+    "cachedCheck": 0,
+    "unstaged": "empty",
+    "untracked": "empty"
+  },
+  "prefreeze": {
+    "path": "docs/poc/evidence/WU-34/prefreeze01/report.json",
+    "bytes": 11511,
+    "sha256": "58592f9ee0cd2cd140d2d568ab291334c692d9bc10d899824365560b0c879baf"
+  },
+  "outsideStage": {
+    "report": "/tmp/task8-wu34-stage01/report.json",
+    "bytes": 4534,
+    "sha256": "2631bcd562a1c83791a73330a4d744fa3041cbacd4d8045cb29eec31e530b9ac",
+    "commands": 6,
+    "streams": 12,
+    "rawBytes": 206475,
+    "originalCompletion": "/tmp/task8-wu34-stage01/tool-completion.json",
+    "completionBytes": 364,
+    "completionSha256": "e5ce895d9cee1b5680c34b1ebf68237a2250220a726bcf1922576d5f0a539043",
+    "shaQualification": "Full SHA read from the original returned tool object already persisted outside Git."
+  },
+  "attributes": {
+    "bytes": 104665,
+    "sha256": "799e9887ea53ec2a7911dffa0910855d5e177a7d902182519f434d89b3e04e11",
+    "basePrefixBytes": 103290,
+    "basePrefixSha256": "f9c522e9ff7a6a067533c6ca0d058b0bdca3e1464cf8b701fae22a1d3ea4aaca",
+    "literalRawRules": 20,
+    "suffixBytes": 1375,
+    "suffixSha256": "97774acb1b5610cc1cdc32b9e33d4d7fc0008664f528f99468654d04145d57c9",
+    "proposal": {
+      "path": "docs/poc/evidence/WU-34/raw-whitespace-proposal.json",
+      "bytes": 9425,
+      "sha256": "1b08904d0f8b7190751408d52f08251040f70ba2132c8adff1399a9d13e4045b"
+    }
+  },
+  "qualifications": {
+    "originalFailures": "typecheck01 EPERM; typecheck02 narrowings; d1-01 cursor loop harness; d1-02 error.detail predicate; original scanner status3. All original bytes unchanged.",
+    "outerCaptureGaps": "Initial prerequisite/typecheck01/03 and verification01 outer objects were not separately persisted; original available child command streams/maps/status remain. No reconstruction or Root physical capture is claimed.",
+    "inheritedM2": "All bounded/FAILED/missing-byte/SVG/default/Darwin qualifications remain unrecovered.",
+    "notRun": "No optional browser campaign/source screenshot reacceptance, remote D1/R2/provider/auth/provisioning/deployment/CI/WU35\u201336."
+  },
+  "next": "Root FAST2metadata pass, implementation commit/normal push, exact two-doc checkpoint gate, actual docs commit/push then STOP34; fresh owner for WU35"
+}

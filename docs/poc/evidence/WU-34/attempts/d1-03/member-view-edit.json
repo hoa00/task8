@@ -1,0 +1,27 @@
+{
+  "name": "member-view-edit",
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/views/01a1274e-2702-789d-9fa8-d296564b5680",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2,\"type\":\"list\"}",
+  "status": 200,
+  "response": {
+    "data": {
+      "id": "01a1274e-2702-789d-9fa8-d296564b5680",
+      "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "name": "Changed shared view",
+      "type": "list",
+      "filters": [],
+      "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+      "position": 100,
+      "version": 3
+    }
+  },
+  "budget": {
+    "queries": 6,
+    "parameters": 11
+  }
+}

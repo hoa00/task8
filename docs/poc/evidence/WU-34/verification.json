@@ -1,0 +1,3914 @@
+{
+  "workUnit": "WU-34",
+  "status": "REQUIRED_CHECKS_PASS_ROOT_GATE_PENDING",
+  "base": "94713638c0152c869857514a9354efcf7c34ab47",
+  "runtime": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0",
+    "wrangler": "4.148.0",
+    "database": "actual local D1/workerd",
+    "os": "Linux"
+  },
+  "selected": {
+    "report": {
+      "path": "docs/poc/evidence/WU-34/attempts/d1-03/report.json",
+      "bytes": 61707,
+      "sha256": "c01e4f4cbf1d5f240bb3922767c28563ca4b19375de6697b1299bd452ad96051"
+    },
+    "commands": 6,
+    "probes": 186,
+    "instrumentedRequests": 139,
+    "maxQueries": 18,
+    "maxParameters": 28,
+    "sourceMatches": [
+      {
+        "executed": {
+          "path": "apps/api/src/db/commands.ts",
+          "bytes": 1611,
+          "sha256": "7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f.json"
+        },
+        "current": {
+          "path": "apps/api/src/db/commands.ts",
+          "bytes": 1611,
+          "sha256": "7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/db/fixture.ts",
+          "bytes": 11439,
+          "sha256": "93fdac870c6c689fc734969f2548a8f9ca4832d1b830516cfed39e185be291e0",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/93fdac870c6c689fc734969f2548a8f9ca4832d1b830516cfed39e185be291e0.json"
+        },
+        "current": {
+          "path": "apps/api/src/db/fixture.ts",
+          "bytes": 11439,
+          "sha256": "93fdac870c6c689fc734969f2548a8f9ca4832d1b830516cfed39e185be291e0"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/db/guards.ts",
+          "bytes": 2380,
+          "sha256": "4a1a44876040066cd211ed2650d0a9fb4bfb41ac55e19d9b951f01d08a80322d",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/4a1a44876040066cd211ed2650d0a9fb4bfb41ac55e19d9b951f01d08a80322d.json"
+        },
+        "current": {
+          "path": "apps/api/src/db/guards.ts",
+          "bytes": 2380,
+          "sha256": "4a1a44876040066cd211ed2650d0a9fb4bfb41ac55e19d9b951f01d08a80322d"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/db/repository.ts",
+          "bytes": 1525,
+          "sha256": "4f99cd935337f4932c9c87374cc8d4c0f7c97c78f395046e50c230e6b9b7eb67",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/4f99cd935337f4932c9c87374cc8d4c0f7c97c78f395046e50c230e6b9b7eb67.json"
+        },
+        "current": {
+          "path": "apps/api/src/db/repository.ts",
+          "bytes": 1525,
+          "sha256": "4f99cd935337f4932c9c87374cc8d4c0f7c97c78f395046e50c230e6b9b7eb67"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/db/schema.ts",
+          "bytes": 24094,
+          "sha256": "46f6f0678229daea7330e2f5eb0ff698eeda8056dda8873c7b5478eaf11a2734",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/46f6f0678229daea7330e2f5eb0ff698eeda8056dda8873c7b5478eaf11a2734.json"
+        },
+        "current": {
+          "path": "apps/api/src/db/schema.ts",
+          "bytes": 24094,
+          "sha256": "46f6f0678229daea7330e2f5eb0ff698eeda8056dda8873c7b5478eaf11a2734"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/db/undo.ts",
+          "bytes": 3298,
+          "sha256": "d9d22cc4f512c4c955773cc3152638e2acc3b724ac07955cb36062d3a968879e",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/d9d22cc4f512c4c955773cc3152638e2acc3b724ac07955cb36062d3a968879e.json"
+        },
+        "current": {
+          "path": "apps/api/src/db/undo.ts",
+          "bytes": 3298,
+          "sha256": "d9d22cc4f512c4c955773cc3152638e2acc3b724ac07955cb36062d3a968879e"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/errors.ts",
+          "bytes": 1028,
+          "sha256": "9120b75be89d49fc7a7753a4f0357ea1a4af5f0fe121e3b7076e40eb89503f71",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/9120b75be89d49fc7a7753a4f0357ea1a4af5f0fe121e3b7076e40eb89503f71.json"
+        },
+        "current": {
+          "path": "apps/api/src/errors.ts",
+          "bytes": 1028,
+          "sha256": "9120b75be89d49fc7a7753a4f0357ea1a4af5f0fe121e3b7076e40eb89503f71"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/index.ts",
+          "bytes": 792,
+          "sha256": "88dbf8b6f60f140b8db96f6bbdc1d4aceec553f3437c80058dd9a3aacf64d843",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/88dbf8b6f60f140b8db96f6bbdc1d4aceec553f3437c80058dd9a3aacf64d843.json"
+        },
+        "current": {
+          "path": "apps/api/src/index.ts",
+          "bytes": 792,
+          "sha256": "88dbf8b6f60f140b8db96f6bbdc1d4aceec553f3437c80058dd9a3aacf64d843"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/middleware.ts",
+          "bytes": 2741,
+          "sha256": "e9ac17ef1b58d5bdd1808dc4a2641b133fd780afc35839f0dc2849d9d4b37fa4",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/e9ac17ef1b58d5bdd1808dc4a2641b133fd780afc35839f0dc2849d9d4b37fa4.json"
+        },
+        "current": {
+          "path": "apps/api/src/middleware.ts",
+          "bytes": 2741,
+          "sha256": "e9ac17ef1b58d5bdd1808dc4a2641b133fd780afc35839f0dc2849d9d4b37fa4"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/activity.ts",
+          "bytes": 2228,
+          "sha256": "2d78f3699cddba3fe705d9206824335d7d689feb2019a68eae6f7cd052193190",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/2d78f3699cddba3fe705d9206824335d7d689feb2019a68eae6f7cd052193190.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/activity.ts",
+          "bytes": 2228,
+          "sha256": "2d78f3699cddba3fe705d9206824335d7d689feb2019a68eae6f7cd052193190"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/bootstrap.ts",
+          "bytes": 9070,
+          "sha256": "cf8e1de162186e546a633c66c6a8b70155901a7c8ca5d31a4b3fe65e43a4562d",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/cf8e1de162186e546a633c66c6a8b70155901a7c8ca5d31a4b3fe65e43a4562d.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/bootstrap.ts",
+          "bytes": 9070,
+          "sha256": "cf8e1de162186e546a633c66c6a8b70155901a7c8ca5d31a4b3fe65e43a4562d"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/collaboration-page.ts",
+          "bytes": 1717,
+          "sha256": "fb93873d910977b862917f022bd36371d2f878fc3f8d4ce219ac056ad6e97e47",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/fb93873d910977b862917f022bd36371d2f878fc3f8d4ce219ac056ad6e97e47.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/collaboration-page.ts",
+          "bytes": 1717,
+          "sha256": "fb93873d910977b862917f022bd36371d2f878fc3f8d4ce219ac056ad6e97e47"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/collaboration-routes.ts",
+          "bytes": 5182,
+          "sha256": "b2fa18cc6da4e6b6dd2270a565e76193280b13b4864f5137757f2340a3b5250b",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/b2fa18cc6da4e6b6dd2270a565e76193280b13b4864f5137757f2340a3b5250b.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/collaboration-routes.ts",
+          "bytes": 5182,
+          "sha256": "b2fa18cc6da4e6b6dd2270a565e76193280b13b4864f5137757f2340a3b5250b"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/comments.ts",
+          "bytes": 12484,
+          "sha256": "eff830b58e5c414b37453bff662ddc423398187b66275625375731a6fdbdd5bc",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/eff830b58e5c414b37453bff662ddc423398187b66275625375731a6fdbdd5bc.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/comments.ts",
+          "bytes": 12484,
+          "sha256": "eff830b58e5c414b37453bff662ddc423398187b66275625375731a6fdbdd5bc"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/features.ts",
+          "bytes": 12225,
+          "sha256": "75609abef0e352bcd79eafb2830cf67a37821abddbdf3466e9c8f9576fc40e8d",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/75609abef0e352bcd79eafb2830cf67a37821abddbdf3466e9c8f9576fc40e8d.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/features.ts",
+          "bytes": 12225,
+          "sha256": "75609abef0e352bcd79eafb2830cf67a37821abddbdf3466e9c8f9576fc40e8d"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/member-settings.ts",
+          "bytes": 1755,
+          "sha256": "bc946a9e771657b226010b3868343114e933fedc0ea16a0e45ee244a6173a1a3",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/bc946a9e771657b226010b3868343114e933fedc0ea16a0e45ee244a6173a1a3.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/member-settings.ts",
+          "bytes": 1755,
+          "sha256": "bc946a9e771657b226010b3868343114e933fedc0ea16a0e45ee244a6173a1a3"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/notifications.ts",
+          "bytes": 3893,
+          "sha256": "324725c8b38c1c0fdaaa9ed3c6d497ddc10c729981fa56dd0c53b328d4a8e2b2",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/324725c8b38c1c0fdaaa9ed3c6d497ddc10c729981fa56dd0c53b328d4a8e2b2.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/notifications.ts",
+          "bytes": 3893,
+          "sha256": "324725c8b38c1c0fdaaa9ed3c6d497ddc10c729981fa56dd0c53b328d4a8e2b2"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/project-personal.ts",
+          "bytes": 3841,
+          "sha256": "3f661cc52f16ac99787408e2f19c8ddb5bc17670fa602a7b148fcaa4e099d3e2",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/3f661cc52f16ac99787408e2f19c8ddb5bc17670fa602a7b148fcaa4e099d3e2.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/project-personal.ts",
+          "bytes": 3841,
+          "sha256": "3f661cc52f16ac99787408e2f19c8ddb5bc17670fa602a7b148fcaa4e099d3e2"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/projection-page.ts",
+          "bytes": 2031,
+          "sha256": "77c00b3ede6f5154dc0d1463feb1c9d7f3518088defe5cba4478d68eeda831a0",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/77c00b3ede6f5154dc0d1463feb1c9d7f3518088defe5cba4478d68eeda831a0.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/projection-page.ts",
+          "bytes": 2031,
+          "sha256": "77c00b3ede6f5154dc0d1463feb1c9d7f3518088defe5cba4478d68eeda831a0"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/projection-routes.ts",
+          "bytes": 6396,
+          "sha256": "796b3d7f59dc4636d1f1e65483a2307b1b47806b0db152906e1aada1c36deaca",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/796b3d7f59dc4636d1f1e65483a2307b1b47806b0db152906e1aada1c36deaca.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/projection-routes.ts",
+          "bytes": 6396,
+          "sha256": "796b3d7f59dc4636d1f1e65483a2307b1b47806b0db152906e1aada1c36deaca"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/projections.ts",
+          "bytes": 9348,
+          "sha256": "bd392f38ae73c2afe91eeced35e02d9530b254c435711e6e3bc3a2c5db857300",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/bd392f38ae73c2afe91eeced35e02d9530b254c435711e6e3bc3a2c5db857300.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/projections.ts",
+          "bytes": 9348,
+          "sha256": "bd392f38ae73c2afe91eeced35e02d9530b254c435711e6e3bc3a2c5db857300"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/projects.ts",
+          "bytes": 14147,
+          "sha256": "a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/projects.ts",
+          "bytes": 14147,
+          "sha256": "a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/read-model.ts",
+          "bytes": 9838,
+          "sha256": "e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/read-model.ts",
+          "bytes": 9838,
+          "sha256": "e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/routes.ts",
+          "bytes": 2603,
+          "sha256": "c6f71d8f4b9ff497419a66be7d253517b070509582d3693da9c9379534bbcd57",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/c6f71d8f4b9ff497419a66be7d253517b070509582d3693da9c9379534bbcd57.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/routes.ts",
+          "bytes": 2603,
+          "sha256": "c6f71d8f4b9ff497419a66be7d253517b070509582d3693da9c9379534bbcd57"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/saved-views.ts",
+          "bytes": 3714,
+          "sha256": "cdc6f2c4c86c17e3a5c7f9dbe506937a44dd7bfae460114552fac5344afbbc30",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/cdc6f2c4c86c17e3a5c7f9dbe506937a44dd7bfae460114552fac5344afbbc30.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/saved-views.ts",
+          "bytes": 3714,
+          "sha256": "cdc6f2c4c86c17e3a5c7f9dbe506937a44dd7bfae460114552fac5344afbbc30"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/shared.ts",
+          "bytes": 3949,
+          "sha256": "3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/shared.ts",
+          "bytes": 3949,
+          "sha256": "3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/task-children.ts",
+          "bytes": 9113,
+          "sha256": "583325490ca3e1f9aa3375db00a32bfe70b23080e4ec1ad0e2369cd0e99d655d",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/583325490ca3e1f9aa3375db00a32bfe70b23080e4ec1ad0e2369cd0e99d655d.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/task-children.ts",
+          "bytes": 9113,
+          "sha256": "583325490ca3e1f9aa3375db00a32bfe70b23080e4ec1ad0e2369cd0e99d655d"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/task-read.ts",
+          "bytes": 7190,
+          "sha256": "d288215e7495fce92d6bffe14645e3ec73b3809befc34ab8ccbcbe56bc3ad8f3",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/d288215e7495fce92d6bffe14645e3ec73b3809befc34ab8ccbcbe56bc3ad8f3.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/task-read.ts",
+          "bytes": 7190,
+          "sha256": "d288215e7495fce92d6bffe14645e3ec73b3809befc34ab8ccbcbe56bc3ad8f3"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/task-relations.ts",
+          "bytes": 3550,
+          "sha256": "777b63903cd253a3bfa0df964bdb98be37687fa1f0499687f010761e9c8cf99e",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/777b63903cd253a3bfa0df964bdb98be37687fa1f0499687f010761e9c8cf99e.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/task-relations.ts",
+          "bytes": 3550,
+          "sha256": "777b63903cd253a3bfa0df964bdb98be37687fa1f0499687f010761e9c8cf99e"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/task-routes.ts",
+          "bytes": 5765,
+          "sha256": "c158e000af72214a29b2fe12e6abee15e70b9bf92780162455302d69509986af",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/c158e000af72214a29b2fe12e6abee15e70b9bf92780162455302d69509986af.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/task-routes.ts",
+          "bytes": 5765,
+          "sha256": "c158e000af72214a29b2fe12e6abee15e70b9bf92780162455302d69509986af"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/task-undo.ts",
+          "bytes": 8392,
+          "sha256": "11b8d237865c3d979cd36b4c84e14d1058723a06f7e4c215be55552634c1272e",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/11b8d237865c3d979cd36b4c84e14d1058723a06f7e4c215be55552634c1272e.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/task-undo.ts",
+          "bytes": 8392,
+          "sha256": "11b8d237865c3d979cd36b4c84e14d1058723a06f7e4c215be55552634c1272e"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/tasks.ts",
+          "bytes": 34244,
+          "sha256": "a1e599588a75a9e97ac192348f60143628bd63e532e1a9e354d7c143fac4b6df",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/a1e599588a75a9e97ac192348f60143628bd63e532e1a9e354d7c143fac4b6df.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/tasks.ts",
+          "bytes": 34244,
+          "sha256": "a1e599588a75a9e97ac192348f60143628bd63e532e1a9e354d7c143fac4b6df"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/teams.ts",
+          "bytes": 7813,
+          "sha256": "aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/teams.ts",
+          "bytes": 7813,
+          "sha256": "aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/undo-command.ts",
+          "bytes": 6521,
+          "sha256": "53f6fda6c6395dac095cf74e27f0595ec6f6cb61ac24f5a9ed99cb5f1170a0f4",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/53f6fda6c6395dac095cf74e27f0595ec6f6cb61ac24f5a9ed99cb5f1170a0f4.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/undo-command.ts",
+          "bytes": 6521,
+          "sha256": "53f6fda6c6395dac095cf74e27f0595ec6f6cb61ac24f5a9ed99cb5f1170a0f4"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/modules/workspace.ts",
+          "bytes": 2739,
+          "sha256": "bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63.json"
+        },
+        "current": {
+          "path": "apps/api/src/modules/workspace.ts",
+          "bytes": 2739,
+          "sha256": "bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/runtime.ts",
+          "bytes": 429,
+          "sha256": "3b4e29b02ecaac63c160fd727bf846b1e760a3726f915062032a896246af3298",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/3b4e29b02ecaac63c160fd727bf846b1e760a3726f915062032a896246af3298.json"
+        },
+        "current": {
+          "path": "apps/api/src/runtime.ts",
+          "bytes": 429,
+          "sha256": "3b4e29b02ecaac63c160fd727bf846b1e760a3726f915062032a896246af3298"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/api.ts",
+          "bytes": 250,
+          "sha256": "fd87c3f387a5c18a8d6e1981b046dd588aacf4f979ea333671c36bcbf9b8ffb3",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/fd87c3f387a5c18a8d6e1981b046dd588aacf4f979ea333671c36bcbf9b8ffb3.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/api.ts",
+          "bytes": 250,
+          "sha256": "fd87c3f387a5c18a8d6e1981b046dd588aacf4f979ea333671c36bcbf9b8ffb3"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/catalogs.ts",
+          "bytes": 5765,
+          "sha256": "d12833f25830e10f048a46e1044f3cb0043df5f494fd9062523dd59821625e98",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/d12833f25830e10f048a46e1044f3cb0043df5f494fd9062523dd59821625e98.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/catalogs.ts",
+          "bytes": 5765,
+          "sha256": "d12833f25830e10f048a46e1044f3cb0043df5f494fd9062523dd59821625e98"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/index.ts",
+          "bytes": 225,
+          "sha256": "16e477df0955fb70a37cd4baec6f60e9825518967cbc56d9a1096291f18a0d37",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/16e477df0955fb70a37cd4baec6f60e9825518967cbc56d9a1096291f18a0d37.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/index.ts",
+          "bytes": 225,
+          "sha256": "16e477df0955fb70a37cd4baec6f60e9825518967cbc56d9a1096291f18a0d37"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/inputs.ts",
+          "bytes": 10915,
+          "sha256": "4afb03d1437ded5e58a5cc2df56de735446f6a2fb4dac33a62bae5ce1e0a174a",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/4afb03d1437ded5e58a5cc2df56de735446f6a2fb4dac33a62bae5ce1e0a174a.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/inputs.ts",
+          "bytes": 10915,
+          "sha256": "4afb03d1437ded5e58a5cc2df56de735446f6a2fb4dac33a62bae5ce1e0a174a"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/models.ts",
+          "bytes": 20945,
+          "sha256": "f1aa8a0eb0f3049c83810e5587840ed0fc6d648a8eef35cd6cc6a54321a2406a",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/f1aa8a0eb0f3049c83810e5587840ed0fc6d648a8eef35cd6cc6a54321a2406a.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/models.ts",
+          "bytes": 20945,
+          "sha256": "f1aa8a0eb0f3049c83810e5587840ed0fc6d648a8eef35cd6cc6a54321a2406a"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/operations.ts",
+          "bytes": 19211,
+          "sha256": "d608b89d7b4bc501617d2a24a9c2871849bf6eec8ab3192b6d6f9ece841297f5",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/d608b89d7b4bc501617d2a24a9c2871849bf6eec8ab3192b6d6f9ece841297f5.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/operations.ts",
+          "bytes": 19211,
+          "sha256": "d608b89d7b4bc501617d2a24a9c2871849bf6eec8ab3192b6d6f9ece841297f5"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/primitives.ts",
+          "bytes": 3851,
+          "sha256": "4010d310dfd61f91e8edd381e31633ac92e8075b7f9cc2c4a863816282d318cc",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/4010d310dfd61f91e8edd381e31633ac92e8075b7f9cc2c4a863816282d318cc.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/primitives.ts",
+          "bytes": 3851,
+          "sha256": "4010d310dfd61f91e8edd381e31633ac92e8075b7f9cc2c4a863816282d318cc"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/queries.ts",
+          "bytes": 4758,
+          "sha256": "4c5802c5663f17a56f504fe1dcd16d0c3059e1b4079ceaf2d7d37795af8406dd",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/4c5802c5663f17a56f504fe1dcd16d0c3059e1b4079ceaf2d7d37795af8406dd.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/queries.ts",
+          "bytes": 4758,
+          "sha256": "4c5802c5663f17a56f504fe1dcd16d0c3059e1b4079ceaf2d7d37795af8406dd"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/contracts/src/source-identities.ts",
+          "bytes": 41333,
+          "sha256": "0aa748895672d70f64dd6a23eb2d119529c67c06503f86a88a2c98375b774201",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/0aa748895672d70f64dd6a23eb2d119529c67c06503f86a88a2c98375b774201.json"
+        },
+        "current": {
+          "path": "packages/contracts/src/source-identities.ts",
+          "bytes": 41333,
+          "sha256": "0aa748895672d70f64dd6a23eb2d119529c67c06503f86a88a2c98375b774201"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/calendar.ts",
+          "bytes": 2163,
+          "sha256": "6aa49d481ad60defcfc38d613b94a862ed687b87123b1b2f6dfaad51c7f3a8e9",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/6aa49d481ad60defcfc38d613b94a862ed687b87123b1b2f6dfaad51c7f3a8e9.json"
+        },
+        "current": {
+          "path": "packages/domain/src/calendar.ts",
+          "bytes": 2163,
+          "sha256": "6aa49d481ad60defcfc38d613b94a862ed687b87123b1b2f6dfaad51c7f3a8e9"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/clock.ts",
+          "bytes": 677,
+          "sha256": "6e8db98b7d9abe06e13a9c0c61967acdcf3b5ead0c564027c62559573dd5da8d",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/6e8db98b7d9abe06e13a9c0c61967acdcf3b5ead0c564027c62559573dd5da8d.json"
+        },
+        "current": {
+          "path": "packages/domain/src/clock.ts",
+          "bytes": 677,
+          "sha256": "6e8db98b7d9abe06e13a9c0c61967acdcf3b5ead0c564027c62559573dd5da8d"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/dashboard.ts",
+          "bytes": 1831,
+          "sha256": "5630d60f531b5ff810feb9ca45597001abfbf2fc146adf76efcb19cd4e7a16cc",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/5630d60f531b5ff810feb9ca45597001abfbf2fc146adf76efcb19cd4e7a16cc.json"
+        },
+        "current": {
+          "path": "packages/domain/src/dashboard.ts",
+          "bytes": 1831,
+          "sha256": "5630d60f531b5ff810feb9ca45597001abfbf2fc146adf76efcb19cd4e7a16cc"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/description.ts",
+          "bytes": 2805,
+          "sha256": "b183bee928bf4f39cb0aac5ce45be415d030737250c293ed0299e38c8c5460e8",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/b183bee928bf4f39cb0aac5ce45be415d030737250c293ed0299e38c8c5460e8.json"
+        },
+        "current": {
+          "path": "packages/domain/src/description.ts",
+          "bytes": 2805,
+          "sha256": "b183bee928bf4f39cb0aac5ce45be415d030737250c293ed0299e38c8c5460e8"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/files.ts",
+          "bytes": 762,
+          "sha256": "82297b575d2fff0c853408520437f6072f2766277408a5d9d8534ef0a11d2813",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/82297b575d2fff0c853408520437f6072f2766277408a5d9d8534ef0a11d2813.json"
+        },
+        "current": {
+          "path": "packages/domain/src/files.ts",
+          "bytes": 762,
+          "sha256": "82297b575d2fff0c853408520437f6072f2766277408a5d9d8534ef0a11d2813"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/index.ts",
+          "bytes": 395,
+          "sha256": "8613647e7fc2d3c64c5d083a81e139ebe6c6be35efb72d86694606c722a0d376",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/8613647e7fc2d3c64c5d083a81e139ebe6c6be35efb72d86694606c722a0d376.json"
+        },
+        "current": {
+          "path": "packages/domain/src/index.ts",
+          "bytes": 395,
+          "sha256": "8613647e7fc2d3c64c5d083a81e139ebe6c6be35efb72d86694606c722a0d376"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/task-relations.ts",
+          "bytes": 2824,
+          "sha256": "52f764d73f9a8321df2c01c6fe2e1fee08080fceeff3b60e3a069928a5ce180c",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/52f764d73f9a8321df2c01c6fe2e1fee08080fceeff3b60e3a069928a5ce180c.json"
+        },
+        "current": {
+          "path": "packages/domain/src/task-relations.ts",
+          "bytes": 2824,
+          "sha256": "52f764d73f9a8321df2c01c6fe2e1fee08080fceeff3b60e3a069928a5ce180c"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/task-view.ts",
+          "bytes": 10878,
+          "sha256": "cf8880b8fa49923ef1ec4b208c50aeb98ab0f510ed7077cc03565a5c56c77ca0",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/cf8880b8fa49923ef1ec4b208c50aeb98ab0f510ed7077cc03565a5c56c77ca0.json"
+        },
+        "current": {
+          "path": "packages/domain/src/task-view.ts",
+          "bytes": 10878,
+          "sha256": "cf8880b8fa49923ef1ec4b208c50aeb98ab0f510ed7077cc03565a5c56c77ca0"
+        }
+      },
+      {
+        "executed": {
+          "path": "packages/domain/src/timeline.ts",
+          "bytes": 6225,
+          "sha256": "03c8601a1b7226dcb777b35acba29f61b30b727252878a38defe2f6aabc5dec3",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/03c8601a1b7226dcb777b35acba29f61b30b727252878a38defe2f6aabc5dec3.json"
+        },
+        "current": {
+          "path": "packages/domain/src/timeline.ts",
+          "bytes": 6225,
+          "sha256": "03c8601a1b7226dcb777b35acba29f61b30b727252878a38defe2f6aabc5dec3"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/tests/wu34/provenance.mjs",
+          "bytes": 2198,
+          "sha256": "b8cce79b8e6f690625e946981999953f43c7573a70a96dddd78b08dddf24bffd",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/b8cce79b8e6f690625e946981999953f43c7573a70a96dddd78b08dddf24bffd.json"
+        },
+        "current": {
+          "path": "apps/api/tests/wu34/provenance.mjs",
+          "bytes": 2198,
+          "sha256": "b8cce79b8e6f690625e946981999953f43c7573a70a96dddd78b08dddf24bffd"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/tests/wu34/run.mjs",
+          "bytes": 1201,
+          "sha256": "35be8a3970645aadcf9d467b9372ce92925a03ee7e3d43670e6f6614b1e16e05",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/35be8a3970645aadcf9d467b9372ce92925a03ee7e3d43670e6f6614b1e16e05.json"
+        },
+        "current": {
+          "path": "apps/api/tests/wu34/run.mjs",
+          "bytes": 1201,
+          "sha256": "35be8a3970645aadcf9d467b9372ce92925a03ee7e3d43670e6f6614b1e16e05"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/tests/wu34/verify.mjs",
+          "bytes": 30931,
+          "sha256": "65472df578ba3cc8361b18c742f7fa12ea4fd8d192f271008c9e203b2d9fc667",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/65472df578ba3cc8361b18c742f7fa12ea4fd8d192f271008c9e203b2d9fc667.json"
+        },
+        "current": {
+          "path": "apps/api/tests/wu34/verify.mjs",
+          "bytes": 30931,
+          "sha256": "65472df578ba3cc8361b18c742f7fa12ea4fd8d192f271008c9e203b2d9fc667"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/tests/wu34/worker.ts",
+          "bytes": 4253,
+          "sha256": "be360edbef9939302698629bee1ff7756fe9bcdb86aabd673141b841d80d82ed",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/be360edbef9939302698629bee1ff7756fe9bcdb86aabd673141b841d80d82ed.json"
+        },
+        "current": {
+          "path": "apps/api/tests/wu34/worker.ts",
+          "bytes": 4253,
+          "sha256": "be360edbef9939302698629bee1ff7756fe9bcdb86aabd673141b841d80d82ed"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/scripts/seed-data.mjs",
+          "bytes": 7221,
+          "sha256": "c293cf143f9f1fc2bde4a20bdd3d2fdf926a0a5585bf46b2425dc32cb4bdc8ca",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/c293cf143f9f1fc2bde4a20bdd3d2fdf926a0a5585bf46b2425dc32cb4bdc8ca.json"
+        },
+        "current": {
+          "path": "apps/api/scripts/seed-data.mjs",
+          "bytes": 7221,
+          "sha256": "c293cf143f9f1fc2bde4a20bdd3d2fdf926a0a5585bf46b2425dc32cb4bdc8ca"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/scripts/seed-local.mjs",
+          "bytes": 1084,
+          "sha256": "69a636d03c93ae1f4831212a3962c7a030f04794712c0a10955836f0c124124d",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/69a636d03c93ae1f4831212a3962c7a030f04794712c0a10955836f0c124124d.json"
+        },
+        "current": {
+          "path": "apps/api/scripts/seed-local.mjs",
+          "bytes": 1084,
+          "sha256": "69a636d03c93ae1f4831212a3962c7a030f04794712c0a10955836f0c124124d"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/src/db/migrations/0000_freezing_greymalkin.sql",
+          "bytes": 25846,
+          "sha256": "912bc07a7379a1eccedb61d6ecfd26b2106297d86057b63050242ecce4aa3571",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/912bc07a7379a1eccedb61d6ecfd26b2106297d86057b63050242ecce4aa3571.json"
+        },
+        "current": {
+          "path": "apps/api/src/db/migrations/0000_freezing_greymalkin.sql",
+          "bytes": 25846,
+          "sha256": "912bc07a7379a1eccedb61d6ecfd26b2106297d86057b63050242ecce4aa3571"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/wrangler.jsonc",
+          "bytes": 545,
+          "sha256": "489f1b4045a263126195b303201ed6b989a0bf1658ebfdb02aba50a57d361f0f",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/489f1b4045a263126195b303201ed6b989a0bf1658ebfdb02aba50a57d361f0f.json"
+        },
+        "current": {
+          "path": "apps/api/wrangler.jsonc",
+          "bytes": 545,
+          "sha256": "489f1b4045a263126195b303201ed6b989a0bf1658ebfdb02aba50a57d361f0f"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/api/package.json",
+          "bytes": 1134,
+          "sha256": "c296f2c91ead7a4d4d156764d1b447b5d326fba94e10321db24f36b1082308d4",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/c296f2c91ead7a4d4d156764d1b447b5d326fba94e10321db24f36b1082308d4.json"
+        },
+        "current": {
+          "path": "apps/api/package.json",
+          "bytes": 1134,
+          "sha256": "c296f2c91ead7a4d4d156764d1b447b5d326fba94e10321db24f36b1082308d4"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/adapters/http.ts",
+          "bytes": 2956,
+          "sha256": "3f54fabbc238bab9f8966b313c4f948d975815f1d36043ebe2afb0ca168e5d6a",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/3f54fabbc238bab9f8966b313c4f948d975815f1d36043ebe2afb0ca168e5d6a.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/adapters/http.ts",
+          "bytes": 2956,
+          "sha256": "3f54fabbc238bab9f8966b313c4f948d975815f1d36043ebe2afb0ca168e5d6a"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/operations.ts",
+          "bytes": 2264,
+          "sha256": "bbfd0e62e98751f8f19d6d6992369d6ca5540911eedf20c37de807471ae29909",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/bbfd0e62e98751f8f19d6d6992369d6ca5540911eedf20c37de807471ae29909.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/operations.ts",
+          "bytes": 2264,
+          "sha256": "bbfd0e62e98751f8f19d6d6992369d6ca5540911eedf20c37de807471ae29909"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/errors.ts",
+          "bytes": 987,
+          "sha256": "0fc29bdd5421c196d20dae8e6bd7426c5e7c8a8da321eb98483b9be646efccd7",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/0fc29bdd5421c196d20dae8e6bd7426c5e7c8a8da321eb98483b9be646efccd7.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/errors.ts",
+          "bytes": 987,
+          "sha256": "0fc29bdd5421c196d20dae8e6bd7426c5e7c8a8da321eb98483b9be646efccd7"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/features/tasks/loadTaskViewDataset.ts",
+          "bytes": 1630,
+          "sha256": "da8eb1be5730966a213f2ee6b96128216c2f79246ecaca29cfb4c8b29b3be4e2",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/da8eb1be5730966a213f2ee6b96128216c2f79246ecaca29cfb4c8b29b3be4e2.json"
+        },
+        "current": {
+          "path": "apps/web/src/features/tasks/loadTaskViewDataset.ts",
+          "bytes": 1630,
+          "sha256": "da8eb1be5730966a213f2ee6b96128216c2f79246ecaca29cfb4c8b29b3be4e2"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/mock/notifications.ts",
+          "bytes": 3865,
+          "sha256": "039d260e5888b1e79334037ce47f417741221ad43ad44596e1b7748ae2d60801",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/039d260e5888b1e79334037ce47f417741221ad43ad44596e1b7748ae2d60801.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/mock/notifications.ts",
+          "bytes": 3865,
+          "sha256": "039d260e5888b1e79334037ce47f417741221ad43ad44596e1b7748ae2d60801"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/mock/dashboards.ts",
+          "bytes": 3422,
+          "sha256": "4514e33a23dde5c706d042fa7fdae3f2c593711b6f1d236807aa9ce414e417df",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/4514e33a23dde5c706d042fa7fdae3f2c593711b6f1d236807aa9ce414e417df.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/mock/dashboards.ts",
+          "bytes": 3422,
+          "sha256": "4514e33a23dde5c706d042fa7fdae3f2c593711b6f1d236807aa9ce414e417df"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/mock/search.ts",
+          "bytes": 4060,
+          "sha256": "345967f68a14d6bdbe23991035cf28543168c15f3c416673ac3f0c5387baa656",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/345967f68a14d6bdbe23991035cf28543168c15f3c416673ac3f0c5387baa656.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/mock/search.ts",
+          "bytes": 4060,
+          "sha256": "345967f68a14d6bdbe23991035cf28543168c15f3c416673ac3f0c5387baa656"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/mock/archive.ts",
+          "bytes": 3758,
+          "sha256": "7dc519aac1a728e2dfaa341eed93ba9d23a63ac32302d57ed6483e9324e01e42",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/7dc519aac1a728e2dfaa341eed93ba9d23a63ac32302d57ed6483e9324e01e42.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/mock/archive.ts",
+          "bytes": 3758,
+          "sha256": "7dc519aac1a728e2dfaa341eed93ba9d23a63ac32302d57ed6483e9324e01e42"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/mock/projects.ts",
+          "bytes": 18741,
+          "sha256": "bf6c788c09f7712fa1950b6341c9af753e5b9fcd61c5990497382b33baf744b4",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/bf6c788c09f7712fa1950b6341c9af753e5b9fcd61c5990497382b33baf744b4.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/mock/projects.ts",
+          "bytes": 18741,
+          "sha256": "bf6c788c09f7712fa1950b6341c9af753e5b9fcd61c5990497382b33baf744b4"
+        }
+      },
+      {
+        "executed": {
+          "path": "apps/web/src/data/mock/settings.ts",
+          "bytes": 3734,
+          "sha256": "c95347e37c82eb1948b7dab87391657388e947f4df7b19c8aaea15f672e4fb52",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/c95347e37c82eb1948b7dab87391657388e947f4df7b19c8aaea15f672e4fb52.json"
+        },
+        "current": {
+          "path": "apps/web/src/data/mock/settings.ts",
+          "bytes": 3734,
+          "sha256": "c95347e37c82eb1948b7dab87391657388e947f4df7b19c8aaea15f672e4fb52"
+        }
+      },
+      {
+        "executed": {
+          "path": "docs/poc/reference/source-fixture.json",
+          "bytes": 54153,
+          "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80.json"
+        },
+        "current": {
+          "path": "docs/poc/reference/source-fixture.json",
+          "bytes": 54153,
+          "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80"
+        }
+      },
+      {
+        "executed": {
+          "path": "docs/poc/reference/source-lock.json",
+          "bytes": 7870,
+          "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d.json"
+        },
+        "current": {
+          "path": "docs/poc/reference/source-lock.json",
+          "bytes": 7870,
+          "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+        }
+      },
+      {
+        "executed": {
+          "path": "docs/poc/reference/baseline-manifest.json",
+          "bytes": 69302,
+          "sha256": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe.json"
+        },
+        "current": {
+          "path": "docs/poc/reference/baseline-manifest.json",
+          "bytes": 69302,
+          "sha256": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe"
+        }
+      },
+      {
+        "executed": {
+          "path": "docs/poc/reference/font-assets.json",
+          "bytes": 21805,
+          "sha256": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4.json"
+        },
+        "current": {
+          "path": "docs/poc/reference/font-assets.json",
+          "bytes": 21805,
+          "sha256": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4"
+        }
+      },
+      {
+        "executed": {
+          "path": "pnpm-lock.yaml",
+          "bytes": 144032,
+          "sha256": "ce6dfcd13399c35523c70c5efc9ac2a0ec099ad74923d2d18452c610cabc2fbf",
+          "snapshot": "docs/poc/evidence/WU-34/inputs/ce6dfcd13399c35523c70c5efc9ac2a0ec099ad74923d2d18452c610cabc2fbf.json"
+        },
+        "current": {
+          "path": "pnpm-lock.yaml",
+          "bytes": 144032,
+          "sha256": "ce6dfcd13399c35523c70c5efc9ac2a0ec099ad74923d2d18452c610cabc2fbf"
+        }
+      }
+    ],
+    "probeReceipts": [
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/session.json",
+          "bytes": 1440,
+          "sha256": "d935c7d27f1e163c4e5a18c79d850e40f86596d0f0840c8856e4b6bc84cf8422"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/session.response.json",
+          "bytes": 853,
+          "sha256": "e791d640ce255b5c0f33c3ccd530ae0be830801f155f9fca9cbc8ea4c39a82f5"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-bootstrap.json",
+          "bytes": 29363,
+          "sha256": "a1e9c02e77f756e3b153a6424061e70f4a0ef7ca0d644bdf4199ff9b355e0d43"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-bootstrap.response.json",
+          "bytes": 16623,
+          "sha256": "b58ff8e74c98844df1f744b996650169405187aa686f7d3bfb4be4a29b4a6b6a"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-home.json",
+          "bytes": 48803,
+          "sha256": "b6d47bbd9d6b9773a89c7f9ba0916f476772b24b960750fc254f64123916511b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-home.response.json",
+          "bytes": 28718,
+          "sha256": "ab7f4a26fbed2d12a40dc8f016d17baf51fb067fab60fd647c26b5535327a6b8"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-overview.json",
+          "bytes": 20149,
+          "sha256": "eeafb4e111e80fedb00adbe862fb369611a98e3750d90f678cb1fc20ee67a71c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-overview.response.json",
+          "bytes": 11659,
+          "sha256": "f3581ea466fbd02e0361f705cf9c61a350907fd8cd8e5f320d7a28032ddd4e1c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-1.json",
+          "bytes": 774,
+          "sha256": "2a91df54062eeee7412df7f1ef97958eae5a23670fb01629da410ad4a4a24db8"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-1.response.json",
+          "bytes": 243,
+          "sha256": "0ef10df6a357c6fae38c83aacc15576bd2ad10ac036c74fe8e6419a8bb5d29c7"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-2.json",
+          "bytes": 51850,
+          "sha256": "a86888addf0ccd6c614cf87053d5a45f7a67436d1a3c4127fa97a6dbed3ea686"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-2.response.json",
+          "bytes": 33067,
+          "sha256": "79051255f6fd64c1e616aea8b4f1d575b66aa67c29e35667d6ca1ea8133e2da2"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-notifications.json",
+          "bytes": 6322,
+          "sha256": "ea81a3e29a6001e442894fffcdfe40229eda6b8e788b1df1173912bed719b623"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-notifications.response.json",
+          "bytes": 4521,
+          "sha256": "2f302ee3b57a2d6a3642c93111332e3381758e658df2994ae4a00c0e5f990a11"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-events.json",
+          "bytes": 2185,
+          "sha256": "75f6f7595edef6cffab1838eb9efbce3ac1e711a88d78643f2533c9b9086f479"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-events.response.json",
+          "bytes": 1394,
+          "sha256": "0c8de888f75c655e7abb1760b803b67487e8345e0b2ada453cec39aa43a9ae19"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-milestones.json",
+          "bytes": 3076,
+          "sha256": "54632a5f552e0b4f63725b90f87fd493df9d95bc7fa8e28d1cf927c14629a894"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/baseline-milestones.response.json",
+          "bytes": 2080,
+          "sha256": "94e42997dac9b8dcf5c3bd1de3e1a7989879e2f356a0860153b7e7cde5a42111"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-3.json",
+          "bytes": 199728,
+          "sha256": "0b36420a95e39cf609355370f76a489fac80c91eda3eeb2f06c42820830d8ff1"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-3.response.json",
+          "bytes": 185,
+          "sha256": "841e8e4750f6c559cad2f3c78580c6a4242b63697cfcaa7dfc37fb9d0788f0dd"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-4.json",
+          "bytes": 728,
+          "sha256": "060d72b6cae1555d59dfdfbe36c87dea40d673d14c7f69263d3e9d8409685c2c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-4.response.json",
+          "bytes": 178,
+          "sha256": "c731cd8e065bf7506fe6ae8b250e546d77d5b77d4e7b3c71a1482d48419a304a"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-5.json",
+          "bytes": 199729,
+          "sha256": "9a77e284c48582d633d6ef658173ec7dc3c684699c459a90e8f6a5557769082b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-5.response.json",
+          "bytes": 186,
+          "sha256": "109b19b827ee5b90396e3f0179ab940f8c48effe3594c7274cfda5eecbfb9417"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-6.json",
+          "bytes": 729,
+          "sha256": "a6031a62e1d2cd8ad31b35780a78877d909112123d1df71916d852aa5237caa6"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-6.response.json",
+          "bytes": 179,
+          "sha256": "3f978a0270b9cf6b7fa7a39552ce63a4efa2f593ccc312af59a57ac424b0a72b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-7.json",
+          "bytes": 783,
+          "sha256": "3cf5e9c7a64f82e9d8ae528a1691fb80f9d147f592c83c0e4114194f6957f1ee"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-7.response.json",
+          "bytes": 252,
+          "sha256": "cf6b89553d4f02b76fbeac8b92a57241eecf42280afaa67b19d344dcac75d50c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-8.json",
+          "bytes": 213148,
+          "sha256": "1bdf85708349c47f82ac86273c8188b4eb6a48592110116e575fa7374923bbad"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-8.response.json",
+          "bytes": 140101,
+          "sha256": "931b96dfca14e7eccf741870dbb83e463743d5db95e0f7290d161215e455d8fe"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-9.json",
+          "bytes": 88630,
+          "sha256": "f98449119671643a7a72dd6dffd14040ba71f7fb0944f06637b1f127eae8fb61"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-9.response.json",
+          "bytes": 58344,
+          "sha256": "a188a94110521e2a0d3044ecb4c9bae9573a23f5808eab6d74bf1cd91f0c8a79"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-10.json",
+          "bytes": 823,
+          "sha256": "060d5a6fc7344bb01dda13b9eb8702763b8c914067e1ec12d3cd0aac291fb01c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-10.response.json",
+          "bytes": 251,
+          "sha256": "b3182dd57edc92738b9f0f04aa82b30313283055dff23e84427797f484a45611"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-11.json",
+          "bytes": 212618,
+          "sha256": "e4fcff7e9cca119e2bd9f8d534f4c1c0da32b893caeaac23c30e67b3844c3d27"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-11.response.json",
+          "bytes": 140810,
+          "sha256": "f24ec82e67188cd62cdede6330a3dc43562f884b8d91bf349f9ff2e36660a551"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-12.json",
+          "bytes": 36764,
+          "sha256": "ed0200a0915ad23e13bb2a1138324463b30d9f431f46d244a36d089bb86da29b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-12.response.json",
+          "bytes": 23930,
+          "sha256": "e0dfa2b439b377a0233cad154a16496f35855e6f5e51fde8e64d9b6611f8716d"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-13.json",
+          "bytes": 827,
+          "sha256": "dd3d0df18e768e9570b17c2fc5f77b72efe007e2aee391c7c9e72915065b542e"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-13.response.json",
+          "bytes": 251,
+          "sha256": "b3182dd57edc92738b9f0f04aa82b30313283055dff23e84427797f484a45611"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-14.json",
+          "bytes": 212622,
+          "sha256": "8c9e07ddbc70bdfdc19b05d00fec5fad8937d5d6e4b565cc572cd64967c324e5"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-14.response.json",
+          "bytes": 140810,
+          "sha256": "eaab8b31b3f8beedf7b63fe93d94f32ce67878d6213aa2e5f9b954202a1ec71f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-15.json",
+          "bytes": 36768,
+          "sha256": "897961704d67bbf43fc3030eb666b3426996a10f511bb0edff6acdc8d12ca927"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-15.response.json",
+          "bytes": 23930,
+          "sha256": "e0dfa2b439b377a0233cad154a16496f35855e6f5e51fde8e64d9b6611f8716d"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/multi-home.json",
+          "bytes": 137043,
+          "sha256": "a777b688023f4d290f9d8068ab40457e7328f32d9a7f2039c69e282877a4b66c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/multi-home.response.json",
+          "bytes": 84435,
+          "sha256": "43be2bde9eeffdfa9287cda4f140e3778b08fbdf4c4b4250db2100cae9749092"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/multi-overview.json",
+          "bytes": 20182,
+          "sha256": "f0ab069eef11409160162a04a8c39b54ae6d95b10c606ecb47c00110fa4d0293"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/multi-overview.response.json",
+          "bytes": 11695,
+          "sha256": "f44ecf19e3be8b5433ca7f4fa91fce58e7ee21b984da0e8ddfecfd0ca0bec5db"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/project-summary-01a11abd-aa80-7d11-86d8-e6545859cd14.json",
+          "bytes": 938,
+          "sha256": "9dd75ce152cacd507fd5a36a8901450d228219620ef41c089f27b81e70be2df5"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/project-summary-01a11abd-aa80-7d11-86d8-e6545859cd14.response.json",
+          "bytes": 333,
+          "sha256": "b74bd391e41e0feedaa6f6fe35ff7b9ee023753771e3113771e421b8b5cbfc5e"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/project-summary-01a11abd-aa80-7f23-849c-94f63946ff17.json",
+          "bytes": 937,
+          "sha256": "6edfccc97fcff822da2ce8e1c6df1ab67a4196f3753a27e549e078ca56ddf090"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/project-summary-01a11abd-aa80-7f23-849c-94f63946ff17.response.json",
+          "bytes": 332,
+          "sha256": "97acfb2751e740f11eab3b9bbde2f3c0bc0815902b502341df5f65e2e2aa6cec"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-summary.json",
+          "bytes": 12193,
+          "sha256": "692c752cae03a9ecb43c3d2e2d1d2df1a40106805e6c468dcc7ed6f8ffd8eebb"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-summary.response.json",
+          "bytes": 6984,
+          "sha256": "a4a76de284155b2c0ad867a404659bb4bf82ea97b5fec8d722806e874d3e5c2a"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/team-summary.json",
+          "bytes": 3452,
+          "sha256": "272cbd47d17e3413d68551f9ec683d8506b451999ab3dafa054f0fbc388c7047"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/team-summary.response.json",
+          "bytes": 1849,
+          "sha256": "b245c90eedd42d5bc88007e3f76af5791c6903fd53b37f98500190fd128d472a"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page1.json",
+          "bytes": 59478,
+          "sha256": "9c9343ceb04fbb057aeffbd5bd2e5bb6e2a498afcaf1d8b4eee303b31202b22c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page1.response.json",
+          "bytes": 36704,
+          "sha256": "9e9533e787837d10d0b66bfb9fbba8299fb99e80d1dde4e20805abc7e81c250c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page-16.json",
+          "bytes": 59762,
+          "sha256": "d5ec1cda588db7c533cb8194ef3651fd46b8f1804e3992da9b984f9f604794fb"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page-16.response.json",
+          "bytes": 36704,
+          "sha256": "83f6ba4825e51eb3dd8a2dcf9b245ff88708af9fcdc793848fd888173af7d166"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page-17.json",
+          "bytes": 59796,
+          "sha256": "9fdb2c2307d775c0ad2cd2f4db6aaa125ace00cdb9cac3a1b01be4609a3a12e1"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page-17.response.json",
+          "bytes": 36738,
+          "sha256": "6c9d0763582a54ba72f0a1317a7fe69efa4bf6d617c6e3a96173af02d69b53f6"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page-18.json",
+          "bytes": 59762,
+          "sha256": "93ae3a99923b400c3c3024b6d86f67e4839f9855351f1a2b8a4a2a44727851a5"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page-18.response.json",
+          "bytes": 36704,
+          "sha256": "4ac5f1b1fd82482a1a5e2b60f013e4ace5d528b14f4baeef861241ba942eef9e"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page-19.json",
+          "bytes": 41865,
+          "sha256": "70a4617e0ffb2309fa416b2d5a1dd2eb2ba330194582bcccaf9d99e8415199c4"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-page-19.response.json",
+          "bytes": 25527,
+          "sha256": "c89fc311f7b1ca86ac050640c0ed08a21a83dd073f788941b32b4be64b7cc425"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-category.json",
+          "bytes": 507,
+          "sha256": "9b32f29f8362eebd747cd7c07d8dd871ec1572603bc43bd409af845f75353237"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-category.response.json",
+          "bytes": 119,
+          "sha256": "4b942f8817ebcdbfb8e9ea636b905e92f7bc5e0c40199732f2ba2159dfdf1f39"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-description.json",
+          "bytes": 59475,
+          "sha256": "193872bc765905e7de6081e5256d00560af863a32e15c763a3b8715de7f2732b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-description.response.json",
+          "bytes": 36704,
+          "sha256": "f4eb51bc0dea676f498c39ae4b4dbb4beb922294853a5fa240a6c62d1d17e4d6"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-injection-literal.json",
+          "bytes": 482,
+          "sha256": "24a1e21adbe0c9c130544b70fe064b56e3c64425436daa8bd5dd3ed0af1d5fac"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-injection-literal.response.json",
+          "bytes": 117,
+          "sha256": "e27ffb9928c1d5eeff99301c84a080a602fd2b1e1afc37667dfeff25a83d0bdc"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-secondary-hidden.json",
+          "bytes": 482,
+          "sha256": "77fc4b308aecc2e86c6050b72fdd331aff6ea259d1184ff9630332ff0265398b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-secondary-hidden.response.json",
+          "bytes": 117,
+          "sha256": "e27ffb9928c1d5eeff99301c84a080a602fd2b1e1afc37667dfeff25a83d0bdc"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-comments.json",
+          "bytes": 1452,
+          "sha256": "525c801b1b3dc7859baf02e6a94ef4b29bf21bc906098bae60f4033e3bd8be6a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-comments.response.json",
+          "bytes": 716,
+          "sha256": "6e12be935eb5a4d6ca2c1d377bd07442a95d2b6e4a74d53093def49ff692c2ff"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/comment-canonical.json",
+          "bytes": 2400,
+          "sha256": "3209974909fd73683ae67a0f23fae1b9c64a631a2502f93bfbd78c4c00a61af3"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/comment-canonical.response.json",
+          "bytes": 1421,
+          "sha256": "b21e1d814b3ed3dd7066ff2fc9b458cbe69658a2bacd704a7d8286078e310fce"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-files.json",
+          "bytes": 1210,
+          "sha256": "f54f2c2dc0b9fadda48e43e8dba8427f25ccfcc70b5649ea685a3a001f38f2e9"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-files.response.json",
+          "bytes": 597,
+          "sha256": "7f633f26e3d3956f508bcae861769ce8a689e086e7c8669a5ff80de9a4a942ee"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-20.json",
+          "bytes": 784,
+          "sha256": "5709d6747168d6be8a3f39d26e45754c3157dba0a2614eb98c504e65a48ec097"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-20.response.json",
+          "bytes": 252,
+          "sha256": "cf6b89553d4f02b76fbeac8b92a57241eecf42280afaa67b19d344dcac75d50c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-21.json",
+          "bytes": 213149,
+          "sha256": "749ed65e9f4819ddef0c262011193e40ab171930b5ac7948e35d60ba6c6c155d"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-21.response.json",
+          "bytes": 140101,
+          "sha256": "931b96dfca14e7eccf741870dbb83e463743d5db95e0f7290d161215e455d8fe"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-22.json",
+          "bytes": 88631,
+          "sha256": "f76a25776f71e1e441b7158acc72bdff56b70a88eaff93c8a65fba0b273b0b1b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-22.response.json",
+          "bytes": 58344,
+          "sha256": "a188a94110521e2a0d3044ecb4c9bae9573a23f5808eab6d74bf1cd91f0c8a79"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-23.json",
+          "bytes": 213149,
+          "sha256": "5f4923af2f006cb38e1f58b0bfbfb242577e580a892e0daca927b0fe4a21dd33"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-23.response.json",
+          "bytes": 140101,
+          "sha256": "931b96dfca14e7eccf741870dbb83e463743d5db95e0f7290d161215e455d8fe"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-24.json",
+          "bytes": 784,
+          "sha256": "9de4e714c12f748fbfb2e4955ed8047587a4b16b392c5de054c97d74fba4588e"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-24.response.json",
+          "bytes": 252,
+          "sha256": "cf6b89553d4f02b76fbeac8b92a57241eecf42280afaa67b19d344dcac75d50c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-25.json",
+          "bytes": 395,
+          "sha256": "0523962aa528e549467f0cd1b7fa9ae834b22cbd1a8219326a933d30e6acdf0a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/adapter-25.response.json",
+          "bytes": 84,
+          "sha256": "e15b6e89a25c01259d765e5e3744e6dc8a7ed4603e1c90596ac0f4f6c111ffc7"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-26.json",
+          "bytes": 35982,
+          "sha256": "3c4f0aa6a3d1eef3552270bd625a08ee72dad7fc2e6240a8c56ace4351b85550"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-26.response.json",
+          "bytes": 182,
+          "sha256": "1a411df1fa776d00d421dd7505524cbb5a48966115c8781a6473b8bced08d727"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-27.json",
+          "bytes": 876,
+          "sha256": "3c78307770423db97e160aa68823fe018bec43b4f8ac7176ee90075d8ecf7396"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-27.response.json",
+          "bytes": 177,
+          "sha256": "8a2ffe0e3b5dcdee4b01ce83df59655272490fe971c23e61ec97421c9e944c2c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-page1.json",
+          "bytes": 1277,
+          "sha256": "e8ed7cd9b87f35fdc55187f0abf46b30b91c0aca19b13ab2c6ffb12d4a553239"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-page1.response.json",
+          "bytes": 806,
+          "sha256": "806e8674762f9cc212f17e2a031b605cee4d35975046ec92fafbc06a8fb411cf"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-bootstrap.json",
+          "bytes": 29394,
+          "sha256": "2a3ecd33b82f6c58f9d81be8ba434f6e3de59f2a4d41569145239ca3d6477e28"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-bootstrap.response.json",
+          "bytes": 16650,
+          "sha256": "a33a4185fc27ee3c4a1cd2dcb1c749bd92c3fe6b4462a9e22bc8e85b2bfd8288"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-full-cohort.json",
+          "bytes": 44122,
+          "sha256": "b65196b1e76ce9f008543e75839e51e9b708439a2699b44352240f21ed858b89"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-full-cohort.response.json",
+          "bytes": 32559,
+          "sha256": "391b2f110200aa2cddd50a8e2fd810a5eabe7427c9ce3341fdff9d49e57d4174"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-anchor.json",
+          "bytes": 910,
+          "sha256": "b2be1a497c5ab66e8771586dddb07f3710e064322de37358a47ad56c29a7ddfb"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-anchor.response.json",
+          "bytes": 461,
+          "sha256": "fea01d694703120ce098a57cb366458f334a8150dd553bc6e279508247ffdd24"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-after-anchor-read.json",
+          "bytes": 1609,
+          "sha256": "a88fa97aca1b4d91d9cb3b69990dbd791581c1a62a18514ac4f4409cdce660e4"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-after-anchor-read.response.json",
+          "bytes": 807,
+          "sha256": "e3a450fee37014e102cdb415dc62af8f4d60fc4c2aee99c2786b49826b71e45f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-one.json",
+          "bytes": 907,
+          "sha256": "d7e725c8038235523fdf6ed4167c45419568f807b631741fb815e4028968ab96"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-one.response.json",
+          "bytes": 461,
+          "sha256": "fea01d694703120ce098a57cb366458f334a8150dd553bc6e279508247ffdd24"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-idempotent-before.json",
+          "bytes": 882651,
+          "sha256": "e3a90cb9fe007308e7b95ee977ba953ae5021b1995d4e0fdad8ee71b0ccc770c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-idempotent-before.response.json",
+          "bytes": 616100,
+          "sha256": "7161e27f117039d59471e1965a004e5c2e1e9e8fedd2cf7eb89248b171fd56d1"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-one-again.json",
+          "bytes": 913,
+          "sha256": "bd510a4df9cfa5db8081e6a72d1d1db9c73692a0158f491518d28fa9bc0ec2cf"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-one-again.response.json",
+          "bytes": 461,
+          "sha256": "fea01d694703120ce098a57cb366458f334a8150dd553bc6e279508247ffdd24"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-idempotent-after.json",
+          "bytes": 882650,
+          "sha256": "5c7348635a2759e3c9d4c0d2fd1aeb0988e99a2bd448559759388330fe2a9faf"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-idempotent-after.response.json",
+          "bytes": 616100,
+          "sha256": "b1d8b2164d3c619f5e68f6f0f87d7f2977ae166226f85adf4ad2c00f3efa9c4c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mark-unread.json",
+          "bytes": 889,
+          "sha256": "3d73341127740e7ca72be08e748baf0b8bf20c2d57141a2d87fafc2c4a63b5d7"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mark-unread.response.json",
+          "bytes": 439,
+          "sha256": "168f31a3da661f81834d32980800821e11d36a8647bcc907575530049a63064f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/before-mark-all.json",
+          "bytes": 29744,
+          "sha256": "6470a76d7363dcb5798c65f0dff9dca36ebf49cf8fadb2c0b3ee4c01096c4bfa"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/before-mark-all.response.json",
+          "bytes": 21950,
+          "sha256": "7eb102ea0f72db5e396532329b5f5e19eb6f9a898e401f68497444bd57b6879f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mark-all.json",
+          "bytes": 318,
+          "sha256": "4910deb4d3b9cbc1e3e9bfdd09dc71bee924174169dd7fbd477866aa26fdd959"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mark-all.response.json",
+          "bytes": 44,
+          "sha256": "bbb25b9b1723166ff735cd1b6a41cad1b5ce758451297050aa6d1dfb594b6b8b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-bootstrap.json",
+          "bytes": 29387,
+          "sha256": "d26a2d77373837e50811e63c1ed84d6c1be8ae0227e3b0c6972c3f8405c02875"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-bootstrap.response.json",
+          "bytes": 16648,
+          "sha256": "ccf0353be274b5f480420d9bf6721de0af6dc1767428f51da1802273070ddeea"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-idempotent-before.json",
+          "bytes": 883284,
+          "sha256": "029d98b9f1d33dd9d7aa4c017b8945a495595dc197d7e433b060fa3d7faf4b35"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-idempotent-before.response.json",
+          "bytes": 616730,
+          "sha256": "5554eb9867bfb3ff8280e557e9c46c516b0c3aa04865319eb74eec40d1a842b0"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mark-all-again.json",
+          "bytes": 323,
+          "sha256": "3e486f4ec964e1fcab6336389962abeb96589432ce8ac51d459845bbb8857042"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mark-all-again.response.json",
+          "bytes": 43,
+          "sha256": "0d93266fa7bb7e6b672e9b57b143c96a9826a87776f9a9379cd359f8016ab25c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-idempotent-after.json",
+          "bytes": 883283,
+          "sha256": "db3e5dd99f425760df897a8616baaa7a7a31192d6a9607e37b309c01fca1e8d2"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-idempotent-after.response.json",
+          "bytes": 616730,
+          "sha256": "0b2c1dbad01257d82872a55edbb071c75803b4cf66e0e4aef3188800e110d312"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-28.json",
+          "bytes": 619,
+          "sha256": "0fd175d710442364f0fac4255307678854472d7af6298676e70ea55c32d4e637"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-28.response.json",
+          "bytes": 193,
+          "sha256": "7d793f3f711dae93fbb99f9742d26f2a4c2f719c2cc23a2ddbadbdebaf001c02"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-before.json",
+          "bytes": 883284,
+          "sha256": "eb84802e28275009cb239062db6a228da54b1e16d672093125eafb2a0081377a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-before.response.json",
+          "bytes": 616730,
+          "sha256": "47a62ea6846b96b5693ef12023e8fcee0847bf2185db9f73bf2f6ebaf8d87908"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-noop-lost-actor.json",
+          "bytes": 789,
+          "sha256": "dafc5b92ef5b288770fd3a4fe9fcc0f44aceced7223277e733dc530324132163"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-noop-lost-actor.response.json",
+          "bytes": 73,
+          "sha256": "6e3c5b40a5594a0128632ed3403b5199be92158716906b043aba7ab217c32486"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-observation.json",
+          "bytes": 1766886,
+          "sha256": "0670be27b06786d536ddef3440ccc7a08e4d321d4965b86d0314f9394ac29348"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-observation.response.json",
+          "bytes": 1233820,
+          "sha256": "c54b4723035d6412b87643070a114260d3021fec2a1920233900d407f6fcb89b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-after.json",
+          "bytes": 883283,
+          "sha256": "f7f2bd8972a6d8f1c83d29e8d796538bccdc89af9b7f1084616a0b25ae01bc0a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-after.response.json",
+          "bytes": 616730,
+          "sha256": "ad43f999f3a5e78c67ce2a05e6188d1363ac92fc8911ea7dcb036b4393b5b41c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-unread-restore.json",
+          "bytes": 905,
+          "sha256": "f782c3fed4eb0819961e90fe73a086d402657707de873e75975f2bbe7a54ecf4"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-unread-restore.response.json",
+          "bytes": 439,
+          "sha256": "168f31a3da661f81834d32980800821e11d36a8647bcc907575530049a63064f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-before.json",
+          "bytes": 703,
+          "sha256": "6518b8d8490b2cb2a0954507baef41730334222ea6dff684c8e8c54e699a1fce"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-before.response.json",
+          "bytes": 316,
+          "sha256": "6f8b403bf8fd703b79f3236e5bba754e5f6faef0cfc7bd69cd7a3d5b57d52cea"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-preferences-before.json",
+          "bytes": 678,
+          "sha256": "b2fa7662366a52e1f6b2ff924d4bf4fc460bd910e280c13e0a19c98f1b4fcc8b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-preferences-before.response.json",
+          "bytes": 281,
+          "sha256": "4cbfc8d3c78d1a3b64639c10d2b2a0dd4eb7ad898e33658b1513b767cb7773fa"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/prefs-concurrent-theme.json",
+          "bytes": 784,
+          "sha256": "dc44ba415f36baa3485544ee8b715e5f5e9f35168632fbe15bf953d96245ecb9"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/prefs-concurrent-theme.response.json",
+          "bytes": 315,
+          "sha256": "b10062bceb32da5efc810bd6c819891b7625bc14a7448c0873be72d36f59ba5d"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/prefs-concurrent-density.json",
+          "bytes": 787,
+          "sha256": "7766d3ad1d8bc8331d16bf9769b85d295e48c4c31a97881b73763c0adc0944e7"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/prefs-concurrent-density.response.json",
+          "bytes": 311,
+          "sha256": "90b3eb19ddbad5859186a3a651dd0436e9ec579478b4dfc995d7029ce10873d9"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-merged.json",
+          "bytes": 698,
+          "sha256": "26936114fd235efe6f758365f27e4452c2e413a8f650a31c5081b4bf709963e5"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-merged.response.json",
+          "bytes": 311,
+          "sha256": "90b3eb19ddbad5859186a3a651dd0436e9ec579478b4dfc995d7029ce10873d9"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/np-concurrent-email.json",
+          "bytes": 771,
+          "sha256": "7004ea67c6004f1f908134dfa97ced27d821ac28391cc2b2a37942aa5007eb3f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/np-concurrent-email.response.json",
+          "bytes": 283,
+          "sha256": "c682e5613a67bde098c079c4605351deb633ca085a742183de47959a5c1c3782"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/np-concurrent-push.json",
+          "bytes": 819,
+          "sha256": "9ad60a197d6d98372a69dbd0295e4458f49e7d3e0e37ea40a34050e2d36a2f9f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/np-concurrent-push.response.json",
+          "bytes": 285,
+          "sha256": "67e3e62ae6b57d1331f1901b6f2ca552016bfd0e41cceb739bf0d330353852ed"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-preferences-merged.json",
+          "bytes": 682,
+          "sha256": "9a13c6da04aa17a4cf90d29a0afe56550a49567332226978ca1369520adf8d83"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-preferences-merged.response.json",
+          "bytes": 285,
+          "sha256": "67e3e62ae6b57d1331f1901b6f2ca552016bfd0e41cceb739bf0d330353852ed"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-bootstrap.json",
+          "bytes": 29390,
+          "sha256": "b76f63059cefb2a565e533fed6e6f3a18713b1a2f063d8118c5354df5c37e7fb"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-bootstrap.response.json",
+          "bytes": 16647,
+          "sha256": "8dda81d483cfe90737f98d8438829ae6d222e7b91b9510d1b8e038b00b841987"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-before.json",
+          "bytes": 455,
+          "sha256": "5d966cba21d7c699660c7225ebaae70b679ddd016038836857625da7a07e9592"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-before.response.json",
+          "bytes": 196,
+          "sha256": "380d5fcce40a232cc3ade479cd7d33d917bc94ba04fb26604e369a3738a22bae"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-update.json",
+          "bytes": 626,
+          "sha256": "e3849c1cb5436a50a9c93a71d3b0419cd0a667b70d9d50b0cc06eeac58ee5c74"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-update.response.json",
+          "bytes": 199,
+          "sha256": "91e360878ddc128e3055cde1c5c48f4b86887e97b05b6d18e45f6f14e0cca82f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-member.json",
+          "bytes": 810,
+          "sha256": "4caa50517b02447995676a50135b16a039cde65021875712089cd4793079f3df"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-member.response.json",
+          "bytes": 421,
+          "sha256": "03184f328536fd87f164d6d657099622b76c3659d2db03a61535991f0dee7d56"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-home-bootstrap.json",
+          "bytes": 29399,
+          "sha256": "6a2b8f0b6040ab564d63153ef9e6fe899c1b2a820c071ef58e4a891a2df986e2"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-home-bootstrap.response.json",
+          "bytes": 16655,
+          "sha256": "d70a6c7947b463d8e1de05f0bc6f25fda5e1ff5706aaa686feface3729f56367"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-create.json",
+          "bytes": 955,
+          "sha256": "9f80d871fbfe11b7638a7f0447cd98c8ea07e11b8fdcf139d20cfb8f8cc63a71"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-create.response.json",
+          "bytes": 332,
+          "sha256": "90df9970ddc276e77ebe1d59ec4554166a6063dfbf0706fc76c1a6ec66f268b2"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-concurrent-a.json",
+          "bytes": 755,
+          "sha256": "f837c500cf5643161d1f52af0456d9b0b6a1135e8e3161cec4ed2b02ae4537de"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-concurrent-a.response.json",
+          "bytes": 285,
+          "sha256": "1aff705d0c987c0c8eca6665f9669aa6ee60b1bdde823f35a78439787714d9be"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-concurrent-b.json",
+          "bytes": 757,
+          "sha256": "552c1ba4acbcec712f00fcb66719c0adc4cbc5b2b80fa82051084a425aecbe18"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-concurrent-b.response.json",
+          "bytes": 286,
+          "sha256": "1ad863ad46e0f1b82b2107d289df0a3fc68b814717da7a587eb7bf32e27f721f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-update.json",
+          "bytes": 775,
+          "sha256": "59f34d07555097033cf5617a7c92ad4a4d3ae833237944d91687cad0fd6670d2"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-update.response.json",
+          "bytes": 293,
+          "sha256": "38227cea73f1a7639bfe79ab8e3e162375c3d06ffbcfe85c8b37a0e40839684a"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-stale-before.json",
+          "bytes": 885005,
+          "sha256": "b65cf907a5f71fcc74917a7fd3ad9fcc27c6779c9e1a71e71833486513a61763"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-stale-before.response.json",
+          "bytes": 617973,
+          "sha256": "91fbf52238ab95f80fdc82593a541abaefa125c40d48374a1a5239de4cdfeab1"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-stale-update.json",
+          "bytes": 491,
+          "sha256": "fc3c04234101b2e5c94ef5864ab382dc9fee5d121bedf0a467483eef7c99d474"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-stale-update.response.json",
+          "bytes": 89,
+          "sha256": "a86c2afe620645f883a8210555bbac064ede31906874d4fafad11193e6f9cad1"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-stale-after.json",
+          "bytes": 885004,
+          "sha256": "c3144aae9da2b33c15ab9ecb329404f3c66eda62e69f2f7131da506eb065c5bf"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-stale-after.response.json",
+          "bytes": 617973,
+          "sha256": "e2c0da7f4e1825febe5a01bab5cb5c8891d4800e01156a1c726c1fdedc5d572d"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-delete.json",
+          "bytes": 428,
+          "sha256": "7045f85ee3979a350c5b39e5ccfa20d52298e3bf9389296f93f41324a7d39823"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-delete.response.json",
+          "bytes": 58,
+          "sha256": "abcb4fefbe028f16a710cff65824185ef07392b69771148d9d502038076f675a"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-list-after-delete.json",
+          "bytes": 1634,
+          "sha256": "5e234543bf108110f721644eba0a48f1d526926257115f4b25ace5c869f83437"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-list-after-delete.response.json",
+          "bytes": 906,
+          "sha256": "3f220ce1ba6b35c665bd87596516d1edc440968c23feac575ec1a600b5ce624b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-add.json",
+          "bytes": 391,
+          "sha256": "beff9f81ccf4cff662bd40f211e15bf13efb988f8cd0e711c630967281f3019a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-add.response.json",
+          "bytes": 79,
+          "sha256": "a06de308fb92965a579ec92d9636b2b0d5a084381318863ecd3c0c8a40c0e3d5"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-idempotent-before.json",
+          "bytes": 884461,
+          "sha256": "e20c2ac4c425567837b43f5ec88fc7b5eae43965d60fcf572c5d2941859e5c55"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-idempotent-before.response.json",
+          "bytes": 617582,
+          "sha256": "acd42adc95fb5c54b63377559311e4ec3f29a57f5bf100edd38180c1e560e36c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-repeat.json",
+          "bytes": 394,
+          "sha256": "8c7b0a111cd12ec81fcf432687eb57e07220c88c0fbc500f48afc8d37560c6df"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-repeat.response.json",
+          "bytes": 79,
+          "sha256": "a06de308fb92965a579ec92d9636b2b0d5a084381318863ecd3c0c8a40c0e3d5"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-idempotent-after.json",
+          "bytes": 884460,
+          "sha256": "a15d1c4253167d578abd1880ccbf3e58007ac796bd7937c8b2e21ba557e134cf"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-idempotent-after.response.json",
+          "bytes": 617582,
+          "sha256": "0738897cdd0aef4dee59bdee59c56ab9fa3fc2b02bfa85124d189924900b8c7b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-before.json",
+          "bytes": 884461,
+          "sha256": "fbb157309ea9c2ca997fb980770e02610206c47efc4522c8457f5e636a0ab9d5"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-before.response.json",
+          "bytes": 617582,
+          "sha256": "8f9abe1549290722f969ff957bf2398b845d716dafe824d17498a32cd6efb2aa"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-noop-lost-actor.json",
+          "bytes": 831,
+          "sha256": "b36b2abbe6bcfc5662e43a7ff73e8e6dca48b0a7c64c2738e6abce2d75c056ff"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-noop-lost-actor.response.json",
+          "bytes": 80,
+          "sha256": "0e8709a316fd19bb620b60a6f95054e0fc7c33901693e7f4625e1b965436bc67"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-observation.json",
+          "bytes": 1769239,
+          "sha256": "bcb764dc158a051da282af3f6947068d45e413bd10d539ea412120191519de50"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-observation.response.json",
+          "bytes": 1235524,
+          "sha256": "3ff3447927bbc9f9a040501abd15bfbd16935e3308c4b1fc54a047e37a08ea3d"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-after.json",
+          "bytes": 884460,
+          "sha256": "4fb1a84df677c1a36db34393062bc5067466e1d7a64f614c34f90a2c75371d99"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-after.response.json",
+          "bytes": 617582,
+          "sha256": "76eb04b166b8473742e2b165b201bd1808a3d33b82aa3b1f05154707b8d97598"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-bootstrap.json",
+          "bytes": 29395,
+          "sha256": "d785f76521920b384eca0a23a23335f25958bc31ecbbcd30e95bee0137d3ade0"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-bootstrap.response.json",
+          "bytes": 16655,
+          "sha256": "d70a6c7947b463d8e1de05f0bc6f25fda5e1ff5706aaa686feface3729f56367"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove.json",
+          "bytes": 398,
+          "sha256": "b51865003007e8748b0a3e66a2a33d07a41dcb650d50608b80213a4e00f61ae4"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove.response.json",
+          "bytes": 80,
+          "sha256": "236e2c98b4608eb20fb286668309282171ada36d8ceb83679c8409510be8e9db"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove-idempotent-before.json",
+          "bytes": 884220,
+          "sha256": "96f499d4ad4b550f15dab3375f10d5e62e85e79dd844f3a1422a8b8bf026473f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove-idempotent-before.response.json",
+          "bytes": 617400,
+          "sha256": "aa040a37728623d1ea99a28e186e7c94e17c6933ce7b748a7e35414ce91a9420"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove-repeat.json",
+          "bytes": 405,
+          "sha256": "14e6924870bcb210fd0bf64d151bb1dd607401c6c8cb9776625dbccfc90ec4e2"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove-repeat.response.json",
+          "bytes": 80,
+          "sha256": "236e2c98b4608eb20fb286668309282171ada36d8ceb83679c8409510be8e9db"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove-idempotent-after.json",
+          "bytes": 884219,
+          "sha256": "99e6271e4d0ba4f9d432b391de5d39d90bf8de7f707f86a6400e2e1fc9a1a531"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove-idempotent-after.response.json",
+          "bytes": 617400,
+          "sha256": "67760a82cf3dff911edaa1e2d387408b84113fdceead9c731159ed900aad2d77"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-update.json",
+          "bytes": 637,
+          "sha256": "45e209ecc0f2584ab444acaa5b30b289c793340f293537e609651552e7862041"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-update.response.json",
+          "bytes": 142,
+          "sha256": "2d6c5cb6466ce2666b0419d7ce0e2cb8f53f54d5df2b9b23e8a2ff0c862ed5cc"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-bootstrap.json",
+          "bytes": 29393,
+          "sha256": "35227132bd429427d95ef636fb1f9d4e18c69e0ce97b7d5c0ecb37ae01bd958a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-bootstrap.response.json",
+          "bytes": 16656,
+          "sha256": "f042464e1afce9f38b702c0babb96f3741d2557a6b96bc28efbf3c3cd8c1f579"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mutation-rollback-before.json",
+          "bytes": 884245,
+          "sha256": "33d7381001d6d6b590d0730174572212f1dff4b1b054ad479cc1ccdd2202870b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mutation-rollback-before.response.json",
+          "bytes": 617434,
+          "sha256": "5610012d47d83a9ed9ee850e4adde94d41493f957603fa884a9d0d016e69c403"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preference-fk-rollback.json",
+          "bytes": 447,
+          "sha256": "6262dc32234ec4170fc359335c5f8fca21ee737d255d53a1b9607bdcdff3c792"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preference-fk-rollback.response.json",
+          "bytes": 62,
+          "sha256": "fa3722706d57ce921639cd166405ca1e914a6ec45dc54206bfa5dd622cf2b36e"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-fk-rollback.json",
+          "bytes": 498,
+          "sha256": "191bd7aa07ee5acf195d7fe5de2091c065033c914b9829eecea940c350b62434"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-fk-rollback.response.json",
+          "bytes": 62,
+          "sha256": "fa3722706d57ce921639cd166405ca1e914a6ec45dc54206bfa5dd622cf2b36e"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-fk-rollback.json",
+          "bytes": 481,
+          "sha256": "278efd4469b8b0b363cd91d2ce950cd3285c8726dbf8ad6c4a598fa7c97578ae"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-fk-rollback.response.json",
+          "bytes": 62,
+          "sha256": "fa3722706d57ce921639cd166405ca1e914a6ec45dc54206bfa5dd622cf2b36e"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-fk-rollback.json",
+          "bytes": 471,
+          "sha256": "4735cf10c58889cee905fb20d2f6f4e1d01f7525a13d9f603a03308bd035fe48"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-fk-rollback.response.json",
+          "bytes": 62,
+          "sha256": "fa3722706d57ce921639cd166405ca1e914a6ec45dc54206bfa5dd622cf2b36e"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mutation-rollback-after.json",
+          "bytes": 884244,
+          "sha256": "a4afb0bc8d912fc9d9461e75f5ebf8fff00c1197e90e59d749d4f4d2ba3b7f02"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mutation-rollback-after.response.json",
+          "bytes": 617434,
+          "sha256": "52532f2b4240fb43a58387ff60fcab6ddf14e49ad2ca7c571665e583e4b75a16"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/validation-errors-before.json",
+          "bytes": 884245,
+          "sha256": "41eb14c85b753757373fb597df43e1c697c3afafce1e1725a9712948396123ec"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/validation-errors-before.response.json",
+          "bytes": 617434,
+          "sha256": "d690d2bf76fc8fe0dcf13e7666f479b6f8d1c39f08c6f8b9c82c09697c9cee25"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-empty.json",
+          "bytes": 399,
+          "sha256": "bda0b073b9a0fe3e6e09951c00d92e7117faee3a4b68728a34041df983e482bd"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-empty.response.json",
+          "bytes": 65,
+          "sha256": "347be70ce9cd711fac5d97baa0101a9c81da55d3082816ae191327e739acb295"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-unknown.json",
+          "bytes": 429,
+          "sha256": "eb27f767902a06e4cb73450d598d23f8fd5c60a9600b2d43ca8f5dd02ca3104a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/preferences-unknown.response.json",
+          "bytes": 65,
+          "sha256": "347be70ce9cd711fac5d97baa0101a9c81da55d3082816ae191327e739acb295"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-prefs-unknown.json",
+          "bytes": 477,
+          "sha256": "3e2370936e8dbe8fa85ab5643f1f250074aa2c5bd0bfeda0595c34271366b64f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-prefs-unknown.response.json",
+          "bytes": 65,
+          "sha256": "347be70ce9cd711fac5d97baa0101a9c81da55d3082816ae191327e739acb295"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-stale.json",
+          "bytes": 407,
+          "sha256": "3f847a900ee8665e58bb90c80416a5cb8cc7da0b11d76bc9d357be2dd3890d1d"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/profile-stale.response.json",
+          "bytes": 89,
+          "sha256": "a86c2afe620645f883a8210555bbac064ede31906874d4fafad11193e6f9cad1"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-duplicate.json",
+          "bytes": 495,
+          "sha256": "27b9274a391a64e6ee7c63da43598127bc000e6e24936cc4807f55c39b19d388"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-duplicate.response.json",
+          "bytes": 65,
+          "sha256": "347be70ce9cd711fac5d97baa0101a9c81da55d3082816ae191327e739acb295"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-foreign.json",
+          "bytes": 473,
+          "sha256": "e0669e8df0d9a9747c0aa864986c2d2b07858eaf292d178f73d30332d6ce1fdf"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/order-foreign.response.json",
+          "bytes": 86,
+          "sha256": "a71cfb02cc114f88ed4b69295553b98656f77c3ceaf80456b1a43f8bd3204a78"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-actor-injected.json",
+          "bytes": 530,
+          "sha256": "2e32115a7a64c51a001eb3648aba6dfaf82befccfcbbf4764de2a01d2860e3bd"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-actor-injected.response.json",
+          "bytes": 65,
+          "sha256": "347be70ce9cd711fac5d97baa0101a9c81da55d3082816ae191327e739acb295"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-foreign.json",
+          "bytes": 456,
+          "sha256": "ed2b22d7931250e1fafb89c2dd803e99b758345c6d7ff00cb71167bc0bfae54b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-foreign.response.json",
+          "bytes": 57,
+          "sha256": "f35ea2116242f63650bc5bfc579a0e7c24b1204a184bfe1c633f5682f228cbab"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-private.json",
+          "bytes": 451,
+          "sha256": "9f50329a52eeebc17e7a6b0ea96bf7c5699d50ddf49875635dbf9d0fe688b7bb"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-private.response.json",
+          "bytes": 65,
+          "sha256": "667147eb20917f9118b186918b1e93782577260995d35a74046302fbd6d1e046"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/validation-errors-after.json",
+          "bytes": 884244,
+          "sha256": "7919b034b0368c0cfdab02f5b0c091f3e2f66d77804b5825630c0c90156cd87b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/validation-errors-after.response.json",
+          "bytes": 617434,
+          "sha256": "412ad070ef4f7fc31f4f4bd59f9247a9504bd2503f251e304f86301c50e25956"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-errors-before.json",
+          "bytes": 884239,
+          "sha256": "e4ba7dbd7d0ce73558486e42a8197ffd158d377d54b4685392e4e47afe7f0db0"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-errors-before.response.json",
+          "bytes": 617434,
+          "sha256": "db79af9a2359910ebf41e8447a1ccd2927e7fc62110e468a1cd28a5317977174"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-bad-cursor.json",
+          "bytes": 633,
+          "sha256": "df89248245f425715c8fa0dfb88e78e1892b7f66cc1c0c5c265165141e7ebbae"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-bad-cursor.response.json",
+          "bytes": 74,
+          "sha256": "95e60d87eceac494590c04a0801e1c51be9eb4cb11efa9040f0a167cfc621d06"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-wrong-scope.json",
+          "bytes": 690,
+          "sha256": "7aa1300ac27696c3ae5b8342c95c9e1ab1f07c71bbab04226d03e7efb450531f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-wrong-scope.response.json",
+          "bytes": 74,
+          "sha256": "95e60d87eceac494590c04a0801e1c51be9eb4cb11efa9040f0a167cfc621d06"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-bad-cursor.json",
+          "bytes": 371,
+          "sha256": "04f6e48011fedde1d83b4f79a8baebbcd7325d357104b21efb12ee968e5ef76c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-bad-cursor.response.json",
+          "bytes": 74,
+          "sha256": "95e60d87eceac494590c04a0801e1c51be9eb4cb11efa9040f0a167cfc621d06"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/task-malformed-filters.json",
+          "bytes": 372,
+          "sha256": "4b55e7c874668d0360579b462021a0420a80d9814d5a7c76686ec30bdfb463ba"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/task-malformed-filters.response.json",
+          "bytes": 65,
+          "sha256": "347be70ce9cd711fac5d97baa0101a9c81da55d3082816ae191327e739acb295"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-bad-bool.json",
+          "bytes": 355,
+          "sha256": "57764bd37e5aa095c2bc5568bb75bd75990f9a1eede86e7fb7b54464fc3634b8"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/notification-bad-bool.response.json",
+          "bytes": 65,
+          "sha256": "e329ee009317049a88324f60de7b48092f435724c31c881a133ecd780109ea68"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-duplicate-q.json",
+          "bytes": 345,
+          "sha256": "00bdda3ef8a7d1768c940cb702e31986391f9284fa1951dd61fd7b7426746786"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-duplicate-q.response.json",
+          "bytes": 70,
+          "sha256": "a2822c4b946b0d5e82d2cfb1bbe065a258870c43a9e5a616af2af8af7fd38254"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/calendar-invalid-date.json",
+          "bytes": 374,
+          "sha256": "7484cef5f9bdd04051a5dd8c2742f218f14c3969a751c0f6d32f27cdfa8d2a66"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/calendar-invalid-date.response.json",
+          "bytes": 65,
+          "sha256": "347be70ce9cd711fac5d97baa0101a9c81da55d3082816ae191327e739acb295"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/calendar-reversed.json",
+          "bytes": 370,
+          "sha256": "68932b0c2482c29f0c295e87c9b4c904c8b45fad4bda688461fa3d82b4a20997"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/calendar-reversed.response.json",
+          "bytes": 65,
+          "sha256": "347be70ce9cd711fac5d97baa0101a9c81da55d3082816ae191327e739acb295"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/private-view-list.json",
+          "bytes": 375,
+          "sha256": "a922095fb7f3bc67c556154093c004b871760350c76c1318ffc0c97eec0ef048"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/private-view-list.response.json",
+          "bytes": 64,
+          "sha256": "703c122ac8758387f066236e1c75dccd3f023562a454b2dcb2b98a24ff50010b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/private-view-create.json",
+          "bytes": 471,
+          "sha256": "cad44b0c09b3432a8889d864e4c760798e3df52665f4f402bc22a891cd9b8809"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/private-view-create.response.json",
+          "bytes": 64,
+          "sha256": "703c122ac8758387f066236e1c75dccd3f023562a454b2dcb2b98a24ff50010b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/private-calendar.json",
+          "bytes": 415,
+          "sha256": "c39b49907fac8e9d6591e7bad64fa1129b4e5f14a8cfd141e91042e6d4caee62"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/private-calendar.response.json",
+          "bytes": 64,
+          "sha256": "703c122ac8758387f066236e1c75dccd3f023562a454b2dcb2b98a24ff50010b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/private-favorite.json",
+          "bytes": 380,
+          "sha256": "2a0b5fa7859f0c90d48c5e53809c5ba8f1b0f557ff52059fb5faa3de496434bc"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/private-favorite.response.json",
+          "bytes": 64,
+          "sha256": "703c122ac8758387f066236e1c75dccd3f023562a454b2dcb2b98a24ff50010b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-errors-after.json",
+          "bytes": 884238,
+          "sha256": "4c1d3d4de3ff47af61eb34c610517fb195e643ae09f90157bdef5764a4854ae6"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-errors-after.response.json",
+          "bytes": 617434,
+          "sha256": "236343ed1eb908a04187a7ac18830a31751abfba69287ea929ea301dbce706f9"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-task.json",
+          "bytes": 1608,
+          "sha256": "6b7aed2cb297c099ddb1efc4d5644d912147f0e957c88dedde80bde5566f0660"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-task.response.json",
+          "bytes": 872,
+          "sha256": "037c22d0338e8775cabbf00ba203f22d7fb8171b2e869450121b3499f353bcbd"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-task2.json",
+          "bytes": 1644,
+          "sha256": "fe9046a5ec50b9f3f6e2f1828a39f2b7fcdf9686dd2be820fe2be73896d3340c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-task2.response.json",
+          "bytes": 907,
+          "sha256": "a08145cbc94ee2c65b8b19820e4e578facdb407f17362f0583af20beab45d127"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-page1.json",
+          "bytes": 1868,
+          "sha256": "5de36c42031ea24d42ac3d99212902c617a189f93287e07ab8ff48c0f344fd3f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-page1.response.json",
+          "bytes": 1116,
+          "sha256": "f32f38703649a677f54dcfae9b7e9b229e47e1ae51edb31fd825c56ff923c411"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/restore-archive-anchor.json",
+          "bytes": 1540,
+          "sha256": "14570beff208e0cf6668d5bc63e8071182fad6b1631988cafae73aeb9ffd468c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/restore-archive-anchor.response.json",
+          "bytes": 822,
+          "sha256": "458b438deab4e236ebe049d6ba3f52cd1dba2f5db37dda088c9f7143768e3ed4"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-continuation.json",
+          "bytes": 1850,
+          "sha256": "9804291d022f657a2ec5a37c14576a2e7d2297cf5ff36b82027ca18791100c7d"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-continuation.response.json",
+          "bytes": 772,
+          "sha256": "945331017b7e0b683b580e90cfa7e34d6420dd08ff3e1a10402292ab48fff9c8"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/project-before-archive.json",
+          "bytes": 2417,
+          "sha256": "6b6481df530ec3cc2c10c1077edc3f176f75f3f986adb0ef5476d30836243222"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/project-before-archive.response.json",
+          "bytes": 1608,
+          "sha256": "b9ad2c2ceb1ef25f7c06dc882976f74d09074b2cf7f7bfae0bbc2aa0153cb6ad"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-project.json",
+          "bytes": 2905,
+          "sha256": "a73946799685c80fb8d6988d680ccb391369caf25d4941da7185a7927cb95840"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-project.response.json",
+          "bytes": 1815,
+          "sha256": "1a31c1111c582380d6bc8543749770b439fe068cac533bcd07fc4242568d8ce8"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-active-parents.json",
+          "bytes": 350,
+          "sha256": "b5745fd1e7d3e2d57ee6bbf464236b944f014e1289ae13affd857a0516e18567"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-active-parents.response.json",
+          "bytes": 49,
+          "sha256": "5b62286c64d93577a9316fa85d151ef42d88b4e4326e1550bde7fb9937ebabb9"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-projects.json",
+          "bytes": 3919,
+          "sha256": "c42d3cd7e284cf75b1a4f0b7732a9af60854dfb573f0aad284e9034946258996"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-projects.response.json",
+          "bytes": 2065,
+          "sha256": "58cea4421155cfcc647ba0009f509efd12e69209c471e30b983337eb2dae1da7"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-bootstrap.json",
+          "bytes": 26086,
+          "sha256": "c49bbb6398c48fefde2a2d3c6c310a71f3509a9e338ea09245e7666a8332af7a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archive-bootstrap.response.json",
+          "bytes": 14690,
+          "sha256": "97a3f6f43347fe8fd8a32928dea5d40a900a90b2484c7b11955665627bc039c9"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archived-view-command-before.json",
+          "bytes": 888739,
+          "sha256": "14480c3d531a8abe74c540db77bf4eb3d3c1a4168a6b44380666167c3ef5df49"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archived-view-command-before.response.json",
+          "bytes": 620987,
+          "sha256": "8bc64951fff33d2959ee543a53e5eb00346632b3a196e6cc2bb612900d543ec9"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archived-view-update.json",
+          "bytes": 481,
+          "sha256": "93eb8d85a7f54d0509c1c23c99d63e167abbb2a8d202292ab48302a7b4cc492e"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archived-view-update.response.json",
+          "bytes": 79,
+          "sha256": "a418328bf45f82fdde3d090ca7b45f21aa7d0b55ddb729ddfc0155b4f5cf0bfa"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archived-view-command-after.json",
+          "bytes": 888738,
+          "sha256": "1ee01a3bb1567e2674c6345ba776c66e2f5da8c5ef57bae2246c6dd9d571d44f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archived-view-command-after.response.json",
+          "bytes": 620987,
+          "sha256": "492095164c96bda4afc8ebcd3d47e3f256b042ea179cd2d49010dd87b3e76125"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-archived-parent.json",
+          "bytes": 59465,
+          "sha256": "fcbbc958accf653a76cc682f99f4a748185835d9bb45fe304c68d1ee250ceda4"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/search-archived-parent.response.json",
+          "bytes": 36704,
+          "sha256": "9d2f0be4873e7e4b0c2ec9c9b30c4e1ae7e8bb6d6f131662340f56f681759c03"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/calendar-archived-parent.json",
+          "bytes": 1561,
+          "sha256": "257ee16e2761f09cd352669880996efb60969373d94e41e07b4f30bea791e115"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/calendar-archived-parent.response.json",
+          "bytes": 929,
+          "sha256": "782f97556ee3e206c120084e87714cf1b5cee53cd4430767aedd101a4269521d"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/restore-project.json",
+          "bytes": 2789,
+          "sha256": "6724b04a71115ab793594ae18ca325437c8904e3d48495b6c3df4faf05cd71e7"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/restore-project.response.json",
+          "bytes": 1727,
+          "sha256": "6bfee488f562cfc3943fac5717f1513c15ee882bf22460aafa0318180488f24f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-preferences.json",
+          "bytes": 703,
+          "sha256": "c2d104e4d992276c1044c294824c34324aed36357dbafff00ff2a8d2b65e9c67"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-preferences.response.json",
+          "bytes": 316,
+          "sha256": "6f8b403bf8fd703b79f3236e5bba754e5f6faef0cfc7bd69cd7a3d5b57d52cea"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-view-shared.json",
+          "bytes": 1630,
+          "sha256": "c0b7ab46a06f396a8ca520273a820556053f853eb7a58f884f818d934c299e3f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-view-shared.response.json",
+          "bytes": 906,
+          "sha256": "3f220ce1ba6b35c665bd87596516d1edc440968c23feac575ec1a600b5ce624b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-view-edit.json",
+          "bytes": 749,
+          "sha256": "d1ad53f24bb721aebead9ebe3d3a68ce126763ef1944a60d9c6c23b4c05be907"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-view-edit.response.json",
+          "bytes": 292,
+          "sha256": "ba52a7c2a2cff2e00ff1a7350542d1450e9673c458930d767e36870f1da64c0f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-favorite.json",
+          "bytes": 394,
+          "sha256": "74a9ef9ee7f740f43370ae9763b7ebeac1832b6d79b59ea4eec3c1b4a6f2fc3a"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-favorite.response.json",
+          "bytes": 79,
+          "sha256": "a06de308fb92965a579ec92d9636b2b0d5a084381318863ecd3c0c8a40c0e3d5"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-order.json",
+          "bytes": 459,
+          "sha256": "ed0113226c3b92d271de5cd5d2763ef24fc94da03bfa42528b3a80eb9165ae79"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-order.response.json",
+          "bytes": 64,
+          "sha256": "aa1518d9cae81ac12209824c3a709e017f0456398abf5b9ecb4b6c6b3129d3a6"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/recipient-scope-before.json",
+          "bytes": 891159,
+          "sha256": "307921be29c12c79bceb080dcfaa4a411ed73bf7f74b93d51a2f0e446a9b6453"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/recipient-scope-before.response.json",
+          "bytes": 622747,
+          "sha256": "995ef165dd5b0e6879b31cda809d34286e441393864762f6f346f73eba958af6"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-notification-hidden.json",
+          "bytes": 457,
+          "sha256": "16cd66616d453a3f38a320bf8d96f3cc9730d2965739ed9e5a76a4ce3f08c35b"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/member-notification-hidden.response.json",
+          "bytes": 65,
+          "sha256": "667147eb20917f9118b186918b1e93782577260995d35a74046302fbd6d1e046"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/recipient-scope-after.json",
+          "bytes": 891158,
+          "sha256": "31c2fce94d666dfba4b2a2df0da7eb6a34f98610f0c9e5a4b7e8d15e6c8b41fb"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/recipient-scope-after.response.json",
+          "bytes": 622747,
+          "sha256": "e4330a09e97b3f1f919405f48c8e3c58939a72906d130d47cba2cc4b74db4e2a"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-29.json",
+          "bytes": 708,
+          "sha256": "a3cb588f9d269401678fa0a2fc57ab00e2cd9cf34f154d2007c5cb3516e72156"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-29.response.json",
+          "bytes": 178,
+          "sha256": "4214275a03a4d7480ae37062cb7ea1655b57e6ab117e14c10922c7592332437b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-30.json",
+          "bytes": 693,
+          "sha256": "04c6ced7e98266875110678e4ddda0c2a607988d747df01d20da498f56ba60e4"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-30.response.json",
+          "bytes": 178,
+          "sha256": "c51a79c7320db197a3618f7a6fb4da19ec67956adc03bb41e9bd1a49a6f42a90"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-31.json",
+          "bytes": 704,
+          "sha256": "c33845fb708ea7d59dad97d3c314f4b52b789e87dba51d942a87b6399150f676"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/sql-31.response.json",
+          "bytes": 177,
+          "sha256": "eeacf534898e8f1e32b6d9a458ba1e2584dd72c7075b46c88e49dc6530fc246a"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-read.json",
+          "bytes": 298,
+          "sha256": "83683d037595887257a69b843c370929ce884aed2cd05c1929dd14496a309744"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-read.response.json",
+          "bytes": 11,
+          "sha256": "8fe32e407a1038ee38753b70e5374b3a46d6ae9d5f16cd5b73c53abaca8f5ed0"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-write-before.json",
+          "bytes": 891401,
+          "sha256": "fc9c95e33178f6f2a326b3a55319e5fb715c5611898e6f6f32b5a058f8cb3939"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-write-before.response.json",
+          "bytes": 622923,
+          "sha256": "8c94285f8effab0e39dc1f478e8f1940f1503a5add9be5927b4615cdfba44d9c"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-rejected.json",
+          "bytes": 473,
+          "sha256": "79fed58092acb0f34985fdadff93d20f2d614441d3c4d34ce73da8dc9c09baa8"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-rejected.response.json",
+          "bytes": 64,
+          "sha256": "703c122ac8758387f066236e1c75dccd3f023562a454b2dcb2b98a24ff50010b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-write-after.json",
+          "bytes": 891400,
+          "sha256": "5414ed6c70f8ff247537d25f44c37d90b9765fe61fd1d562f5f68a99f0e03862"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-write-after.response.json",
+          "bytes": 622923,
+          "sha256": "77c24f8972288db7b44548b0dec0e0ee592bf173e42dd0ce7403eae8f8dbdcbb"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/isolation-home.json",
+          "bytes": 137047,
+          "sha256": "8f0c6fb86487c30c5d6111cfbb86902d06bbf3f49b499058b939f0730a7b2640"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/isolation-home.response.json",
+          "bytes": 84435,
+          "sha256": "97556c7786d5f0a8cb788bf52f7bbb65b24eec94a03bc437dfffd0c3cd3723ea"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/isolation-search.json",
+          "bytes": 59469,
+          "sha256": "498296f1a7505cd67e331db23b5c5c95b924a9ca736e730c786c636dd201dce6"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/isolation-search.response.json",
+          "bytes": 36704,
+          "sha256": "e645db1a83b29b461c27242175c69e3f1428c02ba08e4171cb33423b2df3caba"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/isolation-needle.json",
+          "bytes": 465,
+          "sha256": "f33105a4f794416477256119e9f922c13345574e727b78e6aa676927631be46c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/isolation-needle.response.json",
+          "bytes": 117,
+          "sha256": "e27ffb9928c1d5eeff99301c84a080a602fd2b1e1afc37667dfeff25a83d0bdc"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/isolation-prefs.json",
+          "bytes": 700,
+          "sha256": "bd63e249f43b93d33323afe44271a188c5421d76c0636fadd42427618b1a07be"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/isolation-prefs.response.json",
+          "bytes": 316,
+          "sha256": "6f8b403bf8fd703b79f3236e5bba754e5f6faef0cfc7bd69cd7a3d5b57d52cea"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/workspace-scope-before.json",
+          "bytes": 891401,
+          "sha256": "3b5a060f6acc204ff786078d4b9fcf86ef47f8e5b0aec08d989c0f17a48eea7c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/workspace-scope-before.response.json",
+          "bytes": 622923,
+          "sha256": "05b396cbd427c26acd9080712397a8822ecbe4f829ce2e6c4e912af9d24a8596"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/foreign-workspace-home.json",
+          "bytes": 331,
+          "sha256": "fbe163a793bbd6340f77f8e0c47d262c877c6affbb0ecd608f04837054f03e6f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/foreign-workspace-home.response.json",
+          "bytes": 62,
+          "sha256": "eb70e0428d76a03280d32cbf453e63715145799ddfc7860b6f0790162269cf84"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/foreign-workspace-pref.json",
+          "bytes": 420,
+          "sha256": "641fb2076f8654cac9667f94c68febee4901cded5fc350b91b0a664c4759cd88"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/foreign-workspace-pref.response.json",
+          "bytes": 62,
+          "sha256": "eb70e0428d76a03280d32cbf453e63715145799ddfc7860b6f0790162269cf84"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/foreign-view-id.json",
+          "bytes": 459,
+          "sha256": "bbd5c67afa1e0828804bf4a487e8a6abbff0c40d09266f9faa1a7933dc8068d9"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/foreign-view-id.response.json",
+          "bytes": 57,
+          "sha256": "f35ea2116242f63650bc5bfc579a0e7c24b1204a184bfe1c633f5682f228cbab"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/foreign-project-favorite.json",
+          "bytes": 384,
+          "sha256": "7a15cf6b220738679e579de42bfd1d6be04ae5dd1d6e6a9bed495a3187fac8c1"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/foreign-project-favorite.response.json",
+          "bytes": 60,
+          "sha256": "5b7e39c597ee44e8fc904f81fa850abe9ccb9db29863b25679910b5e21ac350f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/workspace-scope-after.json",
+          "bytes": 891400,
+          "sha256": "09462249feefef3771140fdec01f95ba025d1b3b5ccf9452c57ae1f5ba69493f"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/workspace-scope-after.response.json",
+          "bytes": 622923,
+          "sha256": "2131a7811e900ed1fa6b4ad36a341758f94832aca43d28934289a9dea03d828b"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-prefs.json",
+          "bytes": 657,
+          "sha256": "62ef1cf5cf05f1ae77434ce2787c82bee83a609010875229b291c740c7796e1c"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-prefs.response.json",
+          "bytes": 311,
+          "sha256": "90b3eb19ddbad5859186a3a651dd0436e9ec579478b4dfc995d7029ce10873d9"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-notification-prefs.json",
+          "bytes": 641,
+          "sha256": "39f0b2fc6feaff3ab9fb33c6b2590dec30d8021b94896068bf5cd258ea192823"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-notification-prefs.response.json",
+          "bytes": 285,
+          "sha256": "67e3e62ae6b57d1331f1901b6f2ca552016bfd0e41cceb739bf0d330353852ed"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-bootstrap.json",
+          "bytes": 29358,
+          "sha256": "8ee1227c0a384ffaafba8ffa06048542368078149cb443298942a1b251eb8cf1"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-bootstrap.response.json",
+          "bytes": 16656,
+          "sha256": "b8140809673e53115087f439ac23d14e3134aeb9afa17a2ff500dfc30cec0b97"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-view.json",
+          "bytes": 1587,
+          "sha256": "d8baa1eeb32e322da775367dc4c2deafe7e626dcec3d9d68d54a8a13f0671139"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-view.response.json",
+          "bytes": 905,
+          "sha256": "7552fc901afd8e7839ccec887e8aa94de32e497ad91f0f9ee8a7d0ef61ddeec6"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-profile.json",
+          "bytes": 423,
+          "sha256": "a437b0b8317eae8054b8d4a220360e36e02da2532ae02f3bda2ed6a898348ed2"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/persistent-profile.response.json",
+          "bytes": 199,
+          "sha256": "91e360878ddc128e3055cde1c5c48f4b86887e97b05b6d18e45f6f14e0cca82f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/no-production-test-hook.json",
+          "bytes": 239,
+          "sha256": "a27c703c29c00ff0a82910adcfab0a3ef137f6bd690f39fd3f0053a932ceee8e"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/no-production-test-hook.response.json",
+          "bytes": 52,
+          "sha256": "1805b160043ec967b7e16fcd845248d1fc7b7dabf28ac7feb4442f4fb1f01f3f"
+        }
+      },
+      {
+        "metadata": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/files-unavailable.json",
+          "bytes": 356,
+          "sha256": "13f306dc7e3d3bee51b114e632cf0a06c09a50c7b3f03d5abb1ace2001f56fcd"
+        },
+        "raw": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/files-unavailable.response.json",
+          "bytes": 84,
+          "sha256": "e15b6e89a25c01259d765e5e3744e6dc8a7ed4603e1c90596ac0f4f6c111ffc7"
+        }
+      }
+    ],
+    "snapshotPairs": [
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-idempotent-before.json",
+          "bytes": 882651,
+          "sha256": "e3a90cb9fe007308e7b95ee977ba953ae5021b1995d4e0fdad8ee71b0ccc770c"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-idempotent-after.json",
+          "bytes": 882650,
+          "sha256": "5c7348635a2759e3c9d4c0d2fd1aeb0988e99a2bd448559759388330fe2a9faf"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-idempotent-before.json",
+          "bytes": 883284,
+          "sha256": "029d98b9f1d33dd9d7aa4c017b8945a495595dc197d7e433b060fa3d7faf4b35"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-idempotent-after.json",
+          "bytes": 883283,
+          "sha256": "db3e5dd99f425760df897a8616baaa7a7a31192d6a9607e37b309c01fca1e8d2"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-before.json",
+          "bytes": 883284,
+          "sha256": "eb84802e28275009cb239062db6a228da54b1e16d672093125eafb2a0081377a"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-after.json",
+          "bytes": 883283,
+          "sha256": "f7f2bd8972a6d8f1c83d29e8d796538bccdc89af9b7f1084616a0b25ae01bc0a"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-stale-before.json",
+          "bytes": 885005,
+          "sha256": "b65cf907a5f71fcc74917a7fd3ad9fcc27c6779c9e1a71e71833486513a61763"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-stale-after.json",
+          "bytes": 885004,
+          "sha256": "c3144aae9da2b33c15ab9ecb329404f3c66eda62e69f2f7131da506eb065c5bf"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-idempotent-before.json",
+          "bytes": 884461,
+          "sha256": "e20c2ac4c425567837b43f5ec88fc7b5eae43965d60fcf572c5d2941859e5c55"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-idempotent-after.json",
+          "bytes": 884460,
+          "sha256": "a15d1c4253167d578abd1880ccbf3e58007ac796bd7937c8b2e21ba557e134cf"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-before.json",
+          "bytes": 884461,
+          "sha256": "fbb157309ea9c2ca997fb980770e02610206c47efc4522c8457f5e636a0ab9d5"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-after.json",
+          "bytes": 884460,
+          "sha256": "4fb1a84df677c1a36db34393062bc5067466e1d7a64f614c34f90a2c75371d99"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove-idempotent-before.json",
+          "bytes": 884220,
+          "sha256": "96f499d4ad4b550f15dab3375f10d5e62e85e79dd844f3a1422a8b8bf026473f"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-remove-idempotent-after.json",
+          "bytes": 884219,
+          "sha256": "99e6271e4d0ba4f9d432b391de5d39d90bf8de7f707f86a6400e2e1fc9a1a531"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mutation-rollback-before.json",
+          "bytes": 884245,
+          "sha256": "33d7381001d6d6b590d0730174572212f1dff4b1b054ad479cc1ccdd2202870b"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/mutation-rollback-after.json",
+          "bytes": 884244,
+          "sha256": "a4afb0bc8d912fc9d9461e75f5ebf8fff00c1197e90e59d749d4f4d2ba3b7f02"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/validation-errors-before.json",
+          "bytes": 884245,
+          "sha256": "41eb14c85b753757373fb597df43e1c697c3afafce1e1725a9712948396123ec"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/validation-errors-after.json",
+          "bytes": 884244,
+          "sha256": "7919b034b0368c0cfdab02f5b0c091f3e2f66d77804b5825630c0c90156cd87b"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-errors-before.json",
+          "bytes": 884239,
+          "sha256": "e4ba7dbd7d0ce73558486e42a8197ffd158d377d54b4685392e4e47afe7f0db0"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/read-errors-after.json",
+          "bytes": 884238,
+          "sha256": "4c1d3d4de3ff47af61eb34c610517fb195e643ae09f90157bdef5764a4854ae6"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archived-view-command-before.json",
+          "bytes": 888739,
+          "sha256": "14480c3d531a8abe74c540db77bf4eb3d3c1a4168a6b44380666167c3ef5df49"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/archived-view-command-after.json",
+          "bytes": 888738,
+          "sha256": "1ee01a3bb1567e2674c6345ba776c66e2f5da8c5ef57bae2246c6dd9d571d44f"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/recipient-scope-before.json",
+          "bytes": 891159,
+          "sha256": "307921be29c12c79bceb080dcfaa4a411ed73bf7f74b93d51a2f0e446a9b6453"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/recipient-scope-after.json",
+          "bytes": 891158,
+          "sha256": "31c2fce94d666dfba4b2a2df0da7eb6a34f98610f0c9e5a4b7e8d15e6c8b41fb"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-write-before.json",
+          "bytes": 891401,
+          "sha256": "fc9c95e33178f6f2a326b3a55319e5fb715c5611898e6f6f32b5a058f8cb3939"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/view-only-write-after.json",
+          "bytes": 891400,
+          "sha256": "5414ed6c70f8ff247537d25f44c37d90b9765fe61fd1d562f5f68a99f0e03862"
+        },
+        "tables": 24,
+        "equal": true
+      },
+      {
+        "before": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/workspace-scope-before.json",
+          "bytes": 891401,
+          "sha256": "3b5a060f6acc204ff786078d4b9fcf86ef47f8e5b0aec08d989c0f17a48eea7c"
+        },
+        "after": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/workspace-scope-after.json",
+          "bytes": 891400,
+          "sha256": "09462249feefef3771140fdec01f95ba025d1b3b5ccf9452c57ae1f5ba69493f"
+        },
+        "tables": 24,
+        "equal": true
+      }
+    ],
+    "guardObservations": [
+      {
+        "receipt": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/markall-lost-actor-observation.response.json",
+          "bytes": 1233820,
+          "sha256": "c54b4723035d6412b87643070a114260d3021fec2a1920233900d407f6fcb89b"
+        },
+        "tables": 24,
+        "equal": true,
+        "qualification": "Actual test-only D1 snapshots after injected membership invalidation and before explicit harness restoration; production mutation makes no table change."
+      },
+      {
+        "receipt": {
+          "path": "docs/poc/evidence/WU-34/attempts/d1-03/favorite-lost-actor-observation.response.json",
+          "bytes": 1235524,
+          "sha256": "3ff3447927bbc9f9a040501abd15bfbd16935e3308c4b1fc54a047e37a08ea3d"
+        },
+        "tables": 24,
+        "equal": true,
+        "qualification": "Actual test-only D1 snapshots after injected membership invalidation and before explicit harness restoration; production mutation makes no table change."
+      }
+    ],
+    "multiPage": {
+      "primaryTasks": 235,
+      "secondaryTasks": 235,
+      "full": 283,
+      "calendar": 234,
+      "timeline": 234,
+      "search": 235
+    },
+    "acceptance": [
+      "AC1: >200 rows full cursor Board/Calendar/Timeline + full summary/project/member/team/Home/Overview/search totals",
+      "AC2: shared recipient list+Bootstrap/Inbox badges/read-state continuation and persisted personal preferences/notification prefs/favorites/order; shared project saved views/CAS/profile",
+      "AC3: literal q, malformed filters/cursors/dates/repeated query; two disjoint scopes/private/current parent/lifecycle; view-only write rejection; actual rollback+full24table zero effects; HTTP errors never Mock fallback"
+    ],
+    "toolStart": {
+      "path": "docs/poc/evidence/WU-34/attempts/d1-03/tool-start.json",
+      "bytes": 110,
+      "sha256": "356cfd4ded751869a589ff668eb2abf777561ca348e765c24d5fe369dd46c6c3"
+    },
+    "toolPoll": {
+      "path": "docs/poc/evidence/WU-34/attempts/d1-03/tool-poll01.json",
+      "bytes": 110,
+      "sha256": "eda92d2d0e1fa5a8c9692d62daffd529ff7d8fe9d17d4ccfbf36c6a90961d6bd"
+    },
+    "toolCompletion": {
+      "path": "docs/poc/evidence/WU-34/attempts/d1-03/tool-completion.json",
+      "bytes": 195,
+      "sha256": "a43e5428b7729a11b64fbfbe4d35fac1adf2bb0d7388e9f0e72daa0e84344db4"
+    }
+  },
+  "requiredCommands": [
+    "typecheck-04",
+    "build-01",
+    "lint-02",
+    "contracts-01",
+    "boundary-01",
+    "source-01",
+    "diffcheck-01"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "tests/workspace/boundaries.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:35:49.680Z",
+      "completedAt": "2026-10-10T19:35:50.239Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 76,
+        "sha256": "f5649f16cdaddad3a4de3d9574e183e83d390fc856c0de309d1b07929cf56a6b"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/boundary-01/result.json",
+        "bytes": 523,
+        "sha256": "4fa9b4e251d0c9848eac69ac5dc4e0ac16183c2afcdc0847d722d9db7c91ec24"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "build"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:32:20.104Z",
+      "completedAt": "2026-10-10T19:32:27.014Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 687,
+        "sha256": "a979f161341f8d720d4c9b6ddaea3fe6634d0982d43736f2fe217505714ac5a5"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 178,
+        "sha256": "98f562258abb1ba00558ab591696b1230919f159f54fa56504ab411328f5af7a"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/build-01/result.json",
+        "bytes": 536,
+        "sha256": "d7ccafbeea95392919176f92f5b7004b4b3ac0f7c7911db82503d9dbeb81ce38"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "test:contracts"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:35:49.577Z",
+      "completedAt": "2026-10-10T19:35:51.111Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 8276,
+        "sha256": "17f734ed8fb959caabb66248a6f47b569c6873800c21d4545f499c1fe909bef5"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 203,
+        "sha256": "4b34b5bc2369c6a002eee9411875515bb27745d276b42d9771114c8d7799dcd1"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/contracts-01/result.json",
+        "bytes": 511,
+        "sha256": "5fb488eb364e51d6bcfd1e7bb20ddd47b86b6e95d4afc86738852d922acb6217"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:35:49.952Z",
+      "completedAt": "2026-10-10T19:35:50.089Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/diffcheck-01/result.json",
+        "bytes": 510,
+        "sha256": "5681d46270fcac1d51c65190ba0a993cc10101e3bd83be742c21436b48a93a75"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api/src",
+        "apps/api/tests/wu34"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:30:18.885Z",
+      "completedAt": "2026-10-10T19:30:20.943Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/lint-01/result.json",
+        "bytes": 557,
+        "sha256": "d8c2a41b770a9d07c7d0e166ee11d5a20bf5391db71cfae82297132402df70f9"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api/src",
+        "apps/api/tests/wu34"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:35:50.054Z",
+      "completedAt": "2026-10-10T19:35:52.139Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/lint-02/result.json",
+        "bytes": 557,
+        "sha256": "d278c40e2e51b321320cc2bbe3343bc215337f882665bda3523cc9612196b84d"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "reference:check"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:35:51.756Z",
+      "completedAt": "2026-10-10T19:35:52.324Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 153,
+        "sha256": "b87157a6b73193599f8b8c4b16793d4a357771d6e46c384b0ee93d6e8327121b"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 47,
+        "sha256": "22089a95c801107888e74e399e6c9959b0180d122c05cdfeee86282d2dbf81e3"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/source-01/result.json",
+        "bytes": 510,
+        "sha256": "2ea48db6c35f412f6fe10c748eae48586abfd933168f258cb37d205057799e45"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:26:14.607Z",
+      "completedAt": "2026-10-10T19:26:18.439Z",
+      "exitCode": 2,
+      "signal": null,
+      "error": "spawnSync pnpm EPERM",
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/typecheck-01/result.json",
+        "bytes": 554,
+        "sha256": "5cc92c565fdbfbb05f6243ff0701d070a7a28dff5e3fe459d70df8e0fd7029a9"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:26:30.992Z",
+      "completedAt": "2026-10-10T19:26:34.713Z",
+      "exitCode": 2,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 739,
+        "sha256": "47885103af104ce5c75466dd3c283a38557183a98808ba771cdd52b114d564db"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/typecheck-02/result.json",
+        "bytes": 539,
+        "sha256": "0acdef645dc3152f11559eb055824876cf55f04fe597d71021b44c87a28bad17"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:29:46.603Z",
+      "completedAt": "2026-10-10T19:29:50.196Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/typecheck-03/result.json",
+        "bytes": 537,
+        "sha256": "e8fb80592009c0b277273cfda1abbb42da3d6e7e60bfd4d7bc47d1ed5a43be3b"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:32:09.600Z",
+      "completedAt": "2026-10-10T19:32:13.170Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-34/commands/typecheck-04/result.json",
+        "bytes": 537,
+        "sha256": "690849d471df3b781680c54afc6bbe142486157836d2ce7641617a1ac0fd0023"
+      }
+    }
+  ],
+  "earlier": [
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-34/attempts/d1-01/report.json",
+        "bytes": 19647,
+        "sha256": "b23672aa50a68ccb1add6e018ee8806ba0aa30b60b72ef76f2c7ae89a0e6bcb5"
+      },
+      "status": "FAILED",
+      "probes": 46,
+      "error": "The input did not match the regular expression /cursor did not advance/. Input:\n\n'StudioApiError: Invalid cursor for query'\n",
+      "acceptedAsCurrent": false
+    },
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-34/attempts/d1-02/report.json",
+        "bytes": 19609,
+        "sha256": "ae2226fb2fbf80678be3a8463018f32e30b4f15f852259ca4e8ad4a1bde73258"
+      },
+      "status": "FAILED",
+      "probes": 46,
+      "error": "The validation function is expected to return \"true\". Received false\n\nCaught error:\n\nStudioApiError: Operation is not implemented",
+      "acceptedAsCurrent": false
+    }
+  ],
+  "scope": {
+    "newOperations": 20,
+    "capabilities": {
+      "projects": "implemented",
+      "tasks": "implemented",
+      "teams": "implemented",
+      "comments": "implemented",
+      "notificationState": "implemented",
+      "fileMetadata": "unavailable until WU35",
+      "fileBytes": "unavailable until WU35"
+    },
+    "counts": "Full authorized scope, canonical current project privacy/lifecycle; complete loader or explicit errors",
+    "notifications": "Shared recipient/current-parent predicate with Bootstrap unread/Inbox (exclude update); scoped cursors continue after read anchor changes; samebatch active actor for all mutations",
+    "preferences": "SQL json_patch, all14 notification fields retained, concurrent unrelated keys do not overwrite; current normalized profile",
+    "savedViews": "Shared project definition; private edit grant/current lifecycle/CAS; parsed filter UUIDs retain shape-only contract",
+    "favoritesOrder": "Personal workspace/member state; idempotent favorite no effects, active known restricted catalog roots may be ordered, exact prior order/catalog guard",
+    "archive": "No tombstones; task roots exclude archived parents; project summaries include nondeleted archived children; insertion rank independent personal order",
+    "search": "Literal case-insensitive q including derived descriptions/comments and scoped file metadata; stable category/ID tuples; full totals before category/page",
+    "limits": {
+      "queries": 50,
+      "parameters": 100,
+      "batch": 50
+    },
+    "fileOperations": "All unchanged unavailable; search/sample metadata is a typed read, no file write/bytes"
+  },
+  "qualification": {
+    "historicalM2": "All inherited bounded/failed/missing-byte/SVG/default/Darwin obligations remain unrecovered",
+    "failedOriginals": [
+      "typecheck-01 sandbox spawnEPERM with actualerror/status and zero streams",
+      "typecheck-02 three TS narrowings fixed",
+      "d1-01 repeated-cursor harness sent invalidcursor to real server400 before loop check",
+      "d1-02 unavailable501 was correct; harness predicate read error.code instead of error.detail.code"
+    ],
+    "outerReceipts": "Selected D1-03 and required final gates retain original available returned tool objects. Initial prerequisite read and typecheck-01/03 original outer objects were not separately persisted; child streams/status/maps are available. No reconstructed outer or Root physical capture is claimed.",
+    "guardInjection": "Full24table inner observations prove no production effect after final actor invalidation; test-only restore returns membership status to original for subsequent probes.",
+    "notRun": [
+      "optional browser/visual campaign or new sourcebaseline acceptance",
+      "remote D1/R2/provider/auth/provisioning",
+      "production deployment",
+      "CI",
+      "WU35–36"
+    ]
+  }
+}

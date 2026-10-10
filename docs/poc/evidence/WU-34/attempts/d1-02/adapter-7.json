@@ -1,0 +1,36 @@
+{
+  "name": "adapter-7",
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+  "status": 200,
+  "response": {
+    "data": {
+      "total": 283,
+      "byStatus": {
+        "backlog": 55,
+        "todo": 64,
+        "progress": 55,
+        "review": 53,
+        "done": 56
+      },
+      "byPriority": {
+        "urgent": 52,
+        "high": 61,
+        "medium": 68,
+        "low": 55,
+        "none": 47
+      },
+      "overdue": 7,
+      "completed": 56,
+      "completionRate": 20,
+      "subtaskTotals": {
+        "total": 16,
+        "completed": 8
+      }
+    }
+  },
+  "budget": {
+    "queries": 6,
+    "parameters": 4
+  }
+}

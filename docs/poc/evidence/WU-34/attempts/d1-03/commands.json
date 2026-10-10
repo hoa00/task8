@@ -1,0 +1,198 @@
+[
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "d1",
+      "migrations",
+      "apply",
+      "DB",
+      "--local",
+      "--persist-to",
+      "/tmp/task8-wu34-d1-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T19:32:57.670Z",
+    "completedAt": "2026-10-10T19:33:04.610Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "migrate.stdout.log",
+      "bytes": 1453,
+      "sha256": "97f2b649f608e7b0e06e65943d04a63587028cbe7802254f18950be31ee17524"
+    },
+    "stderr": {
+      "path": "migrate.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "seed",
+    "argv": [
+      "node",
+      "scripts/seed-local.mjs",
+      "--persist-to",
+      "/tmp/task8-wu34-d1-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T19:33:04.613Z",
+    "completedAt": "2026-10-10T19:33:11.756Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "seed.stdout.log",
+      "bytes": 48587,
+      "sha256": "be63439b63c47285511f96b98bb9cf3e919fcbd39e78b1915c28055c05f9dfba"
+    },
+    "stderr": {
+      "path": "seed.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "owner",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu34-config-d1-03/owner.json",
+      "--persist-to",
+      "/tmp/task8-wu34-d1-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T19:33:11.760Z",
+    "completedAt": "2026-10-10T19:33:18.146Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite probes",
+    "stdout": {
+      "path": "owner.stdout.log",
+      "bytes": 18234,
+      "sha256": "053a5749a693fe634db9f916e0a79d6927c6c1e864f0f99ed92e3e3326c64766"
+    },
+    "stderr": {
+      "path": "owner.stderr.log",
+      "bytes": 7291,
+      "sha256": "4fa5ace48bd21d9e2136365cc292da0ebc97dcfcdfb9a1a7bb9515188482d4aa"
+    }
+  },
+  {
+    "name": "member",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu34-config-d1-03/member.json",
+      "--persist-to",
+      "/tmp/task8-wu34-d1-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T19:33:18.150Z",
+    "completedAt": "2026-10-10T19:33:24.464Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite probes",
+    "stdout": {
+      "path": "member.stdout.log",
+      "bytes": 3909,
+      "sha256": "3020a3eff3256aa7ef755cc33d5e0c35192d3a510d6a75d18abfff9c08bbc196"
+    },
+    "stderr": {
+      "path": "member.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "isolation",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu34-config-d1-03/isolation.json",
+      "--persist-to",
+      "/tmp/task8-wu34-d1-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T19:33:24.467Z",
+    "completedAt": "2026-10-10T19:33:30.820Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite probes",
+    "stdout": {
+      "path": "isolation.stdout.log",
+      "bytes": 3497,
+      "sha256": "2dd411ac4e74c8584382f6961aab7f0a21bcce28a56ba634197594164b92e2cd"
+    },
+    "stderr": {
+      "path": "isolation.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "production-restart",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu34-config-d1-03/production-restart.json",
+      "--persist-to",
+      "/tmp/task8-wu34-d1-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T19:33:30.824Z",
+    "completedAt": "2026-10-10T19:33:37.099Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite probes",
+    "stdout": {
+      "path": "production-restart.stdout.log",
+      "bytes": 3124,
+      "sha256": "cbb5b10ed6363266f5a5b8f43adb11594ada61fdaca2af8a99454bb031425b59"
+    },
+    "stderr": {
+      "path": "production-restart.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  }
+]

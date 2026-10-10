@@ -1,0 +1,32 @@
+{
+  "name": "np-concurrent-email",
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/notification-preferences",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"emailDigest\":false,\"mentionTeam\":false}",
+  "status": 200,
+  "response": {
+    "data": {
+      "emailMention": true,
+      "emailAssign": true,
+      "emailDigest": false,
+      "emailComment": false,
+      "pushMention": true,
+      "pushAssign": true,
+      "pushComment": true,
+      "pushDue": true,
+      "mentionAll": true,
+      "mentionTeam": false,
+      "mentionWorkspace": false,
+      "assignSelf": true,
+      "assignStatus": true,
+      "assignOverdue": true
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 6
+  }
+}

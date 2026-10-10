@@ -1,0 +1,74 @@
+
+ ⛅️ wrangler 4.148.0
+────────────────────
+Your Worker has access to the following bindings:
+Binding                                                              Resource                  Mode
+env.DB (task8-local)                                                 D1 Database               local
+env.STUDIO_ENV ("local")                                             Environment Variable      local
+env.LOCAL_USER_ID ("01a11abd-aa80-7d3f-879a-dd89204bcd77")           Environment Variable      local
+env.LOCAL_WORKSPACE_ID ("01a11abd-aa80-72ea-8b87-b31ad015a24e")      Environment Variable      local
+
+❓ Your types might be out of date. Re-run `wrangler types` to ensure your types are correct.
+Wrangler detected this dev session is running in an AI agent.
+The Local Explorer API is available at http://127.0.0.1:8787/cdn-cgi/local/explorer/api
+Useful routes:
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/workers - local Workers and bindings
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/scheduled?worker=<name> - invoke a Worker's scheduled handler; cron is required (see the OpenAPI schema for the full request)
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/storage/kv/namespaces - KV namespaces
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/d1/database - D1 databases
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/r2/buckets - R2 buckets
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/workers/durable_objects/namespaces - Durable Object namespaces
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/workflows - Workflows
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/query - run a read-only SQL query (SELECT/WITH only) over captured request traces and console logs. Tables: spans, logs (read attributes via json(attributes)). Example:
+    curl -X POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/query -H 'Content-Type: application/json' -d '{"sql":"SELECT service, name, outcome, duration_ms FROM spans WHERE parent_id IS NULL LIMIT 20"}'
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/clear - clear all captured traces and logs
+If the routes above don't cover what you need, fetch the full OpenAPI schema (large - use only as a last resort):
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api - OpenAPI schema
+⎔ Starting local server...
+[wrangler:info] Ready on http://127.0.0.1:8787
+[wrangler:info] GET /api/v1/session 200 OK (22ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap 200 OK (40ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home 200 OK (26ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/overview 200 OK (24ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary 200 OK (16ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (25ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications 200 OK (6ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events 200 OK (7ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/milestones 200 OK (7ms)
+[wrangler:info] POST /__wu34/sql 200 OK (11ms)
+[wrangler:info] POST /__wu34/sql 200 OK (4ms)
+[wrangler:info] POST /__wu34/sql 200 OK (12ms)
+[wrangler:info] POST /__wu34/sql 200 OK (4ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary 200 OK (22ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (47ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (22ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary 200 OK (21ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (42ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (18ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary 200 OK (16ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (35ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (17ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home 200 OK (25ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/overview 200 OK (25ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary 200 OK (16ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7f23-849c-94f63946ff17/summary 200 OK (18ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7249-8034-93bbfb2174a2/summary 200 OK (24ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a11abd-aa80-7c4b-88b5-79c301cf70d7/summary 200 OK (22ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (31ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (31ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (32ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (31ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (30ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (28ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (30ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (34ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (28ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (37ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59/comments 200 OK (7ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search 200 OK (31ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary 200 OK (17ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (39ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (16ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 200 OK (21ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary 200 OK (18ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files 501 Not Implemented (21ms)

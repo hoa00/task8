@@ -1,0 +1,52 @@
+{
+  "name": "session",
+  "method": "GET",
+  "path": "/api/v1/session",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "user": {
+        "id": "01a11abd-aa80-7d3f-879a-dd89204bcd77",
+        "name": "Tanjim Islam",
+        "email": "hello@gr8rstudio.com",
+        "title": "Head of Product",
+        "avatarColor": "#5A67D8",
+        "timezone": "San Francisco",
+        "version": 1
+      },
+      "currentWorkspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+      "capabilities": {
+        "dataMode": "http",
+        "identityMode": "development",
+        "features": {
+          "projects": "implemented",
+          "tasks": "implemented",
+          "teams": "implemented",
+          "comments": "implemented",
+          "notificationState": "implemented",
+          "fileMetadata": "unavailable",
+          "fileBytes": "unavailable",
+          "workspaceProvisioning": "unavailable",
+          "invitations": "unavailable",
+          "projectSharing": "unavailable",
+          "authentication": "unavailable",
+          "accountSecurity": "unavailable",
+          "billing": "unavailable"
+        },
+        "limits": {
+          "taskPageSize": 50,
+          "maxTaskPageSize": 200,
+          "maxBulkItems": 20,
+          "maxUndoTargets": 128,
+          "maxUndoPayloadBytes": 65536,
+          "maxUploadBytes": 10485760
+        }
+      }
+    }
+  },
+  "budget": {
+    "queries": 1,
+    "parameters": 4
+  }
+}

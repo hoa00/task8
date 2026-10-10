@@ -1,3 +1,4 @@
+import { projectionRoutes } from './projection-routes.ts';
 import { taskRoutes } from './task-routes.ts';
 import { collaborationRoutes } from './collaboration-routes.ts';
 import { Hono } from 'hono';
@@ -55,3 +56,5 @@ features.post('/workspaces/:workspaceId/undo/:undoId',async c=>{const input=oper
 
 features.route('/',taskRoutes);
 features.route('/',collaborationRoutes);
+
+features.route('/',projectionRoutes);

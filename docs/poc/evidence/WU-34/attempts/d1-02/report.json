@@ -1,0 +1,554 @@
+{
+  "status": "FAILED",
+  "runtime": "actual Wrangler local Worker/D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu34-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T19:31:39.837Z",
+      "completedAt": "2026-10-10T19:31:46.681Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1453,
+        "sha256": "16f317080f8e43c3edfcbd5181c6bda2f233a6ac2494bbe5247d0d450a919be7"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu34-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T19:31:46.684Z",
+      "completedAt": "2026-10-10T19:31:53.815Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48587,
+        "sha256": "cf473e7fead7e7db0fd6dac00c4f90e90e81d71a0142cf89f78f49701973fb1c"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu34-config-d1-02/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu34-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T19:31:53.819Z",
+      "completedAt": "2026-10-10T19:32:00.133Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 7044,
+        "sha256": "c816b50154c1cbcbc563eecdfa752f788cecfb02445ddb13d74899b4a452004c"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "session",
+      "path": "/api/v1/session",
+      "status": 200,
+      "budget": {
+        "queries": 1,
+        "parameters": 4
+      },
+      "evidence": "session.json"
+    },
+    {
+      "name": "baseline-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "baseline-bootstrap.json"
+    },
+    {
+      "name": "baseline-home",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+      "status": 200,
+      "budget": {
+        "queries": 18,
+        "parameters": 8
+      },
+      "evidence": "baseline-home.json"
+    },
+    {
+      "name": "baseline-overview",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/overview",
+      "status": 200,
+      "budget": {
+        "queries": 17,
+        "parameters": 8
+      },
+      "evidence": "baseline-overview.json"
+    },
+    {
+      "name": "adapter-1",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-1.json"
+    },
+    {
+      "name": "adapter-2",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-2.json"
+    },
+    {
+      "name": "baseline-notifications",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "baseline-notifications.json"
+    },
+    {
+      "name": "baseline-events",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2000-01-01&to=2099-12-31",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "baseline-events.json"
+    },
+    {
+      "name": "baseline-milestones",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/milestones",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "baseline-milestones.json"
+    },
+    {
+      "name": "sql-3",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-3.json"
+    },
+    {
+      "name": "sql-4",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-4.json"
+    },
+    {
+      "name": "sql-5",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-5.json"
+    },
+    {
+      "name": "sql-6",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-6.json"
+    },
+    {
+      "name": "adapter-7",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-7.json"
+    },
+    {
+      "name": "adapter-8",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-8.json"
+    },
+    {
+      "name": "adapter-9",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiODA4YjczZjk2ZWZkOTVkM2M0ZjUwZWNlNjlkZGM1NmI5MmQ0Yzk4NzEyYTc1NTkxYTM4ZDNhZWY2NmM0ZjQwYyIsInNvcnRGaWVsZCI6Im1hbnVhbCIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOjM1MTAwLCJpZCI6IjAxZDAwMDAwLTAwMDAtNzAwMC04MDAwLTAwMDAwMDAwMDQ3ZiJ9&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-9.json"
+    },
+    {
+      "name": "adapter-10",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-10.json"
+    },
+    {
+      "name": "adapter-11",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-11.json"
+    },
+    {
+      "name": "adapter-12",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=due&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiN2I2OWU4YjM5MDlkMGY4MWZiYTA5NDg5YjIxZjZhMmNiZTkwMGMzMzU2ZTM4ZjUwNDY2MTY0YmExZTg3OTdjYiIsInNvcnRGaWVsZCI6Im1hbnVhbCIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOjM5OTAwLCJpZCI6IjAxZDAwMDAwLTAwMDAtNzAwMC04MDAwLTAwMDAwMDAwMDRhZiJ9&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-12.json"
+    },
+    {
+      "name": "adapter-13",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=overlap",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-13.json"
+    },
+    {
+      "name": "adapter-14",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=overlap&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-14.json"
+    },
+    {
+      "name": "adapter-15",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=overlap&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiYWEzMjVjZDhjZmRhNjVhNWUzY2M1M2I5Zjg5Y2JlZjNlYzYyMzQ0OWQ5N2QyZWNkMTIzNmQ0ZTUxMGZmMjg2MyIsInNvcnRGaWVsZCI6Im1hbnVhbCIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOjM5OTAwLCJpZCI6IjAxZDAwMDAwLTAwMDAtNzAwMC04MDAwLTAwMDAwMDAwMDRhZiJ9&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-15.json"
+    },
+    {
+      "name": "multi-home",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+      "status": 200,
+      "budget": {
+        "queries": 18,
+        "parameters": 8
+      },
+      "evidence": "multi-home.json"
+    },
+    {
+      "name": "multi-overview",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/overview",
+      "status": 200,
+      "budget": {
+        "queries": 17,
+        "parameters": 8
+      },
+      "evidence": "multi-overview.json"
+    },
+    {
+      "name": "project-summary-01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary",
+      "status": 200,
+      "budget": {
+        "queries": 11,
+        "parameters": 4
+      },
+      "evidence": "project-summary-01a11abd-aa80-7d11-86d8-e6545859cd14.json"
+    },
+    {
+      "name": "project-summary-01a11abd-aa80-7f23-849c-94f63946ff17",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7f23-849c-94f63946ff17/summary",
+      "status": 200,
+      "budget": {
+        "queries": 11,
+        "parameters": 4
+      },
+      "evidence": "project-summary-01a11abd-aa80-7f23-849c-94f63946ff17.json"
+    },
+    {
+      "name": "member-summary",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7249-8034-93bbfb2174a2/summary",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 4
+      },
+      "evidence": "member-summary.json"
+    },
+    {
+      "name": "team-summary",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a11abd-aa80-7c4b-88b5-79c301cf70d7/summary",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 4
+      },
+      "evidence": "team-summary.json"
+    },
+    {
+      "name": "search-page1",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page1.json"
+    },
+    {
+      "name": "search-page-16",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0MTkifQ",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page-16.json"
+    },
+    {
+      "name": "search-page-17",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0NGIifQ",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page-17.json"
+    },
+    {
+      "name": "search-page-18",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0N2QifQ",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page-18.json"
+    },
+    {
+      "name": "search-page-19",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0YWYifQ",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page-19.json"
+    },
+    {
+      "name": "search-category",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&category=comments",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-category.json"
+    },
+    {
+      "name": "search-description",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=descriptionOnly+%25_",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-description.json"
+    },
+    {
+      "name": "search-injection-literal",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%27+OR+1%3D1+--",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-injection-literal.json"
+    },
+    {
+      "name": "search-secondary-hidden",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=secondary+secret",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-secondary-hidden.json"
+    },
+    {
+      "name": "search-comments",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=Tablet+layout+f&category=comments",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-comments.json"
+    },
+    {
+      "name": "comment-canonical",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59/comments",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      },
+      "evidence": "comment-canonical.json"
+    },
+    {
+      "name": "search-files",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=home&category=files",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-files.json"
+    },
+    {
+      "name": "adapter-20",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-20.json"
+    },
+    {
+      "name": "adapter-21",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-21.json"
+    },
+    {
+      "name": "adapter-22",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiODA4YjczZjk2ZWZkOTVkM2M0ZjUwZWNlNjlkZGM1NmI5MmQ0Yzk4NzEyYTc1NTkxYTM4ZDNhZWY2NmM0ZjQwYyIsInNvcnRGaWVsZCI6Im1hbnVhbCIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOjM1MTAwLCJpZCI6IjAxZDAwMDAwLTAwMDAtNzAwMC04MDAwLTAwMDAwMDAwMDQ3ZiJ9&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-22.json"
+    },
+    {
+      "name": "adapter-23",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-23.json"
+    },
+    {
+      "name": "adapter-24",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-24.json"
+    },
+    {
+      "name": "adapter-25",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files?limit=50&q=&sort=recent",
+      "status": 501,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "adapter-25.json"
+    }
+  ],
+  "snapshotPairs": [],
+  "acceptance": [],
+  "error": {
+    "name": "AssertionError",
+    "message": "The validation function is expected to return \"true\". Received false\n\nCaught error:\n\nStudioApiError: Operation is not implemented",
+    "stack": "AssertionError [ERR_ASSERTION]: The validation function is expected to return \"true\". Received false\n\nCaught error:\n\nStudioApiError: Operation is not implemented\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///workspace/task8/apps/api/tests/wu34/verify.mjs:67:2"
+  }
+}

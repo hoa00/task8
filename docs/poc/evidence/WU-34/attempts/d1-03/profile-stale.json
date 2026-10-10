@@ -1,0 +1,20 @@
+{
+  "name": "profile-stale",
+  "method": "PATCH",
+  "path": "/api/v1/me/profile",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"name\":\"Stale\"}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Version, authorization or command scope changed"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 6
+  }
+}

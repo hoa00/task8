@@ -1,0 +1,20 @@
+{
+  "name": "foreign-view-id",
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/views/01a1274e-2702-789d-9fa8-d296564b5680",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":3,\"name\":\"foreign\"}",
+  "status": 404,
+  "response": {
+    "error": {
+      "code": "NOT_FOUND",
+      "message": "View not found"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 4
+  }
+}

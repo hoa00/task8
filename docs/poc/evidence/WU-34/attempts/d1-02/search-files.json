@@ -1,0 +1,45 @@
+{
+  "name": "search-files",
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=home&category=files",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "items": [
+        {
+          "kind": "files",
+          "file": {
+            "id": "01a11abd-aa80-7dc8-8353-eb86fc8c9d9c",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+            "name": "homepage-wireframes-v3.fig",
+            "fileType": "fig",
+            "mimeType": null,
+            "sizeBytes": null,
+            "displaySize": "4.2 MB",
+            "storageMode": "sample",
+            "contentAvailable": false,
+            "createdBy": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "createdAt": "2026-10-08T04:00:00.000Z",
+            "version": 1
+          }
+        }
+      ],
+      "nextCursor": null,
+      "total": 1,
+      "totals": {
+        "tasks": 2,
+        "projects": 0,
+        "people": 0,
+        "files": 1,
+        "comments": 0
+      }
+    }
+  },
+  "budget": {
+    "queries": 16,
+    "parameters": 4
+  }
+}
