@@ -1,0 +1,394 @@
+{
+  "workUnit": "WU-35",
+  "status": "PASS",
+  "base": "9203028d80b54a37a232cfe98bcd5b2ba7aaa252",
+  "commands": [
+    {
+      "name": "branch",
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.046Z",
+      "completedAt": "2026-10-10T20:42:15.049Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "branch.stdout.log",
+        "bytes": 5,
+        "sha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2"
+      },
+      "stderr": {
+        "path": "branch.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "head",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.050Z",
+      "completedAt": "2026-10-10T20:42:15.052Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "head.stdout.log",
+        "bytes": 41,
+        "sha256": "3d86e8a3e3250593607bd84bdb94cdaa26bb1297f830b1d34fef1b85fba8bda3"
+      },
+      "stderr": {
+        "path": "head.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "origin-main",
+      "argv": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.052Z",
+      "completedAt": "2026-10-10T20:42:15.054Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "origin-main.stdout.log",
+        "bytes": 41,
+        "sha256": "3d86e8a3e3250593607bd84bdb94cdaa26bb1297f830b1d34fef1b85fba8bda3"
+      },
+      "stderr": {
+        "path": "origin-main.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "fresh-main",
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.055Z",
+      "completedAt": "2026-10-10T20:42:15.492Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "fresh-main.stdout.log",
+        "bytes": 57,
+        "sha256": "744b14bb84c9b79938b0e85b90a4449c1d9484a5e98ea9e87d2163c7cddbfa60"
+      },
+      "stderr": {
+        "path": "fresh-main.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "origin",
+      "argv": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.492Z",
+      "completedAt": "2026-10-10T20:42:15.498Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "origin.stdout.log",
+        "bytes": 35,
+        "sha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348"
+      },
+      "stderr": {
+        "path": "origin.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "divergence",
+      "argv": [
+        "git",
+        "rev-list",
+        "--left-right",
+        "--count",
+        "HEAD...origin/main"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.498Z",
+      "completedAt": "2026-10-10T20:42:15.502Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "divergence.stdout.log",
+        "bytes": 4,
+        "sha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c"
+      },
+      "stderr": {
+        "path": "divergence.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "staged",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--name-only"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.503Z",
+      "completedAt": "2026-10-10T20:42:15.532Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "staged.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "staged.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "status",
+      "argv": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.532Z",
+      "completedAt": "2026-10-10T20:42:15.775Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "status.stdout.log",
+        "bytes": 762,
+        "sha256": "02e2ec2f44c0e28226b2d20a4761a36ac225deff11d53c580f86ee5d1e9e6e68"
+      },
+      "stderr": {
+        "path": "status.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-head",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.775Z",
+      "completedAt": "2026-10-10T20:42:15.779Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "source-head.stdout.log",
+        "bytes": 41,
+        "sha256": "7b13267f3236258e1feb01348be92239d0d83c2d5fa0b1b2dc8bc5b3cf3aea30"
+      },
+      "stderr": {
+        "path": "source-head.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-tree",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.779Z",
+      "completedAt": "2026-10-10T20:42:15.782Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "source-tree.stdout.log",
+        "bytes": 41,
+        "sha256": "dfcd9413f95e2de91d7ff886b9322f6fbc8c6430034bc5ec30aa8048c8876ef8"
+      },
+      "stderr": {
+        "path": "source-tree.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-status",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.782Z",
+      "completedAt": "2026-10-10T20:42:15.785Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "source-status.stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "source-status.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-files",
+      "argv": [
+        "git",
+        "-C",
+        ".reference/gr8r-studio",
+        "ls-files"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.785Z",
+      "completedAt": "2026-10-10T20:42:15.788Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "source-files.stdout.log",
+        "bytes": 1816,
+        "sha256": "ff802db5025496466a0b36c347fd4a69e6c1fe626692ff3dd5191a696922df52"
+      },
+      "stderr": {
+        "path": "source-files.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "ports",
+      "argv": [
+        "ss",
+        "-ltn"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T20:42:15.788Z",
+      "completedAt": "2026-10-10T20:42:15.795Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "ports.stdout.log",
+        "bytes": 116,
+        "sha256": "205ecbac08f7ef0e931ecbc3c19e6424e0f41ddeb7451c8f254214b3ca098c36"
+      },
+      "stderr": {
+        "path": "ports.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "locked": [
+    {
+      "path": "docs/poc/reference/baseline-manifest.json",
+      "bytes": 69302,
+      "sha256": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+      "baseExact": true,
+      "rawCapture": "Original git-show bytes compared in memory; no separately persisted original stdout claim"
+    },
+    {
+      "path": "docs/poc/reference/font-assets.json",
+      "bytes": 21805,
+      "sha256": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+      "baseExact": true,
+      "rawCapture": "Original git-show bytes compared in memory; no separately persisted original stdout claim"
+    },
+    {
+      "path": "docs/poc/reference/source-fixture.json",
+      "bytes": 54153,
+      "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+      "baseExact": true,
+      "rawCapture": "Original git-show bytes compared in memory; no separately persisted original stdout claim"
+    },
+    {
+      "path": "docs/poc/reference/source-lock.json",
+      "bytes": 7870,
+      "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d",
+      "baseExact": true,
+      "rawCapture": "Original git-show bytes compared in memory; no separately persisted original stdout claim"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 144032,
+      "sha256": "ce6dfcd13399c35523c70c5efc9ac2a0ec099ad74923d2d18452c610cabc2fbf",
+      "baseExact": true,
+      "rawCapture": "Original git-show bytes compared in memory; no separately persisted original stdout claim"
+    },
+    {
+      "path": "apps/api/src/db/schema.ts",
+      "bytes": 24094,
+      "sha256": "46f6f0678229daea7330e2f5eb0ff698eeda8056dda8873c7b5478eaf11a2734",
+      "baseExact": true,
+      "rawCapture": "Original git-show bytes compared in memory; no separately persisted original stdout claim"
+    },
+    {
+      "path": "apps/api/src/db/migrations/0000_freezing_greymalkin.sql",
+      "bytes": 25846,
+      "sha256": "912bc07a7379a1eccedb61d6ecfd26b2106297d86057b63050242ecce4aa3571",
+      "baseExact": true,
+      "rawCapture": "Original git-show bytes compared in memory; no separately persisted original stdout claim"
+    }
+  ],
+  "ports": [
+    4173,
+    5173,
+    5174,
+    8787
+  ],
+  "source": {
+    "commit": "904205c626918ee96054eb35495c394a60c0c601",
+    "tree": "5db5f992886b2345881946cf85fac098307953a5",
+    "tracked": 86,
+    "clean": true
+  },
+  "initialCleanBase": "Initial actual read showed empty gitstatus; its outer tool object was not separately persisted. Prefreeze current change scope will be matched exactly to the finite candidate whitelist."
+}

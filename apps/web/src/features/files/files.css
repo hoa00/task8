@@ -17,3 +17,12 @@
 
 /* QUIRK-03: explicit full retains the normal menu entrance under OS reduce. */
 :root[data-motion=full] .file-catalogue-menu[data-entered] { animation: ui-pop-in .16s var(--ease) both !important; }
+
+/* Source .pbody.fx-tab animates toolbar/page boxes. The shared Files wrapper
+   has display:contents, so its children own the finite filled tab entrance. */
+[data-project-transition=tab] [data-project-files] { animation:none; }
+[data-project-transition=tab] [data-project-files] > * { animation:riseIn .26s var(--ease) both; }
+:root[data-motion=reduce] [data-project-transition=tab] [data-project-files] > * { animation:fadeOnly .12s both; }
+@media(prefers-reduced-motion:reduce) {
+  :root:not([data-motion=full]) [data-project-transition=tab] [data-project-files] > * { animation:fadeOnly .12s both; }
+}

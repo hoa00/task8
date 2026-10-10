@@ -1,0 +1,29 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs 3872e11affb97b55
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: cache hit, replaying logs f48ee475fc0f64d8
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 6a7f74ea4a32ca91
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing ec45a874f73a8971
+@studio/api:typecheck: cache miss, executing 8fca9db7c56cf12f
+@studio/web:typecheck: $ tsc --noEmit
+@studio/api:typecheck: $ tsc --noEmit
+@studio/api:typecheck: src/modules/files.ts(39,44): error TS2345: Argument of type '{ cursor?: string | undefined; limit?: number | undefined; q?: string | undefined; type?: string | undefined; sort?: "type" | "name" | "recent" | "size" | undefined; }' is not assignable to parameter of type '{ cursor?: string | undefined; limit: number; }'.
+@studio/api:typecheck:   Types of property 'limit' are incompatible.
+@studio/api:typecheck:     Type 'number | undefined' is not assignable to type 'number'.
+@studio/api:typecheck:       Type 'undefined' is not assignable to type 'number'.
+@studio/api:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web:typecheck: [ELIFECYCLE] Command failed.
+
+ Tasks:    3 successful, 5 total
+Cached:    3 cached, 5 total
+  Time:    4.547s 
+Failed:    @studio/api#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

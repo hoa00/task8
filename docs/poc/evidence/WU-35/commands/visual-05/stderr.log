@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('button', { name: 'Files', exact: true }) resolved to 2 elements:
+    1) <button data-a="go" data-id="p1" class="sitem " data-r="project" data-tab="files">…</button> aka getByLabel('Main').getByRole('button', { name: 'Files' })
+    2) <button data-a="go" class="tab " data-id="p1" data-r="project" data-tab="files">…</button> aka getByLabel('Project views').getByRole('button', { name: 'Files' })
+
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Files', exact: true })[22m
+
+    at setup (/workspace/task8/tests/visual/files/wu35.mjs:22:327)
+    at async file:///workspace/task8/tests/visual/files/wu35.mjs:23:2697
+
+Node.js v24.13.0

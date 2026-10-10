@@ -1,0 +1,32 @@
+
+/workspace/task8/apps/api/src/modules/files.ts
+   1:1   error  Imports "FileQuerySchema" are only used as type                    @typescript-eslint/consistent-type-imports
+  44:6   error  Unexpected control character(s) in regular expression: \x00, \x1f  no-control-regex
+  82:24  error  Unexpected control character(s) in regular expression: \x00, \x1f  no-control-regex
+
+/workspace/task8/apps/api/tests/wu35/verify.mjs
+  31:8     error  'initial' is assigned a value but never used      no-unused-vars
+  31:32    error  'countBefore' is assigned a value but never used  no-unused-vars
+  61:1140  error  'document' is not defined                         no-undef
+
+/workspace/task8/apps/web/src/features/files/FileFoundation.tsx
+  45:68  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/workspace/task8/apps/web/src/features/files/FileFoundation.tsx:45:68
+  43 |  const content = useQuery({ ...studioQueryOptions(client, 'getFileContent', { workspaceId: file?.workspaceId ?? '00000000-0000-7000-8000-000000000000', fileId: file?.id ?? '00000000-0000-7000-8000-000000000000', query: { disposition: 'inline' } }), enabled: !!file?.contentAvailable, staleTime: 0 });
+  44 |  const [url, setUrl] = useState<{ id: string; value: string } | null>(null);
+> 45 |  useEffect(() => { if (!file?.contentAvailable || !content.data) { setUrl(null); return; } const value = URL.createObjectURL(new Blob([content.data.bytes.slice().buffer], { type: content.data.contentType })); setUrl({ id: file.id, value }); return () => URL.revokeObjectURL(value); }, [file?.id, file?.contentAvailable, content.data]);
+     |                                                                    ^^^^^^ Avoid calling setState() directly within an effect
+  46 |  if (!file) return null;
+  47 |  const currentUrl = url?.id === file.id ? url.value : null;
+  48 |  const previewImage = currentUrl && content.data?.disposition === 'inline' && ['image/png','image/jpeg','image/gif','image/webp'].includes(content.data.contentType);  react-hooks/set-state-in-effect
+
+✖ 7 problems (7 errors, 0 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

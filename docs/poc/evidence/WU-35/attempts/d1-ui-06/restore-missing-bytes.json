@@ -1,0 +1,28 @@
+{
+  "name": "restore-missing-bytes",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a1278b-7a8d-738f-90ad-3bee45d9b66a/restore-deleted",
+  "method": "POST",
+  "status": 500,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "4",
+    "x-wu35-queries": "5"
+  },
+  "budget": {
+    "queries": 5,
+    "parameters": 4
+  },
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "File bytes are unavailable; retry the same intent"
+    }
+  },
+  "raw": {
+    "path": "restore-missing-bytes.response.json",
+    "bytes": 97,
+    "sha256": "97f7703ba03bb3f34372c9531834b6d78e7e5397faee20ea8ee66d0616135a66"
+  }
+}

@@ -1,0 +1,161 @@
+[
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "d1",
+      "migrations",
+      "apply",
+      "DB",
+      "--local",
+      "--persist-to",
+      "/tmp/task8-wu35-d1-ui-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T20:05:51.575Z",
+    "completedAt": "2026-10-10T20:05:58.494Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "migrate.stdout.log",
+      "bytes": 1456,
+      "sha256": "4a28a01efda17da53ee2996c6775bf821049af90988274ae9f87c04f5fb3741b"
+    },
+    "stderr": {
+      "path": "migrate.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "seed",
+    "argv": [
+      "node",
+      "scripts/seed-local.mjs",
+      "--persist-to",
+      "/tmp/task8-wu35-d1-ui-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T20:05:58.508Z",
+    "completedAt": "2026-10-10T20:06:05.732Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "seed.stdout.log",
+      "bytes": 48590,
+      "sha256": "bb1ac2d5140847a51f1685f122d881cc6ebd94ec3a39f6db3f2646a27ce2dc79"
+    },
+    "stderr": {
+      "path": "seed.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "http-preview",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vite",
+      "preview",
+      "--outDir",
+      "dist-http",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "5173",
+      "--strictPort"
+    ],
+    "cwd": "/workspace/task8/apps/web",
+    "startedAt": "2026-10-10T20:06:09.373Z",
+    "completedAt": "2026-10-10T20:06:13.827Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite checks",
+    "stdout": {
+      "path": "http-preview.stdout.log",
+      "bytes": 39,
+      "sha256": "bd8dbfcb51bb080233543196528006cdfd7b1571bfe995d605a3c3bf02ba543e"
+    },
+    "stderr": {
+      "path": "http-preview.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "owner",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu35-config-d1-ui-03/owner.json",
+      "--persist-to",
+      "/tmp/task8-wu35-d1-ui-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T20:06:05.745Z",
+    "completedAt": "2026-10-10T20:06:13.873Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite checks",
+    "stdout": {
+      "path": "owner.stdout.log",
+      "bytes": 22260,
+      "sha256": "93c682d7ac171957309370d5ff2ab648a5903359774ff34f3fcdf82722b75562"
+    },
+    "stderr": {
+      "path": "owner.stderr.log",
+      "bytes": 2895,
+      "sha256": "efc32682bad8531b02479ce04bf387f3e3e4d8ce19407b1355e19fe4c067320e"
+    }
+  },
+  {
+    "name": "production",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu35-config-d1-ui-03/production.json",
+      "--persist-to",
+      "/tmp/task8-wu35-d1-ui-03"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T20:06:13.884Z",
+    "completedAt": "2026-10-10T20:06:20.222Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Planned SIGTERM after finite checks",
+    "stdout": {
+      "path": "production.stdout.log",
+      "bytes": 2791,
+      "sha256": "1b9f609f8dea1a59f4d11fe78e861b2f18ffebf60120148ed0f2fe3e371a9470"
+    },
+    "stderr": {
+      "path": "production.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  }
+]

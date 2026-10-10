@@ -1,3 +1,4 @@
+import { fileRoutes } from './file-routes.ts';
 import { projectionRoutes } from './projection-routes.ts';
 import { taskRoutes } from './task-routes.ts';
 import { collaborationRoutes } from './collaboration-routes.ts';
@@ -52,9 +53,11 @@ features.post('/workspaces/:workspaceId/teams',async c=>{const input=operations.
 features.patch('/workspaces/:workspaceId/teams/:teamId',async c=>{const input=operations.updateTeam.request.parse({workspaceId:scope(c).workspaceId,teamId:tid(c),body:await body(c)});return c.json(operations.updateTeam.response.parse({data:await mutateTeam(repo(c),scope(c),c.get('currentMember'),input.body,Date.now(),tid(c))}));});
 features.delete('/workspaces/:workspaceId/teams/:teamId',async c=>{const input=operations.deleteTeam.request.parse({workspaceId:scope(c).workspaceId,teamId:tid(c),body:await body(c)});return c.json(operations.deleteTeam.response.parse({data:await deleteTeam(repo(c),scope(c),c.get('currentMember'),tid(c),input.body.expectedVersion,Date.now())}));});
 features.get('/workspaces/:workspaceId/teams/:teamId/summary',async c=>{noQuery(c);const team=await teamRow(repo(c),scope(c),tid(c)),ms=(await members(repo(c),scope(c))).filter(m=>m.teamId===team.id),ts=(await activeTasks(repo(c),scope(c))).filter(t=>ms.some(m=>m.id===t.assigneeId)),ps=await projectCatalog(repo(c),scope(c),Date.now());return c.json(operations.getTeamSummary.response.parse({data:{teamId:team.id,open:ts.filter(t=>t.status!=='done').length,completed:ts.filter(t=>t.status==='done').length,projects:ps.filter(p=>p.access==='allowed'&&!p.project.archivedAt&&p.project.teamId===team.id),workload:ms.map(m=>({memberId:m.id,open:ts.filter(t=>t.assigneeId===m.id&&t.status!=='done').length}))}}));});
-features.post('/workspaces/:workspaceId/undo/:undoId',async c=>{const input=operations.undoCommand.request.parse({workspaceId:scope(c).workspaceId,undoId:EntityIdSchema.parse(c.req.param('undoId')),body:await body(c)});return c.json(operations.undoCommand.response.parse({data:await undoCommand(repo(c),scope(c),c.get('currentMember'),input.undoId,Date.now())}));});
+features.post('/workspaces/:workspaceId/undo/:undoId',async c=>{const input=operations.undoCommand.request.parse({workspaceId:scope(c).workspaceId,undoId:EntityIdSchema.parse(c.req.param('undoId')),body:await body(c)});return c.json(operations.undoCommand.response.parse({data:await undoCommand(repo(c),scope(c),c.get('currentMember'),input.undoId,Date.now(),c.env.FILES)}));});
 
 features.route('/',taskRoutes);
 features.route('/',collaborationRoutes);
 
 features.route('/',projectionRoutes);
+
+features.route('/',fileRoutes);

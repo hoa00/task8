@@ -1,0 +1,28 @@
+{
+  "name": "undo-parent-conflict",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1276c-4121-7ca8-9ceb-30a8e01bdc0b",
+  "method": "POST",
+  "status": 409,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "17",
+    "x-wu35-queries": "11"
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 17
+  },
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "File Undo targets changed"
+    }
+  },
+  "raw": {
+    "path": "undo-parent-conflict.response.json",
+    "bytes": 67,
+    "sha256": "b8b986731a8ad628dfabf66d4929e3f39035711cf96d6031997e989861552d8c"
+  }
+}

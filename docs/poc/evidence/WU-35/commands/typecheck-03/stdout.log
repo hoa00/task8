@@ -1,0 +1,25 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs 3872e11affb97b55
+@studio/ui:typecheck: cache hit, replaying logs f48ee475fc0f64d8
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs 6a7f74ea4a32ca91
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing ec45a874f73a8971
+@studio/api:typecheck: cache miss, executing ca2e1b3c4b904877
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/adapters/http.ts(40,45): error TS2345: Argument of type 'number' is not assignable to parameter of type '200'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    3 cached, 5 total
+  Time:    13.862s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.

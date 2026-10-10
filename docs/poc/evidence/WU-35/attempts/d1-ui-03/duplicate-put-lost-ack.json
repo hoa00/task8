@@ -1,0 +1,28 @@
+{
+  "name": "duplicate-put-lost-ack",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a1276c-4042-70a5-943d-0352ebb7bc45/duplicate",
+  "method": "POST",
+  "status": 500,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "16",
+    "x-wu35-queries": "9"
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 16
+  },
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Duplicate bytes are unconfirmed; inspect the recorded copy intent"
+    }
+  },
+  "raw": {
+    "path": "duplicate-put-lost-ack.response.json",
+    "bytes": 113,
+    "sha256": "e32881c135ba286591bc1a174fc5fed22803e15ea9e3616ad89fa8a949821359"
+  }
+}

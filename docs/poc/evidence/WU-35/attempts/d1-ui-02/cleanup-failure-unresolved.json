@@ -1,0 +1,28 @@
+{
+  "name": "cleanup-failure-unresolved",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+  "method": "POST",
+  "status": 500,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "11",
+    "x-wu35-queries": "10"
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 11
+  },
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "File cleanup is unconfirmed; retry the same intent"
+    }
+  },
+  "raw": {
+    "path": "cleanup-failure-unresolved.response.json",
+    "bytes": 98,
+    "sha256": "1843ea55676b3880753decf8255dcfbad82cfffcfaa590f6ab80a5f000449f13"
+  }
+}

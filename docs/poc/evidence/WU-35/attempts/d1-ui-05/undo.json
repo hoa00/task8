@@ -1,0 +1,43 @@
+{
+  "name": "undo",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1277e-bb79-7c85-be99-79f710b3e57d",
+  "method": "POST",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "17",
+    "x-wu35-queries": "10"
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 17
+  },
+  "response": {
+    "data": {
+      "undoId": "01a1277e-bb79-7c85-be99-79f710b3e57d",
+      "kind": "file.delete",
+      "appliedAt": "2026-10-10T20:26:19.423Z",
+      "affected": {
+        "taskIds": [
+          "01a11abd-aa80-7a97-849a-5913d69d66d7"
+        ],
+        "projectIds": [
+          "01a11abd-aa80-7d11-86d8-e6545859cd14"
+        ],
+        "teamIds": [],
+        "memberIds": [],
+        "commentIds": [],
+        "fileIds": [
+          "01a1277e-ba52-7565-a640-2cfb2e6f3b7c"
+        ]
+      }
+    }
+  },
+  "raw": {
+    "path": "undo.response.json",
+    "bytes": 331,
+    "sha256": "4a04eee76bd32a5bcc8ce622f99627ac099057c7edb60a174f49e718fa2ea494"
+  }
+}

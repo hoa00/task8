@@ -1,0 +1,28 @@
+{
+  "name": "r2-put-failure",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+  "method": "POST",
+  "status": 500,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "11",
+    "x-wu35-queries": "9"
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 11
+  },
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "File bytes could not be confirmed; retry the same intent"
+    }
+  },
+  "raw": {
+    "path": "r2-put-failure.response.json",
+    "bytes": 104,
+    "sha256": "b5e5338f64b2b94ea8e32801acd65db12300825719c8955cc30b5b5226a05bbd"
+  }
+}

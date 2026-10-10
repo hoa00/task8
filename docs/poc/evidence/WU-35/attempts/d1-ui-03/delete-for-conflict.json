@@ -1,0 +1,46 @@
+{
+  "name": "delete-for-conflict",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a1276c-3f90-7bec-9a30-015583f51a22",
+  "method": "DELETE",
+  "status": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "x-wu35-parameters": "16",
+    "x-wu35-queries": "10"
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 16
+  },
+  "response": {
+    "data": {
+      "file": {
+        "id": "01a1276c-3f90-7bec-9a30-015583f51a22",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+        "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+        "name": "renamed.txt",
+        "fileType": "doc",
+        "mimeType": "text/plain",
+        "sizeBytes": 47,
+        "displaySize": "47 B",
+        "storageMode": "r2",
+        "contentAvailable": true,
+        "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "createdAt": "2026-10-10T20:06:08.012Z",
+        "version": 5
+      },
+      "undo": {
+        "id": "01a1276c-4121-7ca8-9ceb-30a8e01bdc0b",
+        "kind": "file.delete"
+      }
+    }
+  },
+  "raw": {
+    "path": "delete-for-conflict.response.json",
+    "bytes": 532,
+    "sha256": "18a7fb53fb174b1436b8c3506d1ac89faec1d2359155edb87f9d2d4e13857dd1"
+  }
+}

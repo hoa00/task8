@@ -1,0 +1,3087 @@
+{
+  "status": "FAIL",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu35-d1-ui-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T19:59:57.401Z",
+      "completedAt": "2026-10-10T20:00:04.253Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1456,
+        "sha256": "225fd46389f650ac9289e7d64caf321eb4c4c3ccabc0fddbfc4157760a1421d6"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu35-d1-ui-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T20:00:04.269Z",
+      "completedAt": "2026-10-10T20:00:11.365Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48590,
+        "sha256": "d8b11e3ea44f0dfeaf31d3f34f248de9014642ee478e11941921831c924d5389"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "http-preview",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vite",
+        "preview",
+        "--outDir",
+        "dist-http",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "5173",
+        "--strictPort"
+      ],
+      "cwd": "/workspace/task8/apps/web",
+      "startedAt": "2026-10-10T20:00:14.237Z",
+      "completedAt": "2026-10-10T20:00:47.323Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "http-preview.stdout.log",
+        "bytes": 39,
+        "sha256": "bd8dbfcb51bb080233543196528006cdfd7b1571bfe995d605a3c3bf02ba543e"
+      },
+      "stderr": {
+        "path": "http-preview.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu35-config-d1-ui-01/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu35-d1-ui-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T20:00:11.377Z",
+      "completedAt": "2026-10-10T20:00:47.373Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Planned SIGTERM after finite checks",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 13616,
+        "sha256": "1ca13203e7a63fac12516191bc93adf58ed589efdc563d02ad344c7b4eeec2f4"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 1465,
+        "sha256": "d5743a9cd6f35ad8ccfd5f8bfe6d37016fcb14eedc2750a35cd372badde55392"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "objects-1",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": []
+      },
+      "raw": {
+        "path": "objects-1.response.json",
+        "bytes": 14,
+        "sha256": "736520c9db846d6eb9b018e064d7db14c108b04d27d92032fe34dd4a34710741"
+      }
+    },
+    {
+      "name": "sql-2",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 0,
+          "changed_db": false,
+          "size_after": 606208,
+          "rows_read": 24,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "n": 24
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-2.response.json",
+        "bytes": 185,
+        "sha256": "53e20c2c06365909354b0d5bc8a464c66cb8dd7a2ea32586ad4b1f644594fc2d"
+      }
+    },
+    {
+      "name": "actual-upload",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 201,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "12"
+      },
+      "budget": {
+        "queries": 12,
+        "parameters": 11
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.449Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "actual-upload.response.json",
+        "bytes": 446,
+        "sha256": "541ec1057f39f16b64394273b1ef869b0ce26e6c14f5922d4c2a76b7a20b2153"
+      }
+    },
+    {
+      "name": "actual-content",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''wu35.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "actual-content.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "sql-3",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 27,
+          "changed_db": false,
+          "size_after": 610304,
+          "rows_read": 1,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "name": "wu35.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "objectKey": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "contentSha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02",
+            "uploadRequestId": "858e277e-705f-44e9-b6b0-c08ee32dba68",
+            "uploadRequestHash": "83e7e7c2a710fa164edb0311f1ffb27890fcee65fcb5f0810725a1f0aeb03901",
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": 1791662413449,
+            "updatedAt": 1791662413449,
+            "deletedAt": null,
+            "deletedBy": null,
+            "version": 1,
+            "lastMutationId": "01a12766-d68d-7f53-843b-0902b38f783c"
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-3.response.json",
+        "bytes": 1071,
+        "sha256": "cdd3a3e5db4b830961ee8cd7ca00ccd8dffc174dd4301556305c8d49a0ade3ad"
+      }
+    },
+    {
+      "name": "objects-4",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-4.response.json",
+        "bytes": 212,
+        "sha256": "524c5440962c7bab130aaa9f9f927a72cccaf4a1a68e6d769c221c2d3b3e86be"
+      }
+    },
+    {
+      "name": "drawer-file",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-7a97-849a-5913d69d66d7",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "5",
+        "x-wu35-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-103",
+            "title": "Audit existing navigation",
+            "descriptionHtml": "",
+            "status": "done",
+            "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "priority": "high",
+            "startDate": "2026-09-21",
+            "dueDate": "2026-09-26",
+            "estimate": "2d",
+            "recurrence": null,
+            "labelIds": [
+              "research"
+            ],
+            "dependencyIds": [],
+            "position": 100,
+            "completedAt": "2026-10-08T03:00:00.000Z",
+            "archivedAt": null,
+            "createdAt": "2026-09-10T09:00:00.000Z",
+            "updatedAt": "2026-10-10T20:00:13.449Z",
+            "version": 2,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 0,
+              "completed": 0
+            },
+            "attachmentCount": 1,
+            "commentCount": 0
+          },
+          "subtasks": [],
+          "attachments": [
+            {
+              "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+              "name": "wu35.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:00:13.449Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "drawer-file.response.json",
+        "bytes": 1182,
+        "sha256": "a27f173c9c10da1f4bfab7fd2e64d74f5d95463378b1c116034213bf88bd1999"
+      }
+    },
+    {
+      "name": "project-files",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "4"
+      },
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "items": [
+            {
+              "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+              "name": "wu35.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:00:13.449Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7dc8-8353-eb86fc8c9d9c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+              "name": "homepage-wireframes-v3.fig",
+              "fileType": "fig",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "4.2 MB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "createdAt": "2026-10-08T04:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-759f-8628-669fb2662c4c",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "analytics-events.json",
+              "fileType": "code",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "12 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7567-80df-64683f5c3572",
+              "createdAt": "2026-10-07T21:20:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7fb9-8ce6-c1b36fd3aa50",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "hero-exploration.png",
+              "fileType": "img",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "2.1 MB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "createdAt": "2026-10-07T09:40:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-71d7-890b-a58a3695bdd8",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "brand-photography-set.zip",
+              "fileType": "zip",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "128 MB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-72e4-8e93-62c2ece91c47",
+              "createdAt": "2026-10-06T07:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7f88-81e7-86d21193d2a3",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a11abd-aa80-75fa-877e-0c56eef0ad59",
+              "name": "nav-audit-findings.pdf",
+              "fileType": "pdf",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "860 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+              "createdAt": "2026-10-02T19:40:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-727b-8b09-6ab214d42f11",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "content-inventory.xlsx",
+              "fileType": "sheet",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "310 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7470-803a-d8637be26509",
+              "createdAt": "2026-10-02T03:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-7359-8316-d80c17248bc6",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "sitemap-v2.pdf",
+              "fileType": "pdf",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "540 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-09-30T01:00:00.000Z",
+              "version": 1
+            },
+            {
+              "id": "01a11abd-aa80-71c4-8155-df180ff2bfa8",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": null,
+              "name": "interview-notes.docx",
+              "fileType": "doc",
+              "mimeType": null,
+              "sizeBytes": null,
+              "displaySize": "96 KB",
+              "storageMode": "sample",
+              "contentAvailable": false,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-09-24T11:40:00.000Z",
+              "version": 1
+            }
+          ],
+          "nextCursor": null,
+          "total": 9
+        }
+      },
+      "raw": {
+        "path": "project-files.response.json",
+        "bytes": 3901,
+        "sha256": "f1203fb202c5e21d4386e7cd112a26562eddad38c94323976cb2fc60bf9fb458"
+      }
+    },
+    {
+      "name": "upload-replay",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "8"
+      },
+      "budget": {
+        "queries": 8,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.449Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "upload-replay.response.json",
+        "bytes": 446,
+        "sha256": "541ec1057f39f16b64394273b1ef869b0ce26e6c14f5922d4c2a76b7a20b2153"
+      }
+    },
+    {
+      "name": "intent-byte-mismatch",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 409,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "Upload intent payload changed"
+        }
+      },
+      "raw": {
+        "path": "intent-byte-mismatch.response.json",
+        "bytes": 71,
+        "sha256": "7ecaae3878c544c6d3e73760c969fe4f444a2c3f0933f4c1870f44dbf6340bb2"
+      }
+    },
+    {
+      "name": "intent-name-mismatch",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 409,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "Upload intent payload changed"
+        }
+      },
+      "raw": {
+        "path": "intent-name-mismatch.response.json",
+        "bytes": 71,
+        "sha256": "7ecaae3878c544c6d3e73760c969fe4f444a2c3f0933f4c1870f44dbf6340bb2"
+      }
+    },
+    {
+      "name": "sql-5",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 27,
+          "changed_db": false,
+          "size_after": 610304,
+          "rows_read": 25,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "n": 1
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-5.response.json",
+        "bytes": 185,
+        "sha256": "6ac3ddea910a43ad58118dc60660e4deeeb473148c8279331717e9912ed06d1b"
+      }
+    },
+    {
+      "name": "rename",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+      "method": "PATCH",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "16",
+        "x-wu35-queries": "9"
+      },
+      "budget": {
+        "queries": 9,
+        "parameters": 16
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "renamed.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.449Z",
+          "version": 2
+        }
+      },
+      "raw": {
+        "path": "rename.response.json",
+        "bytes": 449,
+        "sha256": "28f167167e2964fdb6d3b0a0dbd35b321d06cc8fec3c8fc86ee223c8ec14efda"
+      }
+    },
+    {
+      "name": "drawer-renamed",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-7a97-849a-5913d69d66d7",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "5",
+        "x-wu35-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-103",
+            "title": "Audit existing navigation",
+            "descriptionHtml": "",
+            "status": "done",
+            "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "priority": "high",
+            "startDate": "2026-09-21",
+            "dueDate": "2026-09-26",
+            "estimate": "2d",
+            "recurrence": null,
+            "labelIds": [
+              "research"
+            ],
+            "dependencyIds": [],
+            "position": 100,
+            "completedAt": "2026-10-08T03:00:00.000Z",
+            "archivedAt": null,
+            "createdAt": "2026-09-10T09:00:00.000Z",
+            "updatedAt": "2026-10-10T20:00:13.588Z",
+            "version": 3,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 0,
+              "completed": 0
+            },
+            "attachmentCount": 1,
+            "commentCount": 0
+          },
+          "subtasks": [],
+          "attachments": [
+            {
+              "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+              "name": "renamed.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:00:13.449Z",
+              "version": 2
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "drawer-renamed.response.json",
+        "bytes": 1185,
+        "sha256": "8fb6704897240f8ed6fa7c10b20468044c0e7c6434c0ad979279f0715e35e1a5"
+      }
+    },
+    {
+      "name": "replay-after-rename",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "8"
+      },
+      "budget": {
+        "queries": 8,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "renamed.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.449Z",
+          "version": 2
+        }
+      },
+      "raw": {
+        "path": "replay-after-rename.response.json",
+        "bytes": 449,
+        "sha256": "28f167167e2964fdb6d3b0a0dbd35b321d06cc8fec3c8fc86ee223c8ec14efda"
+      }
+    },
+    {
+      "name": "rename-bytes",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''renamed.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "rename-bytes.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "duplicate",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df/duplicate",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "16",
+        "x-wu35-queries": "9"
+      },
+      "budget": {
+        "queries": 9,
+        "parameters": 16
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d743-73fd-9ce9-165e961f6b98",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "renamed copy.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.632Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "duplicate.response.json",
+        "bytes": 454,
+        "sha256": "3bb902f741bf90e4f1daa73b4dc3d3c0a0866599e90c15d30fe417d236327e13"
+      }
+    },
+    {
+      "name": "duplicate-bytes",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d743-73fd-9ce9-165e961f6b98/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''renamed%20copy.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "duplicate-bytes.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "sql-6",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 29,
+          "changed_db": false,
+          "size_after": 610304,
+          "rows_read": 1,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "id": "01a12766-d743-73fd-9ce9-165e961f6b98",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "name": "renamed copy.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "objectKey": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "contentSha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02",
+            "uploadRequestId": null,
+            "uploadRequestHash": null,
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": 1791662413632,
+            "updatedAt": 1791662413632,
+            "deletedAt": null,
+            "deletedBy": null,
+            "version": 1,
+            "lastMutationId": "01a12766-d743-7422-a854-da9aed0368e2"
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-6.response.json",
+        "bytes": 983,
+        "sha256": "ccedd0ce32f84189d2ea58855192fb8ee32b1676ad1281ba8eb19d11c7c22218"
+      }
+    },
+    {
+      "name": "delete",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+      "method": "DELETE",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "16",
+        "x-wu35-queries": "10"
+      },
+      "budget": {
+        "queries": 10,
+        "parameters": 16
+      },
+      "response": {
+        "data": {
+          "file": {
+            "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "name": "renamed.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "contentAvailable": true,
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": "2026-10-10T20:00:13.449Z",
+            "version": 3
+          },
+          "undo": {
+            "id": "01a12766-d75e-7b74-9734-2aed99829693",
+            "kind": "file.delete"
+          }
+        }
+      },
+      "raw": {
+        "path": "delete.response.json",
+        "bytes": 532,
+        "sha256": "4ea5218c91d02e7da0020d692ec4ed791dd7b78f507c668e3e9727c221d1f595"
+      }
+    },
+    {
+      "name": "deleted-content",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df/content",
+      "method": "GET",
+      "status": 404,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "File not found"
+        }
+      },
+      "raw": {
+        "path": "deleted-content.response.json",
+        "bytes": 57,
+        "sha256": "b86136b7d4adf1fdd92a088e725ecbd83aae9d903342564e41abd6d2406caec9"
+      }
+    },
+    {
+      "name": "objects-7",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-7.response.json",
+        "bytes": 411,
+        "sha256": "0a41020c2d711432e78232b660aba87cb8d61c33c06bc12c86c8356be25f946e"
+      }
+    },
+    {
+      "name": "drawer-deleted",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-7a97-849a-5913d69d66d7",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "5",
+        "x-wu35-queries": "5"
+      },
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      },
+      "response": {
+        "data": {
+          "task": {
+            "id": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "key": "WEB-103",
+            "title": "Audit existing navigation",
+            "descriptionHtml": "",
+            "status": "done",
+            "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+            "priority": "high",
+            "startDate": "2026-09-21",
+            "dueDate": "2026-09-26",
+            "estimate": "2d",
+            "recurrence": null,
+            "labelIds": [
+              "research"
+            ],
+            "dependencyIds": [],
+            "position": 100,
+            "completedAt": "2026-10-08T03:00:00.000Z",
+            "archivedAt": null,
+            "createdAt": "2026-09-10T09:00:00.000Z",
+            "updatedAt": "2026-10-10T20:00:13.660Z",
+            "version": 5,
+            "isFavorite": false,
+            "subtaskSummary": {
+              "total": 0,
+              "completed": 0
+            },
+            "attachmentCount": 1,
+            "commentCount": 0
+          },
+          "subtasks": [],
+          "attachments": [
+            {
+              "id": "01a12766-d743-73fd-9ce9-165e961f6b98",
+              "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+              "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+              "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+              "name": "renamed copy.txt",
+              "fileType": "doc",
+              "mimeType": "text/plain",
+              "sizeBytes": 47,
+              "displaySize": "47 B",
+              "storageMode": "r2",
+              "contentAvailable": true,
+              "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+              "createdAt": "2026-10-10T20:00:13.632Z",
+              "version": 1
+            }
+          ]
+        }
+      },
+      "raw": {
+        "path": "drawer-deleted.response.json",
+        "bytes": 1190,
+        "sha256": "83559eacdbcc912903da6949cf691e10d6968dd490e91278ae34f107414ab32e"
+      }
+    },
+    {
+      "name": "undo",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12766-d75e-7b74-9734-2aed99829693",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "17",
+        "x-wu35-queries": "10"
+      },
+      "budget": {
+        "queries": 10,
+        "parameters": 17
+      },
+      "response": {
+        "data": {
+          "undoId": "01a12766-d75e-7b74-9734-2aed99829693",
+          "kind": "file.delete",
+          "appliedAt": "2026-10-10T20:00:13.697Z",
+          "affected": {
+            "taskIds": [
+              "01a11abd-aa80-7a97-849a-5913d69d66d7"
+            ],
+            "projectIds": [
+              "01a11abd-aa80-7d11-86d8-e6545859cd14"
+            ],
+            "teamIds": [],
+            "memberIds": [],
+            "commentIds": [],
+            "fileIds": [
+              "01a12766-d68d-788e-bf0f-eb8b4120b3df"
+            ]
+          }
+        }
+      },
+      "raw": {
+        "path": "undo.response.json",
+        "bytes": 331,
+        "sha256": "ac335f74e119fe6e55db98952dba0c0e73e1976e429472a9eadc1362aca43f3c"
+      }
+    },
+    {
+      "name": "undo-replay",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12766-d75e-7b74-9734-2aed99829693",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "6"
+      },
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "undoId": "01a12766-d75e-7b74-9734-2aed99829693",
+          "kind": "file.delete",
+          "appliedAt": "2026-10-10T20:00:13.697Z",
+          "affected": {
+            "taskIds": [
+              "01a11abd-aa80-7a97-849a-5913d69d66d7"
+            ],
+            "projectIds": [
+              "01a11abd-aa80-7d11-86d8-e6545859cd14"
+            ],
+            "teamIds": [],
+            "memberIds": [],
+            "commentIds": [],
+            "fileIds": [
+              "01a12766-d68d-788e-bf0f-eb8b4120b3df"
+            ]
+          }
+        }
+      },
+      "raw": {
+        "path": "undo-replay.response.json",
+        "bytes": 331,
+        "sha256": "ac335f74e119fe6e55db98952dba0c0e73e1976e429472a9eadc1362aca43f3c"
+      }
+    },
+    {
+      "name": "undo-content",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''renamed.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "undo-content.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "delete-for-conflict",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+      "method": "DELETE",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "16",
+        "x-wu35-queries": "10"
+      },
+      "budget": {
+        "queries": 10,
+        "parameters": 16
+      },
+      "response": {
+        "data": {
+          "file": {
+            "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "name": "renamed.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "contentAvailable": true,
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": "2026-10-10T20:00:13.449Z",
+            "version": 5
+          },
+          "undo": {
+            "id": "01a12766-d7aa-7e2c-b62b-e2718b64d83f",
+            "kind": "file.delete"
+          }
+        }
+      },
+      "raw": {
+        "path": "delete-for-conflict.response.json",
+        "bytes": 532,
+        "sha256": "a22b24c2727e00ccc5dd9c9f9cd2e1890f7274e5eb87063c633900c0b179d1c5"
+      }
+    },
+    {
+      "name": "parent-version-change",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 201,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "12"
+      },
+      "budget": {
+        "queries": 12,
+        "parameters": 11
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d7b7-7ad0-81df-e49269be6464",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.748Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "parent-version-change.response.json",
+        "bytes": 446,
+        "sha256": "94219b434f2730b5fe3fad1f1803667cdd8ee2867588894e6f0c9959d0393872"
+      }
+    },
+    {
+      "name": "undo-parent-conflict",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12766-d7aa-7e2c-b62b-e2718b64d83f",
+      "method": "POST",
+      "status": 409,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "17",
+        "x-wu35-queries": "11"
+      },
+      "budget": {
+        "queries": 11,
+        "parameters": 17
+      },
+      "response": {
+        "error": {
+          "code": "CONFLICT",
+          "message": "File Undo targets changed"
+        }
+      },
+      "raw": {
+        "path": "undo-parent-conflict.response.json",
+        "bytes": 67,
+        "sha256": "b8b986731a8ad628dfabf66d4929e3f39035711cf96d6031997e989861552d8c"
+      }
+    },
+    {
+      "name": "restore-deleted",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df/restore-deleted",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "16",
+        "x-wu35-queries": "9"
+      },
+      "budget": {
+        "queries": 9,
+        "parameters": 16
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d68d-788e-bf0f-eb8b4120b3df",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "renamed.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.449Z",
+          "version": 6
+        }
+      },
+      "raw": {
+        "path": "restore-deleted.response.json",
+        "bytes": 449,
+        "sha256": "9ccd4d94b6331eebee82712329fec7f0fc2cd50c0de3e216030919d155070e90"
+      }
+    },
+    {
+      "name": "restore-bytes",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d68d-788e-bf0f-eb8b4120b3df/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''renamed.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "restore-bytes.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "objects-8",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d7b7-7ad0-81df-e49269be6464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-8.response.json",
+        "bytes": 610,
+        "sha256": "fde9f31f5db8f30c99ad5ac477d102ba0fda6213e9af630816d3d57c0575e569"
+      }
+    },
+    {
+      "name": "sql-9",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 1,
+          "changes": 0,
+          "last_row_id": 33,
+          "changed_db": false,
+          "size_after": 618496,
+          "rows_read": 27,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "n": 27
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-9.response.json",
+        "bytes": 186,
+        "sha256": "3b739313b8116050b5a360d13102b2a4049386f7468ee421d52f6f6aeda09463"
+      }
+    },
+    {
+      "name": "r2-put-failure",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 500,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "9"
+      },
+      "budget": {
+        "queries": 9,
+        "parameters": 11
+      },
+      "response": {
+        "error": {
+          "code": "INTERNAL_ERROR",
+          "message": "File bytes could not be confirmed; retry the same intent"
+        }
+      },
+      "raw": {
+        "path": "r2-put-failure.response.json",
+        "bytes": 104,
+        "sha256": "b5e5338f64b2b94ea8e32801acd65db12300825719c8955cc30b5b5226a05bbd"
+      }
+    },
+    {
+      "name": "objects-10",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d7b7-7ad0-81df-e49269be6464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-10.response.json",
+        "bytes": 610,
+        "sha256": "fde9f31f5db8f30c99ad5ac477d102ba0fda6213e9af630816d3d57c0575e569"
+      }
+    },
+    {
+      "name": "sql-confirmed-rollback",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 500,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "10"
+      },
+      "budget": {
+        "queries": 10,
+        "parameters": 11
+      },
+      "response": {
+        "error": {
+          "code": "INTERNAL_ERROR",
+          "message": "Request failed"
+        }
+      },
+      "raw": {
+        "path": "sql-confirmed-rollback.response.json",
+        "bytes": 62,
+        "sha256": "fa3722706d57ce921639cd166405ca1e914a6ec45dc54206bfa5dd622cf2b36e"
+      }
+    },
+    {
+      "name": "objects-11",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d7b7-7ad0-81df-e49269be6464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-11.response.json",
+        "bytes": 610,
+        "sha256": "fde9f31f5db8f30c99ad5ac477d102ba0fda6213e9af630816d3d57c0575e569"
+      }
+    },
+    {
+      "name": "sql-12",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 33,
+          "changed_db": false,
+          "size_after": 618496,
+          "rows_read": 27,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "n": 27
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-12.response.json",
+        "bytes": 186,
+        "sha256": "0f478ac3c2ee21cdf29d7e61c6762e7ee5fe031e3f916dffb5a58c1e0a98c4b7"
+      }
+    },
+    {
+      "name": "lost-ack-after-commit",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "13"
+      },
+      "budget": {
+        "queries": 13,
+        "parameters": 11
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d81b-7cde-ac10-708e83bbd464",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.849Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "lost-ack-after-commit.response.json",
+        "bytes": 446,
+        "sha256": "3cf69c56af45e429ebba295af984cf98fc64a1461e7f578f3cb1e6580cffe4e1"
+      }
+    },
+    {
+      "name": "ack-bytes-preserved",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d81b-7cde-ac10-708e83bbd464/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''wu35.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "ack-bytes-preserved.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "ack-retry",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "8"
+      },
+      "budget": {
+        "queries": 8,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d81b-7cde-ac10-708e83bbd464",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.849Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "ack-retry.response.json",
+        "bytes": 446,
+        "sha256": "3cf69c56af45e429ebba295af984cf98fc64a1461e7f578f3cb1e6580cffe4e1"
+      }
+    },
+    {
+      "name": "ack-readfail",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 500,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "10"
+      },
+      "budget": {
+        "queries": 10,
+        "parameters": 11
+      },
+      "response": {
+        "error": {
+          "code": "INTERNAL_ERROR",
+          "message": "Upload outcome is unconfirmed; retry the same intent"
+        }
+      },
+      "raw": {
+        "path": "ack-readfail.response.json",
+        "bytes": 100,
+        "sha256": "5b18b961b8f01c26314afca943c907fd36cc3a6c1a2936aff31b8c7435c7078b"
+      }
+    },
+    {
+      "name": "sql-13",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 35,
+          "changed_db": false,
+          "size_after": 630784,
+          "rows_read": 29,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "id": "01a12766-d83f-7bc1-9018-98fbdc4dcf16",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "name": "wu35.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "objectKey": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d83f-7bc1-9018-98fbdc4dcf16",
+            "contentSha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02",
+            "uploadRequestId": "3ecab952-e5c4-46f4-b961-e9539c66792b",
+            "uploadRequestHash": "83e7e7c2a710fa164edb0311f1ffb27890fcee65fcb5f0810725a1f0aeb03901",
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": 1791662413885,
+            "updatedAt": 1791662413885,
+            "deletedAt": null,
+            "deletedBy": null,
+            "version": 1,
+            "lastMutationId": "01a12766-d83f-7355-ab6a-12e806ccf1ac"
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-13.response.json",
+        "bytes": 1072,
+        "sha256": "5723e78f19649734e472e2fab91953c1c08d53447b05583d1205e497c9a4d0ec"
+      }
+    },
+    {
+      "name": "objects-14",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d7b7-7ad0-81df-e49269be6464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d81b-7cde-ac10-708e83bbd464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d83f-7bc1-9018-98fbdc4dcf16",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-14.response.json",
+        "bytes": 1008,
+        "sha256": "ec09690c3683bb7ce667b34d885b2f0731eab631c5fdc8b881cd52c4507e8388"
+      }
+    },
+    {
+      "name": "unknown-committed-bytes",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d83f-7bc1-9018-98fbdc4dcf16/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''wu35.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "unknown-committed-bytes.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "unknown-retry",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "8"
+      },
+      "budget": {
+        "queries": 8,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d83f-7bc1-9018-98fbdc4dcf16",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.885Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "unknown-retry.response.json",
+        "bytes": 446,
+        "sha256": "5a6af02d20e8bc477ddc0fcf4d8eda66442f6304eff61dc212d045aacaf87ee1"
+      }
+    },
+    {
+      "name": "objects-15",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d7b7-7ad0-81df-e49269be6464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d81b-7cde-ac10-708e83bbd464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d83f-7bc1-9018-98fbdc4dcf16",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-15.response.json",
+        "bytes": 1008,
+        "sha256": "ec09690c3683bb7ce667b34d885b2f0731eab631c5fdc8b881cd52c4507e8388"
+      }
+    },
+    {
+      "name": "pending-negative-read",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 500,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "10"
+      },
+      "budget": {
+        "queries": 10,
+        "parameters": 11
+      },
+      "response": {
+        "error": {
+          "code": "INTERNAL_ERROR",
+          "message": "Upload outcome is unconfirmed; retry the same intent"
+        }
+      },
+      "raw": {
+        "path": "pending-negative-read.response.json",
+        "bytes": 100,
+        "sha256": "5b18b961b8f01c26314afca943c907fd36cc3a6c1a2936aff31b8c7435c7078b"
+      }
+    },
+    {
+      "name": "sql-16",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 1,
+          "changes": 0,
+          "last_row_id": 35,
+          "changed_db": false,
+          "size_after": 630784,
+          "rows_read": 29,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "n": 0
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-16.response.json",
+        "bytes": 185,
+        "sha256": "5ae3938ab23d9b5667201fdb9682027f85122cf72c43460d77c224dc79f4f756"
+      }
+    },
+    {
+      "name": "objects-17",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d7b7-7ad0-81df-e49269be6464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d81b-7cde-ac10-708e83bbd464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d83f-7bc1-9018-98fbdc4dcf16",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d86f-7fc7-8136-f848cb48ad61",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-17.response.json",
+        "bytes": 1207,
+        "sha256": "375617df161a678b4a7b8db7c56ff9f088663e3db19842af38d48b0bee95952b"
+      }
+    },
+    {
+      "name": "pending-actual-finish",
+      "path": "/__wu35/flush",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "completed": [
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 1,
+              "last_row_id": 35,
+              "changed_db": true,
+              "size_after": 630784,
+              "rows_read": 3,
+              "rows_written": 1
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 1,
+              "last_row_id": 30,
+              "changed_db": true,
+              "size_after": 630784,
+              "rows_read": 2,
+              "rows_written": 5
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 1,
+              "changes": 1,
+              "last_row_id": 36,
+              "changed_db": true,
+              "size_after": 630784,
+              "rows_read": 2,
+              "rows_written": 5
+            },
+            "results": []
+          },
+          {
+            "success": true,
+            "meta": {
+              "served_by": "miniflare.db",
+              "duration": 0,
+              "changes": 0,
+              "last_row_id": 36,
+              "changed_db": false,
+              "size_after": 630784,
+              "rows_read": 1,
+              "rows_written": 0
+            },
+            "results": [
+              {
+                "id": "01a12766-d86f-7fc7-8136-f848cb48ad61",
+                "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+                "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+                "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+                "name": "wu35.txt",
+                "fileType": "doc",
+                "mimeType": "text/plain",
+                "sizeBytes": 47,
+                "displaySize": "47 B",
+                "storageMode": "r2",
+                "objectKey": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d86f-7fc7-8136-f848cb48ad61",
+                "contentSha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02",
+                "uploadRequestId": "7740fec2-1bb1-484e-b76e-878877edd736",
+                "uploadRequestHash": "83e7e7c2a710fa164edb0311f1ffb27890fcee65fcb5f0810725a1f0aeb03901",
+                "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+                "createdAt": 1791662413933,
+                "updatedAt": 1791662413933,
+                "deletedAt": null,
+                "deletedBy": null,
+                "version": 1,
+                "lastMutationId": "01a12766-d86f-7355-9793-06bc51f33979"
+              }
+            ]
+          }
+        ]
+      },
+      "raw": {
+        "path": "pending-actual-finish.response.json",
+        "bytes": 1618,
+        "sha256": "0cce8b0d844ed6744f7daaae9e0bbd6f0d358599cd1ef00f6f38f04eb83dd84a"
+      }
+    },
+    {
+      "name": "sql-18",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 36,
+          "changed_db": false,
+          "size_after": 630784,
+          "rows_read": 30,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "id": "01a12766-d86f-7fc7-8136-f848cb48ad61",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "name": "wu35.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "objectKey": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d86f-7fc7-8136-f848cb48ad61",
+            "contentSha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02",
+            "uploadRequestId": "7740fec2-1bb1-484e-b76e-878877edd736",
+            "uploadRequestHash": "83e7e7c2a710fa164edb0311f1ffb27890fcee65fcb5f0810725a1f0aeb03901",
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": 1791662413933,
+            "updatedAt": 1791662413933,
+            "deletedAt": null,
+            "deletedBy": null,
+            "version": 1,
+            "lastMutationId": "01a12766-d86f-7355-9793-06bc51f33979"
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-18.response.json",
+        "bytes": 1072,
+        "sha256": "671645471a2134ac853e93e1c55c049f71a341fa7eaa91f255e384f4798f66ee"
+      }
+    },
+    {
+      "name": "pending-late-commit-bytes",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d86f-7fc7-8136-f848cb48ad61/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''wu35.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "pending-late-commit-bytes.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "pending-retry",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "8"
+      },
+      "budget": {
+        "queries": 8,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d86f-7fc7-8136-f848cb48ad61",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.933Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "pending-retry.response.json",
+        "bytes": 446,
+        "sha256": "60c7360212d055188e3088c8d6d48d19c2006f12851552277702dfc1cfc4ab3b"
+      }
+    },
+    {
+      "name": "objects-19",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d7b7-7ad0-81df-e49269be6464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d81b-7cde-ac10-708e83bbd464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d83f-7bc1-9018-98fbdc4dcf16",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d86f-7fc7-8136-f848cb48ad61",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-19.response.json",
+        "bytes": 1207,
+        "sha256": "375617df161a678b4a7b8db7c56ff9f088663e3db19842af38d48b0bee95952b"
+      }
+    },
+    {
+      "name": "concurrent-a",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 201,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "12"
+      },
+      "budget": {
+        "queries": 12,
+        "parameters": 11
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d8a6-7fe2-9c4a-c24fc2564795",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.986Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "concurrent-a.response.json",
+        "bytes": 446,
+        "sha256": "6ceb2235d1659b37edd9b884931e5528ce3c4a64906e9dd73d2ca411826cb360"
+      }
+    },
+    {
+      "name": "concurrent-b",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "11",
+        "x-wu35-queries": "12"
+      },
+      "budget": {
+        "queries": 12,
+        "parameters": 11
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d8a6-7fe2-9c4a-c24fc2564795",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.986Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "concurrent-b.response.json",
+        "bytes": 446,
+        "sha256": "6ceb2235d1659b37edd9b884931e5528ce3c4a64906e9dd73d2ca411826cb360"
+      }
+    },
+    {
+      "name": "objects-20",
+      "path": "/__wu35/objects",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "objects": [
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d68d-788e-bf0f-eb8b4120b3df",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d743-73fd-9ce9-165e961f6b98",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d7b7-7ad0-81df-e49269be6464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d81b-7cde-ac10-708e83bbd464",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d83f-7bc1-9018-98fbdc4dcf16",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d86f-7fc7-8136-f848cb48ad61",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          },
+          {
+            "key": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-d8a6-7fe2-9c4a-c24fc2564795",
+            "size": 47,
+            "etag": "ae6ac15f01800822e9922402d45a7980"
+          }
+        ]
+      },
+      "raw": {
+        "path": "objects-20.response.json",
+        "bytes": 1406,
+        "sha256": "6fea606050c134770c5747df80d2c246f2812324ccbae69473437cbff1949cc5"
+      }
+    },
+    {
+      "name": "concurrent-winner-preserved",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d8a6-7fe2-9c4a-c24fc2564795/content",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "cache-control": "private, no-store",
+        "content-disposition": "attachment; filename=\"download\"; filename*=UTF-8''wu35.txt",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'none'; sandbox",
+        "content-type": "text/plain",
+        "etag": "\"ae6ac15f01800822e9922402d45a7980\"",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      },
+      "raw": {
+        "path": "concurrent-winner-preserved.response.bin",
+        "bytes": 47,
+        "sha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02"
+      }
+    },
+    {
+      "name": "fake-image-type",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 400,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "4"
+      },
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "VALIDATION_ERROR",
+          "message": "File bytes do not match the preview media type"
+        }
+      },
+      "raw": {
+        "path": "fake-image-type.response.json",
+        "bytes": 96,
+        "sha256": "394b6b924a8a3d9ba015270a40025b4bc2ccc92c200c3ca9b985bf1ee04cc410"
+      }
+    },
+    {
+      "name": "oversize",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 413,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "2"
+      },
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "PAYLOAD_TOO_LARGE",
+          "message": "File exceeds 10 MiB"
+        }
+      },
+      "raw": {
+        "path": "oversize.response.json",
+        "bytes": 70,
+        "sha256": "61f0159fe298a8a80c8fa08674f66549bb3e8340aa286467d5990c5e7ca7b21a"
+      }
+    },
+    {
+      "name": "private-upload",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/files",
+      "method": "POST",
+      "status": 404,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Project is restricted"
+        }
+      },
+      "raw": {
+        "path": "private-upload.response.json",
+        "bytes": 64,
+        "sha256": "703c122ac8758387f066236e1c75dccd3f023562a454b2dcb2b98a24ff50010b"
+      }
+    },
+    {
+      "name": "wrong-task-project",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 404,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "4"
+      },
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Attachment task not found"
+        }
+      },
+      "raw": {
+        "path": "wrong-task-project.response.json",
+        "bytes": 68,
+        "sha256": "818471049678696cd49bee87df05574e395c0f893ea5364b145d4dcc415a9d40"
+      }
+    },
+    {
+      "name": "foreign-content",
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/files/01a12766-d68d-788e-bf0f-eb8b4120b3df/content",
+      "method": "GET",
+      "status": 404,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "2"
+      },
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Workspace not found"
+        }
+      },
+      "raw": {
+        "path": "foreign-content.response.json",
+        "bytes": 62,
+        "sha256": "eb70e0428d76a03280d32cbf453e63715145799ddfc7860b6f0790162269cf84"
+      }
+    },
+    {
+      "name": "sample-no-fabricated-bytes",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a11abd-aa80-7dc8-8353-eb86fc8c9d9c/content",
+      "method": "GET",
+      "status": 404,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "Sample file has no original bytes"
+        }
+      },
+      "raw": {
+        "path": "sample-no-fabricated-bytes.response.json",
+        "bytes": 76,
+        "sha256": "cfe9e28cfbe19472eed38b742446d01be5551a1da494fd91e3ce2202f493329b"
+      }
+    },
+    {
+      "name": "get-for-delete-replay",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d81b-7cde-ac10-708e83bbd464",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "3"
+      },
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "response": {
+        "data": {
+          "id": "01a12766-d81b-7cde-ac10-708e83bbd464",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+          "name": "wu35.txt",
+          "fileType": "doc",
+          "mimeType": "text/plain",
+          "sizeBytes": 47,
+          "displaySize": "47 B",
+          "storageMode": "r2",
+          "contentAvailable": true,
+          "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "createdAt": "2026-10-10T20:00:13.849Z",
+          "version": 1
+        }
+      },
+      "raw": {
+        "path": "get-for-delete-replay.response.json",
+        "bytes": 446,
+        "sha256": "3cf69c56af45e429ebba295af984cf98fc64a1461e7f578f3cb1e6580cffe4e1"
+      }
+    },
+    {
+      "name": "delete-ack",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12766-d81b-7cde-ac10-708e83bbd464",
+      "method": "DELETE",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "16",
+        "x-wu35-queries": "10"
+      },
+      "budget": {
+        "queries": 10,
+        "parameters": 16
+      },
+      "response": {
+        "data": {
+          "file": {
+            "id": "01a12766-d81b-7cde-ac10-708e83bbd464",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": "01a11abd-aa80-7a97-849a-5913d69d66d7",
+            "name": "wu35.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "contentAvailable": true,
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": "2026-10-10T20:00:13.849Z",
+            "version": 2
+          },
+          "undo": {
+            "id": "01a12766-d961-7e9a-bbd2-1a36d358e482",
+            "kind": "file.delete"
+          }
+        }
+      },
+      "raw": {
+        "path": "delete-ack.response.json",
+        "bytes": 529,
+        "sha256": "280ad8f10cbfac8430342a6b0f3750c10a1e33a833a6e0e1da4e0447931a1a1a"
+      }
+    },
+    {
+      "name": "deleted-intent-replay",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "method": "POST",
+      "status": 404,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "x-wu35-parameters": "4",
+        "x-wu35-queries": "6"
+      },
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "response": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "File not found"
+        }
+      },
+      "raw": {
+        "path": "deleted-intent-replay.response.json",
+        "bytes": 57,
+        "sha256": "b86136b7d4adf1fdd92a088e725ecbd83aae9d903342564e41abd6d2406caec9"
+      }
+    },
+    {
+      "name": "sql-21",
+      "path": "/__wu35/sql",
+      "method": "POST",
+      "status": 200,
+      "headers": {
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked"
+      },
+      "budget": {
+        "queries": 0,
+        "parameters": 0
+      },
+      "response": {
+        "success": true,
+        "meta": {
+          "served_by": "miniflare.db",
+          "duration": 0,
+          "changes": 0,
+          "last_row_id": 40,
+          "changed_db": false,
+          "size_after": 638976,
+          "rows_read": 33,
+          "rows_written": 0
+        },
+        "results": [
+          {
+            "id": "01a12766-e0a5-7a1b-b3e7-78e65182108c",
+            "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+            "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+            "taskId": null,
+            "name": "browser-upload.txt",
+            "fileType": "doc",
+            "mimeType": "text/plain",
+            "sizeBytes": 47,
+            "displaySize": "47 B",
+            "storageMode": "r2",
+            "objectKey": "workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files/01a12766-e0a5-7a1b-b3e7-78e65182108c",
+            "contentSha256": "250af4f408452fa61780a230374994805e78cb3ad4e793ffc49bedb575860b02",
+            "uploadRequestId": "aea0f090-b69d-4444-8479-d2fb760d9ea4",
+            "uploadRequestHash": "2e105cd49d09e04354fb9c2b787dadcb6387dadc7772c834b334856f9a194822",
+            "createdBy": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+            "createdAt": 1791662416035,
+            "updatedAt": 1791662416035,
+            "deletedAt": null,
+            "deletedBy": null,
+            "version": 1,
+            "lastMutationId": "01a12766-e0a5-76c6-8c4f-1f4ae7b38827"
+          }
+        ]
+      },
+      "raw": {
+        "path": "sql-21.response.json",
+        "bytes": 1048,
+        "sha256": "ba2cec2911b96fdeed79d032d093b2962fc6480567c72d93629fb8caeb10935a"
+      }
+    }
+  ],
+  "checks": [
+    "Actual multipart bytes/checksum/R2-D1 linkage; no bytes in D1",
+    "Stable same-key replay identity and normalized payload mismatch409",
+    "Rename retains bytes/original-intent hash; duplicate independent object",
+    "Tombstone retains R2 bytes; bounded one-shot current-parent Undo",
+    "Actual native SQL rollback cleans only owned object; R2 failure no ready metadata",
+    "Actual commit then lost ACK/read failure preserves committed bytes and identity",
+    "Negative read not rollback proof: pending ambiguity retained; actual late D1 commit/retry resolves same file",
+    "Concurrent attempts own unique keys; native unique winner; confirmed loser-only cleanup",
+    "Size/type/private/foreign/task scope and original sample unavailable",
+    "Current HttpAdapter actual multipart + typed content DTO",
+    "Actual UI upload, reload, shared FileCard preview and downloaded checksum"
+  ],
+  "runtime": "actual Wrangler local R2+D1; actual Chromium UI",
+  "browser": "145.0.7632.6",
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('menuitem', { name: 'Task', exact: true })\u001b[22m\n\n    at /workspace/task8/apps/api/tests/wu35/verify.mjs:58:166"
+}
