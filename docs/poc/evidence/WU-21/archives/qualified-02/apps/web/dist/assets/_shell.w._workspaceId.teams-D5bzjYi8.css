@@ -1,0 +1,17 @@
+/* Source .fx-route .grid2 has two nested motion owners in TeamDetail.
+   Keep their layer/timing alongside the shared route entrance; no global override. */
+[data-team-detail][data-project-transition=route] [data-team-detail-grid] > * > :nth-child(2),
+[data-team-detail][data-project-transition=route] [data-team-detail-grid] > :nth-child(2) > :first-child {
+  animation: riseIn .4s .09s var(--ease) both;
+}
+:root[data-motion=reduce] [data-team-detail][data-project-transition=route] [data-team-detail-grid] > * > :nth-child(2),
+:root[data-motion=reduce] [data-team-detail][data-project-transition=route] [data-team-detail-grid] > :nth-child(2) > :first-child { animation: fadeOnly .12s both; }
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion=full]) [data-team-detail][data-project-transition=route] [data-team-detail-grid] > * > :nth-child(2),
+  :root:not([data-motion=full]) [data-team-detail][data-project-transition=route] [data-team-detail-grid] > :nth-child(2) > :first-child { animation: fadeOnly .12s both; }
+}
+
+/* Source .fx-route > .fullstate owns the same finite entrance. */
+.team-not-found-motion { animation: riseIn .36s var(--ease) both; }
+:root[data-motion=reduce] .team-not-found-motion { animation: fadeOnly .12s both; }
+@media (prefers-reduced-motion: reduce) { :root:not([data-motion=full]) .team-not-found-motion { animation: fadeOnly .12s both; } }

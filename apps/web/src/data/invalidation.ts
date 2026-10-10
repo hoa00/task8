@@ -4,8 +4,10 @@ import type { QueryClient } from '@tanstack/react-query';
 import { queryKeys } from './query-keys.ts';
 
 const taskProjections = ['task', 'tasks', 'getTaskSummary', 'project', 'projects', 'getProjectSummary', 'home', 'overview', 'getMemberSummary', 'getTeamSummary', 'members', 'teams', 'search', 'activity', 'archive', 'bootstrap', 'milestones'] as const;
+const teamProjections = ['team', 'teams', 'getTeamSummary', 'member', 'members', 'getMemberSummary', 'project', 'projects', 'getProjectSummary', 'bootstrap', 'home', 'overview', 'search', 'activity'] as const;
 const projectProjections = [...taskProjections, 'files', 'file', 'comments', 'savedViews'] as const;
 export const operationInvalidations: Partial<Record<OperationId, readonly string[]>> = {
+  createTeam: teamProjections, updateTeam: teamProjections, deleteTeam: teamProjections,
   updateNotification: ['notifications', 'bootstrap'], readAllNotifications: ['notifications', 'bootstrap'],
   createTask: taskProjections, updateTask: taskProjections, setTaskCompletion: taskProjections, moveTask: [...taskProjections, 'files', 'file'], duplicateTask: taskProjections, archiveTask: taskProjections, restoreTask: taskProjections, restoreDeletedTask: taskProjections, deleteTask: taskProjections, bulkMutateTasks: taskProjections,
   createSubtask: taskProjections, updateSubtask: taskProjections, deleteSubtask: taskProjections, promoteSubtask: taskProjections,

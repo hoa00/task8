@@ -1,0 +1,1 @@
+import{t as e}from"./ProjectPage-DNfE-wHc.js";var t=e;export{t as component};

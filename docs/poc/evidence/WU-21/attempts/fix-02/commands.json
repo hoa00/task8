@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/fix-02/typecheck.log",
+      "sha256": "495db6573b884598650e809c71694852acf348f4b7a476280b8b3ef67aadb094"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/fix-02/lint.log",
+      "sha256": "35e509a1912a56895531808e44efe723cd6f7e553d531519214dcd3021e8ecc9"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/fix-02/build.log",
+      "sha256": "8728fcccffb2de2a2021e744c9fe4e47254938d3671dc531f6005b07a9a39379"
+    },
+    {
+      "id": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/fix-02/http-build.log",
+      "sha256": "94f16f03f6613c93b1f4a25e15ef5099f36edf50c0a05294ca1bdafd291c47e3"
+    },
+    {
+      "id": "http-bundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-21",
+        "--evidence-suffix=fix-02"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/fix-02/http-bundle.log",
+      "sha256": "26ad130919dfef589b9acac7f42d5298fe59b2821d802964c8751209999a9a95"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/fix-02/reference.log",
+      "sha256": "2b359c7cfcf5331723dcd238178dc7be40372c418c174696a3fe25a5eaf20933"
+    }
+  ]
+}

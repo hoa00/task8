@@ -1,0 +1,20 @@
+H21-06-external-delete-clears-open-project-selection-and-Invite-choice
+H21-07-team-read404-remains-NotFound-Home-native
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(report.audit.writes.some(row=>row.operation==='deleteTeam'))
+
+    at file:///workspace/task8/tests/visual/teams/http.mjs:43:653 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

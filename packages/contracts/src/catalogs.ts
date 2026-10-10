@@ -23,6 +23,8 @@ export const ProjectStatusSchema = z.enum(projectStatuses.map(item => item.id));
 export const LabelIdSchema = z.enum(labels.map(item => item.id));
 export const RecurrenceSchema = z.enum(recurrences.map(item => item.id));
 export const ProjectIconSchema = z.enum(projectIcons);
+// Source New team defaults to users; its selectable icons share the project picker.
+export const TeamIconSchema = z.enum(['users', ...projectIcons]);
 export const EstimateSchema = z.enum(estimates);
 export const TemplateIdSchema = z.enum(templates.map(item => item.id));
 export const RoleSchema = z.enum(['Owner', 'Admin', 'Member', 'Guest']);

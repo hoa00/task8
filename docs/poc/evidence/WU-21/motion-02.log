@@ -1,0 +1,46 @@
+Owned source server: PID 440234, port 4173, cwd /workspace/task8/.reference/gr8r-studio
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: user-reduce/detail/1 computedCSS
++ actual - expected
+
+  {
++   animationDelay: '0s',
++   animationDuration: '0.12s',
+-   animationDelay: '0.09s',
+-   animationDuration: '0.4s',
+    animationFillMode: 'both',
++   animationName: 'fadeOnly',
++   animationTimingFunction: 'ease',
++   transform: 'none'
+-   animationName: 'riseIn',
+-   animationTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
+-   transform: 'matrix(1, 0, 0, 1, 0, 0)'
+  }
+
+    at file:///workspace/task8/tests/visual/teams/motion.mjs:11:2356 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: {
+    animationName: 'fadeOnly',
+    animationDuration: '0.12s',
+    animationDelay: '0s',
+    animationTimingFunction: 'ease',
+    animationFillMode: 'both',
+    transform: 'none'
+  },
+  expected: {
+    animationName: 'riseIn',
+    animationDuration: '0.4s',
+    animationDelay: '0.09s',
+    animationTimingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
+    animationFillMode: 'both',
+    transform: 'matrix(1, 0, 0, 1, 0, 0)'
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

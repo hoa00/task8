@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "kind": "Seven actual required executions selected from actual current-compatible commands, not one fresh full run",
+  "commands": [
+    {
+      "attempt": "core-02",
+      "reportSha256": "b9c0033cd0db915e9dcc7aef5add9b576ff920f0cd797261fe8e451c127b471e",
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/core-02/test.log",
+      "sha256": "8fd30a831211c027e98f719f15735bb4663f4d73307b9dc7cc4a1dac452a34ad"
+    },
+    {
+      "attempt": "avatar-fix-01",
+      "reportSha256": "b66e61a4a8fece248bbc90f71a758fcf8f804c11e6ca1ee2d4739ad202f6ea3f",
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/avatar-fix-01/typecheck.log",
+      "sha256": "44d9bd2994211c46b723136fc164bec890c466b26bce50bf16819b997f5846bc"
+    },
+    {
+      "attempt": "whitespace-final-01",
+      "reportSha256": "7e6c44a964fc57999852ffd34507948033820b4c2f89c5156ccdb6cd12655d8d",
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/whitespace-final-01/lint.log",
+      "sha256": "35e509a1912a56895531808e44efe723cd6f7e553d531519214dcd3021e8ecc9"
+    },
+    {
+      "attempt": "whitespace-final-01",
+      "reportSha256": "7e6c44a964fc57999852ffd34507948033820b4c2f89c5156ccdb6cd12655d8d",
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/whitespace-final-01/build.log",
+      "sha256": "a9a92f03581568ae1ce774c113c048af5a414fb108050a87f66b748a17eb2aa0"
+    },
+    {
+      "attempt": "whitespace-final-01",
+      "reportSha256": "7e6c44a964fc57999852ffd34507948033820b4c2f89c5156ccdb6cd12655d8d",
+      "id": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/whitespace-final-01/http-build.log",
+      "sha256": "50107dfe16c44e31b1115c2e05b21c702e987af790ef934a529ab3eb1fda4b7d"
+    },
+    {
+      "attempt": "whitespace-final-01",
+      "reportSha256": "7e6c44a964fc57999852ffd34507948033820b4c2f89c5156ccdb6cd12655d8d",
+      "id": "http-bundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-21",
+        "--evidence-suffix=whitespace-final-01"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/whitespace-final-01/http-bundle.log",
+      "sha256": "d1473ee9d03375df6258369bf16b86491fb6db263c9c9e34abe8501bb81c2e18"
+    },
+    {
+      "attempt": "whitespace-final-01",
+      "reportSha256": "7e6c44a964fc57999852ffd34507948033820b4c2f89c5156ccdb6cd12655d8d",
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/whitespace-final-01/reference.log",
+      "sha256": "2b359c7cfcf5331723dcd238178dc7be40372c418c174696a3fe25a5eaf20933"
+    }
+  ],
+  "sourceReuse": "Canonical data tests core02 unchanged; avatar-fix01 typecheck precedes only owned CSS correction and final exact EOF-only delta. Latest lint/build/HTTPbuild/bundle/reference whitespace-final01 run on actual final production code.",
+  "assetClosureSha256": "81f31771c52ef20a57c3e2e0a1533d615028b4e572eb18450cbb0fc59f26c05e"
+}

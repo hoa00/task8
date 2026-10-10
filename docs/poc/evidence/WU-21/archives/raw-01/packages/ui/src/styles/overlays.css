@@ -1,0 +1,25 @@
+/* Overlay-owned motion and inclusive mobile geometry; source overlays/components/responsive. */
+@keyframes ui-modal-in { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes ui-pop-in { from { opacity: 0; transform: translateY(-4px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes ui-drawer-in { from { opacity: 0; transform: translateX(48px); } to { opacity: 1; transform: none; } }
+@keyframes ui-toast-in { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes ui-toast-out { to { opacity: 0; transform: translateY(4px); } }
+.ui-dialog:not([data-entered]) { animation: ui-modal-in .26s var(--ease) both; }
+.ui-overlay-scrim:not([data-entered]) { animation: fadeOnly .18s ease both; }
+.ui-popover:not([data-entered]) { animation: ui-pop-in .16s var(--ease) both; }
+.ui-drawer:not([data-entered]) { animation: ui-drawer-in .34s var(--ease-drawer) both; }
+.ui-tooltip { animation: fadeOnly .12s both; }
+.ui-toast { animation: ui-toast-in .2s var(--spring) both; }
+.ui-toast[data-exiting] { animation: ui-toast-out .16s var(--spring) both; }
+@media (max-width: 640px) {
+  .ui-dialog-wrap { padding: 0; align-items: flex-end; }
+  .ui-dialog { max-height: 92vh; border-radius: 14px 14px 0 0; }
+  .ui-drawer { width: 100vw; inset: 0; border: 0; }
+  .ui-toast-viewport { left: 16px; right: 16px; bottom: 76px; align-items: stretch; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-dialog,.ui-popover,.ui-drawer,.ui-toast { animation-name: fadeOnly !important; animation-duration: .12s !important; }
+}
+:root[data-motion='reduce'] :is(.ui-dialog,.ui-popover,.ui-drawer,.ui-toast) { animation-name: fadeOnly !important; animation-duration: .12s !important; }
+
+.ui-overlay-scrim[data-entered],.ui-dialog[data-entered],.ui-popover[data-entered],.ui-drawer[data-entered] { animation: none !important; }

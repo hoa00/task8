@@ -1,0 +1,1 @@
+import{a as e}from"./Boundaries-CBWU_bDX.js";var t=e;export{t as notFoundComponent};

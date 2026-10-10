@@ -1,0 +1,1107 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "H21-06-external-delete-clears-open-project-selection-and-Invite-choice",
+      "status": "passed",
+      "deletedSelectionCleared": true,
+      "noDeletedTeamOption": true,
+      "actualFocusRefetch": true
+    },
+    {
+      "id": "H21-07-team-read404-remains-NotFound-Home-native",
+      "status": "passed",
+      "deletedRouteNotFound": true,
+      "homeLink": true
+    }
+  ],
+  "requests": [
+    {
+      "operation": "getSession",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listWorkspaces",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTeams",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "createTeam",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "body": {
+          "name": "HTTP Revenue",
+          "description": "",
+          "icon": "users",
+          "color": "#23918A",
+          "memberIds": []
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTeams",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTeam",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "teamId": "01a11abd-aa80-7c3b-b4d2-e3a931fa119c"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTeamSummary",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "teamId": "01a11abd-aa80-7c3b-b4d2-e3a931fa119c"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getSession",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listWorkspaces",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listProjectMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getProjectSummary",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listActivity",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTaskSummary",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due"
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listSavedViews",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTaskSummary",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due"
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getSession",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listWorkspaces",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listSavedViews",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listProjectMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getProjectSummary",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listActivity",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14"
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTaskSummary",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due"
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "projectId": "01a11abd-aa80-7d11-86d8-e6545859cd14",
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getSession",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listWorkspaces",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getSession",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listWorkspaces",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getTeam",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "teamId": "01a11abd-aa80-7c3b-b4d2-e3a931fa119c"
+      },
+      "outcome": "error",
+      "error": "StudioApiError: Team not found",
+      "intentional": true
+    },
+    {
+      "operation": "getTeamSummary",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "teamId": "01a11abd-aa80-7c3b-b4d2-e3a931fa119c"
+      },
+      "outcome": "error",
+      "error": "StudioApiError: Team not found",
+      "intentional": true
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getHome",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getOverview",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "immutableBefore": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "implementationAssetsBefore": {
+    "apps/web/dist/assets/23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36-BCiuQ2Xg.woff2": "23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36",
+    "apps/web/dist/assets/402a0f9709239ccdc5c4f9e6c0d8f787444272bb5615996d8fc8d140de65cc3b-CZJ7W5hq.woff2": "402a0f9709239ccdc5c4f9e6c0d8f787444272bb5615996d8fc8d140de65cc3b",
+    "apps/web/dist/assets/545e79aa6acc61e9fce346ef373d3974cd47c81df0baf15d2f31a970dc9fd3ae-e7w4Pzot.woff2": "545e79aa6acc61e9fce346ef373d3974cd47c81df0baf15d2f31a970dc9fd3ae",
+    "apps/web/dist/assets/55061797a3b3da1ad06271debea77df7007973ac0386d158618e00897af93eea-D5uBQblr.woff2": "55061797a3b3da1ad06271debea77df7007973ac0386d158618e00897af93eea",
+    "apps/web/dist/assets/58a6b173d5ca1dec92166ea3c6cb1a84a4144556d10928ac14e8e6b40e4787bd-Dr5IBr7O.woff2": "58a6b173d5ca1dec92166ea3c6cb1a84a4144556d10928ac14e8e6b40e4787bd",
+    "apps/web/dist/assets/6129fc8571c3e0cb0a4c41f5160c974a843b055009dc4ad8858bd808e18a2d86-D_Kiv5N3.woff2": "6129fc8571c3e0cb0a4c41f5160c974a843b055009dc4ad8858bd808e18a2d86",
+    "apps/web/dist/assets/9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608-BGnTDqni.woff2": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608",
+    "apps/web/dist/assets/ActivityFeed-HXtx4ZXL.js": "ee3cdfd5341b51101ac7b2460edfdb4ff5a5787480021f3b57060eed067ea514",
+    "apps/web/dist/assets/Boundaries-B6LydZoi.js": "754e2471528acb4d6eb1dcae0f5893bc4b8dd481e2acdc33e6beb985640bde65",
+    "apps/web/dist/assets/CalendarPages-B740Q2IC.js": "4b9bf486492d3b6bcc8e9da2e98a3ec86bfde9fc8c0dcf28e3d49034f586db1e",
+    "apps/web/dist/assets/ClientOnly-CUxWmHvN.js": "9982e60b1265ed988ab42b1151973c87da3030ce7abfcfddf02c5a8d0e363c9e",
+    "apps/web/dist/assets/Comments-BgF0YLyp.js": "5004f52048696ad83b9a882363a53bdb582d22959742ba24cfafdfd0a9aa27e6",
+    "apps/web/dist/assets/FileFoundation-D5Dhzoox.js": "d28b3dffce5737773e05dad7dda0fb7f4ff688cfff105d1169c80d9f2eb30eeb",
+    "apps/web/dist/assets/Highlight-DVgJA73w.js": "d35c2a7e503daf7ec15528636ba5af028c4d0c143e5d0907983e0b71654bb1db",
+    "apps/web/dist/assets/Match-DHWsGknT.js": "5dd2546b3e5702de6794987cb2dc23c25bac0055f27512e03e6cf477147d5aa5",
+    "apps/web/dist/assets/MemberIdentity-Dm7poXlc.js": "d1eff3d1057a38b9090007a8e96e40c2deffe8492266c30f4d9847dfacca639a",
+    "apps/web/dist/assets/PendingPage-CC5vMVKy.js": "808ab35f02c936d8aab1ff3965f2f0ba4d2e257226a78165c3210b0386cd613d",
+    "apps/web/dist/assets/ProjectComponents-D5UhquOp.js": "c247485f16755a11dced0f55bb6eafb0691a262682140345d54740cfa3e9c0dd",
+    "apps/web/dist/assets/ProjectIdentity-DZjuH3fF.js": "c18b06187b3984388d64cdc2e576fb2e183dbfae4b30e170a8edf4ac634ac346",
+    "apps/web/dist/assets/ProjectPage-DNfE-wHc.js": "908e6a87b269ed235a70c5280a4e4e86272ca5a4a8cd248333466f707ebe238e",
+    "apps/web/dist/assets/RolePicker-BHz6Plmb.js": "87dc7c57c401064581c07166937cb76f6122b028a7f1c562d5abee8549981e2b",
+    "apps/web/dist/assets/StudioDataProvider-DFyhuOOj.js": "0e4e468f508fafe04de127758956fa62e5fe2f266b1c159881b69c7abf54f57e",
+    "apps/web/dist/assets/TaskListPages-C4RH3LtW.js": "50adcf20d68944a712123cfbf907db95ff7fad6bbfb9e5526826fddbe76781d0",
+    "apps/web/dist/assets/TaskMiniRow-Df5WspHh.js": "4f7deedd5d558298c3e1770e507676d67ef8e7f263dd052993679efb5b4b8e96",
+    "apps/web/dist/assets/TaskOverlayHost-DKz2jdPw.js": "8aced1d87178826c0563d5990cd85234c3c9643592085b5d66dcffa310a02e00",
+    "apps/web/dist/assets/TaskViewToolbar-CLSpG_5a.js": "4935a97dd6095886a6782a63889db4715a038cdd9ad048c863a326307822c042",
+    "apps/web/dist/assets/TeamIdentity-CgAqXvOX.js": "cff38397f154b8f9966a8e830434879f3f7a1893cd3782297a59b3a74e54aca6",
+    "apps/web/dist/assets/TeamsPage-vC-4Oxw_.js": "abfb80c873768999ad8479c69c9fb8bff144b73b75bb3a8dbea1d849912be89b",
+    "apps/web/dist/assets/TimelinePages-BEj--kl7.js": "aba21cd19e7821b5f6c4f3062831d657cb43bd8994a4fb9d25c76832ab2940e8",
+    "apps/web/dist/assets/_shell-DBlSmOF6.js": "510547bb5d9d1614ae430805f7a4970818961965ff1f6e0478655051302f9146",
+    "apps/web/dist/assets/_shell-DPGLYMdX.js": "3176096858b07015ce979bcda232d4ce7d38943678037bce0ee3178bc33f9069",
+    "apps/web/dist/assets/_shell.dev.design-system-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/_shell.dev.shell-harness-Du16r4Qj.js": "28c6b5bb9b68aa778dd0ee02335224465d1c2b42301d636fba0e1308f2a9012c",
+    "apps/web/dist/assets/_shell.dev.system-states-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/_shell.w._workspaceId-6dvmdcUU.js": "0e20f18957009336776ef926358ab11aeac4bf9789185b8f60729e3ecd8d27e1",
+    "apps/web/dist/assets/_shell.w._workspaceId-CJ_QIEse.js": "422402d00e4d5beef04f596e316de0c2ce6b7ec2cf3edd08500ff67b886c79a5",
+    "apps/web/dist/assets/_shell.w._workspaceId-rg9Zeyko.js": "6c6e8e2d9ba4ff5562559b5782d95d24e56308758878b5420687ecc3d0559a8f",
+    "apps/web/dist/assets/_shell.w._workspaceId.activity-LRJR_ea2.js": "0079c0948b9abf6ff4c4cba51bde108b994baf8798ff50e5eddcd8826f2638a8",
+    "apps/web/dist/assets/_shell.w._workspaceId.archive-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/_shell.w._workspaceId.calendar-GPR1_By4.js": "61694971ff1140b2755b9f3fb273cec46b5cb01d904cf1ff51284a4bd66bccb8",
+    "apps/web/dist/assets/_shell.w._workspaceId.favorites-RKg8mZzl.js": "30211905e472329672eff51adccab3e3d3f75b08cc3d6f21bd2b3fc359ff2d50",
+    "apps/web/dist/assets/_shell.w._workspaceId.home-y_oeE6Ay.js": "e74cd5a86cd2b6eb7cbe54463309ac09567cc0ddaea545fdf91643e09962bdcb",
+    "apps/web/dist/assets/_shell.w._workspaceId.inbox-Ca4VC_9_.js": "23476edda476a3cd35adcfc4ad7b8b5a1e6111e4767d767cf8ac01d821f361fc",
+    "apps/web/dist/assets/_shell.w._workspaceId.members-6dvmdcUU.js": "0e20f18957009336776ef926358ab11aeac4bf9789185b8f60729e3ecd8d27e1",
+    "apps/web/dist/assets/_shell.w._workspaceId.members._memberId-6XUeLwxg.js": "cc2c628802c2d3ae1dbf14a7dc24b91eb2391f815e96beb247a257206157e821",
+    "apps/web/dist/assets/_shell.w._workspaceId.members._memberId-BDxjb3Ng.js": "6a7e3bf3883bdfb8aa58cdd34dba000305728bcb1f38883de9b2a58df3e2635f",
+    "apps/web/dist/assets/_shell.w._workspaceId.members.index-B-rRCkrF.js": "5ee2bbb6f782f747fdbfeb87ac107f2d8cdda160f177e312f360a964e44d6626",
+    "apps/web/dist/assets/_shell.w._workspaceId.my-tasks-asWK1aWV.js": "c14efb9b25faea3d7086db529c20938891e68ab1645931f3b4aca8aec55e5a8c",
+    "apps/web/dist/assets/_shell.w._workspaceId.notifications-DWW2k1Ck.js": "c38f783eafc5cf5f5ff3811cba68d6d568df75ccf13017a4dcc244146df9de65",
+    "apps/web/dist/assets/_shell.w._workspaceId.overview-BWP2kSQ1.js": "3b2db6320bc8d6867ec262808730408082f64311024d61357fff72ef951ede60",
+    "apps/web/dist/assets/_shell.w._workspaceId.projects-6dvmdcUU.js": "0e20f18957009336776ef926358ab11aeac4bf9789185b8f60729e3ecd8d27e1",
+    "apps/web/dist/assets/_shell.w._workspaceId.projects._projectId-D9Wnrgrh.js": "ff8a043434319ab94469f1121b6b6bf0f607dfd935259454c5f50545cba1ea88",
+    "apps/web/dist/assets/_shell.w._workspaceId.projects._projectId._view-tkTZOzDt.js": "c08fe43c8bbe88c8c860fba599ea5ae3b77b012d9de274c7d8f6f9f76e587de3",
+    "apps/web/dist/assets/_shell.w._workspaceId.projects._projectId.views._savedViewId-tkTZOzDt.js": "c08fe43c8bbe88c8c860fba599ea5ae3b77b012d9de274c7d8f6f9f76e587de3",
+    "apps/web/dist/assets/_shell.w._workspaceId.projects.index-ClAdkNSx.js": "b9cfa19f1c9d073c3d1f83b141f549f1777044d49525ea3d34af18570bfc8b41",
+    "apps/web/dist/assets/_shell.w._workspaceId.search-KbP7p8Bz.js": "57253f6616783cb463e0c65a1f9473f63bdbb526fc3b6fb84ebc9c1f17504975",
+    "apps/web/dist/assets/_shell.w._workspaceId.settings-6dvmdcUU.js": "0e20f18957009336776ef926358ab11aeac4bf9789185b8f60729e3ecd8d27e1",
+    "apps/web/dist/assets/_shell.w._workspaceId.settings._section-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/_shell.w._workspaceId.tasks-Cu3okb2p.js": "dd07606d10089e887a30523aae1ed30b5fc3131ea4167662d99f6c233899b3af",
+    "apps/web/dist/assets/_shell.w._workspaceId.teams-6dvmdcUU.js": "0e20f18957009336776ef926358ab11aeac4bf9789185b8f60729e3ecd8d27e1",
+    "apps/web/dist/assets/_shell.w._workspaceId.teams-C6UY7PA0.css": "df2ba98ac5889156acc6d5a4b85f2ce4bf0f54db41bbe12abfb861f709fad113",
+    "apps/web/dist/assets/_shell.w._workspaceId.teams._teamId-DQl0nyoj.js": "83e3a9b0f29191e5218982eeed4ba7955f5bd46bb2da1767b10e5adaac8055b0",
+    "apps/web/dist/assets/_shell.w._workspaceId.teams._teamId-h6wEg0l1.js": "e294c88df6de888d565abe0cad2a7fabb98783951717d1785449a51426ff6344",
+    "apps/web/dist/assets/_shell.w._workspaceId.teams.index-BBNrJ2tB.js": "4b60398faec78bf2252be226662c6017d7f5c0844df9c99721a544f7f94d5c58",
+    "apps/web/dist/assets/_shell.w._workspaceId.timeline-DfRl0Sbx.js": "1073081cf18aa17121fce9ae8218c2b5a05e2d275c794e722bdb6531fa96c60e",
+    "apps/web/dist/assets/aac11f1b5aa0f50c8942cadc063a95be964e87512812a8256a969b723fcfb00c-s0p6T-aD.woff2": "aac11f1b5aa0f50c8942cadc063a95be964e87512812a8256a969b723fcfb00c",
+    "apps/web/dist/assets/api-CsXPQK38.js": "1087ff6fad3274318ed45fe5e603c1be9652dfd03889d84b367c4966995e6821",
+    "apps/web/dist/assets/app-1COoFGlt.js": "3683c3dce20fb1ae57f614f267c51955a5fbcd3b4d3a0a58d6bf880889b501c0",
+    "apps/web/dist/assets/app-BFwLsLxn.js": "f060dea949ed11be8095ae0472165c936eef16f706ffbb6a367003729a87e6fa",
+    "apps/web/dist/assets/app-lSxw_mKk.css": "28cb6f60e10ff069d6c7dbace636e66d21fffa7df8e64123df9982cd13b9245d",
+    "apps/web/dist/assets/atoms-BfQMrs8E.js": "31d8e07e2d2ecfa65b85c7194f55811b0754e9eb177ff5a3550bd7ad0465d07d",
+    "apps/web/dist/assets/b43bf733b5c29ddd375c6433efb74ecba545ad72b3d2572036e20f52cf7515ac-CCDHRFWI.woff2": "b43bf733b5c29ddd375c6433efb74ecba545ad72b3d2572036e20f52cf7515ac",
+    "apps/web/dist/assets/b7a545bbb08256bd809f11cfe66d88da3e22d169ea4407737b1ef0ec1ed3d791-JguAV-SU.woff2": "b7a545bbb08256bd809f11cfe66d88da3e22d169ea4407737b1ef0ec1ed3d791",
+    "apps/web/dist/assets/calendar-Coblzh_6.js": "57613e4858c9f057bc95ba53cb088890b37d003d0a4c7a7a86ed0220005051b8",
+    "apps/web/dist/assets/catalogue-BXYB98ae.js": "502dbc3cc8cc92c3cfbac1f3ba3a7f4b16e0141bff6ba074091fb8bd1bf7a552",
+    "apps/web/dist/assets/catalogue-BqXgEm_F.js": "b18bcd15e9f2d000a396981fc633a5117baf13698865e363b38d6821dfbee876",
+    "apps/web/dist/assets/controls-lN-2fnZi.js": "5dac7a762a812c882f4c191cc223cffd336bc55e9a222c05d824ee7d95cb2c54",
+    "apps/web/dist/assets/current-view-Cw7454B1.js": "1497d0e6fb4f9a91e80ec43ea26f078c59eb34317b3578c009c157a5f3b451f8",
+    "apps/web/dist/assets/dashboards-BDXU5_HO.js": "709d56fc1e0c1e6482966d9b1592b6c3ab0c8354da0c2c0ffc1a75fcd9f28f43",
+    "apps/web/dist/assets/dashboards-CHBbypx-.css": "1aee19708746a3817073b013109d8ea623af12a306ab7a8dbe91b9da75fe322f",
+    "apps/web/dist/assets/date-display-7sWxqJqW.js": "43a50bb98982a6543a3753cba254b595a4edcfaf22b6972832c8a2793b61a5b6",
+    "apps/web/dist/assets/date-format-DADVDmIp.js": "c39b915ce93e7a7f4495df23ea713cf4097307024f4b4c8434cad6adde779dda",
+    "apps/web/dist/assets/f689f638f29fff460a2d5749edb5d5c38d7bef0389f32032d871f23fc6ebb008-BOnPvxSZ.woff2": "f689f638f29fff460a2d5749edb5d5c38d7bef0389f32032d871f23fc6ebb008",
+    "apps/web/dist/assets/files-Lj6itE3M.js": "b3e67b7c1af1b8b3264a5567c5c13043625a897f3a7ec6406a553a8ff7d81c65",
+    "apps/web/dist/assets/forgot-password-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/format-Ci2g0mBe.js": "779ccd9c342ecdc2e2a92193cb0bfc34748d81c5acdfb6993cb54dde7025e3f8",
+    "apps/web/dist/assets/foundation-BJ4328Jq.js": "6791f72e597f0a7f1bfa6c9108d9e04dc472d1591d600849b17fc7571ca5701c",
+    "apps/web/dist/assets/icons-BmgEr9yN.js": "f56388e7bdb6c1b91309bb8ff1ccb5257b0fa3c36c5a557866bdf184afd7416c",
+    "apps/web/dist/assets/invalidation-CwDtAlUg.js": "e9fb74c995c0ad8b3a46a224a5c617032e68c5699b13ca9aa3d8199baa740de4",
+    "apps/web/dist/assets/jsx-runtime-Dk72oS4N.js": "c5f4f8da0038e4082afc00542f93aa1bb64bc5777801d67197507865915a89b6",
+    "apps/web/dist/assets/link-cls7aeD3.js": "cd20091e62949987c76a6412f07478142b4e99a6ca20ac3f11da92151e11e2a3",
+    "apps/web/dist/assets/loadTaskViewDataset-Bvuxqsg2.js": "3a4d053c53d1ef3c07d26d6c59685daba4bcb62e71c20744ecd0f6a5666ea3e6",
+    "apps/web/dist/assets/login-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/navigation-Il19Gf3b.js": "44bbbb4745ed235cbbf02edad59226e92b03ea5b6edfc9d50040434e7f3b9372",
+    "apps/web/dist/assets/notifications-0FKKgRWT.css": "e5e9a125ef607a7df57d1d0ada96c9593ec1ce560f8a559a1df68dd8fb84a1aa",
+    "apps/web/dist/assets/notifications-BX1vd1qk.js": "e71beb01a88d5c29d345449b9dcff9eeb131ad3d75fb31f0d719d050ebd03e5c",
+    "apps/web/dist/assets/onboarding-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/overlays-CPGIilOd.js": "c8f2f86643713da9e93e7e39d98a5cf9fb9beedff450b1e77d2dd1af7a79f360",
+    "apps/web/dist/assets/people-9R-_D9fZ.css": "016a3349b7d2f662e35561637f5afe34a7da59bff6fb0018b2e727e3f79fe84c",
+    "apps/web/dist/assets/people-BXlv9NEq.js": "4eadc1c0f7bf2dceb2f7f9e15324d53c67487c8dad3c05fa87481a75adf16ec0",
+    "apps/web/dist/assets/people-demo-CC4Vv8uT.js": "8b28d925760c0dd2b9a454077fd1ed12b1fa3b78eda3788a1d80e624229de0bc",
+    "apps/web/dist/assets/people-intents-p0S0tr6v.js": "37ab1547418210c6dad41a9f5ad8917fb2a7ff16582c2d35fdab8f5ed5cdacc1",
+    "apps/web/dist/assets/people-query-DhigVJif.js": "323cf556f87b008f9c270f62b3f8731d21dda0764c9a28a0d5d71154ab9b6e85",
+    "apps/web/dist/assets/preload-helper-xWcKnemV.js": "21ac6da0f5765ac8b1f77d4c3225469999c9744d174b0025f74fdd473bb9c8e9",
+    "apps/web/dist/assets/project-intents-DYsOaZV0.js": "d0b19b2dd741ca88db6b6e64e899c6bb11f11cfe7cf4cf3e969b0da682c9b023",
+    "apps/web/dist/assets/project-motion-BVSXqeIa.js": "289af1a1d4db7b5c755b4070fcd47622c2f2d5ef22e5d795f045d3c0bc6f6edf",
+    "apps/web/dist/assets/project-view-C9JrL4D7.js": "f0445f33fe0967610d7bde576324f3c60437005d15df2252cd2a79f071546931",
+    "apps/web/dist/assets/projectRoutes-BDQb7Vx7.js": "d6e07fc028d80cbe0659abfa54df38d10527ff15aff455a1f5529666090363ab",
+    "apps/web/dist/assets/queries-Bb-6A99J.js": "9e2351421e5863857780c611fdc4f037a8e75b32554e0f7fd940b76175913a36",
+    "apps/web/dist/assets/queries-g041CwWG.js": "22fef1b5777d793ea7ea3edcac5b0a58fb594ba13354a7a75815ff6f79e8341d",
+    "apps/web/dist/assets/reset-password-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/router-BVNhtr3j.js": "b11f9eb18e58cb7b8fc68cf02ec643f6a182acac82765e8fc5a738493cf42c9e",
+    "apps/web/dist/assets/sharing-demo-Cn9pZTlT.js": "153e54443920ce1c4f7bec89124f2abed5204ce0fa6a6997c52988c66c12ae2d",
+    "apps/web/dist/assets/sharing-demo-hj9N9soT.js": "7096069414a28c24de21a7958ac65eebf31b07f44b96f6672cdf7e6eeccb805c",
+    "apps/web/dist/assets/sharing-queries-CCJNubIe.js": "2c31507493fd2f58c144b2d907b7dd138fe056f151e6fe287e0b6c1feb643fdf",
+    "apps/web/dist/assets/shellHarness-OmQ9if0c.js": "f4d17e9e0d81b842b52068c0abfc947b6aa155a76ae972147bfe822c5f7ad8eb",
+    "apps/web/dist/assets/signup-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/src-BHsWB-px.js": "aebb91dd433d61f99eeed9dba843aa743e573887959c2d37a0e41ddbb7a74328",
+    "apps/web/dist/assets/table-view-JEA3dVm0.js": "6cbb1a97b5f6be7eaf3a4cd2a17f193fe213f3cf95cc43283513a2b8c6f8668d",
+    "apps/web/dist/assets/taskBoard-C5m-M6Z9.js": "78a83e1eb8ef2033bcb48ec7842247dfa2b53941447ebcc1db81094210c08fb1",
+    "apps/web/dist/assets/taskDetail-CkK3-oZ0.js": "4000a294daf86efb498be70a9aca818aa19eb888db813857e1cd19002b555d79",
+    "apps/web/dist/assets/taskFields-BRxozuS8.js": "09d77d416c68ca318b0129d4f60a3fad89b8d7dc11c775481a3a8b0337ea1cf0",
+    "apps/web/dist/assets/taskList-ncjal5oR.js": "67b267e2ee1a576e95934bd7ecc38fd9adc35b870d39c83342f2bd3d90c12d9d",
+    "apps/web/dist/assets/taskTable-DusURxKk.js": "055c5bf3a20578994397254c465eddfdcc956ec5bcd5f7aa5772794ddf81406e",
+    "apps/web/dist/assets/theme-context-CqEqHCHN.js": "a451f69926f415fc321e29efe0c8fe43bd795db9a8df75579070d842f16ba73b",
+    "apps/web/dist/assets/timeline-BYKimykW.js": "12b992dd8a3a5bd174d488012135ce10a6fbe69fe66308bad911cff83d2bd3ec",
+    "apps/web/dist/assets/transient-context-B7anHM-s.js": "893298c2b297173ec31d70b089d4c9c7665100a85567ca4e048bb7943f2f7cd2",
+    "apps/web/dist/assets/useLocation-D3gODi9E.js": "e5b0148ed422639a2a77476f30c1d35ed07f6b89d62e2fba0f3e55fbc567b03a",
+    "apps/web/dist/assets/useMatch-CAHCNWXf.js": "463a2118431a714a64c024b4773277658a2ebb905019b705415ebae7138bf550",
+    "apps/web/dist/assets/useMutation-CWIKHBpt.js": "818fdbde5d91cd31a3406b27c0da1e7d546fc684f0a5741011680713d1167000",
+    "apps/web/dist/assets/useNavigate-DMavMrLm.js": "c4f0faad3b159240d4fa6a24599a8af5f823c76b131fe484e137c1affa0119bc",
+    "apps/web/dist/assets/useParams-ByYIG8d5.js": "482378b4629da06539efb9a7dcfff66712d56ef6a60020c9877bdfadac3a1b1f",
+    "apps/web/dist/assets/useRouter-BWuYVZyj.js": "a9e9f012c85240f1004eb555ef2ee3a49adaa0a0bd364cce1162c76f55cb4d61",
+    "apps/web/dist/assets/useSelector-Bu_mutpk.js": "42c1d66ce213e85e0784aff8b877b15969f4e25a4b0ac3671c7043f9dc136e4f",
+    "apps/web/dist/assets/useTaskFieldCommands-CkiaUdkc.js": "7f2b11b842105b41afa7301c522e67330b033db8552db384cae3e1a140099215",
+    "apps/web/dist/assets/useTaskListCommands-D1wbekRL.js": "8d578ffdbe57bf9da65d5bcc64069bdab141ebb013411dbfc613bd6ed0bb8e71",
+    "apps/web/dist/assets/useTaskListDataset-tpUcP9GP.js": "f610008030438de8b0c8895dc78cf39504607af9604ae5259298239e3c06c49b",
+    "apps/web/dist/assets/verify-email-IS-ubr-o.js": "026a8348574f89d6d5122ea7adeadd1cfe8bc907cc661ca240fa9e8f7d5e5e29",
+    "apps/web/dist/assets/workspace-context-BM-OiYIB.js": "72e28a3ff7372405ed912d6a351a4aba9f57b016f3d2788a1bbf180caeb13f85",
+    "apps/web/dist/calendar.html": "777c7f5093d473aba698e9b9e129358e21ea3445eaafe41de6c519e07c86b1f0",
+    "apps/web/dist/controls.html": "b4a762622436019f003b17232d0c5211b575189387053bc5c817036e326191fd",
+    "apps/web/dist/foundation.html": "f9ff50b769ed0a65538e284312607e78bc668b348a0b28a3086fe929baf9cac8",
+    "apps/web/dist/index.html": "bbc06bdfbf6b2dd7ab5e68b637875d3d2a1a38afe47b96c3b356be718d38fc71",
+    "apps/web/dist/module-graph.json": "2105a1d2f74c445bbfb24fcb7199e510f69808acd20338db5848bbcf91a3e28c",
+    "apps/web/dist/overlays.html": "ba7e2d4c03358b5d2a3a4f63481e43a84504cc95398b5804557e9f717662c8af",
+    "apps/web/dist/project-routes.html": "66fa4738110129361cde45742c413d4075ab972fdc73e23321783a6a5fb6462f",
+    "apps/web/dist/shell-harness.html": "3c277c7ece5b6579beb6e065ab33becee01663713f86f6c4bb846f43e01a4d25",
+    "apps/web/dist/task-board.html": "029bff9871b57ee9fa25d146197be2f7d5079a73bce685fff87bf39911cff0b0",
+    "apps/web/dist/task-detail.html": "c6d679d73cc9db2c22b092b8201c6f688589cacca2901fc531c3d99c9168ce2b",
+    "apps/web/dist/task-fields.html": "4e3919f329e6e83b9d8c96109e240c24bcd1925103106e094733d334ecc2e825",
+    "apps/web/dist/task-list.html": "19a2112f03afa5773aad083937cd0811cc2d2499a05227bef5e4d9430d59ff80",
+    "apps/web/dist/task-table.html": "a9800c9b9351bad8822633c264eb994f00aad773a5241b1746fc5db5093d5058",
+    "apps/web/dist/timeline.html": "362ad63f8216fd2ae9943a0c11be4a4db9d13abce7dbfff735a8e22acf5f3018",
+    "apps/web/src/ControlsGallery.tsx": "b4edbb0b12639182e53979b343ab7922c9d3e9d42955e3b45c2c4b8d7f5265f3",
+    "apps/web/src/OverlaysGallery.tsx": "9227f3d8083a90262686c576ecb1460a9279270367806459fb4e238bb04be8d5",
+    "apps/web/src/app/env.test.ts": "aac63d462eb00ddf6af129d67fd2f87dd5dcb47a19197495c28f0926981363dc",
+    "apps/web/src/app/env.ts": "ace3558003b8a5be610d624860a148993ae7f758cdb29131434863879582055b",
+    "apps/web/src/app/navigation.ts": "82d88538970e96b6ae1a091c545b07f7076f3d3938edad4abfe000aed9d9a533",
+    "apps/web/src/app/route-context.ts": "3ab440fab79b9a60b11f6a2181b91c0ededf5cf9dbe79c62e641d9f05a819bc7",
+    "apps/web/src/app/router.ts": "39796bf238a6657237c68cc0a6931f077c64169f1d20bd7cc687d12bdd6ffbb6",
+    "apps/web/src/app/shell/AppShell.tsx": "08cdc12a1a5542bf5deb726394c7ef70eb44bb1be4febc3a6bc27c9e26f397e0",
+    "apps/web/src/app/shell/Boundaries.tsx": "99278b957d4cddd98bb65c8c67f6aaaa22769e3e742f1cfc53e0406c0b930812",
+    "apps/web/src/app/shell/ContentViewport.tsx": "b7eeec356d0bc1d3b0bf996d02346f0421e6cbd97a82551d383af4e586bd596c",
+    "apps/web/src/app/shell/MobileNavigation.tsx": "9bf10364ba4deec042487758bdb49a2c4213057db1e380c12bde56abfac84d64",
+    "apps/web/src/app/shell/PendingPage.tsx": "fe8dd60f681b1f44a68ee51437987fc3cff60222a2025f9e5acfdf7117a5214d",
+    "apps/web/src/app/shell/README.md": "c25e841950a22d99132cc21777171fe44d6a47fe150da93a6f359c29252a9976",
+    "apps/web/src/app/shell/Sidebar.tsx": "b19f1e57e548f075fd901a978b5a2e6b78d38f57b5cecf4632f9c6d532be9a1c",
+    "apps/web/src/app/shell/Topbar.tsx": "d7d0dace91576a713e15dc56f98daf068d5b3cc9a15b8fb06e37192b9fad0859",
+    "apps/web/src/app/shell/project-context.ts": "3a17c6c5ca8061a659d906c8f1b5ae6379e8a7a714937893b7733403a9527d7c",
+    "apps/web/src/app/shell/shell.css": "e4a43b7593e88dc2c5cfca610ad49206be6e053bd14861deebc7f8f22c35380a",
+    "apps/web/src/app/shell/transient-context.ts": "3f8b945f474a068cac06c8ffe56f0758d0dbdee04d99136abebf160598993ef9",
+    "apps/web/src/app/shell/workspace-context.ts": "ec53896f4cd5265817d1d7622c8f028e9cbc60592ad42cd9e71a3f456df68742",
+    "apps/web/src/calendar.tsx": "954e0449f88525f9b2e9e2cbbf2511eff28e9cb1a1224c964ba387852118e9b3",
+    "apps/web/src/controls.tsx": "6f78123e5b4ed0852f11d700ae9d5f6fbc16e1a9e2b371b62e2b2fbe895e4e1e",
+    "apps/web/src/data/README.md": "f195f31013a583c131d9aebe3a334f79df547ad7792555ac41125912e5c5be12",
+    "apps/web/src/data/StudioDataProvider.tsx": "704958bebb94f776165e47d354c1e193fbbe78c1ff71eb18025803332dce8434",
+    "apps/web/src/data/adapters/http-entry.ts": "c325147503b46ce851e9beb2b154f09202c825097ea456f0a773993c447daf4d",
+    "apps/web/src/data/adapters/http.ts": "3f54fabbc238bab9f8966b313c4f948d975815f1d36043ebe2afb0ca168e5d6a",
+    "apps/web/src/data/adapters/mock-entry.ts": "1c26ae792932b820f66be7eb8f5d79de1c383b396ddc1606594db2015cb72e10",
+    "apps/web/src/data/adapters/mock.ts": "3557dc677b0e11ea7e0d575ce6057b2aee86f3fcc8187af62dd99bcda707c388",
+    "apps/web/src/data/context.ts": "aab6623783b5b1336e2ea7f37ffa2e5b3fb96cf3903534095ec3de93d36efdd7",
+    "apps/web/src/data/errors.ts": "0fc29bdd5421c196d20dae8e6bd7426c5e7c8a8da321eb98483b9be646efccd7",
+    "apps/web/src/data/invalidation.ts": "ecc4b97a53db5abd922a369ab8bae115fefdb50c3dbfcac91ac961f84651eb8b",
+    "apps/web/src/data/mock/dashboards.ts": "4514e33a23dde5c706d042fa7fdae3f2c593711b6f1d236807aa9ce414e417df",
+    "apps/web/src/data/mock/dataset.ts": "13304a032b344a69e0d1ea45b36b82c4bcf5979546689132ec5fb0f02207bd2e",
+    "apps/web/src/data/mock/notifications.ts": "039d260e5888b1e79334037ce47f417741221ad43ad44596e1b7748ae2d60801",
+    "apps/web/src/data/mock/people.ts": "6818df39f58b495125902cffc79df18d93231eebe1a48483ca4c25c9166e367c",
+    "apps/web/src/data/mock/persistence.ts": "2a33dca168423756c21d6d1c7428ec4e854e647d91281de655bffb82f6aa90b2",
+    "apps/web/src/data/mock/project-access.ts": "cd68570375784a804ebd9dc0b54cab6eece7741b772b8a010817fe530b5cee77",
+    "apps/web/src/data/mock/projects.ts": "071c6c1618cc6c855b9de4645bd4c0f2494ac197a0d5dfea1af97a85298a079e",
+    "apps/web/src/data/mock/reads.ts": "ae68fd93f4ffd71c29f21bf938cd8397925d6405dca1ec43fd71736a1ea136c0",
+    "apps/web/src/data/mock/reset.ts": "4ba0e6b6c8d7863e13ef0cb158767484efc98f15323a82ce9409af7e870da69b",
+    "apps/web/src/data/mock/scenarios.ts": "2c9fe43edab3802734d3c69ce5b0bd64cbf138e238c51c625c8ea39c48acd37a",
+    "apps/web/src/data/mock/search.ts": "e4c5b33c74742fe822307dd00db00a2d2ef038409624f7f63555d39aaf20c451",
+    "apps/web/src/data/mock/seed.ts": "78db8390e728de7e9fbf733993899757edc8c96d34e8e452dc0991407b58a480",
+    "apps/web/src/data/mock/sharing-demo.ts": "e59069dc0de7fb26532a6881aa41e1f6370d0b3ccf5129951a81163b9e42bc33",
+    "apps/web/src/data/mock/task-fields.ts": "cca44d3048633bf565cd3655cae23557ff48872a5f92b8946e3362336c705b76",
+    "apps/web/src/data/mock/teams.ts": "f59b97868eeddce6a77a122f5b9ecf93682c20a1db7f22c4884c13bed941140a",
+    "apps/web/src/data/mock/transaction.ts": "76e1f6f35828e9248c322d18b2833ca2e1d8fd9e38ce7bec00a6f86a40ce9c49",
+    "apps/web/src/data/operations.ts": "bbfd0e62e98751f8f19d6d6992369d6ca5540911eedf20c37de807471ae29909",
+    "apps/web/src/data/people-demo.ts": "fd2d91a5d02a93a513ad4a7d3271d086d3326233be7c7de829187a2453c827e1",
+    "apps/web/src/data/queries.ts": "6ee1db66ee3b5a00c2f389e2acd6177766c6610f810f0eefd32546064751a32d",
+    "apps/web/src/data/query-keys.ts": "135563b0cee95c040e24fc17664d162f6a04163ae663b65a8d59437f189a85b8",
+    "apps/web/src/data/runtime.ts": "0812014a5df6290ba086753139e2b5048c74ce8fbc68ce87990049e8f3e29edf",
+    "apps/web/src/data/sharing-demo.ts": "5f07f699a8e0aa844c86b8c120f677e3b8e6d3ce0c63b597bb70ce5bfb3c1a3e",
+    "apps/web/src/features/activity/ActivityFeed.tsx": "909fd6a043ac641f7e5a82b7d1841833340a2ec42e83d797711f632f3cd531ee",
+    "apps/web/src/features/activity/WorkspaceActivity.tsx": "661b2436425e08e79ab0e91a90e4909a43cc705a76e23f9c1ffadf1bcccb100b",
+    "apps/web/src/features/activity/activity.css": "aa6f6b548cd6fd7b0101eba41a95c63777e716b6bae7fde249d5061ee3f265bd",
+    "apps/web/src/features/activity/format.ts": "8850c7380a73157ce7e888c281c7a63835106e52d8dae41ff0b05b78ac6cc3de",
+    "apps/web/src/features/activity/project-feed.ts": "d80d134290addc26b3d99e5056a7d095e0d3366ae2611050023c9c9b31789bae",
+    "apps/web/src/features/calendar/CalendarPages.tsx": "36f29a7de467c29f8f4f9b3936d3d23e1c876d637975edfb488b5242d3e4c6cf",
+    "apps/web/src/features/calendar/CalendarView.tsx": "64e5f432a1b5e3d687a49586e21e8da782a08bb14f32b07cf39cdbd26b752713",
+    "apps/web/src/features/calendar/README.md": "046b4c1995aadec609c3b4fd79baf573458b246a3cfd68f0d9f53e1eab8b7c14",
+    "apps/web/src/features/calendar/calendar.css": "9a1a01518526e96cd332725e091953ac808f343f16f450f6ba2741c101f0405d",
+    "apps/web/src/features/calendar/date-format.ts": "2bc2ab0e08f62186b4e43e274396beba77074b9c8dc4827ac82bfd9f3fb2f593",
+    "apps/web/src/features/calendar/types.ts": "e3297036b99c2ac9a08829fcf387ddfb0694aec311072e0683cf44dc1e0510c5",
+    "apps/web/src/features/comments/Comments.tsx": "2b684ba0676aff21edc486409e3b6ee1668ef501be66249cad866f3193bb5376",
+    "apps/web/src/features/comments/queries.ts": "1a3d1a32cd2793da0ff4724cb76c7bac2002550f9b53c370fc396bca22bd2c90",
+    "apps/web/src/features/dashboards/HomePage.tsx": "6a9eb3e243ff3413fe45a550c44efaaa2e4a08db622d107c4e5cf9a3cceb77b4",
+    "apps/web/src/features/dashboards/ProjectProgressTable.tsx": "69ba0d7fd0605a9b65e2ab1ece3e72c862848aca725a4fa48feea48c93ff776c",
+    "apps/web/src/features/dashboards/WorkspaceOverview.tsx": "6ac06dcc5cf6f5dd100e39fb1e5be64c7c9e4e4d56048fc5caa41f6f1c67a494",
+    "apps/web/src/features/dashboards/dashboards.css": "1aee19708746a3817073b013109d8ea623af12a306ab7a8dbe91b9da75fe322f",
+    "apps/web/src/features/dashboards/metrics.tsx": "410b85f0d2db954cf638a01b48a929935d961104ed8113a227ecae493c749f74",
+    "apps/web/src/features/files/FileFoundation.tsx": "edc1300eb341c11a38f59961cee82e847ef4586eabd39c7bbcfefd1088033fd5",
+    "apps/web/src/features/files/files.css": "09551a3d534b38618f2ea441f8e04a4c037b18b66b6cb3bfaadd5cc155679fce",
+    "apps/web/src/features/notifications/InboxPage.tsx": "18fa762c7f7aa2a3a0092145ce3cf5b0f494e9cf46cd3a84af8030da32267632",
+    "apps/web/src/features/notifications/InboxPreview.tsx": "8adb362eafd5b303c1bb89e55486fe3e5fab873de68e71da99e4b5af13fbcea2",
+    "apps/web/src/features/notifications/NotificationContent.tsx": "6b3439d3c59d6b173f0d15d51386764068d762a96d77866ad108f43ff6fb4d96",
+    "apps/web/src/features/notifications/NotificationsPage.tsx": "9d7e3ea6d8d04e19987763618c64a53174d112290893af541d536e46163059f3",
+    "apps/web/src/features/notifications/notifications.css": "e5e9a125ef607a7df57d1d0ada96c9593ec1ce560f8a559a1df68dd8fb84a1aa",
+    "apps/web/src/features/notifications/presentation.ts": "a955df4233648026ebbdcc75ef5a01326f459933c0ee3328b594afa5a62254c6",
+    "apps/web/src/features/notifications/queries.ts": "911250d6c21e2f51c15a8a719dc5219b4a71df62fe1d91f1a0794625d7ba7587",
+    "apps/web/src/features/notifications/useNotificationCommands.ts": "9506766bcba0ed58968785a65dd6f7a4016d0e58721aac03d4b3004c2090060b",
+    "apps/web/src/features/people/InviteDialog.tsx": "cd6583a99db7fa070709ae402e683ead0320b0fb07e16cbe956d54d7fea441f6",
+    "apps/web/src/features/people/MemberDetail.tsx": "cf29fa41d7547b1502b41ad420b276e031a48108b165c68cc5e629727d906b5c",
+    "apps/web/src/features/people/MemberIdentity.tsx": "8a611610720bea3f85e95907b26af0de5d7fb39c6a19c466748abf1dc71d283b",
+    "apps/web/src/features/people/MemberStatus.tsx": "9a29c7e9f5b00799b65e637910c29fe687b4aad1f63397fe866b87ceb09f5fd5",
+    "apps/web/src/features/people/MemberTable.tsx": "1caf0ec18ab8660432b5c989076b2cecfeebe010712f0625d6ead56417a66c9b",
+    "apps/web/src/features/people/MembersPage.tsx": "f8117e556b42c9862388a44428785a37317163dad8a5ca58605108c65165a922",
+    "apps/web/src/features/people/PeopleOverlayHost.tsx": "92306d3ec12f8967730ec1699f2e80c30ee159c9f1eea3036f8cae3225799bc7",
+    "apps/web/src/features/people/PermissionMatrix.tsx": "c17b455489223108fc6bab80725994e2e42245722629f9c5d25973b7a75dcb29",
+    "apps/web/src/features/people/RolePicker.tsx": "351117aa9c5dad58906dd6c1f9632f9a9b059fc4a772303eccc0c41808810ca8",
+    "apps/web/src/features/people/catalogue.ts": "7eb7ab9bdb96eb8ce45cb73ef30543d2d7d45c1818fe859989f0e17d0e9a6920",
+    "apps/web/src/features/people/index.ts": "c2a6b083bf8a355a597fcb0885f589a40e09376a10a8d89d3be33bf2e38322b3",
+    "apps/web/src/features/people/people-intents.ts": "bb620c84856eade89fc1d2ad09f2969e2f8e182f4ce203fee872d4ab0fc84a68",
+    "apps/web/src/features/people/people-query.ts": "897e76e7261eac956bf2618620eb8ff2657488f206e18bc8c4a707ece5cc31c5",
+    "apps/web/src/features/people/people.css": "016a3349b7d2f662e35561637f5afe34a7da59bff6fb0018b2e727e3f79fe84c",
+    "apps/web/src/features/people/permission-roles.ts": "8a9f530c0d9a737b5e8ea79be19075aa6d6510d410e598f2f16e678497ef9182",
+    "apps/web/src/features/projects/Favorites.tsx": "b8673e532887bb3664afaa26c4ecec262f6f0b19727c8f3faf3c008f14287a64",
+    "apps/web/src/features/projects/ProjectCatalogue.tsx": "7457316938488d2dc6a7937dd2eeab135c04c2823ee7ccbf505648254c25d5a4",
+    "apps/web/src/features/projects/ProjectComponents.tsx": "7cf884e84068297f6a39b121089a26fc9b42eceb86a2c877a85975d705f10f0f",
+    "apps/web/src/features/projects/ProjectFormDialog.tsx": "c1bdc94f1685184c4374f692e0b5ca2f3ea43f5ef1183cb341506db46b30d38f",
+    "apps/web/src/features/projects/ProjectHeader.tsx": "327346789a78b09ade1f71fe0597edc6420ef75e42ecfbdab234d4bc1151f62a",
+    "apps/web/src/features/projects/ProjectIdentity.tsx": "159a917b02694ad95ee4132b5e87edb7fa591d936d422311d470c383cea97393",
+    "apps/web/src/features/projects/ProjectLayout.tsx": "4a7aaa902390c6cfcb26103421cfbfa532bba2f1d49f32c1c8b5e77a25e8e483",
+    "apps/web/src/features/projects/ProjectOverlayHost.tsx": "e8b1a5a407568a52bbf5b1ba32bedb430cb9873f990f46f35011254333c49547",
+    "apps/web/src/features/projects/ProjectOverview.tsx": "08810a66ae90fce1adca2d527c2a035aa5c93a6fe2a2c95441b17c76f0373557",
+    "apps/web/src/features/projects/ProjectPage.tsx": "4ad41fd0a731608afe21756b7edfc20afd5f900f11dd0e72be97823ebfa36063",
+    "apps/web/src/features/projects/ShareDialog.tsx": "baf4e3a19336347eca58e1ecaca8ba2d9394ef4fd9e7c112f21dcc2478b0ba8d",
+    "apps/web/src/features/projects/catalogue.ts": "5faab1d8b4e03868d6725fcb0b818787f2d4e5dee38ecfeb53d96039dcb804e4",
+    "apps/web/src/features/projects/format.ts": "2e0abd94dc10d8ede261344cfe647f79ee565965d5135a7bdb86beda58fb735e",
+    "apps/web/src/features/projects/loadProjectCatalogue.ts": "8e354b9253ab23d51a82ae334aeee0501f05d0a8eb93d166bdd35f80de8a211d",
+    "apps/web/src/features/projects/project-intents.ts": "2fab2953eb3b5a247606686bd87bd90c10b4e2cb92a27a740b48d4ededcc81ad",
+    "apps/web/src/features/projects/project-motion.ts": "46ecbeb662f89984ead06b0f0410094fdd42e4b861dc28611d150ceef62006d1",
+    "apps/web/src/features/projects/project-view.ts": "98d58875dd6241d3a5f339efea80f9cd7a66c8669028d1a77fbbcdc9a4d15e7d",
+    "apps/web/src/features/projects/projects.css": "0f7da140f34fac12c0c13b7125047423b07b5629c32eb88cee1963512f697256",
+    "apps/web/src/features/projects/sharing-queries.ts": "fa415976753c1f35cd10fed91b7745e061f3319bad6842136c0ae4dbc4f55d30",
+    "apps/web/src/features/projects/tabs.ts": "d9468187590635a7b7f60d738a91c35fc11d98a0cd243055d53059f67f874bde",
+    "apps/web/src/features/projects/useProjectCommands.ts": "629f3415f97f83d3c54d6081ea7cf48240192ae73934a66c4ed086b17d76f1f8",
+    "apps/web/src/features/search/CommandPalette.tsx": "c4968a9f0a3c0b7a9beace69679bcf449b2e1d37a456afe254fc313e317c88c7",
+    "apps/web/src/features/search/Highlight.tsx": "b95be09e6c9e64a312de35c1f2990f9a6745ca08d27b742c91bf01d9582c0932",
+    "apps/web/src/features/search/SearchOverlayHost.tsx": "fb433e2b0f6bc0582981b2f60613e2ce61fe91b5c4baf69013ff37b57b20fd4d",
+    "apps/web/src/features/search/SearchPage.tsx": "1ee3cfc3ce58ff8cd929591b50bf1800fab71bb6a69643d6ab204dbfc34adada",
+    "apps/web/src/features/search/SearchResultContent.tsx": "37d9d0b89c378c8295c22624f470c4faa82f3ef860266ab263c7bdda4805bcf1",
+    "apps/web/src/features/search/ShortcutsDialog.tsx": "a4ebbef782431dce754e35940db613231b2b07651d1aa8a8f3a65e6c552529a4",
+    "apps/web/src/features/search/commands.ts": "d713626bf1c892aaefca82bccb10e43e876e784cfafebe92a5c7561f8bd24968",
+    "apps/web/src/features/search/global-shortcuts.ts": "ce613799529e2292b8a0efb67671d7e7b9f55c5c27f8c39bb0d9e7996202e93f",
+    "apps/web/src/features/search/recent-searches.ts": "dad96f6329d1a94da6e9f1e653c351657ce4b52e3da9703783ef6172d3a7081b",
+    "apps/web/src/features/search/search-intents.ts": "eb705922aa6226a8b7ddcdc9edcbd4ecb388a81712e51aee2fe97aad004fd01c",
+    "apps/web/src/features/search/search-query.ts": "9caebfab4245834b682ca1f495ac2abea0fa028259ec17abf4c8e2fd87d04915",
+    "apps/web/src/features/tasks/BulkActionBar.tsx": "e09697d0ad803920b3d63909adba9c849abbeea48446be1245f26bafce66a79a",
+    "apps/web/src/features/tasks/ControllerRaceProbe.tsx": "0945afc8cf6a298f74aa3a0f548d2b499d9bf9257959273e27ab37bfa84bd057",
+    "apps/web/src/features/tasks/README.md": "e77c88b0abdbdb9a1aab9ba231eb582a3aa7fa9d32bddcf5ba626d3ccd9459d5",
+    "apps/web/src/features/tasks/TaskBoard.tsx": "24c8bd2aebe7b6df85bf67f9b7d3f9315f01f388bba53de9dff80ef0c4b3477f",
+    "apps/web/src/features/tasks/TaskBoardCard.tsx": "c0f2cc55d31379b43e5ad3f1618980e56e11a551c8d292f7f11d035fd33419a3",
+    "apps/web/src/features/tasks/TaskBoardColumn.tsx": "98d07a28b6b505633958fefb974deffdfb03420b62775ae560769065e79a6d84",
+    "apps/web/src/features/tasks/TaskFields.tsx": "ac127d1c50df901c885f335cdd10b37183a6849bbad66e41c818fac1d356e27c",
+    "apps/web/src/features/tasks/TaskFieldsGallery.tsx": "bb33feb6920fd335c405ac007b1587b1677452244321768eecbad7c1ee5393dc",
+    "apps/web/src/features/tasks/TaskFieldsGalleryEntry.tsx": "2b3bbf85c933792d99e590930abdc068039d29567f1e2f3974f1c55bee141ac8",
+    "apps/web/src/features/tasks/TaskList.tsx": "fafb8f21bae2a368eee95c9458aadcdfdd97343c46155b422fa875eeeb780d04",
+    "apps/web/src/features/tasks/TaskListPages.tsx": "f2b043b0794201fc61b8a678f5de1f72973cb726938104154b5d34446a9fcb98",
+    "apps/web/src/features/tasks/TaskListRow.tsx": "3dd2434dc7fc2fee17824e4e29dc98adcf4a69dc492e75a100113136811b24f4",
+    "apps/web/src/features/tasks/TaskMiniRow.tsx": "24507f90323c33f86911faee7d29efd0cb9b804136a54e536dcfd9da8f373853",
+    "apps/web/src/features/tasks/TaskTable.tsx": "3c8f57e486ac9cf0cc3afb69e63611523c3db5f44613551ad3fa5858fb4ef01e",
+    "apps/web/src/features/tasks/TaskTableCell.tsx": "1ad76fb609ed1353067e82bdf79908a8e32802c03995c17d8c75f2ba9998b14d",
+    "apps/web/src/features/tasks/TaskViewToolbar.tsx": "a27aab85c75aa8169a69751b06badb1ff007bbb3b4baaf85fef35d27e34b2bc2",
+    "apps/web/src/features/tasks/atoms.tsx": "c64d6554a27fd52e4087bc7ef014838dadef1bf823c4505308b9a08c7f8f758b",
+    "apps/web/src/features/tasks/board-types.ts": "d32f5bcd319a1593b534b069a73aa28ef7a4e74a7a6c694e1668127c03db1fc1",
+    "apps/web/src/features/tasks/board.css": "0b129467a74962b81ecd2c0854102f363400fcb848be7f552281f17f04429428",
+    "apps/web/src/features/tasks/current-view.ts": "ac9a22f8b7c31d328416866af19dd3f6bf385352dccf2562c4c79fb82f28f5af",
+    "apps/web/src/features/tasks/date-display.ts": "0392f389eb8d42de679ca4cf88584d6fb0fd112cc4fcb6e61077fd1c1a5624c2",
+    "apps/web/src/features/tasks/detail/DescriptionEditor.tsx": "96ea26e352c6ec5a8ac9edf935b5212f14b5798a575111e87ebff55ff6d952c3",
+    "apps/web/src/features/tasks/detail/Subtasks.tsx": "75c3f20e1e0a0c021a033414a094b89073e10091cb01a215d3c20e54722e9f24",
+    "apps/web/src/features/tasks/detail/TaskConversation.tsx": "3db074e2dcf04d6b5284ef016fcd173ed24606ae158e7f7e772862a70a6ca114",
+    "apps/web/src/features/tasks/detail/TaskDrawer.tsx": "c6853d07c0906c71ddd13220ac137732f649046b84115222f874f4597ac749ff",
+    "apps/web/src/features/tasks/detail/TaskFormDialog.tsx": "7cae77d07b8b16a498db3bb9a9502ed9ec5c224ad2e8c2e6654ec9756cc3972c",
+    "apps/web/src/features/tasks/detail/TaskOverlayHost.tsx": "1bd45a49e1aae1c589a49d729aa0111a0fe332f615dc8101566f7b2c1df21d68",
+    "apps/web/src/features/tasks/detail/TaskPropertyGrid.tsx": "89befaad189100d0586e9c79b94a70df095b2acf1f79184708aafa39d1f7f38f",
+    "apps/web/src/features/tasks/detail/detail.css": "8a336c313a03afffd269fa49cbc9f18a9f76f1ddef6ae01f582e1f03fa956cd7",
+    "apps/web/src/features/tasks/detail/editor.ts": "53e5b7402bce2bfd2dd06b651bb0247fe2ba415308d9dc8c839a75da21e562a9",
+    "apps/web/src/features/tasks/detail/submission.ts": "5d1bf3e339c2be60fe1fa8d867c6c723bbebea3ad5b0be724396ceae73507976",
+    "apps/web/src/features/tasks/detail/useSubtaskCommands.ts": "77f17f5301ddd83a11076a8c74cb806e0d3d392453f9102e661c65a0dfd41f7b",
+    "apps/web/src/features/tasks/field-types.ts": "13ea7d7f2427de0c9be0b718ea610f0dc090e578fde467b91e4fb88ab1918707",
+    "apps/web/src/features/tasks/fields.tsx": "14af884c88a798ee9039e55f5f9e0b74396bfe075f202c6ac133fddc34fb00d5",
+    "apps/web/src/features/tasks/list-types.ts": "c18a46c781ea02d69b7edf704d9dd13ae94e76262ea698d611f89b3d79740267",
+    "apps/web/src/features/tasks/list.css": "a3d7c70bc08ea59014544281a957ea0d40189484a86df7052c6890c3ec0908cf",
+    "apps/web/src/features/tasks/loadTaskViewDataset.ts": "da8eb1be5730966a213f2ee6b96128216c2f79246ecaca29cfb4c8b29b3be4e2",
+    "apps/web/src/features/tasks/table-types.ts": "7ae617cb6cab00545d725e9271f0272114d92393ae09ae6c531ab5fde5b175f1",
+    "apps/web/src/features/tasks/table-view.ts": "a49dd789943eeba879a5f90d9fa616b418984a59ebe15607c00fe4cdeb568fb2",
+    "apps/web/src/features/tasks/table.css": "4b5a825e13008066c9967dfbfcb93633c7a96796cb154ac4bfe2154332bf764d",
+    "apps/web/src/features/tasks/useTaskBoardDataset.ts": "f32447fbb5563fb3cb9bd3a449aa53dcf6ecf377dcfb57b0e4fc73ae9f812edf",
+    "apps/web/src/features/tasks/useTaskFieldCommands.ts": "66c407e739f15f7eca9b0462b1b44f9d4283c4826682a1f0b81e0809c7343a02",
+    "apps/web/src/features/tasks/useTaskListCommands.ts": "6df2a5dd7e1475c237450bbcf20c65e380630a5027d653604d68e249b83b9358",
+    "apps/web/src/features/tasks/useTaskListDataset.ts": "5d38082949e35192aa15c7fc02b5b75f8af05e3f1965161b6dc937428d808b44",
+    "apps/web/src/features/teams/TeamDetail.tsx": "ccec90a009e9ba687badbf78825b98b37b07f1b703ee6c0d416b2c051893e932",
+    "apps/web/src/features/teams/TeamFormDialog.tsx": "dbde666a0a43e8b1d1fbe7b5c7ed1d0bb5de89b00d7e0494eb5223996aab6288",
+    "apps/web/src/features/teams/TeamGrid.tsx": "353e9710c5489c74c3f0db5f3d11de2e2ef95972ddcae934a7d7970235b5137a",
+    "apps/web/src/features/teams/TeamIdentity.tsx": "7cd3c640587cd18f796f7012a22a99822f266eb6407f85c6286560fcfef26f3e",
+    "apps/web/src/features/teams/TeamOverlayHost.tsx": "d85cf73ec6492e82f90fca5861daaf8d73e66b615174d47ec741b043c7b6e606",
+    "apps/web/src/features/teams/TeamsPage.tsx": "2a3d5a9c54ccba33af14e4ae1e7e1251d0fc96197847ca77d2589d83be0899af",
+    "apps/web/src/features/teams/index.ts": "9c104de8f1e4ee0099b63ba0b77b1ac0427b37bdc0aa8e84f1bd4b104795950d",
+    "apps/web/src/features/teams/team-intents.ts": "c76a0811c406ad0c083811114a23c2d1041ac029ad90be5e3e42e061a53f4d0e",
+    "apps/web/src/features/teams/teams.css": "df2ba98ac5889156acc6d5a4b85f2ce4bf0f54db41bbe12abfb861f709fad113",
+    "apps/web/src/features/timeline/README.md": "2010482a3ef5feb06d7bde3be9999f82eb08b325e2d8469ca4cf1a28c522853a",
+    "apps/web/src/features/timeline/TimelinePages.tsx": "c4b8b2392d0ab69aaecb9bdfc5e88f99721f9df8c868168b599d725f790f6945",
+    "apps/web/src/features/timeline/TimelineView.tsx": "53e55c4862359fbb4e6e011a2eda5b4ad2566d03181026fcbed8520035e22e30",
+    "apps/web/src/features/timeline/timeline.css": "f347c94036e178e622e0e76f7627dd62dac5b07eaf90f1a8e528e2a9b6801102",
+    "apps/web/src/features/timeline/types.ts": "e50e30f891342ba9f63dccc42a89c5cb9a17901de702c4793d440c18e097f30a",
+    "apps/web/src/foundation.tsx": "94efb30c83ea2448f6925e992585eac6d9aa3f3ae130d350356e4ed883df2208",
+    "apps/web/src/main.tsx": "fddb46789722c78df6e33b245f5907467e645924caed9d6cda96fd581b88e1ce",
+    "apps/web/src/overlays.tsx": "21adefbef99755370e83cab449e0f65a76f3831520064e07f8429ef2b34f6e80",
+    "apps/web/src/project-routes.tsx": "a6ce03a1504ca298f280ba1d1129eb1e5040badb7e7c1375e978889fa337b1ce",
+    "apps/web/src/routeTree.gen.ts": "01fd3249375baa42bf10c57ec26fda5a8699dd64ccf6c697e74180d80e5485bc",
+    "apps/web/src/routes/__root.tsx": "ef152623ecbe528ee76fe92275b6d65fa07b2b1dc61013ef48749cf811e9ff76",
+    "apps/web/src/routes/_shell.dev.design-system.tsx": "31a9574ee168fb3730f9b465328758dd1128c23eabd1e1d8cd488fc7787a4354",
+    "apps/web/src/routes/_shell.dev.shell-harness.tsx": "1ec6fa9442c77451aae7e527f4a3cfefa7b55d9dc70c61f8cc5ef59113b6e749",
+    "apps/web/src/routes/_shell.dev.system-states.tsx": "9d2f9e1c0cd944171dd5d32e88143c55f1103a8b2b1d744c5f9f77751f86b478",
+    "apps/web/src/routes/_shell.tsx": "27f04d75abd4352189c59c38d377b00f57d18fd4d4153ca66746f772637338f3",
+    "apps/web/src/routes/_shell.w.$workspaceId.activity.tsx": "f08af66d2a84e1975416702ef36609f733420af7f8f68b0937e265d6a59832e6",
+    "apps/web/src/routes/_shell.w.$workspaceId.archive.tsx": "a16c0da2aa49fe080f8c73381a4368d220c8cad8bb82746ebb34d93ac9b90e51",
+    "apps/web/src/routes/_shell.w.$workspaceId.calendar.tsx": "fabeb7526f09a5b41d0793c55a69af959616a7cd8bbfbfd6f0b785ebd53b3f17",
+    "apps/web/src/routes/_shell.w.$workspaceId.favorites.tsx": "d6abd4488dbd7418edbb533440a971c33f82e6560c5b88c41fc4962d997abac5",
+    "apps/web/src/routes/_shell.w.$workspaceId.home.tsx": "15110e1e920afbbff245becfc10dbaf7c42572fe6631a7b32699c8e119b0ee1b",
+    "apps/web/src/routes/_shell.w.$workspaceId.inbox.tsx": "a7073d43228007fd4f3d6cf8d0a0514b3db6dfea276037e515abbd3c5642e417",
+    "apps/web/src/routes/_shell.w.$workspaceId.index.tsx": "45d1aea9470ae0f0600eb8062b166e3b5a205ffa2565115c34297f3b7bfd9e24",
+    "apps/web/src/routes/_shell.w.$workspaceId.members.$memberId.tsx": "47c2359252622c3220193c62a190e717836c10504d3656dcf41221e35a90bbd5",
+    "apps/web/src/routes/_shell.w.$workspaceId.members.index.tsx": "3f6df2e1e82e9cbe366b066600cf287bfb350c831d7991d0ad51fdda905caf03",
+    "apps/web/src/routes/_shell.w.$workspaceId.members.tsx": "1f5f03ff61edff6bb3f36b56949c353a156551833a2b6956edfea79075712f9a",
+    "apps/web/src/routes/_shell.w.$workspaceId.my-tasks.tsx": "7c39f04630beb1f2517c61be30bab4a460538ead13cfff9fe43eff25cd614f4b",
+    "apps/web/src/routes/_shell.w.$workspaceId.notifications.tsx": "923c8678a355bbc98566ecfdb01966ad3546870ab8c1c849d3b1d90bc680560d",
+    "apps/web/src/routes/_shell.w.$workspaceId.overview.tsx": "17abca87457fc704c345e6434f03a4ae8386ed73fbce9fb2c45c2d8462677513",
+    "apps/web/src/routes/_shell.w.$workspaceId.projects.$projectId.$view.tsx": "e435f743fb2a53fc7337f69a676f8f88cf6bfd81e7e8624cc1d859aed3e310e6",
+    "apps/web/src/routes/_shell.w.$workspaceId.projects.$projectId.index.tsx": "1c11ff0824746b5646478bd29e47bcdfb1ad8f8e5759fbc70c66a3419c8fffa6",
+    "apps/web/src/routes/_shell.w.$workspaceId.projects.$projectId.tsx": "14b84d9a3033d3885e7aeeea5152cfa8dc4a0ffde5369318856690a273429fa2",
+    "apps/web/src/routes/_shell.w.$workspaceId.projects.$projectId.views.$savedViewId.tsx": "fd34ffb44ab3defead08c8ff07c7949b1e67e302533025ea4bdacbecc89ccb2d",
+    "apps/web/src/routes/_shell.w.$workspaceId.projects.index.tsx": "808e673629ed69aaf34a3c0a0fa3eeb7ab9edf5684f9adb3787702cb93902568",
+    "apps/web/src/routes/_shell.w.$workspaceId.projects.tsx": "73781ace29df898eefee39308a956f7c34003355d0ab604f9f15cbbf5ca6b813",
+    "apps/web/src/routes/_shell.w.$workspaceId.search.tsx": "f8dac41ae21e2cb36594bb6b301a327e936c1d76f80279b2e549c392a90b9998",
+    "apps/web/src/routes/_shell.w.$workspaceId.settings.$section.tsx": "ed1d417369a6ea833cc15cba6e916906bd5cef7df5cb0fa493c79cdfa5bd837e",
+    "apps/web/src/routes/_shell.w.$workspaceId.settings.index.tsx": "3ca91ca0d514b6cd406c2fa8a18dbd8e27fe3939bf3fca4d5b0f627b33019460",
+    "apps/web/src/routes/_shell.w.$workspaceId.settings.tsx": "386554dc17671d6833e232498181616dad2ed53d4814c9f4d1ea81f432196317",
+    "apps/web/src/routes/_shell.w.$workspaceId.tasks.tsx": "9076059da5e0a3ee10f656f43828ef3de362b5af381f9c64aa57cafa18a8373d",
+    "apps/web/src/routes/_shell.w.$workspaceId.teams.$teamId.tsx": "3d8a31e4be30552a412bab2d64e3a4b739a70a2bf740f0391c469e69e572f492",
+    "apps/web/src/routes/_shell.w.$workspaceId.teams.index.tsx": "4e6eeb584974dd8a52b5a3c8e4af1d90674c4d5bc60c13f9fe3dcceb197d9df0",
+    "apps/web/src/routes/_shell.w.$workspaceId.teams.tsx": "0bffd334b7ceda431a4503361bb6f50cf21d509d2b18fb8881023143825c45df",
+    "apps/web/src/routes/_shell.w.$workspaceId.timeline.tsx": "1a2d1f357205ab43ef56ae95b8344cdc51e10ba2e1a10a3010f6e94f156161e2",
+    "apps/web/src/routes/_shell.w.$workspaceId.tsx": "7d905a711ddccd896ab29ad3d17f6cf11cdd65496b4cca1cb6f767ced6613cc3",
+    "apps/web/src/routes/forgot-password.tsx": "8258fa91c8be301973b47f37a1e3ca667e9891fb9c5b81fd3aa73984f9e25244",
+    "apps/web/src/routes/index.tsx": "1c8f68ce3b3b7a04abba2f3692eb4fc245bcf9a18f845a5bb1fca1fa46b731a0",
+    "apps/web/src/routes/login.tsx": "a6d924121a39a5520653109f3327c4487ef66e193aa9f265ece6e26e4ec9bbae",
+    "apps/web/src/routes/onboarding.tsx": "b8eff451331eaa1b1abc288ebdcded6df3917c55056c3663036807d2293a9ce1",
+    "apps/web/src/routes/reset-password.tsx": "4f06616628ecd59b166da0b91ee1718cf81507c75f214096662be3746098486d",
+    "apps/web/src/routes/signup.tsx": "d7115ed6a8c59b8dcee2a5cab7a0ace8208f305e6e9c6bd2a312f1c681c0753c",
+    "apps/web/src/routes/verify-email.tsx": "3a35b8b2f1bad34b05322297337105f433061200f2b05964452860e489c52b66",
+    "apps/web/src/shell-harness.tsx": "c4efef30c20e7a9751e6bea07719bc1d42a4ad5067bea1c1684934c8aae0e4de",
+    "apps/web/src/styles/app.css": "26f2d168c22d15c3ce99576b747ca5afcbd25b1634b1ff33678fc4df949008ed",
+    "apps/web/src/task-board.tsx": "eeed93b190039e2434b2db2cffab4020fd4f0bec1ac9ed2768c313c9d1f85e2e",
+    "apps/web/src/task-detail.tsx": "7e41e69975ce8d747558f032ae6825e94c99c1ded05ed9cb4a950a3a536f502c",
+    "apps/web/src/task-fields.tsx": "3f1fa7f200440db8bfcdea46b7219d97ccdc976ac8160387a9dbaaf26a91aa59",
+    "apps/web/src/task-list.tsx": "e5ffeb3517b0e4f6c86b343311952c8613761a73df341bbd5fb5e0f105ca9ee1",
+    "apps/web/src/task-table.tsx": "b37bf38acd2bdf35c3fe49106a09243338e99b78a297b86caf16bfcfc99c98ea",
+    "apps/web/src/theme/FoundationHarness.tsx": "4f7334b9c3f26420261343a8f28165709ef35dbc9dd61ce509763dac7846e996",
+    "apps/web/src/theme/ThemeProvider.tsx": "864c7482edfa1098c18c7065efebb55f872824b8a334e02bd08d208acdb3c0b8",
+    "apps/web/src/theme/preferences.ts": "d2eab0f9e5e95ed8aaf7114870ef0fc270a28ce424b37a3b999cb988e698121e",
+    "apps/web/src/theme/theme-context.ts": "2ff49cb6ab56bb050b64959e8c8dc1ab556e3b165b20ca140aa9500dce813be0",
+    "apps/web/src/timeline.tsx": "40a0a94ef263e5e25047995138158588886dfdb7b20aab4908305b265d58f424",
+    "apps/web/src/vite-env.d.ts": "ff3afb483844c5c810c83a16870b13c0b21bc5bff4d5c757b7083d27193960f8",
+    "apps/web/vite.config.ts": "00542b69a0cd6c5c15dcb71da1f8d12ea414365ca023435bbf7dc33fe32f73c8",
+    "package.json": "b2bb4c3573dd370620baca613d152efde1d060f98bd5f16aadd86ed40c32c340",
+    "packages/contracts/README.md": "0a2e949ba6886db32540d627fb18658d1abcbf6c6d20d3530d2c16d7a5afc143",
+    "packages/contracts/package.json": "03bc550bba7c945f44403a8ded85d417cf4654298fffc27593237e0e6d333833",
+    "packages/contracts/src/api.ts": "fd87c3f387a5c18a8d6e1981b046dd588aacf4f979ea333671c36bcbf9b8ffb3",
+    "packages/contracts/src/catalogs.ts": "d12833f25830e10f048a46e1044f3cb0043df5f494fd9062523dd59821625e98",
+    "packages/contracts/src/index.ts": "16e477df0955fb70a37cd4baec6f60e9825518967cbc56d9a1096291f18a0d37",
+    "packages/contracts/src/inputs.ts": "ea87e0086cc7b2b7c021e8c8e0bc64dc7ec0c92af85eff842c3eb16737b57f29",
+    "packages/contracts/src/models.ts": "4770ec348e03bc3a25cf83a39c64360ebf6d2539caad5b1bbb83774cce856a0b",
+    "packages/contracts/src/operations.ts": "d608b89d7b4bc501617d2a24a9c2871849bf6eec8ab3192b6d6f9ece841297f5",
+    "packages/contracts/src/primitives.ts": "4010d310dfd61f91e8edd381e31633ac92e8075b7f9cc2c4a863816282d318cc",
+    "packages/contracts/src/queries.ts": "4c5802c5663f17a56f504fe1dcd16d0c3059e1b4079ceaf2d7d37795af8406dd",
+    "packages/contracts/src/source-identities.ts": "0aa748895672d70f64dd6a23eb2d119529c67c06503f86a88a2c98375b774201",
+    "packages/contracts/tsconfig.build.json": "3522950bf0f2389deadcc775004db23337201fa48929b8e6ffbc8bd89a6a890c",
+    "packages/contracts/tsconfig.json": "11f858b350e11e6768bd4d847926807513486f004e9886b9d48a5599ba8672e3",
+    "packages/domain/package.json": "cf96b22dddcd411d8a1192be0cbe0173c1d180709a816f38a8123e0b39df73db",
+    "packages/domain/src/calendar.ts": "6aa49d481ad60defcfc38d613b94a862ed687b87123b1b2f6dfaad51c7f3a8e9",
+    "packages/domain/src/clock.ts": "6e8db98b7d9abe06e13a9c0c61967acdcf3b5ead0c564027c62559573dd5da8d",
+    "packages/domain/src/dashboard.ts": "5630d60f531b5ff810feb9ca45597001abfbf2fc146adf76efcb19cd4e7a16cc",
+    "packages/domain/src/description.ts": "b183bee928bf4f39cb0aac5ce45be415d030737250c293ed0299e38c8c5460e8",
+    "packages/domain/src/files.ts": "82297b575d2fff0c853408520437f6072f2766277408a5d9d8534ef0a11d2813",
+    "packages/domain/src/index.ts": "8613647e7fc2d3c64c5d083a81e139ebe6c6be35efb72d86694606c722a0d376",
+    "packages/domain/src/task-relations.ts": "52f764d73f9a8321df2c01c6fe2e1fee08080fceeff3b60e3a069928a5ce180c",
+    "packages/domain/src/task-view.ts": "cf8880b8fa49923ef1ec4b208c50aeb98ab0f510ed7077cc03565a5c56c77ca0",
+    "packages/domain/src/timeline.ts": "03c8601a1b7226dcb777b35acba29f61b30b727252878a38defe2f6aabc5dec3",
+    "packages/domain/tsconfig.build.json": "3522950bf0f2389deadcc775004db23337201fa48929b8e6ffbc8bd89a6a890c",
+    "packages/domain/tsconfig.json": "11f858b350e11e6768bd4d847926807513486f004e9886b9d48a5599ba8672e3",
+    "packages/ui/README.md": "e441fae8003ab6f9889c88b53586f66935e758c02306446df526d2f847c95b62",
+    "packages/ui/package.json": "9d24815d70d86123298501fb5cdfe28894fbc0380fe5f8e953435322b85cb6d4",
+    "packages/ui/src/appearance-fields.tsx": "be63cd5d83a7617cd30dddd8695a91ecf7ec504c3291df00cd4922c355c188a8",
+    "packages/ui/src/assets/23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36.woff2": "23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36",
+    "packages/ui/src/assets/402a0f9709239ccdc5c4f9e6c0d8f787444272bb5615996d8fc8d140de65cc3b.woff2": "402a0f9709239ccdc5c4f9e6c0d8f787444272bb5615996d8fc8d140de65cc3b",
+    "packages/ui/src/assets/545e79aa6acc61e9fce346ef373d3974cd47c81df0baf15d2f31a970dc9fd3ae.woff2": "545e79aa6acc61e9fce346ef373d3974cd47c81df0baf15d2f31a970dc9fd3ae",
+    "packages/ui/src/assets/55061797a3b3da1ad06271debea77df7007973ac0386d158618e00897af93eea.woff2": "55061797a3b3da1ad06271debea77df7007973ac0386d158618e00897af93eea",
+    "packages/ui/src/assets/58a6b173d5ca1dec92166ea3c6cb1a84a4144556d10928ac14e8e6b40e4787bd.woff2": "58a6b173d5ca1dec92166ea3c6cb1a84a4144556d10928ac14e8e6b40e4787bd",
+    "packages/ui/src/assets/6129fc8571c3e0cb0a4c41f5160c974a843b055009dc4ad8858bd808e18a2d86.woff2": "6129fc8571c3e0cb0a4c41f5160c974a843b055009dc4ad8858bd808e18a2d86",
+    "packages/ui/src/assets/9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608.woff2": "9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608",
+    "packages/ui/src/assets/aac11f1b5aa0f50c8942cadc063a95be964e87512812a8256a969b723fcfb00c.woff2": "aac11f1b5aa0f50c8942cadc063a95be964e87512812a8256a969b723fcfb00c",
+    "packages/ui/src/assets/b43bf733b5c29ddd375c6433efb74ecba545ad72b3d2572036e20f52cf7515ac.woff2": "b43bf733b5c29ddd375c6433efb74ecba545ad72b3d2572036e20f52cf7515ac",
+    "packages/ui/src/assets/b7a545bbb08256bd809f11cfe66d88da3e22d169ea4407737b1ef0ec1ed3d791.woff2": "b7a545bbb08256bd809f11cfe66d88da3e22d169ea4407737b1ef0ec1ed3d791",
+    "packages/ui/src/assets/f689f638f29fff460a2d5749edb5d5c38d7bef0389f32032d871f23fc6ebb008.woff2": "f689f638f29fff460a2d5749edb5d5c38d7bef0389f32032d871f23fc6ebb008",
+    "packages/ui/src/assets/geist-OFL.txt": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+    "packages/ui/src/assets/geistmono-OFL.txt": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+    "packages/ui/src/assets/lucide-LICENSE": "1e7290b35280a048667bbf0ebabac1c7fd52a75300e8b2946ac165715997f2bc",
+    "packages/ui/src/controls.tsx": "e50975accf6feb8f56f11ae8e71e6bd577318a9c0915b78778e3763efa1c065f",
+    "packages/ui/src/display.tsx": "b92e65060d7e0fa9f43349e069c4b7b50a228d8d8d8a84ec9e95b55d7f5b8bc5",
+    "packages/ui/src/foundation-sample.tsx": "a5603e9d9b044f4a37f2b53fddeef6e104aa9a2dd3bfabe1b62736f334a5e655",
+    "packages/ui/src/icon-paths.ts": "8512c1b72fa017e3c3013f55e822c5cfab823919c478569e5a33d17eb32d3830",
+    "packages/ui/src/icons.tsx": "0ec9502272235edbea0ec1dcb6700538bb20ebaa3e1e0c12c69035ee72a26973",
+    "packages/ui/src/index.ts": "6f43bbac6c268948f44f2fc28d82917ff56ab8ba2f648edde6e38a453e908881",
+    "packages/ui/src/logo-path.ts": "8f6112b8fd6ef9e852d8f71b2a8ff86583e87bb48698ffa621318400dd4012ab",
+    "packages/ui/src/overlay-context.ts": "7a6687aa3670f925f6acfea717a9d4fb639e919f12b7f351e322fe65c5df7f40",
+    "packages/ui/src/overlays.tsx": "04df86f183cca9653ed0eb16a50adb5a67a03c7c953c76d51feaf07b1d3d7dfa",
+    "packages/ui/src/select.tsx": "8ee5353959b3bef8770cdf54a149afb6ed68d4b280042407b78f549ec6818729",
+    "packages/ui/src/styles.css": "45b1c24f01c806ef0fb3cb05a4cb801283279604674c8afb61cde933866209de",
+    "packages/ui/src/styles/base.css": "4e2b267837e3aae29b26c175bd3fff237d751e4b05b754896a15b78dc6d964fd",
+    "packages/ui/src/styles/controls.css": "7f0c7c1735b0486ec308bf61ac4a689dade91407d0eafbfc4b0b19b313ec5f70",
+    "packages/ui/src/styles/fonts.css": "275d5dac4cb6f1906b8990592b4fba0fc9fd4ef00b4d8c89330d72c635025f52",
+    "packages/ui/src/styles/motion.css": "354286dcf8b656c0d7d3994993c1356f6a3ef4587989bfefb76fac58ad1b0985",
+    "packages/ui/src/styles/overlays.css": "223d4d9309210ed5ec2dcac0500da427424df6e77832d2df2393cd4ce3869834",
+    "packages/ui/src/styles/theme.css": "a859f0445073092bfdcb00f3971668ddf8fb871334a344db2b1dd8d929735ae8",
+    "packages/ui/src/styles/tokens.css": "b4c20c44f85f2844d7982b1c3cdfd593436de10b47c4ef25cd412387fbccda5f",
+    "packages/ui/src/toast-queue.ts": "85d2b7264f522c428324e65a7d2e3726d5beeece7b65db55d5c7907aa91f4d5e",
+    "packages/ui/src/toasts.tsx": "db264db5bbadb06fff15dd54bea9b42a12250f4af56afc468be264d657b46c00",
+    "packages/ui/tsconfig.build.json": "3522950bf0f2389deadcc775004db23337201fa48929b8e6ffbc8bd89a6a890c",
+    "packages/ui/tsconfig.json": "95cedef21494c8ad9f2777f057c6c5dde441b66be85acbb43eee04638939ce08",
+    "pnpm-lock.yaml": "93b21a5ca1ae6d8bb98a5bafdfa2da9924d34ba17aa47c06f116ef2d1fbe3d32"
+  },
+  "scope": "Actual HTTP-built adapter, typed intercepted responses backed by canonical mock operations. Canonical team read/loading/create/update/delete/Undo errors, stale-version retry and deleted selections; no real backend/D1/R2/email/account delivery or live fallback.",
+  "audit": {
+    "total": 55,
+    "intentionalErrors": 2,
+    "incidentalErrors": [],
+    "pending": [],
+    "writes": [
+      {
+        "operation": "createTeam",
+        "input": {
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "body": {
+            "name": "HTTP Revenue",
+            "description": "",
+            "icon": "users",
+            "color": "#23918A",
+            "memberIds": []
+          }
+        },
+        "outcome": "fulfilled"
+      }
+    ]
+  },
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(report.audit.writes.some(row=>row.operation==='deleteTeam'))\n\n    at file:///workspace/task8/tests/visual/teams/http.mjs:43:653"
+}

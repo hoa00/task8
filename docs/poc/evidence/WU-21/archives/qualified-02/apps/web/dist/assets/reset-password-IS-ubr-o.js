@@ -1,0 +1,1 @@
+import{t as e}from"./PendingPage-CC5vMVKy.js";var t=e;export{t as component};

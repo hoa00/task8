@@ -1,6 +1,8 @@
 export { Icon, TaskStatusIcon, PriorityIcon, Logo, BrandMark } from './icons';
 export type { IconProps, TaskStatusIconProps, PriorityIconProps, StatusGlyph, PriorityGlyph, LogoProps, BrandMarkProps } from './icons';
 export type { IconName } from './icon-paths';
+export { AppearanceFields } from './appearance-fields';
+export type { AppearanceFieldsProps } from './appearance-fields';
 export { Button, IconButton, Input, Textarea, Field, PasswordInput, Checkbox, Toggle, Tabs, SegmentedControl, VisuallyHidden } from './controls';
 export type { ControlSize, ButtonVariant, ButtonProps, IconButtonProps, InputProps, TextareaProps, FieldProps, FieldControlProps, PasswordInputProps, CheckboxProps, ToggleProps, ChoiceItem, TabsProps, VisuallyHiddenProps } from './controls';
 export { Badge, ColorDot, AvatarBase, AvatarStackBase, Panel, PanelHeader, PanelBody, Progress, StackedBar, Meter, Alert, EmptyState, Skeleton, KeyHint } from './display';

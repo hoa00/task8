@@ -1,0 +1,20 @@
+H21-01-loading-listTeams-no-fake-empty
+H21-02-TeamSummary-failure-visible-real-Retry
+H21-03-create500-preserves-draft-selection-zero-fake-success-retry
+H21-04-stale-update409-keeps-draft-refetches-version-retry
+H21-05-delete500-confirmation-retained-Undo500-retry-no-fake-success
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('option', { name: 'Create project', exact: true })[22m
+
+    at /workspace/task8/tests/visual/teams/http.mjs:41:420
+    at async probe (/workspace/task8/tests/visual/teams/http.mjs:18:48)
+    at async file:///workspace/task8/tests/visual/teams/http.mjs:41:3 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.0

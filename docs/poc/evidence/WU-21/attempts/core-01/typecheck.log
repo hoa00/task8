@@ -1,0 +1,30 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/ui:typecheck: cache miss, executing e5421776914621c6
+@studio/contracts:typecheck: cache miss, executing fe7dc06df63495a3
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache miss, executing e3d2de92208945c0
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache miss, executing ce78609d342eabc3
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing b537e3a3d7c00cc1
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/mock/teams.ts(17,104): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; userId: string & $brand<"EntityId">; ... 9 more ...; version: number; }>'.
+@studio/web:typecheck:   No index signature with a parameter of type 'string' was found on type 'Record<string & $brand<"EntityId">, { id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; userId: string & $brand<"EntityId">; ... 9 more ...; version: number; }>'.
+@studio/web:typecheck: src/data/mock/teams.ts(34,348): error TS2537: Type 'Record<string & $brand<"EntityId">, { actorId: string & $brand<"EntityId">; teamId: string & $brand<"EntityId">; postVersion: number; deletedAt: string & $brand<...>; nameNormalized: string; members: { ...; }[]; projects: { ...; }[]; result: { ...; } | null; }>' has no matching index signature for type 'string'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    15.986s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.
+$ turbo run typecheck
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+ ERROR  run failed: command  exited (2)

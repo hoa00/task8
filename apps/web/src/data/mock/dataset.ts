@@ -29,6 +29,11 @@ export const MockDatasetSchema = z.strictObject({
     deletedBy: z.record(EntityIdSchema, EntityIdSchema).default(() => ({})),
     undoRecords: z.record(EntityIdSchema, z.strictObject({ actorId: EntityIdSchema, projectId: EntityIdSchema, kind: z.enum(['project.archive', 'project.delete']), postVersion: VersionSchema, lifecycleAt: InstantSchema, previousArchivedAt: InstantSchema.nullable(), activityId: EntityIdSchema, result: UndoResultSchema.nullable() })).default(() => ({})),
   }).default(() => ({ favorites: {}, orders: {}, deletedProjects: {}, deletedBy: {}, undoRecords: {} })),
+  teamCommands: z.strictObject({
+    deletedTeams: z.record(EntityIdSchema, InstantSchema).default(() => ({})),
+    deletedBy: z.record(EntityIdSchema, EntityIdSchema).default(() => ({})),
+    undoRecords: z.record(EntityIdSchema, z.strictObject({ actorId: EntityIdSchema, teamId: EntityIdSchema, postVersion: VersionSchema, deletedAt: InstantSchema, nameNormalized: z.string(), members: z.array(z.strictObject({ id: EntityIdSchema, postVersion: VersionSchema, status: MemberSchema.shape.status })).max(128), projects: z.array(z.strictObject({ id: EntityIdSchema, postVersion: VersionSchema, archivedAt: InstantSchema.nullable(), deletedAt: InstantSchema.nullable() })).max(128), result: UndoResultSchema.nullable() })).default(() => ({})),
+  }).default(() => ({ deletedTeams: {}, deletedBy: {}, undoRecords: {} })),
   projectOrder: z.array(EntityIdSchema), preferences: MemberPreferencesSchema, notificationPreferences: NotificationPreferencesSchema,
 });
 export type MockDataset = z.infer<typeof MockDatasetSchema>;

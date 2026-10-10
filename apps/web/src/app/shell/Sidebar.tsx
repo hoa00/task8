@@ -1,3 +1,4 @@
+import { useTeamIntents } from '../../features/teams/team-intents';
 import { useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { Link, useLocation, useNavigate } from '@tanstack/react-router';
@@ -20,7 +21,7 @@ export function NavigationItem({ to, label, icon, selected, count, dot, collapse
 }
 export interface SidebarProps { collapsed: boolean; onCollapsedChange: (value: boolean) => void; navigationRef: React.RefObject<HTMLElement | null>; mobileClosed: boolean }
 export function Sidebar({ collapsed, onCollapsedChange, navigationRef, mobileClosed }: SidebarProps) {
-  const workspaceId = useWorkspaceId(), projectIntents = useProjectIntents();
+  const workspaceId = useWorkspaceId(), projectIntents = useProjectIntents(), teamIntents = useTeamIntents();
   const dragProject = useRef<string | null>(null); const [dropProject, setDropProject] = useState<string | null>(null);
   const data = useWorkspaceBootstrap().data!.data;
   const catalog = useStudioQuery('listWorkspaces', {}).data?.data ?? [];
@@ -46,7 +47,7 @@ export function Sidebar({ collapsed, onCollapsedChange, navigationRef, mobileClo
         </div>
         {open && !collapsed && <div className="ml-2 border-0 border-l border-solid border-border pl-[14px]">{(['board','list','timeline','files'] as const).map(tab=><NavigationItem key={tab} to={links.project(workspaceId,project.id,tab)} label={tab[0]!.toUpperCase()+tab.slice(1)} icon={{board:'square-kanban',list:'list',timeline:'chart-gantt',files:'paperclip'}[tab] as IconName} selected={pathname===links.project(workspaceId,project.id,tab)} collapsed={false} iconSize={14}/>)}</div>}
       </div>})}{item(['archive','Archive','archive'])}</div>
-      <div className="shell-group group mt-[14px]"><div className="shell-group-heading flex h-6 items-center px-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted"><span>Teams</span><span className="flex-1"/><IconButton size="xs" className="opacity-0 group-hover:opacity-100 focus-visible:opacity-100" aria-label="New team" aria-disabled="true"><Icon name="plus" size={14}/></IconButton></div>{data.teams.map(team=><NavigationItem key={team.id} to={`/w/${workspaceId}/teams/${team.id}`} label={team.name} icon={team.icon as IconName} selected={pathname===`/w/${workspaceId}/teams/${team.id}`} collapsed={collapsed}/>)}</div>
+      <div className="shell-group group mt-[14px]"><div className="shell-group-heading flex h-6 items-center px-2 text-2xs font-semibold uppercase tracking-[.06em] text-muted"><span>Teams</span><span className="flex-1"/><IconButton size="xs" className="opacity-0 group-hover:opacity-100 focus-visible:opacity-100" aria-label="New team" onClick={teamIntents.newTeam}><Icon name="plus" size={14}/></IconButton></div>{data.teams.map(team=><NavigationItem key={team.id} to={`/w/${workspaceId}/teams/${team.id}`} label={team.name} icon={team.icon as IconName} selected={pathname===`/w/${workspaceId}/teams/${team.id}`} collapsed={collapsed}/>)}</div>
     </div>
     <div className="border-0 border-t border-solid border-border px-2 pb-2 pt-[6px]"><button ref={helpButton} className="shell-item flex h-[var(--side-row)] w-full items-center gap-[9px] rounded-sm px-2 text-secondary source-hover:bg-surface-3" onClick={()=>setHelpMenu(value=>!value)} aria-haspopup="menu" aria-expanded={helpMenu} aria-label="Help & resources" style={{fontWeight:450}}><Icon name="circle-help" size={16} className="text-faint"/><span className="shell-label">Help & resources</span></button><NavigationItem to={links.settings(workspaceId)} label="Settings" icon="settings" selected={pathname.includes('/settings/')} collapsed={collapsed}/><button className="shell-item flex h-9 w-full items-center gap-[9px] rounded-sm px-2 text-secondary source-hover:bg-surface-3" aria-label="Profile" aria-disabled="true"><AvatarBase label={data.currentMember.name} initials={data.currentMember.name.split(' ').map(n=>n[0]).join('').slice(0,2)} color={data.currentMember.avatarColor} presence/><span className="shell-label truncate font-medium text-foreground">{data.currentMember.name}</span><span className="shell-count ml-auto text-muted [&>svg]:text-faint"><Icon name="chevrons-up-down" size={13}/></span></button></div>
     <Menu open={workspaceMenu} onOpenChange={setWorkspaceMenu} anchor={workspaceButton} label="Workspaces">{catalog.map(workspace=><MenuItem key={workspace.id} checked={workspace.id===workspaceId} onSelect={()=>{setWorkspaceMenu(false);void navigate({to:links.workspace(workspace.id)});}}>{workspace.name}</MenuItem>)}</Menu>

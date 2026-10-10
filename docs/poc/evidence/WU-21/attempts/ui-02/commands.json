@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/ui-02/typecheck.log",
+      "sha256": "6cf7436dc207cdb638125d72c3e7762987bb530f06eeb3ae52951567ce81af99"
+    },
+    {
+      "id": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/ui-02/lint.log",
+      "sha256": "35e509a1912a56895531808e44efe723cd6f7e553d531519214dcd3021e8ecc9"
+    },
+    {
+      "id": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/ui-02/build.log",
+      "sha256": "888bda67eb542894260ab4be33f871482fce015c74b4676c1d310ab89923181f"
+    },
+    {
+      "id": "http-build",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/web",
+        "build:http"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/ui-02/http-build.log",
+      "sha256": "e553a7feaac32cb01812466ad15425a56be97ee5fab831c8f8d133dbd162f0ee"
+    },
+    {
+      "id": "http-bundle",
+      "command": [
+        "node",
+        "tests/data/http-bundle.mjs",
+        "WU-21",
+        "--evidence-suffix=ui-02"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/ui-02/http-bundle.log",
+      "sha256": "96aadd6cc83d8547403685598e51ad6fbf570d5c9eec86b9267b60afc599c768"
+    },
+    {
+      "id": "reference",
+      "command": [
+        "pnpm",
+        "reference:check"
+      ],
+      "exitStatus": 0,
+      "signal": null,
+      "log": "docs/poc/evidence/WU-21/attempts/ui-02/reference.log",
+      "sha256": "2b359c7cfcf5331723dcd238178dc7be40372c418c174696a3fe25a5eaf20933"
+    }
+  ]
+}

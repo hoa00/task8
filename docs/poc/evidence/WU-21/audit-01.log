@@ -1,0 +1,51 @@
+fatal: path 'docs/poc/evidence/WU-21/archives/motion-pre-fix/apps/web/dist/assets/23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36-BCiuQ2Xg.woff2' exists on disk, but not in the index
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: git show :docs/poc/evidence/WU-21/archives/motion-pre-fix/apps/web/dist/assets/23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36-BCiuQ2Xg.woff2
+fatal: path 'docs/poc/evidence/WU-21/archives/motion-pre-fix/apps/web/dist/assets/23840067d1dda8749b421a47c3e56205fa78c0d58d40baf3cc4d625fbe667f36-BCiuQ2Xg.woff2' exists on disk, but not in the index
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at file:///workspace/task8/tests/visual/teams/audit.mjs:8:355
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 128,
+  signal: null,
+  output: [
+    null,
+    Buffer(0) [Uint8Array] [],
+    Buffer(200) [Uint8Array] [
+      102,  97, 116,  97, 108,  58,  32, 112,  97, 116, 104,  32,
+       39, 100, 111,  99, 115,  47, 112, 111,  99,  47, 101, 118,
+      105, 100, 101, 110,  99, 101,  47,  87,  85,  45,  50,  49,
+       47,  97, 114,  99, 104, 105, 118, 101, 115,  47, 109, 111,
+      116, 105, 111, 110,  45, 112, 114, 101,  45, 102, 105, 120,
+       47,  97, 112, 112, 115,  47, 119, 101,  98,  47, 100, 105,
+      115, 116,  47,  97, 115, 115, 101, 116, 115,  47,  50,  51,
+       56,  52,  48,  48,  54,  55, 100,  49, 100, 100,  97,  56,
+       55,  52,  57,  98,
+      ... 100 more items
+    ]
+  ],
+  pid: 444036,
+  stdout: Buffer(0) [Uint8Array] [],
+  stderr: Buffer(200) [Uint8Array] [
+    102,  97, 116,  97, 108,  58,  32, 112,  97, 116, 104,  32,
+     39, 100, 111,  99, 115,  47, 112, 111,  99,  47, 101, 118,
+    105, 100, 101, 110,  99, 101,  47,  87,  85,  45,  50,  49,
+     47,  97, 114,  99, 104, 105, 118, 101, 115,  47, 109, 111,
+    116, 105, 111, 110,  45, 112, 114, 101,  45, 102, 105, 120,
+     47,  97, 112, 112, 115,  47, 119, 101,  98,  47, 100, 105,
+    115, 116,  47,  97, 115, 115, 101, 116, 115,  47,  50,  51,
+     56,  52,  48,  48,  54,  55, 100,  49, 100, 100,  97,  56,
+     55,  52,  57,  98,
+    ... 100 more items
+  ]
+}
+
+Node.js v24.13.0

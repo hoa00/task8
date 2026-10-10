@@ -1,0 +1,35 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:typecheck: cache hit, replaying logs fe7dc06df63495a3
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: cache hit, replaying logs e5421776914621c6
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache hit, replaying logs e3d2de92208945c0
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache hit, replaying logs ce78609d342eabc3
+@studio/web:typecheck: cache miss, executing d69416a2edfa04b6
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/routes/__root.tsx(5,190): error TS2322: Type '({ full, home }: NotFoundBoundaryProps) => Element' is not assignable to type '((props: NotFoundRouteProps) => any) | LazyExoticComponent<(props: NotFoundRouteProps) => any> | undefined'.
+@studio/web:typecheck:   Type '({ full, home }: NotFoundBoundaryProps) => Element' is not assignable to type '(props: NotFoundRouteProps) => any'.
+@studio/web:typecheck:     Types of parameters '__0' and 'props' are incompatible.
+@studio/web:typecheck:       Type 'NotFoundRouteProps' has no properties in common with type 'NotFoundBoundaryProps'.
+@studio/web:typecheck: src/routes/_shell.w.$workspaceId.tsx(4,157): error TS2322: Type '({ full, home }: NotFoundBoundaryProps) => Element' is not assignable to type '((props: NotFoundRouteProps) => any) | LazyExoticComponent<(props: NotFoundRouteProps) => any> | undefined'.
+@studio/web:typecheck:   Type '({ full, home }: NotFoundBoundaryProps) => Element' is not assignable to type '(props: NotFoundRouteProps) => any'.
+@studio/web:typecheck:     Types of parameters '__0' and 'props' are incompatible.
+@studio/web:typecheck:       Type 'NotFoundRouteProps' has no properties in common with type 'NotFoundBoundaryProps'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    11.356s 
+Failed:    @studio/web#typecheck
+
+[ELIFECYCLE] Command failed with exit code 2.
+$ turbo run typecheck
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+ ERROR  run failed: command  exited (2)
