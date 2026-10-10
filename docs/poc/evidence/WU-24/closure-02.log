@@ -1,0 +1,23 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: docs/poc/evidence/WU-24/http-02.log
++ actual - expected
+
++ 'c8ec5f5ad3be863cfb2a9ef35bc9ef4a35c926e8637e2d7f73978b5268e0655f'
+- 'f0ca79ab4d7b90f71db697605c8c656adc959377db6cccd13c1a0a4a98a6d441'
+
+    at file:///workspace/task8/tests/visual/settings/workspace-closure.mjs:14:227
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'c8ec5f5ad3be863cfb2a9ef35bc9ef4a35c926e8637e2d7f73978b5268e0655f',
+  expected: 'f0ca79ab4d7b90f71db697605c8c656adc959377db6cccd13c1a0a4a98a6d441',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.13.0

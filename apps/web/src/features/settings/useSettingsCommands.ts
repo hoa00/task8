@@ -6,7 +6,7 @@ import { invalidateOperation } from '../../data/invalidation';
 import { operationQueryKey, queryKeys } from '../../data/query-keys';
 import { useTheme } from '../../theme/theme-context';
 import { StudioApiError } from '../../data/errors';
-type SettingsWrite = 'updateWorkspace' | 'updateProfile' | 'updatePreferences';
+type SettingsWrite = 'updateWorkspace' | 'updateProfile' | 'updatePreferences' | 'updateNotificationPreferences';
 export function useSettingsCommands() {
   const { client } = useDataRuntime(), cache = useQueryClient(), theme = useTheme(), held = useRef(false), active = useRef(true);
   const [pending, setPending] = useState(false), [error, setError] = useState('');

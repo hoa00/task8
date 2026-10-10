@@ -1,0 +1,39 @@
+$ turbo run typecheck
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@studio/ui:typecheck: cache miss, executing 738b4fb433a366c9
+@studio/contracts:typecheck: cache miss, executing 1ee91f36b3d0b681
+@studio/contracts:typecheck: $ tsc --noEmit
+@studio/ui:typecheck: $ tsc --noEmit
+@studio/domain:typecheck: cache miss, executing 45e60189f945271b
+@studio/domain:typecheck: $ tsc --noEmit
+@studio/api:typecheck: cache miss, executing 2e9e3c5e0570396d
+@studio/api:typecheck: $ tsc --noEmit
+@studio/web:typecheck: cache miss, executing 8d7421f526848fea
+@studio/web:typecheck: $ tsc --noEmit
+@studio/web:typecheck: src/data/mock/seed.ts(53,351): error TS2339: Property 'mention_team' does not exist on type '{ email_mention: boolean; email_assign: boolean; email_digest: boolean; email_comment: boolean; push_mention: boolean; push_assign: boolean; push_comment: boolean; push_due: boolean; mention_all: boolean; assign_self: boolean; }'.
+@studio/web:typecheck: src/data/mock/seed.ts(53,398): error TS2339: Property 'mention_ws' does not exist on type '{ email_mention: boolean; email_assign: boolean; email_digest: boolean; email_comment: boolean; push_mention: boolean; push_assign: boolean; push_comment: boolean; push_due: boolean; mention_all: boolean; assign_self: boolean; }'.
+@studio/web:typecheck: src/data/mock/seed.ts(53,455): error TS2339: Property 'assign_status' does not exist on type '{ email_mention: boolean; email_assign: boolean; email_digest: boolean; email_comment: boolean; push_mention: boolean; push_assign: boolean; push_comment: boolean; push_due: boolean; mention_all: boolean; assign_self: boolean; }'.
+@studio/web:typecheck: src/data/mock/seed.ts(53,498): error TS2339: Property 'assign_over' does not exist on type '{ email_mention: boolean; email_assign: boolean; email_digest: boolean; email_comment: boolean; push_mention: boolean; push_assign: boolean; push_comment: boolean; push_due: boolean; mention_all: boolean; assign_self: boolean; }'.
+@studio/web:typecheck: src/features/settings/WorkspaceNotifications.tsx(51,432): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+@studio/web:typecheck:   Type 'undefined' is not assignable to type 'string'.
+@studio/web:typecheck: src/features/settings/WorkspaceNotifications.tsx(51,849): error TS2322: Type 'boolean | undefined' is not assignable to type 'boolean'.
+@studio/web:typecheck:   Type 'undefined' is not assignable to type 'boolean'.
+@studio/web:typecheck: src/features/settings/WorkspaceNotifications.tsx(51,1709): error TS2345: Argument of type '{ id: string & $brand<"EntityId">; kind: "task.complete" | "task.archive" | "task.delete" | "project.archive" | "project.delete" | "comment.delete" | "file.delete" | "tasks.bulkDelete" | "tasks.completeColumn" | "tasks.archiveCompletedColumn" | "team.delete"; } | null' is not assignable to parameter of type '{ id: string & $brand<"EntityId">; kind: "task.complete" | "task.archive" | "task.delete" | "project.archive" | "project.delete" | "comment.delete" | "file.delete" | "tasks.bulkDelete" | "tasks.completeColumn" | "tasks.archiveCompletedColumn" | "team.delete"; } | undefined'.
+@studio/web:typecheck:   Type 'null' is not assignable to type '{ id: string & $brand<"EntityId">; kind: "task.complete" | "task.archive" | "task.delete" | "project.archive" | "project.delete" | "comment.delete" | "file.delete" | "tasks.bulkDelete" | "tasks.completeColumn" | "tasks.archiveCompletedColumn" | "team.delete"; } | undefined'.
+@studio/web:typecheck: src/features/settings/WorkspaceNotifications.tsx(67,470): error TS2322: Type 'boolean | undefined' is not assignable to type 'boolean'.
+@studio/web:typecheck:   Type 'undefined' is not assignable to type 'boolean'.
+@studio/web:typecheck: [ELIFECYCLE] Command failed with exit code 2.
+@studio/web#typecheck:  ERROR  command (/workspace/task8/apps/web) /tmp/task8-node-runtime/node_modules/node/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    18.324s 
+Failed:    @studio/web#typecheck
+
+ ERROR  run failed: command  exited (2)
+[ELIFECYCLE] Command failed with exit code 2.

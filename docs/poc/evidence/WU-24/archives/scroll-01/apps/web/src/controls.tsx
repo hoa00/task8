@@ -1,0 +1,10 @@
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { ControlsGallery } from './ControlsGallery';
+import { ThemeProvider } from './theme/ThemeProvider';
+import { applyRootPreferences, readThemePreferences } from './theme/preferences';
+import './styles/app.css';
+applyRootPreferences(readThemePreferences());
+const root = document.getElementById('root');
+if (!root) throw new Error('Missing controls gallery root');
+createRoot(root).render(<StrictMode><ThemeProvider><ControlsGallery /></ThemeProvider></StrictMode>);

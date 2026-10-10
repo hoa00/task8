@@ -1,0 +1,20 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+StudioApiError: Restore the project before editing
+    at fail (file:///workspace/task8/apps/web/src/data/mock/projects.ts:12:114)
+    at execute (file:///workspace/task8/apps/web/src/data/mock/projects.ts:39:202)
+    at file:///workspace/task8/apps/web/src/data/mock/projects.ts:51:298
+    at file:///workspace/task8/apps/web/src/data/mock/transaction.ts:7:122
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processImmediate (node:internal/timers:472:9)
+    at async transactMock (file:///workspace/task8/apps/web/src/data/mock/transaction.ts:9:16)
+    at async file:///workspace/task8/apps/web/src/data/adapters/mock.ts:50:146
+    at async execute (file:///workspace/task8/apps/web/src/data/operations.ts:25:20)
+    at async file:///workspace/task8/tests/visual/settings/workspace-http.mjs:25:462 {
+  detail: { code: 'CONFLICT', message: 'Restore the project before editing' },
+  status: 409
+}
+
+Node.js v24.13.0

@@ -8,7 +8,7 @@ export const settingsSections = ['workspace', 'appearance', 'language', 'datetim
 export const pageNames: Record<string, string> = { home: 'Home', inbox: 'Inbox', 'my-tasks': 'My Tasks', favorites: 'Favorites', notifications: 'Notifications', search: 'Search', overview: 'Overview', projects: 'Projects', tasks: 'Tasks', calendar: 'Calendar', timeline: 'Timeline', members: 'Members', teams: 'Teams', activity: 'Activity', archive: 'Archive', settings: 'Settings', 'design-system': 'Design system', 'system-states': 'System states' };
 export const links = {
   workspace: (workspaceId: string, page: WorkspacePage = 'home') => `/w/${EntityIdSchema.parse(workspaceId)}/${page}`,
-  project: (workspaceId: string, projectId: string, view: ProjectTab = 'board') => `/w/${EntityIdSchema.parse(workspaceId)}/projects/${EntityIdSchema.parse(projectId)}/${view}`,
+  project: (workspaceId: string, projectId: string, view?: ProjectTab) => `/w/${EntityIdSchema.parse(workspaceId)}/projects/${EntityIdSchema.parse(projectId)}${view ? `/${view}` : ''}`,
   savedView: (workspaceId: string, projectId: string, savedViewId: string) => `/w/${EntityIdSchema.parse(workspaceId)}/projects/${EntityIdSchema.parse(projectId)}/views/${EntityIdSchema.parse(savedViewId)}`,
   settings: (workspaceId: string, section: typeof settingsSections[number] = 'appearance') => `/w/${EntityIdSchema.parse(workspaceId)}/settings/${section}`,
   file: (workspaceId: string, projectId: string, fileId: string) => `${links.project(workspaceId, projectId, 'files')}?fileId=${EntityIdSchema.parse(fileId)}`,

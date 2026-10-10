@@ -1,0 +1,38 @@
+{
+  "status": "failed",
+  "runtime": {
+    "node": "v24.13.0",
+    "executable": "/tmp/task8-node-runtime/node_modules/node/bin/node",
+    "directories": {
+      "XDG_DATA_HOME": "/tmp/task8-xdg-data",
+      "XDG_CACHE_HOME": "/tmp/task8-xdg-cache",
+      "XDG_CONFIG_HOME": "/tmp/task8-xdg-config",
+      "PNPM_CONFIG_STORE_DIR": "/tmp/task8-pnpm-store",
+      "WRANGLER_LOG_PATH": "/tmp/task8-wrangler-logs"
+    }
+  },
+  "commands": [
+    {
+      "id": "typecheck",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitStatus": 0,
+      "error": null,
+      "log": "docs/poc/evidence/WU-24/attempts/core-02/typecheck.log",
+      "logSha256": "1afc710e81c0cd6f6f3eb1e3ae6c84ee83a78bb414c4f0fcaf5ccb7d81a150a4"
+    },
+    {
+      "id": "test",
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitStatus": 1,
+      "error": null,
+      "log": "docs/poc/evidence/WU-24/attempts/core-02/test.log",
+      "logSha256": "4c1beee968372b7a2faca4200f758ef0836c7fbcdd41a3da0ebabc8df8a428a9"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+import{v as e}from"./src-DAVCtWmI.js";function t(t){try{let n=new URLSearchParams(t).get(`view`),r=n?JSON.parse(n):{},i=typeof r==`string`?JSON.parse(r):r;return e(i)}catch{return e()}}function n(t){let n=new URLSearchParams;return n.set(`view`,JSON.stringify(e(t))),n.toString()}export{n,t};

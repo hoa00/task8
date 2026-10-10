@@ -1,11 +1,11 @@
-import { MemberPreferencesSchema, UpdatePreferencesInputSchema, UpdateProfileInputSchema, UpdateWorkspaceInputSchema, UserProfileSchema, WorkspaceSchema } from '@studio/contracts/api';
+import { MemberPreferencesSchema, NotificationPreferencesSchema, UpdateNotificationPreferencesInputSchema, UpdatePreferencesInputSchema, UpdateProfileInputSchema, UpdateWorkspaceInputSchema, UserProfileSchema, WorkspaceSchema } from '@studio/contracts/api';
 import type { OperationId } from '@studio/contracts/api';
 import type { Clock } from '@studio/domain';
 import { StudioApiError } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
 import { transactMock } from './transaction.ts';
 
-export const settingsOperations = ['updateWorkspace', 'updateProfile', 'updatePreferences'] as const satisfies readonly OperationId[];
+export const settingsOperations = ['updateWorkspace', 'updateProfile', 'updatePreferences', 'updateNotificationPreferences'] as const satisfies readonly OperationId[];
 function fail(code: 'NOT_FOUND' | 'FORBIDDEN' | 'CONFLICT' | 'INTERNAL_ERROR', message: string): never { throw new StudioApiError({ error: { code, message } }); }
 // Use the same staged queue as task/project/team commands. Persistence must succeed
 // before committing memory, including the canonical profile/membership projection.
@@ -30,6 +30,8 @@ export function runSettingsOperation(id: OperationId, input: Record<string, unkn
       result = { data: profile };
     } else if (id === 'updatePreferences') {
       staged.preferences = MemberPreferencesSchema.parse({ ...staged.preferences, ...UpdatePreferencesInputSchema.parse(input.body) }); result = { data: staged.preferences };
+    } else if (id === 'updateNotificationPreferences') {
+      staged.notificationPreferences = NotificationPreferencesSchema.parse({ ...staged.notificationPreferences, ...UpdateNotificationPreferencesInputSchema.parse(input.body) }); result = { data: staged.notificationPreferences };
     } else return fail('NOT_FOUND', 'Settings operation is unavailable');
     if (persist && !persist(staged)) return fail('INTERNAL_ERROR', 'Settings could not be saved. Your draft is unchanged.');
     return result;

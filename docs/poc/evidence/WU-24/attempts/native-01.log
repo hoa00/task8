@@ -1,0 +1,53 @@
+N24-01-eight-direct-routes
+N24-02-fourteen-notification-toggles-reload
+N24-03-notification-storage-failure-retained-A-plus-B-and-exact-Retry
+N24-04-settings-shared-member-invite-role-remove-directory-count
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+A [Error]: expect(locator).toHaveCount(expected) failed
+
+Locator:  getByRole('button', { name: 'New team', exact: true })
+Expected: 0
+Received: 1
+Timeout:  5000ms
+
+Call log:
+  - Expect "to.have.count" with timeout 5000ms
+  - waiting for getByRole('button', { name: 'New team', exact: true })
+    9 × locator resolved to 1 element
+      - unexpected value "1"
+
+    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)
+    at file:///workspace/task8/tests/visual/settings/workspace-interactions.mjs:20:193
+    at async probe (file:///workspace/task8/tests/visual/settings/workspace-interactions.mjs:13:172)
+    at async file:///workspace/task8/tests/visual/settings/workspace-interactions.mjs:20:1 {
+  matcherResult: {
+    actual: 1,
+    expected: 0,
+    message: 'expect(locator).toHaveCount(expected) failed\n' +
+      '\n' +
+      "Locator:  getByRole('button', { name: 'New team', exact: true })\n" +
+      'Expected: 0\n' +
+      'Received: 1\n' +
+      'Timeout:  5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      '  - Expect "to.have.count" with timeout 5000ms\n' +
+      "  - waiting for getByRole('button', { name: 'New team', exact: true })\n" +
+      '    9 × locator resolved to 1 element\n' +
+      '      - unexpected value "1"\n',
+    name: 'toHaveCount',
+    pass: false,
+    log: [
+      '  - Expect "to.have.count" with timeout 5000ms',
+      "  - waiting for getByRole('button', { name: 'New team', exact: true })",
+      '    9 × locator resolved to 1 element',
+      '      - unexpected value "1"'
+    ],
+    timeout: 5000
+  }
+}
+
+Node.js v24.13.0

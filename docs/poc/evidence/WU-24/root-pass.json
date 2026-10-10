@@ -1,0 +1,78 @@
+{
+  "status": "ROOT_TECHNICAL_PASS",
+  "unit": "WU-24",
+  "boundedAC": [
+    "WU-24-AC1",
+    "WU-24-AC2",
+    "WU-24-AC3",
+    "WU-24-AC4"
+  ],
+  "authority": "Root independent review message",
+  "candidate": {
+    "path": "docs/poc/evidence/WU-24/review.json",
+    "sha256": "618634fc40452ee7db0c0e4198a4fd3e244feadf0a6228847dd1aa7c616b339a"
+  },
+  "index": {
+    "path": "docs/poc/evidence/WU-24/attempts/index-02/report.json",
+    "sha256": "c8b35a9e48834e440ca3284d1e23df7ec8a0b9767fb3d3a3826d203c5a4ea065",
+    "indexedFiles": 12713,
+    "indexedBytes": 142130540,
+    "totalSeparatelyVerifiedStagedFiles": 12719,
+    "totalStagedBytes": 145587977
+  },
+  "emittedProof": {
+    "path": "docs/poc/evidence/WU-24/emitted-proof.json",
+    "sha256": "95b2e14516b9346e6162b2a3b108a912baa64abb9a42de3914b2a604215dfa5a"
+  },
+  "independentVerification": {
+    "visualPairs": 34,
+    "strictZeroComparisons": 102,
+    "PNG": 136,
+    "fixtureSHAs": 68,
+    "actualWoff200": 136,
+    "fourFaceContexts": 68,
+    "freshSourceImagesInspected": 8,
+    "TargetImagesInspected": 3,
+    "native": 9,
+    "HTTPArchived": {
+      "probes": 7,
+      "requests": 146,
+      "writes": 8,
+      "intentionalErrors": 25
+    },
+    "HTTPCurrent": {
+      "probes": 1,
+      "requests": 14,
+      "writes": 1,
+      "intentionalErrors": 1,
+      "expectedVersion": 5
+    },
+    "scrollPairedCases": 16,
+    "scrollBrowserContexts": 4,
+    "scrollWoffResponses": 8,
+    "core06CommandsExit0": 7,
+    "lint04Exit": 0,
+    "currentAssets": 704,
+    "archivedAssets": 704,
+    "productionBridge": [
+      "apps/web/src/features/projects/ProjectOverlayHost.tsx"
+    ],
+    "generatedBridgePaths": 22,
+    "frozenManifests": 47,
+    "frozenFileEntries": 12578,
+    "qualifiedWrapperPrefixes": 2,
+    "prefixBytesEach": 48,
+    "finalWrapperBytesEach": 284,
+    "literalEvidenceWhitespaceExceptions": 100,
+    "activeCodeWaivers": 0,
+    "wildcards": 0,
+    "SourceTrackedClean": 86,
+    "listeners": 0,
+    "freshHEADOriginMainRemote": "533041a7bebb23387f6a97a79eaa729d1493c6e1",
+    "rootRuntimeRevision": "113"
+  },
+  "originalWholeWrapperFreezes": "FAILED/unaccepted/debt WU29; only exact prefix qualification accepted. Candidate/proofs unchanged.",
+  "exclusions": "No409 browser/concurrentCAS/fullshell/Darwin/backend/ACL/external delivery/motionPNG/default inherited/fullproject acceptance. All raw failures/gaps and inherited debts preserved.",
+  "productionBlockers": [],
+  "authorizedNextAction": "Metadata-only DONE; normal implementation commit/push then docs-only actual-SHA checkpoint commit/push, verify clean Source/ports/main and STOP24."
+}
