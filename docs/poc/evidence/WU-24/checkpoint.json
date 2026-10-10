@@ -1,0 +1,353 @@
+{
+  "status": "IMPLEMENTATION_COMMITTED_AND_NORMAL_PUSH_VERIFIED",
+  "unit": "WU-24",
+  "implementation": {
+    "head": "fcc38be7a4b7a8559b6cda470b024287788664e2",
+    "tree": "c212fa74a6952b29525d415489d60c2860716c55",
+    "parent": "533041a7bebb23387f6a97a79eaa729d1493c6e1",
+    "originMain": "fcc38be7a4b7a8559b6cda470b024287788664e2",
+    "freshActualRemoteMain": "fcc38be7a4b7a8559b6cda470b024287788664e2",
+    "normalPushExit": 0,
+    "cleanBeforeAfter": true,
+    "divergence": [
+      0,
+      0
+    ]
+  },
+  "implementationEvidence": {
+    "unit": "WU-24",
+    "actions": [
+      {
+        "name": "branch",
+        "command": [
+          "git",
+          "branch",
+          "--show-current"
+        ],
+        "exitStatus": 0,
+        "stdout": "work\n",
+        "stderr": "",
+        "stdoutSha256": "4c7a03f2c9a663a0678eef8293f7609a609c92a6b3bccb2e556301f8b290c7f2",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 5,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-branch.stdout.log",
+          "/tmp/task8-WU24-implementation-branch.stderr.log"
+        ]
+      },
+      {
+        "name": "remote",
+        "command": [
+          "git",
+          "remote",
+          "get-url",
+          "origin"
+        ],
+        "exitStatus": 0,
+        "stdout": "https://github.com/hoa00/task8.git\n",
+        "stderr": "",
+        "stdoutSha256": "2d3ec33c938c7b2c3dc806a7fd616f6518dea68b7de2005ad4390d05281a4348",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 35,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-remote.stdout.log",
+          "/tmp/task8-WU24-implementation-remote.stderr.log"
+        ]
+      },
+      {
+        "name": "commit",
+        "command": [
+          "git",
+          "commit",
+          "--quiet",
+          "-m",
+          "feat(settings): complete workspace and notification sections (WU-24)"
+        ],
+        "exitStatus": 0,
+        "stdout": "",
+        "stderr": "",
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 0,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-commit.stdout.log",
+          "/tmp/task8-WU24-implementation-commit.stderr.log"
+        ]
+      },
+      {
+        "name": "HEAD",
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exitStatus": 0,
+        "stdout": "fcc38be7a4b7a8559b6cda470b024287788664e2\n",
+        "stderr": "",
+        "stdoutSha256": "e06c6fb57b873983b5207edfc1c04336bbcca6d7d45e3c6710704b1aae78337f",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 41,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-HEAD.stdout.log",
+          "/tmp/task8-WU24-implementation-HEAD.stderr.log"
+        ]
+      },
+      {
+        "name": "tree",
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD^{tree}"
+        ],
+        "exitStatus": 0,
+        "stdout": "c212fa74a6952b29525d415489d60c2860716c55\n",
+        "stderr": "",
+        "stdoutSha256": "61db63229c3b423e5c8057ad546b5cefb91c787e3310a1c6a1ea55b8b73771c4",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 41,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-tree.stdout.log",
+          "/tmp/task8-WU24-implementation-tree.stderr.log"
+        ]
+      },
+      {
+        "name": "parent",
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD^"
+        ],
+        "exitStatus": 0,
+        "stdout": "533041a7bebb23387f6a97a79eaa729d1493c6e1\n",
+        "stderr": "",
+        "stdoutSha256": "bd2ab1028cbc6b87965456ef1a0ef36224e9fde7831a69a5e2dfd817fb6a1799",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 41,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-parent.stdout.log",
+          "/tmp/task8-WU24-implementation-parent.stderr.log"
+        ]
+      },
+      {
+        "name": "clean-before-push",
+        "command": [
+          "git",
+          "status",
+          "--porcelain"
+        ],
+        "exitStatus": 0,
+        "stdout": "",
+        "stderr": "",
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 0,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-clean-before-push.stdout.log",
+          "/tmp/task8-WU24-implementation-clean-before-push.stderr.log"
+        ]
+      },
+      {
+        "name": "normal-push",
+        "command": [
+          "git",
+          "push",
+          "origin",
+          "HEAD:main"
+        ],
+        "exitStatus": 0,
+        "stdout": "",
+        "stderr": "To https://github.com/hoa00/task8.git\n   533041a..fcc38be  HEAD -> main\n",
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "0c6410e8192a1a971c02263cb8a4bb8f3c873577f00983f2f625a8c3418e77f2",
+        "stdoutBytes": 0,
+        "stderrBytes": 72,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-normal-push.stdout.log",
+          "/tmp/task8-WU24-implementation-normal-push.stderr.log"
+        ]
+      },
+      {
+        "name": "origin-main",
+        "command": [
+          "git",
+          "rev-parse",
+          "origin/main"
+        ],
+        "exitStatus": 0,
+        "stdout": "fcc38be7a4b7a8559b6cda470b024287788664e2\n",
+        "stderr": "",
+        "stdoutSha256": "e06c6fb57b873983b5207edfc1c04336bbcca6d7d45e3c6710704b1aae78337f",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 41,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-origin-main.stdout.log",
+          "/tmp/task8-WU24-implementation-origin-main.stderr.log"
+        ]
+      },
+      {
+        "name": "fresh-main",
+        "command": [
+          "git",
+          "ls-remote",
+          "origin",
+          "refs/heads/main"
+        ],
+        "exitStatus": 0,
+        "stdout": "fcc38be7a4b7a8559b6cda470b024287788664e2\trefs/heads/main\n",
+        "stderr": "",
+        "stdoutSha256": "942836c061e9e309075c6832eab3a14ad90224e88cdff8063eb08710927880e1",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 57,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-fresh-main.stdout.log",
+          "/tmp/task8-WU24-implementation-fresh-main.stderr.log"
+        ]
+      },
+      {
+        "name": "divergence",
+        "command": [
+          "git",
+          "rev-list",
+          "--left-right",
+          "--count",
+          "HEAD...origin/main"
+        ],
+        "exitStatus": 0,
+        "stdout": "0\t0\n",
+        "stderr": "",
+        "stdoutSha256": "4b14c7b5549e560a68e9c4daaae3fdb8a28fe32d0247050325e7c5a3b2b3271c",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 4,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-divergence.stdout.log",
+          "/tmp/task8-WU24-implementation-divergence.stderr.log"
+        ]
+      },
+      {
+        "name": "clean-after-push",
+        "command": [
+          "git",
+          "status",
+          "--porcelain"
+        ],
+        "exitStatus": 0,
+        "stdout": "",
+        "stderr": "",
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 0,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-clean-after-push.stdout.log",
+          "/tmp/task8-WU24-implementation-clean-after-push.stderr.log"
+        ]
+      },
+      {
+        "name": "source-clean",
+        "command": [
+          "git",
+          "-C",
+          ".reference/gr8r-studio",
+          "status",
+          "--porcelain"
+        ],
+        "exitStatus": 0,
+        "stdout": "",
+        "stderr": "",
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 0,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-source-clean.stdout.log",
+          "/tmp/task8-WU24-implementation-source-clean.stderr.log"
+        ]
+      },
+      {
+        "name": "ports",
+        "command": [
+          "ss",
+          "-ltnp",
+          "( sport = :4173 or sport = :5173 )"
+        ],
+        "exitStatus": 0,
+        "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\n",
+        "stderr": "",
+        "stdoutSha256": "14f4ea5bdea2bd6f8d856ec28619243555e53de100d4bca155a751876e97a843",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdoutBytes": 64,
+        "stderrBytes": 0,
+        "localRawPaths": [
+          "/tmp/task8-WU24-implementation-ports.stdout.log",
+          "/tmp/task8-WU24-implementation-ports.stderr.log"
+        ]
+      }
+    ],
+    "status": "passed",
+    "implementation": {
+      "head": "fcc38be7a4b7a8559b6cda470b024287788664e2",
+      "tree": "c212fa74a6952b29525d415489d60c2860716c55",
+      "parent": "533041a7bebb23387f6a97a79eaa729d1493c6e1",
+      "originMain": "fcc38be7a4b7a8559b6cda470b024287788664e2",
+      "freshActualRemoteMain": "fcc38be7a4b7a8559b6cda470b024287788664e2",
+      "normalPushExit": 0,
+      "cleanBeforeAfter": true,
+      "divergence": [
+        0,
+        0
+      ]
+    },
+    "SourceClean": true,
+    "listeners": 0
+  },
+  "implementationProofSha256": "9bc1cff2d899e6d298f8c3e8caba38e1703a6d277cc7a341a8a6f0837b5f165a",
+  "rootPass": {
+    "path": "docs/poc/evidence/WU-24/root-pass.json",
+    "sha256": "b40ed92665b52b53407e91e8514f2d311751131a6957479f2d3b466819e27251"
+  },
+  "Source": {
+    "head": "904205c626918ee96054eb35495c394a60c0c601",
+    "tree": "5db5f992886b2345881946cf85fac098307953a5",
+    "tracked": 86,
+    "status": ""
+  },
+  "immutableInputs": {
+    "baseline-manifest.json": "b3ef541f9fa01c6c57d7344f9ca8efbc4acf5b35015f3ee7cf5df24dd4359bfe",
+    "font-assets.json": "af3c07090ede6a21872004ca20bb245ffd45dae46d01c6ebd6e96c1048e4bce4",
+    "source-fixture.json": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+    "source-lock.json": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+  },
+  "runtimeAfterImplementationPush": {
+    "spec_revision": "113",
+    "observed_spec_revision": "113",
+    "observations_current": true,
+    "connectivity": "connected",
+    "observed_phase": "running",
+    "desired_phase": "running",
+    "network_policy": {
+      "mode": "unrestricted",
+      "state": "enforced"
+    },
+    "vpn_configured": false,
+    "proxyCAAuth": "preserved"
+  },
+  "documentationCheckpoint": {
+    "files": [
+      "docs/poc/PROGRESS.md",
+      "docs/poc/evidence/WU-24/checkpoint.json"
+    ],
+    "scope": "This docs-only checkpoint records the already verified real implementation commit/push. Its own final commit/tree/parent/fresh remote are verified after actual commit and normal push and reported to root; no recursive own-SHA invention."
+  },
+  "inheritedAndRawDebts": "All prior WU10\u201323/WU29/default/raster/mobile/Darwin/fullshell/privacy/missing-byte/whole-upload/static42 positive-progress debts and WU24 raw failures, diagnostics gap, original whole wrapper-freeze failures are retained and unaccepted. No real backend/ACL/delivery/HTTP409/fullproject/default acceptance.",
+  "next": "STOP24 after docs-checkpoint normal push verification; WU25 requires a different new implementation owner."
+}
