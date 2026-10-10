@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"19e6972f-2532-4a4d-89af-ca9f70bc23d4\",\"projectId\":\"01a12705-06ab-759c-a930-f6a50cf55aac\",\"title\":\"bad\",\"createdAt\":\"2020-01-01T00:00:00Z\"}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid request"
+    }
+  },
+  "budget": {
+    "queries": 2,
+    "parameters": 4
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"a923edc9-245d-44e4-b52c-0e3e42399294\",\"projectId\":\"01a1270f-db9d-7e62-83cb-a76d09c77c8e\",\"title\":\"Referring task\",\"dependencyIds\":[\"01a1270f-e95c-7955-a570-76eacd47cf18\"]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270f-e969-7a0c-a0a5-057db338de94",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270f-db9d-7e62-83cb-a76d09c77c8e",
+        "key": "TA-222",
+        "title": "Referring task",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [
+          "01a1270f-e95c-7955-a570-76eacd47cf18"
+        ],
+        "position": 14000,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:25:16.648Z",
+        "updatedAt": "2026-10-10T18:25:16.648Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1270f-db9d-7e62-83cb-a76d09c77c8e",
+        "01a1270f-e935-781d-8974-7a3debbb1516"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 22
+  }
+}

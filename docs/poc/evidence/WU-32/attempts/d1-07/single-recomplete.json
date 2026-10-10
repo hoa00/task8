@@ -1,0 +1,55 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270f-df2b-795d-b078-0f98bba2c6c7/completion",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":3,\"completed\":true}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270f-df2b-795d-b078-0f98bba2c6c7",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270f-db9d-7e62-83cb-a76d09c77c8e",
+        "key": "TA-210",
+        "title": "Monthly",
+        "descriptionHtml": "",
+        "status": "done",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": "2026-01-31",
+        "estimate": null,
+        "recurrence": "monthly",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 5900,
+        "completedAt": "2026-10-10T18:25:14.178Z",
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:25:14.026Z",
+        "updatedAt": "2026-10-10T18:25:14.178Z",
+        "version": 4,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 1
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1270f-db9d-7e62-83cb-a76d09c77c8e"
+      ],
+      "undo": {
+        "id": "01a1270f-dfc4-7cbf-8779-fbc078601747",
+        "kind": "task.complete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 12,
+    "parameters": 34
+  }
+}

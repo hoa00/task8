@@ -1,0 +1,52 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"863610a0-5a4e-48cd-adb8-dc7078254d10\",\"projectId\":\"01a12709-f3d6-7698-82c3-d19ffa965fce\",\"title\":\"Move recurring\",\"dueDate\":\"2026-12-31\",\"recurrence\":\"monthly\"}",
+  "status": 201,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a12709-ffa5-7771-99b7-c19a12e41711",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a12709-f3d6-7698-82c3-d19ffa965fce",
+        "key": "TA-218",
+        "title": "Move recurring",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": "2026-12-31",
+        "estimate": null,
+        "recurrence": "monthly",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 12800,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:18:49.124Z",
+        "updatedAt": "2026-10-10T18:18:49.124Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a12709-f3d6-7698-82c3-d19ffa965fce"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 22
+  }
+}

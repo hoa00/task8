@@ -1,0 +1,24 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"operation\":\"archive\",\"columnScope\":{\"kind\":\"project\",\"projectId\":\"01a12705-ecd0-7e2c-b303-977a01a7a6e4\",\"status\":\"done\"},\"items\":[]}",
+  "status": 200,
+  "response": {
+    "data": {
+      "createdTasks": [],
+      "affectedProjectIds": [],
+      "undo": {
+        "id": "01a12705-ece7-763b-b1b2-cf7e26a9452e",
+        "kind": "tasks.archiveCompletedColumn"
+      },
+      "tasks": []
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 29
+  }
+}

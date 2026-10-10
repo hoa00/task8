@@ -1,0 +1,54 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12705-074d-7d6b-8cdc-e20387a0c623",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2,\"descriptionHtml\":\"<svg><a href=\\\"javascript:x\\\">bad</a></svg><p style=\\\"color:red\\\">x &amp; y <i>em</i><a href=\\\"javascript:alert(1)\\\">plain</a><a href=\\\"http://example.com\\\">ok</a></p>\"}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a12705-074d-7d6b-8cdc-e20387a0c623",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a12705-06ab-759c-a930-f6a50cf55aac",
+        "key": "TA-206",
+        "title": "Intent",
+        "descriptionHtml": "<p>x &amp; y <em>em</em><a>plain</a><a href=\"http://example.com\">ok</a></p>",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "high",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [
+          "design"
+        ],
+        "dependencyIds": [],
+        "position": 5500,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:13:23.401Z",
+        "updatedAt": "2026-10-10T18:13:23.509Z",
+        "version": 3,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 1
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a12705-06ab-759c-a930-f6a50cf55aac"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 28
+  }
+}

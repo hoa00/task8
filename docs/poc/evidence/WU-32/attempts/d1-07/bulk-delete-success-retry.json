@@ -1,0 +1,33 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270f-ec4a-79f8-b4e8-0d3a783c2c36",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{}",
+  "status": 200,
+  "response": {
+    "data": {
+      "undoId": "01a1270f-ec4a-79f8-b4e8-0d3a783c2c36",
+      "kind": "tasks.bulkDelete",
+      "appliedAt": "2026-10-10T18:25:17.411Z",
+      "affected": {
+        "taskIds": [
+          "01a1270f-ec2a-791d-935d-713383136a32",
+          "01a1270f-ec36-7f1a-bec8-4a93a7f941dc"
+        ],
+        "projectIds": [
+          "01a1270f-db9d-7e62-83cb-a76d09c77c8e"
+        ],
+        "teamIds": [],
+        "memberIds": [],
+        "commentIds": [],
+        "fileIds": []
+      }
+    }
+  },
+  "budget": {
+    "queries": 6,
+    "parameters": 11
+  }
+}

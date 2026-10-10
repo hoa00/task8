@@ -1,0 +1,52 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"1a6906ef-31c2-45de-a58d-1453d1be8943\",\"projectId\":\"01a1270f-e26d-7cd7-81d3-956ed4cd849a\",\"title\":\"Column-14\",\"dueDate\":\"2028-01-31\",\"recurrence\":\"monthly\",\"priority\":\"low\",\"subtasks\":[{\"title\":\"Child 14\",\"done\":true}]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270f-e2e4-7484-8181-ee9332b3f13b",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270f-e26d-7cd7-81d3-956ed4cd849a",
+        "key": "RC-215",
+        "title": "Column-14",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "low",
+        "startDate": null,
+        "dueDate": "2028-01-31",
+        "estimate": null,
+        "recurrence": "monthly",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 8100,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:25:14.972Z",
+        "updatedAt": "2026-10-10T18:25:14.972Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 1
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1270f-e26d-7cd7-81d3-956ed4cd849a"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 22
+  }
+}

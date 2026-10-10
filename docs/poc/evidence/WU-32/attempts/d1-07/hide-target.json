@@ -1,0 +1,55 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270f-ea97-7fe4-be77-4a399dae0e27/archive",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270f-ea97-7fe4-be77-4a399dae0e27",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270f-db9d-7e62-83cb-a76d09c77c8e",
+        "key": "TA-223",
+        "title": "Hidden target",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 14300,
+        "completedAt": null,
+        "archivedAt": "2026-10-10T18:25:16.972Z",
+        "createdAt": "2026-10-10T18:25:16.950Z",
+        "updatedAt": "2026-10-10T18:25:16.972Z",
+        "version": 3,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1270f-db9d-7e62-83cb-a76d09c77c8e"
+      ],
+      "undo": {
+        "id": "01a1270f-eaad-7425-b80b-c712b58b1a51",
+        "kind": "task.archive"
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 28
+  }
+}

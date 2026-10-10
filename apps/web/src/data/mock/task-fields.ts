@@ -9,7 +9,7 @@ import { StudioApiError } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
 
 export const taskFieldOperations = ['createTask', 'bulkMutateTasks', 'updateSubtask', 'createSubtask', 'deleteSubtask', 'promoteSubtask', 'listComments', 'createComment', 'deleteComment', 'restoreDeletedComment', 'addCommentReaction', 'removeCommentReaction', 'listActivity', 'listMembers', 'getTask', 'listTasks', 'getTaskSummary', 'updateTask', 'moveTask', 'setTaskCompletion', 'undoCommand', 'duplicateTask', 'archiveTask', 'restoreTask', 'deleteTask', 'addTaskFavorite', 'removeTaskFavorite', 'getFile', 'listProjectFiles', 'renameFile', 'duplicateFile', 'uploadProjectFile', 'deleteFile'] as const satisfies readonly OperationId[];
-const fail = (code: 'NOT_FOUND' | 'CONFLICT' | 'VALIDATION_ERROR' | 'PAYLOAD_TOO_LARGE', message: string, field?: string): never => { throw new StudioApiError({ error: { code, message, ...(field ? { fieldErrors: { [field]: [message] } } : {}) } }); };
+const fail = (code: 'NOT_FOUND' | 'CONFLICT' | 'VALIDATION_ERROR' | 'PAYLOAD_TOO_LARGE' | 'VIEW_SCOPE_TOO_LARGE', message: string, field?: string): never => { throw new StudioApiError({ error: { code, message, ...(field ? { fieldErrors: { [field]: [message] } } : {}) } }); };
 export function newMockId(clock: Clock) { const time = Date.parse(clock.now()).toString(16).padStart(12, '0'); const random = crypto.randomUUID(); return EntityIdSchema.parse(`${time.slice(0, 8)}-${time.slice(8)}-7${random.slice(15, 18)}-${random.slice(19)}`); }
 function getTask(data: MockDataset, id: string): TaskDto {
   const task = data.tasks[EntityIdSchema.parse(id)];
@@ -111,8 +111,8 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       const body = CreateTaskInputSchema.parse(input.body);
       const normalized = normalizeDescription(body.descriptionHtml); body.descriptionHtml = normalized.html;
       for (const child of body.subtasks) if (child.assigneeId && (!data.members[child.assigneeId] || data.members[child.assigneeId]!.workspaceId !== data.workspaceId)) return fail('VALIDATION_ERROR', 'Choose a member in this workspace', 'subtasks');
-      const signature = await fingerprint(body), prior = data.taskCommands.createRequests[data.currentMemberId]?.[body.clientRequestId];
-      if (prior) { if (prior.fingerprint !== signature) return fail('CONFLICT', 'Create request ID was reused with different values'); const task = getTask(data, prior.taskId); return { data: { task: projectTask(task, data), createdTasks: [], affectedProjectIds: [task.projectId], undo: null } }; }
+      const { clientRequestId: requestId, ...intent } = body; const signature = await fingerprint({ ...intent, labelIds: [...body.labelIds].sort(), dependencyIds: [...body.dependencyIds].sort() }), prior = data.taskCommands.createRequests[data.currentMemberId]?.[requestId];
+      if (prior) { if (prior.fingerprint !== signature) return fail('CONFLICT', 'Create request ID was reused with different values'); const task = getTask(data, prior.taskId); if (task.projectId !== body.projectId || task.archivedAt) return fail('CONFLICT', 'Created task moved scope or lifecycle changed'); return { data: { task: projectTask(task, data), createdTasks: [], affectedProjectIds: [task.projectId], undo: null } }; }
       const fields = Object.fromEntries(Object.entries(body).filter(([key]) => !['clientRequestId', 'subtasks'].includes(key)));
       const task = TaskSchema.parse({ ...fields, id: newMockId(clock), workspaceId: data.workspaceId, key: 'NEW-0', createdAt: clock.now(), updatedAt: clock.now(), completedAt: body.status === 'done' ? clock.now() : null, archivedAt: null, position: Math.max(0, ...Object.values(data.tasks).map(row => row.position)) + 100, version: 1, isFavorite: false, attachmentCount: 0, commentCount: 0, subtaskSummary: { total: body.subtasks.length, completed: body.subtasks.filter(row => row.done).length } });
       validate(task, data, true); task.key = allocateTaskKey(data, task.projectId); data.tasks[task.id] = task;
@@ -360,8 +360,12 @@ async function executeTaskOperation(id: OperationId, input: Record<string, unkno
       const before = body.beforeId ? data.tasks[body.beforeId] : null, after = body.afterId ? data.tasks[body.afterId] : null;
       for (const neighbor of [body.beforeId, body.afterId]) if (neighbor && !ids.includes(EntityIdSchema.parse(neighbor))) return fail('VALIDATION_ERROR', 'Move neighbor is outside the destination scope');
       if (before && after && after.position >= before.position) return fail('VALIDATION_ERROR', 'Move neighbors are not ordered');
-      const position = before && after ? Math.floor((before.position + after.position) / 2) : before ? before.position - 100 : after ? after.position + 100 : Math.max(0, ...ids.map(value => data.tasks[value]!.position)) + 100;
-      if (before && after && position === after.position) return fail('CONFLICT', 'No ordering space remains between these tasks');
+      let position = before && after ? Math.floor((before.position + after.position) / 2) : before ? before.position - 100 : after ? after.position + 100 : Math.max(0, ...ids.map(value => data.tasks[value]!.position)) + 100;
+      if (before && after && position === after.position) {
+        if (ids.length + 1 > 128) return fail('VIEW_SCOPE_TOO_LARGE', 'Ordering scope exceeds bounded rebalance');
+        const ordered = ids.map(id => data.tasks[id]!).sort((a,b) => a.position-b.position || a.id.localeCompare(b.id)), at=ordered.findIndex(row=>row.id===before.id); ordered.splice(at,0,task); const base=Math.min(...ordered.map(row=>row.position));
+        ordered.forEach((row,index)=>{const nextPosition=base+index*100;if(!Number.isSafeInteger(nextPosition))return fail('VIEW_SCOPE_TOO_LARGE','Ordering exceeds integer range');if(row.id===task.id){position=nextPosition;return;}if(row.position!==nextPosition)data.tasks[row.id]={...row,position:nextPosition,version:row.version+1,updatedAt:clock.now()};});
+      }
       const key = projectId === task.projectId ? task.key : allocateTaskKey(data, projectId);
       const result = patchTask(data, task, { ...groupPatch, projectId, key, position }, clock);
       if (projectId !== task.projectId) Object.values(data.files).filter(file => file.taskId === task.id).forEach(file => { file.projectId = projectId; file.version++; });

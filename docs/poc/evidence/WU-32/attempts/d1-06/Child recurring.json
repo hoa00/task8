@@ -1,0 +1,52 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"1c2f87fc-67a4-48e4-984e-bc284242828f\",\"projectId\":\"01a1270a-0295-7292-9347-fbbfbddc6584\",\"title\":\"Child recurring\",\"dueDate\":\"2026-05-01\",\"recurrence\":\"weekly\",\"subtasks\":[{\"title\":\"Original\"}]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270a-02a8-7598-9e85-2aa42b936dac",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270a-0295-7292-9347-fbbfbddc6584",
+        "key": "CC-201",
+        "title": "Child recurring",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": "2026-05-01",
+        "estimate": null,
+        "recurrence": "weekly",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 14100,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:18:49.895Z",
+        "updatedAt": "2026-10-10T18:18:49.895Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1270a-0295-7292-9347-fbbfbddc6584"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 22
+  }
+}

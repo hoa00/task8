@@ -1,0 +1,52 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270f-eaa2-77c4-af83-51e919914bb6",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"priority\":\"high\"}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270f-eaa2-77c4-af83-51e919914bb6",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270f-db9d-7e62-83cb-a76d09c77c8e",
+        "key": "TA-224",
+        "title": "Retained dependency",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "high",
+        "startDate": null,
+        "dueDate": "2026-05-01",
+        "estimate": null,
+        "recurrence": "biweekly",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 14400,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:25:16.961Z",
+        "updatedAt": "2026-10-10T18:25:16.984Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1270f-db9d-7e62-83cb-a76d09c77c8e"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 28
+  }
+}

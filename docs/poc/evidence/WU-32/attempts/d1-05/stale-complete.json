@@ -1,0 +1,55 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12705-e70a-756e-b488-8b64503faced/completion",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"completed\":true}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a12705-e70a-756e-b488-8b64503faced",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a12705-e367-72b1-ba1b-d0f982923ff2",
+        "key": "TA-214",
+        "title": "Stale completion",
+        "descriptionHtml": "",
+        "status": "done",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 6300,
+        "completedAt": "2026-10-10T18:14:20.689Z",
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:14:20.681Z",
+        "updatedAt": "2026-10-10T18:14:20.689Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a12705-e367-72b1-ba1b-d0f982923ff2"
+      ],
+      "undo": {
+        "id": "01a12705-e713-7786-8115-a66b0309012c",
+        "kind": "task.complete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 28
+  }
+}

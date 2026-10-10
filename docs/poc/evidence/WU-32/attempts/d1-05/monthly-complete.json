@@ -1,0 +1,86 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12705-e659-78de-9687-99cac9b790a5/completion",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"completed\":true}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a12705-e659-78de-9687-99cac9b790a5",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a12705-e367-72b1-ba1b-d0f982923ff2",
+        "key": "TA-210",
+        "title": "Monthly",
+        "descriptionHtml": "",
+        "status": "done",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": "2026-01-31",
+        "estimate": null,
+        "recurrence": "monthly",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 5900,
+        "completedAt": "2026-10-10T18:14:20.514Z",
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:14:20.504Z",
+        "updatedAt": "2026-10-10T18:14:20.514Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 1
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [
+        {
+          "id": "01a12705-e668-7edb-8789-f331f3d0d6c7",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a12705-e367-72b1-ba1b-d0f982923ff2",
+          "key": "TA-211",
+          "title": "Monthly",
+          "descriptionHtml": "",
+          "status": "todo",
+          "assigneeId": null,
+          "priority": "none",
+          "startDate": "2026-02-28",
+          "dueDate": "2026-02-28",
+          "estimate": null,
+          "recurrence": "monthly",
+          "labelIds": [],
+          "dependencyIds": [],
+          "position": 6000,
+          "completedAt": null,
+          "archivedAt": null,
+          "createdAt": "2026-10-10T18:14:20.514Z",
+          "updatedAt": "2026-10-10T18:14:20.514Z",
+          "version": 1,
+          "isFavorite": false,
+          "subtaskSummary": {
+            "total": 1,
+            "completed": 0
+          },
+          "attachmentCount": 0,
+          "commentCount": 0
+        }
+      ],
+      "affectedProjectIds": [
+        "01a12705-e367-72b1-ba1b-d0f982923ff2"
+      ],
+      "undo": {
+        "id": "01a12705-e669-7c1c-be75-1145d39ec70e",
+        "kind": "task.complete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 16,
+    "parameters": 40
+  }
+}

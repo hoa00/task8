@@ -1,0 +1,635 @@
+{
+  "status": "FAILED",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:09:35.092Z",
+      "completedAt": "2026-10-10T18:09:42.109Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1453,
+        "sha256": "3628cc8ae1ea7425d2f7dfcf097c208e9180b97ba42a46c34f086e0aaf1d9780"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:09:42.110Z",
+      "completedAt": "2026-10-10T18:09:49.309Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48587,
+        "sha256": "ed8474ab6377783ee45d44c2dfac1c4595f765cf811f94f31e8b4a1557d7fcb9"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu32-config-d1-02/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:09:49.309Z",
+      "completedAt": "2026-10-10T18:09:55.644Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 7731,
+        "sha256": "9484f6b01b8dc63f72f052bd8a6ec398804bfb42281717557c0951010b261595"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 759,
+        "sha256": "44032065b5ca198da0ed7f8b26b80bbac7704c70cceeafe17b3f61448992a1fe"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "snapshot-initial",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "snapshot-initial.json",
+      "budget": null
+    },
+    {
+      "name": "parity-manual-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=manual&sortDirection=asc&limit=200",
+      "evidence": "parity-manual-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-manual-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=manual&sortDirection=desc&limit=200",
+      "evidence": "parity-manual-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-title-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=title&sortDirection=asc&limit=200",
+      "evidence": "parity-title-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-title-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=title&sortDirection=desc&limit=200",
+      "evidence": "parity-title-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-due-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=due&sortDirection=asc&limit=200",
+      "evidence": "parity-due-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-due-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=due&sortDirection=desc&limit=200",
+      "evidence": "parity-due-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-start-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=start&sortDirection=asc&limit=200",
+      "evidence": "parity-start-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-start-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=start&sortDirection=desc&limit=200",
+      "evidence": "parity-start-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-priority-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=priority&sortDirection=asc&limit=200",
+      "evidence": "parity-priority-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-priority-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=priority&sortDirection=desc&limit=200",
+      "evidence": "parity-priority-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-status-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=status&sortDirection=asc&limit=200",
+      "evidence": "parity-status-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-status-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=status&sortDirection=desc&limit=200",
+      "evidence": "parity-status-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-assignee-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=assignee&sortDirection=asc&limit=200",
+      "evidence": "parity-assignee-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-assignee-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=assignee&sortDirection=desc&limit=200",
+      "evidence": "parity-assignee-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-created-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=created&sortDirection=asc&limit=200",
+      "evidence": "parity-created-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-created-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=created&sortDirection=desc&limit=200",
+      "evidence": "parity-created-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-updated-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=updated&sortDirection=asc&limit=200",
+      "evidence": "parity-updated-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-updated-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=updated&sortDirection=desc&limit=200",
+      "evidence": "parity-updated-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-estimate-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=estimate&sortDirection=asc&limit=200",
+      "evidence": "parity-estimate-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-estimate-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=estimate&sortDirection=desc&limit=200",
+      "evidence": "parity-estimate-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-project-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=project&sortDirection=asc&limit=200",
+      "evidence": "parity-project-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-project-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=project&sortDirection=desc&limit=200",
+      "evidence": "parity-project-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-null",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?assigneeId=null",
+      "evidence": "scope-null.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-null",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?assigneeId=null",
+      "evidence": "summary-null.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-favorite",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=true",
+      "evidence": "scope-favorite.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-favorite",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=true",
+      "evidence": "summary-favorite.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-archived",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?archived=true",
+      "evidence": "scope-archived.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-archived",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?archived=true",
+      "evidence": "summary-archived.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-project",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "evidence": "scope-project.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-project",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "evidence": "summary-project.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-status",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?filters=%5B%7B%22field%22%3A%22status%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22todo%22%2C%22review%22%5D%7D%5D",
+      "evidence": "scope-status.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-status",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?filters=%5B%7B%22field%22%3A%22status%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22todo%22%2C%22review%22%5D%7D%5D",
+      "evidence": "summary-status.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-due",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?filters=%5B%7B%22field%22%3A%22due%22%2C%22op%22%3A%22not%22%2C%22values%22%3A%5B%22nodate%22%5D%7D%5D",
+      "evidence": "scope-due.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-due",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?filters=%5B%7B%22field%22%3A%22due%22%2C%22op%22%3A%22not%22%2C%22values%22%3A%5B%22nodate%22%5D%7D%5D",
+      "evidence": "summary-due.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-labels",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?filters=%5B%7B%22field%22%3A%22labels%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22design%22%5D%7D%5D",
+      "evidence": "scope-labels.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-labels",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?filters=%5B%7B%22field%22%3A%22labels%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22design%22%5D%7D%5D",
+      "evidence": "summary-labels.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-range",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?rangeFrom=2026-09-01&rangeTo=2026-11-01&rangeBasis=overlap",
+      "evidence": "scope-range.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-range",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?rangeFrom=2026-09-01&rangeTo=2026-11-01&rangeBasis=overlap",
+      "evidence": "summary-range.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "page1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=due&limit=2",
+      "evidence": "page1.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "page2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=due&limit=3&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiOGQxZjZhMjBhYzFmZWY1NmU1ZjIwOTNlMGMzNGYyOGU4NjM0MmI0MDk4MTM2MTRkZjA4ZDkyZTljNWNlNjljYiIsInNvcnRGaWVsZCI6ImR1ZSIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOiIyMDI2LTA5LTE4IiwiaWQiOiIwMWExMWFiZC1hYTgwLTc5N2EtODVjMy0zMTA4YmVmMTc0MjAifQ",
+      "evidence": "page2.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "cursor-mismatch",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=title&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiOGQxZjZhMjBhYzFmZWY1NmU1ZjIwOTNlMGMzNGYyOGU4NjM0MmI0MDk4MTM2MTRkZjA4ZDkyZTljNWNlNjljYiIsInNvcnRGaWVsZCI6ImR1ZSIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOiIyMDI2LTA5LTE4IiwiaWQiOiIwMWExMWFiZC1hYTgwLTc5N2EtODVjMy0zMTA4YmVmMTc0MjAifQ",
+      "evidence": "cursor-mismatch.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "cursor-invalid",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?cursor=x",
+      "evidence": "cursor-invalid.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "query-actor",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?actorId=01a11abd-aa80-7947-8d13-2178f1cc4d45",
+      "evidence": "query-actor.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "query-repeat",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?q=a&q=b",
+      "evidence": "query-repeat.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-pagination",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?limit=1",
+      "evidence": "summary-pagination.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "private-task",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-711f-8a08-c8a8d4c36dca",
+      "evidence": "private-task.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "foreign-task",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-7489-8783-d05782574232",
+      "evidence": "foreign-task.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "foreign-workspace",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/tasks",
+      "evidence": "foreign-workspace.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Task A",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Task A.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Task B",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Task B.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "sequence-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "sequence-before.json",
+      "budget": null
+    },
+    {
+      "name": "parallel-0",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "parallel-0.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "error": {
+    "message": "parallel-0\n\n500 !== 201\n",
+    "stack": "AssertionError [ERR_ASSERTION]: parallel-0\n\n500 !== 201\n\n    at get (file:///workspace/task8/apps/api/tests/wu32/verify.mjs:36:1245)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async command (file:///workspace/task8/apps/api/tests/wu32/verify.mjs:42:86)\n    at async Promise.all (index 0)\n    at async file:///workspace/task8/apps/api/tests/wu32/verify.mjs:69:19"
+  },
+  "completedAt": "2026-10-10T18:09:55.645Z"
+}

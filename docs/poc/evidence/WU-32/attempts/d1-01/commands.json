@@ -1,0 +1,90 @@
+[
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "d1",
+      "migrations",
+      "apply",
+      "DB",
+      "--local",
+      "--persist-to",
+      "/tmp/task8-wu32-d1-01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T18:08:52.400Z",
+    "completedAt": "2026-10-10T18:08:59.385Z",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "migrate.stdout.log",
+      "bytes": 1453,
+      "sha256": "53571a419697b2324685343567f7ec10d4d6acf2bb6c72aaa8cad6ffc076743d"
+    },
+    "stderr": {
+      "path": "migrate.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "seed",
+    "argv": [
+      "node",
+      "scripts/seed-local.mjs",
+      "--persist-to",
+      "/tmp/task8-wu32-d1-01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T18:08:59.385Z",
+    "completedAt": "2026-10-10T18:09:06.460Z",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "seed.stdout.log",
+      "bytes": 48587,
+      "sha256": "62ff1460d65f9aad88e130320f0cb35ec09a3634e1465e3decd1138890a970e3"
+    },
+    "stderr": {
+      "path": "seed.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "owner",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "8787",
+      "--config",
+      "/tmp/task8-wu32-config-d1-01/owner.json",
+      "--persist-to",
+      "/tmp/task8-wu32-d1-01"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-10T18:09:06.461Z",
+    "completedAt": "2026-10-10T18:09:12.798Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "shutdown": "SIGTERM after bounded probes",
+    "stdout": {
+      "path": "owner.stdout.log",
+      "bytes": 7734,
+      "sha256": "97ece181c162be5b73f963aff90f56bab35939a9b7e48654a00f6659b36e6ad4"
+    },
+    "stderr": {
+      "path": "owner.stderr.log",
+      "bytes": 1162,
+      "sha256": "bd89db09c8c2aa4b3592e5eb7d34b246e95320067527fe42e6d7c14dfde73e4e"
+    }
+  }
+]

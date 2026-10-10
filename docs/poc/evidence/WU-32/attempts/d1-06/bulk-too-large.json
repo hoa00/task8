@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"operation\":\"delete\",\"items\":[{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1},{\"id\":\"01a12709-ff93-7523-b411-70fe667aaa95\",\"expectedVersion\":1}]}",
+  "status": 413,
+  "response": {
+    "error": {
+      "code": "PAYLOAD_TOO_LARGE",
+      "message": "Bulk exceeds maxBulkItems"
+    }
+  },
+  "budget": {
+    "queries": 2,
+    "parameters": 4
+  }
+}

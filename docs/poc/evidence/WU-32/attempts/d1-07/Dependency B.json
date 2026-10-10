@@ -1,0 +1,54 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"c0966a39-5ea6-4dd0-b1b6-67c4b821a86b\",\"projectId\":\"01a1270f-db9d-7e62-83cb-a76d09c77c8e\",\"title\":\"Dependency B\",\"dependencyIds\":[\"01a1270f-dc41-7407-86ce-b6b8e9d8f200\"]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270f-ddaf-74c7-adf3-88806d133750",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270f-db9d-7e62-83cb-a76d09c77c8e",
+        "key": "TA-208",
+        "title": "Dependency B",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [
+          "01a1270f-dc41-7407-86ce-b6b8e9d8f200"
+        ],
+        "position": 5700,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:25:13.646Z",
+        "updatedAt": "2026-10-10T18:25:13.646Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1270f-db9d-7e62-83cb-a76d09c77c8e"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 22
+  }
+}

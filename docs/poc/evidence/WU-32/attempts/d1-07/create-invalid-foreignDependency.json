@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"0c624bf7-53f8-427c-8eac-10e4aad5969f\",\"projectId\":\"01a1270f-db9d-7e62-83cb-a76d09c77c8e\",\"title\":\"bad\",\"dependencyIds\":[\"01a11abd-aa80-7489-8783-d05782574232\"]}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Task project, assignee, dependency or cycle is invalid"
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 11
+  }
+}

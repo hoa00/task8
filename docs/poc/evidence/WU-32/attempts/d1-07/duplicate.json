@@ -1,0 +1,54 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270f-dc41-7407-86ce-b6b8e9d8f200/duplicate",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":6}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270f-ded0-7a45-9716-d41d4b47c7cb",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270f-db9d-7e62-83cb-a76d09c77c8e",
+        "key": "TA-209",
+        "title": "Intent (copy)",
+        "descriptionHtml": "<p>x &amp; y <em>em</em><a>plain</a><a href=\"http://example.com\">ok</a></p>",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "high",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [
+          "design"
+        ],
+        "dependencyIds": [],
+        "position": 5800,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:25:13.935Z",
+        "updatedAt": "2026-10-10T18:25:13.935Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1270f-db9d-7e62-83cb-a76d09c77c8e"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 14,
+    "parameters": 43
+  }
+}

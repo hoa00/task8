@@ -1,0 +1,51 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "body": "{\"clientRequestId\":\"ca84a4e1-e2cc-40b9-ac86-8230a44516d8\",\"projectId\":\"01a12705-e367-72b1-ba1b-d0f982923ff2\",\"title\":\"Intent\",\"descriptionHtml\":\"<p>Rich <b>bold</b><script>bad()</script><a href=\\\"https://example.com\\\" target=\\\"_blank\\\" onclick=\\\"x\\\">safe</a><img src=x onerror=x></p>\",\"subtasks\":[{\"title\":\"First\",\"done\":true,\"assigneeId\":\"01a11abd-aa80-7249-8034-93bbfb2174a2\",\"note\":\"note\"}],\"labelIds\":[\"design\"]}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a12705-e40d-7835-a1e8-2e2b13ee41da",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a12705-e367-72b1-ba1b-d0f982923ff2",
+        "key": "TA-206",
+        "title": "Intent",
+        "descriptionHtml": "<p>Rich <strong>bold</strong><a href=\"https://example.com\" target=\"_blank\" rel=\"noopener noreferrer\">safe</a></p>",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [
+          "design"
+        ],
+        "dependencyIds": [],
+        "position": 5500,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:14:19.912Z",
+        "updatedAt": "2026-10-10T18:14:19.912Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 1
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a12705-e367-72b1-ba1b-d0f982923ff2"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 5
+  }
+}

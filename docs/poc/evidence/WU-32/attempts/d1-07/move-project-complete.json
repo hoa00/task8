@@ -1,0 +1,84 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270f-e6fb-7150-b61a-bc869ee525bb/move",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"scope\":{\"projectId\":\"01a1270f-db9d-7e62-83cb-a76d09c77c8e\",\"groupBy\":\"status\",\"groupKey\":\"done\"},\"targetProjectId\":\"01a1270f-dbb2-7722-bf31-f696d24b6263\",\"groupPatch\":{\"status\":\"done\"}}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1270f-e6fb-7150-b61a-bc869ee525bb",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1270f-dbb2-7722-bf31-f696d24b6263",
+        "key": "TB-202",
+        "title": "Move recurring",
+        "descriptionHtml": "",
+        "status": "done",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": "2026-12-31",
+        "estimate": null,
+        "recurrence": "monthly",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 0,
+        "completedAt": "2026-10-10T18:25:16.056Z",
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:25:16.026Z",
+        "updatedAt": "2026-10-10T18:25:16.056Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [
+        {
+          "id": "01a1270f-e723-7447-96cc-58e340817281",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a1270f-dbb2-7722-bf31-f696d24b6263",
+          "key": "TB-203",
+          "title": "Move recurring",
+          "descriptionHtml": "",
+          "status": "todo",
+          "assigneeId": null,
+          "priority": "none",
+          "startDate": "2027-01-31",
+          "dueDate": "2027-01-31",
+          "estimate": null,
+          "recurrence": "monthly",
+          "labelIds": [],
+          "dependencyIds": [],
+          "position": 13000,
+          "completedAt": null,
+          "archivedAt": null,
+          "createdAt": "2026-10-10T18:25:16.056Z",
+          "updatedAt": "2026-10-10T18:25:16.056Z",
+          "version": 1,
+          "isFavorite": false,
+          "subtaskSummary": {
+            "total": 0,
+            "completed": 0
+          },
+          "attachmentCount": 0,
+          "commentCount": 0
+        }
+      ],
+      "affectedProjectIds": [
+        "01a1270f-db9d-7e62-83cb-a76d09c77c8e",
+        "01a1270f-dbb2-7722-bf31-f696d24b6263"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 18,
+    "parameters": 52
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "chunk_id": "1bd770",
+  "wall_time_seconds": 0.000030769,
+  "exit_code": 2,
+  "original_token_count": 214,
+  "output": "{\"argv\":[\"pnpm\",\"--filter\",\"@studio/api\",\"typecheck\"],\"cwd\":\"/workspace/task8\",\"startedAt\":\"2026-10-10T18:13:40.142Z\",\"completedAt\":\"2026-10-10T18:13:43.656Z\",\"exitCode\":2,\"signal\":null,\"error\":null,\"stdout\":{\"path\":\"stdout.log\",\"bytes\":401,\"sha256\":\"207bb8dd8cd17f04dff27c574f64cda984e458eed8709a9c0670a837d1eb52d4\"},\"stderr\":{\"path\":\"stderr.log\",\"bytes\":15,\"sha256\":\"8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92\"}}\nsrc/modules/tasks.ts(144,170): error TS2322: Type 'string | null' is not assignable to type '(string & $brand<\"Instant\">) | null | undefined'.\n  Type 'string' is not assignable to type 'string & $brand<\"Instant\">'.\n    Type 'string' is not assignable to type '$brand<\"Instant\">'.\n/workspace/task8/apps/api:\n[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @studio/api@0.0.0 typecheck: `tsc --noEmit`\nExit status 2\n\n$ tsc --noEmit\n\n"
+}

@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"ca84a4e1-e2cc-40b9-ac86-8230a44516d8\",\"projectId\":\"01a12705-e367-72b1-ba1b-d0f982923ff2\",\"title\":\"Changed\",\"descriptionHtml\":\"<p>Rich <b>bold</b><script>bad()</script><a href=\\\"https://example.com\\\" target=\\\"_blank\\\" onclick=\\\"x\\\">safe</a><img src=x onerror=x></p>\",\"subtasks\":[{\"title\":\"First\",\"done\":true,\"assigneeId\":\"01a11abd-aa80-7249-8034-93bbfb2174a2\",\"note\":\"note\"}],\"labelIds\":[\"design\"]}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Create request intent or task lifecycle changed"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 4
+  }
+}

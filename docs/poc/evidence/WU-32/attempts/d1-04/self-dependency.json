@@ -1,0 +1,19 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12705-074d-7d6b-8cdc-e20387a0c623",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":3,\"dependencyIds\":[\"01a12705-074d-7d6b-8cdc-e20387a0c623\"]}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Dependencies cannot contain a cycle"
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 11
+  }
+}

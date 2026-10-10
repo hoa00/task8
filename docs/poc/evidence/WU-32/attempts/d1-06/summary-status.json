@@ -1,0 +1,36 @@
+{
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?filters=%5B%7B%22field%22%3A%22status%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22todo%22%2C%22review%22%5D%7D%5D",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "total": 23,
+      "byStatus": {
+        "backlog": 0,
+        "todo": 17,
+        "progress": 0,
+        "review": 6,
+        "done": 0
+      },
+      "byPriority": {
+        "urgent": 3,
+        "high": 7,
+        "medium": 11,
+        "low": 2,
+        "none": 0
+      },
+      "overdue": 5,
+      "completed": 0,
+      "completionRate": 0,
+      "subtaskTotals": {
+        "total": 4,
+        "completed": 3
+      }
+    }
+  },
+  "budget": {
+    "queries": 6,
+    "parameters": 4
+  }
+}

@@ -1,0 +1,3214 @@
+{
+  "status": "PASS",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-06"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:18:29.802Z",
+      "completedAt": "2026-10-10T18:18:36.660Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1453,
+        "sha256": "6449a257c97639585c9265daeea7778d77fafab81a25db8c99b773dd135090c1"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-06"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:18:36.660Z",
+      "completedAt": "2026-10-10T18:18:43.211Z",
+      "exitCode": 0,
+      "signal": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48587,
+        "sha256": "d0922aa192f59803ef5aa55c64eb34f4bbda0de15887a0e2166421b3675cae94"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu32-config-d1-06/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-06"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:18:43.212Z",
+      "completedAt": "2026-10-10T18:18:50.711Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 35288,
+        "sha256": "0e83addf1b7e5e80e2c54e1ab38773d2291fa703af00193544fb0464e85624de"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 7194,
+        "sha256": "16b76797df363af92b916815eb3c38da47e387f4760f58b69dc1e7dbf4897269"
+      }
+    },
+    {
+      "name": "member",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu32-config-d1-06/member.json",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-06"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:18:50.712Z",
+      "completedAt": "2026-10-10T18:18:57.122Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "member.stdout.log",
+        "bytes": 2923,
+        "sha256": "5055382f19d2475f906bdd61799ffb901788d0c0586419ae5ff0c7eb3afd802e"
+      },
+      "stderr": {
+        "path": "member.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "isolation",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu32-config-d1-06/isolation.json",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-06"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:18:57.123Z",
+      "completedAt": "2026-10-10T18:19:03.541Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "isolation.stdout.log",
+        "bytes": 2692,
+        "sha256": "b6a80f705e78dc46c35e4860e0dc53f6f5124c56e8c4f405b0d6057dfc2d1c7b"
+      },
+      "stderr": {
+        "path": "isolation.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "restart",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu32-config-d1-06/restart.json",
+        "--persist-to",
+        "/tmp/task8-wu32-d1-06"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:19:03.541Z",
+      "completedAt": "2026-10-10T18:19:09.885Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "restart.stdout.log",
+        "bytes": 3024,
+        "sha256": "a20e74c4a7f6c8d377ea97a6d217bb2206669215f3fb7b8cf0e6c9e247d5e32f"
+      },
+      "stderr": {
+        "path": "restart.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "snapshot-initial",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "snapshot-initial.json",
+      "budget": null
+    },
+    {
+      "name": "parity-manual-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=manual&sortDirection=asc&limit=200",
+      "evidence": "parity-manual-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-manual-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=manual&sortDirection=desc&limit=200",
+      "evidence": "parity-manual-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-title-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=title&sortDirection=asc&limit=200",
+      "evidence": "parity-title-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-title-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=title&sortDirection=desc&limit=200",
+      "evidence": "parity-title-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-due-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=due&sortDirection=asc&limit=200",
+      "evidence": "parity-due-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-due-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=due&sortDirection=desc&limit=200",
+      "evidence": "parity-due-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-start-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=start&sortDirection=asc&limit=200",
+      "evidence": "parity-start-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-start-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=start&sortDirection=desc&limit=200",
+      "evidence": "parity-start-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-priority-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=priority&sortDirection=asc&limit=200",
+      "evidence": "parity-priority-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-priority-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=priority&sortDirection=desc&limit=200",
+      "evidence": "parity-priority-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-status-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=status&sortDirection=asc&limit=200",
+      "evidence": "parity-status-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-status-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=status&sortDirection=desc&limit=200",
+      "evidence": "parity-status-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-assignee-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=assignee&sortDirection=asc&limit=200",
+      "evidence": "parity-assignee-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-assignee-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=assignee&sortDirection=desc&limit=200",
+      "evidence": "parity-assignee-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-created-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=created&sortDirection=asc&limit=200",
+      "evidence": "parity-created-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-created-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=created&sortDirection=desc&limit=200",
+      "evidence": "parity-created-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-updated-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=updated&sortDirection=asc&limit=200",
+      "evidence": "parity-updated-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-updated-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=updated&sortDirection=desc&limit=200",
+      "evidence": "parity-updated-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-estimate-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=estimate&sortDirection=asc&limit=200",
+      "evidence": "parity-estimate-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-estimate-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=estimate&sortDirection=desc&limit=200",
+      "evidence": "parity-estimate-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-project-asc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=project&sortDirection=asc&limit=200",
+      "evidence": "parity-project-asc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "parity-project-desc",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=project&sortDirection=desc&limit=200",
+      "evidence": "parity-project-desc.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-null",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?assigneeId=null",
+      "evidence": "scope-null.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-null",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?assigneeId=null",
+      "evidence": "summary-null.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-favorite",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=true",
+      "evidence": "scope-favorite.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-favorite",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=true",
+      "evidence": "summary-favorite.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-archived",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?archived=true",
+      "evidence": "scope-archived.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-archived",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?archived=true",
+      "evidence": "summary-archived.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-project",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "evidence": "scope-project.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-project",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?projectId=01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "evidence": "summary-project.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-status",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?filters=%5B%7B%22field%22%3A%22status%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22todo%22%2C%22review%22%5D%7D%5D",
+      "evidence": "scope-status.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-status",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?filters=%5B%7B%22field%22%3A%22status%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22todo%22%2C%22review%22%5D%7D%5D",
+      "evidence": "summary-status.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-due",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?filters=%5B%7B%22field%22%3A%22due%22%2C%22op%22%3A%22not%22%2C%22values%22%3A%5B%22nodate%22%5D%7D%5D",
+      "evidence": "scope-due.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-due",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?filters=%5B%7B%22field%22%3A%22due%22%2C%22op%22%3A%22not%22%2C%22values%22%3A%5B%22nodate%22%5D%7D%5D",
+      "evidence": "summary-due.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-labels",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?filters=%5B%7B%22field%22%3A%22labels%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22design%22%5D%7D%5D",
+      "evidence": "scope-labels.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-labels",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?filters=%5B%7B%22field%22%3A%22labels%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22design%22%5D%7D%5D",
+      "evidence": "summary-labels.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "scope-range",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?rangeFrom=2026-09-01&rangeTo=2026-11-01&rangeBasis=overlap",
+      "evidence": "scope-range.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-range",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?rangeFrom=2026-09-01&rangeTo=2026-11-01&rangeBasis=overlap",
+      "evidence": "summary-range.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "page1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=due&limit=2",
+      "evidence": "page1.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "page2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=due&limit=3&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiOGQxZjZhMjBhYzFmZWY1NmU1ZjIwOTNlMGMzNGYyOGU4NjM0MmI0MDk4MTM2MTRkZjA4ZDkyZTljNWNlNjljYiIsInNvcnRGaWVsZCI6ImR1ZSIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOiIyMDI2LTA5LTE4IiwiaWQiOiIwMWExMWFiZC1hYTgwLTc5N2EtODVjMy0zMTA4YmVmMTc0MjAifQ",
+      "evidence": "page2.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "cursor-mismatch",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?sortField=title&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiOGQxZjZhMjBhYzFmZWY1NmU1ZjIwOTNlMGMzNGYyOGU4NjM0MmI0MDk4MTM2MTRkZjA4ZDkyZTljNWNlNjljYiIsInNvcnRGaWVsZCI6ImR1ZSIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOiIyMDI2LTA5LTE4IiwiaWQiOiIwMWExMWFiZC1hYTgwLTc5N2EtODVjMy0zMTA4YmVmMTc0MjAifQ",
+      "evidence": "cursor-mismatch.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "cursor-invalid",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?cursor=x",
+      "evidence": "cursor-invalid.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "query-actor",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?actorId=01a11abd-aa80-7947-8d13-2178f1cc4d45",
+      "evidence": "query-actor.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "query-repeat",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?q=a&q=b",
+      "evidence": "query-repeat.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "summary-pagination",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?limit=1",
+      "evidence": "summary-pagination.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "private-task",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-711f-8a08-c8a8d4c36dca",
+      "evidence": "private-task.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "foreign-task",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-7489-8783-d05782574232",
+      "evidence": "foreign-task.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "foreign-workspace",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/tasks",
+      "evidence": "foreign-workspace.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Task A",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Task A.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Task B",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Task B.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "sequence-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "sequence-before.json",
+      "budget": null
+    },
+    {
+      "name": "parallel-0",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "parallel-0.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "parallel-3",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "parallel-3.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "parallel-4",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "parallel-4.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "parallel-1",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "parallel-1.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "parallel-2",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "parallel-2.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "sequence-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "sequence-after.json",
+      "budget": null
+    },
+    {
+      "name": "intent1",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "intent1.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "intent2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "intent2.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "sanitized-create",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "sanitized-create.json",
+      "budget": null
+    },
+    {
+      "name": "intent-retry",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "intent-retry.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "intent-different",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "intent-different.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Invited fixture assignment",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Invited fixture assignment.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "absent-preserves",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "absent-preserves.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "intent-current-dto",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "intent-current-dto.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "sanitize-patch",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "sanitize-patch.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "sanitized-patch",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "sanitized-patch.json",
+      "budget": null
+    },
+    {
+      "name": "before-sanitize-limit",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "before-sanitize-limit.json",
+      "budget": null
+    },
+    {
+      "name": "sanitized-create-limit",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "sanitized-create-limit.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "sanitized-patch-limit",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "sanitized-patch-limit.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "after-sanitize-limit",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "after-sanitize-limit.json",
+      "budget": null
+    },
+    {
+      "name": "create-invalid-foreignProject",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-foreignProject.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "create-invalid-foreignAssignee",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-foreignAssignee.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "create-invalid-foreignDependency",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-foreignDependency.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "create-invalid-privateDependency",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-privateDependency.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "create-invalid-foreignChild",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-foreignChild.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "create-invalid-labels",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-labels.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "create-invalid-unknownActor",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-unknownActor.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "create-invalid-version",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-version.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "create-invalid-timestamps",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-timestamps.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "create-invalid-inverse",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-inverse.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "create-invalid-files",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-invalid-files.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "self-dependency",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "self-dependency.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Dependency B",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Dependency B.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "dependency-target-version",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "dependency-target-version.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cycle-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "cycle-before.json",
+      "budget": null
+    },
+    {
+      "name": "cycle",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "cycle.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "cycle-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "cycle-after.json",
+      "budget": null
+    },
+    {
+      "name": "cross-patch",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "cross-patch.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "patch-subtasks-forbidden",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "patch-subtasks-forbidden.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "patch-version-forbidden",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "patch-version-forbidden.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "patch-position-forbidden",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "patch-position-forbidden.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "date-set",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "date-set.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "date-merged-invalid",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "date-merged-invalid.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "nullable-clear",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "nullable-clear.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "duplicate",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3/duplicate",
+      "evidence": "duplicate.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 43
+      }
+    },
+    {
+      "name": "duplicate-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f71c-75cb-b9b3-2332bce76e05",
+      "evidence": "duplicate-detail.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "original-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "original-detail.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "complete-single",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3/completion",
+      "evidence": "complete-single.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "completed-row",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3",
+      "evidence": "completed-row.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "complete-noop",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3/completion",
+      "evidence": "complete-noop.json",
+      "budget": {
+        "queries": 8,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "reopen",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f48d-7d10-83bd-e40b13297ee3/completion",
+      "evidence": "reopen.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Monthly",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Monthly.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "monthly-complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f776-71eb-a47c-9100f8571be2/completion",
+      "evidence": "monthly-complete.json",
+      "budget": {
+        "queries": 16,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "single-successor-edit",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f782-78bd-9296-ea77272f4027",
+      "evidence": "single-successor-edit.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "single-history-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "single-history-before.json",
+      "budget": null
+    },
+    {
+      "name": "single-undo1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f783-7fba-af6e-57d0ba274f04",
+      "evidence": "single-undo1.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "single-undo2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f783-7fba-af6e-57d0ba274f04",
+      "evidence": "single-undo2.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "single-undo-retry",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f783-7fba-af6e-57d0ba274f04",
+      "evidence": "single-undo-retry.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "single-history-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "single-history-after.json",
+      "budget": null
+    },
+    {
+      "name": "single-restored",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f776-71eb-a47c-9100f8571be2",
+      "evidence": "single-restored.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "single-recomplete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f776-71eb-a47c-9100f8571be2/completion",
+      "evidence": "single-recomplete.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 34
+      }
+    },
+    {
+      "name": "Status patch",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Status patch.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "status-done-patch",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f863-7c92-8cf6-539d7c372fb8",
+      "evidence": "status-done-patch.json",
+      "budget": {
+        "queries": 13,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "Stale completion",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Stale completion.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "stale-complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f887-7fa5-a59a-862c3c3d3be7/completion",
+      "evidence": "stale-complete.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "later-edit",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f887-7fa5-a59a-862c3c3d3be7",
+      "evidence": "later-edit.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "stale-undo-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "stale-undo-before.json",
+      "budget": null
+    },
+    {
+      "name": "stale-undo",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f894-7245-aaf8-9112c6cfcab9",
+      "evidence": "stale-undo.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "stale-undo-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "stale-undo-after.json",
+      "budget": null
+    },
+    {
+      "name": "Lifecycle",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Lifecycle.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f91a-757e-8fe4-e76330edd65b/archive",
+      "evidence": "archive.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "archive-undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f928-7699-a979-7db6ff2a967e",
+      "evidence": "archive-undo.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f91a-757e-8fe4-e76330edd65b",
+      "evidence": "delete.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "delete-hidden",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f91a-757e-8fe4-e76330edd65b",
+      "evidence": "delete-hidden.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "delete-undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f942-7b64-b29c-9c5bc751f947",
+      "evidence": "delete-undo.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "delete2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f91a-757e-8fe4-e76330edd65b",
+      "evidence": "delete2.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "restore-deleted",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-f91a-757e-8fe4-e76330edd65b/restore-deleted",
+      "evidence": "restore-deleted.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "delete-undo-after-restore",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f964-77b1-b390-28eadff3fe9a",
+      "evidence": "delete-undo-after-restore.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "create-failure-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "create-failure-before.json",
+      "budget": null
+    },
+    {
+      "name": "create-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "create-failure.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "create-failure-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "create-failure-after.json",
+      "budget": null
+    },
+    {
+      "name": "Bulk1",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Bulk1.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Bulk2",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Bulk2.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "bulk-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "bulk-before.json",
+      "budget": null
+    },
+    {
+      "name": "bulk-stale",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "bulk-stale.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "bulk-invalid",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "bulk-invalid.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "bulk-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "bulk-failure.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "bulk-after-failures",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "bulk-after-failures.json",
+      "budget": null
+    },
+    {
+      "name": "bulk-patch",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "bulk-patch.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "bulk-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "bulk-delete.json",
+      "budget": {
+        "queries": 13,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "sql-1",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-1.json",
+      "budget": null
+    },
+    {
+      "name": "bulk-inverse-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "bulk-inverse-before.json",
+      "budget": null
+    },
+    {
+      "name": "bulk-inverse-conflict",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-fabb-70f0-b381-c27bb100c9bb",
+      "evidence": "bulk-inverse-conflict.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "bulk-inverse-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "bulk-inverse-after.json",
+      "budget": null
+    },
+    {
+      "name": "Recurrence column",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Recurrence column.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Column-0",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-0.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-1",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-1.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-2",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-2.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-3",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-3.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-4",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-4.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-6",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-6.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-5",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-5.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-7",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-7.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-8",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-8.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-9",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-9.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-10",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-10.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-11",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-11.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-12",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-12.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-13",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-13.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-14",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-14.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-15",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-15.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-16",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-16.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-17",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-17.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-18",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-18.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column-19",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column-19.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "column-subset",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "column-subset.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "column-failure-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "column-failure-before.json",
+      "budget": null
+    },
+    {
+      "name": "column-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "column-failure.json",
+      "budget": {
+        "queries": 19,
+        "parameters": 59
+      }
+    },
+    {
+      "name": "column-failure-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "column-failure-after.json",
+      "budget": null
+    },
+    {
+      "name": "column-complete20",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "column-complete20.json",
+      "budget": {
+        "queries": 19,
+        "parameters": 59
+      }
+    },
+    {
+      "name": "column-undo20",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-fc7e-7856-b920-92fb222823e4",
+      "evidence": "column-undo20.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 48
+      }
+    },
+    {
+      "name": "column-undone",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "column-undone.json",
+      "budget": null
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7835-bd2f-e6684b853c1f",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7835-bd2f-e6684b853c1f/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7835-bd2f-e6684b853c1f.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7232-920c-8375f70a7448",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7232-920c-8375f70a7448/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7232-920c-8375f70a7448.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7b1f-9741-6a6e0916926b",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7b1f-9741-6a6e0916926b/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7b1f-9741-6a6e0916926b.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-74e3-bf12-0b6563d2218d",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-74e3-bf12-0b6563d2218d/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-74e3-bf12-0b6563d2218d.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-731b-b83f-11320e1ee3bc",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-731b-b83f-11320e1ee3bc/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-731b-b83f-11320e1ee3bc.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7cca-b160-9f417a6f6f20",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7cca-b160-9f417a6f6f20/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7cca-b160-9f417a6f6f20.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7592-abaa-2c4f061e0d23",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7592-abaa-2c4f061e0d23/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7592-abaa-2c4f061e0d23.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7225-a5d5-67752922ed15",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7225-a5d5-67752922ed15/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7225-a5d5-67752922ed15.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7ef3-8e6d-6e0e1f42a7e9",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7ef3-8e6d-6e0e1f42a7e9/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7ef3-8e6d-6e0e1f42a7e9.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-765e-8787-cead6b3096da",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-765e-8787-cead6b3096da/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-765e-8787-cead6b3096da.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7f6f-85a6-9bdd1be51ead",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7f6f-85a6-9bdd1be51ead/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7f6f-85a6-9bdd1be51ead.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7675-8d7c-ac806b38c5bc",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7675-8d7c-ac806b38c5bc/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7675-8d7c-ac806b38c5bc.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-799b-b42a-ae464aea6c63",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-799b-b42a-ae464aea6c63/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-799b-b42a-ae464aea6c63.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7024-a072-243f5e30075d",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7024-a072-243f5e30075d/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7024-a072-243f5e30075d.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-747c-bb5c-969b3935f954",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-747c-bb5c-969b3935f954/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-747c-bb5c-969b3935f954.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7036-b045-57f3f0d76b62",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7036-b045-57f3f0d76b62/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7036-b045-57f3f0d76b62.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7180-853c-e27c7ef0c4d5",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7180-853c-e27c7ef0c4d5/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7180-853c-e27c7ef0c4d5.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7454-b641-a0d201f656b8",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7454-b641-a0d201f656b8/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7454-b641-a0d201f656b8.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-79cd-ad2f-15b99203cc5d",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-79cd-ad2f-15b99203cc5d/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-79cd-ad2f-15b99203cc5d.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "cancelled-restore-forbidden-01a12709-fc7e-7b07-9caf-c22da7d1bd31",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fc7e-7b07-9caf-c22da7d1bd31/restore-deleted",
+      "evidence": "cancelled-restore-forbidden-01a12709-fc7e-7b07-9caf-c22da7d1bd31.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "column-current",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?projectId=01a12709-fb2f-7469-b442-88f93bf9e4a8&filters=%5B%7B%22field%22%3A%22status%22%2C%22op%22%3A%22is%22%2C%22values%22%3A%5B%22todo%22%5D%7D%5D&limit=200",
+      "evidence": "column-current.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "column-recomplete20",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "column-recomplete20.json",
+      "budget": {
+        "queries": 19,
+        "parameters": 59
+      }
+    },
+    {
+      "name": "column-successor-edit",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-fdd1-7e22-9ad0-50e6177b3d56",
+      "evidence": "column-successor-edit.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "column-edited-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "column-edited-before.json",
+      "budget": null
+    },
+    {
+      "name": "column-edited-conflict",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-fdd1-7af4-b1a8-b42642020e6f",
+      "evidence": "column-edited-conflict.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 48
+      }
+    },
+    {
+      "name": "column-edited-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "column-edited-after.json",
+      "budget": null
+    },
+    {
+      "name": "column-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "column-archive.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 47
+      }
+    },
+    {
+      "name": "column-archive-inverse-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "column-archive-inverse-before.json",
+      "budget": null
+    },
+    {
+      "name": "column-archive-fk-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-fe7c-7890-ac2c-e8d5874f4181",
+      "evidence": "column-archive-fk-failure.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "column-archive-inverse-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "column-archive-inverse-after.json",
+      "budget": null
+    },
+    {
+      "name": "column-archive-undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-fe7c-7890-ac2c-e8d5874f4181",
+      "evidence": "column-archive-undo.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Empty scope",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Empty scope.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "empty-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "empty-archive.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 29
+      }
+    },
+    {
+      "name": "empty-archive-undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-ff43-7a16-ba19-d07dba0a78c6",
+      "evidence": "empty-archive-undo.json",
+      "budget": {
+        "queries": 8,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "empty-complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "empty-complete.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 41
+      }
+    },
+    {
+      "name": "invalid-empty-01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "invalid-empty-01a11abd-aa80-7e33-8144-0756dfd8e8c3.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "invalid-empty-01a11abd-aa80-7ae7-8304-32062c509b49",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "invalid-empty-01a11abd-aa80-7ae7-8304-32062c509b49.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "invalid-empty-5b67c7df-aedb-45eb-8528-f713159c6356",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "invalid-empty-5b67c7df-aedb-45eb-8528-f713159c6356.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Column extra",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column extra.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "bulk-too-large",
+      "status": 413,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "bulk-too-large.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Move recurring",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Move recurring.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Move neighbor",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Move neighbor.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "move-project-complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12709-ffa5-7771-99b7-c19a12e41711/move",
+      "evidence": "move-project-complete.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 52
+      }
+    },
+    {
+      "name": "move-request-id",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "move-request-id.json",
+      "budget": null
+    },
+    {
+      "name": "replay-moved",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "replay-moved.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Movable",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Movable.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "move-foreign-neighbor",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5/move",
+      "evidence": "move-foreign-neighbor.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "move-foreign-assignee",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5/move",
+      "evidence": "move-foreign-assignee.json",
+      "budget": {
+        "queries": 8,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "move-race-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "move-race-before.json",
+      "budget": null
+    },
+    {
+      "name": "move-neighbor-race",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5/move",
+      "evidence": "move-neighbor-race.json",
+      "budget": {
+        "queries": 15,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "move-race-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "move-race-after.json",
+      "budget": null
+    },
+    {
+      "name": "file-task",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59",
+      "evidence": "file-task.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "move-file-scope",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59/move",
+      "evidence": "move-file-scope.json",
+      "budget": {
+        "queries": 15,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "file-scope-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "file-scope-after.json",
+      "budget": null
+    },
+    {
+      "name": "favorite-target",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5",
+      "evidence": "favorite-target.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "favorite-add",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/task-favorites/01a1270a-0009-706d-9b6e-c1615950aae5",
+      "evidence": "favorite-add.json",
+      "budget": {
+        "queries": 8,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "favorite-read",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5",
+      "evidence": "favorite-read.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "favorite-retry",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/task-favorites/01a1270a-0009-706d-9b6e-c1615950aae5",
+      "evidence": "favorite-retry.json",
+      "budget": {
+        "queries": 8,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "favorite-stable",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5",
+      "evidence": "favorite-stable.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "favorite-remove",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/task-favorites/01a1270a-0009-706d-9b6e-c1615950aae5",
+      "evidence": "favorite-remove.json",
+      "budget": {
+        "queries": 8,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "sql-2",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-2.json",
+      "budget": null
+    },
+    {
+      "name": "Public->private",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Public->private.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "sql-3",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-3.json",
+      "budget": null
+    },
+    {
+      "name": "dependency-hidden-after-revoke",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-013b-77fa-89f1-9744ba00a18a",
+      "evidence": "dependency-hidden-after-revoke.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Dependency column",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Dependency column.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "External dependency",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "External dependency.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column Q",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column Q.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column P",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column P.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Q after incoming",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0175-7857-b7f8-4aabca3e87f5",
+      "evidence": "Q after incoming.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "related-column-complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "related-column-complete.json",
+      "budget": {
+        "queries": 20,
+        "parameters": 59
+      }
+    },
+    {
+      "name": "related-postversions",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "related-postversions.json",
+      "budget": null
+    },
+    {
+      "name": "related-column-undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270a-019b-7236-87ee-fd310a56514d",
+      "evidence": "related-column-undo.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 48
+      }
+    },
+    {
+      "name": "ABA column",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "ABA column.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "ABA recurring",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "ABA recurring.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "aba-column-complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "aba-column-complete.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 59
+      }
+    },
+    {
+      "name": "Referring task",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Referring task.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "remove-incoming",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-021d-7124-963a-38143d5a4cfa",
+      "evidence": "remove-incoming.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "incoming-aba-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "incoming-aba-before.json",
+      "budget": null
+    },
+    {
+      "name": "incoming-aba-conflict",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270a-0210-7ff4-873c-30c6593d3897",
+      "evidence": "incoming-aba-conflict.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 48
+      }
+    },
+    {
+      "name": "incoming-aba-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "incoming-aba-after.json",
+      "budget": null
+    },
+    {
+      "name": "Child column",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Child column.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Child recurring",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Child recurring.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "child-column-complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "child-column-complete.json",
+      "budget": {
+        "queries": 19,
+        "parameters": 59
+      }
+    },
+    {
+      "name": "child-successor-snapshot",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "child-successor-snapshot.json",
+      "budget": null
+    },
+    {
+      "name": "sql-4",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-4.json",
+      "budget": null
+    },
+    {
+      "name": "child-edit-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "child-edit-before.json",
+      "budget": null
+    },
+    {
+      "name": "child-edit-conflict",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270a-02bb-7a35-b74a-6118d24a1aeb",
+      "evidence": "child-edit-conflict.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 48
+      }
+    },
+    {
+      "name": "child-edit-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "child-edit-after.json",
+      "budget": null
+    },
+    {
+      "name": "Hidden target",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Hidden target.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Retained dependency",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Retained dependency.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "hide-target",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0357-7140-a43c-730e80850486/archive",
+      "evidence": "hide-target.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "hidden-dependency-scalar",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0361-77e9-9daf-71f7ec97c1b1",
+      "evidence": "hidden-dependency-scalar.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "hidden-dependency-copy",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0361-77e9-9daf-71f7ec97c1b1/duplicate",
+      "evidence": "hidden-dependency-copy.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 43
+      }
+    },
+    {
+      "name": "hidden-dependency-complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0361-77e9-9daf-71f7ec97c1b1/completion",
+      "evidence": "hidden-dependency-complete.json",
+      "budget": {
+        "queries": 15,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "Rebalance",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Rebalance.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "R-A",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "R-A.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "R-C",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "R-C.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "R-B",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "R-B.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "sql-5",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-5.json",
+      "budget": null
+    },
+    {
+      "name": "sql-6",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-6.json",
+      "budget": null
+    },
+    {
+      "name": "sql-7",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-7.json",
+      "budget": null
+    },
+    {
+      "name": "rebalance-moving",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-03c5-738c-a36c-852485e7a5e0",
+      "evidence": "rebalance-moving.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "rebalance",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-03c5-738c-a36c-852485e7a5e0/move",
+      "evidence": "rebalance.json",
+      "budget": {
+        "queries": 13,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "rebalance-neighbor",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-03c5-741f-81de-0e0adb745089",
+      "evidence": "rebalance-neighbor.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "rebalance-neighbor-version",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-03c5-741f-81de-0e0adb745089",
+      "evidence": "rebalance-neighbor-version.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "file-after-move",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59",
+      "evidence": "file-after-move.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "archive-file-task",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59/archive",
+      "evidence": "archive-file-task.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "archived-file-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59",
+      "evidence": "archived-file-detail.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "restore-archived",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59/restore",
+      "evidence": "restore-archived.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Delete success1",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Delete success1.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Delete success2",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Delete success2.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "bulk-delete-success",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "bulk-delete-success.json",
+      "budget": {
+        "queries": 13,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "bulk-delete-success-undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270a-046d-7661-a062-55ad08203b40",
+      "evidence": "bulk-delete-success-undo.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "bulk-delete-success-retry",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270a-046d-7661-a062-55ad08203b40",
+      "evidence": "bulk-delete-success-retry.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "Sortable",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Sortable.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Sort low",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Sort low.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Sort urgent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Sort urgent.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "sort-priority",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "sort-priority.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 47
+      }
+    },
+    {
+      "name": "Owned private",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Owned private.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "sql-8",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-8.json",
+      "budget": null
+    },
+    {
+      "name": "private-empty-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "private-empty-archive.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 29
+      }
+    },
+    {
+      "name": "sql-9",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-9.json",
+      "budget": null
+    },
+    {
+      "name": "private-empty-before",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "private-empty-before.json",
+      "budget": null
+    },
+    {
+      "name": "private-empty-forbidden",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270a-04f5-739d-8de3-56b4dd8023b6",
+      "evidence": "private-empty-forbidden.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "private-empty-after",
+      "status": 200,
+      "path": "/__wu32/snapshot",
+      "evidence": "private-empty-after.json",
+      "budget": null
+    },
+    {
+      "name": "sql-10",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-10.json",
+      "budget": null
+    },
+    {
+      "name": "private-empty-applied",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270a-04f5-739d-8de3-56b4dd8023b6",
+      "evidence": "private-empty-applied.json",
+      "budget": {
+        "queries": 8,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "sql-11",
+      "status": 200,
+      "path": "/__wu32/sql",
+      "evidence": "sql-11.json",
+      "budget": null
+    },
+    {
+      "name": "private-empty-replay-forbidden",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1270a-04f5-739d-8de3-56b4dd8023b6",
+      "evidence": "private-empty-replay-forbidden.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "undo-arbitrary-inverse",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f783-7fba-af6e-57d0ba274f04",
+      "evidence": "undo-arbitrary-inverse.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Other actor restore",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Other actor restore.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "actor-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0588-7820-852b-e841ad1bb75b",
+      "evidence": "actor-delete.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "other-actor-undo",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f783-7fba-af6e-57d0ba274f04",
+      "evidence": "other-actor-undo.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "other-actor-restore",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0588-7820-852b-e841ad1bb75b/restore-deleted",
+      "evidence": "other-actor-restore.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "member-public-task",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5",
+      "evidence": "member-public-task.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "second-principal",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/tasks",
+      "evidence": "second-principal.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "second-to-first",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "second-to-first.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "production-task",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5",
+      "evidence": "production-task.json",
+      "budget": null
+    },
+    {
+      "name": "production-undo-replay",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12709-f783-7fba-af6e-57d0ba274f04",
+      "evidence": "production-undo-replay.json",
+      "budget": null
+    },
+    {
+      "name": "production-no-test-sql",
+      "status": 404,
+      "path": "/__wu32/sql",
+      "evidence": "production-no-test-sql.json",
+      "budget": null
+    },
+    {
+      "name": "future-nested-unavailable",
+      "status": 501,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270a-0009-706d-9b6e-c1615950aae5/comments",
+      "evidence": "future-nested-unavailable.json",
+      "budget": null
+    },
+    {
+      "name": "future-views-unavailable",
+      "status": 501,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a12709-f3d6-7698-82c3-d19ffa965fce/views",
+      "evidence": "future-views-unavailable.json",
+      "budget": null
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "acceptance": {
+    "AC1": "concurrent unique project numbers, server scope/assignee/neighbor checks",
+    "AC2": "all-table bulk/create/column/native FK rollback and stale scope guards",
+    "AC3": "strict writable fields/date/null/completion/monthly/Undo semantics",
+    "AC4": "concurrent request key/replay intent/current authorized DTO and concurrent one-shot task Undo",
+    "AC5": "actual Worker parse5 create/PATCH allowlist, normalized text/limits, relationship/self/cycle validation"
+  },
+  "completedAt": "2026-10-10T18:19:09.886Z"
+}

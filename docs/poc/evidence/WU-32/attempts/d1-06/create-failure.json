@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu32-test": "fail"
+  },
+  "body": "{\"clientRequestId\":\"9e400b31-bdfe-4ed9-b6e5-4d404f99df97\",\"projectId\":\"01a12709-f3d6-7698-82c3-d19ffa965fce\",\"title\":\"FK fail\",\"subtasks\":[{\"title\":\"atomic\"}]}",
+  "status": 500,
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Request failed"
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 22
+  }
+}

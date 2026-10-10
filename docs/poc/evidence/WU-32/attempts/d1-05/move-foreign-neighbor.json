@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12705-eda6-739b-a2ab-1b064e8f207c/move",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"scope\":{},\"targetProjectId\":\"01a12705-e37b-7c21-b40f-1ba358223ea4\",\"beforeId\":\"01a12705-e40d-7835-a1e8-2e2b13ee41da\"}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid before neighbor"
+    }
+  },
+  "budget": {
+    "queries": 7,
+    "parameters": 5
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270f-dc41-7407-86ce-b6b8e9d8f200",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":3,\"dependencyIds\":[\"01a1270f-dc41-7407-86ce-b6b8e9d8f200\"]}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "A task cannot depend on itself"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 5
+  }
+}

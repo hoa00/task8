@@ -1,0 +1,52 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"65a78d2b-5a79-4da5-9f42-758772a3d8b0\",\"projectId\":\"01a12705-e367-72b1-ba1b-d0f982923ff2\",\"title\":\"Invited fixture assignment\",\"assigneeId\":\"01a11abd-aa80-7a8a-8271-af0df3499721\",\"subtasks\":[{\"title\":\"Fixture child\",\"assigneeId\":\"01a11abd-aa80-7a8a-8271-af0df3499721\"}]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a12705-e44e-79e5-ae23-4a36d93d8121",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a12705-e367-72b1-ba1b-d0f982923ff2",
+        "key": "TA-207",
+        "title": "Invited fixture assignment",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": "01a11abd-aa80-7a8a-8271-af0df3499721",
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 5600,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:14:19.981Z",
+        "updatedAt": "2026-10-10T18:14:19.981Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 1,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a12705-e367-72b1-ba1b-d0f982923ff2"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 22
+  }
+}

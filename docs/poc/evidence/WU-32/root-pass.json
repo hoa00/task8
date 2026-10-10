@@ -1,0 +1,107 @@
+{
+  "workUnit": "WU-32",
+  "status": "ROOT_TECHNICAL_AND_ALL_INDEX_PASS_METADATA_GATE_PENDING",
+  "base": "b3779efe90f651c730a1807c2749e0a4dbe924ee",
+  "reviewSource": "Actual Root read-only reported technical/all-index observations; no invented physical Root capture",
+  "physicalCapture": null,
+  "technical": {
+    "filesExcludingCandidate": 3146,
+    "bytesExcludingCandidateBeforeEofRepair": 105095711,
+    "ownedPaths": 3147,
+    "verification": {
+      "path": "docs/poc/evidence/WU-32/verification.json",
+      "bytes": 114974,
+      "sha256": "bc0fa7c1f3bd8c18407c477789b8a002b515064bd9b51c3c77e7a172ce6f4fad"
+    },
+    "selectedProbes": 316,
+    "selectedCommands": 6,
+    "currentByteMatches": 41,
+    "zeroEffectFull24TablePairs": 12,
+    "requiredGates": 9,
+    "maxQueries": 20,
+    "maxParameters": 59,
+    "status": "PASS"
+  },
+  "allIndex": {
+    "status": "PASS",
+    "rows": 135861,
+    "baseRows": 132723,
+    "changedPaths": 3147,
+    "changedBlobBytes": 105733421,
+    "physicalChangedBlobMatches": 3147,
+    "unchangedModeOidPathRows": 132714,
+    "excludedMetadataPaths": [
+      "docs/poc/PROGRESS.md",
+      "docs/poc/evidence/WU-32/root-pass.json"
+    ],
+    "fingerprintExcludingMetadata": "0cd6e5bb8f503a224b6ef7c70b76a4f704b8c54f930e1e37bcc67b10c2fe7fa3",
+    "rowsExcludingMetadata": 135860,
+    "cachedCheck": 0,
+    "unstagedPaths": 0,
+    "untrackedPaths": 0
+  },
+  "candidateOriginal": {
+    "path": "/tmp/task8-wu32-stage02/original-candidate.json",
+    "bytes": 635989,
+    "sha256": "e7c5507a6e78650324e555c8b2426c42a916bd4269b2b25baa38d46427391eef"
+  },
+  "candidateRefreshed": {
+    "path": "docs/poc/evidence/WU-32/candidate.json",
+    "bytes": 635990,
+    "sha256": "48f721e36dde114a7693acfbfb630b15e7d833be41e46a00c70e1c9848b86102"
+  },
+  "gitattributes": {
+    "current": {
+      "path": ".gitattributes",
+      "bytes": 101382,
+      "sha256": "98c5f4e49d2398f0c6d5908e954b4fa7a2c79b2e36e5b120bfec1bc25b723ae4"
+    },
+    "basePrefixBytes": 98638,
+    "basePrefixSha256": "9765c52c10b84e4a280284dd4105eacd526f24976f9081e6a205a5de10a4cea8",
+    "intermediatePrefixBytes": 99662,
+    "intermediatePrefixSha256": "6c0266bc6de697e0bc7deb2febfb311470ff5a0ad338b40d8988c010282ec910",
+    "literalRawLogExceptions": 40,
+    "initial15Proposal": {
+      "path": "docs/poc/evidence/WU-32/raw-whitespace-proposal.json",
+      "bytes": 3112,
+      "sha256": "10649a1b3012650f093b7ccd87b5cbea44983ddb35ffcccfd3f3cb175d9d0c9a"
+    },
+    "additional25Evidence": {
+      "path": "/tmp/task8-wu32-stage01/cached-check.stdout.log",
+      "bytes": 2071,
+      "sha256": "e900145799454691da606128cf78883f8a0242bb8d50e4d28864ec6e35d9899f"
+    },
+    "scope": "Exact immutable original stdout/stderr only; no wildcard, active-code or archived-code waiver"
+  },
+  "outsideProof": {
+    "prestage": {
+      "path": "/tmp/task8-wu32-prestage01/report.json",
+      "bytes": 7015,
+      "sha256": "7b5e3237342e54b54ac14539ebfafee0910580c45ef2ce7f403b909dcfac4a5e"
+    },
+    "failedStage01Commands": {
+      "path": "/tmp/task8-wu32-stage01/commands.json",
+      "bytes": 2064,
+      "sha256": "88b8acec2098ab4a45ace9cdf9920cecb9dae2b84de82b5f80b1b0661e657a9c"
+    },
+    "stage02": {
+      "path": "/tmp/task8-wu32-stage02/report.json",
+      "bytes": 10984,
+      "sha256": "bf3b39c48badbfe4e0805bb69f8fa9580e719bbd183cc44b8947631048fb08ed"
+    },
+    "stage02Commands": 6,
+    "stage02RawStreams": 12,
+    "stage02RawBytes": 739199,
+    "originalToolObjects": "Available original returned start/completion objects retained outside Git; stage02 completed on first call with original completion only"
+  },
+  "boundedDone": "WU32 AC1\u20135 task core/atomic commands/query/schema/Worker sanitizer/current relation/completion/recurrence/task Undo, with selected current D1 and required gates",
+  "qualifications": {
+    "failedStage01": "Exact owned gitadd0 followed by cachedcheck2 on25 EOFblank raw logs; preserved unchanged and resolved by Root-authorized literal suffix only",
+    "earlierFailures": "All D1/type/lint failures and status0 EPERM partial webbuild/evidence attempts remain immutable/unaccepted; earlier-byte passes superseded",
+    "historicalM2": "Inherited bounded/failed/missing-byte/SVG/default/Darwin qualifications unchanged and unrecovered",
+    "future": "Nested task operations WU33 and remaining WU34\u201336 unavailable; no remote auth/provider/provisioning/R2/CI/deployment/browser campaign",
+    "candidateProgress": "Candidate PROGRESS is original preparatory snapshot; current metadata hash is verified separately"
+  },
+  "nextGate": "ONLY PROGRESS+root-pass staged bytes/other OID fingerprint before actual implementation commit and normal push",
+  "recordedAt": "2026-10-10T18:38:14.381103+00:00"
+}

@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"084e84ce-5b77-4fdb-8b26-39da5ae20113\",\"projectId\":\"01a12705-e367-72b1-ba1b-d0f982923ff2\",\"title\":\"Move recurring\",\"dueDate\":\"2026-12-31\",\"recurrence\":\"monthly\"}",
+  "status": 409,
+  "response": {
+    "error": {
+      "code": "CONFLICT",
+      "message": "Create request intent or task lifecycle changed"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 4
+  }
+}

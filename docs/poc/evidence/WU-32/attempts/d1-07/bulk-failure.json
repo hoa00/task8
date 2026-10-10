@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu32-test": "fail"
+  },
+  "body": "{\"operation\":\"patch\",\"items\":[{\"id\":\"01a1270f-e164-788b-93c5-f87621789cd7\",\"expectedVersion\":1},{\"id\":\"01a1270f-e16d-7575-a9fa-826e5228d796\",\"expectedVersion\":1}],\"patch\":{\"priority\":\"urgent\"}}",
+  "status": 500,
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Request failed"
+    }
+  },
+  "budget": {
+    "queries": 14,
+    "parameters": 40
+  }
+}

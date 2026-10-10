@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1270f-ee0c-7c88-a3fd-d5df4fda1594/restore-deleted",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2}",
+  "status": 403,
+  "response": {
+    "error": {
+      "code": "FORBIDDEN",
+      "message": "Only deleting member can restore task"
+    }
+  },
+  "budget": {
+    "queries": 3,
+    "parameters": 5
+  }
+}
