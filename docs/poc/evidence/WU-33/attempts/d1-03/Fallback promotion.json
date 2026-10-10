@@ -1,0 +1,87 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4827-76a2-b780-2b887ad45215/promote",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedTaskVersion\":7}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1272b-4666-7e42-b24c-c9e2cbf530a3",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272b-462b-7f2e-91c8-47c3e9eda3b0",
+        "key": "WM-201",
+        "title": "Subtasks parent",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+        "priority": "high",
+        "startDate": null,
+        "dueDate": "2028-02-29",
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [
+          "design"
+        ],
+        "dependencyIds": [],
+        "position": 5000,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:55:09.922Z",
+        "updatedAt": "2026-10-10T18:55:10.387Z",
+        "version": 8,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [
+        {
+          "id": "01a1272b-4835-74e0-91bf-705a3d2aac71",
+          "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+          "projectId": "01a1272b-462b-7f2e-91c8-47c3e9eda3b0",
+          "key": "WM-204",
+          "title": "Fallback child",
+          "descriptionHtml": "<p>a<br>b</p>",
+          "status": "todo",
+          "assigneeId": "01a11abd-aa80-7947-8d13-2178f1cc4d45",
+          "priority": "high",
+          "startDate": null,
+          "dueDate": null,
+          "estimate": null,
+          "recurrence": null,
+          "labelIds": [
+            "design"
+          ],
+          "dependencyIds": [],
+          "position": 5300,
+          "completedAt": null,
+          "archivedAt": null,
+          "createdAt": "2026-10-10T18:55:10.387Z",
+          "updatedAt": "2026-10-10T18:55:10.387Z",
+          "version": 1,
+          "isFavorite": false,
+          "subtaskSummary": {
+            "total": 0,
+            "completed": 0
+          },
+          "attachmentCount": 0,
+          "commentCount": 0
+        }
+      ],
+      "affectedProjectIds": [
+        "01a1272b-462b-7f2e-91c8-47c3e9eda3b0"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 14,
+    "parameters": 33
+  }
+}

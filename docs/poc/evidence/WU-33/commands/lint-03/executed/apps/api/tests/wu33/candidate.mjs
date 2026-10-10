@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+const root=process.cwd(),prefix='docs/poc/evidence/WU-33/',self=prefix+'candidate.json',whitelist=prefix+'OWNED_PATHS.txt',base='9cb52ad89df0ba0cf5ada760560dc30eb02bc0c6';
+const hash=value=>createHash('sha256').update(value).digest('hex');
+const run=argv=>{const result=spawnSync(argv[0],argv.slice(1),{cwd:root,env:process.env,encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(result.error,undefined);assert.equal(result.status,0);return result.stdout.split('\n').filter(Boolean);};
+const active=['.gitattributes','apps/api/README.md','apps/api/package.json','apps/api/src/db/undo.ts','apps/api/src/modules/features.ts','apps/api/src/modules/routes.ts','apps/api/src/modules/undo-command.ts','apps/api/src/modules/task-children.ts','apps/api/src/modules/comments.ts','apps/api/src/modules/activity.ts','apps/api/src/modules/collaboration-routes.ts','apps/api/src/modules/collaboration-page.ts','docs/poc/DECISIONS.md','docs/poc/PROGRESS.md'];
+const paths=[...new Set([...run(['git','diff','--name-only',base]),...run(['git','ls-files','--others','--exclude-standard']),whitelist,self])].sort();
+for(const path of paths)assert(active.includes(path)||path.startsWith(prefix)||path.startsWith('apps/api/tests/wu33/'),path);
+writeFileSync(resolve(root,whitelist),paths.join('\n')+'\n');
+const files=paths.filter(path=>path!==self).map(path=>{const bytes=readFileSync(resolve(root,path));return {path,bytes:bytes.length,sha256:hash(bytes)};});
+const attrs=readFileSync(resolve(root,'.gitattributes')),proposal=JSON.parse(readFileSync(resolve(root,prefix+'raw-whitespace-proposal.json'))),prestage=JSON.parse(readFileSync(resolve(root,prefix+'prefreeze01/report.json')));assert.equal(prestage.status,'PASS');assert.equal(hash(attrs.subarray(0,101382)),proposal.baseAttributes.sha256);assert.equal(attrs.subarray(101382).toString(),proposal.suffix);
+const candidate={workUnit:'WU-33',status:'FROZEN_REQUIRED_CHECKS_PASS_ROOT_REVIEW_PENDING',base,files,fileCountExcludingSelf:files.length,totalBytesExcludingSelf:files.reduce((n,row)=>n+row.bytes,0),selfExcluded:self,ownedWhitelist:whitelist,laterMetadataOnly:['docs/poc/PROGRESS.md',prefix+'root-pass.json'],prestageProof:prefix+'prefreeze01/report.json',lockedBaseMatches:prestage.locked,gitattributesPrefix:proposal.baseAttributes,literalRawExceptions:proposal.files,note:'Finite owned changed files only. No inherited evidence/blob/index archive; candidate does not hash itself or a future commit. Later updates only the two declared metadata files after Root authorization.'};
+writeFileSync(resolve(root,self),JSON.stringify(candidate,null,2)+'\n');console.log(JSON.stringify({status:candidate.status,fileCountExcludingSelf:candidate.fileCountExcludingSelf,totalBytesExcludingSelf:candidate.totalBytesExcludingSelf,candidateBytes:readFileSync(resolve(root,self)).length,candidateSha256:hash(readFileSync(resolve(root,self)))}));

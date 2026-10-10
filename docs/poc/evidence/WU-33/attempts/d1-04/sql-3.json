@@ -1,0 +1,24 @@
+{
+  "method": "POST",
+  "path": "/__wu33/sql",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"sql\":\"UPDATE projectMembers SET permission='view' WHERE projectId=? AND memberId=?\",\"parameters\":[\"01a1272c-17b9-75ef-85d4-c0f660bfbf68\",\"01a11abd-aa80-7249-8034-93bbfb2174a2\"]}",
+  "status": 200,
+  "response": {
+    "success": true,
+    "meta": {
+      "served_by": "miniflare.db",
+      "duration": 0,
+      "changes": 1,
+      "last_row_id": 14,
+      "changed_db": true,
+      "size_after": 688128,
+      "rows_read": 1,
+      "rows_written": 1
+    },
+    "results": []
+  },
+  "budget": null
+}

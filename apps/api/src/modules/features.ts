@@ -1,4 +1,5 @@
 import { taskRoutes } from './task-routes.ts';
+import { collaborationRoutes } from './collaboration-routes.ts';
 import { Hono } from 'hono';
 import { operations, EntityIdSchema, ProjectQuerySchema, MemberQuerySchema, TextQuerySchema, EmptyInputSchema } from '@studio/contracts/api';
 import { ApiFailure } from '../errors.ts';
@@ -53,3 +54,4 @@ features.get('/workspaces/:workspaceId/teams/:teamId/summary',async c=>{noQuery(
 features.post('/workspaces/:workspaceId/undo/:undoId',async c=>{const input=operations.undoCommand.request.parse({workspaceId:scope(c).workspaceId,undoId:EntityIdSchema.parse(c.req.param('undoId')),body:await body(c)});return c.json(operations.undoCommand.response.parse({data:await undoCommand(repo(c),scope(c),c.get('currentMember'),input.undoId,Date.now())}));});
 
 features.route('/',taskRoutes);
+features.route('/',collaborationRoutes);

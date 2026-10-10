@@ -1,0 +1,124 @@
+{
+  "status": "FAILED",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:52:46.883Z",
+      "completedAt": "2026-10-10T18:52:53.787Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1453,
+        "sha256": "76cc1287e66dc423cc66aa7a08fbe43d6f365c6b256e9d74485ad664bb7db5e7"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:52:53.787Z",
+      "completedAt": "2026-10-10T18:53:00.857Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48587,
+        "sha256": "6854ddbfc3b0f73d3c053eb696766eded24d76a56bd7eaa37201b9c51c4b438e"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu33-config-d1-01/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-01"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:53:00.858Z",
+      "completedAt": "2026-10-10T18:53:07.174Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 2593,
+        "sha256": "6435b9105d45ae9b5330905e7f1fcb47423d69ba99deb2fde0a78c0890187f57"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "bootstrap",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "evidence": "bootstrap.json",
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      }
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "error": {
+    "message": "Cannot read properties of undefined (reading 'features')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'features')\n    at file:///workspace/task8/apps/api/tests/wu33/verify.mjs:66:99\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+  },
+  "completedAt": "2026-10-10T18:53:07.174Z"
+}

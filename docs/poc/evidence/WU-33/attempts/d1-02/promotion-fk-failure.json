@@ -1,0 +1,20 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks/01a1272a-4e14-768b-a937-6513271766d3/promote",
+  "headers": {
+    "content-type": "application/json",
+    "x-wu33-test": "fail"
+  },
+  "body": "{\"expectedTaskVersion\":3}",
+  "status": 500,
+  "response": {
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "message": "Request failed"
+    }
+  },
+  "budget": {
+    "queries": 14,
+    "parameters": 33
+  }
+}

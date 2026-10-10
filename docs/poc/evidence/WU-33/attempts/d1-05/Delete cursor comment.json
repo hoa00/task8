@@ -1,0 +1,62 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a1272d-588a-7bbd-a7d9-7161b302c2be",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "comment": {
+        "id": "01a1272d-588a-7bbd-a7d9-7161b302c2be",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a1272d-587e-703c-8f3d-a424c24c9df0",
+        "authorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "bodyText": "Cursor one",
+        "mentionedMemberIds": [],
+        "createdAt": "2026-10-10T18:57:25.640Z",
+        "version": 2,
+        "reactions": []
+      },
+      "task": {
+        "id": "01a1272d-587e-703c-8f3d-a424c24c9df0",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272d-4ed8-77f3-9920-280ff90d8280",
+        "key": "WM-214",
+        "title": "Cursor parent",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 6500,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:57:25.630Z",
+        "updatedAt": "2026-10-10T18:57:25.677Z",
+        "version": 5,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 2
+      },
+      "undo": {
+        "id": "01a1272d-58b0-7fef-aa04-5a3780c22c2f",
+        "kind": "comment.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 16
+  }
+}

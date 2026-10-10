@@ -1,0 +1,1427 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "904205c626918ee96054eb35495c394a60c0c601",
+  "fixtureSha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80",
+  "purpose": "Source IDs and relationships only; canonical UUIDv7/schema conversion belongs to WU-02.",
+  "records": [
+    {
+      "collection": "workspaces",
+      "sourceId": "w1",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "workspaces",
+      "sourceId": "w2",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "workspaces",
+      "sourceId": "w3",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "members",
+      "sourceId": "m1",
+      "visibleKey": null,
+      "relationships": {
+        "team": "product"
+      }
+    },
+    {
+      "collection": "members",
+      "sourceId": "m2",
+      "visibleKey": null,
+      "relationships": {
+        "team": "design"
+      }
+    },
+    {
+      "collection": "members",
+      "sourceId": "m3",
+      "visibleKey": null,
+      "relationships": {
+        "team": "eng"
+      }
+    },
+    {
+      "collection": "members",
+      "sourceId": "m4",
+      "visibleKey": null,
+      "relationships": {
+        "team": "design"
+      }
+    },
+    {
+      "collection": "members",
+      "sourceId": "m5",
+      "visibleKey": null,
+      "relationships": {
+        "team": "mkt"
+      }
+    },
+    {
+      "collection": "members",
+      "sourceId": "m6",
+      "visibleKey": null,
+      "relationships": {
+        "team": "eng"
+      }
+    },
+    {
+      "collection": "members",
+      "sourceId": "m7",
+      "visibleKey": null,
+      "relationships": {
+        "team": "product"
+      }
+    },
+    {
+      "collection": "members",
+      "sourceId": "m8",
+      "visibleKey": null,
+      "relationships": {
+        "team": "mkt"
+      }
+    },
+    {
+      "collection": "projects",
+      "sourceId": "p1",
+      "visibleKey": "WEB",
+      "relationships": {
+        "team": "design",
+        "lead": "m2",
+        "members": [
+          "m1",
+          "m2",
+          "m3",
+          "m4",
+          "m5",
+          "m6",
+          "m7"
+        ]
+      }
+    },
+    {
+      "collection": "projects",
+      "sourceId": "p2",
+      "visibleKey": "MOB",
+      "relationships": {
+        "team": "eng",
+        "lead": "m3",
+        "members": [
+          "m1",
+          "m3",
+          "m4",
+          "m6",
+          "m7"
+        ]
+      }
+    },
+    {
+      "collection": "projects",
+      "sourceId": "p3",
+      "visibleKey": "MKT",
+      "relationships": {
+        "team": "mkt",
+        "lead": "m5",
+        "members": [
+          "m1",
+          "m4",
+          "m5",
+          "m7",
+          "m8"
+        ]
+      }
+    },
+    {
+      "collection": "projects",
+      "sourceId": "p4",
+      "visibleKey": "LCH",
+      "relationships": {
+        "team": "product",
+        "lead": "m1",
+        "members": [
+          "m1",
+          "m2",
+          "m3",
+          "m5",
+          "m7"
+        ]
+      }
+    },
+    {
+      "collection": "projects",
+      "sourceId": "p5",
+      "visibleKey": "DS",
+      "relationships": {
+        "team": "design",
+        "lead": "m2",
+        "members": [
+          "m2",
+          "m3",
+          "m4"
+        ]
+      }
+    },
+    {
+      "collection": "projects",
+      "sourceId": "p6",
+      "visibleKey": "CP",
+      "relationships": {
+        "team": "eng",
+        "lead": "m6",
+        "members": [
+          "m6",
+          "m7"
+        ]
+      }
+    },
+    {
+      "collection": "projects",
+      "sourceId": "p7",
+      "visibleKey": "MW",
+      "relationships": {
+        "team": "mkt",
+        "lead": "m5",
+        "members": [
+          "m1",
+          "m3",
+          "m5"
+        ]
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t1",
+      "visibleKey": "WEB-103",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m2",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t2",
+      "visibleKey": "WEB-106",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m1",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t3",
+      "visibleKey": "WEB-109",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m2",
+        "subtasks": [
+          {
+            "id": "s1",
+            "title": "Desktop layout",
+            "done": true
+          },
+          {
+            "id": "s2",
+            "title": "Tablet layout",
+            "done": true
+          },
+          {
+            "id": "s3",
+            "title": "Mobile layout",
+            "done": true
+          },
+          {
+            "id": "s4",
+            "title": "Annotate interactions",
+            "done": false
+          }
+        ],
+        "attachments": [
+          {
+            "id": "a1",
+            "name": "homepage-wireframes-v3.fig",
+            "type": "fig",
+            "size": "4.2 MB",
+            "by": "m2",
+            "at": 1791432000000
+          },
+          {
+            "id": "a2",
+            "name": "nav-audit-findings.pdf",
+            "type": "pdf",
+            "size": "860 KB",
+            "by": "m2",
+            "at": 1790970000000
+          }
+        ],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t4",
+      "visibleKey": "WEB-112",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m3",
+        "subtasks": [
+          {
+            "id": "s5",
+            "title": "Primary nav structure",
+            "done": true
+          },
+          {
+            "id": "s6",
+            "title": "Mega-menu content",
+            "done": false
+          },
+          {
+            "id": "s7",
+            "title": "Mobile drawer behavior",
+            "done": false
+          }
+        ],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t5",
+      "visibleKey": "WEB-115",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m4",
+        "subtasks": [
+          {
+            "id": "s8",
+            "title": "Breakpoint rules",
+            "done": true
+          },
+          {
+            "id": "s9",
+            "title": "Sticky header states",
+            "done": false
+          }
+        ],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t6",
+      "visibleKey": "WEB-118",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m1",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t7",
+      "visibleKey": "WEB-121",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m4",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t8",
+      "visibleKey": "WEB-124",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m2",
+        "subtasks": [],
+        "attachments": [],
+        "deps": [
+          "t3",
+          "t5"
+        ]
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t9",
+      "visibleKey": "WEB-127",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m4",
+        "subtasks": [
+          {
+            "id": "s10",
+            "title": "Welcome screens",
+            "done": true
+          },
+          {
+            "id": "s11",
+            "title": "Permission prompts",
+            "done": false
+          },
+          {
+            "id": "s12",
+            "title": "Empty states",
+            "done": false
+          }
+        ],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t10",
+      "visibleKey": "WEB-130",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m5",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t11",
+      "visibleKey": "WEB-133",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m6",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t12",
+      "visibleKey": "WEB-136",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m7",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t13",
+      "visibleKey": "WEB-139",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": [
+          "t3"
+        ]
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t14",
+      "visibleKey": "WEB-142",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m6",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t15",
+      "visibleKey": "WEB-145",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m1",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t16",
+      "visibleKey": "WEB-148",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t17",
+      "visibleKey": "WEB-151",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m5",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t18",
+      "visibleKey": "WEB-154",
+      "relationships": {
+        "project": "p1",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t19",
+      "visibleKey": "MOB-103",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m4",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t20",
+      "visibleKey": "MOB-106",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m6",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t21",
+      "visibleKey": "MOB-109",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": [
+          "t20"
+        ]
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t22",
+      "visibleKey": "MOB-112",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m5",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t23",
+      "visibleKey": "MOB-115",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m6",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t24",
+      "visibleKey": "MOB-118",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t25",
+      "visibleKey": "MOB-121",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m4",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t26",
+      "visibleKey": "MOB-124",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m1",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t27",
+      "visibleKey": "MOB-127",
+      "relationships": {
+        "project": "p2",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t28",
+      "visibleKey": "MKT-103",
+      "relationships": {
+        "project": "p3",
+        "assignee": "m5",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t29",
+      "visibleKey": "MKT-106",
+      "relationships": {
+        "project": "p3",
+        "assignee": "m5",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t30",
+      "visibleKey": "MKT-109",
+      "relationships": {
+        "project": "p3",
+        "assignee": "m4",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t31",
+      "visibleKey": "MKT-112",
+      "relationships": {
+        "project": "p3",
+        "assignee": "m8",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t32",
+      "visibleKey": "MKT-115",
+      "relationships": {
+        "project": "p3",
+        "assignee": "m7",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t33",
+      "visibleKey": "MKT-118",
+      "relationships": {
+        "project": "p3",
+        "assignee": "m1",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t34",
+      "visibleKey": "MKT-121",
+      "relationships": {
+        "project": "p3",
+        "assignee": "m1",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t35",
+      "visibleKey": "LCH-103",
+      "relationships": {
+        "project": "p4",
+        "assignee": "m1",
+        "subtasks": [
+          {
+            "id": "s20",
+            "title": "Docs published",
+            "done": true
+          },
+          {
+            "id": "s21",
+            "title": "Pricing live",
+            "done": false
+          },
+          {
+            "id": "s22",
+            "title": "Support trained",
+            "done": false
+          },
+          {
+            "id": "s23",
+            "title": "Status page updated",
+            "done": true
+          }
+        ],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t36",
+      "visibleKey": "LCH-106",
+      "relationships": {
+        "project": "p4",
+        "assignee": "m2",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t37",
+      "visibleKey": "LCH-109",
+      "relationships": {
+        "project": "p4",
+        "assignee": "m5",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t38",
+      "visibleKey": "LCH-112",
+      "relationships": {
+        "project": "p4",
+        "assignee": "m7",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t39",
+      "visibleKey": "LCH-115",
+      "relationships": {
+        "project": "p4",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t40",
+      "visibleKey": "LCH-118",
+      "relationships": {
+        "project": "p4",
+        "assignee": "m1",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t41",
+      "visibleKey": "DS-103",
+      "relationships": {
+        "project": "p5",
+        "assignee": "m2",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t42",
+      "visibleKey": "DS-106",
+      "relationships": {
+        "project": "p5",
+        "assignee": "m2",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t43",
+      "visibleKey": "DS-109",
+      "relationships": {
+        "project": "p5",
+        "assignee": "m4",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t44",
+      "visibleKey": "DS-112",
+      "relationships": {
+        "project": "p5",
+        "assignee": "m4",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t45",
+      "visibleKey": "DS-115",
+      "relationships": {
+        "project": "p5",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t46",
+      "visibleKey": "DS-118",
+      "relationships": {
+        "project": "p5",
+        "assignee": "m2",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t47",
+      "visibleKey": "MW-103",
+      "relationships": {
+        "project": "p7",
+        "assignee": "m3",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t48",
+      "visibleKey": "MW-106",
+      "relationships": {
+        "project": "p7",
+        "assignee": "m5",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "tasks",
+      "sourceId": "t49",
+      "visibleKey": "CP-103",
+      "relationships": {
+        "project": "p6",
+        "assignee": "m6",
+        "subtasks": [],
+        "attachments": [],
+        "deps": []
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c1",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t3",
+        "by": "m4"
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c2",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t3",
+        "by": "m2"
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c3",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t3",
+        "by": "m3"
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c4",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t4",
+        "by": "m3"
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c5",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t4",
+        "by": "m5"
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c6",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t9",
+        "by": "m1"
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c7",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t24",
+        "by": "m7"
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c8",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t34",
+        "by": "m2"
+      }
+    },
+    {
+      "collection": "comments",
+      "sourceId": "c9",
+      "visibleKey": null,
+      "relationships": {
+        "task": "t35",
+        "by": "m7"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "awoc52q",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m2",
+        "task": "t3",
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "ap78ljv",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m3",
+        "task": "t18",
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "amvusdy",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m4",
+        "task": "t19",
+        "project": "p2"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "aex2vk4",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m1",
+        "task": "t9",
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "avpniy4",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m6",
+        "task": "t14",
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "afttdcf",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m5",
+        "task": "t30",
+        "project": "p3"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "ahaffxu",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m2",
+        "task": "t8",
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "afkqjx0",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m7",
+        "task": "t23",
+        "project": "p2"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "arf3dpw",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m3",
+        "task": "t24",
+        "project": "p2"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "ay410if",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m1",
+        "task": null,
+        "project": "p4"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "a8cco9b",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m2",
+        "task": null,
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "a3wo73h",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m4",
+        "task": "t41",
+        "project": "p5"
+      }
+    },
+    {
+      "collection": "activity",
+      "sourceId": "ab005br",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m5",
+        "task": "t17",
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n1",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m2",
+        "task": "t3"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n2",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m3",
+        "task": "t28"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n3",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m4",
+        "task": "t9"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n4",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m7",
+        "task": "t35"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n5",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m2",
+        "task": "t3"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n6",
+      "visibleKey": null,
+      "relationships": {
+        "by": null,
+        "project": "p4"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n7",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m2",
+        "task": "t34"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n8",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m2",
+        "task": "t6"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n9",
+      "visibleKey": null,
+      "relationships": {
+        "by": "m3",
+        "task": "t18"
+      }
+    },
+    {
+      "collection": "notifs",
+      "sourceId": "n10",
+      "visibleKey": null,
+      "relationships": {
+        "by": null,
+        "task": "t28"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f1",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1",
+        "by": "m2",
+        "task": "t3"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f2",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1",
+        "by": "m2",
+        "task": "t3"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f3",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1",
+        "by": "m4"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f4",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1",
+        "by": "m4"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f5",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1",
+        "by": "m5"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f6",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1",
+        "by": "m1"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f7",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1",
+        "by": "m1"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f8",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1",
+        "by": "m6"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f9",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p2",
+        "by": "m4"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f10",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p2",
+        "by": "m1"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f11",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p3",
+        "by": "m5"
+      }
+    },
+    {
+      "collection": "files",
+      "sourceId": "f12",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p4",
+        "by": "m1"
+      }
+    },
+    {
+      "collection": "events",
+      "sourceId": "e1",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "events",
+      "sourceId": "e2",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p2"
+      }
+    },
+    {
+      "collection": "events",
+      "sourceId": "e3",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p4"
+      }
+    },
+    {
+      "collection": "events",
+      "sourceId": "e4",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "events",
+      "sourceId": "e5",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p3"
+      }
+    },
+    {
+      "collection": "events",
+      "sourceId": "e6",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p2"
+      }
+    },
+    {
+      "collection": "savedViews",
+      "sourceId": "v1",
+      "visibleKey": null,
+      "relationships": {
+        "project": "p1"
+      }
+    },
+    {
+      "collection": "sessions",
+      "sourceId": "se1",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "sessions",
+      "sourceId": "se2",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "sessions",
+      "sourceId": "se3",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "invoices",
+      "sourceId": "INV-2026-009",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "invoices",
+      "sourceId": "INV-2026-008",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "invoices",
+      "sourceId": "INV-2026-007",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "invoices",
+      "sourceId": "INV-2026-006",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "teams",
+      "sourceId": "design",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "teams",
+      "sourceId": "eng",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "teams",
+      "sourceId": "mkt",
+      "visibleKey": null,
+      "relationships": {}
+    },
+    {
+      "collection": "teams",
+      "sourceId": "product",
+      "visibleKey": null,
+      "relationships": {}
+    }
+  ]
+}

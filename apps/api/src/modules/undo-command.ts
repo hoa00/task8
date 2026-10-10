@@ -1,4 +1,5 @@
 import { undoTasks } from './task-undo.ts';
+import { undoComment } from './comments.ts';
 import { ApiFailure } from '../errors.ts';
 import { decodeUndoPayload, decodeUndoResult, encodeUndoResult } from '../db/undo.ts';
 import { exactSet } from '../db/commands.ts';
@@ -11,6 +12,7 @@ const epoch=(value:string|null)=>value===null?null:Date.parse(value);
 export async function undoCommand(r:RequestRepository,s:WorkspaceContext,actor:MemberDto,id:EntityId,now:number) {
   const [record]=await r.all<typeof commandUndoRecords.$inferSelect>('SELECT * FROM commandUndoRecords WHERE workspaceId=? AND id=? AND actorMemberId=?',[s.workspaceId,id,s.memberId]);
   if(!record)throw new ApiFailure('NOT_FOUND','Undo not found');
+  if(record.kind==='comment.delete')return undoComment(r,s,record,now);
   if(['task.complete','task.archive','task.delete','tasks.bulkDelete','tasks.completeColumn','tasks.archiveCompletedColumn'].includes(record.kind))return undoTasks(r,s,record,now);
   if(!['project.archive','project.delete','team.delete'].includes(record.kind))throw new ApiFailure('CAPABILITY_UNAVAILABLE','Undo kind is not implemented');
   const payload=decodeUndoPayload(record.payloadJson);

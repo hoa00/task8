@@ -1,0 +1,24 @@
+{
+  "method": "POST",
+  "path": "/__wu33/sql",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"sql\":\"UPDATE activity SET revertedAt=? WHERE id=?\",\"parameters\":[1791658645700,\"01a1272d-589e-7928-b0ce-52587bb4da67\"]}",
+  "status": 200,
+  "response": {
+    "success": true,
+    "meta": {
+      "served_by": "miniflare.db",
+      "duration": 0,
+      "changes": 1,
+      "last_row_id": 7,
+      "changed_db": true,
+      "size_after": 737280,
+      "rows_read": 1,
+      "rows_written": 1
+    },
+    "results": []
+  },
+  "budget": null
+}

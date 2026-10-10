@@ -1,0 +1,146 @@
+{
+  "workUnit": "WU-33",
+  "status": "DONE_BOUNDED_ROOT_TECHNICAL_AND_ALL_INDEX_PASS",
+  "base": "9cb52ad89df0ba0cf5ada760560dc30eb02bc0c6",
+  "observationSource": "Independent read-only ROOT messages in this session",
+  "rootPhysicalCapture": null,
+  "technical": {
+    "candidate": {
+      "path": "docs/poc/evidence/WU-33/candidate.json",
+      "bytes": 634693,
+      "sha256": "58783f17d3a93bc48aa4c1790fd73362e5093f8362ccba16ba56a863c04eb2b4"
+    },
+    "finiteFilesExcludingSelf": 2966,
+    "finiteBytesExcludingSelf": 76184804,
+    "whitelistPaths": 2967,
+    "verification": {
+      "bytes": 111815,
+      "sha256": "eb474b98624b138f228a2253005d81ebc73963ac1c88dd524323637c6b3166ec",
+      "hashedReferences": 453,
+      "hashedReferenceBytes": 33120324
+    },
+    "requiredGates": 8,
+    "requiredExitCode": 0,
+    "requiredError": null,
+    "httpReceipts": 219,
+    "d1Commands": 6,
+    "d1CliExitCodes": [
+      0,
+      0
+    ],
+    "workers": {
+      "count": 4,
+      "plannedSignal": "SIGTERM",
+      "exitCode": null
+    },
+    "preInvocationCurrentMatches": 67,
+    "fullTableZeroEffectPairs": 21,
+    "tablesPerPair": 24,
+    "instrumentedRequests": 164,
+    "maxQueries": 18,
+    "maxParameters": 59,
+    "prefreeze": {
+      "commands": 13,
+      "exitCode": 0,
+      "rawReferences": 26,
+      "rawBytes": 2707,
+      "baseComparisons": 9,
+      "canonicalLocks": [
+        "docs/poc/reference/baseline-manifest.json",
+        "docs/poc/reference/font-assets.json",
+        "docs/poc/reference/source-fixture.json",
+        "docs/poc/reference/source-lock.json"
+      ],
+      "outerObjects": "No separate outer objects in prefreeze directory; wrapper completion retained under commands/prefreeze-01",
+      "sourceTrackedFiles": 86,
+      "sourceClean": true,
+      "portsAbsent": [
+        4173,
+        5173,
+        5174,
+        8787
+      ]
+    }
+  },
+  "index": {
+    "status": "ROOT_ALL_INDEX_PASS",
+    "exitCode": 0,
+    "baseRows": 135863,
+    "indexRows": 138821,
+    "changedPaths": 2967,
+    "changedBlobBytes": 76819497,
+    "unchangedOtherRows": 135854,
+    "physicalAndStagedExact": true,
+    "cachedCheckEmpty": true,
+    "unstagedEmpty": true,
+    "untrackedEmpty": true,
+    "metadataExceptions": [
+      "docs/poc/PROGRESS.md",
+      "docs/poc/evidence/WU-33/root-pass.json"
+    ],
+    "nonMetadataRows": 138820,
+    "nonMetadataFingerprint": "12e414a25a3b629ba6d5e02d89958dd1df856b48643abb1bcc49d62629d88297"
+  },
+  "stage": {
+    "failedOriginal": {
+      "path": "/tmp/task8-wu33-stage01/report.json",
+      "bytes": 1904,
+      "sha256": "42f55e711bef691a0f05a02dbb21e64ec0d1a0acef3acefa49751ad6bec41167",
+      "commands": 2,
+      "addExitCode": 0,
+      "cachedCheckExitCode": 2,
+      "toolCompletionExitCode": 1,
+      "rawReferences": 4,
+      "outerStartCaptureGap": true
+    },
+    "accepted": {
+      "path": "/tmp/task8-wu33-stage02/report.json",
+      "bytes": 5276,
+      "sha256": "bf125c1eb8ec432ee55791ba194ac5111f4c19b8838425a889ac3a507e19fd97",
+      "commands": 6,
+      "rawReferences": 12,
+      "rawBytes": 747651,
+      "toolCompletionExitCode": 0
+    },
+    "wholeInheritedIndexArchive": false
+  },
+  "attributes": {
+    "bytes": 103290,
+    "sha256": "f9c522e9ff7a6a067533c6ca0d058b0bdca3e1464cf8b701fae22a1d3ea4aaca",
+    "basePrefixBytes": 101382,
+    "approvedIntermediatePrefixBytes": 103225,
+    "literalRawRules": 28,
+    "extraLiteral": "docs/poc/evidence/WU-33/prefreeze01/ports.stdout.log -whitespace",
+    "wildcardOrCodeWaiver": false
+  },
+  "scope": {
+    "acceptance": [
+      "WU-33-AC1",
+      "WU-33-AC2",
+      "WU-33-AC3"
+    ],
+    "operations": 11,
+    "capabilities": {
+      "tasks": "implemented",
+      "comments": "implemented",
+      "projects": "unavailable",
+      "notificationState": "unavailable",
+      "fileMetadata": "unavailable",
+      "fileBytes": "unavailable"
+    },
+    "content": "Shared Worker parse5 rich sanitizer and escaped plain promotion; literal plain comments",
+    "delivery": "No generated email/push/mention delivery or notification engine",
+    "future": "WU34–36 untouched"
+  },
+  "qualification": {
+    "historicalM2": "All bounded/failed/missing-byte/SVG/default/Darwin qualifications remain unrecovered",
+    "failedOriginals": "Original typecheck/lint/D1-harness/diffcheck/stage01 failures remain FAILED and immutable",
+    "outerCapture": "Some early returned outer objects are not physically persisted; no reconstructed originals or Root physical capture claim"
+  },
+  "pending": [
+    "Root FAST two-file metadata gate",
+    "implementation commit and normal push",
+    "portable documentation checkpoint and normal push",
+    "actual final main/clean verification"
+  ]
+}

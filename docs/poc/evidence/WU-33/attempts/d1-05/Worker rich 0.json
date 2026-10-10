@@ -1,0 +1,52 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"clientRequestId\":\"8d5960f3-b333-43a5-b7e9-8066b767e94a\",\"projectId\":\"01a1272d-4ed8-77f3-9920-280ff90d8280\",\"title\":\"Worker rich 0\",\"descriptionHtml\":\"<p onclick=\\\"x()\\\"><b>bold</b><i>italic</i><a href=\\\"javascript:alert(1)\\\" target=\\\"_blank\\\">bad</a><a href=\\\"https://ok.test/?a=1&amp;b=2\\\" target=\\\"_blank\\\" onclick=\\\"x\\\">safe</a><img src=x onerror=x></p><script>x</script><svg><script>x</script></svg>\"}",
+  "status": 201,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1272d-5609-78ca-a110-b58525067cb6",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272d-4ed8-77f3-9920-280ff90d8280",
+        "key": "WM-206",
+        "title": "Worker rich 0",
+        "descriptionHtml": "<p><strong>bold</strong><em>italic</em><a>bad</a><a href=\"https://ok.test/?a=1&amp;b=2\" target=\"_blank\" rel=\"noopener noreferrer\">safe</a></p>",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 5500,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:57:24.998Z",
+        "updatedAt": "2026-10-10T18:57:24.998Z",
+        "version": 1,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1272d-4ed8-77f3-9920-280ff90d8280"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 22
+  }
+}

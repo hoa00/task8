@@ -1,0 +1,19 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedTaskVersion\":9,\"dueDate\":\"2028-02-30\"}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid request"
+    }
+  },
+  "budget": {
+    "queries": 2,
+    "parameters": 4
+  }
+}

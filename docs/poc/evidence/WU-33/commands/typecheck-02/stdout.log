@@ -1,0 +1,6 @@
+src/modules/activity.ts(6,15): error TS2305: Module '"@studio/contracts/api"' has no exported member 'ActivityQuery'.
+src/modules/task-children.ts(38,36): error TS2352: Conversion of type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; taskId: string & $brand<"EntityId">; position: number; createdAt: number; updatedAt: number; }' to type '{ done: boolean; id: string; title: string; assigneeId: string | null; taskId: string; createdAt: number; updatedAt: number; workspaceId: string; position: number; dueDate: string | null; note: string; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ id: string & $brand<"EntityId">; workspaceId: string & $brand<"EntityId">; taskId: string & $brand<"EntityId">; position: number; createdAt: number; updatedAt: number; }' is missing the following properties from type '{ done: boolean; id: string; title: string; assigneeId: string | null; taskId: string; createdAt: number; updatedAt: number; workspaceId: string; position: number; dueDate: string | null; note: string; }': done, title, assigneeId, dueDate, note
+/workspace/task8/apps/api:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @studio/api@0.0.0 typecheck: `tsc --noEmit`
+Exit status 2

@@ -1,0 +1,62 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a1272c-15f1-723f-a7f7-4c336a8fbc57",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "comment": {
+        "id": "01a1272c-15f1-723f-a7f7-4c336a8fbc57",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a1272c-15e4-704e-97ee-0bb460213d47",
+        "authorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "bodyText": "Undo lifecycle comment task-delete",
+        "mentionedMemberIds": [],
+        "createdAt": "2026-10-10T18:56:03.055Z",
+        "version": 2,
+        "reactions": []
+      },
+      "task": {
+        "id": "01a1272c-15e4-704e-97ee-0bb460213d47",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272c-15d1-78ab-baff-ac5140fe9866",
+        "key": "ULT-201",
+        "title": "Undo lifecycle task task-delete",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 6500,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:56:03.043Z",
+        "updatedAt": "2026-10-10T18:56:03.069Z",
+        "version": 3,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "undo": {
+        "id": "01a1272c-1600-70ef-995f-830266850b5f",
+        "kind": "comment.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 11,
+    "parameters": 16
+  }
+}

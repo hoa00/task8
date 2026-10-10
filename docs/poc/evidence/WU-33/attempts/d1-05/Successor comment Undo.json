@@ -1,0 +1,34 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a1272d-581b-7e20-89a3-0f35d0049a10",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{}",
+  "status": 200,
+  "response": {
+    "data": {
+      "undoId": "01a1272d-581b-7e20-89a3-0f35d0049a10",
+      "kind": "comment.delete",
+      "appliedAt": "2026-10-10T18:57:25.540Z",
+      "affected": {
+        "taskIds": [
+          "01a1272d-57fc-7e2b-9e10-ca980b9a39f5"
+        ],
+        "projectIds": [
+          "01a1272d-57d3-701f-894f-f30ea62c69a0"
+        ],
+        "teamIds": [],
+        "memberIds": [],
+        "commentIds": [
+          "01a1272d-580e-788b-a567-482634a8241b"
+        ],
+        "fileIds": []
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 19
+  }
+}

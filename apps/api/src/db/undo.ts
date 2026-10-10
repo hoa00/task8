@@ -8,7 +8,8 @@ const association=z.strictObject({...identity,entity:z.enum(['team','member','pr
 const base={activityIds:z.array(EntityIdSchema).max(128)};
 export const undoPayloadSchema=z.discriminatedUnion('kind',[
   z.strictObject({...base,kind:z.literal('task.complete'),targets:z.array(completion).length(1)}),
-  ...(['task.archive','task.delete','project.archive','project.delete','comment.delete','file.delete'] as const).map(kind=>z.strictObject({...base,kind:z.literal(kind),targets:z.array(lifecycle).length(1)})),
+  ...(['task.archive','task.delete','project.archive','project.delete','file.delete'] as const).map(kind=>z.strictObject({...base,kind:z.literal(kind),targets:z.array(lifecycle).length(1)})),
+  z.strictObject({...base,kind:z.literal('comment.delete'),targets:z.array(lifecycle.extend({taskId:EntityIdSchema,taskPostVersion:VersionSchema})).length(1)}),
   z.strictObject({...base,kind:z.literal('tasks.bulkDelete'),targets:z.array(lifecycle).min(1).max(128)}),
   z.strictObject({...base,kind:z.literal('tasks.archiveCompletedColumn'),columnScope:ColumnScopeSchema,targets:z.array(lifecycle).max(128)}),
   z.strictObject({...base,kind:z.literal('tasks.completeColumn'),columnScope:ColumnScopeSchema,targets:z.array(z.discriminatedUnion('entity',[completion.extend({entity:z.literal('parent')}),z.strictObject({...identity,entity:z.literal('successor'),parentId:EntityIdSchema,children:z.array(SubtaskSchema.omit({taskId:true}).extend({done:z.boolean(),createdAt:z.number().int(),updatedAt:z.number().int()})).max(128),labelIds:z.array(LabelIdSchema).max(20),dependencyIds:z.array(EntityIdSchema).max(128)}),z.strictObject({...identity,entity:z.literal('dependency')})])).min(1).max(128)}),

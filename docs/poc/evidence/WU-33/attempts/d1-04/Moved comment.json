@@ -1,0 +1,59 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272c-187f-7067-afb1-68e4da790100/comments",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"bodyText\":\"Moved comment\",\"mentionedMemberIds\":[]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "comment": {
+        "id": "01a1272c-188d-755f-9f54-859960b53512",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a1272c-187f-7067-afb1-68e4da790100",
+        "authorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "bodyText": "Moved comment",
+        "mentionedMemberIds": [],
+        "createdAt": "2026-10-10T18:56:03.723Z",
+        "version": 1,
+        "reactions": []
+      },
+      "task": {
+        "id": "01a1272c-187f-7067-afb1-68e4da790100",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272c-0a66-7146-b863-4547bd3ad5b5",
+        "key": "WM-214",
+        "title": "Activity moved",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 6900,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:56:03.710Z",
+        "updatedAt": "2026-10-10T18:56:03.723Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 1
+      },
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 10
+  }
+}

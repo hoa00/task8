@@ -1,0 +1,52 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272d-5634-78f6-92c0-ac8dfbd270ff",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"descriptionHtml\":\"<a href=\\\"data:text/html,x\\\">data</a><a href=\\\"//relative\\\">relative</a><a href=\\\"http://ok.test\\\">http</a>\"}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1272d-5634-78f6-92c0-ac8dfbd270ff",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272d-4ed8-77f3-9920-280ff90d8280",
+        "key": "WM-208",
+        "title": "Worker rich 2",
+        "descriptionHtml": "<a>data</a><a>relative</a><a href=\"http://ok.test\">http</a>",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 5700,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:57:25.043Z",
+        "updatedAt": "2026-10-10T18:57:25.052Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1272d-4ed8-77f3-9920-280ff90d8280"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 9,
+    "parameters": 28
+  }
+}

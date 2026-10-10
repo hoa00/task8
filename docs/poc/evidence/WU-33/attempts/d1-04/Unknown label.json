@@ -1,0 +1,19 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272c-1300-7929-a685-c2635a751aed",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"labelIds\":[\"unknown\"]}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid request"
+    }
+  },
+  "budget": {
+    "queries": 2,
+    "parameters": 4
+  }
+}

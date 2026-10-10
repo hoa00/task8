@@ -1,0 +1,51 @@
+{
+  "method": "DELETE",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a1272d-5a47-711b-bb5f-f6fe6b3501ac",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "project": {
+        "id": "01a1272d-5a47-711b-bb5f-f6fe6b3501ac",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "key": "ULPX",
+        "name": "Undo lifecycle project-delete",
+        "description": "WU31 integration",
+        "icon": "folder",
+        "color": "#5A67D8",
+        "status": "planning",
+        "teamId": null,
+        "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "startDate": "2026-10-10",
+        "dueDate": null,
+        "visibility": "workspace",
+        "memberIds": [
+          "01a11abd-aa80-7249-8034-93bbfb2174a2"
+        ],
+        "milestones": [],
+        "isFavorite": false,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:57:26.087Z",
+        "updatedAt": "2026-10-10T18:57:26.148Z",
+        "lastActivityAt": "2026-10-10T18:57:26.087Z",
+        "version": 2
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1272d-5a47-711b-bb5f-f6fe6b3501ac"
+      ],
+      "taskIdMap": [],
+      "undo": {
+        "id": "01a1272d-5a85-7998-8a62-775ef9aa65f5",
+        "kind": "project.delete"
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 14
+  }
+}

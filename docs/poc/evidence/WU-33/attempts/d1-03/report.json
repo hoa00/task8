@@ -1,0 +1,501 @@
+{
+  "status": "FAILED",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-03"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:54:53.990Z",
+      "completedAt": "2026-10-10T18:55:00.846Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1453,
+        "sha256": "19deb54631c26bd7d43c60dc5833532288ce9973b451bf49606fc22915cf107e"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-03"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:55:00.846Z",
+      "completedAt": "2026-10-10T18:55:07.892Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48587,
+        "sha256": "ef4dc57bc71c8e024d14fa980f88ad806ea0d53557b3eb6e8e5e67cfcada20b4"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu33-config-d1-03/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-03"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:55:07.893Z",
+      "completedAt": "2026-10-10T18:55:14.149Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 7856,
+        "sha256": "0e17cd385b57f4a0faa9797aaeb1b0d47a03ebac5638a7b6edbdeb13cdc8627a"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 3708,
+        "sha256": "b64466320f79f4ee8a085f9d1915ee59885ba86bed3b985a6629b3f7b3f83051"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "session",
+      "status": 200,
+      "path": "/api/v1/session",
+      "evidence": "session.json",
+      "budget": {
+        "queries": 1,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "WU33 main",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "WU33 main.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Subtasks parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Subtasks parent.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Other parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Other parent.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "First child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks",
+      "evidence": "First child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "child-scope-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "child-scope-before.json",
+      "budget": null
+    },
+    {
+      "name": "wrong-parent-child",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0",
+      "evidence": "wrong-parent-child.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "wrong-parent-promote",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0/promote",
+      "evidence": "wrong-parent-promote.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "wrong-parent-delete",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0",
+      "evidence": "wrong-parent-delete.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "child-scope-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "child-scope-after.json",
+      "budget": null
+    },
+    {
+      "name": "Complete child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0",
+      "evidence": "Complete child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "promotion-rollback-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-rollback-before.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-fk-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0/promote",
+      "evidence": "promotion-fk-failure.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "promotion-rollback-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-rollback-after.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-stale-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-stale-before.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-stale-request",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0/promote",
+      "evidence": "promotion-stale-request.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "promotion-stale-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-stale-after.json",
+      "budget": null
+    },
+    {
+      "name": "Promote child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0/promote",
+      "evidence": "Promote child.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "promoted-parent-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3",
+      "evidence": "promoted-parent-detail.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "promotion-activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a1272b-4666-7e42-b24c-c9e2cbf530a3",
+      "evidence": "promotion-activity.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "created-activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a1272b-47d8-77f4-a6b5-514ac28fbb33",
+      "evidence": "created-activity.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Delete child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks",
+      "evidence": "Delete child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "delete-child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4808-7cee-850c-e05565352400",
+      "evidence": "delete-child.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 15
+      }
+    },
+    {
+      "name": "Fallback child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks",
+      "evidence": "Fallback child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "Fallback promotion",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4827-76a2-b780-2b887ad45215/promote",
+      "evidence": "Fallback promotion.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "Invited assignee",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks",
+      "evidence": "Invited assignee.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "invalid-child-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "invalid-child-before.json",
+      "budget": null
+    },
+    {
+      "name": "Foreign child member",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks",
+      "evidence": "Foreign child member.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "Foreign update member",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7",
+      "evidence": "Foreign update member.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "Bad date",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7",
+      "evidence": "Bad date.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Unknown input",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7",
+      "evidence": "Unknown input.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Note overflow",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7",
+      "evidence": "Note overflow.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "invalid-child-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "invalid-child-after.json",
+      "budget": null
+    },
+    {
+      "name": "comment-rollback-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "comment-rollback-before.json",
+      "budget": null
+    },
+    {
+      "name": "Comment FK rollback",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments",
+      "evidence": "Comment FK rollback.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "comment-rollback-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "comment-rollback-after.json",
+      "budget": null
+    },
+    {
+      "name": "Plain comment",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments",
+      "evidence": "Plain comment.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "invalid-comment-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "invalid-comment-before.json",
+      "budget": null
+    },
+    {
+      "name": "Foreign mention",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments",
+      "evidence": "Foreign mention.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Comment overflow",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments",
+      "evidence": "Comment overflow.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Actor injection",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments",
+      "evidence": "Actor injection.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "No comment edit",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a1272b-4913-78f5-a02f-8254aa746e01",
+      "evidence": "No comment edit.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "error": {
+    "message": "No comment edit\n\n404 !== 501\n",
+    "stack": "AssertionError [ERR_ASSERTION]: No comment edit\n\n404 !== 501\n\n    at get (file:///workspace/task8/apps/api/tests/wu33/verify.mjs:37:1245)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async command (file:///workspace/task8/apps/api/tests/wu33/verify.mjs:43:86)\n    at async file:///workspace/task8/apps/api/tests/wu33/verify.mjs:82:298\n    at async zero (file:///workspace/task8/apps/api/tests/wu33/verify.mjs:54:94)\n    at async file:///workspace/task8/apps/api/tests/wu33/verify.mjs:82:2"
+  },
+  "completedAt": "2026-10-10T18:55:14.150Z"
+}

@@ -1,0 +1,2837 @@
+{
+  "workUnit": "WU-33",
+  "status": "REQUIRED_CHECKS_PASS_ROOT_GATE_PENDING",
+  "base": "9cb52ad89df0ba0cf5ada760560dc30eb02bc0c6",
+  "runtime": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0",
+    "wrangler": "4.148.0",
+    "database": "actual local Wrangler D1",
+    "os": "Linux"
+  },
+  "selected": [
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-33/attempts/d1-05/report.json",
+        "bytes": 70651,
+        "sha256": "2eb59631d88b8e37f8818532434d7ce0065928518af58b5b7dadba35f50dd238"
+      },
+      "commands": 6,
+      "probes": 219,
+      "instrumentedRequests": 164,
+      "maxQueries": 18,
+      "maxParameters": 59,
+      "sourceMatches": [
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/scripts/seed-data.mjs",
+            "bytes": 7221,
+            "sha256": "c293cf143f9f1fc2bde4a20bdd3d2fdf926a0a5585bf46b2425dc32cb4bdc8ca"
+          },
+          "current": {
+            "path": "apps/api/scripts/seed-data.mjs",
+            "bytes": 7221,
+            "sha256": "c293cf143f9f1fc2bde4a20bdd3d2fdf926a0a5585bf46b2425dc32cb4bdc8ca"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/scripts/seed-local.mjs",
+            "bytes": 1084,
+            "sha256": "69a636d03c93ae1f4831212a3962c7a030f04794712c0a10955836f0c124124d"
+          },
+          "current": {
+            "path": "apps/api/scripts/seed-local.mjs",
+            "bytes": 1084,
+            "sha256": "69a636d03c93ae1f4831212a3962c7a030f04794712c0a10955836f0c124124d"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/db/commands.ts",
+            "bytes": 1611,
+            "sha256": "7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f"
+          },
+          "current": {
+            "path": "apps/api/src/db/commands.ts",
+            "bytes": 1611,
+            "sha256": "7c23ef95c286b2a98cf66873e85d303dc1eebb0dc760b953754d31a6b447324f"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/db/fixture.ts",
+            "bytes": 11439,
+            "sha256": "93fdac870c6c689fc734969f2548a8f9ca4832d1b830516cfed39e185be291e0"
+          },
+          "current": {
+            "path": "apps/api/src/db/fixture.ts",
+            "bytes": 11439,
+            "sha256": "93fdac870c6c689fc734969f2548a8f9ca4832d1b830516cfed39e185be291e0"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/db/guards.ts",
+            "bytes": 2380,
+            "sha256": "4a1a44876040066cd211ed2650d0a9fb4bfb41ac55e19d9b951f01d08a80322d"
+          },
+          "current": {
+            "path": "apps/api/src/db/guards.ts",
+            "bytes": 2380,
+            "sha256": "4a1a44876040066cd211ed2650d0a9fb4bfb41ac55e19d9b951f01d08a80322d"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/db/migrations/0000_freezing_greymalkin.sql",
+            "bytes": 25846,
+            "sha256": "912bc07a7379a1eccedb61d6ecfd26b2106297d86057b63050242ecce4aa3571"
+          },
+          "current": {
+            "path": "apps/api/src/db/migrations/0000_freezing_greymalkin.sql",
+            "bytes": 25846,
+            "sha256": "912bc07a7379a1eccedb61d6ecfd26b2106297d86057b63050242ecce4aa3571"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/db/repository.ts",
+            "bytes": 1525,
+            "sha256": "4f99cd935337f4932c9c87374cc8d4c0f7c97c78f395046e50c230e6b9b7eb67"
+          },
+          "current": {
+            "path": "apps/api/src/db/repository.ts",
+            "bytes": 1525,
+            "sha256": "4f99cd935337f4932c9c87374cc8d4c0f7c97c78f395046e50c230e6b9b7eb67"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/db/schema.ts",
+            "bytes": 24094,
+            "sha256": "46f6f0678229daea7330e2f5eb0ff698eeda8056dda8873c7b5478eaf11a2734"
+          },
+          "current": {
+            "path": "apps/api/src/db/schema.ts",
+            "bytes": 24094,
+            "sha256": "46f6f0678229daea7330e2f5eb0ff698eeda8056dda8873c7b5478eaf11a2734"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/db/undo.ts",
+            "bytes": 3298,
+            "sha256": "d9d22cc4f512c4c955773cc3152638e2acc3b724ac07955cb36062d3a968879e"
+          },
+          "current": {
+            "path": "apps/api/src/db/undo.ts",
+            "bytes": 3298,
+            "sha256": "d9d22cc4f512c4c955773cc3152638e2acc3b724ac07955cb36062d3a968879e"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/errors.ts",
+            "bytes": 1028,
+            "sha256": "9120b75be89d49fc7a7753a4f0357ea1a4af5f0fe121e3b7076e40eb89503f71"
+          },
+          "current": {
+            "path": "apps/api/src/errors.ts",
+            "bytes": 1028,
+            "sha256": "9120b75be89d49fc7a7753a4f0357ea1a4af5f0fe121e3b7076e40eb89503f71"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/index.ts",
+            "bytes": 792,
+            "sha256": "88dbf8b6f60f140b8db96f6bbdc1d4aceec553f3437c80058dd9a3aacf64d843"
+          },
+          "current": {
+            "path": "apps/api/src/index.ts",
+            "bytes": 792,
+            "sha256": "88dbf8b6f60f140b8db96f6bbdc1d4aceec553f3437c80058dd9a3aacf64d843"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/middleware.ts",
+            "bytes": 2741,
+            "sha256": "e9ac17ef1b58d5bdd1808dc4a2641b133fd780afc35839f0dc2849d9d4b37fa4"
+          },
+          "current": {
+            "path": "apps/api/src/middleware.ts",
+            "bytes": 2741,
+            "sha256": "e9ac17ef1b58d5bdd1808dc4a2641b133fd780afc35839f0dc2849d9d4b37fa4"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/activity.ts",
+            "bytes": 2228,
+            "sha256": "2d78f3699cddba3fe705d9206824335d7d689feb2019a68eae6f7cd052193190"
+          },
+          "current": {
+            "path": "apps/api/src/modules/activity.ts",
+            "bytes": 2228,
+            "sha256": "2d78f3699cddba3fe705d9206824335d7d689feb2019a68eae6f7cd052193190"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/bootstrap.ts",
+            "bytes": 9374,
+            "sha256": "546d7e432aa58d899c9bfecc845915bff976decae25ad820c95b69e02802e757"
+          },
+          "current": {
+            "path": "apps/api/src/modules/bootstrap.ts",
+            "bytes": 9374,
+            "sha256": "546d7e432aa58d899c9bfecc845915bff976decae25ad820c95b69e02802e757"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/collaboration-page.ts",
+            "bytes": 1717,
+            "sha256": "fb93873d910977b862917f022bd36371d2f878fc3f8d4ce219ac056ad6e97e47"
+          },
+          "current": {
+            "path": "apps/api/src/modules/collaboration-page.ts",
+            "bytes": 1717,
+            "sha256": "fb93873d910977b862917f022bd36371d2f878fc3f8d4ce219ac056ad6e97e47"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/collaboration-routes.ts",
+            "bytes": 5182,
+            "sha256": "b2fa18cc6da4e6b6dd2270a565e76193280b13b4864f5137757f2340a3b5250b"
+          },
+          "current": {
+            "path": "apps/api/src/modules/collaboration-routes.ts",
+            "bytes": 5182,
+            "sha256": "b2fa18cc6da4e6b6dd2270a565e76193280b13b4864f5137757f2340a3b5250b"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/comments.ts",
+            "bytes": 12484,
+            "sha256": "eff830b58e5c414b37453bff662ddc423398187b66275625375731a6fdbdd5bc"
+          },
+          "current": {
+            "path": "apps/api/src/modules/comments.ts",
+            "bytes": 12484,
+            "sha256": "eff830b58e5c414b37453bff662ddc423398187b66275625375731a6fdbdd5bc"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/features.ts",
+            "bytes": 12127,
+            "sha256": "fcae94cdd4de8ae46a8c6f9412318873618c6782f5c74443f6ffb6803e9ce899"
+          },
+          "current": {
+            "path": "apps/api/src/modules/features.ts",
+            "bytes": 12127,
+            "sha256": "fcae94cdd4de8ae46a8c6f9412318873618c6782f5c74443f6ffb6803e9ce899"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/projects.ts",
+            "bytes": 14147,
+            "sha256": "a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d"
+          },
+          "current": {
+            "path": "apps/api/src/modules/projects.ts",
+            "bytes": 14147,
+            "sha256": "a2e334e689a87d028e5e2f73ea04a5b9a8130b917e50e616f32ac58bc2a9bc1d"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/read-model.ts",
+            "bytes": 9838,
+            "sha256": "e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804"
+          },
+          "current": {
+            "path": "apps/api/src/modules/read-model.ts",
+            "bytes": 9838,
+            "sha256": "e292541696b0a7c1d0f1b5d4bd03e7e6a91d8b2420b8c0c43d2c9226543b4804"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/routes.ts",
+            "bytes": 2603,
+            "sha256": "9740b33153364be29bb4f4c9504b230b5c4362eb94d45716c86a3300360a6579"
+          },
+          "current": {
+            "path": "apps/api/src/modules/routes.ts",
+            "bytes": 2603,
+            "sha256": "9740b33153364be29bb4f4c9504b230b5c4362eb94d45716c86a3300360a6579"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/shared.ts",
+            "bytes": 3949,
+            "sha256": "3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7"
+          },
+          "current": {
+            "path": "apps/api/src/modules/shared.ts",
+            "bytes": 3949,
+            "sha256": "3165cfc5cf61e2a505f56e8ed4bb3785d6c471e37f025e5d8d45581b2299def7"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/task-children.ts",
+            "bytes": 9113,
+            "sha256": "583325490ca3e1f9aa3375db00a32bfe70b23080e4ec1ad0e2369cd0e99d655d"
+          },
+          "current": {
+            "path": "apps/api/src/modules/task-children.ts",
+            "bytes": 9113,
+            "sha256": "583325490ca3e1f9aa3375db00a32bfe70b23080e4ec1ad0e2369cd0e99d655d"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/task-read.ts",
+            "bytes": 7190,
+            "sha256": "d288215e7495fce92d6bffe14645e3ec73b3809befc34ab8ccbcbe56bc3ad8f3"
+          },
+          "current": {
+            "path": "apps/api/src/modules/task-read.ts",
+            "bytes": 7190,
+            "sha256": "d288215e7495fce92d6bffe14645e3ec73b3809befc34ab8ccbcbe56bc3ad8f3"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/task-relations.ts",
+            "bytes": 3550,
+            "sha256": "777b63903cd253a3bfa0df964bdb98be37687fa1f0499687f010761e9c8cf99e"
+          },
+          "current": {
+            "path": "apps/api/src/modules/task-relations.ts",
+            "bytes": 3550,
+            "sha256": "777b63903cd253a3bfa0df964bdb98be37687fa1f0499687f010761e9c8cf99e"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/task-routes.ts",
+            "bytes": 5765,
+            "sha256": "c158e000af72214a29b2fe12e6abee15e70b9bf92780162455302d69509986af"
+          },
+          "current": {
+            "path": "apps/api/src/modules/task-routes.ts",
+            "bytes": 5765,
+            "sha256": "c158e000af72214a29b2fe12e6abee15e70b9bf92780162455302d69509986af"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/task-undo.ts",
+            "bytes": 8392,
+            "sha256": "11b8d237865c3d979cd36b4c84e14d1058723a06f7e4c215be55552634c1272e"
+          },
+          "current": {
+            "path": "apps/api/src/modules/task-undo.ts",
+            "bytes": 8392,
+            "sha256": "11b8d237865c3d979cd36b4c84e14d1058723a06f7e4c215be55552634c1272e"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/tasks.ts",
+            "bytes": 34244,
+            "sha256": "a1e599588a75a9e97ac192348f60143628bd63e532e1a9e354d7c143fac4b6df"
+          },
+          "current": {
+            "path": "apps/api/src/modules/tasks.ts",
+            "bytes": 34244,
+            "sha256": "a1e599588a75a9e97ac192348f60143628bd63e532e1a9e354d7c143fac4b6df"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/teams.ts",
+            "bytes": 7813,
+            "sha256": "aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678"
+          },
+          "current": {
+            "path": "apps/api/src/modules/teams.ts",
+            "bytes": 7813,
+            "sha256": "aec4b98d6ee2715d65651f69ccefc9405aa7187ef3a27e5d3dae6dd177d1d678"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/undo-command.ts",
+            "bytes": 6521,
+            "sha256": "53f6fda6c6395dac095cf74e27f0595ec6f6cb61ac24f5a9ed99cb5f1170a0f4"
+          },
+          "current": {
+            "path": "apps/api/src/modules/undo-command.ts",
+            "bytes": 6521,
+            "sha256": "53f6fda6c6395dac095cf74e27f0595ec6f6cb61ac24f5a9ed99cb5f1170a0f4"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/modules/workspace.ts",
+            "bytes": 2739,
+            "sha256": "bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63"
+          },
+          "current": {
+            "path": "apps/api/src/modules/workspace.ts",
+            "bytes": 2739,
+            "sha256": "bee5c6ba39250a298b014d073883fd4cd658f75fb42c4445da196f35d3a23a63"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/src/runtime.ts",
+            "bytes": 429,
+            "sha256": "3b4e29b02ecaac63c160fd727bf846b1e760a3726f915062032a896246af3298"
+          },
+          "current": {
+            "path": "apps/api/src/runtime.ts",
+            "bytes": 429,
+            "sha256": "3b4e29b02ecaac63c160fd727bf846b1e760a3726f915062032a896246af3298"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/tests/wu33/provenance.mjs",
+            "bytes": 1405,
+            "sha256": "64a0d6e62ecf3580c8c0f6372ae993118d1c157d0d430aec3d88bba4931414ce"
+          },
+          "current": {
+            "path": "apps/api/tests/wu33/provenance.mjs",
+            "bytes": 1405,
+            "sha256": "64a0d6e62ecf3580c8c0f6372ae993118d1c157d0d430aec3d88bba4931414ce"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/tests/wu33/run.mjs",
+            "bytes": 1312,
+            "sha256": "49f34236b795d9edd19be14224c935d8d49cfcbace6eec8c0b0915edb8656f4c"
+          },
+          "current": {
+            "path": "apps/api/tests/wu33/run.mjs",
+            "bytes": 1312,
+            "sha256": "49f34236b795d9edd19be14224c935d8d49cfcbace6eec8c0b0915edb8656f4c"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/tests/wu33/verify.mjs",
+            "bytes": 28972,
+            "sha256": "0f6c5db2fddbcc21378b7faa33cb0b56d4df43e8bc0cb71d8b7932219c6e33fb"
+          },
+          "current": {
+            "path": "apps/api/tests/wu33/verify.mjs",
+            "bytes": 28972,
+            "sha256": "0f6c5db2fddbcc21378b7faa33cb0b56d4df43e8bc0cb71d8b7932219c6e33fb"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/tests/wu33/worker.ts",
+            "bytes": 3203,
+            "sha256": "d7f29cec29ecd8932a5fbbd869d618f9058cbebfdb976c693a0377734888b052"
+          },
+          "current": {
+            "path": "apps/api/tests/wu33/worker.ts",
+            "bytes": 3203,
+            "sha256": "d7f29cec29ecd8932a5fbbd869d618f9058cbebfdb976c693a0377734888b052"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/api/wrangler.jsonc",
+            "bytes": 545,
+            "sha256": "489f1b4045a263126195b303201ed6b989a0bf1658ebfdb02aba50a57d361f0f"
+          },
+          "current": {
+            "path": "apps/api/wrangler.jsonc",
+            "bytes": 545,
+            "sha256": "489f1b4045a263126195b303201ed6b989a0bf1658ebfdb02aba50a57d361f0f"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/web/src/data/errors.ts",
+            "bytes": 987,
+            "sha256": "0fc29bdd5421c196d20dae8e6bd7426c5e7c8a8da321eb98483b9be646efccd7"
+          },
+          "current": {
+            "path": "apps/web/src/data/errors.ts",
+            "bytes": 987,
+            "sha256": "0fc29bdd5421c196d20dae8e6bd7426c5e7c8a8da321eb98483b9be646efccd7"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/web/src/data/mock/dataset.ts",
+            "bytes": 9509,
+            "sha256": "20b57ea33da5955bc609d9e532327084f731dcc183824c1ec25bff395fbd4f48"
+          },
+          "current": {
+            "path": "apps/web/src/data/mock/dataset.ts",
+            "bytes": 9509,
+            "sha256": "20b57ea33da5955bc609d9e532327084f731dcc183824c1ec25bff395fbd4f48"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/web/src/data/mock/file-access.ts",
+            "bytes": 1413,
+            "sha256": "efe15723d7b3dcea435626f2195a5980ba5c97f397ec08cea027ef14314714a5"
+          },
+          "current": {
+            "path": "apps/web/src/data/mock/file-access.ts",
+            "bytes": 1413,
+            "sha256": "efe15723d7b3dcea435626f2195a5980ba5c97f397ec08cea027ef14314714a5"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/web/src/data/mock/project-access.ts",
+            "bytes": 362,
+            "sha256": "cd68570375784a804ebd9dc0b54cab6eece7741b772b8a010817fe530b5cee77"
+          },
+          "current": {
+            "path": "apps/web/src/data/mock/project-access.ts",
+            "bytes": 362,
+            "sha256": "cd68570375784a804ebd9dc0b54cab6eece7741b772b8a010817fe530b5cee77"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/web/src/data/mock/seed.ts",
+            "bytes": 11309,
+            "sha256": "c58306b74eccdffb6e75c5ca72104a8ca2fc34e14c56f9ff8aba89f204560b70"
+          },
+          "current": {
+            "path": "apps/web/src/data/mock/seed.ts",
+            "bytes": 11309,
+            "sha256": "c58306b74eccdffb6e75c5ca72104a8ca2fc34e14c56f9ff8aba89f204560b70"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/web/src/data/mock/task-fields.ts",
+            "bytes": 59169,
+            "sha256": "467297765af6e79623a8d679ae0177e3719e20c11205e87f7a8b3cb71098e011"
+          },
+          "current": {
+            "path": "apps/web/src/data/mock/task-fields.ts",
+            "bytes": 59169,
+            "sha256": "467297765af6e79623a8d679ae0177e3719e20c11205e87f7a8b3cb71098e011"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/apps/web/src/data/mock/transaction.ts",
+            "bytes": 761,
+            "sha256": "76e1f6f35828e9248c322d18b2833ca2e1d8fd9e38ce7bec00a6f86a40ce9c49"
+          },
+          "current": {
+            "path": "apps/web/src/data/mock/transaction.ts",
+            "bytes": 761,
+            "sha256": "76e1f6f35828e9248c322d18b2833ca2e1d8fd9e38ce7bec00a6f86a40ce9c49"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/docs/poc/reference/source-fixture.json",
+            "bytes": 54153,
+            "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80"
+          },
+          "current": {
+            "path": "docs/poc/reference/source-fixture.json",
+            "bytes": 54153,
+            "sha256": "8e552aa66ea24cd6300c16242769a85548b315b1ca55258d03df76f8bf439a80"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/docs/poc/reference/source-identity-map.json",
+            "bytes": 28835,
+            "sha256": "404363590fff0ce0a07c7c374f9b761e71a5254851f4077396c3565ac1395791"
+          },
+          "current": {
+            "path": "docs/poc/reference/source-identity-map.json",
+            "bytes": 28835,
+            "sha256": "404363590fff0ce0a07c7c374f9b761e71a5254851f4077396c3565ac1395791"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/docs/poc/reference/source-inventory.json",
+            "bytes": 37829,
+            "sha256": "091e6dc0c50c7c52edeeab0569d19e613e30acd77f9b128db4364b9bcddafc4e"
+          },
+          "current": {
+            "path": "docs/poc/reference/source-inventory.json",
+            "bytes": 37829,
+            "sha256": "091e6dc0c50c7c52edeeab0569d19e613e30acd77f9b128db4364b9bcddafc4e"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/docs/poc/reference/source-lock.json",
+            "bytes": 7870,
+            "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+          },
+          "current": {
+            "path": "docs/poc/reference/source-lock.json",
+            "bytes": 7870,
+            "sha256": "11d6a021b67d43c4c0685c0853492a06c3a18347a43844a08760ad9edc3a405d"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/api.ts",
+            "bytes": 250,
+            "sha256": "fd87c3f387a5c18a8d6e1981b046dd588aacf4f979ea333671c36bcbf9b8ffb3"
+          },
+          "current": {
+            "path": "packages/contracts/src/api.ts",
+            "bytes": 250,
+            "sha256": "fd87c3f387a5c18a8d6e1981b046dd588aacf4f979ea333671c36bcbf9b8ffb3"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/catalogs.ts",
+            "bytes": 5765,
+            "sha256": "d12833f25830e10f048a46e1044f3cb0043df5f494fd9062523dd59821625e98"
+          },
+          "current": {
+            "path": "packages/contracts/src/catalogs.ts",
+            "bytes": 5765,
+            "sha256": "d12833f25830e10f048a46e1044f3cb0043df5f494fd9062523dd59821625e98"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/index.ts",
+            "bytes": 225,
+            "sha256": "16e477df0955fb70a37cd4baec6f60e9825518967cbc56d9a1096291f18a0d37"
+          },
+          "current": {
+            "path": "packages/contracts/src/index.ts",
+            "bytes": 225,
+            "sha256": "16e477df0955fb70a37cd4baec6f60e9825518967cbc56d9a1096291f18a0d37"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/inputs.ts",
+            "bytes": 10915,
+            "sha256": "4afb03d1437ded5e58a5cc2df56de735446f6a2fb4dac33a62bae5ce1e0a174a"
+          },
+          "current": {
+            "path": "packages/contracts/src/inputs.ts",
+            "bytes": 10915,
+            "sha256": "4afb03d1437ded5e58a5cc2df56de735446f6a2fb4dac33a62bae5ce1e0a174a"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/models.ts",
+            "bytes": 20945,
+            "sha256": "f1aa8a0eb0f3049c83810e5587840ed0fc6d648a8eef35cd6cc6a54321a2406a"
+          },
+          "current": {
+            "path": "packages/contracts/src/models.ts",
+            "bytes": 20945,
+            "sha256": "f1aa8a0eb0f3049c83810e5587840ed0fc6d648a8eef35cd6cc6a54321a2406a"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/operations.ts",
+            "bytes": 19211,
+            "sha256": "d608b89d7b4bc501617d2a24a9c2871849bf6eec8ab3192b6d6f9ece841297f5"
+          },
+          "current": {
+            "path": "packages/contracts/src/operations.ts",
+            "bytes": 19211,
+            "sha256": "d608b89d7b4bc501617d2a24a9c2871849bf6eec8ab3192b6d6f9ece841297f5"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/primitives.ts",
+            "bytes": 3851,
+            "sha256": "4010d310dfd61f91e8edd381e31633ac92e8075b7f9cc2c4a863816282d318cc"
+          },
+          "current": {
+            "path": "packages/contracts/src/primitives.ts",
+            "bytes": 3851,
+            "sha256": "4010d310dfd61f91e8edd381e31633ac92e8075b7f9cc2c4a863816282d318cc"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/queries.ts",
+            "bytes": 4758,
+            "sha256": "4c5802c5663f17a56f504fe1dcd16d0c3059e1b4079ceaf2d7d37795af8406dd"
+          },
+          "current": {
+            "path": "packages/contracts/src/queries.ts",
+            "bytes": 4758,
+            "sha256": "4c5802c5663f17a56f504fe1dcd16d0c3059e1b4079ceaf2d7d37795af8406dd"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/contracts/src/source-identities.ts",
+            "bytes": 41333,
+            "sha256": "0aa748895672d70f64dd6a23eb2d119529c67c06503f86a88a2c98375b774201"
+          },
+          "current": {
+            "path": "packages/contracts/src/source-identities.ts",
+            "bytes": 41333,
+            "sha256": "0aa748895672d70f64dd6a23eb2d119529c67c06503f86a88a2c98375b774201"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/calendar.ts",
+            "bytes": 2163,
+            "sha256": "6aa49d481ad60defcfc38d613b94a862ed687b87123b1b2f6dfaad51c7f3a8e9"
+          },
+          "current": {
+            "path": "packages/domain/src/calendar.ts",
+            "bytes": 2163,
+            "sha256": "6aa49d481ad60defcfc38d613b94a862ed687b87123b1b2f6dfaad51c7f3a8e9"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/clock.ts",
+            "bytes": 677,
+            "sha256": "6e8db98b7d9abe06e13a9c0c61967acdcf3b5ead0c564027c62559573dd5da8d"
+          },
+          "current": {
+            "path": "packages/domain/src/clock.ts",
+            "bytes": 677,
+            "sha256": "6e8db98b7d9abe06e13a9c0c61967acdcf3b5ead0c564027c62559573dd5da8d"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/dashboard.ts",
+            "bytes": 1831,
+            "sha256": "5630d60f531b5ff810feb9ca45597001abfbf2fc146adf76efcb19cd4e7a16cc"
+          },
+          "current": {
+            "path": "packages/domain/src/dashboard.ts",
+            "bytes": 1831,
+            "sha256": "5630d60f531b5ff810feb9ca45597001abfbf2fc146adf76efcb19cd4e7a16cc"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/description.ts",
+            "bytes": 2805,
+            "sha256": "b183bee928bf4f39cb0aac5ce45be415d030737250c293ed0299e38c8c5460e8"
+          },
+          "current": {
+            "path": "packages/domain/src/description.ts",
+            "bytes": 2805,
+            "sha256": "b183bee928bf4f39cb0aac5ce45be415d030737250c293ed0299e38c8c5460e8"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/files.ts",
+            "bytes": 762,
+            "sha256": "82297b575d2fff0c853408520437f6072f2766277408a5d9d8534ef0a11d2813"
+          },
+          "current": {
+            "path": "packages/domain/src/files.ts",
+            "bytes": 762,
+            "sha256": "82297b575d2fff0c853408520437f6072f2766277408a5d9d8534ef0a11d2813"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/index.ts",
+            "bytes": 395,
+            "sha256": "8613647e7fc2d3c64c5d083a81e139ebe6c6be35efb72d86694606c722a0d376"
+          },
+          "current": {
+            "path": "packages/domain/src/index.ts",
+            "bytes": 395,
+            "sha256": "8613647e7fc2d3c64c5d083a81e139ebe6c6be35efb72d86694606c722a0d376"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/task-relations.ts",
+            "bytes": 2824,
+            "sha256": "52f764d73f9a8321df2c01c6fe2e1fee08080fceeff3b60e3a069928a5ce180c"
+          },
+          "current": {
+            "path": "packages/domain/src/task-relations.ts",
+            "bytes": 2824,
+            "sha256": "52f764d73f9a8321df2c01c6fe2e1fee08080fceeff3b60e3a069928a5ce180c"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/task-view.ts",
+            "bytes": 10878,
+            "sha256": "cf8880b8fa49923ef1ec4b208c50aeb98ab0f510ed7077cc03565a5c56c77ca0"
+          },
+          "current": {
+            "path": "packages/domain/src/task-view.ts",
+            "bytes": 10878,
+            "sha256": "cf8880b8fa49923ef1ec4b208c50aeb98ab0f510ed7077cc03565a5c56c77ca0"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/packages/domain/src/timeline.ts",
+            "bytes": 6225,
+            "sha256": "03c8601a1b7226dcb777b35acba29f61b30b727252878a38defe2f6aabc5dec3"
+          },
+          "current": {
+            "path": "packages/domain/src/timeline.ts",
+            "bytes": 6225,
+            "sha256": "03c8601a1b7226dcb777b35acba29f61b30b727252878a38defe2f6aabc5dec3"
+          }
+        },
+        {
+          "executed": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/executed/pnpm-lock.yaml",
+            "bytes": 144032,
+            "sha256": "ce6dfcd13399c35523c70c5efc9ac2a0ec099ad74923d2d18452c610cabc2fbf"
+          },
+          "current": {
+            "path": "pnpm-lock.yaml",
+            "bytes": 144032,
+            "sha256": "ce6dfcd13399c35523c70c5efc9ac2a0ec099ad74923d2d18452c610cabc2fbf"
+          }
+        }
+      ],
+      "probeReceipts": [
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/session.json",
+          "bytes": 1419,
+          "sha256": "99b01837d7fa03bd75e32abf37e8ea51fa4110d9a2f668d8a37a822e9c271438"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/WU33 main.json",
+          "bytes": 1496,
+          "sha256": "fc37237126bb1e5535a78e4074e1aac54bef05478ce9e7163c777e1dc094736e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Subtasks parent.json",
+          "bytes": 1677,
+          "sha256": "17e5d039adae2ae824fc0a3617928a3f9409374ab162090c18b7bdb31cd57786"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Other parent.json",
+          "bytes": 1469,
+          "sha256": "301614264307027b057664f6de15dc6a889aacd500718a254a7bea9d13fa2d1f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/First child.json",
+          "bytes": 1994,
+          "sha256": "127906b66d98ff9242c495aab9a14707ab3b7c47d5212bb85303be612bbd7e0c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/child-scope-before.json",
+          "bytes": 293250,
+          "sha256": "fc00f6808913d725a58ae1e60dbbef4305d582d76961baf0a6564e054cfbe376"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/wrong-parent-child.json",
+          "bytes": 483,
+          "sha256": "378f66b66bb75162447fc4cd4f48c1024fe89271429155be69d7c07d0810995e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/wrong-parent-promote.json",
+          "bytes": 469,
+          "sha256": "1db7e61a84d650b2ae0bff618edc7cddda7a040d47488bdb0a4db75e7b523850"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/wrong-parent-delete.json",
+          "bytes": 463,
+          "sha256": "fb967346a0902fa8bbec4b1fc7b2376e6ffe2131dc4f4dbe0e11991056e1984f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/child-scope-after.json",
+          "bytes": 293250,
+          "sha256": "51580c048275816e9094e61fc1ece49e034e8f0c4127915f8e67f879b679ff80"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Complete child.json",
+          "bytes": 1851,
+          "sha256": "d373ad3bc3e03ae80486ae626ac8e70a0db9ac545023d6a291693f5f8db1aebf"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-rollback-before.json",
+          "bytes": 293883,
+          "sha256": "8898a66417fffa45027bdda538febe5e3df650bea60a5e2a9068f5050a359db8"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-fk-failure.json",
+          "bytes": 500,
+          "sha256": "2d30300d28603defc4fbbcbb00264d546eec4152a54ab84640827edd2a8f2318"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-rollback-after.json",
+          "bytes": 293883,
+          "sha256": "0854a3be89b6bf9bb8bf141de27a8a6d16faeb9e1a9aa29532ab827335ac086b"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-stale-before.json",
+          "bytes": 293883,
+          "sha256": "a37f9aa83d43f539fef449e973fcb6182e22c8ef6ef964459e9879a60e3b5ff2"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-stale-request.json",
+          "bytes": 471,
+          "sha256": "0149568b6a1cbfd53336792579a78156a3e510eb6a1a8c75780d369f90ac1cee"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-stale-after.json",
+          "bytes": 293883,
+          "sha256": "1e9e3c752ca5ba830b845b5d9725a12c075b8bc44a2e2d9cb4ddb689a185b704"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Promote child.json",
+          "bytes": 2680,
+          "sha256": "f23bb64a425656e627d43e50c9bed2fc996bc528bf657686cfece669960cc63a"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/promoted-parent-detail.json",
+          "bytes": 1292,
+          "sha256": "f3e9cc2ca99c7b7c51737d368a5de6612aac23c00d356bc419e1cc5e0cde1f0a"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-activity.json",
+          "bytes": 2364,
+          "sha256": "315cb2ad440907f0a54b456dcb28e003debc60f9f8c19c9e1248c304f1a9c66c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/created-activity.json",
+          "bytes": 802,
+          "sha256": "b874228d02a47ebf3d58683c78088daa5b6025328914aa55ee1dfccab4996c11"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Max child parent.json",
+          "bytes": 4713,
+          "sha256": "ded6ad1576ea78832a1951309893faf2a3acd5e6cb21e76a12541f32dc527831"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/subtask-limit-before.json",
+          "bytes": 353654,
+          "sha256": "cc2e643db3fca8b8c91cb1237a9c6e67f20bf25a2e3820232534618bda222b0e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Child 129.json",
+          "bytes": 478,
+          "sha256": "6bc7cf56ed533013927c7af35b405ff6f9e493163d270277b162fd83228ade6d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/subtask-limit-after.json",
+          "bytes": 353654,
+          "sha256": "4d92e7f36186f5dc542727bb3607016d101ae9530359d70590826dd649355074"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Delete child.json",
+          "bytes": 1720,
+          "sha256": "d0b35da7e227cfc2162875657a3605f15e62f78080f9a6b490a23625fa1a840f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/delete-child.json",
+          "bytes": 1426,
+          "sha256": "0f8b34eb33204d08149e654cd7f5ef732d4e811adc29a08f46987474dc364420"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Fallback child.json",
+          "bytes": 1747,
+          "sha256": "3601fa4122f7ad2addf541371c959bd2f6ed850d47ec12ebe32f51c91838584d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Fallback promotion.json",
+          "bytes": 2563,
+          "sha256": "db9197e22f5a75c4cc58cf2fa4ef1f95fbd81abb32742f2c285cf1329d1586f4"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Invited assignee.json",
+          "bytes": 1818,
+          "sha256": "6e2f5a0917b9a1e358cb61cf2684bcd616932c886942936c8f4fa241929ce0c4"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/invalid-child-before.json",
+          "bytes": 358558,
+          "sha256": "5fbd0e5b1585e2b88f94c11a124f721c656b36cc7211d5f0a5be31c06815dbac"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Foreign child member.json",
+          "bytes": 560,
+          "sha256": "ab1299006dc40c56fedc2900bc054d7e574652d7d0f7fa974f298ca0c4beec08"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Foreign update member.json",
+          "bytes": 563,
+          "sha256": "c49f6d4a215b3772d1eb38ba2ac7a4354a180c52054a6c0c54f1db4a42b3e512"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Bad date.json",
+          "bytes": 494,
+          "sha256": "f2eeae9b826d3d840eecf948d85c79ca6f22da3ede2fc481dc9d9087d27c30e3"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Unknown input.json",
+          "bytes": 521,
+          "sha256": "406e65c242474f68661d5d425ba7f02820ff345835f2c3690d1708d6a70303d5"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Note overflow.json",
+          "bytes": 10482,
+          "sha256": "6fbe0e27aa998c8b4e681c4be7853c0e7f12a144f23af3333f0016273f2b83f6"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/invalid-child-after.json",
+          "bytes": 358558,
+          "sha256": "92008bcc8b4feda89569e3e5cdc581034ea912d3b7b2f141566c42f94fa07e1f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/comment-rollback-before.json",
+          "bytes": 358558,
+          "sha256": "98c06803494f7c3d55452b024a53ba0f7f72e004fb81b064a40fbd232507eb2f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Comment FK rollback.json",
+          "bytes": 478,
+          "sha256": "121f6137c686164e67e19969cb967909bd8c91c2590408090c9b1615a36b6cf4"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/comment-rollback-after.json",
+          "bytes": 358558,
+          "sha256": "c8869b7673268f142568b1f99490648d2b51bed939940a145a8ba8de2fdfb19d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Plain comment.json",
+          "bytes": 1891,
+          "sha256": "d68d723970f03a97813bdc8885af86738aec4c02de5205563b97b3bc47167397"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/invalid-comment-before.json",
+          "bytes": 359773,
+          "sha256": "59738479ead571b12a3f6e6ee7b580f84d53f93ff98b88347efbda9964f556d6"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Foreign mention.json",
+          "bytes": 520,
+          "sha256": "530fe4ddc69a87efd24b6f2b3618f6be89a95fc4ea43b804894961c4b9a00bd4"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Comment overflow.json",
+          "bytes": 10448,
+          "sha256": "2ba10ff3a0b13b58faf66f0540aff456c4d6b1abaedf7d979607d1dceab3f88c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Actor injection.json",
+          "bytes": 476,
+          "sha256": "e613a3ed6d53cf483d7c0718db12a00e3054b5c53c0e91d4e6d3336a44a59159"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/No comment edit.json",
+          "bytes": 423,
+          "sha256": "97eaa2f2444ba2864c7acd84b6a63f62399f51c3dd31c99b97cf6651d258b0e5"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/invalid-comment-after.json",
+          "bytes": 359773,
+          "sha256": "5cbc83130a6f2329b1c8f6249a0888dc5c0c185f719d0409df63c2ce31bdacb2"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Before reaction.json",
+          "bytes": 1219,
+          "sha256": "5f47d9c983f4d75b735b5c010457be468f65de0bb2549f820ccfabf89e46d17d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Concurrent reaction1.json",
+          "bytes": 435,
+          "sha256": "c55243a4cd30e31d2709589c7f22b17c0e91481b4f271172d5de660465fe6138"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Concurrent reaction2.json",
+          "bytes": 433,
+          "sha256": "8e9e115e03aec7a47b31e24791f66e27b84c3d5c049e4482bdc7b518e6b80d46"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/After reaction.json",
+          "bytes": 1219,
+          "sha256": "02a691328a98b65f499a671e7e7cae60ffa21624b1ec521715f296d15fb2c629"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Reaction comment.json",
+          "bytes": 1062,
+          "sha256": "4f7ed946d540e7f040c663f1ba9c3bf0eef79fcba1b4635915acbc4f6eb183b8"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/reaction-noop-before.json",
+          "bytes": 360054,
+          "sha256": "f06fba920c87f7fa86fcad2a5adbff413425ab64115faf50f5d6fe237f245014"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Duplicate reaction.json",
+          "bytes": 433,
+          "sha256": "8e9e115e03aec7a47b31e24791f66e27b84c3d5c049e4482bdc7b518e6b80d46"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Absent remove.json",
+          "bytes": 436,
+          "sha256": "8902913c2dc6e173c2dd7fccf254806aefb80851cea05cf7ff669569812c166a"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/reaction-noop-after.json",
+          "bytes": 360054,
+          "sha256": "a9b12e0cce54c459f8dab373982e5086e87dc88f1cff5c0f7e6fd6e839b987c5"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/reaction-rollback-before.json",
+          "bytes": 360054,
+          "sha256": "bd3fb600b5a8a13bf98b3b48390924695ff88cb1ea42843fd2702668d0715e5e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Reaction FK rollback.json",
+          "bytes": 390,
+          "sha256": "f0d0856e9a2f35bcf9ddaff77bf39b59be86e14fa2f031839f4393d71c0d9240"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/reaction-rollback-after.json",
+          "bytes": 360054,
+          "sha256": "c330154ed34070fb679500b91a1c3f45742bc79a0613ee41a9ed4493229b1a96"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Remove reaction.json",
+          "bytes": 292,
+          "sha256": "aa14eec3bc7a2d55591e338461c16588bcf07a6af5609aafe7e1fcaac6e86f8e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Restore reaction.json",
+          "bytes": 435,
+          "sha256": "c55243a4cd30e31d2709589c7f22b17c0e91481b4f271172d5de660465fe6138"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Current comments.json",
+          "bytes": 1062,
+          "sha256": "5885d9c4408fe6a4df5024447b044519ec1158f2b912169c1b90d12a2e00b353"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/delete-comment-rollback-before.json",
+          "bytes": 360054,
+          "sha256": "8a45eb78ebc14cf9639ed1307c3605d3a99d6b56281efbf6193192f995dea87f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Delete comment FK rollback.json",
+          "bytes": 447,
+          "sha256": "e7f4dedc64bb671c59ff0ea550c0a522f0d8909bf58832a9d7840f37721fe319"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/delete-comment-rollback-after.json",
+          "bytes": 360054,
+          "sha256": "62cf736b0c00495d18c2254722be5188edcb1fdbe48f287160559b88317853db"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Delete comment.json",
+          "bytes": 2059,
+          "sha256": "a1e0d52df58e628cffabb7de3a44f94eadb530a54610a83be29154972e116e2d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Deleted hidden.json",
+          "bytes": 337,
+          "sha256": "48cafdc3d39db0b723cca146bbb9e0be64ca515ae8ceabed3749b13a9373a300"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Deleted reaction forbidden.json",
+          "bytes": 357,
+          "sha256": "61db25eb18153c698fcbdf20955efabbab841f17aab41ee5a6cb3d6fe3efd6f2"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/comment-undo-rollback-before.json",
+          "bytes": 360823,
+          "sha256": "b7c4f36974109d4b4d793906ea5b2cdf6d37836f23ef9f8c545a5827cbc04564"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Comment Undo FK rollback.json",
+          "bytes": 420,
+          "sha256": "8a65aec97f2f8252e03235997c97531de7d3e00afa822ef8738bec3104dfee50"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/comment-undo-rollback-after.json",
+          "bytes": 360823,
+          "sha256": "b2f0b4e8c0ecd20e736b218afa5a1a99e67ef90c7164b8a20747b74effaf55ab"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Concurrent comment Undo1.json",
+          "bytes": 808,
+          "sha256": "f3de4d8484be6d4c49839ab813986467e840a1b1622d872a2dd2f6a204db325a"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Concurrent comment Undo2.json",
+          "bytes": 806,
+          "sha256": "4007d9a0ed276d8129b8f932756bfeb422c9f7fcf1afff7ab27f5aa111f9c20d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Comment Undo replay.json",
+          "bytes": 806,
+          "sha256": "4007d9a0ed276d8129b8f932756bfeb422c9f7fcf1afff7ab27f5aa111f9c20d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo preserved reaction.json",
+          "bytes": 1062,
+          "sha256": "0e497d89dfc9cdf7733b467d4382c854b147f74cdf2542fb1cc4b22942421cd0"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Comment parent restored.json",
+          "bytes": 1219,
+          "sha256": "0735cbb9681c1b77d01b374d45f790d7f3a24ea416e6c069358cce4db32da61e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Delete for restore.json",
+          "bytes": 2059,
+          "sha256": "42a1d81bad581e8fce88ed38b0a923c74c19e3a0190011e34f9e453cad82bf17"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Explicit comment restore.json",
+          "bytes": 1981,
+          "sha256": "3733e30f27b43d913fb31cf648bf8b6d38ebf50fa5bd6a2966fa62a596d22c4c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-after-restore-before.json",
+          "bytes": 361864,
+          "sha256": "e866699d79955c1bf8a88f47a0b34e26077713a38c72e6381f49b79d1d3dc6e7"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo restore ABA.json",
+          "bytes": 401,
+          "sha256": "4c72f557ba91fd5d05db82648f77ca6758471e53edb1938afe9c71392fad2f2b"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-after-restore-after.json",
+          "bytes": 361864,
+          "sha256": "4bdbe89c22342af319acf6c51dd5cfeb9405df4c0b983d8864e83ae4b2b50fd3"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Delete for stale Undo.json",
+          "bytes": 2060,
+          "sha256": "fb03dfb0e7b262df4207aaeb26217c994b33ac123156210fafda7e63524508d4"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Parent after delete.json",
+          "bytes": 1431,
+          "sha256": "f44e573b35613e37d1e99de002d0eeb46e56c96d47057e92b7f275df15d9c66a"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-parent-stale-before.json",
+          "bytes": 363221,
+          "sha256": "ec7de5b0ff347dcf9d55733cd96ded0d82a2aeba882e115fc2aa89d103727d68"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo changed aggregate.json",
+          "bytes": 401,
+          "sha256": "61ad611f9734f6bd166d5cf2c0e0c057284f942f387201c9ebeb83e9de74593c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-parent-stale-after.json",
+          "bytes": 363221,
+          "sha256": "55f0121f5f5060042c208a40880de802fd03864103f7b5fc921074d9de3326cf"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Restore after stale Undo.json",
+          "bytes": 1991,
+          "sha256": "e38576d3c7603ac68b9605497188eff6127f465ea56f76e051ee1e003a4fcdb7"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Before comment2.json",
+          "bytes": 1228,
+          "sha256": "52deac4c2e946033807165b6dd472d6204d5d67a53589344af1581ef658a9492"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Second comment.json",
+          "bytes": 1758,
+          "sha256": "91fe15b5d95e71f24634941b7b8e579811fd3802d6d9b0d1fe103a7cd012c729"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Third comment.json",
+          "bytes": 1756,
+          "sha256": "22d4c60a45223279d040907c502275bb436ddfdb65a3c752e12e67bbe072dd0c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Comments page1.json",
+          "bytes": 1376,
+          "sha256": "fefacf5901b7f2491893bc0720a8664f019e618c9ee7cfb6dca15ee1a47bea7d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Comments page2.json",
+          "bytes": 1412,
+          "sha256": "177752d34f13cee96ac84c5df4eab5b5a8bbb5ff030c175c86434cc960010424"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Wrong comment cursor.json",
+          "bytes": 669,
+          "sha256": "5e1210296bf1c40266c84620fad327d515d78d77aef779dd801d4eb867001f8a"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Activity page1.json",
+          "bytes": 1131,
+          "sha256": "705d4363cfd6c723f6eade953b329bf673b7ca856edbd1ab01b6813eaee36687"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Activity page2.json",
+          "bytes": 1450,
+          "sha256": "706963d947494a879b17cc80e789f45d61743728b9a8f55fcda09674ddb5c7ff"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Wrong activity cursor.json",
+          "bytes": 674,
+          "sha256": "28fa9768fffa5a157e4a5e7fe07a323e81253ba93dd2c148ddb4bd8fabbc1ea6"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Before archive.json",
+          "bytes": 1228,
+          "sha256": "2d71e46b9902401aeb32fab2ed2687c765ea82151373176422ed8e3bbac501b0"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Archive child parent.json",
+          "bytes": 1516,
+          "sha256": "47584c8006a528bf5eee81aedec0b5907a2caf719c3e6a4e638a1c7da2f38445"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/archived-writes-before.json",
+          "bytes": 366777,
+          "sha256": "2a30663e5a1b671dd0e5405ef8bed216831ffb2ec9a7aa8400c6c79ca7537101"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Archived subtask.json",
+          "bytes": 465,
+          "sha256": "a0e0f4f1f3e7c8c5ebd830b7db07f820e679c216f1a2ba239f19e238b9182eb1"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Archived comment.json",
+          "bytes": 452,
+          "sha256": "bb745faf6d1f7a3ac1ceec354a51896d1887951b2534ca7ed92ebf5194940d68"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Archived reaction.json",
+          "bytes": 366,
+          "sha256": "7c19356fc8e9748d4d41d86b8f19eec8564923e7f7b627901cc30cf7e8b2557e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/archived-writes-after.json",
+          "bytes": 366777,
+          "sha256": "dd5c66666f40fc757257037a288b7cbfc772de0a5c453e91f00886ed33880c99"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Archived activity retained.json",
+          "bytes": 3131,
+          "sha256": "e842620a9b434d37f6ea44aa6bfe50b3cf6f75bfe31f0ea53e1ac33068582c93"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Restore parent.json",
+          "bytes": 1403,
+          "sha256": "37d4a22ee6a87693b744032b40bf7c97a61e9e81b854dd1ed32df244061f9a39"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Worker rich 0.json",
+          "bytes": 1921,
+          "sha256": "bdde358cba0d2ec010a36f2066fb70dc5cb58a891de4bff7f0cd4dff10da68c4"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Worker rich PATCH 0.json",
+          "bytes": 1588,
+          "sha256": "363baa0754388368d0b14fc3962e2ae5983f3b70b20d45d0d9d382449bf08a20"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Worker rich 1.json",
+          "bytes": 1672,
+          "sha256": "87a061ad9817bfb66c09bb3c3109e7a20bb3f2ae9edbc9cafbcd24e18eb01036"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Worker rich PATCH 1.json",
+          "bytes": 1525,
+          "sha256": "6ee042e2a0735c008c54ae128d48a05da0ae1a056905f5ce94807bea91c9da05"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Worker rich 2.json",
+          "bytes": 1609,
+          "sha256": "6fd7b08af599af00a76fa4b91823ae46dc72e5c2d3520f116279c6369824005d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Worker rich PATCH 2.json",
+          "bytes": 1592,
+          "sha256": "36fc198cdc0bf53646fd8e941d45aa2132bc751c7752c0e46418a0a7bd5508d8"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Worker rich 3.json",
+          "bytes": 1676,
+          "sha256": "c6390822fd86022ede22a1f180518494d8f6ab92e3c78f95cca3c3a13c6c77d3"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Worker rich PATCH 3.json",
+          "bytes": 1837,
+          "sha256": "8c2fdf2bb6a26231e46d7c0c9c1662248fba09c0b5c0cdae294aa3711726e2d1"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Dependency A.json",
+          "bytes": 1469,
+          "sha256": "09ce23d65053be119e1fb947b468c46da8ca7fa88facb2bb752f222ed06ce202"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Dependency B.json",
+          "bytes": 1469,
+          "sha256": "657babeca6efa56df5c4d43ec22b637c26fcfa22f2752406dd77b0a3cd41d7e2"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Dependency C.json",
+          "bytes": 1469,
+          "sha256": "2234498705ef7a18b19667697aebbf8e64ca428cf140d460ac6e45faaf3fc367"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/dependency-invalid-before.json",
+          "bytes": 382401,
+          "sha256": "bdd12293444f3c51da22495025b82c3232357ddda445cdc8aa020ebd3b1edd51"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Self dependency.json",
+          "bytes": 493,
+          "sha256": "b44d0eb38ea41f4339988e0c00aba9a0cd4de02978245ad395517a39453db98b"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Foreign dependency.json",
+          "bytes": 518,
+          "sha256": "2066461e6b2aff5273a51d3a0281672c6c09701cdd5a87618c68666cff7c464b"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Hidden dependency.json",
+          "bytes": 518,
+          "sha256": "49fd113ca8d6eb926c5140850fd187917f4f7cc4b67d7e8b1487d25f1a92d2e0"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Duplicate dependency.json",
+          "bytes": 519,
+          "sha256": "41d6a877c1f4815af5930216c76069f9de1fb1782fcc32efb19138e6c78c5135"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Unknown label.json",
+          "bytes": 444,
+          "sha256": "55dc03057152eaa111d1a6d66b80d36315f1316cee76ef57873a19cf61098c7d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/dependency-invalid-after.json",
+          "bytes": 382401,
+          "sha256": "20e9c23d6f6fe9b8d2a5e02d65ca06206c49440dbbc5362134fe05ec707f670a"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/A depends B.json",
+          "bytes": 1506,
+          "sha256": "7295003cb1675f2aa9eb5c8ba2811d2eba8a759c60920c2455b3fece55953614"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Incoming B version.json",
+          "bytes": 1219,
+          "sha256": "b6f0a20f75b6deb12c9ac8e1a156f5ea8b1159097c80cb009bbd406f487fb804"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/B depends C.json",
+          "bytes": 1506,
+          "sha256": "7f4c1a9e8ccdc6de88bd2099c76862ba6ba21b214d9898dd8d983253a501d0ce"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Incoming C version.json",
+          "bytes": 1219,
+          "sha256": "2993c7b550d51534e05c81eed21b6d9c0c1a261158e9cfb6f158d425ba13db1b"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/dependency-cycle-before.json",
+          "bytes": 383981,
+          "sha256": "8255d16b9d082d5d59bf44e1ef6a92d7a7861be30c5bbdfb0c589ab54887ef65"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Three-node cycle.json",
+          "bytes": 491,
+          "sha256": "3179b76ca97d2668cfc0674a04428b4d1e7dbc9f544a187c296de4eadec26109"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/dependency-cycle-after.json",
+          "bytes": 383981,
+          "sha256": "89fb0fa9b530bed5d0de3a0893be0c3e57f093ebdc3f71560fa85254cbb71a44"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Remove A dependency.json",
+          "bytes": 1408,
+          "sha256": "b9268886b8b7fcfa05b3892bfdb2c122ead6df1c192a7343d0be157992de4952"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Incoming B ABA version.json",
+          "bytes": 1277,
+          "sha256": "2a049b627a7be9e2e2ca7285d70c200c0168558b861573648c40e33d369521fb"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/A current.json",
+          "bytes": 1219,
+          "sha256": "5c01ce92f32ef96da0138fbae3bfebd2f6d333388530792b17e79ba65ceaed65"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Label replacement.json",
+          "bytes": 1441,
+          "sha256": "94734cf51763dc0793887c493d2190d34a17f5bd60f4bceb8244e9139652cb5f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Race parent.json",
+          "bytes": 1467,
+          "sha256": "afd5613118854fb03e0ac4aa62852336bde6089262ef006fd119ff3ec2edb003"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Race child.json",
+          "bytes": 1642,
+          "sha256": "86238a27110094c64a685525ad9854d179e9da2c658fffe4870b61bd5a0b25c3"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Race guard promotion.json",
+          "bytes": 675,
+          "sha256": "7beb1415caff614b1f1c68223e1d52531cc0f2bb3bb5d1d38d485a97560df4b3"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/race-after.json",
+          "bytes": 387919,
+          "sha256": "0930fa77b6ea89c2d3d7012f3989f4dd35b056e1ea87151ea5b4a1cacb816d19"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Column aggregate.json",
+          "bytes": 1510,
+          "sha256": "31c134d545c22dadbad2042ebae59ba7f2ecf709ba5b8c4b629853360a8d150e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Column parent.json",
+          "bytes": 1538,
+          "sha256": "d6a0b978491d77527090902f4d2bc56ad043daeffb3a770996e7e7fd77b34fdc"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Column complete.json",
+          "bytes": 2755,
+          "sha256": "967993af19b0497bb00c8efc805e1f62ad42a1ae7dc7186d5cde33bce6277c67"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Successor comment.json",
+          "bytes": 1777,
+          "sha256": "5d8a13555111ebea43f99a4938e2729c24032c855f14d0bf4c819238ad0c6d3f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Successor comment delete.json",
+          "bytes": 1826,
+          "sha256": "49adb823486993aaa8bd63918b169559fc6be4ceacfc420fe0933c9401e058c9"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Successor comment Undo.json",
+          "bytes": 808,
+          "sha256": "b13f4e0f1f36b7036563f1b1bd76759e9415bed3fef5e49b53ce486de83576f3"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/column-nested-aba-before.json",
+          "bytes": 397207,
+          "sha256": "df56e2504392771751fd09b28f2b29ab902175896f970a57a8843d3855591e78"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Column Undo nested ABA.json",
+          "bytes": 396,
+          "sha256": "5ef7c2b3be017dbdc561152a7d5e5a13455ef9fecd43cffdf873fe2ef322f871"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/column-nested-aba-after.json",
+          "bytes": 397207,
+          "sha256": "07429be7ab1154b5daf3f80ba5073e96d52b19d44718d718fea8e6e5343443ef"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Cursor parent.json",
+          "bytes": 1471,
+          "sha256": "708d1ad092735184a401544619f7100512e2ead5e65124d48aad610b2bcbf547"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Cursor one.json",
+          "bytes": 1742,
+          "sha256": "f2b265ba284f9ca954a662b3693f63afa2f101ad503cc422bfcd93a7d8449c90"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Cursor two.json",
+          "bytes": 1742,
+          "sha256": "b81c890dfd3b6741fa8d8253b6006a7c9dc2bf2ebca3ef3edc7340f908e315d8"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Cursor three.json",
+          "bytes": 1746,
+          "sha256": "737712c18bf9e90628a40c73bcd9ddd768f5210badd1bc968e048b219a809904"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Delete cursor first.json",
+          "bytes": 1093,
+          "sha256": "8dcfa95d62461715a7ac292e60f01b645d9bbe10232270e7ce7ebfd9207cf1e7"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Delete cursor comment.json",
+          "bytes": 1798,
+          "sha256": "49a14783e7ceeead6466d13fe6fe4506c8379bec2211d3f5fef101c6a5c8611a"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Deleted cursor continuation.json",
+          "bytes": 1408,
+          "sha256": "042ad9fd56d8aa2d4588dea63cf1dff617d4c41d135e5d810df8dea6877a4afa"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Retract cursor first.json",
+          "bytes": 1124,
+          "sha256": "730744bb3d6c4211cb078cd05a194d3324655313113fb31931353d268cf1e5e2"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/sql-1.json",
+          "bytes": 566,
+          "sha256": "0784bf18a322ab277dc3700a6aa6db7e7ca18a724499eeebd6b4b8926648c272"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Retracted cursor continuation.json",
+          "bytes": 1443,
+          "sha256": "61fffca691ff3a553e86c851a431494c8b14a8df9fb164e8f0a54d17ac9288a8"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Cursor comment totals.json",
+          "bytes": 1219,
+          "sha256": "561c412bb2d808cbf56ebabedf62102c720582f5d0230bd3c216581b9d46386c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle task-delete.json",
+          "bytes": 1531,
+          "sha256": "3efa1e834463233114074a26c99d1b1fcfa1e1020b6c4292198352983f4cb5a4"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle task task-delete.json",
+          "bytes": 1508,
+          "sha256": "70f838a29c38a5badf37bd355f76e7dcbfca474d593fe6606764accefe794e55"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle comment task-delete.json",
+          "bytes": 1809,
+          "sha256": "f1d2ab7607f5c4021efae6583fa50091d497b8cf341aa89e11b3c8ab4a0517bd"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle delete comment task-delete.json",
+          "bytes": 1841,
+          "sha256": "75e615817faf8bb893f0dd2a1e88081eac751bf376566946f8a17be20c4af76c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle delete parent.json",
+          "bytes": 1497,
+          "sha256": "d2bf7a4a771cf49fbc19007e7a0613151832c2f3e0ecec1b8c8e41d2d486f722"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-task-delete-before.json",
+          "bytes": 410165,
+          "sha256": "c8a5a825d0a40d6858fdc39b8a9c3220ffece70d9caf6d580442dfadea306e0f"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Known lifecycle conflict task-delete.json",
+          "bytes": 400,
+          "sha256": "c868238ef639901b9d4bf6707f30f914b4421f6012dc6e304839c84aecf3b931"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-task-delete-after.json",
+          "bytes": 410165,
+          "sha256": "0f3d70ea8085c34915017517d21b488bbaab4b8b4fd343aabf6d5d62ae68128d"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle project-archive.json",
+          "bytes": 1539,
+          "sha256": "05101b9983dec726b84b7b49663ba5578a101953acfb6db8f1c229d5955ebd68"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle task project-archive.json",
+          "bytes": 1516,
+          "sha256": "4ec12e10683629382f6dc7f8a88fa8cf8b01119e086655624b3a013be81d63ab"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle comment project-archive.json",
+          "bytes": 1821,
+          "sha256": "0bb1f86b73b875b121ce49744c4b85d21653f86dc941e1c8aabc22d805062cfc"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle delete comment project-archive.json",
+          "bytes": 1849,
+          "sha256": "5e3cddcc4eb8381994a1e8ef8381e884d58aee0516219ec509aaf3600c7583c9"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle project project-archive.json",
+          "bytes": 1055,
+          "sha256": "71a78dc82d5a8d8958dbc9e5dff985e7122654269e3b01bd17c4bf855c250875"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle parent project-archive.json",
+          "bytes": 1488,
+          "sha256": "cb4839e59889d5cb7e9ff6b09ba72308b951f35edf3907c91c69713384d728e7"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-project-archive-before.json",
+          "bytes": 417079,
+          "sha256": "4698fbc748d0a0e88b98eab0583a7ff33e30ee28c6e48c6ef49a478787ff8823"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Known lifecycle conflict project-archive.json",
+          "bytes": 400,
+          "sha256": "6e811199374180dfd7c16800954e7c3bd1a40c3322fcf938663645e9864b364b"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-project-archive-after.json",
+          "bytes": 417079,
+          "sha256": "4488e57093e1984008be898e1231492c6c60e00d6e37a7cc51d5c71b7add1450"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle project-delete.json",
+          "bytes": 1538,
+          "sha256": "65de82a9c855edb24b1e9b9c968955f1a82a1d8d21a304addfea2479abfce1ba"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle task project-delete.json",
+          "bytes": 1515,
+          "sha256": "99669b9887e3b3d6206f704a7c7e117f25d3ef55dd45bc39f6dc4cc484ad6f06"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle comment project-delete.json",
+          "bytes": 1819,
+          "sha256": "6e0539f234840e28fbfd9c834e04af15779b1ef77b1efa8e81f90236072a99c4"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle delete comment project-delete.json",
+          "bytes": 1848,
+          "sha256": "764c4fa58853b20b50eb1c100693a3ea9cc9dc70f7834cc6ad6b8fc7c34f363b"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle project project-delete.json",
+          "bytes": 1055,
+          "sha256": "520d866bc1c58e4a288f53615330a278c75d9eebe50bdeb63b44540954a28301"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Undo lifecycle parent project-delete.json",
+          "bytes": 1459,
+          "sha256": "fdf830aa69605e5c45c6ca1473df707ebef43afaa2f98b1024127df85c04f332"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-project-delete-before.json",
+          "bytes": 424019,
+          "sha256": "3a049e0eaa1e109e8c792659eedeb424b8987cd4473bb52358352c3c0b3a12dd"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Known lifecycle conflict project-delete.json",
+          "bytes": 400,
+          "sha256": "2add0ddcc6c9a480de3dc2718ff7a3563cf3a938ef1d1b4e5ae37316f24a858e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-project-delete-after.json",
+          "bytes": 424019,
+          "sha256": "bc6a3b60f9e83700d1ac81a96df5afa10803631480d2f8aeca62bfb7dce537de"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/WU33 private.json",
+          "bytes": 1502,
+          "sha256": "cc75f70f9fe6e6e3163d5ccaeb7549f577fae273761176622d62cead58546b4c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/sql-2.json",
+          "bytes": 561,
+          "sha256": "98ae0e7ff1ee444cd5bf3978e4aed725d165f32c8d8f269c93b1077ca5dcaedc"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Private task.json",
+          "bytes": 1469,
+          "sha256": "f5c4fb0b35c696765a15ccca2b3f6b0cfc039f3150c3238b4a4903e678ca8d75"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Private comment.json",
+          "bytes": 1751,
+          "sha256": "cb9100817938edd3ea7ed34dc2cd97371ec43bcabf51a9c8bfcee2d1e1d9fdea"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Private delete.json",
+          "bytes": 1802,
+          "sha256": "27caf02d110fc71964ae4a1a9c4bcca49e3a70e18b970417d1f8a22c3fe393e5"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/sql-3.json",
+          "bytes": 627,
+          "sha256": "0c1596ce4df69489a6ef2a164e6a6ffbd0bb8fdbb218cfbd1ee4a8ae60dcdb40"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/private-pending-undo-before.json",
+          "bytes": 429558,
+          "sha256": "4082d183dba42663f57ab3875a27b19c55f5fda55be69f7583086ba33d6560f7"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Private pending own Undo.json",
+          "bytes": 400,
+          "sha256": "5707655a03f121cb1db9c5b5e1279f4591da0fdd62e09d590305009ac46e4a4c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/private-pending-undo-after.json",
+          "bytes": 429558,
+          "sha256": "32f103fd94a5281d562d5759194b65c97cfdcc8377f4d2bba240013637de1813"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/sql-4.json",
+          "bytes": 627,
+          "sha256": "480ed720a7bdda22afa2e81815e4d51910ee94f308367f64ec0ecd43157a75e7"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Private allowed Undo.json",
+          "bytes": 808,
+          "sha256": "1f317c7e3cd120a3cddb3c4d17da6a03cb63e2581d1fa42d2301dea5150a0f83"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/sql-5.json",
+          "bytes": 610,
+          "sha256": "037ffe0929ad96c86d48871cbcdc2e26bcd078033c89b0e5cc0cc35d92535c06"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Private consumed own Undo.json",
+          "bytes": 400,
+          "sha256": "5707655a03f121cb1db9c5b5e1279f4591da0fdd62e09d590305009ac46e4a4c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/sql-6.json",
+          "bytes": 683,
+          "sha256": "5e4f265f1a063b097576ec7b5e0e5b6367c436727e30e87386cfde0d88638845"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Activity moved.json",
+          "bytes": 1473,
+          "sha256": "c064d8f2b7cc8faeba5edee69f4e53f6f6dc68a1427ddb8ee9a7439e429723d6"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Moved comment.json",
+          "bytes": 1749,
+          "sha256": "725aedfbe4eb3ed67dc3de14ed4c54986f5a8b18d478965e3eda4610780341c8"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Move before activity.json",
+          "bytes": 1266,
+          "sha256": "76c3b6fca2f31ef7654f9b72e1f3ade29da11729eeae8e838b12980fdfc3dad0"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Move task.json",
+          "bytes": 1569,
+          "sha256": "be6e9bc41f005f4aeb8b61847e6b1a9a9f295c0353cd770ee39db6b67234b890"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Moved current history.json",
+          "bytes": 800,
+          "sha256": "42b8b22490673c902010ae0e0809bb442886f4b87329bde9dab065821628ef50"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Other author delete.json",
+          "bytes": 416,
+          "sha256": "4de15d7fdb81eedacf7dd53277219646c589967bc122b3b5823cb9dccf3f4149"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Other author Undo.json",
+          "bytes": 386,
+          "sha256": "af15d8d49cb8c3c25b3b0752c2a7054f63d9739ce7aceb29e22978240b8290df"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Private child comments.json",
+          "bytes": 337,
+          "sha256": "a11d51ecf0bc80db008b7c315321fd2319b264eb7d1fcc8d80301629052de69c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Private activity filter.json",
+          "bytes": 338,
+          "sha256": "f8d044dd66a2f7170578c5db4b9ebb4275559929145d9e640ab8ad329f5d0b10"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Member workspace activity.json",
+          "bytes": 24339,
+          "sha256": "7a4dface928f4409cc2897a9f4d609777ff1f938023f058f44c86f31fcd2d39b"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Member reaction.json",
+          "bytes": 435,
+          "sha256": "d5417b576cb3a219cd93567da5e13631f2cd5cbf6d7a418df29d751d377feab0"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Member current comment.json",
+          "bytes": 2138,
+          "sha256": "864e2db179828e4f0446c3dac2656ddf05bf30e06a8e485560334ccba571192e"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Foreign workspace.json",
+          "bytes": 299,
+          "sha256": "a7d07dd9ab8baba4cac79c0426505e9245b995488cb58c7388452e0b2fc4a0ad"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Isolation activity.json",
+          "bytes": 7041,
+          "sha256": "8211e1418a0be9cc6ca319af3f153db15ea670159c705f5619d8a2251818282c"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Foreign nested child.json",
+          "bytes": 337,
+          "sha256": "1cd2de8a9fbfaa94c6a6d19e8ad7551ef45e1d060f0be31e3b1836f261338e55"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Persistent comments.json",
+          "bytes": 2099,
+          "sha256": "9ddae3db3016af8ff6022cd4c45cc2cdd34ff641c92603595ee862321c6c9ee1"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Persistent promoted task.json",
+          "bytes": 1374,
+          "sha256": "3342fb4fd696b7e2a44743c8f6252942fb185a8934f1dbb7c78cc9fe6e4a6ea7"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Persistent comment Undo replay.json",
+          "bytes": 767,
+          "sha256": "fdc659b5ccfca140f92e78686200a4893fe0447a7f20bb139a2b5f847369f845"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Production no test route.json",
+          "bytes": 197,
+          "sha256": "c7fef02fef2d4f37174b3798e69b0233188c1f84589d3c2906b3bcd4857ebf54"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Future saved views unavailable.json",
+          "bytes": 325,
+          "sha256": "b1d8aa041df633ce82f36204f900536cfef92222b7d6c79637339c537d80b230"
+        },
+        {
+          "path": "docs/poc/evidence/WU-33/attempts/d1-05/Future notifications unavailable.json",
+          "bytes": 287,
+          "sha256": "469fe42a6a02c496d7817219360a5802c4a33b0539220fb0e7c3f0cb0f906e2e"
+        }
+      ],
+      "snapshotPairs": [
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/child-scope-before.json",
+            "bytes": 293250,
+            "sha256": "fc00f6808913d725a58ae1e60dbbef4305d582d76961baf0a6564e054cfbe376"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/child-scope-after.json",
+            "bytes": 293250,
+            "sha256": "51580c048275816e9094e61fc1ece49e034e8f0c4127915f8e67f879b679ff80"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-rollback-before.json",
+            "bytes": 293883,
+            "sha256": "8898a66417fffa45027bdda538febe5e3df650bea60a5e2a9068f5050a359db8"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-rollback-after.json",
+            "bytes": 293883,
+            "sha256": "0854a3be89b6bf9bb8bf141de27a8a6d16faeb9e1a9aa29532ab827335ac086b"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-stale-before.json",
+            "bytes": 293883,
+            "sha256": "a37f9aa83d43f539fef449e973fcb6182e22c8ef6ef964459e9879a60e3b5ff2"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/promotion-stale-after.json",
+            "bytes": 293883,
+            "sha256": "1e9e3c752ca5ba830b845b5d9725a12c075b8bc44a2e2d9cb4ddb689a185b704"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/subtask-limit-before.json",
+            "bytes": 353654,
+            "sha256": "cc2e643db3fca8b8c91cb1237a9c6e67f20bf25a2e3820232534618bda222b0e"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/subtask-limit-after.json",
+            "bytes": 353654,
+            "sha256": "4d92e7f36186f5dc542727bb3607016d101ae9530359d70590826dd649355074"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/invalid-child-before.json",
+            "bytes": 358558,
+            "sha256": "5fbd0e5b1585e2b88f94c11a124f721c656b36cc7211d5f0a5be31c06815dbac"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/invalid-child-after.json",
+            "bytes": 358558,
+            "sha256": "92008bcc8b4feda89569e3e5cdc581034ea912d3b7b2f141566c42f94fa07e1f"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/comment-rollback-before.json",
+            "bytes": 358558,
+            "sha256": "98c06803494f7c3d55452b024a53ba0f7f72e004fb81b064a40fbd232507eb2f"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/comment-rollback-after.json",
+            "bytes": 358558,
+            "sha256": "c8869b7673268f142568b1f99490648d2b51bed939940a145a8ba8de2fdfb19d"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/invalid-comment-before.json",
+            "bytes": 359773,
+            "sha256": "59738479ead571b12a3f6e6ee7b580f84d53f93ff98b88347efbda9964f556d6"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/invalid-comment-after.json",
+            "bytes": 359773,
+            "sha256": "5cbc83130a6f2329b1c8f6249a0888dc5c0c185f719d0409df63c2ce31bdacb2"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/reaction-noop-before.json",
+            "bytes": 360054,
+            "sha256": "f06fba920c87f7fa86fcad2a5adbff413425ab64115faf50f5d6fe237f245014"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/reaction-noop-after.json",
+            "bytes": 360054,
+            "sha256": "a9b12e0cce54c459f8dab373982e5086e87dc88f1cff5c0f7e6fd6e839b987c5"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/reaction-rollback-before.json",
+            "bytes": 360054,
+            "sha256": "bd3fb600b5a8a13bf98b3b48390924695ff88cb1ea42843fd2702668d0715e5e"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/reaction-rollback-after.json",
+            "bytes": 360054,
+            "sha256": "c330154ed34070fb679500b91a1c3f45742bc79a0613ee41a9ed4493229b1a96"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/delete-comment-rollback-before.json",
+            "bytes": 360054,
+            "sha256": "8a45eb78ebc14cf9639ed1307c3605d3a99d6b56281efbf6193192f995dea87f"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/delete-comment-rollback-after.json",
+            "bytes": 360054,
+            "sha256": "62cf736b0c00495d18c2254722be5188edcb1fdbe48f287160559b88317853db"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/comment-undo-rollback-before.json",
+            "bytes": 360823,
+            "sha256": "b7c4f36974109d4b4d793906ea5b2cdf6d37836f23ef9f8c545a5827cbc04564"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/comment-undo-rollback-after.json",
+            "bytes": 360823,
+            "sha256": "b2f0b4e8c0ecd20e736b218afa5a1a99e67ef90c7164b8a20747b74effaf55ab"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-after-restore-before.json",
+            "bytes": 361864,
+            "sha256": "e866699d79955c1bf8a88f47a0b34e26077713a38c72e6381f49b79d1d3dc6e7"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-after-restore-after.json",
+            "bytes": 361864,
+            "sha256": "4bdbe89c22342af319acf6c51dd5cfeb9405df4c0b983d8864e83ae4b2b50fd3"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-parent-stale-before.json",
+            "bytes": 363221,
+            "sha256": "ec7de5b0ff347dcf9d55733cd96ded0d82a2aeba882e115fc2aa89d103727d68"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-parent-stale-after.json",
+            "bytes": 363221,
+            "sha256": "55f0121f5f5060042c208a40880de802fd03864103f7b5fc921074d9de3326cf"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/archived-writes-before.json",
+            "bytes": 366777,
+            "sha256": "2a30663e5a1b671dd0e5405ef8bed216831ffb2ec9a7aa8400c6c79ca7537101"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/archived-writes-after.json",
+            "bytes": 366777,
+            "sha256": "dd5c66666f40fc757257037a288b7cbfc772de0a5c453e91f00886ed33880c99"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/dependency-invalid-before.json",
+            "bytes": 382401,
+            "sha256": "bdd12293444f3c51da22495025b82c3232357ddda445cdc8aa020ebd3b1edd51"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/dependency-invalid-after.json",
+            "bytes": 382401,
+            "sha256": "20e9c23d6f6fe9b8d2a5e02d65ca06206c49440dbbc5362134fe05ec707f670a"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/dependency-cycle-before.json",
+            "bytes": 383981,
+            "sha256": "8255d16b9d082d5d59bf44e1ef6a92d7a7861be30c5bbdfb0c589ab54887ef65"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/dependency-cycle-after.json",
+            "bytes": 383981,
+            "sha256": "89fb0fa9b530bed5d0de3a0893be0c3e57f093ebdc3f71560fa85254cbb71a44"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/column-nested-aba-before.json",
+            "bytes": 397207,
+            "sha256": "df56e2504392771751fd09b28f2b29ab902175896f970a57a8843d3855591e78"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/column-nested-aba-after.json",
+            "bytes": 397207,
+            "sha256": "07429be7ab1154b5daf3f80ba5073e96d52b19d44718d718fea8e6e5343443ef"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-task-delete-before.json",
+            "bytes": 410165,
+            "sha256": "c8a5a825d0a40d6858fdc39b8a9c3220ffece70d9caf6d580442dfadea306e0f"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-task-delete-after.json",
+            "bytes": 410165,
+            "sha256": "0f3d70ea8085c34915017517d21b488bbaab4b8b4fd343aabf6d5d62ae68128d"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-project-archive-before.json",
+            "bytes": 417079,
+            "sha256": "4698fbc748d0a0e88b98eab0583a7ff33e30ee28c6e48c6ef49a478787ff8823"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-project-archive-after.json",
+            "bytes": 417079,
+            "sha256": "4488e57093e1984008be898e1231492c6c60e00d6e37a7cc51d5c71b7add1450"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-project-delete-before.json",
+            "bytes": 424019,
+            "sha256": "3a049e0eaa1e109e8c792659eedeb424b8987cd4473bb52358352c3c0b3a12dd"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/undo-project-delete-after.json",
+            "bytes": 424019,
+            "sha256": "bc6a3b60f9e83700d1ac81a96df5afa10803631480d2f8aeca62bfb7dce537de"
+          },
+          "tables": 24,
+          "equal": true
+        },
+        {
+          "before": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/private-pending-undo-before.json",
+            "bytes": 429558,
+            "sha256": "4082d183dba42663f57ab3875a27b19c55f5fda55be69f7583086ba33d6560f7"
+          },
+          "after": {
+            "path": "docs/poc/evidence/WU-33/attempts/d1-05/private-pending-undo-after.json",
+            "bytes": 429558,
+            "sha256": "32f103fd94a5281d562d5759194b65c97cfdcc8377f4d2bba240013637de1813"
+          },
+          "tables": 24,
+          "equal": true
+        }
+      ],
+      "acceptance": {
+        "AC1": "workspace/task/child scope, own author policy, concurrent unique reactions and no-op versions",
+        "AC2": "real Worker shared parse5 create/PATCH and escaped nested promotion; comments remain literal plain text",
+        "AC3": "native D1 promotion/comment/reaction/delete/Undo FK rollback, aggregate counters/versions, current authorization and recurrence ABA"
+      },
+      "toolStart": {
+        "path": "docs/poc/evidence/WU-33/attempts/d1-05/tool-start.json",
+        "bytes": 110,
+        "sha256": "b539b691761c83f48e3094eb1599143af48ea5ff79930897b4469e4d53e2be8d"
+      },
+      "toolCompletion": {
+        "path": "docs/poc/evidence/WU-33/attempts/d1-05/tool-completion.json",
+        "bytes": 257,
+        "sha256": "c7f27bfe5b098671fbf999d4a36664fbc86e824d2db0a8120fd454f7f388bd4e"
+      }
+    }
+  ],
+  "requiredCommands": [
+    "typecheck-04",
+    "lint-02",
+    "contracts-01",
+    "build-01",
+    "boundary-01",
+    "source-01",
+    "lint-04",
+    "diffcheck-02"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "node",
+        "tests/workspace/boundaries.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:57:31.631Z",
+      "completedAt": "2026-10-10T18:57:32.084Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 76,
+        "sha256": "f5649f16cdaddad3a4de3d9574e183e83d390fc856c0de309d1b07929cf56a6b"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/boundary-01/result.json",
+        "bytes": 523,
+        "sha256": "f29b67916970a7521d2c9fdabb21a34e0ccf185257d67bddcb19de2de58271aa"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "build"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:57:33.632Z",
+      "completedAt": "2026-10-10T18:57:40.544Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 687,
+        "sha256": "d0d1ac116f2c526e3f1cc95af7875125ed43817e0d8b3aa1cd3c725090c2442a"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 178,
+        "sha256": "98f562258abb1ba00558ab591696b1230919f159f54fa56504ab411328f5af7a"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/build-01/result.json",
+        "bytes": 536,
+        "sha256": "f8d6a2f90de0c946dd21d524c0eae7888f44f459649b0b335768d32fee11e675"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "test:contracts"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:57:30.428Z",
+      "completedAt": "2026-10-10T18:57:31.791Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 8278,
+        "sha256": "d0785f1b0ed124ca99d49105ecb914810258cac1f821421c0f7ac7507cddf47f"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 203,
+        "sha256": "4b34b5bc2369c6a002eee9411875515bb27745d276b42d9771114c8d7799dcd1"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/contracts-01/result.json",
+        "bytes": 511,
+        "sha256": "6f36f72f518999d63a9e484d763d4fc67c7d37e0f66a0e236d12f3e348818bc0"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:02:10.735Z",
+      "completedAt": "2026-10-10T19:02:11.001Z",
+      "exitCode": 2,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 50,
+        "sha256": "012a16e90a242c2f57202ab4892db5ff1fe452cce81d28d19381ab7cd2e67139"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/diffcheck-01/result.json",
+        "bytes": 511,
+        "sha256": "1b4e21a443b9f92ccc2b2c6b536c89916219e2c9627e9219a8379577ae454d79"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:02:51.468Z",
+      "completedAt": "2026-10-10T19:02:51.563Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/diffcheck-02/result.json",
+        "bytes": 510,
+        "sha256": "968553a6495c099781670803f7bbc13a832f104f6ccbf1d8928f45ba03c51134"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "apps/api/tests/wu33/evidence.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:59:12.074Z",
+      "completedAt": "2026-10-10T18:59:12.340Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 183,
+        "sha256": "d70a0233b2a2e5699aee9e89b2107415d605f0cc23e2955ebb27e5ee094ea13e"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/evidence-01/result.json",
+        "bytes": 526,
+        "sha256": "b5824ff292caf679e5bbc62d2d6c65123db799fbac2e7938ae385a4f8ecc0115"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "apps/api/tests/wu33/evidence.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:02:58.449Z",
+      "completedAt": "2026-10-10T19:02:58.747Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 183,
+        "sha256": "1f4f4982a39433a051fae2e3adf3c1a257dc09901779d493459859c37cae15dd"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/evidence-02/result.json",
+        "bytes": 526,
+        "sha256": "814780b93448306049103f147dde840c8f7c7077983af7bb4f5dd0fea21b3ff3"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api/src",
+        "apps/api/tests/wu33"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:53:09.240Z",
+      "completedAt": "2026-10-10T18:53:11.147Z",
+      "exitCode": 1,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 557,
+        "sha256": "c13cb627faf75f07c5d10f21856edd6ad45a74aeb08e6fdc5bec95034e8aa721"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/lint-01/result.json",
+        "bytes": 559,
+        "sha256": "d4996345e0bdb5978ab8e21aa95549d03c7d42b57d2b06f909e2cda21cd36c21"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api/src",
+        "apps/api/tests/wu33"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:57:31.396Z",
+      "completedAt": "2026-10-10T18:57:33.330Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/lint-02/result.json",
+        "bytes": 557,
+        "sha256": "f92e187feac0af3682a27d9d087335f3126e8bc87ff429e8d16452c79b976b5b"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api/tests/wu33"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:02:10.763Z",
+      "completedAt": "2026-10-10T19:02:12.308Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/lint-03/result.json",
+        "bytes": 537,
+        "sha256": "0b39f2fa2017dbc795084db7cde260fb9cf91be20ca5912d690b62bb41514953"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api/tests/wu33"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:03:44.091Z",
+      "completedAt": "2026-10-10T19:03:45.543Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/lint-04/result.json",
+        "bytes": 537,
+        "sha256": "3e210ed5892f23a6e485b76b149cf264ce0be593066f5b1b7e620c4b63a7a459"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "apps/api/tests/wu33/prestage.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T19:02:13.840Z",
+      "completedAt": "2026-10-10T19:02:14.572Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 73,
+        "sha256": "2145432c781117885651a6ea364b500d9e3ca696a1f00df1f17010958d2330f1"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/prefreeze-01/result.json",
+        "bytes": 525,
+        "sha256": "7c9ae0edc435afbcff691630744285e8b6ac116c1a2413d79d1cd313904b2a96"
+      }
+    },
+    {
+      "argv": [
+        "node",
+        "tests/visual/reference/source-check.mjs"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:57:30.219Z",
+      "completedAt": "2026-10-10T18:57:30.260Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 153,
+        "sha256": "b87157a6b73193599f8b8c4b16793d4a357771d6e46c384b0ee93d6e8327121b"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/source-01/result.json",
+        "bytes": 533,
+        "sha256": "7d20bfe63d7efaddafa2d7266f67ca0ca149c84e6ce4a1424281f5def9e6c314"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:49:36.238Z",
+      "completedAt": "2026-10-10T18:49:37.365Z",
+      "exitCode": 2,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 192,
+        "sha256": "eabd5a109b041260995a4e887572dd2e1b9ca618645a509ae251a4c15f75ff0e"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/typecheck-01/result.json",
+        "bytes": 539,
+        "sha256": "d1bea96f91a5ff385b0d8e38aed3abaef8932fefc7c7992bb4a2be8eae4907ef"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:49:58.351Z",
+      "completedAt": "2026-10-10T18:50:02.068Z",
+      "exitCode": 2,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 1314,
+        "sha256": "ca5c45d221bb01bf87d1c192c5da59ea92f0c7a5b75c28fb36317f3e2e942f06"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/typecheck-02/result.json",
+        "bytes": 540,
+        "sha256": "cff002e73b5a8589726b113619af53532fa0f21b126e1bad302e7b5bcb0596b8"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:52:05.396Z",
+      "completedAt": "2026-10-10T18:52:09.011Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/typecheck-03/result.json",
+        "bytes": 537,
+        "sha256": "9c79ce07484f1e5ec0bfe0b0acaf448b06be8f38305a40258bcdcf08558ccde8"
+      }
+    },
+    {
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "cwd": "/workspace/task8",
+      "startedAt": "2026-10-10T18:55:51.782Z",
+      "completedAt": "2026-10-10T18:55:54.955Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "stdout.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "stderr.log",
+        "bytes": 15,
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+      },
+      "result": {
+        "path": "docs/poc/evidence/WU-33/commands/typecheck-04/result.json",
+        "bytes": 537,
+        "sha256": "b35905fd84349c230141f471afe3a54fcf0b7f65441287a0dea2088548c0ebac"
+      }
+    }
+  ],
+  "earlier": [
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-33/attempts/d1-01/report.json",
+        "bytes": 3574,
+        "sha256": "e27049bed8b0642c9e624027c45131d7b366178ac944324733e6aaa595fc15a2"
+      },
+      "status": "FAILED",
+      "probes": 1,
+      "error": "Cannot read properties of undefined (reading 'features')",
+      "acceptedAsCurrent": false
+    },
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-33/attempts/d1-02/report.json",
+        "bytes": 10362,
+        "sha256": "72c53f39d9295beb6b48047f488d839c147a2cc76fbf18152e9d74775b8b1ab2"
+      },
+      "status": "FAILED",
+      "probes": 25,
+      "error": "Cannot read properties of undefined (reading 'find')",
+      "acceptedAsCurrent": false
+    },
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-33/attempts/d1-03/report.json",
+        "bytes": 15379,
+        "sha256": "e6e95ab24234fa0309a33ca115b533f2dbbade591f9b855698f2a085a3ddc97d"
+      },
+      "status": "FAILED",
+      "probes": 42,
+      "error": "No comment edit\n\n404 !== 501\n",
+      "acceptedAsCurrent": false
+    },
+    {
+      "report": {
+        "path": "docs/poc/evidence/WU-33/attempts/d1-04/report.json",
+        "bytes": 60413,
+        "sha256": "dfd31abf5a03bc820cc4bde8d002eac3cfd1aeefdaa85fdaeb7549e44d0a5bb9"
+      },
+      "status": "FAILED",
+      "probes": 198,
+      "error": "Move task\n\n400 !== 200\n",
+      "acceptedAsCurrent": false
+    }
+  ],
+  "scope": {
+    "operations": [
+      "createSubtask",
+      "updateSubtask",
+      "deleteSubtask",
+      "promoteSubtask",
+      "listComments",
+      "createComment",
+      "deleteComment",
+      "restoreDeletedComment",
+      "addCommentReaction",
+      "removeCommentReaction",
+      "listActivity"
+    ],
+    "relations": "existing task PATCH helpers; no new dependency/label endpoint",
+    "undoKinds": [
+      "comment.delete"
+    ],
+    "capabilities": {
+      "tasks": "implemented",
+      "comments": "implemented",
+      "projects": "unavailable until WU34",
+      "notificationState": "unavailable until WU34",
+      "fileMetadata": "unavailable until WU35"
+    },
+    "limits": {
+      "queries": 50,
+      "parameters": 100,
+      "batch": 50,
+      "subtasks": 128,
+      "undoTargets": 128,
+      "undoUtf8Bytes": 65536
+    },
+    "content": "Worker shared parse5 rich allowlist; promoted plain note mapping; comment bodyText remains literal plain text",
+    "mentions": "same-workspace nonremoved membership data only; no generated delivery or notification rows"
+  },
+  "qualification": {
+    "historicalM2": "bounded; failed/missing-byte/SVG/default/Darwin obligations unchanged and unrecovered",
+    "failedOriginals": [
+      "diffcheck-01 active DECISIONS blank EOF removed without waiver",
+      "typecheck-01 missing route closure",
+      "typecheck-02 narrow draft/query type",
+      "lint-01 type-only import and unused inherited harness variables",
+      "d1-01 bootstrap capability shape",
+      "d1-02 seed primary metadata versus rows",
+      "d1-03 noncontract PATCH404 versus expected501",
+      "d1-04 invalid move input400"
+    ],
+    "earlierPasses": "typecheck-03 predates tuple cursor helper; final04 supersedes",
+    "outerReceipts": "Selected D1-05 and final gates retain original available returned tool objects. Some earlier tool completions were not physically persisted; original child argv/status/full stdout/stderr are retained. No reconstructed outer capture or Root physical capture is claimed.",
+    "notRun": [
+      "optional browser/visual campaign",
+      "remote D1/R2/provider/auth/provisioning",
+      "production deployment",
+      "CI",
+      "later WU34–36"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272c-187f-7067-afb1-68e4da790100/move",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":2,\"projectId\":\"01a1272c-17b9-75ef-85d4-c0f660bfbf68\",\"status\":\"todo\",\"destinationScope\":{\"kind\":\"project\",\"projectId\":\"01a1272c-17b9-75ef-85d4-c0f660bfbf68\",\"status\":\"todo\"},\"beforeId\":null,\"afterId\":null}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Invalid request"
+    }
+  },
+  "budget": {
+    "queries": 2,
+    "parameters": 4
+  }
+}

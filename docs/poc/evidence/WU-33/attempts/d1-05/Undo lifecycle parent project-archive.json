@@ -1,0 +1,51 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a1272d-5995-7a5f-abec-8fa22a04b4f9/archive",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1}",
+  "status": 200,
+  "response": {
+    "data": {
+      "project": {
+        "id": "01a1272d-5995-7a5f-abec-8fa22a04b4f9",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "key": "ULP",
+        "name": "Undo lifecycle project-archive",
+        "description": "WU31 integration",
+        "icon": "folder",
+        "color": "#5A67D8",
+        "status": "planning",
+        "teamId": null,
+        "leadId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "startDate": "2026-10-10",
+        "dueDate": null,
+        "visibility": "workspace",
+        "memberIds": [
+          "01a11abd-aa80-7249-8034-93bbfb2174a2"
+        ],
+        "milestones": [],
+        "isFavorite": false,
+        "archivedAt": "2026-10-10T18:57:25.972Z",
+        "createdAt": "2026-10-10T18:57:25.908Z",
+        "updatedAt": "2026-10-10T18:57:25.972Z",
+        "lastActivityAt": "2026-10-10T18:57:25.908Z",
+        "version": 2
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1272d-5995-7a5f-abec-8fa22a04b4f9"
+      ],
+      "taskIdMap": [],
+      "undo": {
+        "id": "01a1272d-59d5-7e83-a756-ccd464245f67",
+        "kind": "project.archive"
+      }
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 14
+  }
+}

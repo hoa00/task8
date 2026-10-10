@@ -1,0 +1,70 @@
+
+ ⛅️ wrangler 4.148.0
+────────────────────
+Your Worker has access to the following bindings:
+Binding                                                              Resource                  Mode
+env.DB (task8-local)                                                 D1 Database               local
+env.STUDIO_ENV ("local")                                             Environment Variable      local
+env.LOCAL_USER_ID ("01a11abd-aa80-7d3f-879a-dd89204bcd77")           Environment Variable      local
+env.LOCAL_WORKSPACE_ID ("01a11abd-aa80-72ea-8b87-b31ad015a24e")      Environment Variable      local
+
+❓ Your types might be out of date. Re-run `wrangler types` to ensure your types are correct.
+Wrangler detected this dev session is running in an AI agent.
+The Local Explorer API is available at http://127.0.0.1:8787/cdn-cgi/local/explorer/api
+Useful routes:
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/workers - local Workers and bindings
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/scheduled?worker=<name> - invoke a Worker's scheduled handler; cron is required (see the OpenAPI schema for the full request)
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/storage/kv/namespaces - KV namespaces
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/d1/database - D1 databases
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/r2/buckets - R2 buckets
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/workers/durable_objects/namespaces - Durable Object namespaces
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api/workflows - Workflows
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/query - run a read-only SQL query (SELECT/WITH only) over captured request traces and console logs. Tables: spans, logs (read attributes via json(attributes)). Example:
+    curl -X POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/query -H 'Content-Type: application/json' -d '{"sql":"SELECT service, name, outcome, duration_ms FROM spans WHERE parent_id IS NULL LIMIT 20"}'
+  POST http://127.0.0.1:8787/cdn-cgi/local/explorer/api/local/observability/clear - clear all captured traces and logs
+If the routes above don't cover what you need, fetch the full OpenAPI schema (large - use only as a last resort):
+  GET http://127.0.0.1:8787/cdn-cgi/local/explorer/api - OpenAPI schema
+⎔ Starting local server...
+[wrangler:info] Ready on http://127.0.0.1:8787
+[wrangler:info] GET /api/v1/session 200 OK (23ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects 201 Created (42ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 201 Created (27ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks 201 Created (15ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks 201 Created (20ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (29ms)
+[wrangler:info] PATCH /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0 404 Not Found (10ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0/promote 404 Not Found (8ms)
+[wrangler:info] DELETE /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0 404 Not Found (8ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (25ms)
+[wrangler:info] PATCH /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0 200 OK (13ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (22ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0/promote 500 Internal Server Error (19ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (27ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (35ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0/promote 409 Conflict (8ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (27ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4694-7762-b5cb-f72816744fc0/promote 200 OK (14ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3 200 OK (9ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity 200 OK (9ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity 200 OK (8ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks 201 Created (10ms)
+[wrangler:info] DELETE /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4808-7cee-850c-e05565352400 200 OK (12ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks 201 Created (13ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4827-76a2-b780-2b887ad45215/promote 200 OK (10ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks 201 Created (12ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (26ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks 400 Bad Request (9ms)
+[wrangler:info] PATCH /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7 400 Bad Request (8ms)
+[wrangler:info] PATCH /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7 400 Bad Request (6ms)
+[wrangler:info] PATCH /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7 400 Bad Request (5ms)
+[wrangler:info] PATCH /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-4666-7e42-b24c-c9e2cbf530a3/subtasks/01a1272b-4842-7aee-bc0f-e0c560e139d7 400 Bad Request (5ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (23ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (30ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments 500 Internal Server Error (12ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (30ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments 201 Created (13ms)
+[wrangler:info] GET /__wu33/snapshot 200 OK (27ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments 400 Bad Request (8ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments 400 Bad Request (5ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272b-467f-7eb2-b572-4cab07eae033/comments 400 Bad Request (5ms)
+[wrangler:info] PATCH /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a1272b-4913-78f5-a02f-8254aa746e01 404 Not Found (5ms)

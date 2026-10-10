@@ -1,0 +1,59 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272c-14d3-70d2-bcb7-4642ffc4c72d/comments",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"bodyText\":\"Successor comment\",\"mentionedMemberIds\":[]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "comment": {
+        "id": "01a1272c-14eb-7c68-8c95-ca9156130767",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a1272c-14d3-70d2-bcb7-4642ffc4c72d",
+        "authorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "bodyText": "Successor comment",
+        "mentionedMemberIds": [],
+        "createdAt": "2026-10-10T18:56:02.792Z",
+        "version": 1,
+        "reactions": []
+      },
+      "task": {
+        "id": "01a1272c-14d3-70d2-bcb7-4642ffc4c72d",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272c-149c-779f-9820-fa7618443544",
+        "key": "CA-202",
+        "title": "Column parent",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": "2028-02-29",
+        "dueDate": "2028-02-29",
+        "estimate": null,
+        "recurrence": "monthly",
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 6300,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:56:02.757Z",
+        "updatedAt": "2026-10-10T18:56:02.792Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 1
+      },
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 10
+  }
+}

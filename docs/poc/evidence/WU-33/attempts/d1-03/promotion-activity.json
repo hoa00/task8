@@ -1,0 +1,69 @@
+{
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a1272b-4666-7e42-b24c-c9e2cbf530a3",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "items": [
+        {
+          "id": "01a1272b-47d9-7224-b3be-99824c1b4801",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "task.updated",
+          "taskId": "01a1272b-4666-7e42-b24c-c9e2cbf530a3",
+          "projectId": "01a1272b-462b-7f2e-91c8-47c3e9eda3b0",
+          "createdAt": "2026-10-10T18:55:10.293Z",
+          "payload": {
+            "taskKey": "WM-201",
+            "taskTitle": "Subtasks parent",
+            "detail": "converted a subtask into WM-203"
+          }
+        },
+        {
+          "id": "01a1272b-4717-7e3e-a4f2-6778dfea781f",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "task.updated",
+          "taskId": "01a1272b-4666-7e42-b24c-c9e2cbf530a3",
+          "projectId": "01a1272b-462b-7f2e-91c8-47c3e9eda3b0",
+          "createdAt": "2026-10-10T18:55:10.100Z",
+          "payload": {
+            "taskKey": "WM-201",
+            "taskTitle": "Subtasks parent",
+            "detail": "completed subtask “First child”"
+          }
+        },
+        {
+          "id": "01a1272b-4696-7ea2-a08f-332eddc09b54",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "task.updated",
+          "taskId": "01a1272b-4666-7e42-b24c-c9e2cbf530a3",
+          "projectId": "01a1272b-462b-7f2e-91c8-47c3e9eda3b0",
+          "createdAt": "2026-10-10T18:55:09.969Z",
+          "payload": {
+            "taskKey": "WM-201",
+            "taskTitle": "Subtasks parent",
+            "detail": "added subtask “First child”"
+          }
+        },
+        {
+          "id": "01a1272b-4666-7ef1-b9a7-724d5520135a",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "task.created",
+          "taskId": "01a1272b-4666-7e42-b24c-c9e2cbf530a3",
+          "projectId": "01a1272b-462b-7f2e-91c8-47c3e9eda3b0",
+          "createdAt": "2026-10-10T18:55:09.922Z",
+          "payload": {
+            "taskTitle": "Subtasks parent",
+            "status": "todo"
+          }
+        }
+      ],
+      "nextCursor": null,
+      "total": 4
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 5
+  }
+}

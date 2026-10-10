@@ -1,0 +1,19 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272d-565c-7a61-8fa3-465cb6db77d4",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"dependencyIds\":[\"01a11abd-aa80-7489-8783-d05782574232\"]}",
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "VALIDATION_ERROR",
+      "message": "Task project, assignee, dependency or cycle is invalid"
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 11
+  }
+}

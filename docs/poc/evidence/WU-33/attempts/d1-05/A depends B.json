@@ -1,0 +1,54 @@
+{
+  "method": "PATCH",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272d-565c-7a61-8fa3-465cb6db77d4",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"expectedVersion\":1,\"dependencyIds\":[\"01a1272d-5665-7918-8b18-a2966ee86b2b\"]}",
+  "status": 200,
+  "response": {
+    "data": {
+      "task": {
+        "id": "01a1272d-565c-7a61-8fa3-465cb6db77d4",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272d-4ed8-77f3-9920-280ff90d8280",
+        "key": "WM-210",
+        "title": "Dependency A",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [
+          "01a1272d-5665-7918-8b18-a2966ee86b2b"
+        ],
+        "position": 5900,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:57:25.083Z",
+        "updatedAt": "2026-10-10T18:57:25.231Z",
+        "version": 2,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 0
+      },
+      "createdTasks": [],
+      "affectedProjectIds": [
+        "01a1272d-4ed8-77f3-9920-280ff90d8280"
+      ],
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 12,
+    "parameters": 28
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "status": "FAILED",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:53:50.213Z",
+      "completedAt": "2026-10-10T18:53:57.048Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1453,
+        "sha256": "4da79d0c984193f0d0750262f8d6f1ccc0b1acb5e50683864a71c5d64d9ed4bf"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:53:57.048Z",
+      "completedAt": "2026-10-10T18:54:04.200Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48587,
+        "sha256": "40ad61940f4621b0dc31589aa8301c864048411eebacbaf01a3dab6b3d66a1c5"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "8787",
+        "--config",
+        "/tmp/task8-wu33-config-d1-02/owner.json",
+        "--persist-to",
+        "/tmp/task8-wu33-d1-02"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-10T18:54:04.202Z",
+      "completedAt": "2026-10-10T18:54:10.575Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "SIGTERM after bounded probes",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 5639,
+        "sha256": "4c3e7e7d19379c17f296309da2e8e25d720b0e8ef5a2bfc22e45d9d06aad7c73"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 1970,
+        "sha256": "e2aaaedc3796a59bd926b41a39e80703c0ce0c5c04e58636fff2d2e84f888036"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "session",
+      "status": 200,
+      "path": "/api/v1/session",
+      "evidence": "session.json",
+      "budget": {
+        "queries": 1,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "WU33 main",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "WU33 main.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Subtasks parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Subtasks parent.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Other parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Other parent.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "First child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks",
+      "evidence": "First child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "child-scope-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "child-scope-before.json",
+      "budget": null
+    },
+    {
+      "name": "wrong-parent-child",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4e00-79e1-9f47-cac873e28588/subtasks/01a1272a-4e14-768b-a937-6513271766d3",
+      "evidence": "wrong-parent-child.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "wrong-parent-promote",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4e00-79e1-9f47-cac873e28588/subtasks/01a1272a-4e14-768b-a937-6513271766d3/promote",
+      "evidence": "wrong-parent-promote.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "wrong-parent-delete",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4e00-79e1-9f47-cac873e28588/subtasks/01a1272a-4e14-768b-a937-6513271766d3",
+      "evidence": "wrong-parent-delete.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "child-scope-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "child-scope-after.json",
+      "budget": null
+    },
+    {
+      "name": "Complete child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks/01a1272a-4e14-768b-a937-6513271766d3",
+      "evidence": "Complete child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "promotion-rollback-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-rollback-before.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-fk-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks/01a1272a-4e14-768b-a937-6513271766d3/promote",
+      "evidence": "promotion-fk-failure.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "promotion-rollback-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-rollback-after.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-stale-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-stale-before.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-stale-request",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks/01a1272a-4e14-768b-a937-6513271766d3/promote",
+      "evidence": "promotion-stale-request.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "promotion-stale-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-stale-after.json",
+      "budget": null
+    },
+    {
+      "name": "Promote child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks/01a1272a-4e14-768b-a937-6513271766d3/promote",
+      "evidence": "Promote child.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "promoted-parent-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95",
+      "evidence": "promoted-parent-detail.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "promotion-activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a1272a-4deb-75ad-991d-437fc6c6ef95",
+      "evidence": "promotion-activity.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "created-activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a1272a-4f67-730e-a5cc-2870090e243e",
+      "evidence": "created-activity.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Delete child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks",
+      "evidence": "Delete child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "delete-child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks/01a1272a-4f90-7d30-b267-e2b869dd0fe9",
+      "evidence": "delete-child.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 15
+      }
+    },
+    {
+      "name": "Fallback child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks",
+      "evidence": "Fallback child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "Fallback promotion",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272a-4deb-75ad-991d-437fc6c6ef95/subtasks/01a1272a-4fab-701b-8837-4d7e80fc2d2c/promote",
+      "evidence": "Fallback promotion.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "error": {
+    "message": "Cannot read properties of undefined (reading 'find')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'find')\n    at file:///workspace/task8/apps/api/tests/wu33/verify.mjs:77:46\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+  },
+  "completedAt": "2026-10-10T18:54:10.576Z"
+}

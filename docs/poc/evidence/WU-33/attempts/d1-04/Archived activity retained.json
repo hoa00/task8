@@ -1,0 +1,90 @@
+{
+  "method": "GET",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a1272c-0ab8-7959-9e1b-72be0c52af79",
+  "headers": {},
+  "status": 200,
+  "response": {
+    "data": {
+      "items": [
+        {
+          "id": "01a1272c-1209-7fe5-8253-a16e645c81cb",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "task.archived",
+          "taskId": "01a1272c-0ab8-7959-9e1b-72be0c52af79",
+          "projectId": "01a1272c-0a66-7146-b863-4547bd3ad5b5",
+          "createdAt": "2026-10-10T18:56:02.056Z",
+          "payload": {
+            "taskTitle": "changed after delete",
+            "status": "todo"
+          }
+        },
+        {
+          "id": "01a1272c-11a7-7114-a4c8-1cb108bbec78",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "comment.created",
+          "taskId": "01a1272c-0ab8-7959-9e1b-72be0c52af79",
+          "projectId": "01a1272c-0a66-7146-b863-4547bd3ad5b5",
+          "createdAt": "2026-10-10T18:56:01.955Z",
+          "payload": {
+            "taskKey": "WM-202",
+            "taskTitle": "changed after delete"
+          }
+        },
+        {
+          "id": "01a1272c-1192-700d-89e5-f4ba7adcb89b",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "comment.created",
+          "taskId": "01a1272c-0ab8-7959-9e1b-72be0c52af79",
+          "projectId": "01a1272c-0a66-7146-b863-4547bd3ad5b5",
+          "createdAt": "2026-10-10T18:56:01.935Z",
+          "payload": {
+            "taskKey": "WM-202",
+            "taskTitle": "changed after delete"
+          }
+        },
+        {
+          "id": "01a1272c-1103-719d-bb13-22d102db25c3",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "task.updated",
+          "taskId": "01a1272c-0ab8-7959-9e1b-72be0c52af79",
+          "projectId": "01a1272c-0a66-7146-b863-4547bd3ad5b5",
+          "createdAt": "2026-10-10T18:56:01.794Z",
+          "payload": {
+            "taskTitle": "changed after delete",
+            "status": "todo"
+          }
+        },
+        {
+          "id": "01a1272c-0dba-7580-8931-2158df563a76",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "comment.created",
+          "taskId": "01a1272c-0ab8-7959-9e1b-72be0c52af79",
+          "projectId": "01a1272c-0a66-7146-b863-4547bd3ad5b5",
+          "createdAt": "2026-10-10T18:56:00.951Z",
+          "payload": {
+            "taskKey": "WM-202",
+            "taskTitle": "Other parent"
+          }
+        },
+        {
+          "id": "01a1272c-0ab8-7d2c-92a9-a6de99a0ed78",
+          "actorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+          "eventType": "task.created",
+          "taskId": "01a1272c-0ab8-7959-9e1b-72be0c52af79",
+          "projectId": "01a1272c-0a66-7146-b863-4547bd3ad5b5",
+          "createdAt": "2026-10-10T18:56:00.182Z",
+          "payload": {
+            "taskTitle": "Other parent",
+            "status": "todo"
+          }
+        }
+      ],
+      "nextCursor": null,
+      "total": 6
+    }
+  },
+  "budget": {
+    "queries": 4,
+    "parameters": 5
+  }
+}

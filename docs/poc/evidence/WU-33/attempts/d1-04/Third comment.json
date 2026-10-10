@@ -1,0 +1,59 @@
+{
+  "method": "POST",
+  "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a1272c-0ab8-7959-9e1b-72be0c52af79/comments",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "body": "{\"bodyText\":\"Third comment\",\"mentionedMemberIds\":[]}",
+  "status": 201,
+  "response": {
+    "data": {
+      "comment": {
+        "id": "01a1272c-11a7-7fc2-949a-e81a81662509",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "taskId": "01a1272c-0ab8-7959-9e1b-72be0c52af79",
+        "authorId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+        "bodyText": "Third comment",
+        "mentionedMemberIds": [],
+        "createdAt": "2026-10-10T18:56:01.955Z",
+        "version": 1,
+        "reactions": []
+      },
+      "task": {
+        "id": "01a1272c-0ab8-7959-9e1b-72be0c52af79",
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "projectId": "01a1272c-0a66-7146-b863-4547bd3ad5b5",
+        "key": "WM-202",
+        "title": "changed after delete",
+        "descriptionHtml": "",
+        "status": "todo",
+        "assigneeId": null,
+        "priority": "none",
+        "startDate": null,
+        "dueDate": null,
+        "estimate": null,
+        "recurrence": null,
+        "labelIds": [],
+        "dependencyIds": [],
+        "position": 5100,
+        "completedAt": null,
+        "archivedAt": null,
+        "createdAt": "2026-10-10T18:56:00.182Z",
+        "updatedAt": "2026-10-10T18:56:01.955Z",
+        "version": 14,
+        "isFavorite": false,
+        "subtaskSummary": {
+          "total": 0,
+          "completed": 0
+        },
+        "attachmentCount": 0,
+        "commentCount": 3
+      },
+      "undo": null
+    }
+  },
+  "budget": {
+    "queries": 10,
+    "parameters": 10
+  }
+}
