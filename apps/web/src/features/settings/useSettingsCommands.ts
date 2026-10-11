@@ -1,3 +1,4 @@
+import { setLanguage } from '../../i18n/i18n';
 import { useEffect, useRef, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import type { OperationInput, OperationOutput } from '@studio/contracts/api';
@@ -19,7 +20,7 @@ export function useSettingsCommands() {
         const preferences = (result as OperationOutput<'updatePreferences'>).data;
         cache.setQueryData(operationQueryKey('getPreferences', { workspaceId: (input as OperationInput<'updatePreferences'>).workspaceId }), { data: preferences });
         const { theme: selectedTheme, accent, side, density, motion } = preferences;
-        if (active.current) theme.setPreferences({ theme: selectedTheme, accent, side, density, motion });
+        if (active.current) { theme.setPreferences({ theme: selectedTheme, accent, side, density, motion }); await setLanguage(preferences.lang); }
       } else if (id === 'updateProfile') cache.setQueryData(queryKeys.profile(), result);
       await invalidateOperation(cache, id, input); return result;
     } catch (cause) { if (active.current) setError(cause instanceof Error ? cause.message : 'Settings could not be saved'); if (cause instanceof StudioApiError && cause.detail.code === 'CONFLICT') await invalidateOperation(cache, id, input); return null; }

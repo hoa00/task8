@@ -1,3 +1,4 @@
+import { useUiTranslation } from './translation-context';
 import { useId, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { Icon } from './icons';
@@ -18,7 +19,7 @@ const buttonVariants = {
 export interface ButtonProps extends ComponentPropsWithRef<'button'> { variant?: ButtonVariant; size?: ControlSize; loading?: boolean; block?: boolean }
 export function Button({ variant = 'secondary', size = 'md', loading = false, block = false, disabled, className = '', children, type = 'button', ...props }: ButtonProps) {
   return <button {...props} type={type} disabled={disabled || loading} aria-busy={loading || undefined} data-loading={loading || undefined} data-variant={variant}
-    className={`relative inline-flex items-center justify-center gap-[6px] rounded-sm border border-solid font-medium whitespace-nowrap select-none transition-[background,border-color,color,box-shadow,transform] ease-[ease] enabled:active:[transform:scale(0.97)] source-reduce:enabled:active:transform-none [&_svg]:opacity-90 ${buttonSizes[size]} ${buttonVariants[variant]} ${block ? 'w-full' : ''} ${disabled && !loading ? 'opacity-45 pointer-events-none disabled:[box-shadow:none]' : ''} ${loading ? 'ui-button-loading pointer-events-none text-transparent' : ''} ${className}`}>{children}</button>;
+    className={`relative inline-flex items-center justify-center gap-[6px] rounded-sm border border-solid font-medium whitespace-nowrap select-none transition-[background,border-color,color,box-shadow,transform] ease-[ease] enabled:active:[transform:scale(0.97)] source-reduce:enabled:active:transform-none [&_svg]:opacity-90 ${buttonSizes[size]} ${buttonVariants[variant]} ${block ? 'w-full' : ''} ${disabled && !loading ? 'opacity-45 pointer-events-none disabled:[box-shadow:none]' : ''} ${loading ? "ui-button-loading pointer-events-none text-transparent" : ''} ${className}`}>{children}</button>;
 }
 const iconSizes = { xs: 'size-control-xs rounded-xs', sm: 'size-control-sm rounded-sm', md: 'size-control-md rounded-sm', lg: 'size-control-lg rounded-sm' };
 export interface IconButtonProps extends ComponentPropsWithRef<'button'> { 'aria-label': string; size?: ControlSize }
@@ -37,17 +38,17 @@ export function Textarea({ error, className = '', ...props }: TextareaProps) {
 }
 export interface FieldControlProps { id: string; 'aria-invalid'?: true | undefined; 'aria-describedby'?: string | undefined }
 export interface FieldProps extends Omit<ComponentPropsWithRef<'div'>, 'children'> { label: ReactNode; hint?: ReactNode; error?: ReactNode; controlId?: string; children: ReactNode | ((props: FieldControlProps) => ReactNode) }
-export function Field({ label, hint, error, controlId, children, className = '', ...props }: FieldProps) {
+export function Field({ label, hint, error, controlId, children, className = '', ...props }: FieldProps) { const t = useUiTranslation();
   const generatedId = useId(); const id = controlId ?? generatedId;
   const descriptionId = `${id}-description`;
-  return <div {...props} className={`flex flex-col gap-[6px] ${className}`}><label htmlFor={id} className="text-sm font-medium text-foreground">{label}</label>
+  return <div {...props} className={`flex flex-col gap-[6px] ${className}`}><label htmlFor={id} className="text-sm font-medium text-foreground">{typeof label === "string" ? t(label) : label}</label>
     {typeof children === 'function' ? children({ id, 'aria-invalid': error ? true : undefined, 'aria-describedby': error || hint ? descriptionId : undefined }) : children}
-    {error ? <span id={descriptionId} className="flex items-center gap-1 text-xs text-red"><Icon name="circle-alert" size={12} />{error}</span> : hint ? <span id={descriptionId} className="text-xs text-muted">{hint}</span> : null}</div>;
+    {error ? <span id={descriptionId} className="flex items-center gap-1 text-xs text-red"><Icon name="circle-alert" size={12} />{typeof error === "string" ? t(error) : error}</span> : hint ? <span id={descriptionId} className="text-xs text-muted">{typeof hint === "string" ? t(hint) : hint}</span> : null}</div>;
 }
 export type PasswordInputProps = Omit<InputProps, 'type'> & ({ revealControl: false; revealed?: never; onRevealedChange?: never } | { revealControl?: true; revealed: boolean; onRevealedChange: (revealed: boolean) => void });
-export function PasswordInput({ revealed, onRevealedChange, revealControl = true, className = '', ...props }: PasswordInputProps) {
+export function PasswordInput({ revealed, onRevealedChange, revealControl = true, className = '', ...props }: PasswordInputProps) { const t = useUiTranslation();
   if (!revealControl) return <Input {...props} type="password" className={className} />;
-  return <div className="relative flex items-center"><Input {...props} type={revealed ? 'text' : 'password'} className={`pl-[30px] pr-[38px] ${className}`} /><span className="absolute right-[5px]"><IconButton size="sm" disabled={props.disabled} aria-label={revealed ? 'Hide password' : 'Show password'} aria-pressed={revealed} onClick={() => onRevealedChange?.(!revealed)}><Icon name={revealed ? 'eye-off' : 'eye'} size={15} /></IconButton></span></div>;
+  return <div className="relative flex items-center"><Input {...props} type={revealed ? 'text' : 'password'} className={`pl-[30px] pr-[38px] ${className}`} /><span className="absolute right-[5px]"><IconButton size="sm" disabled={props.disabled} aria-label={revealed ? t("Hide password") : t("Show password")} aria-pressed={revealed} onClick={() => onRevealedChange?.(!revealed)}><Icon name={revealed ? 'eye-off' : 'eye'} size={15} /></IconButton></span></div>;
 }
 export interface CheckboxProps extends Omit<ComponentPropsWithRef<'input'>, 'type' | 'checked' | 'defaultChecked' | 'onChange' | 'size'> { checked: boolean; indeterminate?: boolean; round?: boolean; onCheckedChange: (checked: boolean) => void }
 export function Checkbox({ checked, indeterminate = false, round = false, onCheckedChange, ref, className = '', ...props }: CheckboxProps) {
@@ -64,7 +65,7 @@ export function Toggle({ checked, onCheckedChange, className = '', ...props }: T
 export interface ChoiceItem { ariaLabel?: string; value: string; label: ReactNode; icon?: ReactNode; count?: number | undefined; disabled?: boolean; panelId?: string }
 export interface TabsProps extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> { items: readonly ChoiceItem[]; value: string; onValueChange: (value: string) => void; label: string }
 export interface SegmentedControlProps extends TabsProps { semantics?: 'radio' | 'tabs' }
-function Choices({ items, value, onValueChange, label, segmented, semantics, ref, className = '', ...props }: SegmentedControlProps & { segmented: boolean }) {
+function Choices({ items, value, onValueChange, label, segmented, semantics, ref, className = '', ...props }: SegmentedControlProps & { segmented: boolean }) { const t = useUiTranslation();
   const tabs = !segmented || semantics === 'tabs';
   const root = useRef<HTMLDivElement>(null);
   useImperativeHandle(ref, () => root.current!, []);
@@ -76,7 +77,7 @@ function Choices({ items, value, onValueChange, label, segmented, semantics, ref
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? enabled.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + enabled.length) % enabled.length;
         const choice = enabled[next]; if (choice) { onValueChange(choice.value); root.current?.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')[next]?.focus(); }
       }} className={`${segmented ? 'h-[calc(var(--h-sm)-2px)] gap-[5px] rounded-[5px] px-[9px] text-xs transition-[background,color] aria-checked:bg-surface aria-checked:text-foreground aria-checked:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)] aria-selected:bg-surface aria-selected:text-foreground aria-selected:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)]' : 'relative h-9 gap-[6px] whitespace-nowrap px-[10px] text-sm transition-colors aria-selected:text-foreground ui-tab'} inline-flex items-center font-medium text-secondary source-hover:text-foreground`}>
-      {item.icon}{item.label}{item.count !== undefined && <span className="text-2xs font-medium text-muted">{item.count}</span>}</button>)}
+      {item.icon}{typeof item.label === "string" ? t(item.label) : item.label}{item.count !== undefined && <span className="text-2xs font-medium text-muted">{item.count}</span>}</button>)}
   </div>;
 }
 export function Tabs(props: TabsProps) { return <Choices {...props} segmented={false} />; }

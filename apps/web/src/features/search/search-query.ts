@@ -1,3 +1,4 @@
+import { translate as t } from '../../i18n/i18n.ts';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { SearchQuerySchema } from '@studio/contracts/api';
@@ -8,7 +9,7 @@ import { operationQueryKey } from '../../data/query-keys';
 
 export type SearchCategory = ReturnType<typeof SearchQuerySchema.parse>['category'];
 export const searchCategories = ['all', 'tasks', 'projects', 'people', 'files', 'comments'] as const;
-export const searchLabel = (category: SearchCategory) => category[0]!.toUpperCase() + category.slice(1);
+export const searchLabel = (category: SearchCategory) => t(category[0]!.toUpperCase() + category.slice(1));
 export const searchResultId = (row: SearchResultDto) => row.kind === 'tasks' ? row.task.id : row.kind === 'projects' ? row.project.project.id : row.kind === 'people' ? row.member.id : row.kind === 'files' ? row.file.id : row.comment.id;
 export async function loadSearch(client: StudioClient, workspaceId: string, q: string, category: SearchCategory, signal: AbortSignal): Promise<SearchDto> {
   let cursor: string | undefined, first: SearchDto | undefined;

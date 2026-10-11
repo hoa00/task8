@@ -10,8 +10,8 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
-    "lint": "eslint apps packages tests/workspace tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search tests/visual/notifications tests/visual/people tests/visual/teams tests/visual/files tests/visual/settings tests/visual/auth tests/visual/onboarding tests/visual/archive tests/visual/m2 eslint.config.mjs && node tests/workspace/boundaries.mjs",
-    "test": "turbo run test && pnpm test:reference && pnpm test:workspace",
+    "lint": "eslint apps packages tests/workspace tests/i18n tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search tests/visual/notifications tests/visual/people tests/visual/teams tests/visual/files tests/visual/settings tests/visual/auth tests/visual/onboarding tests/visual/archive tests/visual/m2 eslint.config.mjs && node tests/workspace/boundaries.mjs",
+    "test": "turbo run test && pnpm test:reference && pnpm test:workspace && pnpm test:i18n",
     "test:reference": "node --test tests/visual/reference/*.test.mjs",
     "test:workspace": "node --test tests/workspace/*.test.mjs",
     "reference:check": "node tests/visual/reference/source-check.mjs",
@@ -96,7 +96,9 @@
     "test:m3:journey": "node --experimental-transform-types apps/api/tests/wu36/journey.mjs",
     "test:m3:scope": "node --experimental-transform-types apps/api/tests/wu36/workspace-race.mjs",
     "test:m3:visual": "node --experimental-transform-types apps/api/tests/wu36/visual.mjs",
-    "test:m3:regression": "node --experimental-transform-types apps/api/tests/wu36/regression.mjs"
+    "test:m3:regression": "node --experimental-transform-types apps/api/tests/wu36/regression.mjs",
+    "test:i18n": "node --experimental-strip-types --test --test-isolation=none tests/i18n/*.test.mjs",
+    "test:i18n:browser": "node tests/i18n/browser.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

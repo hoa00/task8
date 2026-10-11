@@ -11,6 +11,7 @@ import { studioQueryOptions } from './data/queries';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { applyRootPreferences, readThemePreferences } from './theme/preferences';
 import './styles/app.css';
+import { TranslationProvider } from './i18n/TranslationProvider';
 
 applyRootPreferences(readThemePreferences());
 const publicEnv = parsePublicEnv(import.meta.env);
@@ -29,10 +30,12 @@ if (Object.hasOwn(legacyAliases, location.hash.slice(1))) {
 const router = createStudioRouter({runtime, queryClient});
 createRoot(rootElement).render(
   <StrictMode>
+    <TranslationProvider>
     <ThemeProvider>
       <StudioDataProvider runtime={runtime} queryClient={queryClient}>
         <RouterProvider router={router} />
       </StudioDataProvider>
     </ThemeProvider>
+    </TranslationProvider>
   </StrictMode>,
 );

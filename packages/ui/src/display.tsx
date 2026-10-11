@@ -1,3 +1,4 @@
+import { useUiTranslation } from './translation-context';
 import { createElement, Fragment } from 'react';
 import type { ComponentPropsWithRef, CSSProperties, ReactNode } from 'react';
 import { Icon } from './icons';
@@ -49,12 +50,12 @@ export function Meter({ value, label, tone = 'accent', className = '', ...props 
 }
 export interface AlertProps extends ComponentPropsWithRef<'div'> { tone?: 'neutral' | 'info' | 'ok' | 'warn' | 'danger'; icon?: IconName }
 const alertTones = { neutral: 'bg-surface border-border', info: 'bg-accent-soft border-transparent [&_svg]:text-accent', ok: 'bg-green-soft border-transparent [&_svg]:text-green', warn: 'bg-amber-soft border-transparent [&_svg]:text-amber', danger: 'bg-red-soft border-transparent [&_svg]:text-red' };
-export function Alert({ tone = 'neutral', icon, children, className = '', role, ...props }: AlertProps) {
-  return <div {...props} role={role ?? (tone === 'danger' ? 'alert' : 'status')} className={`flex items-start gap-[10px] rounded-default border border-solid px-3 py-[10px] text-sm [&_b]:font-semibold ${alertTones[tone]} ${className}`}>{icon && <Icon name={icon} size={15} className="mt-px" />}{children}</div>;
+export function Alert({ tone = 'neutral', icon, children, className = '', role, ...props }: AlertProps) { const t = useUiTranslation();
+  return <div {...props} role={role ?? (tone === 'danger' ? 'alert' : 'status')} className={`flex items-start gap-[10px] rounded-default border border-solid px-3 py-[10px] text-sm [&_b]:font-semibold ${alertTones[tone]} ${className}`}>{icon && <Icon name={icon} size={15} className="mt-px" />}{Array.isArray(children) ? children.map(child => typeof child === "string" ? t(child) : child) : typeof children === "string" ? t(children) : children}</div>;
 }
 export interface EmptyStateProps extends ComponentPropsWithRef<'div'> { heading: string; description: ReactNode; icon: IconName; action?: ReactNode; size?: 'sm' | 'md'; error?: boolean; headingLevel?: 2 | 3 | 4 }
-export function EmptyState({ heading, description, icon, action, size = 'md', error, headingLevel = 2, className = '', ...props }: EmptyStateProps) {
-  return <div {...props} className={`flex flex-col items-center gap-[6px] text-center ${error ? 'text-red text-xs' : ''} ${size === 'sm' ? 'px-4 py-7' : 'px-6 py-[56px]'} ${className}`}><div className={`mb-1 grid place-items-center ${error ? 'text-red' : 'text-faint'}`}><Icon name={icon} size={22} /></div>{createElement(`h${headingLevel}`, { className: 'm-0 text-md font-semibold' }, heading)}<p className="m-0 mb-[10px] max-w-[340px] text-sm text-secondary">{description}</p>{action}</div>;
+export function EmptyState({ heading, description, icon, action, size = 'md', error, headingLevel = 2, className = '', ...props }: EmptyStateProps) { const t = useUiTranslation();
+  return <div {...props} className={`flex flex-col items-center gap-[6px] text-center ${error ? "text-red text-xs" : ''} ${size === 'sm' ? "px-4 py-7" : 'px-6 py-[56px]'} ${className}`}><div className={`mb-1 grid place-items-center ${error ? 'text-red' : 'text-faint'}`}><Icon name={icon} size={22} /></div>{createElement(`h${headingLevel}`, { className: 'm-0 text-md font-semibold' }, t(heading))}<p className="m-0 mb-[10px] max-w-[340px] text-sm text-secondary">{typeof description === "string" ? t(description) : description}</p>{action}</div>;
 }
 export interface SkeletonProps extends ComponentPropsWithRef<'span'> { width?: CSSProperties['width']; height?: CSSProperties['height'] }
 export function Skeleton({ width = '100%', height = 12, style, className = '', ...props }: SkeletonProps) { return <span {...props} aria-hidden="true" className={`ui-skeleton block rounded-[5px] ${className}`} style={{ ...style, width, height }} />; }
