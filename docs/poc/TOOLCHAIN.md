@@ -252,6 +252,14 @@ WU-00 tự tạo runner reference tối thiểu bằng pnpm nếu repo chưa có
 - Baseline WU-00 là artifact thực tế; comparator thiếu baseline phải fail và không tạo ảnh chuẩn.
 - Ghi rõ test nào chạy, test nào chưa chạy và blocker trong PROGRESS.md; yêu cầu toàn bộ visual theo [VISUAL_PARITY.md](VISUAL_PARITY.md) được áp dụng ở từng WU liên quan.
 
+## 10. Tên file portable và evidence lịch sử
+
+Git phân biệt hoa/thường; checkout macOS hiện tại không phân biệt. Không dùng hai path chỉ khác hoa/thường hoặc dạng Unicode; quy tắc áp dụng cả tên thư mục. `pnpm test:workspace` kiểm tra các path trong index và file mới qua [tracked-paths.mjs](../../tests/workspace/tracked-paths.mjs), gồm cả collision ở parent directory. Stage các file dự định commit trước khi chạy gate này.
+
+Các probe tạo project và move task dùng tên evidence khác nhau: `rebalance-project.*` và `rebalance.*`; payload tên project vẫn là `Rebalance`. Chín file evidence cũ được đổi tên với nguyên byte/blob/hash trong [path-relocations.json](evidence/path-relocations.json). Báo cáo, receipt và executed snapshot lịch sử giữ nguyên; đọc tên cũ qua `readEvidenceFile`/`resolveEvidencePath` trong [evidence-paths.mjs](../../tests/workspace/evidence-paths.mjs). Resolver tra map chính xác trước khi đọc, vì `existsSync` trên macOS có thể trỏ nhầm sang probe chữ thường. WU32/WU36 evidence readers dùng resolver này.
+
+Kiểm tra integrity/portability bằng `pnpm test:workspace` hoặc `node --test tests/workspace/portable-paths.test.mjs`; quét path riêng bằng `node tests/workspace/tracked-paths.mjs`. Các snapshot helper trước sửa vẫn là bằng chứng của lần chạy lịch sử; không gọi chúng là byte-match với harness hiện tại hoặc tái ghi verification cũ để che thay đổi. Không cần chạy lại API/DB/visual cho sửa tên evidence; mọi thay đổi runtime sau này phải có evidence mới.
+
 [node-releases]: https://nodejs.org/en/about/previous-releases
 [vite-guide]: https://vite.dev/guide/
 [source-package]: https://github.com/gr8rstudio/gr8r-studio/blob/904205c626918ee96054eb35495c394a60c0c601/package.json#L15

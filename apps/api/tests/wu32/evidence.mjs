@@ -2,10 +2,11 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, relative } from 'node:path';
+import { readEvidenceFile, resolveEvidencePath } from '../../../../tests/workspace/evidence-paths.mjs';
 const root=process.cwd(),out=resolve(root,'docs/poc/evidence/WU-32');
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
-const receipt=path=>{const bytes=readFileSync(path);return {path:relative(root,path),bytes:bytes.length,sha256:hash(bytes)};};
-const json=path=>JSON.parse(readFileSync(path));
+const receipt=path=>{const bytes=readEvidenceFile(path);return {path:relative(root,resolveEvidencePath(path)),bytes:bytes.length,sha256:hash(bytes)};};
+const json=path=>JSON.parse(readEvidenceFile(path));
 const files=dir=>readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(resolve(dir,e.name)):[resolve(dir,e.name)]);
 const verifyStreams=(row,dir)=>{for(const field of ['stdout','stderr']){const actual=receipt(resolve(dir,row[field].path));assert.equal(actual.bytes,row[field].bytes);assert.equal(actual.sha256,row[field].sha256);}};
 const commands=files(resolve(out,'commands')).filter(p=>p.endsWith('/result.json')).sort().map(path=>{const row=json(path);verifyStreams(row,resolve(path,'..'));return {...row,result:receipt(path)};});
@@ -14,7 +15,7 @@ for(const label of required){const row=json(resolve(out,'commands',label,'result
 const dir=resolve(out,'attempts/d1-07'),report=json(resolve(dir,'report.json'));assert.equal(report.status,'PASS');assert.equal(report.probes.length,316);assert.equal(report.commands.length,6);
 for(const row of report.commands){verifyStreams(row,dir);if(row.shutdown){assert.equal(row.signal,'SIGTERM');assert.equal(row.exitCode,null);}else assert.equal(row.exitCode,0);}
 const attemptFiles=new Set(files(dir));
-const probeReceipts=report.probes.map(probe=>{const path=resolve(dir,probe.evidence),row=json(path);assert.equal(row.status,probe.status);assert.equal(row.path,probe.path);assert.deepEqual(row.budget,probe.budget);const raw=resolve(dir,probe.name+'.response.json');if(attemptFiles.has(raw))assert.deepEqual(JSON.parse(readFileSync(raw)),row.response);return receipt(path);});
+const probeReceipts=report.probes.map(probe=>{const path=resolve(dir,probe.evidence),row=json(path);assert.equal(row.status,probe.status);assert.equal(row.path,probe.path);assert.deepEqual(row.budget,probe.budget);const raw=resolveEvidencePath(resolve(dir,probe.name+'.response.json'));if(attemptFiles.has(raw))assert.deepEqual(JSON.parse(readFileSync(raw)),row.response);return receipt(path);});
 const budgets=report.probes.flatMap(p=>p.budget?[p.budget]:[]);assert(budgets.every(b=>b.queries<=50&&b.parameters<=100));
 const sourceMatches=[...files(resolve(dir,'executed')).map(path=>({path,current:resolve(root,'apps/api',relative(resolve(dir,'executed'),path))})),...files(resolve(dir,'executed-imports')).map(path=>({path,current:resolve(root,relative(resolve(dir,'executed-imports'),path))}))].map(({path,current})=>{assert.deepEqual(readFileSync(path),readFileSync(current));return {executed:receipt(path),current:receipt(current)};});
 const snapshotPairs=[['before-sanitize-limit','after-sanitize-limit'],['cycle-before','cycle-after'],['stale-undo-before','stale-undo-after'],['create-failure-before','create-failure-after'],['bulk-before','bulk-after-failures'],['bulk-inverse-before','bulk-inverse-after'],['column-failure-before','column-failure-after'],['column-edited-before','column-edited-after'],['column-archive-inverse-before','column-archive-inverse-after'],['incoming-aba-before','incoming-aba-after'],['child-edit-before','child-edit-after'],['private-empty-before','private-empty-after']].map(([a,b])=>{const before=json(resolve(dir,a+'.json')).response.rows,after=json(resolve(dir,b+'.json')).response.rows;assert.equal(Object.keys(before).length,24);assert.deepEqual(before,after);return {before:receipt(resolve(dir,a+'.json')),after:receipt(resolve(dir,b+'.json')),tables:24,equal:true};});
