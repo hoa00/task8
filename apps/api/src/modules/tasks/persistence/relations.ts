@@ -1,7 +1,7 @@
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import type { SqlPredicate } from '../../../db/commands.ts';
 import { ApiFailure } from '../../../shared/errors.ts';
-import { writeAccessSql } from '../../projects/index.ts';
+import { writeAccessSql } from '../../projects/access.ts';
 export interface TaskRelations {
   id: string;
   projectId: string;

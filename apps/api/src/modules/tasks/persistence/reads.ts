@@ -3,7 +3,7 @@ import { EntityIdSchema } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import type { files } from '../../../db/schema.ts';
 import { ApiFailure } from '../../../shared/errors.ts';
-import { readAccessSql as accessSql } from '../../projects/index.ts';
+import { readAccessSql as accessSql } from '../../projects/access.ts';
 import type { SubtaskRow, TaskProjection, TaskRow } from './model.ts';
 
 export const taskSelect = `SELECT t.*,p.key projectKey,

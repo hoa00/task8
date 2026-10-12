@@ -12,41 +12,13 @@ import type { projects, subtasks, tasks, teams } from '../db/schema.ts';
 import { instant, nullableInstant } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
 import { members } from './members/index.ts';
-import type { ProjectLifecycle } from './projects/index.ts';
-import {
-  readAccessSql as accessSql,
-  canAccessProject,
-  grantProjection,
-  projectLifecycleSql,
-  writeAccessSql,
-} from './projects/index.ts';
+import { readAccessSql as accessSql, canAccessProject, grantProjection } from './projects/index.ts';
 import { today } from './workspaces/index.ts';
 export type ProjectRow = typeof projects.$inferSelect;
 export type TeamRow = typeof teams.$inferSelect;
 export type TaskRow = typeof tasks.$inferSelect;
 export type SubtaskRow = typeof subtasks.$inferSelect;
-export async function projectRow(
-  r: RequestRepository,
-  s: WorkspaceContext,
-  id: EntityId,
-  mode: {
-    visibility: 'detail' | 'child';
-    lifecycle: ProjectLifecycle;
-    access: 'read' | 'write';
-  } = { visibility: 'detail', lifecycle: 'detail', access: 'read' },
-) {
-  const [row] = await r.all<ProjectRow & { allowed: number }>(
-    `SELECT p.*,${mode.access === 'write' ? writeAccessSql : accessSql} allowed FROM projects p WHERE p.workspaceId=? AND p.id=?${projectLifecycleSql(mode.lifecycle)}`,
-    [s.memberId, s.workspaceId, id],
-  );
-  if (!row) throw new ApiFailure('NOT_FOUND', 'Project not found');
-  if (!row.allowed)
-    throw new ApiFailure(
-      mode.visibility === 'child' ? 'NOT_FOUND' : 'FORBIDDEN',
-      'Project is restricted',
-    );
-  return row;
-}
+
 export async function teamRow(
   r: RequestRepository,
   s: WorkspaceContext,
@@ -299,3 +271,5 @@ export async function createdTaskDtos(r: RequestRepository, s: WorkspaceContext,
 }
 export { member, members } from './members/index.ts';
 export { today } from './workspaces/index.ts';
+
+export { projectRow } from './projects/access.ts';

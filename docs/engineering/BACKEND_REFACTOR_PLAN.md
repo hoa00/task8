@@ -4,7 +4,7 @@ Ngày lập: **12/10/2026**. Chuẩn bắt buộc: [BACKEND_STANDARDS.md](BACKEN
 
 **Mục tiêu:** code của các tính năng đã có phải đạt chất lượng để tiếp tục bổ sung/sửa chữa; phạm vi POC chỉ giới hạn tính năng. Tài liệu gốc đã có yêu cầu này trong [AGENTS.md](../../AGENTS.md), [ARCHITECTURE.md](../poc/ARCHITECTURE.md) và [BACKEND_SCOPE.md](../poc/BACKEND_SCOPE.md). Kế hoạch này cụ thể hóa cách khắc phục các khoảng cách trong implementation.
 
-Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02 DONE; BR-03 DONE; BR-04A DONE; BR-04B…BR-08 chưa triển khai.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
+Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02 DONE; BR-03 DONE; BR-04A DONE; BR-04B DONE; BR-05…BR-08 chưa triển khai.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
 
 ## 1. Baseline và hiệu chỉnh đề xuất review
 
@@ -140,7 +140,7 @@ Các `index.ts` chỉ export public surfaces cần thiết, không export mọi 
 | BR-02 | BR-01 | HTTP parsing/error và cursor fixes có regression | DONE — [evidence](evidence/BR-02/verification.json) |
 | BR-03 | BR-02 | D1 execution/accounting, policy ownership và typed primitives | DONE — [evidence](evidence/BR-03/verification.json) |
 | BR-04A | BR-03 | Task core use-cases, domain model, mapper/read boundary | DONE — [evidence](evidence/BR-04A/verification.json) |
-| BR-04B | BR-04A | Move/bulk/subtasks/Undo và cross-aggregate commands | NOT_STARTED |
+| BR-04B | BR-04A | Move/bulk/subtasks/Undo và cross-aggregate commands | DONE — [evidence](evidence/BR-04B/verification.json) |
 | BR-05 | BR-04B | Các modules workspace/member/team/project/personal/collaboration/projections | NOT_STARTED |
 | BR-06 | BR-05 | File application/R2 adapter và outcome handling rõ | NOT_STARTED |
 | BR-07A | BR-06 | Scoped SQL paged reads + counts | NOT_STARTED |

@@ -73,8 +73,11 @@ export function gatedInsert<Row extends object>(
     [JSON.stringify(rows), ...gate.parameters],
   );
 }
-export async function matchedBatch(r: RequestRepository, statements: D1PreparedStatement[]) {
-  const results = await r.batch(statements);
+export async function matchedBatch<T = unknown>(
+  r: RequestRepository,
+  statements: D1PreparedStatement[],
+) {
+  const results = await r.batch<T>(statements);
   if (results[0]?.meta.changes !== 1)
     throw new ApiFailure('CONFLICT', 'Version, authorization or command scope changed');
   return results;

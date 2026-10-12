@@ -23,9 +23,11 @@ import {
   favoriteTask,
   lifecycleTask,
   moveTask,
+  queryTasks,
+  resolveTaskKey,
+  taskDetail,
   updateTask,
-} from './tasks.ts';
-import { queryTasks, resolveTaskKey, taskDetail } from './tasks/index.ts';
+} from './tasks/index.ts';
 type C = Context<ApiEnvironment>;
 const s = (c: C) => c.get('workspace'),
   r = (c: C) => c.get('repository'),

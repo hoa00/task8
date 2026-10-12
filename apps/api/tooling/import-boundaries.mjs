@@ -34,6 +34,14 @@ const legacyOwners = {
   'projection-page.ts': 'shared',
   'collaboration-page.ts': 'shared',
 };
+// Public facades are explicit contracts; deeper implementation paths remain private.
+const publicFacades = new Set([
+  'src/modules/projects/access.ts',
+  'src/modules/tasks/aggregate.ts',
+  'src/modules/files/plans.ts',
+]);
+const isPublicEntry = (path) =>
+  /^src\/modules\/[^/]+\/index\.ts$/.test(path) || publicFacades.has(path);
 const layers = {
   http: new Set(['http', 'application', 'shared', 'context']),
   application: new Set([
@@ -117,7 +125,7 @@ export function importsOf(path, content) {
 
 function publicLayers(files, from, specifier, target, seen = new Set()) {
   if (seen.has(target)) return [classify(target).layer];
-  if (!/^src\/modules\/[^/]+\/index\.ts$/.test(target)) return [classify(target).layer];
+  if (!isPublicEntry(target)) return [classify(target).layer];
   const source = ts.createSourceFile(from, files.get(from), ts.ScriptTarget.Latest, true);
   const imports = source.statements.filter(
     (node) =>
@@ -203,7 +211,7 @@ export function inspectBoundaries(files) {
         destination.owner &&
         source.owner !== destination.owner &&
         destination.owner !== 'shared' &&
-        !/^src\/modules\/[^/]+\/index\.ts$/.test(target)
+        !isPublicEntry(target)
       )
         add(from, target, 'public-entry');
       if (

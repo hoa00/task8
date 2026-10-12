@@ -1,3 +1,4 @@
+import { moveTaskFiles } from '../../files/plans.ts';
 import type { TaskProjection } from './model.ts';
 import type { Plan } from './plan.ts';
 import { taskSelect } from './reads.ts';
@@ -10,7 +11,7 @@ import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts'
 import type { SqlPredicate } from '../../../db/commands.ts';
 import { exactSet, fitBatch, gatedInsert, markerSql } from '../../../db/commands.ts';
 import { ApiFailure } from '../../../shared/errors.ts';
-import { actorParameters, actorSql } from '../../projects/index.ts';
+import { actorParameters, actorSql } from '../../projects/access.ts';
 
 const fields = [
   'projectId',
@@ -145,20 +146,7 @@ export async function execute(r: RequestRepository, s: WorkspaceContext, plan: P
   const moves = plan.changed.filter((t) =>
     plan.before.some((b) => b.id === t.id && b.projectId !== t.projectId),
   );
-  if (moves.length)
-    statements.push(
-      r.prepare(
-        `UPDATE files SET projectId=(SELECT json_extract(value,'$.projectId') FROM json_each(?) WHERE json_extract(value,'$.id')=files.taskId),version=version+1,updatedAt=?,lastMutationId=? WHERE workspaceId=? AND taskId IN (SELECT json_extract(value,'$.id') FROM json_each(?)) AND ${gate.sql}`,
-        [
-          JSON.stringify(moves),
-          now,
-          marker,
-          s.workspaceId,
-          JSON.stringify(moves),
-          ...gate.parameters,
-        ],
-      ),
-    );
+  if (moves.length) statements.push(moveTaskFiles(r, s, moves, now, marker, gate));
   if (plan.created.length) {
     const columns = [
         ...fields,

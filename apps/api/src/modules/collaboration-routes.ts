@@ -13,9 +13,10 @@ import {
   readQuery as query,
 } from '../http/request.ts';
 import type { ApiEnvironment } from '../runtime.ts';
+import { serverClock } from '../shared/clock.ts';
 import { listActivity } from './activity.ts';
 import { createComment, lifecycleComment, listComments, reactComment } from './comments.ts';
-import { mutateSubtask } from './task-children.ts';
+import { mutateSubtask } from './tasks/index.ts';
 type C = Context<ApiEnvironment>;
 const r = (c: C) => c.get('repository'),
   s = (c: C) => c.get('workspace'),
@@ -31,7 +32,13 @@ collaborationRoutes.post(W + '/tasks/:taskId/subtasks', async (c) => {
   });
   return c.json(
     operations.createSubtask.response.parse({
-      data: await mutateSubtask(r(c), s(c), input.taskId, input.body, Date.now(), 'create'),
+      data: await mutateSubtask(
+        r(c),
+        s(c),
+        input.taskId,
+        { operation: 'create', input: input.body },
+        serverClock.now(),
+      ),
     }),
     201,
   );
@@ -49,10 +56,8 @@ collaborationRoutes.patch(W + '/tasks/:taskId/subtasks/:subtaskId', async (c) =>
         r(c),
         s(c),
         input.taskId,
-        input.body,
-        Date.now(),
-        'update',
-        input.subtaskId,
+        { operation: 'update', input: input.body, childId: input.subtaskId },
+        serverClock.now(),
       ),
     }),
   );
@@ -70,10 +75,8 @@ collaborationRoutes.delete(W + '/tasks/:taskId/subtasks/:subtaskId', async (c) =
         r(c),
         s(c),
         input.taskId,
-        input.body,
-        Date.now(),
-        'delete',
-        input.subtaskId,
+        { operation: 'delete', input: input.body, childId: input.subtaskId },
+        serverClock.now(),
       ),
     }),
   );
@@ -91,10 +94,8 @@ collaborationRoutes.post(W + '/tasks/:taskId/subtasks/:subtaskId/promote', async
         r(c),
         s(c),
         input.taskId,
-        input.body,
-        Date.now(),
-        'promote',
-        input.subtaskId,
+        { operation: 'promote', input: input.body, childId: input.subtaskId },
+        serverClock.now(),
       ),
     }),
   );
@@ -119,7 +120,7 @@ collaborationRoutes.post(W + '/tasks/:taskId/comments', async (c) => {
   });
   return c.json(
     operations.createComment.response.parse({
-      data: await createComment(r(c), s(c), input.taskId, input.body, Date.now()),
+      data: await createComment(r(c), s(c), input.taskId, input.body, serverClock.now()),
     }),
     201,
   );
@@ -144,7 +145,7 @@ for (const [method, op, restore] of [
             input.commentId,
             input.body.expectedVersion,
             restore,
-            Date.now(),
+            serverClock.now(),
           ),
         }),
       );
@@ -163,7 +164,14 @@ for (const [method, op, add] of [
     });
     return c.json(
       operations[op].response.parse({
-        data: await reactComment(r(c), s(c), input.commentId, input.reactionKey, add, Date.now()),
+        data: await reactComment(
+          r(c),
+          s(c),
+          input.commentId,
+          input.reactionKey,
+          add,
+          serverClock.now(),
+        ),
       }),
     );
   });

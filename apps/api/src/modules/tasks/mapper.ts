@@ -1,4 +1,5 @@
-import { TaskSchema, TaskStatusSchema } from '@studio/contracts/api';
+import type { SubtaskDto } from '@studio/contracts/api';
+import { SubtaskSchema, TaskSchema, TaskStatusSchema } from '@studio/contracts/api';
 import { instant, nullableInstant } from '../../shared/clock.ts';
 import type { CompletionState } from './domain/model.ts';
 
@@ -71,5 +72,28 @@ export function taskDto(t: TaskDtoInput) {
     subtaskSummary: { total: t.subtaskTotal, completed: t.subtaskDone },
     attachmentCount: t.attachmentCount,
     commentCount: t.commentCount,
+  });
+}
+
+export interface SubtaskDtoInput {
+  id: string;
+  taskId: string;
+  title: string;
+  done: boolean | number;
+  assigneeId: string | null;
+  dueDate: string | null;
+  note: string;
+  position: number;
+}
+export function subtaskDto(c: SubtaskDtoInput): SubtaskDto {
+  return SubtaskSchema.parse({
+    id: c.id,
+    taskId: c.taskId,
+    title: c.title,
+    done: !!c.done,
+    assigneeId: c.assigneeId,
+    dueDate: c.dueDate,
+    note: c.note,
+    position: c.position,
   });
 }

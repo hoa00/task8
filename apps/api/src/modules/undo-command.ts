@@ -10,7 +10,7 @@ import { undoComment } from './comments.ts';
 import { undoFile } from './files.ts';
 import { actorParameters, actorSql, administrator, writeAccessSql } from './projects/index.ts';
 import { projectRow } from './read-model.ts';
-import { undoTasks } from './task-undo.ts';
+import { undoTasks } from './tasks/index.ts';
 const epoch = (value: string | null) => (value === null ? null : Date.parse(value));
 export async function undoCommand(
   r: RequestRepository,

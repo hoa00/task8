@@ -23,8 +23,8 @@ import { readBootstrap } from './bootstrap.ts';
 import { projectionPage } from './projection-page.ts';
 import { readAccessSql as accessSql } from './projects/index.ts';
 import { projectCatalog, projectRow, today } from './read-model.ts';
-import type { TaskProjection } from './task-read.ts';
-import { taskDataset, taskDto, taskSelect } from './task-read.ts';
+import type { TaskProjection } from './tasks/index.ts';
+import { taskDataset, taskDto, taskSelect } from './tasks/index.ts';
 export async function home(
   r: RequestRepository,
   s: WorkspaceContext,

@@ -161,3 +161,18 @@ test('public facade cannot hide application dependency from persistence', () => 
     ),
   );
 });
+
+test('only listed cross-aggregate fragment facade is public', () => {
+  const valid = files({
+    'src/modules/tasks/persistence/commands.ts':
+      "import {moveTaskFiles} from '../../files/plans.ts';",
+    'src/modules/files/plans.ts': "export {moveTaskFiles} from './persistence/associations.ts';",
+    'src/modules/files/persistence/associations.ts': '',
+  });
+  assert.equal(checkBoundaries(valid, empty).status, 'PASS');
+  valid.set(
+    'src/modules/tasks/persistence/commands.ts',
+    "import {moveTaskFiles} from '../../files/persistence/associations.ts';",
+  );
+  assert.throws(() => checkBoundaries(valid, empty));
+});

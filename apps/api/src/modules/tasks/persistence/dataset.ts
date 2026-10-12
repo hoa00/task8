@@ -1,7 +1,7 @@
 import type { EntityId } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { members } from '../../members/index.ts';
-import { readAccessSql as accessSql } from '../../projects/index.ts';
+import { readAccessSql as accessSql } from '../../projects/access.ts';
 import { today } from '../../workspaces/index.ts';
 import type { TaskProjection } from './model.ts';
 import { taskSelect } from './reads.ts';

@@ -16,9 +16,9 @@ import { writeAccessSql } from './projects/index.ts';
 import { fitBatch } from '../db/commands.ts';
 import { instant } from '../shared/clock.ts';
 import { newId } from '../shared/ids.ts';
-import { childEvent, childGate, writableTask } from './task-children.ts';
-import type { TaskProjection } from './task-read.ts';
-import { taskDto, taskRow, taskSelect } from './task-read.ts';
+import { childEvent, childGate, writableTask } from './tasks/aggregate.ts';
+import type { TaskProjection } from './tasks/index.ts';
+import { taskDto, taskRow, taskSelect } from './tasks/index.ts';
 type CommentRow = Omit<typeof comments.$inferSelect, 'mentionedMemberIdsJson'> & {
   mentionedMemberIdsJson: string;
 };

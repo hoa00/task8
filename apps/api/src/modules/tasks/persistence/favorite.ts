@@ -8,7 +8,7 @@ import type { EntityId } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { fitBatch, markerSql } from '../../../db/commands.ts';
 import { ApiFailure } from '../../../shared/errors.ts';
-import { actorParameters, actorSql } from '../../projects/index.ts';
+import { actorParameters, actorSql } from '../../projects/access.ts';
 
 export async function commitFavorite(
   r: RequestRepository,

@@ -7,7 +7,7 @@ import { instant } from '../shared/clock.ts';
 import { historyPage } from './collaboration-page.ts';
 import { readAccessSql as accessSql } from './projects/index.ts';
 import { member, projectRow } from './read-model.ts';
-import { taskRow } from './task-read.ts';
+import { taskRow } from './tasks/index.ts';
 export async function listActivity(
   r: RequestRepository,
   s: WorkspaceContext,

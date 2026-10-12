@@ -7,13 +7,13 @@ import { execute as executePlan } from '../persistence/commands.ts';
 import type { TaskProjection, TaskRow } from '../persistence/model.ts';
 import type { Plan } from '../persistence/plan.ts';
 import { childRows, recurrenceSlots, requestTask, taskRow } from '../persistence/reads.ts';
+import { childSnapshotGuard, recurrenceSnapshotGuard } from '../persistence/snapshots.ts';
 import { labelIds, visibleDependencies } from '../persistence/values.ts';
 
 import type { CreateTaskInput, UndoDescriptor } from '@studio/contracts/api';
 import { EntityIdSchema } from '@studio/contracts/api';
 import { nextRecurrenceDate } from '@studio/domain';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
-import { exactSet } from '../../../db/commands.ts';
 import { encodeUndoPayload } from '../../../db/undo.ts';
 import { instant, nullableInstant } from '../../../shared/clock.ts';
 import { ApiFailure } from '../../../shared/errors.ts';
@@ -148,20 +148,7 @@ export async function copiedChildren(
   const rows = plan.sourceChildren
     ? plan.sourceChildren.filter((c) => c.taskId === t.id)
     : await childRows(r, s, t.id);
-  if (!plan.sourceChildren)
-    plan.guards.push(
-      exactSet('subtasks', 'workspaceId=? AND taskId=?', [s.workspaceId, t.id], rows, [
-        'id',
-        'title',
-        'done',
-        'assigneeId',
-        'dueDate',
-        'note',
-        'position',
-        'createdAt',
-        'updatedAt',
-      ]),
-    );
+  if (!plan.sourceChildren) plan.guards.push(childSnapshotGuard(s, t.id, rows));
   const copied = rows.map((c) => ({
     ...c,
     id: plan.ids(),
@@ -185,16 +172,7 @@ export async function recurrence(
   const existing = plan.slots
     ? plan.slots.filter((t) => t.recurrenceSourceTaskId === old.id)
     : await recurrenceSlots(r, s, old.id);
-  if (!plan.slots)
-    plan.guards.push(
-      exactSet(
-        'tasks',
-        'workspaceId=? AND recurrenceSourceTaskId=?',
-        [s.workspaceId, old.id],
-        existing,
-        ['id', 'version', 'recurrenceSourceTaskId'],
-      ),
-    );
+  if (!plan.slots) plan.guards.push(recurrenceSnapshotGuard(s, old.id, existing));
   if (existing.length) return;
   const due = nextRecurrenceDate(
       DateOnlySchema.parse(next.dueDate),

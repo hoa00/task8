@@ -1,5 +1,5 @@
 import type { EntityId, TaskQuery } from '@studio/contracts/api';
-import { FileSchema, SubtaskSchema } from '@studio/contracts/api';
+import { FileSchema } from '@studio/contracts/api';
 import {
   compareTaskTuple,
   filterTasks,
@@ -10,7 +10,7 @@ import {
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { instant } from '../../../shared/clock.ts';
 import { decodeCursor, encodeCursor, queryFingerprint } from '../../../shared/cursor.ts';
-import { taskDto } from '../mapper.ts';
+import { subtaskDto, taskDto } from '../mapper.ts';
 import { taskDataset as readDataset } from '../persistence/dataset.ts';
 import { attachmentRows, childRows, keyTaskId, taskRow } from '../persistence/reads.ts';
 
@@ -24,18 +24,7 @@ export async function taskDetail(r: RequestRepository, s: WorkspaceContext, id: 
   const attachments = row.archivedAt !== null ? [] : await attachmentRows(r, s, id, row.projectId);
   return {
     task: taskDto(row),
-    subtasks: children.map((c) =>
-      SubtaskSchema.parse({
-        id: c.id,
-        taskId: c.taskId,
-        title: c.title,
-        done: !!c.done,
-        assigneeId: c.assigneeId,
-        dueDate: c.dueDate,
-        note: c.note,
-        position: c.position,
-      }),
-    ),
+    subtasks: children.map(subtaskDto),
     attachments: attachments.map((f) =>
       FileSchema.parse({
         id: f.id,
