@@ -1,22 +1,22 @@
 import type { CreateTeamInput, EntityId, MemberDto, UpdateTeamInput } from '@studio/contracts/api';
 import { EntityIdSchema } from '@studio/contracts/api';
-import { exactSet, gatedInsert, matchedBatch } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
+import {
+  exactSet,
+  fitBatch,
+  gatedInsert,
+  markerSql,
+  matchedBatch,
+  patchSql,
+} from '../db/commands.ts';
 import type { workspaceMembers } from '../db/schema.ts';
 import { encodeUndoPayload } from '../db/undo.ts';
+import { nullableInstant } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { newId } from '../shared/ids.ts';
+import { actorParameters, actorSql, administrator } from './projects/index.ts';
 import type { ProjectRow, TeamRow } from './read-model.ts';
 import { members, teamDto, teamRow } from './read-model.ts';
-import {
-  actorParameters,
-  actorSql,
-  administrator,
-  fitBatch,
-  markerSql,
-  newId,
-  nullableInstant,
-  patchSql,
-} from './shared.ts';
 type MemberRow = typeof workspaceMembers.$inferSelect;
 const normalized = (name: string) => name.trim().toLowerCase();
 
@@ -79,7 +79,7 @@ export async function mutateTeam(
     ['id', 'version', 'deletedAt'],
   );
   const guard = {
-    sql: `${actorSql(true)} AND ${scopeGuard.sql} AND ${teamGuard.sql} AND NOT EXISTS (SELECT 1 FROM teams WHERE workspaceId=? AND nameNormalized=? AND deletedAt IS NULL AND id!=?)`,
+    sql: `${actorSql('administrator')} AND ${scopeGuard.sql} AND ${teamGuard.sql} AND NOT EXISTS (SELECT 1 FROM teams WHERE workspaceId=? AND nameNormalized=? AND deletedAt IS NULL AND id!=?)`,
     parameters: [
       ...actorParameters(s),
       ...scopeGuard.parameters,
@@ -233,7 +233,7 @@ export async function deleteTeam(
   const gate = { sql: markerSql('teams'), parameters: [id, marker] };
   const statements = [
     r.prepare(
-      `UPDATE teams SET deletedAt=?,deletedBy=?,version=version+1,updatedAt=?,lastMutationId=? WHERE workspaceId=? AND id=? AND version=? AND deletedAt IS NULL AND ${actorSql(true)} AND ${mg.sql} AND ${pg.sql}`,
+      `UPDATE teams SET deletedAt=?,deletedBy=?,version=version+1,updatedAt=?,lastMutationId=? WHERE workspaceId=? AND id=? AND version=? AND deletedAt IS NULL AND ${actorSql('administrator')} AND ${mg.sql} AND ${pg.sql}`,
       [
         now,
         s.memberId,

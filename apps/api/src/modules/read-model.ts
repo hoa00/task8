@@ -7,33 +7,45 @@ import {
   RestrictedProjectSchema,
   TaskSchema,
   TeamSchema,
+  VisibilitySchema,
 } from '@studio/contracts/api';
-import { accessSql } from '../db/guards.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { projects, subtasks, tasks, teams } from '../db/schema.ts';
+import { instant, nullableInstant } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
-import { instant, nullableInstant } from './shared.ts';
+import type { ProjectLifecycle } from './projects/index.ts';
+import {
+  readAccessSql as accessSql,
+  canAccessProject,
+  grantProjection,
+  projectLifecycleSql,
+  writeAccessSql,
+} from './projects/index.ts';
 
 export type ProjectRow = typeof projects.$inferSelect;
 export type TeamRow = typeof teams.$inferSelect;
 export type TaskRow = typeof tasks.$inferSelect;
 export type SubtaskRow = typeof subtasks.$inferSelect;
-export const writeAccessSql = `(p.visibility='workspace' OR EXISTS (SELECT 1 FROM projectMembers pm WHERE pm.workspaceId=p.workspaceId AND pm.projectId=p.id AND pm.memberId=? AND pm.permission='edit'))`;
 export async function projectRow(
   r: RequestRepository,
   s: WorkspaceContext,
   id: EntityId,
-  child = false,
-  deleted = false,
-  write = false,
+  mode: {
+    visibility: 'detail' | 'child';
+    lifecycle: ProjectLifecycle;
+    access: 'read' | 'write';
+  } = { visibility: 'detail', lifecycle: 'detail', access: 'read' },
 ) {
   const [row] = await r.all<ProjectRow & { allowed: number }>(
-    `SELECT p.*,${write ? writeAccessSql : accessSql} allowed FROM projects p WHERE p.workspaceId=? AND p.id=?${deleted ? '' : ' AND p.deletedAt IS NULL'}`,
+    `SELECT p.*,${mode.access === 'write' ? writeAccessSql : accessSql} allowed FROM projects p WHERE p.workspaceId=? AND p.id=?${projectLifecycleSql(mode.lifecycle)}`,
     [s.memberId, s.workspaceId, id],
   );
   if (!row) throw new ApiFailure('NOT_FOUND', 'Project not found');
   if (!row.allowed)
-    throw new ApiFailure(child ? 'NOT_FOUND' : 'FORBIDDEN', 'Project is restricted');
+    throw new ApiFailure(
+      mode.visibility === 'child' ? 'NOT_FOUND' : 'FORBIDDEN',
+      'Project is restricted',
+    );
   return row;
 }
 export async function members(r: RequestRepository, s: WorkspaceContext): Promise<MemberDto[]> {
@@ -134,8 +146,14 @@ export async function projectCatalog(
   );
   return rows.map((p) => {
     if (
-      p.visibility === 'private' &&
-      !grants.some((g) => g.projectId === p.id && g.memberId === s.memberId)
+      !canAccessProject(
+        {
+          visibility: VisibilitySchema.parse(p.visibility),
+          memberId: s.memberId,
+          grants: grants.filter((g) => g.projectId === p.id).map(grantProjection),
+        },
+        'read',
+      )
     ) {
       const lead = memberRows.find((m) => m.id === p.leadId)!;
       return {

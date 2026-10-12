@@ -10,6 +10,7 @@ import {
 } from '@studio/contracts/api';
 import { z } from 'zod';
 import { ApiFailure } from '../shared/errors.ts';
+import { apiLimits } from '../shared/limits.ts';
 const identity = { id: EntityIdSchema, postVersion: VersionSchema };
 const lifecycle = z.strictObject({
   ...identity,
@@ -42,7 +43,7 @@ const association = z.strictObject({
     deletedBy: EntityIdSchema.nullable().optional(),
   }),
 });
-const base = { activityIds: z.array(EntityIdSchema).max(128) };
+const base = { activityIds: z.array(EntityIdSchema).max(apiLimits.maxUndoTargets) };
 export const undoPayloadSchema = z.discriminatedUnion('kind', [
   z.strictObject({
     ...base,
@@ -75,13 +76,13 @@ export const undoPayloadSchema = z.discriminatedUnion('kind', [
   z.strictObject({
     ...base,
     kind: z.literal('tasks.bulkDelete'),
-    targets: z.array(lifecycle).min(1).max(128),
+    targets: z.array(lifecycle).min(1).max(apiLimits.maxUndoTargets),
   }),
   z.strictObject({
     ...base,
     kind: z.literal('tasks.archiveCompletedColumn'),
     columnScope: ColumnScopeSchema,
-    targets: z.array(lifecycle).max(128),
+    targets: z.array(lifecycle).max(apiLimits.maxUndoTargets),
   }),
   z.strictObject({
     ...base,
@@ -103,31 +104,31 @@ export const undoPayloadSchema = z.discriminatedUnion('kind', [
                   updatedAt: z.number().int(),
                 }),
               )
-              .max(128),
+              .max(apiLimits.maxUndoTargets),
             labelIds: z.array(LabelIdSchema).max(20),
-            dependencyIds: z.array(EntityIdSchema).max(128),
+            dependencyIds: z.array(EntityIdSchema).max(apiLimits.maxUndoTargets),
           }),
           z.strictObject({ ...identity, entity: z.literal('dependency') }),
         ]),
       )
       .min(1)
-      .max(128),
+      .max(apiLimits.maxUndoTargets),
   }),
   z.strictObject({
     ...base,
     kind: z.literal('team.delete'),
-    targets: z.array(association).min(1).max(128),
+    targets: z.array(association).min(1).max(apiLimits.maxUndoTargets),
   }),
 ]);
 export function encodeUndoPayload(input: unknown) {
   const payload = undoPayloadSchema.parse(input),
     json = JSON.stringify(payload);
-  if (new TextEncoder().encode(json).byteLength > 65536)
+  if (new TextEncoder().encode(json).byteLength > apiLimits.maxUndoPayloadBytes)
     throw new ApiFailure('PAYLOAD_TOO_LARGE', 'Undo payload exceeds limit');
   return json;
 }
 export function decodeUndoPayload(json: string) {
-  if (new TextEncoder().encode(json).byteLength > 65536)
+  if (new TextEncoder().encode(json).byteLength > apiLimits.maxUndoPayloadBytes)
     throw new ApiFailure('PAYLOAD_TOO_LARGE', 'Undo payload exceeds limit');
   return undoPayloadSchema.parse(JSON.parse(json));
 }

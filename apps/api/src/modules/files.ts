@@ -1,10 +1,9 @@
 import type { EntityId, FileQuerySchema, UploadProjectFileInput } from '@studio/contracts/api';
 import { EntityIdSchema, FileSchema } from '@studio/contracts/api';
 import { displayFileSize, sourceFileType } from '@studio/domain';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { SqlPredicate } from '../db/commands.ts';
-import { gatedInsert } from '../db/commands.ts';
-import { accessSql } from '../db/guards.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { fitBatch, gatedInsert } from '../db/commands.ts';
 import type { commandUndoRecords, files } from '../db/schema.ts';
 import {
   decodeUndoPayload,
@@ -12,10 +11,17 @@ import {
   encodeUndoPayload,
   encodeUndoResult,
 } from '../db/undo.ts';
+import { instant } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { newId } from '../shared/ids.ts';
 import { projectionPage } from './projection-page.ts';
-import { projectRow, writeAccessSql } from './read-model.ts';
-import { actorParameters, actorSql, fitBatch, instant, newId } from './shared.ts';
+import {
+  readAccessSql as accessSql,
+  actorParameters,
+  actorSql,
+  writeAccessSql,
+} from './projects/index.ts';
+import { projectRow } from './read-model.ts';
 export type FileRow = typeof files.$inferSelect;
 export const fileDto = (f: FileRow) =>
   FileSchema.parse({
@@ -58,7 +64,11 @@ async function parent(
   taskId: string | null,
   write = true,
 ) {
-  const p = await projectRow(r, s, EntityIdSchema.parse(projectId), true, false, write);
+  const p = await projectRow(r, s, EntityIdSchema.parse(projectId), {
+    visibility: 'child',
+    lifecycle: 'detail',
+    access: write ? 'write' : 'read',
+  });
   if (p.archivedAt !== null) throw new ApiFailure('CONFLICT', 'Restore project first');
   if (taskId === null) return { table: 'projects' as const, id: p.id, version: p.version };
   const [t] = await r.all<{ id: string; version: number }>(
@@ -595,14 +605,11 @@ export async function undoFile(
     if (!current) throw new ApiFailure('NOT_FOUND', 'File not found');
     if (current.projectId !== t.projectId || current.taskId !== t.taskId)
       throw new ApiFailure('CONFLICT', 'File association changed');
-    const project = await projectRow(
-      r,
-      s,
-      EntityIdSchema.parse(current.projectId),
-      false,
-      true,
-      true,
-    );
+    const project = await projectRow(r, s, EntityIdSchema.parse(current.projectId), {
+      visibility: 'detail',
+      lifecycle: 'including-deleted',
+      access: 'write',
+    });
     if (project.archivedAt !== null || project.deletedAt !== null)
       throw new ApiFailure('CONFLICT', 'Undo parent lifecycle changed');
     if (current.taskId) {

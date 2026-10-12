@@ -7,6 +7,14 @@ test('current API has only exact documented legacy debt', () =>
   assert.equal(checkBoundaries().status, 'PASS'));
 const invalid = [
   [
+    'domain importing request context',
+    {
+      'src/modules/tasks/domain/model.ts':
+        "import type { ApiEnvironment } from '../../../runtime.ts';",
+      'src/runtime.ts': '',
+    },
+  ],
+  [
     'domain importing Hono',
     { 'src/modules/tasks/domain/model.ts': "import type { Context } from 'hono';" },
   ],

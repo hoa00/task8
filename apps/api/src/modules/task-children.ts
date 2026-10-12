@@ -1,13 +1,14 @@
 import type { CreateSubtaskInput, EntityId, UpdateSubtaskInput } from '@studio/contracts/api';
 import { CreateSubtaskInputSchema, EntityIdSchema, SubtaskSchema } from '@studio/contracts/api';
 import { plainDescriptionHtml } from '@studio/domain';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { SqlPredicate } from '../db/commands.ts';
-import { exactSet, gatedInsert, matchedBatch } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { exactSet, fitBatch, gatedInsert, matchedBatch } from '../db/commands.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { newId } from '../shared/ids.ts';
+import { actorParameters, actorSql, writeAccessSql } from './projects/index.ts';
 import type { SubtaskRow, TaskRow } from './read-model.ts';
-import { projectRow, writeAccessSql } from './read-model.ts';
-import { actorParameters, actorSql, fitBatch, newId } from './shared.ts';
+import { projectRow } from './read-model.ts';
 import type { TaskProjection } from './task-read.ts';
 import { taskDetail, taskDto, taskRow, taskSelect } from './task-read.ts';
 import { normalizeTaskDescription, validateRelations } from './task-relations.ts';
@@ -15,7 +16,11 @@ import { normalizeTaskDescription, validateRelations } from './task-relations.ts
 export async function writableTask(r: RequestRepository, s: WorkspaceContext, id: EntityId) {
   const task = await taskRow(r, s, id);
   if (task.archivedAt !== null) throw new ApiFailure('CONFLICT', 'Restore task before editing');
-  await projectRow(r, s, EntityIdSchema.parse(task.projectId), true, false, true);
+  await projectRow(r, s, EntityIdSchema.parse(task.projectId), {
+    visibility: 'child',
+    lifecycle: 'detail',
+    access: 'write',
+  });
   return task;
 }
 // The task is the aggregate root. Every side effect uses this attempt's fresh marker.

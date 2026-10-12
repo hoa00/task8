@@ -35,7 +35,7 @@ const legacyOwners = {
   'collaboration-page.ts': 'shared',
 };
 const layers = {
-  http: new Set(['http', 'application', 'shared']),
+  http: new Set(['http', 'application', 'shared', 'context']),
   application: new Set([
     'application',
     'domain',
@@ -53,7 +53,8 @@ const layers = {
   storage: new Set(['storage', 'domain', 'shared']),
   db: new Set(['db', 'shared']),
   shared: new Set(['shared']),
-  composition: new Set(['composition', 'http', 'application', 'shared', 'db']),
+  composition: new Set(['composition', 'http', 'application', 'shared', 'db', 'context']),
+  context: new Set(['context', 'db', 'application', 'shared']),
 };
 const pureLayers = new Set(['domain', 'policy', 'mapper', 'shared']);
 const packageName = (name) =>
@@ -82,9 +83,11 @@ export function classify(path) {
     layer:
       parts[0] === 'index.ts' || parts[0] === 'app.ts'
         ? 'composition'
-        : parts[0] === 'middleware.ts'
-          ? 'http'
-          : 'shared',
+        : parts[0] === 'runtime.ts'
+          ? 'context'
+          : parts[0] === 'middleware.ts'
+            ? 'http'
+            : 'shared',
   };
 }
 
@@ -133,7 +136,10 @@ export function inspectBoundaries(files) {
           add(from, specifier, 'external-dependency');
         if (
           (pureLayers.has(source.layer) && ['hono', 'drizzle-orm'].includes(dependency)) ||
-          (source.layer !== 'http' && source.layer !== 'composition' && dependency === 'hono')
+          (source.layer !== 'http' &&
+            source.layer !== 'composition' &&
+            source.layer !== 'context' &&
+            dependency === 'hono')
         )
           add(from, specifier, 'layer');
         continue;
@@ -162,7 +168,8 @@ export function inspectBoundaries(files) {
         destination.owner &&
         destination.owner !== 'shared' &&
         source.layer !== 'http' &&
-        source.layer !== 'composition'
+        source.layer !== 'composition' &&
+        source.layer !== 'context'
       )
         add(from, target, 'primitive-owner');
     }

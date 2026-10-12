@@ -5,20 +5,13 @@ import type {
   UpdateWorkspaceInput,
 } from '@studio/contracts/api';
 import { UserProfileSchema } from '@studio/contracts/api';
-import { matchedBatch } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
+import { fitBatch, markerSql, matchedBatch, patchSql } from '../db/commands.ts';
 import type { users, workspaces } from '../db/schema.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { newId } from '../shared/ids.ts';
 import { workspaceDto } from './bootstrap.ts';
-import {
-  actorParameters,
-  actorSql,
-  administrator,
-  fitBatch,
-  markerSql,
-  newId,
-  patchSql,
-} from './shared.ts';
+import { actorParameters, actorSql, administrator } from './projects/index.ts';
 export async function readWorkspace(r: RequestRepository, id: EntityId) {
   const [row] = await r.all<typeof workspaces.$inferSelect>('SELECT * FROM workspaces WHERE id=?', [
     id,
@@ -46,7 +39,7 @@ export async function updateWorkspace(
     ? 'AND NOT EXISTS (SELECT 1 FROM workspaces other WHERE other.slug=? AND other.id!=?)'
     : '';
   const statement = r.prepare(
-    `UPDATE workspaces SET ${fields.sql},version=version+1 WHERE id=? AND version=? AND ${actorSql(true)} ${guard}`,
+    `UPDATE workspaces SET ${fields.sql},version=version+1 WHERE id=? AND version=? AND ${actorSql('administrator')} ${guard}`,
     [
       ...fields.parameters,
       s.workspaceId,

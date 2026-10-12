@@ -1,12 +1,12 @@
 import type { ActivityQuerySchema } from '@studio/contracts/api';
 import { ActivitySchema, EntityIdSchema } from '@studio/contracts/api';
 import type { z } from 'zod';
-import { accessSql } from '../db/guards.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { activity } from '../db/schema.ts';
+import { instant } from '../shared/clock.ts';
 import { historyPage } from './collaboration-page.ts';
+import { readAccessSql as accessSql } from './projects/index.ts';
 import { member, projectRow } from './read-model.ts';
-import { instant } from './shared.ts';
 import { taskRow } from './task-read.ts';
 export async function listActivity(
   r: RequestRepository,
@@ -14,7 +14,12 @@ export async function listActivity(
   query: z.infer<typeof ActivityQuerySchema>,
 ) {
   if (query.taskId) await taskRow(r, s, query.taskId);
-  if (query.projectId) await projectRow(r, s, query.projectId, true);
+  if (query.projectId)
+    await projectRow(r, s, query.projectId, {
+      visibility: 'child',
+      lifecycle: 'detail',
+      access: 'read',
+    });
   if (query.actorId) await member(r, s, query.actorId);
   const rows = await r.all<typeof activity.$inferSelect>(
     `SELECT a.* FROM activity a

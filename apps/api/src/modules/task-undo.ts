@@ -1,11 +1,15 @@
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { SqlPredicate } from '../db/commands.ts';
 import { exactSet, gatedInsert } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import type { commandUndoRecords } from '../db/schema.ts';
 import { decodeUndoPayload, decodeUndoResult, encodeUndoResult } from '../db/undo.ts';
 import { ApiFailure } from '../shared/errors.ts';
-import { writeAccessSql } from './read-model.ts';
-import { actorParameters, actorSql, fitBatch, instant, markerSql, newId } from './shared.ts';
+import { writeAccessSql } from './projects/index.ts';
+
+import { fitBatch, markerSql } from '../db/commands.ts';
+import { instant } from '../shared/clock.ts';
+import { newId } from '../shared/ids.ts';
+import { actorParameters, actorSql } from './projects/index.ts';
 import type { TaskProjection } from './task-read.ts';
 import { taskSelect } from './task-read.ts';
 import { validateRelations } from './task-relations.ts';

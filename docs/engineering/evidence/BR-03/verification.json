@@ -1,0 +1,85 @@
+{
+  "phase": "BR-03",
+  "status": "PASS",
+  "baseline": "60efae46deaf8524cecc3b45f9c348686157ac74",
+  "toolchain": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0"
+  },
+  "commands": "commands.json",
+  "unitTests": 33,
+  "native": [
+    {
+      "feature": "tasks",
+      "status": "PASS",
+      "probes": 316,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "f8efd838164f0e5f278d57cffba31114a35419f43108dbb1e5917d321ebb9a9b",
+      "artifact": "tasks.report.json.gz",
+      "routineOutput": "test-results/api/tasks-HNruzT"
+    },
+    {
+      "feature": "http",
+      "status": "PASS",
+      "probes": 25,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "e739b76e222281f53c185a41a62867d3c16156b2c980f6ffe0d66d55bfadb8d3",
+      "artifact": "http.report.json.gz",
+      "routineOutput": "test-results/api/http-TiGpLD"
+    },
+    {
+      "feature": "collaboration",
+      "status": "PASS",
+      "probes": 219,
+      "snapshotPairs": 21,
+      "checks": 0,
+      "originalSha256": "9e346b0d37cc7c842997f05e332f5d978d7d3531437a6dd22b2aaeb1c96a692c",
+      "artifact": "collaboration.report.json.gz",
+      "routineOutput": "test-results/api/collaboration-sOYW20"
+    },
+    {
+      "feature": "projections",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 14,
+      "checks": 0,
+      "originalSha256": "c856e942f712b1abdd1605d751c17aa6fc6f4d4c856079a94f4938116c5ce8bd",
+      "artifact": "projections.report.json.gz",
+      "routineOutput": "test-results/api/projections-Mv3Hho"
+    },
+    {
+      "feature": "db",
+      "status": "PASS",
+      "probes": 7,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "655c48049dd5364f018c34b7fc11168c98f90a54e4c1667bf1f9ef6e3374de66",
+      "artifact": "db.report.json.gz",
+      "routineOutput": "test-results/api/db-eTQQZX"
+    },
+    {
+      "feature": "files",
+      "status": "PASS",
+      "probes": 141,
+      "snapshotPairs": 0,
+      "checks": 20,
+      "originalSha256": "8866404d533cfc7441f6a95a73d9f4a233782fde22a2342d42d4df6f147e482d",
+      "artifact": "files.report.json.gz",
+      "routineOutput": "test-results/api/files-ST8dz4"
+    },
+    {
+      "feature": "core",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "00bf274fd29bbb69634b6971fdd7ffcdb204b6f7b53280440e3d5a73af81c54b",
+      "artifact": "core.report.json.gz",
+      "routineOutput": "test-results/api/core-TepOPI"
+    }
+  ],
+  "nativeProbes": 1080,
+  "executedInputs": "executed-inputs.json"
+}

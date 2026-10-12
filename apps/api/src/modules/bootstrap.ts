@@ -12,8 +12,7 @@ import {
   WorkspaceSchema,
 } from '@studio/contracts/api';
 import { and, asc, eq, isNull, sql } from 'drizzle-orm';
-import { accessSql } from '../db/guards.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import {
   memberPreferences,
   memberProjectOrder,
@@ -27,6 +26,7 @@ import {
   workspaces,
 } from '../db/schema.ts';
 import { notificationFrom, notificationVisible } from './notifications.ts';
+import { readAccessSql as accessSql } from './projects/index.ts';
 const instant = (value: number) => new Date(value).toISOString();
 export function workspaceDto(row: typeof workspaces.$inferSelect) {
   return WorkspaceSchema.parse({
@@ -92,103 +92,103 @@ export async function readBootstrap(
   currentMember: MemberDto,
   now: number,
 ): Promise<BootstrapDto> {
-  const db = repository.db;
-  repository.reserve(8);
   const [workspaceRows, members, teamRows, projectRows, grants, milestones, favorites, prefs] =
-    await db.batch([
-      db.select().from(workspaces).where(eq(workspaces.id, scope.workspaceId)),
-      db
-        .select({
-          id: workspaceMembers.id,
-          name: users.name,
-          avatarColor: users.avatarColor,
-          teamId: workspaceMembers.teamId,
-        })
-        .from(workspaceMembers)
-        .innerJoin(users, eq(users.id, workspaceMembers.userId))
-        .where(
-          and(
-            eq(workspaceMembers.workspaceId, scope.workspaceId),
-            isNull(workspaceMembers.removedAt),
+    await repository.read((db) =>
+      db.batch([
+        db.select().from(workspaces).where(eq(workspaces.id, scope.workspaceId)),
+        db
+          .select({
+            id: workspaceMembers.id,
+            name: users.name,
+            avatarColor: users.avatarColor,
+            teamId: workspaceMembers.teamId,
+          })
+          .from(workspaceMembers)
+          .innerJoin(users, eq(users.id, workspaceMembers.userId))
+          .where(
+            and(
+              eq(workspaceMembers.workspaceId, scope.workspaceId),
+              isNull(workspaceMembers.removedAt),
+            ),
+          )
+          .orderBy(asc(workspaceMembers.id)),
+        db
+          .select()
+          .from(teams)
+          .where(and(eq(teams.workspaceId, scope.workspaceId), isNull(teams.deletedAt)))
+          .orderBy(asc(teams.id)),
+        db
+          .select({ project: projects, position: memberProjectOrder.position })
+          .from(projects)
+          .leftJoin(
+            memberProjectOrder,
+            and(
+              eq(memberProjectOrder.workspaceId, scope.workspaceId),
+              eq(memberProjectOrder.memberId, scope.memberId),
+              eq(memberProjectOrder.projectId, projects.id),
+            ),
+          )
+          .where(
+            and(
+              eq(projects.workspaceId, scope.workspaceId),
+              isNull(projects.deletedAt),
+              isNull(projects.archivedAt),
+            ),
+          )
+          .orderBy(sql`coalesce(${memberProjectOrder.position}, 2147483647)`, asc(projects.id)),
+        db
+          .select()
+          .from(projectMembers)
+          .innerJoin(
+            projects,
+            and(
+              eq(projectMembers.projectId, projects.id),
+              eq(projectMembers.workspaceId, projects.workspaceId),
+            ),
+          )
+          .where(
+            and(
+              eq(projectMembers.workspaceId, scope.workspaceId),
+              sql`${projects.visibility} = 'workspace' OR EXISTS (SELECT 1 FROM projectMembers visible WHERE visible.workspaceId=${projects.workspaceId} AND visible.projectId=${projects.id} AND visible.memberId=${scope.memberId})`,
+            ),
           ),
-        )
-        .orderBy(asc(workspaceMembers.id)),
-      db
-        .select()
-        .from(teams)
-        .where(and(eq(teams.workspaceId, scope.workspaceId), isNull(teams.deletedAt)))
-        .orderBy(asc(teams.id)),
-      db
-        .select({ project: projects, position: memberProjectOrder.position })
-        .from(projects)
-        .leftJoin(
-          memberProjectOrder,
-          and(
-            eq(memberProjectOrder.workspaceId, scope.workspaceId),
-            eq(memberProjectOrder.memberId, scope.memberId),
-            eq(memberProjectOrder.projectId, projects.id),
+        db
+          .select({ milestone: projectMilestones })
+          .from(projectMilestones)
+          .innerJoin(
+            projects,
+            and(
+              eq(projectMilestones.projectId, projects.id),
+              eq(projectMilestones.workspaceId, projects.workspaceId),
+            ),
+          )
+          .where(
+            and(
+              eq(projectMilestones.workspaceId, scope.workspaceId),
+              sql`${projects.visibility} = 'workspace' OR EXISTS (SELECT 1 FROM projectMembers visible WHERE visible.workspaceId=${projects.workspaceId} AND visible.projectId=${projects.id} AND visible.memberId=${scope.memberId})`,
+            ),
+          )
+          .orderBy(asc(projectMilestones.position)),
+        db
+          .select()
+          .from(projectFavorites)
+          .where(
+            and(
+              eq(projectFavorites.workspaceId, scope.workspaceId),
+              eq(projectFavorites.memberId, scope.memberId),
+            ),
           ),
-        )
-        .where(
-          and(
-            eq(projects.workspaceId, scope.workspaceId),
-            isNull(projects.deletedAt),
-            isNull(projects.archivedAt),
+        db
+          .select()
+          .from(memberPreferences)
+          .where(
+            and(
+              eq(memberPreferences.workspaceId, scope.workspaceId),
+              eq(memberPreferences.memberId, scope.memberId),
+            ),
           ),
-        )
-        .orderBy(sql`coalesce(${memberProjectOrder.position}, 2147483647)`, asc(projects.id)),
-      db
-        .select()
-        .from(projectMembers)
-        .innerJoin(
-          projects,
-          and(
-            eq(projectMembers.projectId, projects.id),
-            eq(projectMembers.workspaceId, projects.workspaceId),
-          ),
-        )
-        .where(
-          and(
-            eq(projectMembers.workspaceId, scope.workspaceId),
-            sql`${projects.visibility} = 'workspace' OR EXISTS (SELECT 1 FROM projectMembers visible WHERE visible.workspaceId=${projects.workspaceId} AND visible.projectId=${projects.id} AND visible.memberId=${scope.memberId})`,
-          ),
-        ),
-      db
-        .select({ milestone: projectMilestones })
-        .from(projectMilestones)
-        .innerJoin(
-          projects,
-          and(
-            eq(projectMilestones.projectId, projects.id),
-            eq(projectMilestones.workspaceId, projects.workspaceId),
-          ),
-        )
-        .where(
-          and(
-            eq(projectMilestones.workspaceId, scope.workspaceId),
-            sql`${projects.visibility} = 'workspace' OR EXISTS (SELECT 1 FROM projectMembers visible WHERE visible.workspaceId=${projects.workspaceId} AND visible.projectId=${projects.id} AND visible.memberId=${scope.memberId})`,
-          ),
-        )
-        .orderBy(asc(projectMilestones.position)),
-      db
-        .select()
-        .from(projectFavorites)
-        .where(
-          and(
-            eq(projectFavorites.workspaceId, scope.workspaceId),
-            eq(projectFavorites.memberId, scope.memberId),
-          ),
-        ),
-      db
-        .select()
-        .from(memberPreferences)
-        .where(
-          and(
-            eq(memberPreferences.workspaceId, scope.workspaceId),
-            eq(memberPreferences.memberId, scope.memberId),
-          ),
-        ),
-    ]);
+      ]),
+    );
   const workspace = workspaceDto(workspaceRows[0]!);
   // Date-only derives from server clock in workspace timezone; never browser/query time.
   const today = DateOnlySchema.parse(

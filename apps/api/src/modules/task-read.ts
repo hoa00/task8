@@ -7,14 +7,14 @@ import {
   summarizeTasks,
   taskSortValue,
 } from '@studio/domain';
-import { accessSql } from '../db/guards.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { files } from '../db/schema.ts';
+import { instant, nullableInstant } from '../shared/clock.ts';
 import { decodeCursor, encodeCursor, queryFingerprint } from '../shared/cursor.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { readAccessSql as accessSql } from './projects/index.ts';
 import type { SubtaskRow, TaskRow } from './read-model.ts';
 import { members, today } from './read-model.ts';
-import { instant, nullableInstant } from './shared.ts';
 
 export type TaskProjection = TaskRow & {
   projectKey: string;

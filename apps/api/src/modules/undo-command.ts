@@ -1,21 +1,15 @@
 import type { EntityId, MemberDto } from '@studio/contracts/api';
-import { exactSet } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
+import { exactSet, fitBatch, markerSql } from '../db/commands.ts';
 import type { commandUndoRecords } from '../db/schema.ts';
 import { decodeUndoPayload, decodeUndoResult, encodeUndoResult } from '../db/undo.ts';
+import { instant } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { newId } from '../shared/ids.ts';
 import { undoComment } from './comments.ts';
 import { undoFile } from './files.ts';
-import { projectRow, writeAccessSql } from './read-model.ts';
-import {
-  actorParameters,
-  actorSql,
-  administrator,
-  fitBatch,
-  instant,
-  markerSql,
-  newId,
-} from './shared.ts';
+import { actorParameters, actorSql, administrator, writeAccessSql } from './projects/index.ts';
+import { projectRow } from './read-model.ts';
 import { undoTasks } from './task-undo.ts';
 const epoch = (value: string | null) => (value === null ? null : Date.parse(value));
 export async function undoCommand(
@@ -50,7 +44,12 @@ export async function undoCommand(
   if (payload.kind !== record.kind) throw new ApiFailure('INTERNAL_ERROR', 'Invalid Undo record');
   const root = payload.targets[0]!;
   if (payload.kind === 'team.delete') administrator(actor);
-  else await projectRow(r, s, root.id, false, true, true);
+  else
+    await projectRow(r, s, root.id, {
+      visibility: 'detail',
+      lifecycle: 'including-deleted',
+      access: 'write',
+    });
   if (record.resultJson !== null) return decodeUndoResult(record.resultJson);
   const marker = newId(),
     pending = `EXISTS (SELECT 1 FROM commandUndoRecords WHERE workspaceId=? AND id=? AND actorMemberId=? AND consumedAt IS NULL)`,
@@ -102,7 +101,7 @@ export async function undoCommand(
     gate = { sql: markerSql('teams'), parameters: [team.id, marker] };
     statements = [
       r.prepare(
-        `UPDATE teams SET deletedAt=NULL,deletedBy=NULL,version=version+1,updatedAt=?,lastMutationId=? WHERE workspaceId=? AND id=? AND version=? AND deletedAt=? AND deletedBy=? AND nameNormalized=? AND ${pending} AND ${actorSql(true)} AND ${mg.sql} AND ${pg.sql} AND NOT EXISTS (SELECT 1 FROM teams reuse WHERE reuse.workspaceId=? AND reuse.id!=? AND reuse.nameNormalized=? AND reuse.deletedAt IS NULL)`,
+        `UPDATE teams SET deletedAt=NULL,deletedBy=NULL,version=version+1,updatedAt=?,lastMutationId=? WHERE workspaceId=? AND id=? AND version=? AND deletedAt=? AND deletedBy=? AND nameNormalized=? AND ${pending} AND ${actorSql('administrator')} AND ${mg.sql} AND ${pg.sql} AND NOT EXISTS (SELECT 1 FROM teams reuse WHERE reuse.workspaceId=? AND reuse.id!=? AND reuse.nameNormalized=? AND reuse.deletedAt IS NULL)`,
         [
           now,
           marker,

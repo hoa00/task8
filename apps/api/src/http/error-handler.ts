@@ -1,6 +1,7 @@
 import { ApiErrorSchema, errorHttpStatus } from '@studio/contracts/api';
 import type { ErrorHandler } from 'hono';
 import type { ApiEnvironment } from '../runtime.ts';
+import { serverClock } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
 
 export const mapError: ErrorHandler<ApiEnvironment> = (error, context) => {
@@ -12,7 +13,7 @@ export const mapError: ErrorHandler<ApiEnvironment> = (error, context) => {
       errorCode: code,
       errorType: error.name,
       phase: 'request',
-      durationMs: Date.now() - (context.get('requestStartedAt') ?? Date.now()),
+      durationMs: serverClock.now() - (context.get('requestStartedAt') ?? serverClock.now()),
     });
   return context.json(
     ApiErrorSchema.parse({

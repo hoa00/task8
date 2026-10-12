@@ -15,14 +15,14 @@ import {
 } from '@studio/contracts/api';
 import { completedInRollingWeek, homeDeadlines, summarizeTasks } from '@studio/domain';
 import type { z } from 'zod';
-import { accessSql } from '../db/guards.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { files } from '../db/schema.ts';
+import { instant } from '../shared/clock.ts';
 import { listActivity } from './activity.ts';
 import { readBootstrap } from './bootstrap.ts';
 import { projectionPage } from './projection-page.ts';
+import { readAccessSql as accessSql } from './projects/index.ts';
 import { projectCatalog, projectRow, today } from './read-model.ts';
-import { instant } from './shared.ts';
 import type { TaskProjection } from './task-read.ts';
 import { taskDataset, taskDto, taskSelect } from './task-read.ts';
 export async function home(
@@ -84,7 +84,12 @@ export async function calendar(
   query: z.infer<typeof DateRangeQuerySchema> | z.infer<typeof MilestoneQuerySchema>,
   milestones = false,
 ) {
-  if (query.projectId) await projectRow(r, s, query.projectId, true);
+  if (query.projectId)
+    await projectRow(r, s, query.projectId, {
+      visibility: 'child',
+      lifecycle: 'detail',
+      access: 'read',
+    });
   const table = milestones ? 'projectMilestones' : 'calendarEvents';
   const rows = await r.all(
     `SELECT e.* FROM ${table} e JOIN projects p ON p.workspaceId=e.workspaceId AND p.id=e.projectId WHERE e.workspaceId=? AND p.archivedAt IS NULL AND p.deletedAt IS NULL AND ${accessSql} ${query.projectId ? 'AND e.projectId=?' : ''} ${query.from ? 'AND e.date>=?' : ''} ${query.to ? 'AND e.date<=?' : ''} ORDER BY e.date,${milestones ? 'e.position' : 'e.localTime'},e.id`,

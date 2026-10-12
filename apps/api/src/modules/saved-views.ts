@@ -1,11 +1,12 @@
 import type { CreateSavedViewInput, EntityId, UpdateSavedViewInput } from '@studio/contracts/api';
 import { EntityIdSchema, SavedViewSchema } from '@studio/contracts/api';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import { matchedBatch } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import type { savedViews } from '../db/schema.ts';
 import { ApiFailure } from '../shared/errors.ts';
-import { projectRow, writeAccessSql } from './read-model.ts';
-import { actorParameters, actorSql, newId } from './shared.ts';
+import { newId } from '../shared/ids.ts';
+import { actorParameters, actorSql, writeAccessSql } from './projects/index.ts';
+import { projectRow } from './read-model.ts';
 type ViewRow = Omit<typeof savedViews.$inferSelect, 'filtersJson'> & { filtersJson: string };
 const dto = (v: ViewRow) =>
   SavedViewSchema.parse({
@@ -26,7 +27,7 @@ function guard(s: WorkspaceContext, id: string) {
   };
 }
 export async function listSavedViews(r: RequestRepository, s: WorkspaceContext, id: EntityId) {
-  await projectRow(r, s, id, true);
+  await projectRow(r, s, id, { visibility: 'child', lifecycle: 'detail', access: 'read' });
   return (
     await r.all<ViewRow>(
       'SELECT * FROM savedViews WHERE workspaceId=? AND projectId=? ORDER BY position,id',
@@ -41,7 +42,11 @@ export async function createSavedView(
   body: CreateSavedViewInput,
   now: number,
 ) {
-  const p = await projectRow(r, s, id, true, false, true);
+  const p = await projectRow(r, s, id, {
+    visibility: 'child',
+    lifecycle: 'detail',
+    access: 'write',
+  });
   if (p.archivedAt !== null)
     throw new ApiFailure('CONFLICT', 'Restore project before saving views');
   const viewId = newId(),
@@ -82,7 +87,11 @@ export async function changeSavedView(
     id,
   ]);
   if (!view) throw new ApiFailure('NOT_FOUND', 'View not found');
-  const p = await projectRow(r, s, EntityIdSchema.parse(view.projectId), true, false, true);
+  const p = await projectRow(r, s, EntityIdSchema.parse(view.projectId), {
+    visibility: 'child',
+    lifecycle: 'detail',
+    access: 'write',
+  });
   if (p.archivedAt !== null)
     throw new ApiFailure('CONFLICT', 'Restore project before changing views');
   const g = guard(s, view.projectId),

@@ -23,21 +23,15 @@ import {
   groupTasks,
   nextRecurrenceDate,
 } from '@studio/domain';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { SqlPredicate } from '../db/commands.ts';
-import { exactSet, gatedInsert } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { exactSet, fitBatch, gatedInsert, markerSql } from '../db/commands.ts';
 import { encodeUndoPayload } from '../db/undo.ts';
+import { instant, nullableInstant } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { newId } from '../shared/ids.ts';
+import { actorParameters, actorSql } from './projects/index.ts';
 import type { SubtaskRow, TaskRow } from './read-model.ts';
-import {
-  actorParameters,
-  actorSql,
-  fitBatch,
-  instant,
-  markerSql,
-  newId,
-  nullableInstant,
-} from './shared.ts';
 import type { TaskProjection } from './task-read.ts';
 import { taskDataset, taskDto, taskRow, taskSelect } from './task-read.ts';
 import type { TaskRelations } from './task-relations.ts';
@@ -530,7 +524,7 @@ async function execute(r: RequestRepository, s: WorkspaceContext, plan: Plan, no
     ['taskLabels', plan.labels],
     ['taskDependencies', plan.dependencies],
   ] as const)
-    if (rows.length) statements.push(gatedInsert(r, table, rows, gate));
+    if (rows.length) statements.push(gatedInsert<(typeof rows)[number]>(r, table, rows, gate));
   const touched = [
     ...new Set([
       ...plan.created.flatMap((t) =>

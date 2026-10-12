@@ -1,9 +1,7 @@
-import type { EntityId, MemberDto, UserProfileDto } from '@studio/contracts/api';
-import type { RequestRepository, WorkspaceContext } from './db/repository.ts';
-export interface Principal {
-  user: UserProfileDto;
-  currentWorkspaceId: EntityId;
-}
+import type { MemberDto } from '@studio/contracts/api';
+import type { RequestRepository, WorkspaceContext } from './db/client.ts';
+import type { AuthenticatedPrincipal as Principal } from './modules/members/index.ts';
+export type { AuthenticatedPrincipal as Principal } from './modules/members/index.ts';
 export type ApiEnvironment = {
   Bindings: CloudflareBindings;
   Variables: {

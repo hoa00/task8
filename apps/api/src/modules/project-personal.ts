@@ -1,10 +1,10 @@
 import type { EntityId } from '@studio/contracts/api';
-import { exactSet, gatedInsert, matchedBatch } from '../db/commands.ts';
-import { accessSql } from '../db/guards.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
+import { exactSet, gatedInsert, markerSql, matchedBatch } from '../db/commands.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { newId } from '../shared/ids.ts';
+import { readAccessSql as accessSql, actorParameters, actorSql } from './projects/index.ts';
 import { projectRow } from './read-model.ts';
-import { actorParameters, actorSql, markerSql, newId } from './shared.ts';
 export async function favoriteProject(
   r: RequestRepository,
   s: WorkspaceContext,
@@ -12,7 +12,7 @@ export async function favoriteProject(
   add: boolean,
   now: number,
 ) {
-  await projectRow(r, s, id, true);
+  await projectRow(r, s, id, { visibility: 'child', lifecycle: 'detail', access: 'read' });
   const permitted = `EXISTS (SELECT 1 FROM projects p WHERE p.workspaceId=? AND p.id=? AND p.deletedAt IS NULL AND ${accessSql}) AND ${actorSql()}`;
   const parameters = [s.workspaceId, id, s.memberId, ...actorParameters(s)];
   const mutation = add

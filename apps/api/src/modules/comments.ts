@@ -1,7 +1,7 @@
 import type { CreateCommentInput, EntityId, ReactionDto } from '@studio/contracts/api';
 import { CommentSchema, EntityIdSchema, ReactionSchema } from '@studio/contracts/api';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import { gatedInsert, matchedBatch } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import type { commandUndoRecords, comments } from '../db/schema.ts';
 import {
   decodeUndoPayload,
@@ -11,8 +11,11 @@ import {
 } from '../db/undo.ts';
 import { ApiFailure } from '../shared/errors.ts';
 import { historyPage } from './collaboration-page.ts';
-import { writeAccessSql } from './read-model.ts';
-import { fitBatch, instant, newId } from './shared.ts';
+import { writeAccessSql } from './projects/index.ts';
+
+import { fitBatch } from '../db/commands.ts';
+import { instant } from '../shared/clock.ts';
+import { newId } from '../shared/ids.ts';
 import { childEvent, childGate, writableTask } from './task-children.ts';
 import type { TaskProjection } from './task-read.ts';
 import { taskDto, taskRow, taskSelect } from './task-read.ts';

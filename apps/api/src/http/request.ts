@@ -6,9 +6,10 @@ import { ApiFailure } from '../shared/errors.ts';
 
 type ApiContext = Context<ApiEnvironment>;
 // Finite transport bound; all supported operation DTOs (including escaped strings) fit.
-export const maxJsonBodyBytes = 16 * 1024 * 1024;
-export const maxUploadBytes = 10485760;
-export const multipartOverheadBytes = 65536;
+import { apiLimits, transportLimits } from '../shared/limits.ts';
+export const maxJsonBodyBytes = transportLimits.maxJsonBodyBytes;
+export const maxUploadBytes = apiLimits.maxUploadBytes;
+export const multipartOverheadBytes = transportLimits.multipartOverheadBytes;
 export function parseRequest<T extends z.ZodType>(schema: T, input: unknown): z.output<T> {
   try {
     return schema.parse(input);

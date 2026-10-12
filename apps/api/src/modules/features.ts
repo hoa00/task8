@@ -227,7 +227,11 @@ for (const [suffix, op, method] of [
 }
 features.get('/workspaces/:workspaceId/projects/:projectId/members', async (c) => {
   await noQuery(c);
-  await projectRow(repo(c), scope(c), pid(c), true);
+  await projectRow(repo(c), scope(c), pid(c), {
+    visibility: 'child',
+    lifecycle: 'detail',
+    access: 'read',
+  });
   const grants = await repo(c).all<{ memberId: string; permission: string }>(
       'SELECT memberId,permission FROM projectMembers WHERE workspaceId=? AND projectId=? ORDER BY memberId',
       [scope(c).workspaceId, pid(c)],
@@ -244,7 +248,11 @@ features.get('/workspaces/:workspaceId/projects/:projectId/members', async (c) =
 });
 features.get('/workspaces/:workspaceId/projects/:projectId/summary', async (c) => {
   await noQuery(c);
-  await projectRow(repo(c), scope(c), pid(c), true);
+  await projectRow(repo(c), scope(c), pid(c), {
+    visibility: 'child',
+    lifecycle: 'detail',
+    access: 'read',
+  });
   const row = (await projectCatalog(repo(c), scope(c), Date.now())).find(
     (p) => p.project.id === pid(c),
   );

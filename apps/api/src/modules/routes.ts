@@ -5,6 +5,7 @@ import { workspaceMembers, workspaces } from '../db/schema.ts';
 import { noInput as noQuery } from '../http/request.ts';
 import { workspaceMiddleware } from '../middleware.ts';
 import type { ApiEnvironment } from '../runtime.ts';
+import { apiLimits } from '../shared/limits.ts';
 import { readBootstrap, workspaceDto } from './bootstrap.ts';
 import { features } from './features.ts';
 export const capabilities = CapabilitiesSchema.parse({
@@ -25,14 +26,7 @@ export const capabilities = CapabilitiesSchema.parse({
     accountSecurity: 'unavailable',
     billing: 'unavailable',
   },
-  limits: {
-    taskPageSize: 50,
-    maxTaskPageSize: 200,
-    maxBulkItems: 20,
-    maxUndoTargets: 128,
-    maxUndoPayloadBytes: 65536,
-    maxUploadBytes: 10485760,
-  },
+  limits: apiLimits,
 });
 export const routes = new Hono<ApiEnvironment>();
 for (const path of [
@@ -50,19 +44,20 @@ routes.get('/session', (c) =>
 );
 routes.get('/workspaces', async (c) => {
   const r = c.get('repository');
-  r.reserve(1);
-  const rows = await r.db
-    .select({ workspace: workspaces })
-    .from(workspaces)
-    .innerJoin(workspaceMembers, eq(workspaceMembers.workspaceId, workspaces.id))
-    .where(
-      and(
-        eq(workspaceMembers.userId, c.get('principal').user.id),
-        eq(workspaceMembers.status, 'active'),
-        isNull(workspaceMembers.removedAt),
-      ),
-    )
-    .orderBy(asc(workspaces.id));
+  const rows = await r.read((db) =>
+    db
+      .select({ workspace: workspaces })
+      .from(workspaces)
+      .innerJoin(workspaceMembers, eq(workspaceMembers.workspaceId, workspaces.id))
+      .where(
+        and(
+          eq(workspaceMembers.userId, c.get('principal').user.id),
+          eq(workspaceMembers.status, 'active'),
+          isNull(workspaceMembers.removedAt),
+        ),
+      )
+      .orderBy(asc(workspaces.id)),
+  );
   return c.json(
     operations.listWorkspaces.response.parse({
       data: rows.map((row) => workspaceDto(row.workspace)),

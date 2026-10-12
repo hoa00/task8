@@ -7,24 +7,23 @@ import type {
 } from '@studio/contracts/api';
 import { catalogs, EntityIdSchema } from '@studio/contracts/api';
 import { addDateDays } from '@studio/domain';
+import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { SqlPredicate } from '../db/commands.ts';
-import { exactSet, gatedInsert, matchedBatch } from '../db/commands.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
-import { encodeUndoPayload } from '../db/undo.ts';
-import { ApiFailure } from '../shared/errors.ts';
-import type { ProjectRow, SubtaskRow, TaskRow } from './read-model.ts';
-import { createdTaskDtos, projectDto, projectRow, today, writeAccessSql } from './read-model.ts';
 import {
-  actorParameters,
-  actorSql,
-  creator,
+  exactSet,
   fitBatch,
-  instant,
+  gatedInsert,
   markerSql,
-  newId,
-  nullableInstant,
+  matchedBatch,
   patchSql,
-} from './shared.ts';
+} from '../db/commands.ts';
+import { encodeUndoPayload } from '../db/undo.ts';
+import { instant, nullableInstant } from '../shared/clock.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { newId } from '../shared/ids.ts';
+import { actorParameters, actorSql, creator, writeAccessSql } from './projects/index.ts';
+import type { ProjectRow, SubtaskRow, TaskRow } from './read-model.ts';
+import { createdTaskDtos, projectDto, projectRow, today } from './read-model.ts';
 
 async function references(
   r: RequestRepository,
@@ -89,7 +88,11 @@ async function response(
   created = false,
   undo: { id: EntityId; kind: 'project.archive' | 'project.delete' } | null = null,
 ) {
-  const p = await projectRow(r, s, pid, false, true);
+  const p = await projectRow(r, s, pid, {
+    visibility: 'detail',
+    lifecycle: 'including-deleted',
+    access: 'read',
+  });
   return {
     project: await projectDto(r, s, p, now),
     createdTasks: created ? await createdTaskDtos(r, s, p) : [],
@@ -304,7 +307,7 @@ export async function createProject(
   const ref = referenceGuard(s, p.leadId, p.teamId),
     guard = {
       sql: [
-        actorSql(false, true),
+        actorSql('creator'),
         ref.sql,
         'NOT EXISTS (SELECT 1 FROM projects WHERE workspaceId=? AND key=?)',
         ...copyGuards.map((g) => g.sql),
@@ -338,7 +341,7 @@ export async function createProject(
     ['taskLabels', labelRows],
     ['taskDependencies', depRows],
   ] as const)
-    if (rows.length) statements.push(gatedInsert(r, table, rows, gate));
+    if (rows.length) statements.push(gatedInsert<(typeof rows)[number]>(r, table, rows, gate));
   statements.push(
     gatedInsert(
       r,
@@ -372,7 +375,11 @@ export async function duplicateProject(
   body: DuplicateProjectInput,
   now: number,
 ) {
-  const source = await projectRow(r, s, id, false, false, true);
+  const source = await projectRow(r, s, id, {
+    visibility: 'detail',
+    lifecycle: 'detail',
+    access: 'write',
+  });
   return createProject(
     r,
     s,
@@ -398,7 +405,11 @@ export async function updateProject(
   body: UpdateProjectInput,
   now: number,
 ) {
-  const old = await projectRow(r, s, id, false, false, true),
+  const old = await projectRow(r, s, id, {
+      visibility: 'detail',
+      lifecycle: 'detail',
+      access: 'write',
+    }),
     { expectedVersion, ...patch } = body;
   if (old.version !== expectedVersion || old.archivedAt !== null)
     throw new ApiFailure('CONFLICT', 'Restore or refresh project');
@@ -448,7 +459,11 @@ export async function lifecycleProject(
   operation: 'archive' | 'restore' | 'delete' | 'restore-deleted',
   now: number,
 ) {
-  const old = await projectRow(r, s, id, false, operation === 'restore-deleted', true);
+  const old = await projectRow(r, s, id, {
+    visibility: 'detail',
+    lifecycle: operation === 'restore-deleted' ? 'including-deleted' : 'detail',
+    access: 'write',
+  });
   if (
     old.version !== expectedVersion ||
     (operation === 'archive' && old.archivedAt !== null) ||

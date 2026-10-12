@@ -14,18 +14,6 @@
       "removeIn": "BR-05"
     },
     {
-      "from": "src/middleware.ts",
-      "to": "src/db/schema.ts",
-      "rule": "layer",
-      "removeIn": "BR-03"
-    },
-    {
-      "from": "src/middleware.ts",
-      "to": "src/db/repository.ts",
-      "rule": "layer",
-      "removeIn": "BR-03"
-    },
-    {
       "from": "src/modules/activity.ts",
       "to": "src/modules/read-model.ts",
       "rule": "public-entry",
@@ -64,12 +52,6 @@
     {
       "from": "src/modules/comments.ts",
       "to": "src/modules/task-children.ts",
-      "rule": "public-entry",
-      "removeIn": "BR-05"
-    },
-    {
-      "from": "src/modules/comments.ts",
-      "to": "src/modules/read-model.ts",
       "rule": "public-entry",
       "removeIn": "BR-05"
     },
@@ -188,12 +170,6 @@
       "removeIn": "BR-05"
     },
     {
-      "from": "src/modules/shared.ts",
-      "to": "src/db/repository.ts",
-      "rule": "layer",
-      "removeIn": "BR-03"
-    },
-    {
       "from": "src/modules/task-children.ts",
       "to": "src/modules/read-model.ts",
       "rule": "public-entry",
@@ -201,18 +177,6 @@
     },
     {
       "from": "src/modules/task-read.ts",
-      "to": "src/modules/read-model.ts",
-      "rule": "public-entry",
-      "removeIn": "BR-04B"
-    },
-    {
-      "from": "src/modules/task-relations.ts",
-      "to": "src/modules/read-model.ts",
-      "rule": "public-entry",
-      "removeIn": "BR-04B"
-    },
-    {
-      "from": "src/modules/task-undo.ts",
       "to": "src/modules/read-model.ts",
       "rule": "public-entry",
       "removeIn": "BR-04B"
@@ -258,12 +222,6 @@
       "to": "src/modules/bootstrap.ts",
       "rule": "public-entry",
       "removeIn": "BR-05"
-    },
-    {
-      "from": "src/runtime.ts",
-      "to": "src/db/repository.ts",
-      "rule": "layer",
-      "removeIn": "BR-03"
     }
   ],
   "cycles": []
