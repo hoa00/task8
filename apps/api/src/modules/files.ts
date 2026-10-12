@@ -15,13 +15,13 @@ import { instant } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
 import { newId } from '../shared/ids.ts';
 import { projectionPage } from './projection-page.ts';
+import { projectRow } from './projects/access.ts';
 import {
   readAccessSql as accessSql,
   actorParameters,
   actorSql,
   writeAccessSql,
 } from './projects/index.ts';
-import { projectRow } from './read-model.ts';
 export type FileRow = typeof files.$inferSelect;
 export const fileDto = (f: FileRow) =>
   FileSchema.parse({

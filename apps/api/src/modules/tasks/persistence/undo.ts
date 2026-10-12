@@ -6,7 +6,7 @@ import { decodeUndoResult, encodeUndoResult } from '../../../db/undo.ts';
 import { instant } from '../../../shared/clock.ts';
 import { ApiFailure } from '../../../shared/errors.ts';
 import type { IdGenerator } from '../../../shared/ids.ts';
-import { actorParameters, actorSql } from '../../projects/index.ts';
+import { actorParameters, actorSql } from '../../projects/access.ts';
 import type { TaskProjection } from './model.ts';
 import type { TaskUndoPayload } from './undo-model.ts';
 

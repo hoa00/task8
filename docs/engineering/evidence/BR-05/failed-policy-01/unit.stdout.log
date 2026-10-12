@@ -1,0 +1,73 @@
+✔ feature runner selects known suites and rejects typos (1.900361ms)
+✔ isolated run IDs, storage and ephemeral ports (16.463324ms)
+✔ startup timeout terminates owned process even before launch returns (130.55397ms)
+✔ early exit records real code and command failure cannot pass (90.897085ms)
+✔ spawn failure preserves ENOENT without trying to kill an unowned PID (70.568821ms)
+(node:30725) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+API request failed {
+  requestId: undefined,
+  operation: undefined,
+  errorCode: 'INTERNAL_ERROR',
+  errorType: 'ZodError',
+  phase: 'request',
+  durationMs: 0
+}
+✔ internal DTO ZodError returns500 with no internal message (56.65586ms)
+✔ project/member tuple cursor survives removed or renamed anchors (26.415841ms)
+(node:30726) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ request schema failures are400, with valid null/omitted input intact (70.791992ms)
+✔ all route groups use decimal limit, strict bool/null/filter decoding (7.409315ms)
+✔ actual streamed bytes are bounded without trusting Content-Length (1.333235ms)
+✔ server log has correlation fields and never logs the error payload (0.753879ms)
+✔ current API has only exact documented legacy debt (439.925238ms)
+✔ reject domain importing request context (0.730574ms)
+✔ reject domain importing Hono (0.293594ms)
+✔ reject domain importing D1 rows (0.231269ms)
+✔ reject mapper importing persistence (0.247404ms)
+✔ reject route importing DB (0.25771ms)
+✔ reject application importing Hono (0.180532ms)
+✔ reject shared importing business public API (0.268546ms)
+✔ reject cross-feature deep import (0.236447ms)
+✔ reject frontend relative import (0.326434ms)
+✔ reject frontend package alias (0.21859ms)
+✔ reject computed dynamic import (0.35055ms)
+✔ reject reexport internal business API (0.325622ms)
+✔ allow cross-feature public API and pure domain imports (0.340624ms)
+✔ AST ignores comments and strings, detects static dynamic imports (1.194344ms)
+✔ reject new cycle and reject new edge inside a legacy cycle (1.550022ms)
+✔ reject stale and wildcard legacy exemptions (0.384171ms)
+✔ named public persistence predicate preserves its leaf layer (0.38382ms)
+✔ public facade cannot hide application dependency from persistence (0.309257ms)
+✔ only listed cross-aggregate fragment facade is public (0.497832ms)
+(node:30777) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ projection desc primary keeps ascending ID ties and survives a removed anchor (33.710242ms)
+✔ history descending feed keeps descending ID ties after anchor removal (7.4163ms)
+(node:30784) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ canonical limits match contracts and existing manifest (1.719117ms)
+✔ actor active/admin/creator matrix includes removed and invited states (0.375077ms)
+✔ private view differs from edit, and owner role never bypasses absent grant (0.262326ms)
+(node:30796) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ dedicated completion preserves noop, restores previous status and falls back to todo (0.93295ms)
+✔ status transition preserves original completion timestamp and records previous status only on entering done (0.790454ms)
+✔ internal status corruption is rejected by projection mapper (0.751074ms)
+(node:30803) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ ordering checks adjacent neighbors, endpoints and insertion position (2.582381ms)
+✔ exhausted gap produces complete deterministic rebalance without mutating snapshots (0.944217ms)
+✔ rebalance bounds and unsafe integer positions reject before writes (0.622861ms)
+(node:30810) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ every canonical Undo kind has an owned handler and registry construction performs no I/O (1.2114ms)
+ℹ tests 43
+ℹ suites 0
+ℹ pass 43
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2476.297578

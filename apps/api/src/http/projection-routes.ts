@@ -1,0 +1,11 @@
+import { Hono } from 'hono';
+import { notificationRoutes } from '../modules/notifications/routes.ts';
+import { preferenceRoutes } from '../modules/preferences/routes.ts';
+import { projectionRoutes as projectionReadRoutes } from '../modules/projections/routes.ts';
+import { personalProjectRoutes } from '../modules/projects/personal-routes.ts';
+import type { ApiEnvironment } from '../runtime.ts';
+export const projectionRoutes = new Hono<ApiEnvironment>();
+projectionRoutes.route('/', projectionReadRoutes);
+projectionRoutes.route('/', preferenceRoutes);
+projectionRoutes.route('/', notificationRoutes);
+projectionRoutes.route('/', personalProjectRoutes);

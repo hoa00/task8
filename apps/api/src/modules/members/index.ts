@@ -1,4 +1,6 @@
-export { membership, principal } from './persistence/identity.ts';
-export type { AuthenticatedPrincipal } from './persistence/identity.ts';
+export { membership, principal } from './application/identity.ts';
+export type { AuthenticatedPrincipal } from './application/identity.ts';
 
-export { member, members } from './persistence/directory.ts';
+export { member, members } from './application/directory.ts';
+export { listMembers, memberSummary } from './application/member-queries.ts';
+export { updateProfile } from './application/profile.ts';

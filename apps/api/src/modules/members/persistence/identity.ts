@@ -1,20 +1,13 @@
-import type { EntityId, UserProfileDto } from '@studio/contracts/api';
-import { MemberSchema, UserProfileSchema } from '@studio/contracts/api';
+import type { EntityId } from '@studio/contracts/api';
 import { and, eq, isNull } from 'drizzle-orm';
 import type { RequestRepository } from '../../../db/client.ts';
 import { users, workspaceMembers } from '../../../db/schema.ts';
-import { nullableInstant } from '../../../shared/clock.ts';
-import { ApiFailure } from '../../../shared/errors.ts';
-export interface AuthenticatedPrincipal {
-  user: UserProfileDto;
-  currentWorkspaceId: EntityId;
-}
-export async function principal(
+export function principalIdentity(
   repository: RequestRepository,
   userId: EntityId,
   currentWorkspaceId: EntityId,
-): Promise<AuthenticatedPrincipal> {
-  const [identity] = await repository.read((db) =>
+) {
+  return repository.read((db) =>
     db
       .select({ user: users })
       .from(users)
@@ -29,27 +22,13 @@ export async function principal(
       )
       .limit(1),
   );
-  if (!identity) throw new ApiFailure('UNAUTHENTICATED', 'Valid local principal required');
-  const u = identity.user;
-  return {
-    user: UserProfileSchema.parse({
-      id: u.id,
-      name: u.name,
-      email: u.displayEmail,
-      title: u.title,
-      avatarColor: u.avatarColor,
-      timezone: u.timezone,
-      version: u.version,
-    }),
-    currentWorkspaceId,
-  };
 }
-export async function membership(
+export function membershipIdentity(
   repository: RequestRepository,
   workspaceId: EntityId,
   userId: EntityId,
 ) {
-  const [row] = await repository.read((db) =>
+  return repository.read((db) =>
     db
       .select({ member: workspaceMembers, user: users })
       .from(workspaceMembers)
@@ -64,22 +43,4 @@ export async function membership(
       )
       .limit(1),
   );
-  if (!row) throw new ApiFailure('NOT_FOUND', 'Workspace not found');
-  const m = row.member,
-    u = row.user;
-  return MemberSchema.parse({
-    id: m.id,
-    workspaceId: m.workspaceId,
-    userId: m.userId,
-    name: u.name,
-    email: u.displayEmail,
-    title: u.title,
-    avatarColor: u.avatarColor,
-    timezone: u.timezone,
-    role: m.role,
-    status: m.status,
-    teamId: m.teamId,
-    lastSeenAt: nullableInstant(m.lastSeenAt),
-    version: m.version,
-  });
 }

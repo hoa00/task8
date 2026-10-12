@@ -36,12 +36,21 @@ const legacyOwners = {
 };
 // Public facades are explicit contracts; deeper implementation paths remain private.
 const publicFacades = new Set([
+  'src/modules/tasks/subtask-routes.ts',
+  'src/modules/projects/personal-routes.ts',
   'src/modules/projects/access.ts',
   'src/modules/tasks/aggregate.ts',
   'src/modules/files/plans.ts',
+  'src/modules/comments/projections.ts',
+  'src/modules/tasks/projections.ts',
+  'src/modules/projects/projections.ts',
+  'src/modules/members/projections.ts',
+  'src/modules/teams/projections.ts',
+  'src/modules/workspaces/projections.ts',
+  'src/modules/notifications/visibility.ts',
 ]);
 const isPublicEntry = (path) =>
-  /^src\/modules\/[^/]+\/index\.ts$/.test(path) || publicFacades.has(path);
+  /^src\/modules\/[^/]+\/(index|routes)\.ts$/.test(path) || publicFacades.has(path);
 const layers = {
   http: new Set(['http', 'application', 'shared', 'context']),
   application: new Set([

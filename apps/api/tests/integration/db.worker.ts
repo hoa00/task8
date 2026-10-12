@@ -1,3 +1,6 @@
+import { and, eq } from 'drizzle-orm';
+import { projects as projectTable } from '../../src/db/schema.ts';
+import { readAccessExpression } from '../../src/modules/projects/access.ts';
 import app from '../../src/index.ts';
 import { RequestRepository } from '../../src/db/client.ts';
 import { exactSet, gatedInsert } from '../../src/db/commands.ts';
@@ -213,6 +216,22 @@ export default {
           !!row.read === canAccessProject(input, 'read') &&
             !!row.write === canAccessProject(input, 'write'),
           'private view/edit/Owner no-bypass matrix',
+        );
+        const visible = await r.read((db) =>
+          db
+            .select({ id: projectTable.id })
+            .from(projectTable)
+            .where(
+              and(
+                eq(projectTable.workspaceId, wid),
+                eq(projectTable.id, pid),
+                readAccessExpression(projectTable, memberId),
+              ),
+            ),
+        );
+        assert(
+          !!visible.length === canAccessProject(input, 'read'),
+          'Drizzle/native/pure read predicate parity',
         );
         cases++;
       }

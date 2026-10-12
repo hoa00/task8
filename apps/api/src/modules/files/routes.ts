@@ -1,0 +1,126 @@
+import { EntityIdSchema, operations } from '@studio/contracts/api';
+import type { Context } from 'hono';
+import { Hono } from 'hono';
+import {
+  jsonBody as body,
+  multipartBody,
+  parseRequest,
+  readQuery as query,
+} from '../../http/request.ts';
+import type { ApiEnvironment } from '../../runtime.ts';
+import { serverClock } from '../../shared/clock.ts';
+import { ApiFailure } from '../../shared/errors.ts';
+import { changeFile, fileDto, fileRow, listFiles, safeInline, uploadFile } from '../files.ts';
+type C = Context<ApiEnvironment>;
+
+const prefix = '/workspaces/:workspaceId',
+  fid = (c: C) => parseRequest(EntityIdSchema, c.req.param('fileId'));
+export const fileRoutes = new Hono<ApiEnvironment>();
+fileRoutes.get(prefix + '/projects/:projectId/files', async (c) => {
+  const input = parseRequest(operations.listProjectFiles.request, {
+    workspaceId: c.get('workspace').workspaceId,
+    projectId: c.req.param('projectId'),
+    query: await query(c),
+  });
+  return c.json(
+    operations.listProjectFiles.response.parse({
+      data: await listFiles(c.get('repository'), c.get('workspace'), input.projectId, input.query),
+    }),
+  );
+});
+fileRoutes.get(prefix + '/files/:fileId', async (c) => {
+  parseRequest(operations.getFile.request, {
+    workspaceId: c.get('workspace').workspaceId,
+    fileId: fid(c),
+  });
+  if (Object.keys(await query(c)).length)
+    throw new ApiFailure('VALIDATION_ERROR', 'Unexpected query');
+  return c.json(
+    operations.getFile.response.parse({
+      data: fileDto(await fileRow(c.get('repository'), c.get('workspace'), fid(c))),
+    }),
+  );
+});
+fileRoutes.post(prefix + '/projects/:projectId/files', async (c) => {
+  const form = await multipartBody(c);
+  const file = form.get('file');
+  if (!(file instanceof File))
+    throw new ApiFailure('VALIDATION_ERROR', 'Exactly one file required');
+  if (file.size > 10485760) throw new ApiFailure('PAYLOAD_TOO_LARGE', 'File exceeds 10 MiB');
+  const input = parseRequest(operations.uploadProjectFile.request, {
+    workspaceId: c.get('workspace').workspaceId,
+    projectId: c.req.param('projectId'),
+    body: {
+      clientRequestId: form.get('clientRequestId'),
+      ...(form.has('taskId') ? { taskId: form.get('taskId') } : {}),
+      file: {
+        name: file.name,
+        mimeType: file.type || 'application/octet-stream',
+        bytes: new Uint8Array(await file.arrayBuffer()),
+      },
+    },
+  });
+  const result = await uploadFile(
+    c.get('repository'),
+    c.get('workspace'),
+    c.env.FILES,
+    input.projectId,
+    input.body,
+    serverClock.now(),
+  );
+  return c.json(
+    operations.uploadProjectFile.response.parse({ data: result.file }),
+    result.created ? 201 : 200,
+  );
+});
+fileRoutes.get(prefix + '/files/:fileId/content', async (c) => {
+  const input = parseRequest(operations.getFileContent.request, {
+      workspaceId: c.get('workspace').workspaceId,
+      fileId: fid(c),
+      query: await query(c),
+    }),
+    f = await fileRow(c.get('repository'), c.get('workspace'), input.fileId);
+  if (f.storageMode !== 'r2' || !f.objectKey)
+    throw new ApiFailure('NOT_FOUND', 'Sample file has no original bytes');
+  const object = await c.env.FILES.get(f.objectKey);
+  if (!object) throw new ApiFailure('NOT_FOUND', 'File bytes not found');
+  const disposition =
+    input.query.disposition === 'inline' && safeInline(f.mimeType!) ? 'inline' : 'attachment';
+  return new Response(object.body, {
+    headers: {
+      'Content-Type': f.mimeType!,
+      'Content-Length': String(object.size),
+      'Content-Disposition': `${disposition}; filename="download"; filename*=UTF-8''${encodeURIComponent(f.name)}`,
+      ETag: object.httpEtag,
+      'X-Content-Type-Options': 'nosniff',
+      'Content-Security-Policy': "default-src 'none'; sandbox",
+      'Cache-Control': 'private, no-store',
+    },
+  });
+});
+for (const [op, method, suffix, kind] of [
+  ['renameFile', 'patch', '', 'rename'],
+  ['deleteFile', 'delete', '', 'delete'],
+  ['restoreDeletedFile', 'post', '/restore-deleted', 'restore'],
+  ['duplicateFile', 'post', '/duplicate', 'duplicate'],
+] as const)
+  fileRoutes[method](prefix + '/files/:fileId' + suffix, async (c) => {
+    const input = parseRequest(operations[op].request, {
+        workspaceId: c.get('workspace').workspaceId,
+        fileId: fid(c),
+        body: await body(c),
+      }),
+      result = await changeFile(
+        c.get('repository'),
+        c.get('workspace'),
+        c.env.FILES,
+        input.fileId,
+        input.body.expectedVersion,
+        kind,
+        'name' in input.body && typeof input.body.name === 'string' ? input.body.name : undefined,
+        serverClock.now(),
+      );
+    return c.json(
+      operations[op].response.parse({ data: op === 'deleteFile' ? result : result.file }),
+    );
+  });

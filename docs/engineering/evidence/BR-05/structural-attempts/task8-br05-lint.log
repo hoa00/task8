@@ -1,0 +1,80 @@
+$ eslint src tests/unit tests/integration tests/support tests/run.mjs tooling drizzle.config.ts && node tooling/import-boundaries.mjs
+
+/workspace/task8/apps/api/src/modules/activity/routes.ts
+  10:3  error  'id' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/comments/application/commands.ts
+  90:14  error  Parsing error: Parameter declaration expected
+
+/workspace/task8/apps/api/src/modules/members/application/member-queries.ts
+   2:1  error  All imports in the declaration are only used as types. Use `import type`  @typescript-eslint/consistent-type-imports
+  14:3  error  'now' is defined but never used                                           @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/members/application/profile.ts
+  18:14  error  Parsing error: Parameter declaration expected
+
+/workspace/task8/apps/api/src/modules/members/routes.ts
+  16:3  error  'pid' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  17:3  error  'tid' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/preferences/routes.ts
+  10:3  error  'id' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/projections/routes.ts
+  17:3  error  'id' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/projects/application/commands.ts
+  71:57  error  Parsing error: Parameter declaration expected
+
+/workspace/task8/apps/api/src/modules/projects/application/personal.ts
+  14:14  error  Parsing error: Parameter declaration expected
+
+/workspace/task8/apps/api/src/modules/projects/application/queries.ts
+   2:1  error  All imports in the declaration are only used as types. Use `import type`  @typescript-eslint/consistent-type-imports
+  78:3  error  'now' is defined but never used                                           @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/projects/application/saved-views.ts
+  41:14  error  Parsing error: Parameter declaration expected
+
+/workspace/task8/apps/api/src/modules/projects/application/undo.ts
+  54:3  error  'gate' is never reassigned. Use 'const' instead        prefer-const
+  55:3  error  'statements' is never reassigned. Use 'const' instead  prefer-const
+
+/workspace/task8/apps/api/src/modules/projects/persistence/commands-fragments.ts
+  27:17  error  Parsing error: Parameter declaration expected
+
+/workspace/task8/apps/api/src/modules/projects/routes.ts
+  26:3  error  'tid' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/teams/application/commands.ts
+  24:16  error  Parsing error: Parameter declaration expected
+
+/workspace/task8/apps/api/src/modules/teams/application/queries.ts
+   2:1  error  All imports in the declaration are only used as types. Use `import type`  @typescript-eslint/consistent-type-imports
+  14:3  error  'now' is defined but never used                                           @typescript-eslint/no-unused-vars
+  26:3  error  'now' is defined but never used                                           @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/teams/application/undo.ts
+  59:3  error  'gate' is never reassigned. Use 'const' instead        prefer-const
+  60:3  error  'statements' is never reassigned. Use 'const' instead  prefer-const
+
+/workspace/task8/apps/api/src/modules/teams/routes.ts
+  16:3  error  'pid' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/undo/routes.ts
+  12:3  error  'pid' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  13:3  error  'tid' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/workspace/task8/apps/api/src/modules/workspaces/application/commands.ts
+  23:14  error  Parsing error: Parameter declaration expected
+
+/workspace/task8/apps/api/src/modules/workspaces/routes.ts
+  11:3  error  'pid' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  12:3  error  'tid' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 30 problems (30 errors, 0 warnings)
+  3 errors and 0 warnings potentially fixable with the `--fix` option.
+
+/workspace/task8/apps/api:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @studio/api@0.0.0 lint: `eslint src tests/unit tests/integration tests/support tests/run.mjs tooling drizzle.config.ts && node tooling/import-boundaries.mjs`
+Exit status 1

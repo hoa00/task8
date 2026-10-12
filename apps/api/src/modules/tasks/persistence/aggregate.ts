@@ -2,7 +2,7 @@ import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts'
 import type { SqlPredicate } from '../../../db/commands.ts';
 import type { IdGenerator } from '../../../shared/ids.ts';
 import { newId } from '../../../shared/ids.ts';
-import { actorParameters, actorSql, writeAccessSql } from '../../projects/index.ts';
+import { actorParameters, actorSql, writeAccessSql } from '../../projects/access.ts';
 import type { TaskProjection } from './model.ts';
 
 export function childGate(

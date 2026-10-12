@@ -10,13 +10,21 @@ import {
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { instant } from '../../../shared/clock.ts';
 import { decodeCursor, encodeCursor, queryFingerprint } from '../../../shared/cursor.ts';
+import { members } from '../../members/projections.ts';
+import { today } from '../../workspaces/index.ts';
 import { subtaskDto, taskDto } from '../mapper.ts';
-import { taskDataset as readDataset } from '../persistence/dataset.ts';
+import { datasetProjects, datasetRows } from '../persistence/dataset.ts';
 import { attachmentRows, childRows, keyTaskId, taskRow } from '../persistence/reads.ts';
 
 export async function taskDataset(r: RequestRepository, s: WorkspaceContext, now: number) {
-  const dataset = await readDataset(r, s, now);
-  return { ...dataset, items: dataset.rows.map(taskDto) };
+  const rows = await datasetRows(r, s),
+    ms = await members(r, s),
+    ps = await datasetProjects(r, s);
+  return {
+    rows,
+    items: rows.map(taskDto),
+    env: { today: await today(r, s, now), now, lookups: { members: ms, projects: ps } },
+  };
 }
 export async function taskDetail(r: RequestRepository, s: WorkspaceContext, id: EntityId) {
   const row = await taskRow(r, s, id),
