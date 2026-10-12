@@ -2,6 +2,9 @@
 
 ## Trạng thái hiện tại
 
+- Backend quality follow-up (12/10/2026): Hòa nhắc lại POC chỉ giới hạn tính năng và yêu cầu lập/lưu chuẩn kiến trúc/code để AI coder tuân thủ. [BACKEND_STANDARDS](../engineering/BACKEND_STANDARDS.md) là chuẩn bắt buộc cho mọi backend change; [BACKEND_REFACTOR_PLAN](../engineering/BACKEND_REFACTOR_PLAN.md) ghi phase/read-set/gates. Phiên này chỉ cập nhật docs/AGENTS; runtime BR-01…BR-08 **NOT_STARTED**. Không thay đổi kết quả WU lịch sử hoặc tự bắt đầu phase code.
+- Trạng thái follow-up: BR-00 **DONE_DOCS**; kiểm tra links/consistency/diff đạt. Commit/push thực tế được ghi ở entry follow-up cuối tài liệu; không suy ra runtime phase đã hoàn tất.
+
 - Current work unit: `WU-36` — **DONE_BOUNDED_ROOT_PASS** trong phạm vi local M3/qualified visual đã ghi nhận. Implementation `da37c21b644c6962e1b27048be18790b6ffa23bb`; checkpoint tài liệu cuối `ff850d89fb85b3894d88d820571032390513aea1` đã commit và có trên remote `main` (đối chiếu `git ls-remote` ngày 11/10/2026). Maintainer follow-up sửa portability của evidence trên macOS được ghi ở cuối tài liệu; không mở unit mới.
 - Last completed implementation unit: `WU-36`, implementation `da37c21b644c6962e1b27048be18790b6ffa23bb`; final documentation checkpoint `ff850d89fb85b3894d88d820571032390513aea1`. [Portable checkpoint](evidence/WU-36/checkpoint.json) giữ nguyên snapshot trước self-commit; các dòng pending trong snapshot lịch sử không phải trạng thái Git hiện tại.
 - Next permitted unit: NONE. POC local đã kết thúc tại WU36; full visual debts lịch sử và production/provider/deploy/CI/realtime vẫn ngoài phạm vi đã nghiệm thu.
@@ -10,7 +13,7 @@
 - Target React app: shared Calendar/Table/Board/List/whole rich Drawer/full forms/file foundation; actual Workspace Calendar/Timeline và My Tasks List/Calendar đạt WU14/15 native/shared renderer gates. Project Calendar và Project/saved Table/Board/List có feature harness; full wrappers WU16 và các scope còn lại theo ledger.
 - Backend: WU30–36 local Hono/D1/R2 và các required application checks đã được nghiệm thu theo scope trong [M3 acceptance](evidence/WU-36/ACCEPTANCE_REPORT.md). Các checkpoint implementation/tài liệu đã có trên `main`; không tuyên bố production/provider/deploy/CI/realtime.
 - Source SHA: `904205c626918ee96054eb35495c394a60c0c601`.
-- Target project: `task8`; repository private [hoa00/task8](https://github.com/hoa00/task8), `origin=https://github.com/hoa00/task8.git`, branch hiện tại `main`. Branch `work`/`HEAD:main` là route của các session triển khai lịch sử; follow-up maintainer hiện tại commit/push normal `main`.
+- Target project: `task8`; repository private [hoa00/task8](https://github.com/hoa00/task8), `origin=https://github.com/hoa00/task8.git`. Phiên docs quality 12/10/2026 kiểm tra branch hiện tại `work`; các checkpoint maintainer trước ghi `main`. Đối chiếu branch/remote thực trước commit/push; không suy từ snapshot lịch sử.
 
 ## Work unit ledger
 
@@ -1345,3 +1348,16 @@ Current status DONE_BOUNDED_ROOT_PASS(localM3/qualifiedLinuxselectedvisual); ful
 - Blockers: không có blocker trong phạm vi này. HTTP/browser chạy local, chưa deploy production; capability auth/provider/billing demo vẫn theo hiện trạng POC.
 - Commit/Push: chuẩn bị conventional implementation commit và normal push `origin HEAD:main` trên repo đích `hoa00/task8`; SHA/kết quả thật sẽ được báo sau khi lệnh hoàn tất. Không ghi SHA self-commit vào chính file này.
 - Next permitted unit: NONE; dừng sau khi push và kiểm chứng working tree/remote.
+
+
+## Backend quality — chuẩn bắt buộc và kế hoạch điều chỉnh, 12/10/2026
+
+- Yêu cầu trực tiếp: Hòa nhắc lại POC chỉ giới hạn tính năng; code phải có kiến trúc/quality để phát triển lâu dài. Phiên này lập kế hoạch chi tiết và lưu chỉ dẫn cho AI coder, chưa được giao triển khai runtime refactor.
+- Completed: BR-00 DONE_DOCS. Tạo BACKEND_STANDARDS với 12 quy tắc BE-01…12, dependency/owner matrix, D1/R2 invariants, test gates và Definition of Done. Tạo BACKEND_REFACTOR_PLAN với audit baseline, cấu trúc đích, mapping owner, 10 phase runtime có prerequisite/read-set/steps/acceptance, risk matrix và prompt triển khai từng phase. Runtime BR-01…BR-08 (gồm A/B) NOT_STARTED.
+- Files changed: AGENTS.md; README.md; apps/api/{AGENTS.md,README.md}; docs/engineering/{BACKEND_STANDARDS.md,BACKEND_REFACTOR_PLAN.md}; docs/poc/{ARCHITECTURE.md,BACKEND_SCOPE.md,DATA_MODEL.md,ACCEPTANCE.md,WORK_UNIT_PROMPT.md,DECISIONS.md,PROGRESS.md}. Tổng 13 Markdown files; không sửa source/runtime/tests/package/lockfile/schema/migration/reference/evidence.
+- Verification: git diff --check exit0; local Markdown link check 13 files/594 links/broken0 exit0 trước final progress entry; required-rule/phase check exit0 (12 standards và 10 NOT_STARTED runtime rows); scope check xác nhận runtime/contracts/fixture/evidence diff NONE. Links/status/scope được kiểm tra lại trước commit. Đây là kiểm tra tài liệu, không thay bằng chứng ứng dụng.
+- Not run/not applicable: app lint/typecheck/build/native D1/R2/visual không chạy lại trong phiên docs-only. Review trước chỉ syntax-check38files; lint/typecheck bị dependency/store environment chặn. BR-01 phải establish baseline thật, không dùng syntax hay evidence cũ làm runtime PASS.
+- Decisions/conflicts: cụ thể hóa yêu cầu quality đã có, không hạ chuẩn vì POC; domain package chỉ pure shared semantics, backend-specific domain ở module; không generalize comparator sai direction; SQL chuyển đổi phải chứng minh text/null/date/order parity; raw SQL guarded batch được giữ; behavior fixes tách khỏi structural moves. ADR-13 ghi yêu cầu trực tiếp; ADR-14 ghi kế hoạch kỹ thuật, không claim user đã nghiệm thu runtime.
+- Git baseline: HEAD6c25611a3b0346635e2ba3df336a2de9d24b2edd; working tree sạch trước docs; branchwork không có upstream; origin đúng hoa00/task8. git ls-remote --heads origin main actual0 xác nhận remote main cùng baseline sau khi cho phép network trong sandbox. Không force-push/đổi remote/branch.
+- Blockers: không có blocker lưu/kiểm tra docs. Commit/push chưa thực hiện tại thời điểm ghi entry này; chỉ báo SHA/kết quả thật sau khi command hoàn tất.
+- Next: chỉ triển khai phase được Hòa giao trong nhiệm vụ tiếp theo; không tự bắt đầu BR-01 hoặc WU mới. Quality standards áp dụng ngay cho mọi backend change sau này.

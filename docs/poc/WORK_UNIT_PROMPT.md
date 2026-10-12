@@ -4,12 +4,16 @@
 
 Thay `WU-NN` bằng unit được giao. Với repo đích đã có code, không chạy lại scaffold chỉ vì bắt đầu session mới.
 
+Backend changes luôn đọc [BACKEND_STANDARDS.md](../engineering/BACKEND_STANDARDS.md) và [apps/api/AGENTS.md](../../apps/api/AGENTS.md). Sau POC, nhiệm vụ refactor dùng phase/read-set/gates trong [BACKEND_REFACTOR_PLAN.md](../engineering/BACKEND_REFACTOR_PLAN.md), không tự tạo WU-37 hoặc mở lại WU cũ. Yêu cầu chỉ lập kế hoạch/lưu tài liệu thì deliverable là docs đã kiểm chứng; không tự bắt đầu sửa runtime.
+
 ```text
 Implement WU-NN from docs/poc/work-units/WU-NN.md.
 
 Before editing:
 1. Read AGENTS.md, docs/poc/PROGRESS.md, the assigned work-unit file,
    and only its relevant read-set.
+   For backend-related changes also read apps/api/AGENTS.md and
+   docs/engineering/BACKEND_STANDARDS.md.
 2. Inspect the current implementation and previous progress.
 3. Verify that the work unit's prerequisites are already complete.
 4. Give a concise 3–7 step implementation plan.
@@ -20,6 +24,9 @@ Rules:
 - Do not implement later work units.
 - Do not perform unrelated refactors.
 - Follow existing project conventions and the agreed architecture.
+- POC limits feature scope, not architecture/code/test quality.
+- Backend changes must meet BACKEND_STANDARDS and its risk-based gates;
+  preserve final D1 guards, Undo/idempotency and R2 outcome semantics.
 - Add only tests needed for this work unit.
 - Use TypeScript, pnpm, and the established Turborepo workspace.
 - Use Tailwind from the first React component; preserve exact source tokens.

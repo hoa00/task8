@@ -18,6 +18,8 @@ Các quyết định dưới là bản thiết kế cụ thể để review/tri�
 | ADR-10 | Full UI giữ source; real auth/security/billing/invitations/ACL provisioning để sau | Scope POC từ source chỉ mô phỏng và provider chưa được chọn | WU-25…27,36 |
 | ADR-11 | Một workspace seed thường dùng; workspace thứ hai chỉ test isolation | POC nhỏ, schema có boundary từ đầu; chưa SaaS provisioning | WU-30 |
 | ADR-12 | R2 local cho file bytes; D1 chỉ metadata; một upload request/file | Cloudflare backend được chọn, source chưa lưu bytes | WU-35 |
+| ADR-13 | POC chỉ giới hạn tính năng; kiến trúc/code/kiểm thử phải đáp ứng việc phát triển lâu dài. AI coder bắt buộc đọc standards trước backend changes | Hòa nhắc lại yêu cầu và yêu cầu lập/lưu chỉ dẫn ngày 12/10/2026; chi tiết trong [BACKEND_STANDARDS](../engineering/BACKEND_STANDARDS.md) | BE-01…12 và Definition of Done |
+| ADR-14 | Điều chỉnh code theo module/use-case/policy/mapper/persistence owners, giữ Hono/D1/R2 và canonical invariants; từng phase có gates | Kế hoạch kỹ thuật được cụ thể hóa theo yêu cầu lập kế hoạch, chưa phải runtime đã triển khai; [BACKEND_REFACTOR_PLAN](../engineering/BACKEND_REFACTOR_PLAN.md) | BR-01…BR-08, trạng thái thực trong PROGRESS |
 
 ## Data corrections được thiết kế có chủ đích
 

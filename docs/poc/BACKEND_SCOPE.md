@@ -6,6 +6,8 @@ M3 chứng minh frontend đã chuyển đổi dùng cùng contract khi thay Mock
 
 Thiết kế này không biến tất cả màn demo trong source thành dịch vụ SaaS production. API_CONTRACT là bảng method/input/output canonical; DATA_MODEL là bảng schema/atomicity canonical. Không tạo endpoint khác theo từng màn List/Board/Table.
 
+**POC chỉ giảm phạm vi tính năng, không giảm chất lượng kiến trúc, code hoặc kiểm thử.** Tính năng đã có phải phát triển/sửa chữa được qua module boundaries rõ, use-case có owner, policy/mapper dùng chung và kiểm chứng phù hợp. [BACKEND_STANDARDS.md](../engineering/BACKEND_STANDARDS.md) là chuẩn bắt buộc; [BACKEND_REFACTOR_PLAN.md](../engineering/BACKEND_REFACTOR_PLAN.md) là lộ trình điều chỉnh code hiện tại. Đây là quality remediation của các capability đã có, không bổ sung các dịch vụ ngoài scope bên dưới.
+
 ## 2. Mode matrix
 
 | Nhóm | M1/M2 giao diện | M3 HTTP POC |

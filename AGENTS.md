@@ -5,7 +5,7 @@
 1. Tuân thủ yêu cầu và lựa chọn trực tiếp của Hòa trong session hiện tại.
 2. Giữ thiết kế nguồn tại SHA trong `docs/poc/reference/source-lock.json`; dùng Tailwind từ đầu.
 3. Component có một chủ sở hữu, tái sử dụng qua props/composition; không copy mỗi view theo từng page.
-4. Giữ contract/API, dependency direction và dữ liệu nhất quán. POC giảm tính năng ngoài phạm vi, không dùng code tạm phải viết lại.
+4. Giữ contract/API, dependency direction và dữ liệu nhất quán. **POC chỉ giảm phạm vi tính năng, không giảm chất lượng kiến trúc, code hoặc kiểm thử.** Code phải sẵn sàng để bổ sung/sửa tính năng; không dùng code tạm phải viết lại.
 5. Chỉ thực hiện work unit đang được giao.
 
 ## Before editing
@@ -17,6 +17,15 @@
 Then implement the plan immediately in this same session.
 
 Đọc `docs/poc/PROGRESS.md`, file unit tương ứng và read-set của unit. Source code hiện tại là bằng chứng thực thi; tài liệu là contract. Nếu hai bên mâu thuẫn, ghi rõ mâu thuẫn, chọn sửa tối thiểu trong phạm vi hoặc ghi blocker thực sự; không âm thầm đổi thiết kế.
+
+## Backend: chuẩn bắt buộc khi thêm hoặc sửa code
+
+- Đọc [BACKEND_STANDARDS.md](docs/engineering/BACKEND_STANDARDS.md) trước mọi thay đổi API, domain/contract liên quan, migration hoặc test/tooling backend. Đây là chuẩn kỹ thuật bắt buộc, áp dụng cả sau khi POC kết thúc.
+- Khi làm trong `apps/api`, đọc thêm [apps/api/AGENTS.md](apps/api/AGENTS.md). Theo [BACKEND_REFACTOR_PLAN.md](docs/engineering/BACKEND_REFACTOR_PLAN.md) nếu nhiệm vụ là điều chỉnh kiến trúc.
+- Route chỉ xử lý HTTP; use-case điều phối nghiệp vụ; policy, mapper, query và D1 command có chủ sở hữu rõ. Giữ domain thuần và dependency direction; không sao chép logic chung hay thêm framework nhiều tầng không có nhu cầu thực.
+- Không bỏ final SQL authorization/version/lifecycle guards, native D1 atomic batch, bounded Undo, idempotency hoặc R2 compensation để refactor dễ hơn. Mọi thay đổi phải giữ contract và có kiểm chứng theo rủi ro thực tế.
+- Code mới và phần sửa phải tuân thủ chuẩn ngay; nợ cũ được xử lý theo phase có phạm vi, không lấy nợ cũ làm mẫu hoặc âm thầm mở rộng refactor toàn repo.
+- Yêu cầu lập kế hoạch/lưu chỉ dẫn có deliverable là tài liệu: hoàn tất và kiểm tra tài liệu, không tự bắt đầu các phase sửa runtime. Lịch sử WU-00…36 và evidence giữ nguyên; nhiệm vụ mới ghi entry riêng trong PROGRESS.
 
 ## Rules
 

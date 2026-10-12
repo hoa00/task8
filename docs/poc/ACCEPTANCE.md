@@ -4,6 +4,8 @@
 
 Tài liệu này bổ sung tiêu chí cụ thể cho từng work unit. Nếu một tiêu chí unit chặt hơn bảng chung, áp dụng tiêu chí unit. [SCREEN_INVENTORY.md](SCREEN_INVENTORY.md) là danh mục surface/state; [API_CONTRACT.md](API_CONTRACT.md) là chuẩn operation; [VISUAL_PARITY.md](VISUAL_PARITY.md) là chuẩn so ảnh; [DATA_MODEL.md](DATA_MODEL.md) quy định semantics/atomicity. Không tạo chuẩn thứ hai bằng test fixture tự suy đoán.
 
+Mọi thay đổi backend còn phải đạt Definition of Done trong [BACKEND_STANDARDS.md](../engineering/BACKEND_STANDARDS.md), cùng risk matrix/phase gates của [BACKEND_REFACTOR_PLAN.md](../engineering/BACKEND_REFACTOR_PLAN.md) khi refactor. Đây là quality gate bắt buộc, không được bỏ vì POC; các kết quả WU lịch sử không tự chứng minh code sau refactor đạt. Docs-only được kiểm tra links/consistency/diff; không được gọi runtime phase DONE chỉ vì đã lưu kế hoạch.
+
 ## 1. Ba loại bằng chứng độc lập
 
 | Bằng chứng | Trả lời câu hỏi | Không thay thế được |

@@ -1,5 +1,7 @@
 # Kiến trúc chuyển đổi
 
+Chuẩn kỹ thuật backend hiện hành là [BACKEND_STANDARDS.md](../engineering/BACKEND_STANDARDS.md), bắt buộc cả sau POC. [BACKEND_REFACTOR_PLAN.md](../engineering/BACKEND_REFACTOR_PLAN.md) cụ thể hóa module ownership, dependency direction, các bước chuyển code hiện có và gate. POC chỉ giới hạn tính năng; không cho phép hạ chất lượng code. Cấu trúc đích trong kế hoạch chưa phải implementation đã hoàn tất; các checkpoint WU bên dưới giữ giá trị lịch sử theo PROGRESS.
+
 ## 1. Quyết định cốt lõi
 
 Chuyển theo **component và feature**, giữ một thiết kế nguồn, một bộ domain data và một contract. Mỗi route chỉ ghép những phần sẵn có. React sở hữu DOM; TanStack Router sở hữu URL; TanStack Query sở hữu cache dữ liệu API. Style của component React dùng Tailwind từ lúc tạo.

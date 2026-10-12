@@ -6,6 +6,8 @@ POC dùng một Hono Worker, một database D1 và một R2 binding local khi t�
 
 `API_CONTRACT.md` là chuẩn DTO/operation. Tài liệu này chốt cách lưu và thực hiện mutation để các màn hình giữ cùng một nguồn truth. Đây là thiết kế để triển khai, chưa phải schema/migration đã được chạy.
 
+Quy tắc tổ chức implementation/kiểm thử hiện hành nằm trong [BACKEND_STANDARDS.md](../engineering/BACKEND_STANDARDS.md); các phase chuyển code trong [BACKEND_REFACTOR_PLAN.md](../engineering/BACKEND_REFACTOR_PLAN.md). Refactor phải giữ các invariants persistence/atomicity/lifecycle/Undo/limits của tài liệu này và decisions hiện hành. Các mô tả handoff/checkpoint ở đây không thay thế code/migration và evidence thực trong PROGRESS.
+
 | Vị trí | Trách nhiệm |
 | --- | --- |
 | `packages/contracts` | Zod input/output DTO, enums, field validation, errors; không dependency runtime Hono/Drizzle/React |

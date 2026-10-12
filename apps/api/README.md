@@ -1,5 +1,13 @@
 # Local D1 API (WU-30 / WU-31 / WU-32 / WU-33 / WU-34 / WU-35)
 
+## Quy tắc phát triển và trạng thái kế hoạch
+
+Đọc [AGENTS.md](AGENTS.md) và [BACKEND_STANDARDS.md](../../docs/engineering/BACKEND_STANDARDS.md) trước khi thêm/sửa backend. POC giới hạn tính năng, không giảm chất lượng kiến trúc/code/kiểm thử. [BACKEND_REFACTOR_PLAN.md](../../docs/engineering/BACKEND_REFACTOR_PLAN.md) là kế hoạch điều chỉnh có thứ tự và tiêu chí nghiệm thu; các phase runtime chưa triển khai. Các script mới và cấu trúc thư mục trong kế hoạch là target, không phải command/file hiện đã có.
+
+Các mục WU dưới đây ghi implementation và verification lịch sử; trạng thái/code/commands hiện hành phải đối chiếu [PROGRESS.md](../../docs/poc/PROGRESS.md) và package.json, không suy ra PASS của code mới từ evidence cũ.
+
+## Chạy local và phạm vi đã triển khai
+
 Run from repository root with pinned Node24.13.0/pnpm11.19.0:
 
 ```sh
