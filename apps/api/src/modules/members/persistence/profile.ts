@@ -1,3 +1,5 @@
+import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
+import { encodedTextPatch } from '../../../shared/text-key-encoder.ts';
 import type { EntityId } from '@studio/contracts/api';
 import type { RequestRepository } from '../../../db/client.ts';
 import { fitBatch, markerSql, matchedBatch, patchSql } from '../../../db/commands.ts';
@@ -12,7 +14,18 @@ export function updateProfileFields(
   now: number,
   marker: EntityId,
 ) {
-  return patchSql({ ...patch, updatedAt: now, lastMutationId: marker });
+  const fields = patchSql({ ...patch, updatedAt: now, lastMutationId: marker });
+  return {
+    sql: fields.sql + ',readKeys=json_patch(readKeys,?)',
+    parameters: [
+      ...fields.parameters,
+      encodedTextPatch(
+        patch.name === undefined ? {} : { name: patch.name },
+        textKeyEncoder,
+        patch.title === undefined ? {} : { title: patch.title },
+      ),
+    ],
+  };
 }
 export function updateProfileBudget(r: RequestRepository) {
   return fitBatch(r, 2, 1);

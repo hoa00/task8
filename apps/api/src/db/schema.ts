@@ -23,6 +23,7 @@ const tombstone = () => ({ deletedAt: integer('deletedAt'), deletedBy: text('del
 export const users = sqliteTable(
   'users',
   {
+    readKeys: text('readKeys').notNull().default('{}'),
     id: text('id').primaryKey(),
     name: text('name').notNull(),
     emailNormalized: text('emailNormalized').notNull(),
@@ -34,6 +35,7 @@ export const users = sqliteTable(
     ...mutable(),
   },
   (t): SQLiteTableExtraConfigValue[] => [
+    check('users_readKeys', sql`json_valid(${t.readKeys})`),
     uniqueIndex('users_email').on(t.emailNormalized),
     check('users_version', sql`${t.version} > 0`),
   ],
@@ -124,6 +126,7 @@ export const teams = sqliteTable(
 export const projects = sqliteTable(
   'projects',
   {
+    readKeys: text('readKeys').notNull().default('{}'),
     id: text('id').primaryKey(),
     workspaceId: text('workspaceId')
       .notNull()
@@ -147,6 +150,10 @@ export const projects = sqliteTable(
     ...mutable(),
   },
   (t): SQLiteTableExtraConfigValue[] => [
+    check('projects_readKeys', sql`json_valid(${t.readKeys})`),
+    index('projects_catalog_name')
+      .on(t.workspaceId, t.deletedAt, sql`(${t.readKeys} ->> '$.name.locale')`, t.id)
+      .where(sql`${t.archivedAt} IS NULL OR ${t.archivedAt}=0`),
     uniqueIndex('projects_workspace_id').on(t.workspaceId, t.id),
     uniqueIndex('projects_key').on(t.workspaceId, t.key),
     index('projects_navigation').on(
@@ -219,6 +226,7 @@ export const commandUndoRecords = sqliteTable(
 export const tasks = sqliteTable(
   'tasks',
   {
+    readKeys: text('readKeys').notNull().default('{}'),
     id: text('id').primaryKey(),
     workspaceId: text('workspaceId')
       .notNull()
@@ -251,6 +259,15 @@ export const tasks = sqliteTable(
     ...mutable(),
   },
   (t): SQLiteTableExtraConfigValue[] => [
+    check('tasks_readKeys', sql`json_valid(${t.readKeys})`),
+    index('tasks_active_manual').on(t.workspaceId, t.deletedAt, t.archivedAt, t.position, t.id),
+    index('tasks_active_title').on(
+      t.workspaceId,
+      t.deletedAt,
+      t.archivedAt,
+      sql`(${t.readKeys} ->> '$.title.foldedUtf16')`,
+      t.id,
+    ),
     uniqueIndex('tasks_workspace_id').on(t.workspaceId, t.id),
     uniqueIndex('tasks_number').on(t.projectId, t.number),
     uniqueIndex('tasks_recurrence').on(t.workspaceId, t.recurrenceSourceTaskId),
@@ -517,6 +534,7 @@ export const commentReactions = sqliteTable(
 export const comments = sqliteTable(
   'comments',
   {
+    readKeys: text('readKeys').notNull().default('{}'),
     id: text('id').primaryKey(),
     workspaceId: text('workspaceId')
       .notNull()
@@ -532,6 +550,8 @@ export const comments = sqliteTable(
     ...mutable(),
   },
   (t): SQLiteTableExtraConfigValue[] => [
+    index('comments_visible_history').on(t.workspaceId, t.taskId, t.deletedAt, t.createdAt, t.id),
+    check('comments_readKeys', sql`json_valid(${t.readKeys})`),
     uniqueIndex('comments_workspace_id').on(t.workspaceId, t.id),
     index('comments_task').on(t.workspaceId, t.taskId, t.createdAt, t.id),
     check(
@@ -572,6 +592,7 @@ export const activity = sqliteTable(
     createdAt: integer('createdAt').notNull(),
   },
   (t): SQLiteTableExtraConfigValue[] => [
+    index('activity_visible_history').on(t.workspaceId, t.revertedAt, t.createdAt, t.id),
     uniqueIndex('activity_workspace_id').on(t.workspaceId, t.id),
     index('activity_project').on(t.workspaceId, t.projectId, t.createdAt, t.id),
     index('activity_task').on(t.workspaceId, t.taskId, t.createdAt, t.id),
@@ -609,6 +630,7 @@ export const notifications = sqliteTable(
     readAt: integer('readAt'),
   },
   (t): SQLiteTableExtraConfigValue[] => [
+    index('notifications_recipient_history').on(t.workspaceId, t.recipientId, t.createdAt, t.id),
     uniqueIndex('notifications_workspace_id').on(t.workspaceId, t.id),
     index('notifications_recipient').on(t.workspaceId, t.recipientId, t.readAt, t.createdAt, t.id),
     check('type_enum', sql`${t.type} IN ('mention','assign','comment','due','update')`),
@@ -691,6 +713,7 @@ export const memberPreferences = sqliteTable(
 export const files = sqliteTable(
   'files',
   {
+    readKeys: text('readKeys').notNull().default('{}'),
     id: text('id').primaryKey(),
     workspaceId: text('workspaceId')
       .notNull()
@@ -713,6 +736,36 @@ export const files = sqliteTable(
     ...mutable(),
   },
   (t): SQLiteTableExtraConfigValue[] => [
+    index('files_page_name').on(
+      t.workspaceId,
+      t.projectId,
+      t.deletedAt,
+      sql`(${t.readKeys} ->> '$.name.locale')`,
+      t.id,
+    ),
+    index('files_page_type').on(
+      t.workspaceId,
+      t.projectId,
+      t.deletedAt,
+      sql`(${t.readKeys} ->> '$.fileType.locale')`,
+      t.id,
+    ),
+    index('files_page_recent').on(
+      t.workspaceId,
+      t.projectId,
+      t.deletedAt,
+      sql`(-${t.createdAt})`,
+      t.id,
+    ),
+    index('files_page_size').on(
+      t.workspaceId,
+      t.projectId,
+      t.deletedAt,
+      sql`(CASE WHEN ${t.sizeBytes} IS NULL THEN 1 ELSE -${t.sizeBytes} END)`,
+      t.id,
+    ),
+
+    check('files_readKeys', sql`json_valid(${t.readKeys})`),
     uniqueIndex('files_workspace_id').on(t.workspaceId, t.id),
     uniqueIndex('files_upload_request').on(t.workspaceId, t.createdBy, t.uploadRequestId),
     index('files_project').on(t.workspaceId, t.projectId, t.deletedAt, t.createdAt, t.id),

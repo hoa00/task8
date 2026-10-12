@@ -1,3 +1,4 @@
+import { readKeysFor } from '../../scripts/read-keys.mjs';
 // Active core scenarios adapted from WU-31 for current implemented capabilities.
 import { createHarness } from '../support/harness.mjs';
 import assert from 'node:assert/strict';
@@ -659,11 +660,12 @@ try {
   const large = await project('large-project');
   const largeId = large.project.id;
   await sql(
-    `INSERT INTO tasks(id,workspaceId,projectId,number,title,descriptionHtml,descriptionText,status,priority,position,createdBy,createdAt,updatedAt,version) SELECT printf('019a1111-1111-7000-8000-%012d',value),?,?,201+value,'Large','','','todo','none',value*100,?,0,0,1 FROM json_each(?)`,
+    `INSERT INTO tasks(id,workspaceId,projectId,number,title,descriptionHtml,descriptionText,status,priority,position,createdBy,createdAt,updatedAt,version,readKeys) SELECT printf('019a1111-1111-7000-8000-%012d',value),?,?,201+value,'Large','','','todo','none',value*100,?,0,0,1,? FROM json_each(?)`,
     [
       seed.primary.workspaceId,
       largeId,
       m1,
+      readKeysFor('tasks', { title: 'Large', descriptionText: '' }),
       JSON.stringify(Array.from({ length: 129 }, (_, i) => i)),
     ],
   );

@@ -13,7 +13,8 @@ import { instant } from '../../../shared/clock.ts';
 import { ApiFailure, required } from '../../../shared/errors.ts';
 import type { IdGenerator } from '../../../shared/ids.ts';
 import { newId } from '../../../shared/ids.ts';
-import { historyPage } from '../../collaboration-page.ts';
+import { bindReadCursor, finishReadPage } from '../../../shared/read-page.ts';
+import { pagedComments } from '../persistence/paged-comments.ts';
 import { childGate, writableTask } from '../../tasks/aggregate.ts';
 import { taskDto, taskRow } from '../../tasks/index.ts';
 import { commentDto, reactionProjection } from '../mapper.ts';
@@ -33,7 +34,6 @@ import {
   lifecycleCommentPrepare,
   lifecycleCommentPrepareCommandUndoRecords,
   lifecycleCommentPrepareComments,
-  listCommentsReadCommentReactions,
   reactCommentBudget,
   reactCommentCommit,
   reactCommentInsertCommentReactions,
@@ -83,12 +83,21 @@ export async function listComments(
 ) {
   await taskRow(r, s, id);
   // One query projects all reactions, so pagination never spends one query per child.
-  const rows = await listCommentsReadCommentReactions(r, s, id);
+  const { binding, cursor } = await bindReadCursor(
+    query,
+    { scope: s, kind: 'comments', taskId: id },
+    'title',
+    'asc',
+  );
+  const { rows, total } = await pagedComments(r, s, id, query.limit, cursor);
   const items = rows.map((row) => {
     const values = ReactionPairsSchema.parse(JSON.parse(row.reactionsJson));
     return commentDto(row, reactionProjection(values));
   });
-  return historyPage(items, query, { scope: s, kind: 'comments', taskId: id });
+  return finishReadPage(items, total, query.limit, binding, (row) => ({
+    id: row.id,
+    value: row.createdAt,
+  }));
 }
 export async function createComment(
   r: RequestRepository,

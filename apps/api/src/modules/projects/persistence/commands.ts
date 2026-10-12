@@ -1,3 +1,7 @@
+import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
+import { encodedTextPatch } from '../../../shared/text-key-encoder.ts';
+import { projectReadTextKeys } from '../domain/read-text.ts';
+import { taskReadTextKeys } from '../../tasks/projections.ts';
 import type { DateOnly, EntityId } from '@studio/contracts/api';
 import type { RequestRepository, SqlValue, WorkspaceContext } from '../../../db/client.ts';
 import type { SqlPredicate } from '../../../db/commands.ts';
@@ -340,7 +344,12 @@ export function createProjectInsertProjects(
   },
   guard: { sql: string; parameters: SqlValue[] },
 ) {
-  return gatedInsert(r, 'projects', [p], guard);
+  return gatedInsert(
+    r,
+    'projects',
+    [{ ...p, readKeys: projectReadTextKeys(p, textKeyEncoder) }],
+    guard,
+  );
 }
 export function createProjectInsertProjectMembers(
   r: RequestRepository,
@@ -436,6 +445,20 @@ export function createProjectInsert(
   table: 'tasks' | 'subtasks' | 'taskLabels' | 'taskDependencies',
   gate: { sql: string; parameters: EntityId[] },
 ) {
+  if (table === 'tasks') {
+    const normalized = rows.map((row) => {
+      if (!('title' in row) || !('descriptionText' in row))
+        throw new TypeError('Missing copied task text');
+      return {
+        ...row,
+        readKeys: taskReadTextKeys(
+          { title: row.title, descriptionText: row.descriptionText },
+          textKeyEncoder,
+        ),
+      };
+    });
+    return gatedInsert(r, table, normalized, gate);
+  }
   return gatedInsert<(typeof rows)[number]>(r, table, rows, gate);
 }
 export function createProjectInsertActivity(
@@ -560,7 +583,23 @@ export function updateProjectFields(
   now: number,
   marker: EntityId,
 ) {
-  return patchSql({ ...patch, updatedAt: now, lastActivityAt: now, lastMutationId: marker });
+  const fields = patchSql({
+    ...patch,
+    updatedAt: now,
+    lastActivityAt: now,
+    lastMutationId: marker,
+  });
+  return {
+    sql: fields.sql + ',readKeys=json_patch(readKeys,?)',
+    parameters: [
+      ...fields.parameters,
+      encodedTextPatch(
+        patch.name === undefined ? {} : { name: patch.name },
+        textKeyEncoder,
+        patch.description === undefined ? {} : { description: patch.description },
+      ),
+    ],
+  };
 }
 export function updateProjectMarkerProjects() {
   return markerSql('projects');

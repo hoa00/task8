@@ -1,11 +1,10 @@
-import type { EntityId, TaskQuery } from '@studio/contracts/api';
 import {
-  compareTaskTuple,
-  filterTasks,
-  sortTasks,
-  summarizeTasks,
-  taskSortValue,
-} from '@studio/domain';
+  taskReadPlan,
+  taskQueryCount,
+  taskQueryPage,
+  taskQuerySummary,
+} from '../persistence/paged-reads.ts';
+import type { EntityId, TaskQuery } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { decodeCursor, encodeCursor, queryFingerprint } from '../../../shared/cursor.ts';
 import { fileDto } from '../../files/projections.ts';
@@ -42,40 +41,35 @@ export async function queryTasks(
   now: number,
   summary = false,
 ) {
-  const dataset = await taskDataset(r, s, now),
-    rows = sortTasks(filterTasks(dataset.items, query, dataset.env), query, dataset.env.lookups);
-  if (summary) return summarizeTasks(rows, dataset.env.today);
-  const fingerprintInput = { scope: s, query: { ...query, cursor: undefined, limit: undefined } };
-  const fingerprint = await queryFingerprint(fingerprintInput);
-  let selected = rows;
-  if (query.cursor) {
-    const cursor = decodeCursor(query.cursor, {
-      queryFingerprint: fingerprint,
-      sortField: query.sortField,
-      sortDirection: query.sortDirection,
-    });
-    selected = rows.filter(
-      (row) =>
-        compareTaskTuple(
-          { value: taskSortValue(row, query.sortField, dataset.env.lookups), id: row.id },
-          { value: cursor.sortValue, id: cursor.id },
-          query.sortDirection,
-        ) > 0,
-    );
-  }
-  const items = selected.slice(0, query.limit),
-    last = items.at(-1);
+  const date = await today(r, s, now);
+  const plan = taskReadPlan(s, query, { today: date, now });
+  if (summary) return taskQuerySummary(r, plan);
+  const fingerprint = await queryFingerprint({
+    scope: s,
+    query: { ...query, cursor: undefined, limit: undefined },
+  });
+  const cursor = query.cursor
+    ? decodeCursor(query.cursor, {
+        queryFingerprint: fingerprint,
+        sortField: query.sortField,
+        sortDirection: query.sortDirection,
+      })
+    : null;
+  const total = await taskQueryCount(r, plan);
+  const selected = await taskQueryPage(r, s, query, plan, cursor);
+  const pageRows = selected.slice(0, query.limit),
+    last = pageRows.at(-1);
   return {
-    items,
-    total: rows.length,
+    items: pageRows.map(taskDto),
+    total,
     nextCursor:
-      selected.length > items.length && last
+      selected.length > pageRows.length && last
         ? encodeCursor({
             formatVersion: 1,
             queryFingerprint: fingerprint,
             sortField: query.sortField,
             sortDirection: query.sortDirection,
-            sortValue: taskSortValue(last, query.sortField, dataset.env.lookups),
+            sortValue: last.readSortValue,
             id: last.id,
           })
         : null,

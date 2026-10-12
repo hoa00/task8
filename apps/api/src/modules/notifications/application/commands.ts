@@ -5,9 +5,9 @@ import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts'
 import type { notifications } from '../../../db/schema.ts';
 import { instant, nullableInstant } from '../../../shared/clock.ts';
 import { ApiFailure, required } from '../../../shared/errors.ts';
-import { historyPage } from '../../collaboration-page.ts';
+import { bindReadCursor, finishReadPage } from '../../../shared/read-page.ts';
+import { pagedNotifications } from '../persistence/paged-notifications.ts';
 import {
-  listNotificationsRead,
   readAllNotificationsCommitNotifications,
   updateNotificationCommitNotifications,
   updateNotificationPredicate,
@@ -32,22 +32,18 @@ export async function listNotifications(
   s: WorkspaceContext,
   query: z.infer<typeof NotificationQuerySchema>,
 ) {
-  const rows = await listNotificationsRead(r, s);
-  const unreadCount = rows.filter((n) => n.readAt === null).length,
-    items = rows
-      .filter(
-        (n) =>
-          (query.category === 'all' || n.type === query.category) &&
-          (!query.unreadOnly || n.readAt === null),
-      )
-      .map(dto);
+  const { binding, cursor } = await bindReadCursor(
+    query,
+    { scope: s, kind: 'notifications', category: query.category, unreadOnly: query.unreadOnly },
+    'updated',
+    'desc',
+  );
+  const { rows, total, unreadCount } = await pagedNotifications(r, s, query, cursor);
   return {
-    ...(await historyPage(
-      items,
-      query,
-      { scope: s, kind: 'notifications', category: query.category, unreadOnly: query.unreadOnly },
-      true,
-    )),
+    ...finishReadPage(rows.map(dto), total, query.limit, binding, (row) => ({
+      id: row.id,
+      value: row.createdAt,
+    })),
     unreadCount,
   };
 }

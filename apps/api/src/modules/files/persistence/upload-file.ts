@@ -1,3 +1,5 @@
+import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
+import { fileReadTextKeys } from '../domain/read-text.ts';
 import type { EntityId } from '@studio/contracts/api';
 import type { $brand } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
@@ -35,7 +37,7 @@ export function uploadFileInsertFiles(
   },
   gate: { sql: string; parameters: string[] },
 ) {
-  return gatedInsert(r, 'files', [f], gate);
+  return gatedInsert(r, 'files', [{ ...f, readKeys: fileReadTextKeys(f, textKeyEncoder) }], gate);
 }
 export function uploadFileInsertActivity(
   r: RequestRepository,

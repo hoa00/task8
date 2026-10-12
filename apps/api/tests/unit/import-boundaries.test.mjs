@@ -176,3 +176,34 @@ test('only listed cross-aggregate fragment facade is public', () => {
   );
   assert.throws(() => checkBoundaries(valid, empty));
 });
+
+test('immutable local Wasm resources resolve through the same owner boundary', () => {
+  assert.equal(
+    checkBoundaries(
+      files({
+        'src/shared/collation/encoder.ts': "import module from './icu78-en-US.wasm';",
+        'src/shared/collation/icu78-en-US.wasm': '',
+      }),
+      empty,
+    ).status,
+    'PASS',
+  );
+  assert.throws(() =>
+    checkBoundaries(
+      files({
+        'src/shared/collation/encoder.ts': "import module from './missing.wasm';",
+      }),
+      empty,
+    ),
+  );
+  assert.throws(() =>
+    checkBoundaries(
+      files({
+        'src/modules/tasks/domain/model.ts':
+          "import module from '../../files/persistence/internal.wasm';",
+        'src/modules/files/persistence/internal.wasm': '',
+      }),
+      empty,
+    ),
+  );
+});

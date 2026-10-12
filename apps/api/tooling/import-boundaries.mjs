@@ -333,11 +333,16 @@ export function readSources() {
         ? entry.name === 'migrations'
           ? []
           : walk(directory + '/' + entry.name)
-        : entry.name.endsWith('.ts')
+        : entry.name.endsWith('.ts') || entry.name.endsWith('.wasm')
           ? [directory + '/' + entry.name]
           : [],
     );
-  return new Map(walk('src').map((path) => [path, readFileSync(resolve(api, path), 'utf8')]));
+  return new Map(
+    walk('src').map((path) => [
+      path,
+      path.endsWith('.wasm') ? '' : readFileSync(resolve(api, path), 'utf8'),
+    ]),
+  );
 }
 if (process.argv[1] === fileURLToPath(import.meta.url))
   console.log(JSON.stringify(checkBoundaries()));

@@ -1,0 +1,6366 @@
+[
+  {
+    "kind": "tasks",
+    "query": {
+      "sortField": "manual",
+      "sortDirection": "asc",
+      "limit": 31
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 5,
+          "parent": 3,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 25,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 44,
+          "parent": 39,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 61,
+          "parent": 0,
+          "notused": 16,
+          "detail": "SCAN qi"
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CO-ROUTINE selected"
+        },
+        {
+          "id": 5,
+          "parent": 2,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 7,
+          "parent": 5,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 21,
+          "parent": 2,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_manual (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 30,
+          "parent": 2,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 44,
+          "parent": 2,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 49,
+          "parent": 44,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 66,
+          "parent": 2,
+          "notused": 16,
+          "detail": "SCAN qi"
+        },
+        {
+          "id": 86,
+          "parent": 0,
+          "notused": 42,
+          "detail": "SCAN selected"
+        },
+        {
+          "id": 89,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX sqlite_autoindex_tasks_1 (id=?)"
+        },
+        {
+          "id": 95,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 133,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 136,
+          "parent": 133,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-5)"
+        },
+        {
+          "id": 140,
+          "parent": 136,
+          "notused": 62,
+          "detail": "SEARCH taskLabels USING INDEX sqlite_autoindex_taskLabels_1 (taskId=?)"
+        },
+        {
+          "id": 153,
+          "parent": 136,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 163,
+          "parent": 133,
+          "notused": 74,
+          "detail": "SCAN (subquery-5)"
+        },
+        {
+          "id": 175,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 8"
+        },
+        {
+          "id": 178,
+          "parent": 175,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-7)"
+        },
+        {
+          "id": 181,
+          "parent": 178,
+          "notused": 56,
+          "detail": "SEARCH taskDependencies USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 194,
+          "parent": 175,
+          "notused": 74,
+          "detail": "SCAN (subquery-7)"
+        },
+        {
+          "id": 206,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 10"
+        },
+        {
+          "id": 216,
+          "parent": 206,
+          "notused": 56,
+          "detail": "SEARCH d USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 223,
+          "parent": 206,
+          "notused": 46,
+          "detail": "SEARCH dep USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 239,
+          "parent": 206,
+          "notused": 46,
+          "detail": "SEARCH dp USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 258,
+          "parent": 206,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 9"
+        },
+        {
+          "id": 263,
+          "parent": 258,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 287,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 11"
+        },
+        {
+          "id": 292,
+          "parent": 287,
+          "notused": 54,
+          "detail": "SEARCH subtasks USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 305,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 12"
+        },
+        {
+          "id": 311,
+          "parent": 305,
+          "notused": 61,
+          "detail": "SEARCH subtasks USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 327,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 13"
+        },
+        {
+          "id": 333,
+          "parent": 327,
+          "notused": 61,
+          "detail": "SEARCH files USING INDEX files_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 351,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 14"
+        },
+        {
+          "id": 356,
+          "parent": 351,
+          "notused": 54,
+          "detail": "SEARCH comments USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 371,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 15"
+        },
+        {
+          "id": 376,
+          "parent": 371,
+          "notused": 39,
+          "detail": "SEARCH taskFavorites USING INDEX sqlite_autoindex_taskFavorites_1 (memberId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "tasks",
+    "query": {
+      "sortField": "title",
+      "sortDirection": "asc",
+      "limit": 31
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 5,
+          "parent": 3,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 25,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 44,
+          "parent": 39,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 61,
+          "parent": 0,
+          "notused": 16,
+          "detail": "SCAN qi"
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CO-ROUTINE selected"
+        },
+        {
+          "id": 5,
+          "parent": 2,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 7,
+          "parent": 5,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 21,
+          "parent": 2,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 30,
+          "parent": 2,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 44,
+          "parent": 2,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 49,
+          "parent": 44,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 66,
+          "parent": 2,
+          "notused": 16,
+          "detail": "SCAN qi"
+        },
+        {
+          "id": 91,
+          "parent": 0,
+          "notused": 42,
+          "detail": "SCAN selected"
+        },
+        {
+          "id": 94,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX sqlite_autoindex_tasks_1 (id=?)"
+        },
+        {
+          "id": 100,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 138,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 141,
+          "parent": 138,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-5)"
+        },
+        {
+          "id": 145,
+          "parent": 141,
+          "notused": 62,
+          "detail": "SEARCH taskLabels USING INDEX sqlite_autoindex_taskLabels_1 (taskId=?)"
+        },
+        {
+          "id": 158,
+          "parent": 141,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 168,
+          "parent": 138,
+          "notused": 74,
+          "detail": "SCAN (subquery-5)"
+        },
+        {
+          "id": 180,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 8"
+        },
+        {
+          "id": 183,
+          "parent": 180,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-7)"
+        },
+        {
+          "id": 186,
+          "parent": 183,
+          "notused": 56,
+          "detail": "SEARCH taskDependencies USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 199,
+          "parent": 180,
+          "notused": 74,
+          "detail": "SCAN (subquery-7)"
+        },
+        {
+          "id": 211,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 10"
+        },
+        {
+          "id": 221,
+          "parent": 211,
+          "notused": 56,
+          "detail": "SEARCH d USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 228,
+          "parent": 211,
+          "notused": 46,
+          "detail": "SEARCH dep USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 244,
+          "parent": 211,
+          "notused": 46,
+          "detail": "SEARCH dp USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 263,
+          "parent": 211,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 9"
+        },
+        {
+          "id": 268,
+          "parent": 263,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 292,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 11"
+        },
+        {
+          "id": 297,
+          "parent": 292,
+          "notused": 54,
+          "detail": "SEARCH subtasks USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 310,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 12"
+        },
+        {
+          "id": 316,
+          "parent": 310,
+          "notused": 61,
+          "detail": "SEARCH subtasks USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 332,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 13"
+        },
+        {
+          "id": 338,
+          "parent": 332,
+          "notused": 61,
+          "detail": "SEARCH files USING INDEX files_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 356,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 14"
+        },
+        {
+          "id": 361,
+          "parent": 356,
+          "notused": 54,
+          "detail": "SEARCH comments USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 376,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 15"
+        },
+        {
+          "id": 381,
+          "parent": 376,
+          "notused": 39,
+          "detail": "SEARCH taskFavorites USING INDEX sqlite_autoindex_taskFavorites_1 (memberId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "tasks",
+    "query": {
+      "sortField": "due",
+      "sortDirection": "asc",
+      "limit": 31
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 5,
+          "parent": 3,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 25,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 44,
+          "parent": 39,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 61,
+          "parent": 0,
+          "notused": 16,
+          "detail": "SCAN qi"
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CO-ROUTINE selected"
+        },
+        {
+          "id": 5,
+          "parent": 2,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 7,
+          "parent": 5,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 21,
+          "parent": 2,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 30,
+          "parent": 2,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 44,
+          "parent": 2,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 49,
+          "parent": 44,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 66,
+          "parent": 2,
+          "notused": 16,
+          "detail": "SCAN qi"
+        },
+        {
+          "id": 468,
+          "parent": 2,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 484,
+          "parent": 0,
+          "notused": 42,
+          "detail": "SCAN selected"
+        },
+        {
+          "id": 487,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX sqlite_autoindex_tasks_1 (id=?)"
+        },
+        {
+          "id": 493,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 531,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 534,
+          "parent": 531,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-5)"
+        },
+        {
+          "id": 538,
+          "parent": 534,
+          "notused": 62,
+          "detail": "SEARCH taskLabels USING INDEX sqlite_autoindex_taskLabels_1 (taskId=?)"
+        },
+        {
+          "id": 551,
+          "parent": 534,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 561,
+          "parent": 531,
+          "notused": 74,
+          "detail": "SCAN (subquery-5)"
+        },
+        {
+          "id": 573,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 8"
+        },
+        {
+          "id": 576,
+          "parent": 573,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-7)"
+        },
+        {
+          "id": 579,
+          "parent": 576,
+          "notused": 56,
+          "detail": "SEARCH taskDependencies USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 592,
+          "parent": 573,
+          "notused": 74,
+          "detail": "SCAN (subquery-7)"
+        },
+        {
+          "id": 604,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 10"
+        },
+        {
+          "id": 614,
+          "parent": 604,
+          "notused": 56,
+          "detail": "SEARCH d USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 621,
+          "parent": 604,
+          "notused": 46,
+          "detail": "SEARCH dep USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 637,
+          "parent": 604,
+          "notused": 46,
+          "detail": "SEARCH dp USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 656,
+          "parent": 604,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 9"
+        },
+        {
+          "id": 661,
+          "parent": 656,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 685,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 11"
+        },
+        {
+          "id": 690,
+          "parent": 685,
+          "notused": 54,
+          "detail": "SEARCH subtasks USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 703,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 12"
+        },
+        {
+          "id": 709,
+          "parent": 703,
+          "notused": 61,
+          "detail": "SEARCH subtasks USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 725,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 13"
+        },
+        {
+          "id": 731,
+          "parent": 725,
+          "notused": 61,
+          "detail": "SEARCH files USING INDEX files_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 749,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 14"
+        },
+        {
+          "id": 754,
+          "parent": 749,
+          "notused": 54,
+          "detail": "SEARCH comments USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 769,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 15"
+        },
+        {
+          "id": 774,
+          "parent": 769,
+          "notused": 39,
+          "detail": "SEARCH taskFavorites USING INDEX sqlite_autoindex_taskFavorites_1 (memberId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "projects",
+    "query": {
+      "sort": "name",
+      "archived": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 108,
+          "detail": "SEARCH projectMembers USING INDEX sqlite_autoindex_projectMembers_1 (projectId=?)"
+        },
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 10,
+          "parent": 8,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX projectMilestones_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 19,
+          "parent": 16,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 28,
+          "parent": 16,
+          "notused": 0,
+          "detail": "CREATE BLOOM FILTER"
+        },
+        {
+          "id": 36,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 48,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 53,
+          "parent": 48,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 77,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH projectFavorites USING INDEX sqlite_autoindex_projectFavorites_1 (memberId=? AND projectId=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 2"
+        },
+        {
+          "id": 14,
+          "parent": 11,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 20,
+          "parent": 11,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 20,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 3"
+        },
+        {
+          "id": 17,
+          "parent": 15,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 53,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 58,
+          "parent": 53,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 73,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR GROUP BY"
+        },
+        {
+          "id": 114,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 119,
+          "parent": 114,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 135,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 141,
+          "parent": 135,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "projects",
+    "query": {
+      "sort": "recent",
+      "archived": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 26,
+          "parent": 21,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 1283,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 1288,
+          "parent": 1283,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 1315,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 108,
+          "detail": "SEARCH projectMembers USING INDEX sqlite_autoindex_projectMembers_1 (projectId=?)"
+        },
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 10,
+          "parent": 8,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX projectMilestones_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 19,
+          "parent": 16,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 28,
+          "parent": 16,
+          "notused": 0,
+          "detail": "CREATE BLOOM FILTER"
+        },
+        {
+          "id": 36,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 48,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 53,
+          "parent": 48,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 77,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH projectFavorites USING INDEX sqlite_autoindex_projectFavorites_1 (memberId=? AND projectId=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 2"
+        },
+        {
+          "id": 14,
+          "parent": 11,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 20,
+          "parent": 11,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 20,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 3"
+        },
+        {
+          "id": 17,
+          "parent": 15,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 53,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 58,
+          "parent": 53,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 73,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR GROUP BY"
+        },
+        {
+          "id": 114,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 119,
+          "parent": 114,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 135,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 141,
+          "parent": 135,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "projects",
+    "query": {
+      "sort": "due",
+      "archived": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        },
+        {
+          "id": 403,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 108,
+          "detail": "SEARCH projectMembers USING INDEX sqlite_autoindex_projectMembers_1 (projectId=?)"
+        },
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 10,
+          "parent": 8,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX projectMilestones_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 19,
+          "parent": 16,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 28,
+          "parent": 16,
+          "notused": 0,
+          "detail": "CREATE BLOOM FILTER"
+        },
+        {
+          "id": 36,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 48,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 53,
+          "parent": 48,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 77,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH projectFavorites USING INDEX sqlite_autoindex_projectFavorites_1 (memberId=? AND projectId=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 2"
+        },
+        {
+          "id": 14,
+          "parent": 11,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 20,
+          "parent": 11,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 20,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 3"
+        },
+        {
+          "id": 17,
+          "parent": 15,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 53,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 58,
+          "parent": 53,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 73,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR GROUP BY"
+        },
+        {
+          "id": 114,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 119,
+          "parent": 114,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 135,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 141,
+          "parent": 135,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "projects",
+    "query": {
+      "sort": "progress",
+      "archived": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 26,
+          "parent": 21,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 49,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 5"
+        },
+        {
+          "id": 55,
+          "parent": 49,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 75,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 80,
+          "parent": 75,
+          "notused": 53,
+          "detail": "SEARCH t USING COVERING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 118,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 123,
+          "parent": 118,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 146,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 3"
+        },
+        {
+          "id": 152,
+          "parent": 146,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 172,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 177,
+          "parent": 172,
+          "notused": 53,
+          "detail": "SEARCH t USING COVERING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 206,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 108,
+          "detail": "SEARCH projectMembers USING INDEX sqlite_autoindex_projectMembers_1 (projectId=?)"
+        },
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 10,
+          "parent": 8,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX projectMilestones_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 19,
+          "parent": 16,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 28,
+          "parent": 16,
+          "notused": 0,
+          "detail": "CREATE BLOOM FILTER"
+        },
+        {
+          "id": 36,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 48,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 53,
+          "parent": 48,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 77,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH projectFavorites USING INDEX sqlite_autoindex_projectFavorites_1 (memberId=? AND projectId=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 2"
+        },
+        {
+          "id": 14,
+          "parent": 11,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 20,
+          "parent": 11,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 20,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 3"
+        },
+        {
+          "id": 17,
+          "parent": 15,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 53,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 58,
+          "parent": 53,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 73,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR GROUP BY"
+        },
+        {
+          "id": 114,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 119,
+          "parent": 114,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 135,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 141,
+          "parent": 135,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "members",
+    "query": {
+      "limit": 13
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX members_team (workspaceId=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX members_workspace_user (workspaceId=?)"
+        },
+        {
+          "id": 18,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        },
+        {
+          "id": 46,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "files",
+    "query": {
+      "sort": "name",
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 43,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 48,
+          "parent": 43,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 17,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_name (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 20,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "files",
+    "query": {
+      "sort": "recent",
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 43,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 48,
+          "parent": 43,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 17,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_recent (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 20,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "files",
+    "query": {
+      "sort": "type",
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 43,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 48,
+          "parent": 43,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 17,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_type (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 20,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "files",
+    "query": {
+      "sort": "size",
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 43,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 48,
+          "parent": 43,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 17,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 20,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "comments",
+    "query": {
+      "limit": 13
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 30,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 12"
+        },
+        {
+          "id": 35,
+          "parent": 30,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 82,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 85,
+          "parent": 82,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-1)"
+        },
+        {
+          "id": 89,
+          "parent": 85,
+          "notused": 62,
+          "detail": "SEARCH taskLabels USING INDEX sqlite_autoindex_taskLabels_1 (taskId=?)"
+        },
+        {
+          "id": 102,
+          "parent": 85,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 112,
+          "parent": 82,
+          "notused": 44,
+          "detail": "SCAN (subquery-1)"
+        },
+        {
+          "id": 124,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 127,
+          "parent": 124,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-3)"
+        },
+        {
+          "id": 130,
+          "parent": 127,
+          "notused": 56,
+          "detail": "SEARCH taskDependencies USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 143,
+          "parent": 124,
+          "notused": 44,
+          "detail": "SCAN (subquery-3)"
+        },
+        {
+          "id": 155,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 165,
+          "parent": 155,
+          "notused": 56,
+          "detail": "SEARCH d USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 172,
+          "parent": 155,
+          "notused": 46,
+          "detail": "SEARCH dep USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 188,
+          "parent": 155,
+          "notused": 46,
+          "detail": "SEARCH dp USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 207,
+          "parent": 155,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 5"
+        },
+        {
+          "id": 212,
+          "parent": 207,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 236,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 7"
+        },
+        {
+          "id": 241,
+          "parent": 236,
+          "notused": 54,
+          "detail": "SEARCH subtasks USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 254,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 8"
+        },
+        {
+          "id": 260,
+          "parent": 254,
+          "notused": 61,
+          "detail": "SEARCH subtasks USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 276,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 9"
+        },
+        {
+          "id": 282,
+          "parent": 276,
+          "notused": 61,
+          "detail": "SEARCH files USING INDEX files_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 300,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 10"
+        },
+        {
+          "id": 305,
+          "parent": 300,
+          "notused": 54,
+          "detail": "SEARCH comments USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 320,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 11"
+        },
+        {
+          "id": 325,
+          "parent": 320,
+          "notused": 39,
+          "detail": "SEARCH taskFavorites USING INDEX sqlite_autoindex_taskFavorites_1 (memberId=? AND taskId=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 13,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 20,
+          "parent": 13,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 30,
+          "parent": 13,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 50,
+          "parent": 13,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 55,
+          "parent": 50,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 18,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 25,
+          "parent": 18,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 35,
+          "parent": 18,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 55,
+          "parent": 18,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 3"
+        },
+        {
+          "id": 60,
+          "parent": 55,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 93,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 96,
+          "parent": 93,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-1)"
+        },
+        {
+          "id": 100,
+          "parent": 96,
+          "notused": 62,
+          "detail": "SEARCH commentReactions USING INDEX sqlite_autoindex_commentReactions_1 (commentId=?)"
+        },
+        {
+          "id": 113,
+          "parent": 96,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 124,
+          "parent": 93,
+          "notused": 77,
+          "detail": "SCAN (subquery-1)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "activity",
+    "query": {
+      "limit": 17
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH a USING INDEX activity_visible_history (workspaceId=? AND revertedAt=?)"
+        },
+        {
+          "id": 19,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 24,
+          "parent": 19,
+          "notused": 39,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 38,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 58,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 83,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 88,
+          "parent": 83,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH a USING INDEX activity_visible_history (workspaceId=? AND revertedAt=?)"
+        },
+        {
+          "id": 22,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 27,
+          "parent": 22,
+          "notused": 39,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 41,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 61,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 86,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 91,
+          "parent": 86,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "notifications",
+    "query": {
+      "category": "all",
+      "unreadOnly": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH n USING INDEX notifications_recipient_history (workspaceId=? AND recipientId=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 65,
+          "parent": 60,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH n USING INDEX notifications_recipient_history (workspaceId=? AND recipientId=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 40,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 63,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 68,
+          "parent": 63,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "tasks",
+    "query": {
+      "sortField": "manual",
+      "sortDirection": "asc",
+      "limit": 31
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 5,
+          "parent": 3,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 25,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 44,
+          "parent": 39,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 61,
+          "parent": 0,
+          "notused": 16,
+          "detail": "SCAN qi"
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CO-ROUTINE selected"
+        },
+        {
+          "id": 5,
+          "parent": 2,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 7,
+          "parent": 5,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 21,
+          "parent": 2,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_manual (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 30,
+          "parent": 2,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 44,
+          "parent": 2,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 49,
+          "parent": 44,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 66,
+          "parent": 2,
+          "notused": 16,
+          "detail": "SCAN qi"
+        },
+        {
+          "id": 86,
+          "parent": 0,
+          "notused": 42,
+          "detail": "SCAN selected"
+        },
+        {
+          "id": 89,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX sqlite_autoindex_tasks_1 (id=?)"
+        },
+        {
+          "id": 95,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 133,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 136,
+          "parent": 133,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-5)"
+        },
+        {
+          "id": 140,
+          "parent": 136,
+          "notused": 62,
+          "detail": "SEARCH taskLabels USING INDEX sqlite_autoindex_taskLabels_1 (taskId=?)"
+        },
+        {
+          "id": 153,
+          "parent": 136,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 163,
+          "parent": 133,
+          "notused": 74,
+          "detail": "SCAN (subquery-5)"
+        },
+        {
+          "id": 175,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 8"
+        },
+        {
+          "id": 178,
+          "parent": 175,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-7)"
+        },
+        {
+          "id": 181,
+          "parent": 178,
+          "notused": 56,
+          "detail": "SEARCH taskDependencies USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 194,
+          "parent": 175,
+          "notused": 74,
+          "detail": "SCAN (subquery-7)"
+        },
+        {
+          "id": 206,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 10"
+        },
+        {
+          "id": 216,
+          "parent": 206,
+          "notused": 56,
+          "detail": "SEARCH d USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 223,
+          "parent": 206,
+          "notused": 46,
+          "detail": "SEARCH dep USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 239,
+          "parent": 206,
+          "notused": 46,
+          "detail": "SEARCH dp USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 258,
+          "parent": 206,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 9"
+        },
+        {
+          "id": 263,
+          "parent": 258,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 287,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 11"
+        },
+        {
+          "id": 292,
+          "parent": 287,
+          "notused": 54,
+          "detail": "SEARCH subtasks USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 305,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 12"
+        },
+        {
+          "id": 311,
+          "parent": 305,
+          "notused": 61,
+          "detail": "SEARCH subtasks USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 327,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 13"
+        },
+        {
+          "id": 333,
+          "parent": 327,
+          "notused": 61,
+          "detail": "SEARCH files USING INDEX files_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 351,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 14"
+        },
+        {
+          "id": 356,
+          "parent": 351,
+          "notused": 54,
+          "detail": "SEARCH comments USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 371,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 15"
+        },
+        {
+          "id": 376,
+          "parent": 371,
+          "notused": 39,
+          "detail": "SEARCH taskFavorites USING INDEX sqlite_autoindex_taskFavorites_1 (memberId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "tasks",
+    "query": {
+      "sortField": "title",
+      "sortDirection": "asc",
+      "limit": 31
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 5,
+          "parent": 3,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 25,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 44,
+          "parent": 39,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 61,
+          "parent": 0,
+          "notused": 16,
+          "detail": "SCAN qi"
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CO-ROUTINE selected"
+        },
+        {
+          "id": 5,
+          "parent": 2,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 7,
+          "parent": 5,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 21,
+          "parent": 2,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 30,
+          "parent": 2,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 44,
+          "parent": 2,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 49,
+          "parent": 44,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 66,
+          "parent": 2,
+          "notused": 16,
+          "detail": "SCAN qi"
+        },
+        {
+          "id": 91,
+          "parent": 0,
+          "notused": 42,
+          "detail": "SCAN selected"
+        },
+        {
+          "id": 94,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX sqlite_autoindex_tasks_1 (id=?)"
+        },
+        {
+          "id": 100,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 138,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 141,
+          "parent": 138,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-5)"
+        },
+        {
+          "id": 145,
+          "parent": 141,
+          "notused": 62,
+          "detail": "SEARCH taskLabels USING INDEX sqlite_autoindex_taskLabels_1 (taskId=?)"
+        },
+        {
+          "id": 158,
+          "parent": 141,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 168,
+          "parent": 138,
+          "notused": 74,
+          "detail": "SCAN (subquery-5)"
+        },
+        {
+          "id": 180,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 8"
+        },
+        {
+          "id": 183,
+          "parent": 180,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-7)"
+        },
+        {
+          "id": 186,
+          "parent": 183,
+          "notused": 56,
+          "detail": "SEARCH taskDependencies USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 199,
+          "parent": 180,
+          "notused": 74,
+          "detail": "SCAN (subquery-7)"
+        },
+        {
+          "id": 211,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 10"
+        },
+        {
+          "id": 221,
+          "parent": 211,
+          "notused": 56,
+          "detail": "SEARCH d USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 228,
+          "parent": 211,
+          "notused": 46,
+          "detail": "SEARCH dep USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 244,
+          "parent": 211,
+          "notused": 46,
+          "detail": "SEARCH dp USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 263,
+          "parent": 211,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 9"
+        },
+        {
+          "id": 268,
+          "parent": 263,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 292,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 11"
+        },
+        {
+          "id": 297,
+          "parent": 292,
+          "notused": 54,
+          "detail": "SEARCH subtasks USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 310,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 12"
+        },
+        {
+          "id": 316,
+          "parent": 310,
+          "notused": 61,
+          "detail": "SEARCH subtasks USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 332,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 13"
+        },
+        {
+          "id": 338,
+          "parent": 332,
+          "notused": 61,
+          "detail": "SEARCH files USING INDEX files_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 356,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 14"
+        },
+        {
+          "id": 361,
+          "parent": 356,
+          "notused": 54,
+          "detail": "SEARCH comments USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 376,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 15"
+        },
+        {
+          "id": 381,
+          "parent": 376,
+          "notused": 39,
+          "detail": "SEARCH taskFavorites USING INDEX sqlite_autoindex_taskFavorites_1 (memberId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "tasks",
+    "query": {
+      "sortField": "due",
+      "sortDirection": "asc",
+      "limit": 31
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 5,
+          "parent": 3,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 25,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 44,
+          "parent": 39,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 61,
+          "parent": 0,
+          "notused": 16,
+          "detail": "SCAN qi"
+        }
+      ],
+      [
+        {
+          "id": 2,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CO-ROUTINE selected"
+        },
+        {
+          "id": 5,
+          "parent": 2,
+          "notused": 0,
+          "detail": "MATERIALIZE queryInput"
+        },
+        {
+          "id": 7,
+          "parent": 5,
+          "notused": 0,
+          "detail": "SCAN CONSTANT ROW"
+        },
+        {
+          "id": 21,
+          "parent": 2,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_active_title (workspaceId=? AND deletedAt=? AND archivedAt=?)"
+        },
+        {
+          "id": 30,
+          "parent": 2,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 44,
+          "parent": 2,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 49,
+          "parent": 44,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 66,
+          "parent": 2,
+          "notused": 16,
+          "detail": "SCAN qi"
+        },
+        {
+          "id": 468,
+          "parent": 2,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 484,
+          "parent": 0,
+          "notused": 42,
+          "detail": "SCAN selected"
+        },
+        {
+          "id": 487,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX sqlite_autoindex_tasks_1 (id=?)"
+        },
+        {
+          "id": 493,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 531,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 534,
+          "parent": 531,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-5)"
+        },
+        {
+          "id": 538,
+          "parent": 534,
+          "notused": 62,
+          "detail": "SEARCH taskLabels USING INDEX sqlite_autoindex_taskLabels_1 (taskId=?)"
+        },
+        {
+          "id": 551,
+          "parent": 534,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 561,
+          "parent": 531,
+          "notused": 74,
+          "detail": "SCAN (subquery-5)"
+        },
+        {
+          "id": 573,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 8"
+        },
+        {
+          "id": 576,
+          "parent": 573,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-7)"
+        },
+        {
+          "id": 579,
+          "parent": 576,
+          "notused": 56,
+          "detail": "SEARCH taskDependencies USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 592,
+          "parent": 573,
+          "notused": 74,
+          "detail": "SCAN (subquery-7)"
+        },
+        {
+          "id": 604,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 10"
+        },
+        {
+          "id": 614,
+          "parent": 604,
+          "notused": 56,
+          "detail": "SEARCH d USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 621,
+          "parent": 604,
+          "notused": 46,
+          "detail": "SEARCH dep USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 637,
+          "parent": 604,
+          "notused": 46,
+          "detail": "SEARCH dp USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 656,
+          "parent": 604,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 9"
+        },
+        {
+          "id": 661,
+          "parent": 656,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 685,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 11"
+        },
+        {
+          "id": 690,
+          "parent": 685,
+          "notused": 54,
+          "detail": "SEARCH subtasks USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 703,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 12"
+        },
+        {
+          "id": 709,
+          "parent": 703,
+          "notused": 61,
+          "detail": "SEARCH subtasks USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 725,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 13"
+        },
+        {
+          "id": 731,
+          "parent": 725,
+          "notused": 61,
+          "detail": "SEARCH files USING INDEX files_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 749,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 14"
+        },
+        {
+          "id": 754,
+          "parent": 749,
+          "notused": 54,
+          "detail": "SEARCH comments USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 769,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 15"
+        },
+        {
+          "id": 774,
+          "parent": 769,
+          "notused": 39,
+          "detail": "SEARCH taskFavorites USING INDEX sqlite_autoindex_taskFavorites_1 (memberId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "projects",
+    "query": {
+      "sort": "name",
+      "archived": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 108,
+          "detail": "SEARCH projectMembers USING INDEX sqlite_autoindex_projectMembers_1 (projectId=?)"
+        },
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 10,
+          "parent": 8,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX projectMilestones_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 19,
+          "parent": 16,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 28,
+          "parent": 16,
+          "notused": 0,
+          "detail": "CREATE BLOOM FILTER"
+        },
+        {
+          "id": 36,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 48,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 53,
+          "parent": 48,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 77,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH projectFavorites USING INDEX sqlite_autoindex_projectFavorites_1 (memberId=? AND projectId=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 2"
+        },
+        {
+          "id": 14,
+          "parent": 11,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 20,
+          "parent": 11,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 20,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 3"
+        },
+        {
+          "id": 17,
+          "parent": 15,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 53,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 58,
+          "parent": 53,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 73,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR GROUP BY"
+        },
+        {
+          "id": 114,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 119,
+          "parent": 114,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 135,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 141,
+          "parent": 135,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "projects",
+    "query": {
+      "sort": "recent",
+      "archived": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 26,
+          "parent": 21,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 1283,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 1288,
+          "parent": 1283,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 1315,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 108,
+          "detail": "SEARCH projectMembers USING INDEX sqlite_autoindex_projectMembers_1 (projectId=?)"
+        },
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 10,
+          "parent": 8,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX projectMilestones_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 19,
+          "parent": 16,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 28,
+          "parent": 16,
+          "notused": 0,
+          "detail": "CREATE BLOOM FILTER"
+        },
+        {
+          "id": 36,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 48,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 53,
+          "parent": 48,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 77,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH projectFavorites USING INDEX sqlite_autoindex_projectFavorites_1 (memberId=? AND projectId=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 2"
+        },
+        {
+          "id": 14,
+          "parent": 11,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 20,
+          "parent": 11,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 20,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 3"
+        },
+        {
+          "id": 17,
+          "parent": 15,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 53,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 58,
+          "parent": 53,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 73,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR GROUP BY"
+        },
+        {
+          "id": 114,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 119,
+          "parent": 114,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 135,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 141,
+          "parent": 135,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "projects",
+    "query": {
+      "sort": "due",
+      "archived": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        },
+        {
+          "id": 403,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 108,
+          "detail": "SEARCH projectMembers USING INDEX sqlite_autoindex_projectMembers_1 (projectId=?)"
+        },
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 10,
+          "parent": 8,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX projectMilestones_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 19,
+          "parent": 16,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 28,
+          "parent": 16,
+          "notused": 0,
+          "detail": "CREATE BLOOM FILTER"
+        },
+        {
+          "id": 36,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 48,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 53,
+          "parent": 48,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 77,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH projectFavorites USING INDEX sqlite_autoindex_projectFavorites_1 (memberId=? AND projectId=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 2"
+        },
+        {
+          "id": 14,
+          "parent": 11,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 20,
+          "parent": 11,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 20,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 3"
+        },
+        {
+          "id": 17,
+          "parent": 15,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 53,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 58,
+          "parent": 53,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 73,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR GROUP BY"
+        },
+        {
+          "id": 114,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 119,
+          "parent": 114,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 135,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 141,
+          "parent": 135,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "projects",
+    "query": {
+      "sort": "progress",
+      "archived": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH p USING INDEX projects_catalog_name (workspaceId=? AND deletedAt=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 26,
+          "parent": 21,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 49,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 5"
+        },
+        {
+          "id": 55,
+          "parent": 49,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 75,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 80,
+          "parent": 75,
+          "notused": 53,
+          "detail": "SEARCH t USING COVERING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 118,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 123,
+          "parent": 118,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 146,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 3"
+        },
+        {
+          "id": 152,
+          "parent": 146,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 172,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 177,
+          "parent": 172,
+          "notused": 53,
+          "detail": "SEARCH t USING COVERING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 206,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH workspaces USING INDEX sqlite_autoindex_workspaces_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 108,
+          "detail": "SEARCH projectMembers USING INDEX sqlite_autoindex_projectMembers_1 (projectId=?)"
+        },
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 10,
+          "parent": 8,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX projectMilestones_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 19,
+          "parent": 16,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 28,
+          "parent": 16,
+          "notused": 0,
+          "detail": "CREATE BLOOM FILTER"
+        },
+        {
+          "id": 36,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 48,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 53,
+          "parent": 48,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 77,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH projectFavorites USING INDEX sqlite_autoindex_projectFavorites_1 (memberId=? AND projectId=?)"
+        },
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 11,
+          "parent": 9,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 2"
+        },
+        {
+          "id": 14,
+          "parent": 11,
+          "notused": 61,
+          "detail": "SEARCH projects USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 20,
+          "parent": 11,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 20,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH t USING INDEX tasks_project (workspaceId=? AND projectId=? AND archivedAt=? AND deletedAt=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 0,
+          "detail": "LIST SUBQUERY 3"
+        },
+        {
+          "id": 17,
+          "parent": 15,
+          "notused": 0,
+          "detail": "SCAN json_each VIRTUAL TABLE INDEX 1:"
+        },
+        {
+          "id": 39,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 53,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 58,
+          "parent": 53,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 73,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR GROUP BY"
+        },
+        {
+          "id": 114,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 119,
+          "parent": 114,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 135,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 141,
+          "parent": 135,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "members",
+    "query": {
+      "limit": 13
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 6,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX members_team (workspaceId=?)"
+        },
+        {
+          "id": 15,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 9,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH m USING INDEX members_workspace_user (workspaceId=?)"
+        },
+        {
+          "id": 18,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH u USING INDEX sqlite_autoindex_users_1 (id=?)"
+        },
+        {
+          "id": 46,
+          "parent": 0,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "files",
+    "query": {
+      "sort": "name",
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 43,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 48,
+          "parent": 43,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 17,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_name (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 20,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "files",
+    "query": {
+      "sort": "recent",
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 43,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 48,
+          "parent": 43,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 17,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_recent (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 20,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "files",
+    "query": {
+      "sort": "type",
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 43,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 48,
+          "parent": 43,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 17,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_type (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 20,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "files",
+    "query": {
+      "sort": "size",
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 39,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 43,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 48,
+          "parent": 43,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 4,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 22,
+          "parent": 17,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH f USING INDEX files_page_size (workspaceId=? AND projectId=? AND deletedAt=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 25,
+          "parent": 20,
+          "notused": 39,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "comments",
+    "query": {
+      "limit": 13
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 5,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 16,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 30,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 12"
+        },
+        {
+          "id": 35,
+          "parent": 30,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 82,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 85,
+          "parent": 82,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-1)"
+        },
+        {
+          "id": 89,
+          "parent": 85,
+          "notused": 62,
+          "detail": "SEARCH taskLabels USING INDEX sqlite_autoindex_taskLabels_1 (taskId=?)"
+        },
+        {
+          "id": 102,
+          "parent": 85,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 112,
+          "parent": 82,
+          "notused": 44,
+          "detail": "SCAN (subquery-1)"
+        },
+        {
+          "id": 124,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 127,
+          "parent": 124,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-3)"
+        },
+        {
+          "id": 130,
+          "parent": 127,
+          "notused": 56,
+          "detail": "SEARCH taskDependencies USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 143,
+          "parent": 124,
+          "notused": 44,
+          "detail": "SCAN (subquery-3)"
+        },
+        {
+          "id": 155,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 6"
+        },
+        {
+          "id": 165,
+          "parent": 155,
+          "notused": 56,
+          "detail": "SEARCH d USING COVERING INDEX dependency_incoming (workspaceId=?)"
+        },
+        {
+          "id": 172,
+          "parent": 155,
+          "notused": 46,
+          "detail": "SEARCH dep USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 188,
+          "parent": 155,
+          "notused": 46,
+          "detail": "SEARCH dp USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 207,
+          "parent": 155,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 5"
+        },
+        {
+          "id": 212,
+          "parent": 207,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 236,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 7"
+        },
+        {
+          "id": 241,
+          "parent": 236,
+          "notused": 54,
+          "detail": "SEARCH subtasks USING COVERING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 254,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 8"
+        },
+        {
+          "id": 260,
+          "parent": 254,
+          "notused": 61,
+          "detail": "SEARCH subtasks USING INDEX subtasks_task (workspaceId=? AND taskId=?)"
+        },
+        {
+          "id": 276,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 9"
+        },
+        {
+          "id": 282,
+          "parent": 276,
+          "notused": 61,
+          "detail": "SEARCH files USING INDEX files_workspace_id (workspaceId=?)"
+        },
+        {
+          "id": 300,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 10"
+        },
+        {
+          "id": 305,
+          "parent": 300,
+          "notused": 54,
+          "detail": "SEARCH comments USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 320,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 11"
+        },
+        {
+          "id": 325,
+          "parent": 320,
+          "notused": 39,
+          "detail": "SEARCH taskFavorites USING INDEX sqlite_autoindex_taskFavorites_1 (memberId=? AND taskId=?)"
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "parent": 0,
+          "notused": 54,
+          "detail": "SEARCH c USING COVERING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 13,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 20,
+          "parent": 13,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 30,
+          "parent": 13,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 50,
+          "parent": 13,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 55,
+          "parent": 50,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 7,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH c USING INDEX comments_visible_history (workspaceId=? AND taskId=? AND deletedAt=?)"
+        },
+        {
+          "id": 18,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 4"
+        },
+        {
+          "id": 25,
+          "parent": 18,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 35,
+          "parent": 18,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 55,
+          "parent": 18,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 3"
+        },
+        {
+          "id": 60,
+          "parent": 55,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        },
+        {
+          "id": 93,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 96,
+          "parent": 93,
+          "notused": 0,
+          "detail": "CO-ROUTINE (subquery-1)"
+        },
+        {
+          "id": 100,
+          "parent": 96,
+          "notused": 62,
+          "detail": "SEARCH commentReactions USING INDEX sqlite_autoindex_commentReactions_1 (commentId=?)"
+        },
+        {
+          "id": 113,
+          "parent": 96,
+          "notused": 0,
+          "detail": "USE TEMP B-TREE FOR ORDER BY"
+        },
+        {
+          "id": 124,
+          "parent": 93,
+          "notused": 77,
+          "detail": "SCAN (subquery-1)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "activity",
+    "query": {
+      "limit": 17
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH a USING INDEX activity_visible_history (workspaceId=? AND revertedAt=?)"
+        },
+        {
+          "id": 19,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 24,
+          "parent": 19,
+          "notused": 39,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 38,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 58,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 83,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 88,
+          "parent": 83,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 62,
+          "detail": "SEARCH a USING INDEX activity_visible_history (workspaceId=? AND revertedAt=?)"
+        },
+        {
+          "id": 22,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 27,
+          "parent": 22,
+          "notused": 39,
+          "detail": "SEARCH m USING INDEX workspaceMembers_workspace_id (workspaceId=? AND id=?)"
+        },
+        {
+          "id": 41,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 61,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 86,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 2"
+        },
+        {
+          "id": 91,
+          "parent": 86,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ]
+    ]
+  },
+  {
+    "kind": "notifications",
+    "query": {
+      "category": "all",
+      "unreadOnly": false,
+      "limit": 11
+    },
+    "plans": [
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 47,
+          "detail": "SEARCH workspaceMembers USING INDEX members_workspace_user (workspaceId=? AND userId=?)"
+        },
+        {
+          "id": 21,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH users USING INDEX sqlite_autoindex_users_1 (id=?)"
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH n USING INDEX notifications_recipient_history (workspaceId=? AND recipientId=?)"
+        },
+        {
+          "id": 17,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 37,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 60,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 65,
+          "parent": 60,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ],
+      [
+        {
+          "id": 11,
+          "parent": 0,
+          "notused": 61,
+          "detail": "SEARCH n USING INDEX notifications_recipient_history (workspaceId=? AND recipientId=?)"
+        },
+        {
+          "id": 20,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH t USING INDEX tasks_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 40,
+          "parent": 0,
+          "notused": 46,
+          "detail": "SEARCH p USING INDEX projects_workspace_id (workspaceId=? AND id=?) LEFT-JOIN"
+        },
+        {
+          "id": 63,
+          "parent": 0,
+          "notused": 0,
+          "detail": "CORRELATED SCALAR SUBQUERY 1"
+        },
+        {
+          "id": 68,
+          "parent": 63,
+          "notused": 39,
+          "detail": "SEARCH pm USING INDEX sqlite_autoindex_projectMembers_1 (projectId=? AND memberId=?)"
+        }
+      ]
+    ]
+  }
+]

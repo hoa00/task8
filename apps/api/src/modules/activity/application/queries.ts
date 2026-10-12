@@ -3,11 +3,11 @@ import { ActivitySchema, EntityIdSchema } from '@studio/contracts/api';
 import type { z } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { instant } from '../../../shared/clock.ts';
-import { historyPage } from '../../collaboration-page.ts';
+import { bindReadCursor, finishReadPage } from '../../../shared/read-page.ts';
 import { member } from '../../members/index.ts';
 import { projectRow } from '../../projects/access.ts';
 import { taskRow } from '../../tasks/index.ts';
-import { listActivityReadActivity } from '../persistence/queries.ts';
+import { pagedActivity } from '../persistence/paged-activity.ts';
 export async function listActivity(
   r: RequestRepository,
   s: WorkspaceContext,
@@ -21,7 +21,19 @@ export async function listActivity(
       access: 'read',
     });
   if (query.actorId) await member(r, s, query.actorId);
-  const rows = await listActivityReadActivity(r, query, s);
+  const { binding, cursor } = await bindReadCursor(
+    query,
+    {
+      scope: s,
+      kind: 'activity',
+      projectId: query.projectId,
+      taskId: query.taskId,
+      actorId: query.actorId,
+    },
+    'updated',
+    'desc',
+  );
+  const { rows, total } = await pagedActivity(r, s, query, cursor);
   const items = rows.map((a) =>
     ActivitySchema.parse({
       id: EntityIdSchema.parse(a.id),
@@ -33,16 +45,8 @@ export async function listActivity(
       payload: JSON.parse(a.payloadJson),
     }),
   );
-  return historyPage(
-    items,
-    query,
-    {
-      scope: s,
-      kind: 'activity',
-      projectId: query.projectId,
-      taskId: query.taskId,
-      actorId: query.actorId,
-    },
-    true,
-  );
+  return finishReadPage(items, total, query.limit, binding, (row) => ({
+    id: row.id,
+    value: row.createdAt,
+  }));
 }

@@ -1,3 +1,5 @@
+import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
+import { taskReadTextKeys } from '../domain/read-text.ts';
 export type SubtaskWritePlan =
   | { kind: 'create'; child: SubtaskRow }
   | { kind: 'update' | 'delete'; child: SubtaskRow; old: SubtaskRow }
@@ -66,8 +68,9 @@ export async function commitSubtask(
         [s.workspaceId, task.projectId, ...gate.parameters],
       ),
     );
-    const columns = Object.keys(created),
-      json = JSON.stringify(created);
+    const normalized = { ...created, readKeys: taskReadTextKeys(created, textKeyEncoder) },
+      columns = Object.keys(normalized),
+      json = JSON.stringify(normalized);
     statements.push(
       r.prepare(
         `INSERT INTO tasks(${columns.join(',')}) SELECT ${columns.map((c) => (c === 'number' ? 'p.taskSequence' : c === 'position' ? '(SELECT max(0,coalesce(max(position),0))+100 FROM tasks WHERE workspaceId=?)' : `json_extract(?,'$.${c}')`)).join(',')} FROM projects p WHERE p.workspaceId=? AND p.id=? AND ${gate.sql}`,

@@ -18,12 +18,13 @@
     "test:wu33": "node tests/wu33/verify.mjs",
     "test:wu34": "node tests/wu34/verify.mjs",
     "test:wu35": "node tests/wu35/verify.mjs",
-    "test:unit": "node --experimental-transform-types --test tests/unit/*.test.mjs",
+    "test:unit": "node --import ./tests/support/wasm-loader.mjs --experimental-transform-types --test tests/unit/*.test.mjs",
     "test:integration": "node --experimental-transform-types tests/run.mjs",
     "test": "pnpm test:unit && pnpm test:integration",
-    "format": "prettier --write src tests/unit tests/integration tests/support tests/run.mjs tooling drizzle.config.ts tsconfig.json package.json .prettierrc.json",
-    "format:check": "prettier --check src tests/unit tests/integration tests/support tests/run.mjs tooling drizzle.config.ts tsconfig.json package.json .prettierrc.json",
-    "lint": "eslint src tests/unit tests/integration tests/support tests/run.mjs tooling drizzle.config.ts && node tooling/import-boundaries.mjs"
+    "format": "prettier --write src tests/unit tests/integration tests/support tests/run.mjs tooling scripts drizzle.config.ts tsconfig.json package.json .prettierrc.json",
+    "format:check": "prettier --check src tests/unit tests/integration tests/support tests/run.mjs tooling scripts drizzle.config.ts tsconfig.json package.json .prettierrc.json",
+    "lint": "eslint src tests/unit tests/integration tests/support tests/run.mjs tooling scripts drizzle.config.ts && node tooling/import-boundaries.mjs",
+    "db:backfill:local": "node scripts/backfill-read-keys.mjs"
   },
   "dependencies": {
     "@studio/contracts": "workspace:*",

@@ -1,0 +1,45 @@
+{
+  "version": "icu78.2-chromium-en-US-implicitHan-v1",
+  "icuRevision": "6ebb40c594776cc2c21ea14df85a2a89a328b364",
+  "workerd": "1.20261006.1",
+  "v8": "15.5.35.7",
+  "icu": "78.2",
+  "locale": "en-US",
+  "options": {
+    "usage": "sort",
+    "sensitivity": "variant",
+    "numeric": false,
+    "ignorePunctuation": false,
+    "caseFirst": "false",
+    "normalization": true
+  },
+  "emscripten": "3.1.74",
+  "hanData": "implicit",
+  "files": {
+    "sourceArchive": {
+      "bytes": 30005554,
+      "sha256": "18c62f4d994c5841b92c5b2cbb8ce2ccac82768880d2296f0b610a5398ccbe81",
+      "canonicalSha256": "ea7f2013161be72b8b8af92c56f79cde034bd5851a46c1c436af701d8da3aa8a"
+    },
+    "chromiumData": {
+      "bytes": 10819840,
+      "sha256": "495c45cc7a65562ec461f860c310c6b66e006acd96833f61d1aa31f77fe18cf1"
+    },
+    "subsetData": {
+      "bytes": 259056,
+      "sha256": "852df3c0ad1b4707986905f9a4bc4f55069d1b769caf48942c96b56e5e0b5d7c"
+    },
+    "encoderWasm": {
+      "bytes": 667543,
+      "sha256": "afd9aad3615a3ab15dbf7a875e9c415efd7dc7be11a169aef155c2570ed85d4c"
+    }
+  },
+  "subsetItems": ["coll/root.res", "coll/en.res", "coll/en_US.res", "coll/ucadata.icu"],
+  "nativeParityReport": "test-results/api/collation-encoder-Hfi3sS/report.json",
+  "lowercase": "ICU78.2 root Unicode lowercase, differential against Workerd String.toLowerCase",
+  "reproduction": {
+    "command": "COLLATION_EMSDK=/tmp/task8-emsdk bash apps/api/tooling/collation/rebuild.sh",
+    "exitCode": 0,
+    "outputSha256": "afd9aad3615a3ab15dbf7a875e9c415efd7dc7be11a169aef155c2570ed85d4c"
+  }
+}

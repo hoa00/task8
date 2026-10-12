@@ -4,7 +4,7 @@ import type { projects } from '../../../db/schema.ts';
 import { ApiFailure } from '../../../shared/errors.ts';
 import type { ProjectLifecycle } from './policy.ts';
 import { readAccessSql as accessSql, projectLifecycleSql, writeAccessSql } from './policy.ts';
-type ProjectRow = typeof projects.$inferSelect;
+type ProjectRow = Omit<typeof projects.$inferSelect, 'readKeys'>;
 export async function projectRow(
   r: RequestRepository,
   s: WorkspaceContext,

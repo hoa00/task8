@@ -1,0 +1,94 @@
+[
+  {
+    "name": "format-check",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "format:check"
+    ],
+    "startedAt": "2026-10-12T11:35:05.953645+00:00",
+    "completedAt": "2026-10-12T11:35:11.660159+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "format-check.stdout.log",
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    "stderr": {
+      "path": "format-check.stderr.log",
+      "bytes": 158,
+      "sha256": "848ef9e36ff3de72d3f3d603a0c6926a712fb54566cfa2405d0391a552f935b7"
+    }
+  },
+  {
+    "name": "typecheck",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "typecheck"
+    ],
+    "startedAt": "2026-10-12T11:35:11.662529+00:00",
+    "completedAt": "2026-10-12T11:35:18.485457+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "typecheck.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "typecheck.stderr.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    }
+  },
+  {
+    "name": "lint",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "lint"
+    ],
+    "startedAt": "2026-10-12T11:35:18.489885+00:00",
+    "completedAt": "2026-10-12T11:35:23.397755+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "lint.stdout.log",
+      "bytes": 71,
+      "sha256": "861a4cbe2e9b5dcdab43f36e1f6ed0b1f1f1300a25f19bcc2bab6a31e94b8f1c"
+    },
+    "stderr": {
+      "path": "lint.stderr.log",
+      "bytes": 142,
+      "sha256": "34305a46229b6bfa27dab76bf1c59aacee5fbc8ee95752d5b11b43a958720c50"
+    }
+  },
+  {
+    "name": "unit",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "test:unit"
+    ],
+    "startedAt": "2026-10-12T11:35:23.400900+00:00",
+    "completedAt": "2026-10-12T11:35:25.726205+00:00",
+    "exitCode": 1,
+    "signal": null,
+    "stdout": {
+      "path": "unit.stdout.log",
+      "bytes": 8023,
+      "sha256": "41b0385405401050292438d9101f5ea7d0e703afc2ddcc5efa70c7b875742156"
+    },
+    "stderr": {
+      "path": "unit.stderr.log",
+      "bytes": 67,
+      "sha256": "b65a2561eea2dc5c4d5d578e2599acad6e372b16bc0f21b387df2c980d501acc"
+    }
+  }
+]

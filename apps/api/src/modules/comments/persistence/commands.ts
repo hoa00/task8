@@ -1,3 +1,5 @@
+import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
+import { commentReadTextKeys } from '../domain/read-text.ts';
 import type { EntityId, Instant } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { fitBatch, gatedInsert, matchedBatch } from '../../../db/commands.ts';
@@ -53,7 +55,12 @@ export function createCommentInsertComments(
   row: CommentRow,
   gate: { sql: string; parameters: string[] },
 ) {
-  return gatedInsert(r, 'comments', [row], gate);
+  return gatedInsert(
+    r,
+    'comments',
+    [{ ...row, readKeys: commentReadTextKeys(row, textKeyEncoder) }],
+    gate,
+  );
 }
 export function createCommentInsertActivity(
   r: RequestRepository,

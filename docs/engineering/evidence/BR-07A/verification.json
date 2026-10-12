@@ -1,0 +1,15 @@
+{
+  "phase": "BR-07A",
+  "status": "DONE",
+  "baseline": "ce9283b9b3bc420cb60fb7a38a5ee05ee2e2bc3f",
+  "fullGates": "full-gates/verification.json",
+  "unitTests": 50,
+  "nativeSuites": 10,
+  "nativeProbes": 2050,
+  "codec": "ICU4C78.2 exactChromium implicitHan + rootlower, Wasm hash afd9aad3615a3ab15dbf7a875e9c415efd7dc7be11a169aef155c2570ed85d4c",
+  "migration": "forward0001+0002,23table upgrade+hexCAS bounded40rowbackfill/rerun",
+  "scope": "all7pagedfeeds+tasksummary SQL; command full planning dataset retained",
+  "primitives": "compatibility.json is historical blocked primitive probe, resolved by versionedencoder",
+  "design": "../../BACKEND_SQL_READ_DESIGN.md",
+  "next": "BR-07B"
+}

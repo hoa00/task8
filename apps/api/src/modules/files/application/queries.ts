@@ -1,9 +1,8 @@
 import type { EntityId, FileQuerySchema } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
-import { projectionPage } from '../../projection-page.ts';
+import { bindReadCursor, finishReadPage } from '../../../shared/read-page.ts';
 import { fileDto } from '../mapper.ts';
-import type { FileRow } from '../persistence/model.ts';
-import { listFilesReadFiles } from '../persistence/queries.ts';
+import { pagedFiles } from '../persistence/paged-files.ts';
 import { parent } from './parent.ts';
 export async function listFiles(
   r: RequestRepository,
@@ -12,34 +11,16 @@ export async function listFiles(
   q: ReturnType<typeof FileQuerySchema.parse>,
 ) {
   await parent(r, s, id, null, 'read');
-  const rows = await listFilesReadFiles(r, s, id);
-  const selected = rows.filter(
-    (f) =>
-      (!q.q || f.name.toLowerCase().includes(q.q.toLowerCase())) &&
-      (!q.type || f.fileType === q.type),
-  );
-  const value = (f: FileRow) =>
-    q.sort === 'recent'
-      ? -f.createdAt
-      : q.sort === 'size'
-        ? -(f.sizeBytes ?? -1)
-        : q.sort === 'type'
-          ? f.fileType
-          : f.name;
-  selected.sort((a, b) => {
-    const av = value(a),
-      bv = value(b);
-    return (
-      (typeof av === 'number' && typeof bv === 'number'
-        ? av - bv
-        : String(av).localeCompare(String(bv))) || a.id.localeCompare(b.id)
-    );
-  });
-  const page = await projectionPage(
-    selected,
+  const { binding, cursor } = await bindReadCursor(
     q,
     { scope: s, kind: 'files', projectId: id, ...q, cursor: undefined, limit: undefined },
-    value,
+    'title',
+    'asc',
   );
+  const result = await pagedFiles(r, s, id, q, cursor);
+  const page = finishReadPage(result.rows, result.total, q.limit, binding, (row) => ({
+    id: row.id,
+    value: row.readSortValue,
+  }));
   return { ...page, items: page.items.map(fileDto) };
 }

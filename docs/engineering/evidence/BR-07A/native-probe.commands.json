@@ -1,0 +1,76 @@
+[
+  {
+    "name": "owner",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "41377",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-sql-compatibility-K3UMaT/owner.json",
+      "--persist-to",
+      "/tmp/task8-api-sql-compatibility-K3UMaT/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T09:13:29.230Z",
+    "completedAt": "2026-10-12T09:13:36.143Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "owner.stdout.log",
+      "bytes": 2344,
+      "sha256": "041058c504ed631e6e21c533aa97dc5c227b33c15f6070c527b85c99e4e21100"
+    },
+    "stderr": {
+      "path": "owner.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "production",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "41377",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-sql-compatibility-K3UMaT/production.json",
+      "--persist-to",
+      "/tmp/task8-api-sql-compatibility-K3UMaT/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T09:13:36.151Z",
+    "completedAt": "2026-10-12T09:13:43.287Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "production.stdout.log",
+      "bytes": 2351,
+      "sha256": "1d38344503bfbdde9990675a2a633c37b87b08c0b40a39e636463c14091b2555"
+    },
+    "stderr": {
+      "path": "production.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  }
+]

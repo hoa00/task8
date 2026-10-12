@@ -16,7 +16,7 @@ export function projectCatalogReadProjects(
 }
 export function projectCatalogReadProjectMembers(r: RequestRepository, s: WorkspaceContext) {
   return r.all<{ projectId: string; memberId: string; permission: string }>(
-    'SELECT * FROM projectMembers WHERE workspaceId=?',
+    'SELECT * FROM projectMembers WHERE workspaceId=? ORDER BY rowid',
     [s.workspaceId],
   );
 }

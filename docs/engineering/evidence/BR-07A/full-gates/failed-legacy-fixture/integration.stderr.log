@@ -1,0 +1,41 @@
+$ node --experimental-transform-types tests/run.mjs
+(node:139981) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:140176) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:140433) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:140999) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:141393) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:141781) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+StudioApiError: Read-key migration must be completed
+    at <anonymous> (/workspace/task8/apps/web/src/data/adapters/http.ts:38:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async Object.execute (/workspace/task8/apps/web/src/data/operations.ts:25:20)
+    at async loadTaskViewDataset (/workspace/task8/apps/web/src/features/tasks/loadTaskViewDataset.ts:10:17)
+    at async file:///workspace/task8/apps/api/tests/integration/projections.mjs:234:16 {
+  detail: {
+    code: 'INTERNAL_ERROR',
+    message: 'Read-key migration must be completed'
+  },
+  status: 500
+}
+
+Node.js v24.13.0
+file:///workspace/task8/apps/api/tests/run.mjs:36
+      throw new Error(`${feature} failed (exit=${result.code}, signal=${result.signal})`);
+            ^
+
+Error: projections failed (exit=1, signal=null)
+    at runFeatures (file:///workspace/task8/apps/api/tests/run.mjs:36:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///workspace/task8/apps/api/tests/run.mjs:39:57
+
+Node.js v24.13.0

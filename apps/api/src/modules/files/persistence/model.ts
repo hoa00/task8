@@ -1,5 +1,5 @@
 import type { files } from '../../../db/schema.ts';
-export type FileRow = typeof files.$inferSelect;
+export type FileRow = Omit<typeof files.$inferSelect, 'readKeys'>;
 export interface FileParent {
   table: 'tasks' | 'projects';
   id: string;

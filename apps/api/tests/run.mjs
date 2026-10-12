@@ -1,7 +1,18 @@
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-export const features = ['db', 'http', 'core', 'tasks', 'collaboration', 'projections', 'files'];
+export const features = [
+  'db',
+  'http',
+  'core',
+  'tasks',
+  'collaboration',
+  'projections',
+  'files',
+  'collation-encoder',
+  'read-keys-migration',
+  'reads',
+];
 export function selectFeatures(args) {
   if (!args.length) return features;
   if (args.length !== 2 || args[0] !== '--feature' || !features.includes(args[1]))

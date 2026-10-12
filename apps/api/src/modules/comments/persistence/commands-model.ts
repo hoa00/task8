@@ -1,4 +1,7 @@
 import type { comments } from '../../../db/schema.ts';
-export type CommentRow = Omit<typeof comments.$inferSelect, 'mentionedMemberIdsJson'> & {
+export type CommentRow = Omit<
+  typeof comments.$inferSelect,
+  'mentionedMemberIdsJson' | 'readKeys'
+> & {
   mentionedMemberIdsJson: string;
 };

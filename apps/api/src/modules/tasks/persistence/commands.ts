@@ -1,3 +1,5 @@
+import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
+import { taskReadTextKeys } from '../domain/read-text.ts';
 import { moveTaskFiles } from '../../files/plans.ts';
 import type { TaskProjection } from './model.ts';
 import type { Plan } from './plan.ts';
@@ -14,6 +16,7 @@ import { ApiFailure } from '../../../shared/errors.ts';
 import { actorParameters, actorSql } from '../../projects/access.ts';
 
 const fields = [
+  'readKeys',
   'projectId',
   'number',
   'title',
@@ -121,7 +124,12 @@ export async function execute(r: RequestRepository, s: WorkspaceContext, plan: P
     );
   if (plan.changed.length) {
     const json = JSON.stringify(
-      plan.changed.map((t) => ({ ...t, updatedAt: now, lastMutationId: marker })),
+      plan.changed.map((t) => ({
+        ...t,
+        readKeys: taskReadTextKeys(t, textKeyEncoder),
+        updatedAt: now,
+        lastMutationId: marker,
+      })),
     );
     const expression = (field: (typeof fields)[number]) =>
       field === 'number'
@@ -160,7 +168,13 @@ export async function execute(r: RequestRepository, s: WorkspaceContext, plan: P
         'createdAt',
         'version',
       ],
-      json = JSON.stringify(plan.created.map((t) => ({ ...t, lastMutationId: marker })));
+      json = JSON.stringify(
+        plan.created.map((t) => ({
+          ...t,
+          readKeys: taskReadTextKeys(t, textKeyEncoder),
+          lastMutationId: marker,
+        })),
+      );
     statements.push(
       r.prepare(
         `INSERT INTO tasks(${columns.join(',')}) SELECT ${columns.map((c) => (c === 'number' ? `p.taskSequence-(SELECT json_extract(value,'$.count') FROM json_each(?) WHERE json_extract(value,'$.projectId')=p.id)+json_extract(intent.value,'$.number')` : c === 'position' ? `(SELECT coalesce(max(position),-100) FROM tasks WHERE workspaceId=?)+100*(CAST(intent.key AS INTEGER)+1)` : `json_extract(intent.value,'$.${c}')`)).join(',')} FROM json_each(?) intent JOIN projects p ON p.id=json_extract(intent.value,'$.projectId') AND p.workspaceId=? WHERE ${gate.sql}`,

@@ -1,3 +1,4 @@
+import { withReadKeys } from '../../scripts/read-keys.mjs';
 // Active feature scenarios adapted from WU-36; production code is imported by the Worker.
 import { createHarness } from '../support/harness.mjs';
 import assert from 'node:assert/strict';
@@ -159,10 +160,11 @@ async function extend(primary, rows, offset, word) {
     createdBy: primary.memberId,
     version: 1,
   }));
-  const cols = Object.keys(tasks[0]);
+  const normalizedTasks = tasks.map((task) => withReadKeys('tasks', task));
+  const cols = Object.keys(normalizedTasks[0]);
   await sql(
     `INSERT INTO tasks(${cols.join(',')}) SELECT ${cols.map((k) => `json_extract(value,'$.${k}')`).join(',')} FROM json_each(?)`,
-    [JSON.stringify(tasks)],
+    [JSON.stringify(normalizedTasks)],
   );
   await sql(
     'UPDATE projects SET taskSequence=11000 WHERE workspaceId=? AND id IN (SELECT value FROM json_each(?))',

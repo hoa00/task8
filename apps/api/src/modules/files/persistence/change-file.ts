@@ -1,3 +1,5 @@
+import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
+import { fileReadTextKeys } from '../domain/read-text.ts';
 import type { $brand } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { fitBatch, gatedInsert } from '../../../db/commands.ts';
@@ -32,7 +34,12 @@ export function changeFileInsertFiles(
   },
   gate: { sql: string; parameters: string[] },
 ) {
-  return gatedInsert(r, 'files', [row], gate);
+  return gatedInsert(
+    r,
+    'files',
+    [{ ...row, readKeys: fileReadTextKeys(row, textKeyEncoder) }],
+    gate,
+  );
 }
 export function changeFilePrepareFiles(
   r: RequestRepository,
@@ -66,8 +73,9 @@ export function changeFilePrepareFiles(
   id: string & $brand<'EntityId'>,
 ) {
   return r.prepare(
-    `UPDATE files SET name=?,fileType=?,version=version+1,updatedAt=?,deletedAt=?,deletedBy=?,lastMutationId=? WHERE workspaceId=? AND id=? AND ${gate.sql}`,
+    `UPDATE files SET readKeys=?,name=?,fileType=?,version=version+1,updatedAt=?,deletedAt=?,deletedBy=?,lastMutationId=? WHERE workspaceId=? AND id=? AND ${gate.sql}`,
     [
+      fileReadTextKeys(row, textKeyEncoder),
       row.name,
       row.fileType,
       now,

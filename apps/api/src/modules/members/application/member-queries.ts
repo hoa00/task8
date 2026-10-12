@@ -2,30 +2,28 @@ import type { EntityId, MemberQuerySchema } from '@studio/contracts/api';
 import type { z } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { projectCatalog } from '../../projects/projections.ts';
-import { page } from '../../shared.ts';
+import { bindReadCursor, finishReadPage } from '../../../shared/read-page.ts';
+import { pagedDirectory } from '../persistence/paged-directory.ts';
+import { memberDto } from '../mapper.ts';
 import { activeTasks } from '../../tasks/projections.ts';
 import { today } from '../../workspaces/index.ts';
-import { member, members } from './directory.ts';
+import { member } from './directory.ts';
 export async function listMembers(
   r: RequestRepository,
   s: WorkspaceContext,
   query: z.infer<typeof MemberQuerySchema>,
 ) {
-  const rows = (await members(r, s))
-    .filter(
-      (m) =>
-        (!query.teamId || m.teamId === query.teamId) &&
-        (!query.status || m.status === query.status) &&
-        (!query.q ||
-          [m.name, m.email, m.title].some((v) => v.toLowerCase().includes(query.q.toLowerCase()))),
-    )
-    .sort((a, b) => a.name.localeCompare(b.name) || a.id.localeCompare(b.id));
-  return await page(
-    rows,
+  const { binding, cursor } = await bindReadCursor(
     query,
     { scope: s, kind: 'members', ...query, cursor: undefined, limit: undefined },
-    (m) => m.name,
+    'title',
+    'asc',
   );
+  const result = await pagedDirectory(r, s, query, cursor);
+  return finishReadPage(result.rows.map(memberDto), result.total, query.limit, binding, (row) => ({
+    id: row.id,
+    value: row.name,
+  }));
 }
 export async function memberSummary(
   r: RequestRepository,

@@ -1,5 +1,5 @@
 import type { activity, subtasks, tasks } from '../../../db/schema.ts';
-export type TaskRow = typeof tasks.$inferSelect;
+export type TaskRow = Omit<typeof tasks.$inferSelect, 'readKeys'>;
 export type SubtaskRow = typeof subtasks.$inferSelect;
 export type ActivityRow = typeof activity.$inferInsert;
 export type TaskProjection = TaskRow & {
