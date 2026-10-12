@@ -1,7 +1,5 @@
 import type { EntityId, MemberDto, ProjectListItemDto } from '@studio/contracts/api';
 import {
-  DateOnlySchema,
-  MemberSchema,
   ProjectSchema,
   ProjectSummarySchema,
   RestrictedProjectSchema,
@@ -13,6 +11,7 @@ import type { RequestRepository, WorkspaceContext } from '../db/client.ts';
 import type { projects, subtasks, tasks, teams } from '../db/schema.ts';
 import { instant, nullableInstant } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
+import { members } from './members/index.ts';
 import type { ProjectLifecycle } from './projects/index.ts';
 import {
   readAccessSql as accessSql,
@@ -21,7 +20,7 @@ import {
   projectLifecycleSql,
   writeAccessSql,
 } from './projects/index.ts';
-
+import { today } from './workspaces/index.ts';
 export type ProjectRow = typeof projects.$inferSelect;
 export type TeamRow = typeof teams.$inferSelect;
 export type TaskRow = typeof tasks.$inferSelect;
@@ -46,18 +45,6 @@ export async function projectRow(
       mode.visibility === 'child' ? 'NOT_FOUND' : 'FORBIDDEN',
       'Project is restricted',
     );
-  return row;
-}
-export async function members(r: RequestRepository, s: WorkspaceContext): Promise<MemberDto[]> {
-  const rows = await r.all<MemberDto & { lastSeenAt: number | null }>(
-    `SELECT m.id,m.workspaceId,m.userId,u.name,u.displayEmail email,u.title,u.avatarColor,u.timezone,m.role,m.status,m.teamId,m.lastSeenAt,m.version FROM workspaceMembers m JOIN users u ON u.id=m.userId WHERE m.workspaceId=? AND m.removedAt IS NULL ORDER BY m.id`,
-    [s.workspaceId],
-  );
-  return rows.map((m) => MemberSchema.parse({ ...m, lastSeenAt: nullableInstant(m.lastSeenAt) }));
-}
-export async function member(r: RequestRepository, s: WorkspaceContext, id: EntityId) {
-  const row = (await members(r, s)).find((m) => m.id === id);
-  if (!row) throw new ApiFailure('NOT_FOUND', 'Member not found');
   return row;
 }
 export async function teamRow(
@@ -86,19 +73,6 @@ export function teamDto(t: TeamRow, memberRows: MemberDto[]) {
     updatedAt: instant(t.updatedAt),
     version: t.version,
   });
-}
-export async function today(r: RequestRepository, s: WorkspaceContext, now: number) {
-  const [row] = await r.all<{ timezone: string }>('SELECT timezone FROM workspaces WHERE id=?', [
-    s.workspaceId,
-  ]);
-  return DateOnlySchema.parse(
-    new Intl.DateTimeFormat('en-CA', {
-      timeZone: row!.timezone,
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    }).format(new Date(now)),
-  );
 }
 export async function activeTasks(r: RequestRepository, s: WorkspaceContext) {
   return r.all<TaskRow>(
@@ -323,3 +297,5 @@ export async function createdTaskDtos(r: RequestRepository, s: WorkspaceContext,
     }),
   );
 }
+export { member, members } from './members/index.ts';
+export { today } from './workspaces/index.ts';

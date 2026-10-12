@@ -1,0 +1,64 @@
+✔ feature runner selects known suites and rejects typos (3.012762ms)
+✔ isolated run IDs, storage and ephemeral ports (18.354539ms)
+✔ startup timeout terminates owned process even before launch returns (123.604723ms)
+✔ early exit records real code and command failure cannot pass (159.478705ms)
+✔ spawn failure preserves ENOENT without trying to kill an unowned PID (54.175615ms)
+(node:22276) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+API request failed {
+  requestId: undefined,
+  operation: undefined,
+  errorCode: 'INTERNAL_ERROR',
+  errorType: 'ZodError',
+  phase: 'request',
+  durationMs: 0
+}
+✔ internal DTO ZodError returns500 with no internal message (59.870969ms)
+✔ project/member tuple cursor survives removed or renamed anchors (19.58626ms)
+(node:22277) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ request schema failures are400, with valid null/omitted input intact (64.80928ms)
+✔ all route groups use decimal limit, strict bool/null/filter decoding (7.517477ms)
+✔ actual streamed bytes are bounded without trusting Content-Length (1.845979ms)
+✔ server log has correlation fields and never logs the error payload (0.705456ms)
+✔ current API has only exact documented legacy debt (186.045745ms)
+✔ reject domain importing request context (0.573797ms)
+✔ reject domain importing Hono (0.353244ms)
+✔ reject domain importing D1 rows (0.208906ms)
+✔ reject mapper importing persistence (0.247965ms)
+✔ reject route importing DB (0.204418ms)
+✔ reject application importing Hono (0.177238ms)
+✔ reject shared importing business public API (0.196928ms)
+✔ reject cross-feature deep import (0.272131ms)
+✔ reject frontend relative import (0.295627ms)
+✔ reject frontend package alias (0.184779ms)
+✔ reject computed dynamic import (0.33746ms)
+✔ reject reexport internal business API (0.263598ms)
+✔ allow cross-feature public API and pure domain imports (0.290189ms)
+✔ AST ignores comments and strings, detects static dynamic imports (0.701861ms)
+✔ reject new cycle and reject new edge inside a legacy cycle (1.322568ms)
+✔ reject stale and wildcard legacy exemptions (0.21169ms)
+✔ named public persistence predicate preserves its leaf layer (0.334565ms)
+✔ public facade cannot hide application dependency from persistence (0.270588ms)
+(node:22328) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ projection desc primary keeps ascending ID ties and survives a removed anchor (23.139779ms)
+✔ history descending feed keeps descending ID ties after anchor removal (24.509237ms)
+(node:22336) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ canonical limits match contracts and existing manifest (2.069096ms)
+✔ actor active/admin/creator matrix includes removed and invited states (0.354566ms)
+✔ private view differs from edit, and owner role never bypasses absent grant (0.202716ms)
+(node:22347) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ dedicated completion preserves noop, restores previous status and falls back to todo (0.922824ms)
+✔ status transition preserves original completion timestamp and records previous status only on entering done (0.685175ms)
+✔ internal status corruption is rejected by projection mapper (0.866379ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1430.668616

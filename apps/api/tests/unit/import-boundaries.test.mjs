@@ -131,3 +131,33 @@ test('reject stale and wildcard legacy exemptions', () => {
     /finite/,
   );
 });
+
+test('named public persistence predicate preserves its leaf layer', () => {
+  assert.equal(
+    checkBoundaries(
+      files({
+        'src/modules/tasks/persistence/read.ts':
+          "import {readAccessSql} from '../../projects/index.ts';",
+        'src/modules/projects/index.ts':
+          "export {readAccessSql} from './persistence/policy.ts'; export {createProject} from './application/create.ts';",
+        'src/modules/projects/persistence/policy.ts': '',
+        'src/modules/projects/application/create.ts': '',
+      }),
+      empty,
+    ).status,
+    'PASS',
+  );
+});
+test('public facade cannot hide application dependency from persistence', () => {
+  assert.throws(() =>
+    checkBoundaries(
+      files({
+        'src/modules/tasks/persistence/read.ts':
+          "import {createProject} from '../../projects/index.ts';",
+        'src/modules/projects/index.ts': "export {createProject} from './application/create.ts';",
+        'src/modules/projects/application/create.ts': '',
+      }),
+      empty,
+    ),
+  );
+});

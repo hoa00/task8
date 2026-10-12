@@ -115,6 +115,50 @@ export function importsOf(path, content) {
   return imports;
 }
 
+function publicLayers(files, from, specifier, target, seen = new Set()) {
+  if (seen.has(target)) return [classify(target).layer];
+  if (!/^src\/modules\/[^/]+\/index\.ts$/.test(target)) return [classify(target).layer];
+  const source = ts.createSourceFile(from, files.get(from), ts.ScriptTarget.Latest, true);
+  const imports = source.statements.filter(
+    (node) =>
+      (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+      node.moduleSpecifier?.text === specifier,
+  );
+  const symbols = imports.flatMap((node) => {
+    const bindings = ts.isImportDeclaration(node)
+      ? node.importClause?.namedBindings
+      : node.exportClause;
+    return bindings && (ts.isNamedImports(bindings) || ts.isNamedExports(bindings))
+      ? bindings.elements.map((element) => (element.propertyName ?? element.name).text)
+      : [];
+  });
+  if (!symbols.length) return [classify(target).layer];
+  const facade = ts.createSourceFile(target, files.get(target), ts.ScriptTarget.Latest, true);
+  return symbols.flatMap((symbol) => {
+    const declaration = facade.statements.find(
+      (node) =>
+        ts.isExportDeclaration(node) &&
+        node.moduleSpecifier &&
+        node.exportClause &&
+        ts.isNamedExports(node.exportClause) &&
+        node.exportClause.elements.some((element) => element.name.text === symbol),
+    );
+    if (!declaration) return [classify(target).layer];
+    const leaf = relative(
+      api,
+      resolve(api, dirname(target), declaration.moduleSpecifier.text),
+    ).replaceAll('\\', '/');
+    if (!files.has(leaf)) return [classify(target).layer];
+    return publicLayers(
+      files,
+      target,
+      declaration.moduleSpecifier.text,
+      leaf,
+      new Set([...seen, target]),
+    );
+  });
+}
+
 export function inspectBoundaries(files) {
   const violations = [];
   const graph = new Map([...files.keys()].map((path) => [path, new Set()]));
@@ -162,7 +206,13 @@ export function inspectBoundaries(files) {
         !/^src\/modules\/[^/]+\/index\.ts$/.test(target)
       )
         add(from, target, 'public-entry');
-      if (!layers[source.layer]?.has(destination.layer)) add(from, target, 'layer');
+      if (
+        !layers[source.layer]?.has(destination.layer) &&
+        publicLayers(files, from, specifier, target).some(
+          (layer) => !layers[source.layer]?.has(layer),
+        )
+      )
+        add(from, target, 'layer');
       if (
         !source.owner &&
         destination.owner &&

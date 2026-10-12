@@ -2,9 +2,15 @@
 
 ## Quy tắc phát triển và trạng thái kế hoạch
 
-Đọc [AGENTS.md](AGENTS.md) và [BACKEND_STANDARDS.md](../../docs/engineering/BACKEND_STANDARDS.md) trước khi thêm/sửa backend. POC giới hạn tính năng, không giảm chất lượng kiến trúc/code/kiểm thử. [BACKEND_REFACTOR_PLAN.md](../../docs/engineering/BACKEND_REFACTOR_PLAN.md) là kế hoạch điều chỉnh có thứ tự và tiêu chí nghiệm thu. BR-01 hiện thực tooling/active tests bên dưới; việc tách feature owners, HTTP/D1/R2 và tối ưu SQL thuộc BR-04A…08, chưa triển khai. BR-03 đã có DB execution/accounting và policy owner. BR-02 đã có HTTP helpers, error boundary và tuple cursors. Cấu trúc thư mục đích vẫn là target.
+Đọc [AGENTS.md](AGENTS.md) và [BACKEND_STANDARDS.md](../../docs/engineering/BACKEND_STANDARDS.md) trước khi thêm/sửa backend. POC giới hạn tính năng, không giảm chất lượng kiến trúc/code/kiểm thử. [BACKEND_REFACTOR_PLAN.md](../../docs/engineering/BACKEND_REFACTOR_PLAN.md) là kế hoạch điều chỉnh có thứ tự và tiêu chí nghiệm thu. BR-01 hiện thực tooling/active tests bên dưới; BR-04A đã PASS acceptance cho task core; các owners còn lại và SQL optimization thuộc BR-04B…08. BR-03 đã có DB execution/accounting và policy owner. BR-02 đã có HTTP helpers, error boundary và tuple cursors. Cấu trúc thư mục đích vẫn là target.
 
 Các mục WU dưới đây ghi implementation và verification lịch sử; trạng thái/code/commands hiện hành phải đối chiếu [PROGRESS.md](../../docs/poc/PROGRESS.md) và package.json, không suy ra PASS của code mới từ evidence cũ.
+
+## Task core owner (BR-04A)
+
+`src/modules/tasks/index.ts` là public surface cho create/update/completion/lifecycle/duplicate/favorite và task reads. Application use-cases không dựng SQL; `persistence/commands.ts` giữ toàn guarded batch cùng final SELECT, `persistence/reads.ts` giữ shared projection, `mapper.ts` giữ pure Task DTO. `domain/model.ts` và `domain/completion.ts` dùng canonical TaskStatus, explicit now; command signatures nhận injected ID generator với production UUIDv7 default. PATCH và dedicated completion dùng discriminated intents; chỉ dedicated entering-done tạo single completion Undo.
+
+`modules/tasks.ts` tạm giữ move/bulk thuộc BR-04B; task-read/task-relations là compatibility surfaces sẽ gỡ sau chuyển consumers. Full command/read datasets vẫn có legacy SQL pagination debt thuộc BR-07A/B; BR-04A không claim đã tối ưu paging. Member directory và workspace date được đưa về owner vì task core có consumer thật.
 
 ## Kiểm thử và tooling hiện hành (BR-01)
 
@@ -37,7 +43,7 @@ pnpm test
 
 `tests/support/harness.mjs` cấp unique output/run ID, storage/config trong `/tmp`, ephemeral HTTP port và inspector port, quản lý đúng process group. Timeout, early exit, spawn failure đều được ghi exitCode/signal thật và cleanup. Output mặc định là `test-results/api/<feature>-<unique>/`; có thể đặt `API_TEST_OUTPUT_DIR` (Turbo truyền biến này). Storage riêng được giữ sau chạy để điều tra, không reset local DB của người dùng. Report ghi đường dẫn storage và command logs. Routine runs không ghi/copy code vào historical docs/evidence. Chromium preview dùng server/port riêng và proxy tới Worker của đúng suite; suite đặt English trong DB test để chạy assertions hiện hành, không đổi locale sản phẩm.
 
-Prettier `3.6.2` được pin tại API cùng `.prettierrc.json`; `format`/`format:check` chỉ bao phủ backend hiện hành. Migrations/generated bindings và WU tests/evidence được loại trừ. Root lint còn kiểm tra toàn repo; API lint thêm AST import boundary. [Legacy allowlist](tooling/legacy-imports.json) có 37 import violations cụ thể và không còn cycle, từng entry có phase gỡ; entry stale hoặc edge/cycle mới đều fail. Không miễn toàn modules directory. Matrix gồm routes/application/domain/policy/persistence/storage/mapper/shared, public module entry và cấm frontend/dynamic imports. Production source hiện vẫn có ownership debt theo kế hoạch; BR-01 không tuyên bố đã đạt target architecture.
+Prettier `3.6.2` được pin tại API cùng `.prettierrc.json`; `format`/`format:check` chỉ bao phủ backend hiện hành. Migrations/generated bindings và WU tests/evidence được loại trừ. Root lint còn kiểm tra toàn repo; API lint thêm AST import boundary. [Legacy allowlist](tooling/legacy-imports.json) có 36 import violations cụ thể và không còn cycle, từng entry có phase gỡ; entry stale hoặc edge/cycle mới đều fail. Không miễn toàn modules directory. Matrix gồm routes/application/domain/policy/persistence/storage/mapper/shared, public module entry và cấm frontend/dynamic imports. Production source hiện vẫn có ownership debt theo kế hoạch; BR-01 không tuyên bố đã đạt target architecture.
 
 Hai lệnh phục vụ acceptance riêng (chạy độc lập khi không có formatter/typecheck/root test khác đang chạy):
 

@@ -1,0 +1,107 @@
+import type { EntityId, TaskQuery } from '@studio/contracts/api';
+import { FileSchema, SubtaskSchema } from '@studio/contracts/api';
+import {
+  compareTaskTuple,
+  filterTasks,
+  sortTasks,
+  summarizeTasks,
+  taskSortValue,
+} from '@studio/domain';
+import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
+import { instant } from '../../../shared/clock.ts';
+import { decodeCursor, encodeCursor, queryFingerprint } from '../../../shared/cursor.ts';
+import { taskDto } from '../mapper.ts';
+import { taskDataset as readDataset } from '../persistence/dataset.ts';
+import { attachmentRows, childRows, keyTaskId, taskRow } from '../persistence/reads.ts';
+
+export async function taskDataset(r: RequestRepository, s: WorkspaceContext, now: number) {
+  const dataset = await readDataset(r, s, now);
+  return { ...dataset, items: dataset.rows.map(taskDto) };
+}
+export async function taskDetail(r: RequestRepository, s: WorkspaceContext, id: EntityId) {
+  const row = await taskRow(r, s, id),
+    children = await childRows(r, s, id);
+  const attachments = row.archivedAt !== null ? [] : await attachmentRows(r, s, id, row.projectId);
+  return {
+    task: taskDto(row),
+    subtasks: children.map((c) =>
+      SubtaskSchema.parse({
+        id: c.id,
+        taskId: c.taskId,
+        title: c.title,
+        done: !!c.done,
+        assigneeId: c.assigneeId,
+        dueDate: c.dueDate,
+        note: c.note,
+        position: c.position,
+      }),
+    ),
+    attachments: attachments.map((f) =>
+      FileSchema.parse({
+        id: f.id,
+        workspaceId: f.workspaceId,
+        projectId: f.projectId,
+        taskId: f.taskId,
+        name: f.name,
+        fileType: f.fileType,
+        mimeType: f.mimeType,
+        sizeBytes: f.sizeBytes,
+        displaySize: f.displaySize,
+        storageMode: f.storageMode,
+        contentAvailable: f.storageMode === 'r2',
+        createdBy: f.createdBy,
+        createdAt: instant(f.createdAt),
+        version: f.version,
+      }),
+    ),
+  };
+}
+export async function queryTasks(
+  r: RequestRepository,
+  s: WorkspaceContext,
+  query: TaskQuery,
+  now: number,
+  summary = false,
+) {
+  const dataset = await taskDataset(r, s, now),
+    rows = sortTasks(filterTasks(dataset.items, query, dataset.env), query, dataset.env.lookups);
+  if (summary) return summarizeTasks(rows, dataset.env.today);
+  const fingerprintInput = { scope: s, query: { ...query, cursor: undefined, limit: undefined } };
+  const fingerprint = await queryFingerprint(fingerprintInput);
+  let selected = rows;
+  if (query.cursor) {
+    const cursor = decodeCursor(query.cursor, {
+      queryFingerprint: fingerprint,
+      sortField: query.sortField,
+      sortDirection: query.sortDirection,
+    });
+    selected = rows.filter(
+      (row) =>
+        compareTaskTuple(
+          { value: taskSortValue(row, query.sortField, dataset.env.lookups), id: row.id },
+          { value: cursor.sortValue, id: cursor.id },
+          query.sortDirection,
+        ) > 0,
+    );
+  }
+  const items = selected.slice(0, query.limit),
+    last = items.at(-1);
+  return {
+    items,
+    total: rows.length,
+    nextCursor:
+      selected.length > items.length && last
+        ? encodeCursor({
+            formatVersion: 1,
+            queryFingerprint: fingerprint,
+            sortField: query.sortField,
+            sortDirection: query.sortDirection,
+            sortValue: taskSortValue(last, query.sortField, dataset.env.lookups),
+            id: last.id,
+          })
+        : null,
+  };
+}
+export async function resolveTaskKey(r: RequestRepository, s: WorkspaceContext, key: string) {
+  return taskDetail(r, s, await keyTaskId(r, s, key));
+}

@@ -13,8 +13,8 @@ import {
   readQuery as query,
 } from '../http/request.ts';
 import type { ApiEnvironment } from '../runtime.ts';
+import { serverClock } from '../shared/clock.ts';
 import { ApiFailure } from '../shared/errors.ts';
-import { queryTasks, taskDetail } from './task-read.ts';
 import {
   bulkTasks,
   completeTask,
@@ -25,6 +25,7 @@ import {
   moveTask,
   updateTask,
 } from './tasks.ts';
+import { queryTasks, resolveTaskKey, taskDetail } from './tasks/index.ts';
 type C = Context<ApiEnvironment>;
 const s = (c: C) => c.get('workspace'),
   r = (c: C) => c.get('repository'),
@@ -35,7 +36,12 @@ const W = '/workspaces/:workspaceId';
 taskRoutes.get(W + '/tasks', async (c) =>
   c.json(
     operations.listTasks.response.parse({
-      data: await queryTasks(r(c), s(c), parseRequest(TaskQuerySchema, await query(c)), Date.now()),
+      data: await queryTasks(
+        r(c),
+        s(c),
+        parseRequest(TaskQuerySchema, await query(c)),
+        serverClock.now(),
+      ),
     }),
   ),
 );
@@ -46,7 +52,7 @@ taskRoutes.get(W + '/tasks/summary', async (c) =>
         r(c),
         s(c),
         parseRequest(TaskQuerySchema, parseRequest(TaskScopeQuerySchema, await query(c))),
-        Date.now(),
+        serverClock.now(),
         true,
       ),
     }),
@@ -68,7 +74,7 @@ taskRoutes.post(W + '/tasks/bulk', async (c) => {
   });
   return c.json(
     operations.bulkMutateTasks.response.parse({
-      data: await bulkTasks(r(c), s(c), input.body, Date.now()),
+      data: await bulkTasks(r(c), s(c), input.body, serverClock.now()),
     }),
   );
 });
@@ -77,7 +83,7 @@ taskRoutes.post(W + '/tasks', async (c) => {
       workspaceId: s(c).workspaceId,
       body: await body(c),
     }),
-    result = await createTask(r(c), s(c), input.body, Date.now());
+    result = await createTask(r(c), s(c), input.body, serverClock.now());
   return c.json(
     operations.createTask.response.parse({ data: result.result }),
     result.replayed ? 200 : 201,
@@ -89,14 +95,10 @@ taskRoutes.get(W + '/task-keys/:taskKey', async (c) => {
       workspaceId: s(c).workspaceId,
       taskKey: c.req.param('taskKey'),
     }),
-    rows = await r(c).all<{ id: string }>(
-      "SELECT t.id FROM tasks t JOIN projects p ON p.workspaceId=t.workspaceId AND p.id=t.projectId WHERE t.workspaceId=? AND p.key||'-'||t.number=?",
-      [s(c).workspaceId, input.taskKey],
-    );
-  if (!rows[0]) throw new ApiFailure('NOT_FOUND', 'Task not found');
+    detail = await resolveTaskKey(r(c), s(c), input.taskKey);
   return c.json(
     operations.resolveTaskKey.response.parse({
-      data: await taskDetail(r(c), s(c), EntityIdSchema.parse(rows[0].id)),
+      data: detail,
     }),
   );
 });
@@ -112,7 +114,7 @@ taskRoutes.patch(W + '/tasks/:taskId', async (c) => {
   });
   return c.json(
     operations.updateTask.response.parse({
-      data: await updateTask(r(c), s(c), id(c), input.body, Date.now()),
+      data: await updateTask(r(c), s(c), id(c), input.body, serverClock.now()),
     }),
   );
 });
@@ -124,7 +126,7 @@ taskRoutes.post(W + '/tasks/:taskId/completion', async (c) => {
   });
   return c.json(
     operations.setTaskCompletion.response.parse({
-      data: await completeTask(r(c), s(c), id(c), input.body, Date.now()),
+      data: await completeTask(r(c), s(c), id(c), input.body, serverClock.now()),
     }),
   );
 });
@@ -136,7 +138,7 @@ taskRoutes.post(W + '/tasks/:taskId/move', async (c) => {
   });
   return c.json(
     operations.moveTask.response.parse({
-      data: await moveTask(r(c), s(c), id(c), input.body, Date.now()),
+      data: await moveTask(r(c), s(c), id(c), input.body, serverClock.now()),
     }),
   );
 });
@@ -148,7 +150,7 @@ taskRoutes.post(W + '/tasks/:taskId/duplicate', async (c) => {
   });
   return c.json(
     operations.duplicateTask.response.parse({
-      data: await duplicateTask(r(c), s(c), id(c), input.body, Date.now()),
+      data: await duplicateTask(r(c), s(c), id(c), input.body, serverClock.now()),
     }),
   );
 });
@@ -174,7 +176,7 @@ for (const [suffix, op, method] of [
             id(c),
             input.body.expectedVersion,
             suffix,
-            Date.now(),
+            serverClock.now(),
           ),
         }),
       );
@@ -188,7 +190,7 @@ for (const [method, op, favorite] of [
     await noQuery(c);
     return c.json(
       operations[op].response.parse({
-        data: await favoriteTask(r(c), s(c), id(c), favorite, Date.now()),
+        data: await favoriteTask(r(c), s(c), id(c), favorite, serverClock.now()),
       }),
     );
   });

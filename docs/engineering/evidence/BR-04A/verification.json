@@ -1,0 +1,85 @@
+{
+  "phase": "BR-04A",
+  "status": "PASS",
+  "baseline": "da82be4d64e4eb5d67552989b9df0e71affdb4b8",
+  "toolchain": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0"
+  },
+  "commands": "commands.json",
+  "unitTests": 38,
+  "native": [
+    {
+      "feature": "http",
+      "status": "PASS",
+      "probes": 25,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "6b0055678320d30612f0404b7377cbffa26a27d50e257f0d731555ff32430956",
+      "artifact": "http.report.json.gz",
+      "routineOutput": "test-results/api/http-RPPsGU"
+    },
+    {
+      "feature": "collaboration",
+      "status": "PASS",
+      "probes": 219,
+      "snapshotPairs": 21,
+      "checks": 0,
+      "originalSha256": "c3b9df005b5d2e7ea507182bbe4fd81fa78320d0e744b01515fb5493d07586e5",
+      "artifact": "collaboration.report.json.gz",
+      "routineOutput": "test-results/api/collaboration-sTVkCr"
+    },
+    {
+      "feature": "core",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "e9e6ffe78cf704671b37b045942627808760348bf3c23420e40c62cc6388e825",
+      "artifact": "core.report.json.gz",
+      "routineOutput": "test-results/api/core-lYx1jR"
+    },
+    {
+      "feature": "tasks",
+      "status": "PASS",
+      "probes": 316,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "bf69dc1822d5c4e1de8497213c95838eaf6c1d910c731f2c9ef48299c279302c",
+      "artifact": "tasks.report.json.gz",
+      "routineOutput": "test-results/api/tasks-Xailcx"
+    },
+    {
+      "feature": "db",
+      "status": "PASS",
+      "probes": 7,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "42b4fb7cc8ea6f99cef8e60e780442e30bda7e3d23d5495f93aaac9e6b5aef5b",
+      "artifact": "db.report.json.gz",
+      "routineOutput": "test-results/api/db-OZeg5d"
+    },
+    {
+      "feature": "files",
+      "status": "PASS",
+      "probes": 141,
+      "snapshotPairs": 0,
+      "checks": 20,
+      "originalSha256": "879c0639ec828cb51257ff8ef843b6ebd318e963868d8e3a8aa917a1d6034691",
+      "artifact": "files.report.json.gz",
+      "routineOutput": "test-results/api/files-Vdq8pM"
+    },
+    {
+      "feature": "projections",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 14,
+      "checks": 0,
+      "originalSha256": "b322bd456f94ead2a4853634ff5653b25582cdafd6b926568de282293e39832c",
+      "artifact": "projections.report.json.gz",
+      "routineOutput": "test-results/api/projections-YczwrB"
+    }
+  ],
+  "nativeProbes": 1080,
+  "executedInputs": "executed-inputs.json"
+}
