@@ -119,17 +119,10 @@ VITE_DATA_MODE=http VITE_API_BASE_URL=/api/v1 pnpm --filter @studio/web dev
 
 Mở `http://127.0.0.1:5173`. Vite proxy `/api` đến Worker `8787`; chọn adapter chỉ ở bootstrap. Wrangler mặc định lưu D1/R2 tại `apps/api/.wrangler/state`, nên restart giữ dữ liệu. Principal từ `LOCAL_USER_ID`/`LOCAL_WORKSPACE_ID` trong config server; browser không đặt user header để đăng nhập. File thực có cap10MiB, MIME allowlist, download kiểm tra quyền; file seed chỉ có artwork và `contentAvailable:false`.
 
-Các lệnh nghiệm thu tạo attempt mới, không ghi đè evidence. Chạy tuần tự vì cùng sở hữu các port4173/5173/8787. Harness dùng storage riêng `/tmp/task8-wu36-<label>`; regression giữ prefix storage của unit tương ứng.
+WU-36 và các lệnh `test:m3:*` là lịch sử nghiệm thu tại SHA trong reports; aliases đã gỡ khỏi package hiện hành. Tái tạo lịch sử bằng checkout SHA đó, không thêm runtime wrapper trở lại hoặc overwrite evidence. Kiểm thử backend hiện tại dùng [API README](apps/api/README.md), active feature runner và `pnpm test` (unique owned storage/ports). Các checks hiện hành còn lại:
 
 ```sh
 pnpm --filter @studio/web build:http
-pnpm test:m3:journey journey-new
-pnpm test:m3:scope scope-new
-pnpm test:m3:visual visual-new
-pnpm test:m3:regression 32 wu36-tasks-new
-pnpm test:m3:regression 33 wu36-collaboration-new
-pnpm test:m3:regression 34 wu36-projections-new
-pnpm test:m3:regression 35 wu36-files-new
 pnpm typecheck
 pnpm build
 pnpm lint

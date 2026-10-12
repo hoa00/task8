@@ -1,6 +1,6 @@
 # BR-07A — Scoped SQL read inventory và Unicode compatibility
 
-Status: **DONE — NATIVE_PAGING_ACCEPTED**. Prerequisite BR-06 DONE tại `ce9283b9`. Không đổi production paging/contract/migration trong bước này. [Native evidence](evidence/BR-07A/compatibility.json), [probe report](evidence/BR-07A/native-probe.report.json.gz).
+Status: **DONE — NATIVE_PAGING_ACCEPTED**. Prerequisite BR-06 DONE tại `ce9283b9`. Primitive probe ban đầu là readonly; implementation đã có pinned encoder, forward migrations và scoped SQL reads. [Native evidence](evidence/BR-07A/compatibility.json), [probe report](evidence/BR-07A/native-probe.report.json.gz).
 
 Kế hoạch yêu cầu: “Nếu SQL hiện hành không thể đạt comparator/text parity bằng release đang cài, ghi endpoint/trigger rõ và thiết kế deterministic normalization/collation hoặc migration riêng. Phase đó chưa DONE; không dùng default SQLite semantics hay hidden full-load để báo đạt.”
 
@@ -44,9 +44,9 @@ Current cursor v1 preserves sortValue as the original string/number/null. An anc
 
 Adopt explicit deterministic UTF-16 or another documented comparator for project/member/file text across backend/domain/mock/UI, then persist matching keys. This simplifies Worker/D1 parity, but changes existing `localeCompare` ordering (`a/ä/B/z` vs binary order), page contents and cursor behavior. It exceeds this plan's preservation constraint without an explicit contract decision. No implementation or migration for this alternative has been applied.
 
-## Remaining gates
+## Historical primitive checkpoint (superseded by acceptance below)
 
-Compiler, migration/backfill/encoder compatibility, endpoint traversal/summary/privacy parity, EXPLAIN/rows proofs: **NOT_RUN**, because the text semantics/encoder prerequisite is unresolved. Production still runs the explicitly documented legacy full-load reads; they are not an acceptance fallback. BR-07A is not DONE; BR-07B and BR-08 remain NOT_STARTED by their prerequisites.
+Tại primitive checkpoint ban đầu, compiler/migration/backfill/encoder/endpoint/EXPLAIN gates **NOT_RUN**, because the text semantics/encoder prerequisite is unresolved. Production still runs the explicitly documented legacy full-load reads; they are not an acceptance fallback. BR-07A is not DONE; BR-07B and BR-08 remain NOT_STARTED by their prerequisites.
 
 ## Decision và execution checkpoint
 
@@ -72,3 +72,7 @@ Representative same-scope native rows_read before/after indexes: task manual6021
 Locale qualification applies to this pinned Worker release. Existing mock/domain functions continue to use their native semantics; canonical parity invokes those functions inside the qualified Worker, and existing Node/browser consumers remain gated. A future runtime/locale/data change requires differential checks and a new version/backfill; it must not silently reuse these keys.
 
 Final BR-07A gate: format/type/lint/unit50, all10native suites, consumers and dry-run build PASS. Full commands/reports/input hashes: [evidence](evidence/BR-07A/full-gates/verification.json). BR-07B prerequisite is now satisfied.
+
+## Final handover
+
+BR-07B và BR-08 DONE. Search/archive now use full scoped totals and SQL tuple pages with owned selected-ID hydration; Home/Overview/project/member/team summaries avoid duplicate full task datasets and retain complete previews. Same-owned-storage100response parity/cost proof at [BR-07B](evidence/BR-07B/verification.json); final root/eleven-native/owner/import audit at [BR-08](evidence/BR-08/verification.json). Earlier BLOCKED/NOT_RUN primitive notes above describe historical attempts, resolved by the approved pinned encoder/migration implementation. Existing storage upgrade still requires Wrangler migrations plus bounded derived-key backfill, never reset.

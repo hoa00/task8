@@ -1,7 +1,7 @@
 import { withReadKeys } from './read-keys.mjs';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { createSeedFixture, seedProvenance } from '../src/db/fixture.ts';
+import { createSeedFixture, seedProvenance } from './fixture.ts';
 import { sourceId } from '@studio/contracts/source-identities';
 
 export function seedRows() {

@@ -1,5 +1,6 @@
 import type { CommentDto, ReactionDto } from '@studio/contracts/api';
 import { CommentSchema, EntityIdSchema, ReactionSchema } from '@studio/contracts/api';
+import { z } from 'zod';
 import { instant } from '../../shared/clock.ts';
 export interface CommentDtoInput {
   id: string;
@@ -33,4 +34,9 @@ export function commentDto(row: CommentDtoInput, reactions: readonly ReactionDto
     version: row.version,
     reactions,
   });
+}
+
+const ReactionPairsSchema = z.array(z.object({ key: z.string(), memberId: EntityIdSchema }));
+export function reactionsFromJson(json: string): ReactionDto[] {
+  return reactionProjection(ReactionPairsSchema.parse(JSON.parse(json)));
 }

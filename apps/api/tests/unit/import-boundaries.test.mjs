@@ -3,9 +3,19 @@ import { test } from 'node:test';
 import { checkBoundaries, inspectBoundaries, importsOf } from '../../tooling/import-boundaries.mjs';
 const empty = { imports: [], cycles: [] };
 const files = (entries) => new Map(Object.entries(entries));
-test('current API has only exact documented legacy debt', () =>
-  assert.equal(checkBoundaries().status, 'PASS'));
+test('current API has zero legacy exemptions', () =>
+  assert.deepEqual(
+    [checkBoundaries().status, checkBoundaries().legacyImports, checkBoundaries().legacyCycles],
+    ['PASS', 0, 0],
+  ));
 const invalid = [
+  [
+    'flat compatibility feature owner',
+    {
+      'src/modules/tasks.ts': "export {createTask} from './tasks/index.ts';",
+      'src/modules/tasks/index.ts': '',
+    },
+  ],
   [
     'domain importing request context',
     {
@@ -109,11 +119,11 @@ test('reject new cycle and reject new edge inside a legacy cycle', () => {
     imports: [],
     cycles: inspectBoundaries(entries).cycles.map((cycle) => ({ ...cycle, removeIn: 'BR-03' })),
   };
-  assert.equal(checkBoundaries(entries, legacy).status, 'PASS');
+  assert.throws(() => checkBoundaries(entries, legacy), /closed/);
   entries.set('src/shared/a.ts', "import './b.ts'; import './c.ts';");
   assert.throws(() => checkBoundaries(entries, legacy), /unexpectedCycles/);
 });
-test('reject stale and wildcard legacy exemptions', () => {
+test('reject stale, wildcard and reopening exact legacy exemptions', () => {
   assert.throws(
     () =>
       checkBoundaries(files({ 'src/shared/a.ts': '' }), {
@@ -129,6 +139,14 @@ test('reject stale and wildcard legacy exemptions', () => {
         cycles: [],
       }),
     /finite/,
+  );
+  assert.throws(
+    () =>
+      checkBoundaries(files({ 'src/shared/a.ts': "import 'hono';" }), {
+        imports: [{ from: 'src/shared/a.ts', to: 'hono', rule: 'layer', removeIn: 'BR-03' }],
+        cycles: [],
+      }),
+    /closed/,
   );
 });
 

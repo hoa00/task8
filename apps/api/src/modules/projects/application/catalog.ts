@@ -7,7 +7,7 @@ export async function projectCatalog(
   scope: WorkspaceContext,
   now: number,
 ): Promise<ProjectListItemDto[]> {
-  const roots = await projectCatalogReadProjects(repository, false, scope);
+  const roots = await projectCatalogReadProjects(repository, scope);
   const items = await projectCatalogForIds(
     repository,
     scope,

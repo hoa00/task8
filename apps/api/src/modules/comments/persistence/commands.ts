@@ -1,14 +1,15 @@
-import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
-import { commentReadTextKeys } from '../domain/read-text.ts';
 import type { EntityId, Instant } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { fitBatch, gatedInsert, matchedBatch } from '../../../db/commands.ts';
+import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
+import { required } from '../../../shared/errors.ts';
 import type { IdGenerator } from '../../../shared/ids.ts';
 import { newId } from '../../../shared/ids.ts';
 import { writeAccessSql } from '../../projects/access.ts';
 import { childEvent } from '../../tasks/aggregate.ts';
 import { taskSelect } from '../../tasks/index.ts';
 import type { TaskProjection } from '../../tasks/projections.ts';
+import { commentReadTextKeys } from '../domain/read-text.ts';
 import type { CommentRow } from './commands-model.ts';
 export function commentRowReadComments(
   r: RequestRepository,
@@ -28,16 +29,6 @@ export function reactionsReadCommentReactions(
 ) {
   return r.all<{ reactionKey: string; memberId: string }>(
     'SELECT reactionKey,memberId FROM commentReactions WHERE workspaceId=? AND commentId=? ORDER BY reactionKey,memberId',
-    [s.workspaceId, id],
-  );
-}
-export function listCommentsReadCommentReactions(
-  r: RequestRepository,
-  s: WorkspaceContext,
-  id: EntityId,
-) {
-  return r.all<CommentRow & { reactionsJson: string }>(
-    `SELECT c.*,(SELECT json_group_array(json_object('key',reactionKey,'memberId',memberId)) FROM (SELECT reactionKey,memberId FROM commentReactions WHERE workspaceId=c.workspaceId AND commentId=c.id ORDER BY reactionKey,memberId)) reactionsJson FROM comments c WHERE c.workspaceId=? AND c.taskId=? AND c.deletedAt IS NULL ORDER BY c.createdAt,c.id`,
     [s.workspaceId, id],
   );
 }
@@ -145,7 +136,7 @@ export function lifecycleCommentPrepareCommandUndoRecords(
       s.workspaceId,
       s.memberId,
       undo.kind,
-      payload!,
+      required(payload, 'Missing comment Undo payload'),
       s.workspaceId,
       id,
       s.workspaceId,

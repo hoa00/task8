@@ -1,6 +1,5 @@
 import type { CreateCommentInput, EntityId, ReactionDto } from '@studio/contracts/api';
 import { EntityIdSchema } from '@studio/contracts/api';
-import { z } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import type { commandUndoRecords } from '../../../db/schema.ts';
 import {
@@ -14,10 +13,9 @@ import { ApiFailure, required } from '../../../shared/errors.ts';
 import type { IdGenerator } from '../../../shared/ids.ts';
 import { newId } from '../../../shared/ids.ts';
 import { bindReadCursor, finishReadPage } from '../../../shared/read-page.ts';
-import { pagedComments } from '../persistence/paged-comments.ts';
 import { childGate, writableTask } from '../../tasks/aggregate.ts';
 import { taskDto, taskRow } from '../../tasks/index.ts';
-import { commentDto, reactionProjection } from '../mapper.ts';
+import { commentDto, reactionProjection, reactionsFromJson } from '../mapper.ts';
 import type { CommentRow } from '../persistence/commands-model.ts';
 import {
   commentRowReadComments,
@@ -51,7 +49,7 @@ import {
   undoCommentReadProjects,
   undoCommentReadTasks,
 } from '../persistence/commands.ts';
-const ReactionPairsSchema = z.array(z.object({ key: z.string(), memberId: EntityIdSchema }));
+import { pagedComments } from '../persistence/paged-comments.ts';
 
 export async function commentRow(
   r: RequestRepository,
@@ -91,8 +89,7 @@ export async function listComments(
   );
   const { rows, total } = await pagedComments(r, s, id, query.limit, cursor);
   const items = rows.map((row) => {
-    const values = ReactionPairsSchema.parse(JSON.parse(row.reactionsJson));
-    return commentDto(row, reactionProjection(values));
+    return commentDto(row, reactionsFromJson(row.reactionsJson));
   });
   return finishReadPage(items, total, query.limit, binding, (row) => ({
     id: row.id,

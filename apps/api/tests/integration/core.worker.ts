@@ -1,2 +1,2 @@
-// Shared fault injector imports current production.
-export { default } from '../wu31/worker.ts';
+import { nativeFaultWorker } from '../support/native-fault-worker.ts';
+export default nativeFaultWorker('wu31');

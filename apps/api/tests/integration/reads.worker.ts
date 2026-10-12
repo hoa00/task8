@@ -1,10 +1,15 @@
 import {
-  searchReadFiles,
-  searchReadCommentReactions,
   archiveRead,
   archiveReadProjects,
   archiveReadResult,
-} from '../../src/modules/projections/persistence/queries.ts';
+  searchReadFiles,
+  searchReadCommentReactions,
+  listFilesReadFiles,
+  listActivityReadActivity,
+  listNotificationsRead,
+  listCommentsReadCommentReactions,
+} from '../support/read-oracle-sql.ts';
+
 import { today } from '../../src/modules/workspaces/index.ts';
 import { z } from 'zod';
 import {
@@ -25,12 +30,7 @@ import { principal, membership, members } from '../../src/modules/members/index.
 import { taskDataset, taskDto } from '../../src/modules/tasks/projections.ts';
 import { projectCatalog } from '../../src/modules/projects/projections.ts';
 import { fileDto } from '../../src/modules/files/projections.ts';
-import { listFilesReadFiles } from '../../src/modules/files/persistence/queries.ts';
-import { listActivityReadActivity } from '../../src/modules/activity/persistence/queries.ts';
-import { listNotificationsRead } from '../../src/modules/notifications/persistence/commands.ts';
-import { listCommentsReadCommentReactions } from '../../src/modules/comments/persistence/commands.ts';
-import { commentDto, reactionProjection } from '../../src/modules/comments/projections.ts';
-const ReactionPairsSchema = z.array(z.object({ key: z.string(), memberId: EntityIdSchema }));
+import { commentDto, reactionsFromJson } from '../../src/modules/comments/projections.ts';
 const OracleSchema = z.object({
   kind: z.enum([
     'tasks',
@@ -139,10 +139,7 @@ export default {
                 rank: 4,
                 item: {
                   kind: 'comments',
-                  comment: commentDto(
-                    row,
-                    reactionProjection(ReactionPairsSchema.parse(JSON.parse(row.reactionsJson))),
-                  ),
+                  comment: commentDto(row, reactionsFromJson(row.reactionsJson)),
                   taskKey: task.key,
                   taskTitle: task.title,
                 },
@@ -321,12 +318,7 @@ export default {
           EntityIdSchema.parse(input.taskId),
         );
         return Response.json({
-          items: rows.map((row) =>
-            commentDto(
-              row,
-              reactionProjection(ReactionPairsSchema.parse(JSON.parse(row.reactionsJson))),
-            ),
-          ),
+          items: rows.map((row) => commentDto(row, reactionsFromJson(row.reactionsJson))),
           total: rows.length,
         });
       }

@@ -1,0 +1,197 @@
+[
+  {
+    "name": "format-check",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "format:check"
+    ],
+    "startedAt": "2026-10-12T13:16:05.293724+00:00",
+    "completedAt": "2026-10-12T13:16:12.178308+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "format-check.stdout.log",
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    "stderr": {
+      "path": "format-check.stderr.log",
+      "bytes": 158,
+      "sha256": "848ef9e36ff3de72d3f3d603a0c6926a712fb54566cfa2405d0391a552f935b7"
+    }
+  },
+  {
+    "name": "api-typecheck",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "typecheck"
+    ],
+    "startedAt": "2026-10-12T13:16:12.189412+00:00",
+    "completedAt": "2026-10-12T13:16:20.726305+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "api-typecheck.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "api-typecheck.stderr.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    }
+  },
+  {
+    "name": "api-lint",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "lint"
+    ],
+    "startedAt": "2026-10-12T13:16:20.732845+00:00",
+    "completedAt": "2026-10-12T13:16:28.959724+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "api-lint.stdout.log",
+      "bytes": 71,
+      "sha256": "fdccac25435e296ea27c10627ba04ba862f04d0081c593966571e3c84d59bf9c"
+    },
+    "stderr": {
+      "path": "api-lint.stderr.log",
+      "bytes": 142,
+      "sha256": "34305a46229b6bfa27dab76bf1c59aacee5fbc8ee95752d5b11b43a958720c50"
+    }
+  },
+  {
+    "name": "gate-self-check",
+    "argv": [
+      "node",
+      "apps/api/tooling/verify-gates.mjs"
+    ],
+    "startedAt": "2026-10-12T13:16:28.961967+00:00",
+    "completedAt": "2026-10-12T13:16:55.564785+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "gate-self-check.stdout.log",
+      "bytes": 84,
+      "sha256": "28455e15ea9b16aa4b13566635e18add4d828b084163c5e1d18c87e0e59eb0ca"
+    },
+    "stderr": {
+      "path": "gate-self-check.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "name": "root-typecheck",
+    "argv": [
+      "pnpm",
+      "typecheck"
+    ],
+    "startedAt": "2026-10-12T13:16:55.565947+00:00",
+    "completedAt": "2026-10-12T13:17:44.112484+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "root-typecheck.stdout.log",
+      "bytes": 790,
+      "sha256": "1c32efe84b2f0cf2e6ac3a9bb5de67db80df6485861fe7d88d939161fd7f1c2f"
+    },
+    "stderr": {
+      "path": "root-typecheck.stderr.log",
+      "bytes": 22,
+      "sha256": "bf18c62cdc9924cebfa985a804c2b55e5fabcdec27ab2707fe215d547b85ec16"
+    }
+  },
+  {
+    "name": "root-lint",
+    "argv": [
+      "pnpm",
+      "lint"
+    ],
+    "startedAt": "2026-10-12T13:17:44.114246+00:00",
+    "completedAt": "2026-10-12T13:18:40.329735+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "root-lint.stdout.log",
+      "bytes": 76,
+      "sha256": "cb5e7d31626b2070ccc1e94a415d13292808063d11e241a05a974ecc8c79e941"
+    },
+    "stderr": {
+      "path": "root-lint.stderr.log",
+      "bytes": 664,
+      "sha256": "f1e9b4e92f097875be55ca5f9f693017caab1c7998b57f809b469087bfadcf28"
+    }
+  },
+  {
+    "name": "contracts",
+    "argv": [
+      "pnpm",
+      "contracts:consumers"
+    ],
+    "startedAt": "2026-10-12T13:18:40.339967+00:00",
+    "completedAt": "2026-10-12T13:18:46.451981+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "contracts.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "contracts.stderr.log",
+      "bytes": 108,
+      "sha256": "acd18fc0b18c86ad14234e2b6e42b97ab04d403065c05dc67320a718102d3f12"
+    }
+  },
+  {
+    "name": "root-build",
+    "argv": [
+      "pnpm",
+      "build"
+    ],
+    "startedAt": "2026-10-12T13:18:46.458392+00:00",
+    "completedAt": "2026-10-12T13:18:52.582887+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "root-build.stdout.log",
+      "bytes": 28504,
+      "sha256": "e9c359061558933bc7c0b52643bfb0c1c7ba5ff0b25f7ccc98e8839805f5f8c3"
+    },
+    "stderr": {
+      "path": "root-build.stderr.log",
+      "bytes": 18,
+      "sha256": "c7ae53061ae01873a9768eadfdff2c192fb4acbd5744d4eb0741e66c8469a052"
+    }
+  },
+  {
+    "name": "root-test",
+    "argv": [
+      "pnpm",
+      "test"
+    ],
+    "startedAt": "2026-10-12T13:18:52.584896+00:00",
+    "completedAt": "2026-10-12T13:32:22.945730+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "root-test.stdout.log",
+      "bytes": 49768,
+      "sha256": "8983bb22639d5ee24a3eb629b418f8c650efc4a78d6b2443eef7b843f5fbe8f7"
+    },
+    "stderr": {
+      "path": "root-test.stderr.log",
+      "bytes": 255,
+      "sha256": "80445dd8356c7c652fe0ed01c8805a33d3b5a58a8a9fe1e5bfaa1ee49d0e86a2"
+    }
+  }
+]

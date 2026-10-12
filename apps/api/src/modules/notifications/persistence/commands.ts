@@ -4,12 +4,6 @@ import type { notifications } from '../../../db/schema.ts';
 import { actorParameters, actorSql } from '../../projects/access.ts';
 import { notificationFrom, notificationVisible, parameters } from './visibility.ts';
 
-export function listNotificationsRead(r: RequestRepository, s: WorkspaceContext) {
-  return r.all<typeof notifications.$inferSelect>(
-    `SELECT n.* FROM ${notificationFrom} WHERE ${notificationVisible} ORDER BY n.createdAt DESC,n.id DESC`,
-    parameters(s),
-  );
-}
 export function updateNotificationPredicate() {
   return `id IN (SELECT n.id FROM ${notificationFrom} WHERE ${notificationVisible} AND n.id=?) AND ${actorSql()}`;
 }

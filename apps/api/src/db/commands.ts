@@ -1,6 +1,6 @@
 import { getTableColumns } from 'drizzle-orm';
 import { ApiFailure } from '../shared/errors.ts';
-import type { RequestRepository } from './repository.ts';
+import type { RequestRepository } from './client.ts';
 import * as schema from './schema.ts';
 export type SqlValue = string | number | null;
 export interface SqlPredicate {

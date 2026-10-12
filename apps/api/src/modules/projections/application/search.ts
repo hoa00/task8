@@ -1,17 +1,15 @@
 import type { SearchQuerySchema, SearchResultDto } from '@studio/contracts/api';
-import { EntityIdSchema } from '@studio/contracts/api';
-import { z } from 'zod';
+import type { z } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
 import { bindReadCursor, finishReadPage } from '../../../shared/read-page.ts';
-import { selectedTaskProjections, taskDto } from '../../tasks/projections.ts';
-import { projectCatalogForIds } from '../../projects/projections.ts';
-import { memberDto } from '../../members/projections.ts';
+import { commentDto, reactionsFromJson } from '../../comments/projections.ts';
 import { fileDto } from '../../files/projections.ts';
-import { commentDto, reactionProjection } from '../../comments/projections.ts';
+import { memberDto } from '../../members/projections.ts';
+import { projectCatalogForIds } from '../../projects/projections.ts';
+import { selectedTaskProjections, taskDto } from '../../tasks/projections.ts';
+import { searchComments, searchFiles, searchPeople } from '../persistence/search-hydration.ts';
 import { searchPage } from '../persistence/search.ts';
-import { searchPeople, searchFiles, searchComments } from '../persistence/search-hydration.ts';
-const ReactionPairsSchema = z.array(z.object({ key: z.string(), memberId: EntityIdSchema }));
 export async function search(
   repository: RequestRepository,
   scope: WorkspaceContext,
@@ -62,10 +60,7 @@ export async function search(
   const commentIds = ids('comments');
   if (commentIds.length)
     for (const row of await searchComments(repository, scope, commentIds)) {
-      const comment = commentDto(
-        row,
-        reactionProjection(ReactionPairsSchema.parse(JSON.parse(row.reactionsJson))),
-      );
+      const comment = commentDto(row, reactionsFromJson(row.reactionsJson));
       results.set('comments:' + comment.id, {
         kind: 'comments',
         comment,

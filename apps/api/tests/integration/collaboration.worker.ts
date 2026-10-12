@@ -1,2 +1,2 @@
-// Shared historical fault injector; it imports the current production app.
-export { default } from '../wu33/worker.ts';
+import { nativeFaultWorker } from '../support/native-fault-worker.ts';
+export default nativeFaultWorker('wu33');

@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import { canAct, canAccessProject } from '../../src/modules/projects/index.ts';
 import { apiLimits, queryLimits } from '../../src/shared/limits.ts';
 import { CapabilitiesSchema } from '@studio/contracts/api';
-import { capabilities } from '../../src/modules/routes.ts';
+import { capabilities } from '../../src/http/routes.ts';
 test('canonical limits match contracts and existing manifest', () => {
   assert.deepEqual(capabilities.limits, apiLimits);
   CapabilitiesSchema.parse(capabilities);

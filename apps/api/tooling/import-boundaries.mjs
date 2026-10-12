@@ -4,36 +4,6 @@ import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
 const api = fileURLToPath(new URL('../', import.meta.url));
-const legacyOwners = {
-  'tasks.ts': 'tasks',
-  'task-read.ts': 'tasks',
-  'task-relations.ts': 'tasks',
-  'task-children.ts': 'tasks',
-  'task-undo.ts': 'tasks',
-  'task-routes.ts': 'tasks',
-  'projects.ts': 'projects',
-  'project-personal.ts': 'projects',
-  'saved-views.ts': 'projects',
-  'read-model.ts': 'projects',
-  'workspace.ts': 'workspaces',
-  'teams.ts': 'teams',
-  'comments.ts': 'comments',
-  'activity.ts': 'activity',
-  'notifications.ts': 'notifications',
-  'member-settings.ts': 'preferences',
-  'files.ts': 'files',
-  'file-routes.ts': 'files',
-  'bootstrap.ts': 'projections',
-  'projections.ts': 'projections',
-  'projection-routes.ts': 'projections',
-  'undo-command.ts': 'undo',
-  'features.ts': 'composition',
-  'routes.ts': 'composition',
-  'collaboration-routes.ts': 'composition',
-  'shared.ts': 'shared',
-  'projection-page.ts': 'shared',
-  'collaboration-page.ts': 'shared',
-};
 // Public facades are explicit contracts; deeper implementation paths remain private.
 const publicFacades = new Set([
   'src/modules/tasks/subtask-routes.ts',
@@ -90,7 +60,7 @@ export function classify(path) {
   const parts = path.replace(/^src\//, '').split('/');
   if (parts[0] === 'modules') {
     const file = parts.at(-1);
-    const owner = parts.length === 2 ? (legacyOwners[file] ?? file.replace(/\.ts$/, '')) : parts[1];
+    const owner = parts[1];
     const layer =
       file === 'index.ts'
         ? 'application'
@@ -98,8 +68,7 @@ export function classify(path) {
           ? 'http'
           : file === 'mapper.ts'
             ? 'mapper'
-            : (Object.keys(layers).find((name) => parts.includes(name)) ??
-              (owner === 'shared' ? 'shared' : owner === 'composition' ? 'http' : 'application'));
+            : (Object.keys(layers).find((name) => parts.includes(name)) ?? 'application');
     return { owner, layer };
   }
   if (parts[0] === 'db' || parts[0] === 'storage' || parts[0] === 'shared' || parts[0] === 'http')
@@ -191,6 +160,7 @@ export function inspectBoundaries(files) {
   const add = (from, to, rule) => violations.push({ from, to, rule });
   for (const [from, content] of files) {
     const source = classify(from);
+    if (/^src\/modules\/[^/]+\.ts$/.test(from)) add(from, from, 'feature-owner');
     for (const specifier of importsOf(from, content)) {
       if (specifier === '<dynamic>') {
         add(from, specifier, 'static-import');
@@ -225,12 +195,7 @@ export function inspectBoundaries(files) {
       }
       graph.get(from).add(target);
       const destination = classify(target);
-      if (
-        destination.owner &&
-        source.owner !== destination.owner &&
-        destination.owner !== 'shared' &&
-        !isPublicEntry(target)
-      )
+      if (destination.owner && source.owner !== destination.owner && !isPublicEntry(target))
         add(from, target, 'public-entry');
       if (
         !layers[source.layer]?.has(destination.layer) &&
@@ -242,7 +207,6 @@ export function inspectBoundaries(files) {
       if (
         !source.owner &&
         destination.owner &&
-        destination.owner !== 'shared' &&
         source.layer !== 'http' &&
         source.layer !== 'composition' &&
         source.layer !== 'context'
@@ -319,6 +283,8 @@ export function checkBoundaries(
   );
   if (unexpected.length || stale.length || unexpectedCycles.length || staleCycles.length)
     throw new Error(JSON.stringify({ unexpected, stale, unexpectedCycles, staleCycles }, null, 2));
+  if (allowed.size || allowlist.cycles.length)
+    throw new Error('Legacy exemptions are closed after BR-08');
   return {
     status: 'PASS',
     sourceFiles: files.size,

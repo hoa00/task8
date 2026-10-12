@@ -1,0 +1,1027 @@
+
+   • turbo 2.11.7
+   • Packages in scope: @studio/api, @studio/contracts, @studio/domain, @studio/ui, @studio/web
+   • Running test in 5 packages
+   • Remote caching disabled
+
+@studio/contracts:test: cache bypass, force executing 63b080893cb5ce95
+@studio/ui:build: cache miss, executing 84026b4cde8fcf4c
+@studio/contracts:build: cache miss, executing ce65d94efcd48eaa
+@studio/contracts:build: $ tsc -p tsconfig.build.json
+@studio/ui:build: $ tsc -p tsconfig.build.json
+@studio/contracts:test: $ node --experimental-strip-types --test --test-isolation=none ../../tests/contracts/*.test.ts && node ../../tests/contracts/generate-source-identities.mjs --check
+@studio/contracts:test: {"unit":"WU-02","source":"docs/poc/API_CONTRACT.md","status":"passed","expectedCount":83,"actualCount":83,"explicitOperationIds":["setTaskCompletion","bulkMutateTasks","deleteTeam","undoCommand","createTask","uploadProjectFile"]}
+@studio/contracts:test: ✔ getSession: request/response fixture validates shared boundary (6.951903ms)
+@studio/contracts:test: ✔ listWorkspaces: request/response fixture validates shared boundary (1.977919ms)
+@studio/contracts:test: ✔ getBootstrap: request/response fixture validates shared boundary (47.803595ms)
+@studio/contracts:test: ✔ getWorkspace: request/response fixture validates shared boundary (5.254969ms)
+@studio/contracts:test: ✔ updateWorkspace: request/response fixture validates shared boundary (2.238532ms)
+@studio/contracts:test: ✔ getProfile: request/response fixture validates shared boundary (0.596641ms)
+@studio/contracts:test: ✔ updateProfile: request/response fixture validates shared boundary (5.884571ms)
+@studio/contracts:test: ✔ getPreferences: request/response fixture validates shared boundary (0.763213ms)
+@studio/contracts:test: ✔ updatePreferences: request/response fixture validates shared boundary (14.850597ms)
+@studio/contracts:test: ✔ getNotificationPreferences: request/response fixture validates shared boundary (6.871753ms)
+@studio/contracts:test: ✔ updateNotificationPreferences: request/response fixture validates shared boundary (1.737084ms)
+@studio/contracts:test: ✔ listProjects: request/response fixture validates shared boundary (1.936696ms)
+@studio/contracts:test: ✔ createProject: request/response fixture validates shared boundary (1.78033ms)
+@studio/contracts:test: ✔ getProject: request/response fixture validates shared boundary (0.66866ms)
+@studio/contracts:test: ✔ updateProject: request/response fixture validates shared boundary (6.265938ms)
+@studio/contracts:test: ✔ duplicateProject: request/response fixture validates shared boundary (1.408868ms)
+@studio/contracts:test: ✔ archiveProject: request/response fixture validates shared boundary (1.07893ms)
+@studio/contracts:test: ✔ restoreProject: request/response fixture validates shared boundary (4.896818ms)
+@studio/contracts:test: ✔ restoreDeletedProject: request/response fixture validates shared boundary (37.544123ms)
+@studio/contracts:test: ✔ deleteProject: request/response fixture validates shared boundary (0.431793ms)
+@studio/contracts:test: ✔ listProjectMembers: request/response fixture validates shared boundary (0.852538ms)
+@studio/contracts:test: ✔ getProjectSummary: request/response fixture validates shared boundary (0.349248ms)
+@studio/contracts:test: ✔ listMembers: request/response fixture validates shared boundary (1.384962ms)
+@studio/contracts:test: ✔ getMember: request/response fixture validates shared boundary (0.541558ms)
+@studio/contracts:test: ✔ getMemberSummary: request/response fixture validates shared boundary (1.341407ms)
+@studio/contracts:test: ✔ listTeams: request/response fixture validates shared boundary (0.565024ms)
+@studio/contracts:test: ✔ createTeam: request/response fixture validates shared boundary (1.388198ms)
+@studio/contracts:test: ✔ getTeam: request/response fixture validates shared boundary (0.453385ms)
+@studio/contracts:test: ✔ updateTeam: request/response fixture validates shared boundary (1.433556ms)
+@studio/contracts:test: ✔ deleteTeam: request/response fixture validates shared boundary (0.644544ms)
+@studio/contracts:test: ✔ getTeamSummary: request/response fixture validates shared boundary (2.312014ms)
+@studio/contracts:test: ✔ listTasks: request/response fixture validates shared boundary (4.543594ms)
+@studio/contracts:test: ✔ getTaskSummary: request/response fixture validates shared boundary (1.36306ms)
+@studio/contracts:test: ✔ getTask: request/response fixture validates shared boundary (2.984028ms)
+@studio/contracts:test: ✔ resolveTaskKey: request/response fixture validates shared boundary (0.778135ms)
+@studio/contracts:test: ✔ createTask: request/response fixture validates shared boundary (3.403854ms)
+@studio/contracts:test: ✔ updateTask: request/response fixture validates shared boundary (2.204501ms)
+@studio/contracts:test: ✔ setTaskCompletion: request/response fixture validates shared boundary (0.930426ms)
+@studio/contracts:test: ✔ moveTask: request/response fixture validates shared boundary (9.038245ms)
+@studio/contracts:test: ✔ duplicateTask: request/response fixture validates shared boundary (1.07221ms)
+@studio/contracts:test: ✔ archiveTask: request/response fixture validates shared boundary (0.310579ms)
+@studio/contracts:test: ✔ restoreTask: request/response fixture validates shared boundary (0.369498ms)
+@studio/contracts:test: ✔ restoreDeletedTask: request/response fixture validates shared boundary (0.741991ms)
+@studio/contracts:test: ✔ deleteTask: request/response fixture validates shared boundary (0.338301ms)
+@studio/contracts:test: ✔ bulkMutateTasks: request/response fixture validates shared boundary (3.34247ms)
+@studio/contracts:test: ✔ createSubtask: request/response fixture validates shared boundary (1.382519ms)
+@studio/contracts:test: ✔ updateSubtask: request/response fixture validates shared boundary (1.436991ms)
+@studio/contracts:test: ✔ deleteSubtask: request/response fixture validates shared boundary (1.470943ms)
+@studio/contracts:test: ✔ promoteSubtask: request/response fixture validates shared boundary (0.34398ms)
+@studio/contracts:test: ✔ undoCommand: request/response fixture validates shared boundary (3.041645ms)
+@studio/contracts:test: ✔ listComments: request/response fixture validates shared boundary (2.433797ms)
+@studio/contracts:test: ✔ createComment: request/response fixture validates shared boundary (1.086992ms)
+@studio/contracts:test: ✔ deleteComment: request/response fixture validates shared boundary (0.74152ms)
+@studio/contracts:test: ✔ restoreDeletedComment: request/response fixture validates shared boundary (0.60206ms)
+@studio/contracts:test: ✔ addCommentReaction: request/response fixture validates shared boundary (0.678354ms)
+@studio/contracts:test: ✔ removeCommentReaction: request/response fixture validates shared boundary (0.495568ms)
+@studio/contracts:test: ✔ listActivity: request/response fixture validates shared boundary (2.494238ms)
+@studio/contracts:test: ✔ listNotifications: request/response fixture validates shared boundary (3.267517ms)
+@studio/contracts:test: ✔ updateNotification: request/response fixture validates shared boundary (0.867341ms)
+@studio/contracts:test: ✔ readAllNotifications: request/response fixture validates shared boundary (0.523851ms)
+@studio/contracts:test: ✔ listSavedViews: request/response fixture validates shared boundary (1.826179ms)
+@studio/contracts:test: ✔ createSavedView: request/response fixture validates shared boundary (0.6287ms)
+@studio/contracts:test: ✔ updateSavedView: request/response fixture validates shared boundary (0.898587ms)
+@studio/contracts:test: ✔ deleteSavedView: request/response fixture validates shared boundary (4.274328ms)
+@studio/contracts:test: ✔ addTaskFavorite: request/response fixture validates shared boundary (0.736452ms)
+@studio/contracts:test: ✔ removeTaskFavorite: request/response fixture validates shared boundary (0.199071ms)
+@studio/contracts:test: ✔ addProjectFavorite: request/response fixture validates shared boundary (0.41691ms)
+@studio/contracts:test: ✔ removeProjectFavorite: request/response fixture validates shared boundary (0.345713ms)
+@studio/contracts:test: ✔ updateProjectOrder: request/response fixture validates shared boundary (0.466325ms)
+@studio/contracts:test: ✔ listProjectFiles: request/response fixture validates shared boundary (1.071229ms)
+@studio/contracts:test: ✔ getFile: request/response fixture validates shared boundary (0.534868ms)
+@studio/contracts:test: ✔ renameFile: request/response fixture validates shared boundary (17.855708ms)
+@studio/contracts:test: ✔ duplicateFile: request/response fixture validates shared boundary (0.976485ms)
+@studio/contracts:test: ✔ deleteFile: request/response fixture validates shared boundary (0.799868ms)
+@studio/contracts:test: ✔ restoreDeletedFile: request/response fixture validates shared boundary (1.964629ms)
+@studio/contracts:test: ✔ uploadProjectFile: request/response fixture validates shared boundary (1.891638ms)
+@studio/contracts:test: ✔ getFileContent: request/response fixture validates shared boundary (1.407376ms)
+@studio/contracts:test: ✔ getHome: request/response fixture validates shared boundary (5.201399ms)
+@studio/contracts:test: ✔ getOverview: request/response fixture validates shared boundary (2.326926ms)
+@studio/contracts:test: ✔ search: request/response fixture validates shared boundary (3.317001ms)
+@studio/contracts:test: ✔ listCalendarEvents: request/response fixture validates shared boundary (2.062556ms)
+@studio/contracts:test: ✔ listMilestones: request/response fixture validates shared boundary (1.23777ms)
+@studio/contracts:test: ✔ listArchive: request/response fixture validates shared boundary (1.993101ms)
+@studio/contracts:test: ✔ locked identity UUIDs and catalog enums derive from a single canonical definition (0.81377ms)
+@studio/contracts:test: ✔ DateOnly accepts actual leap dates and rejects rollover without timezone conversion (1.152631ms)
+@studio/contracts:test: ✔ PATCH null clears; absent keeps; explicit undefined is not an update (0.845237ms)
+@studio/contracts:test: ✔ closed enums, UUIDv7 membership keys, server fields and positive safe versions are enforced (0.705086ms)
+@studio/contracts:test: ✔ cursor/query validation preserves filters and excludes pagination from summary scope (3.915316ms)
+@studio/contracts:test: ✔ bulk discriminants, column scope, atomic bounds and personal order are constrained (4.995717ms)
+@studio/contracts:test: ✔ restricted projects exclude private child projections and real external services cannot be claimed (1.32425ms)
+@studio/contracts:test: ✔ full view completeness checks count, dedupe and cursor exhaustion (2.093754ms)
+@studio/contracts:test: ✔ error fixtures, lifecycle and file identity are typed and bounded (2.400026ms)
+@studio/contracts:test: ✔ locked deterministic identities retain exact source keys/titles/relations and counts (2.936887ms)
+@studio/contracts:test: ℹ tests 93
+@studio/contracts:test: ℹ suites 0
+@studio/contracts:test: ℹ pass 93
+@studio/contracts:test: ℹ fail 0
+@studio/contracts:test: ℹ cancelled 0
+@studio/contracts:test: ℹ skipped 0
+@studio/contracts:test: ℹ todo 0
+@studio/contracts:test: ℹ duration_ms 711.329109
+@studio/domain:build: cache miss, executing 9c8303d3a6831336
+@studio/domain:build: $ tsc -p tsconfig.build.json
+@studio/api:test: cache bypass, force executing c34e70ad52f356da
+@studio/api:test: $ pnpm test:unit && pnpm test:integration
+@studio/api:test: $ node --import ./tests/support/wasm-loader.mjs --experimental-transform-types --test tests/unit/*.test.mjs
+@studio/api:test: (node:167629) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ preview formats require matching signatures and unsafe media stays attachment-only (2.153494ms)
+@studio/api:test: ✔ file diagnostic logs correlate attempts without payload, hash, object key or error message (0.882723ms)
+@studio/api:test: ✖ BR01_API_FAILURE_SENTINEL (0.899278ms)
+@studio/api:test: ✔ feature runner selects known suites and rejects typos (6.043231ms)
+@studio/api:test: ✔ isolated run IDs, storage and ephemeral ports (19.944182ms)
+@studio/api:test: ✔ startup timeout terminates owned process even before launch returns (118.208721ms)
+@studio/api:test: ✔ early exit records real code and command failure cannot pass (167.155696ms)
+@studio/api:test: ✔ spawn failure preserves ENOENT without trying to kill an unowned PID (64.634452ms)
+@studio/api:test: API request failed {
+@studio/api:test:   requestId: undefined,
+@studio/api:test:   operation: undefined,
+@studio/api:test:   errorCode: 'INTERNAL_ERROR',
+@studio/api:test:   errorType: 'ZodError',
+@studio/api:test:   phase: 'request',
+@studio/api:test:   durationMs: 0
+@studio/api:test: }
+@studio/api:test: (node:167650) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ internal DTO ZodError returns500 with no internal message (55.8362ms)
+@studio/api:test: (node:167663) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ request schema failures are400, with valid null/omitted input intact (82.301018ms)
+@studio/api:test: ✔ all route groups use decimal limit, strict bool/null/filter decoding (14.225573ms)
+@studio/api:test: ✔ actual streamed bytes are bounded without trusting Content-Length (1.731025ms)
+@studio/api:test: ✔ server log has correlation fields and never logs the error payload (0.953781ms)
+@studio/web:test: cache bypass, force executing 346dff8fdac5d6e4
+@studio/api:test: ✔ current API has zero legacy exemptions (1641.929417ms)
+@studio/api:test: ✔ reject flat compatibility feature owner (10.95369ms)
+@studio/api:test: ✔ reject domain importing request context (4.314468ms)
+@studio/api:test: ✔ reject domain importing Hono (0.588639ms)
+@studio/api:test: ✔ reject domain importing D1 rows (0.264219ms)
+@studio/api:test: ✔ reject mapper importing persistence (1.056767ms)
+@studio/api:test: ✔ reject route importing DB (0.260093ms)
+@studio/api:test: ✔ reject application importing Hono (4.346908ms)
+@studio/api:test: ✔ reject shared importing business public API (0.476801ms)
+@studio/api:test: ✔ reject cross-feature deep import (0.335667ms)
+@studio/api:test: ✔ reject frontend relative import (0.303749ms)
+@studio/api:test: ✔ reject frontend package alias (0.215616ms)
+@studio/api:test: ✔ reject computed dynamic import (0.472033ms)
+@studio/api:test: ✔ reject reexport internal business API (0.399354ms)
+@studio/api:test: ✔ allow cross-feature public API and pure domain imports (0.336068ms)
+@studio/api:test: ✔ AST ignores comments and strings, detects static dynamic imports (0.29794ms)
+@studio/api:test: ✔ reject new cycle and reject new edge inside a legacy cycle (6.148489ms)
+@studio/api:test: ✔ reject stale, wildcard and reopening exact legacy exemptions (0.491543ms)
+@studio/api:test: ✔ named public persistence predicate preserves its leaf layer (0.464962ms)
+@studio/api:test: ✔ public facade cannot hide application dependency from persistence (0.417961ms)
+@studio/api:test: ✔ only listed cross-aggregate fragment facade is public (0.454907ms)
+@studio/api:test: ✔ immutable local Wasm resources resolve through the same owner boundary (4.714984ms)
+@studio/api:test: (node:167693) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ read page retains full total and cursor tuple without depending on an anchor lookup (14.93865ms)
+@studio/api:test: ✔ seek directions distinguish archive ascending ID ties from descending history ties (1.964568ms)
+@studio/api:test: (node:167700) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ canonical limits match contracts and existing manifest (4.118012ms)
+@studio/api:test: ✔ actor active/admin/creator matrix includes removed and invited states (1.243249ms)
+@studio/api:test: ✔ private view differs from edit, and owner role never bypasses absent grant (1.915293ms)
+@studio/api:test: (node:167711) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ dedicated completion preserves noop, restores previous status and falls back to todo (4.984942ms)
+@studio/api:test: ✔ status transition preserves original completion timestamp and records previous status only on entering done (1.169267ms)
+@studio/api:test: ✔ internal status corruption is rejected by projection mapper (1.424191ms)
+@studio/api:test: (node:167718) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ ordering checks adjacent neighbors, endpoints and insertion position (2.282799ms)
+@studio/api:test: ✔ exhausted gap produces complete deterministic rebalance without mutating snapshots (0.941943ms)
+@studio/api:test: ✔ rebalance bounds and unsafe integer positions reject before writes (0.693988ms)
+@studio/api:test: (node:167725) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ pinned collation handles canonical equality, accent/case and unpaired cursor values (11.95324ms)
+@studio/api:test: ✔ UTF16 keys retain supplementary and prefix order independently of locale (0.989345ms)
+@studio/api:test: ✔ derived fields keep literal Unicode folding and JavaScript numeric conversion (1.129276ms)
+@studio/api:test: ✔ derived D1 keys match the native WTF8 read projection while cursor keys keep lone units (0.494437ms)
+@studio/web:test: $ node --experimental-strip-types --test --test-isolation=none src/app/env.test.ts tests/data/*.test.ts
+@studio/api:test: (node:167732) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+@studio/api:test: (Use `node --trace-warnings ...` to show where the warning was created)
+@studio/api:test: ✔ every canonical Undo kind has an owned handler and registry construction performs no I/O (1.765888ms)
+@studio/api:test: ℹ tests 51
+@studio/api:test: ℹ suites 0
+@studio/api:test: ℹ pass 50
+@studio/api:test: ℹ fail 1
+@studio/api:test: ℹ cancelled 0
+@studio/api:test: ℹ skipped 0
+@studio/api:test: ℹ todo 0
+@studio/api:test: ℹ duration_ms 5022.848117
+@studio/api:test: 
+@studio/api:test: ✖ failing tests:
+@studio/api:test: 
+@studio/api:test: test at tests/unit/gate-probe.test.mjs:1:35
+@studio/api:test: ✖ BR01_API_FAILURE_SENTINEL (0.899278ms)
+@studio/api:test:   Error: BR01_API_FAILURE_SENTINEL
+@studio/api:test:       at TestContext.<anonymous> (file:///workspace/task8/apps/api/tests/unit/gate-probe.test.mjs:1:83)
+@studio/api:test:       at Test.runInAsyncScope (node:async_hooks:214:14)
+@studio/api:test:       at Test.run (node:internal/test_runner/test:1106:25)
+@studio/api:test:       at Test.start (node:internal/test_runner/test:1003:17)
+@studio/api:test:       at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+@studio/api:test: [ELIFECYCLE] Command failed with exit code 1.
+@studio/api:test: [ELIFECYCLE] Test failed. See above for more details.
+@studio/web:test: ✔ public env defaults and explicit HTTP mode are stable (4.489553ms)
+@studio/web:test: ✔ public env rejects unknown modes, external URLs and exposed secrets (1.553237ms)
+@studio/web:test: ✔ Archive excludes deleted/private/foreign/missing parents; task rows hide archived parents, project counts include archived children (27.953554ms)
+@studio/web:test: ✔ Archive consumes more than200 canonical identities, scoped stable cursor survives restoring anchor and rejects kind/principal/query mismatch (41.831777ms)
+@studio/web:test: ✔ Project archive follows entity insertion order after creation and sidebar reorder, rather than archive-time or personal sidebar order (13.785367ms)
+@studio/web:test: ✔ Restore keeps same task ID/children; archived delete is a tombstone with Source purge no UI Undo; contract Undo and conflict remain bounded (36.326118ms)
+@studio/web:test: ✔ Actual offline mutations and failed storage preserve entities; retry restores once and project error remains atomic (49.529671ms)
+@studio/web:test: ✔ Auth facade keeps exact Source command delays and accepts no credentials (0.567848ms)
+@studio/web:test: ✔ Unavailable never invokes delay; error scenario never creates identity (2.811878ms)
+@studio/web:test: ✔ Auth reset invalidates pending flow and only retains memory drafts (0.354967ms)
+@studio/web:test: ✔ Validation preserves Source email, strength and confirmation quirks (0.453044ms)
+@studio/web:test: ✔ calendar DateOnly is invariant across UTC, DST transitions and fractional-offset timezones (4.001275ms)
+@studio/web:test: ✔ month geometry uses source minimum35 or42, leap boundaries and every weekStart (1.836304ms)
+@studio/web:test: ✔ previous/next reset month to first, week crosses year and Today retains fixture day (0.266022ms)
+@studio/web:test: ✔ reschedule preserves duration including zero, omits absent start and validates canonical PATCH atomically (12.361216ms)
+@studio/web:test: ✖ complete canonical due-range loader consumes >200 records, summary, abort and changed scope guards (43.676177ms)
+@studio/web:test: ✖ read-only events enforce range/project/authorization
+@studio/web:test: ✖ full authorized counters, per-project progress and workload agree with canonical summary, not previews
+@studio/web:test: ✖ Home previews/tabs and Overview full totals survive >200 tasks and archived/deleted/private parents
+@studio/web:test: ✖ elapsed seven-day boundary, completedAt rather than updatedAt, future source predicate and inclusive deadline dates
+@studio/web:test: ✖ Recent newest seven/total authorize task parent with nullable project; history retains archived task but excludes missing/private/deleted/archived parents
+@studio/web:test: ✖ real create/reschedule/complete/reopen update Home tabs/deadlines and Overview progress/workload without counters storage
+@studio/web:test: ✖ empty aggregate is truthful with zero division and no preview limits
+@studio/web:test: ✖ Home task DTOs reuse actor favorites and visible dependency projection from canonical task reads
+@studio/web:test: ✖ Files list/Drawer share exact ID; same-name rename/delete/Undo never touches other file
+@studio/web:test: ✖ Project-only upload replay persists sample provenance and duplicate gets independent ID/intent
+@studio/web:test: ✖ Canonical guard hides foreign workspace/project, missing/mismatched task, inactive actor and lifecycle in every projection
+@studio/web:test: ✖ File CAS/shared queue and parent loss reject all partial effects including stale Undo ABA
+@studio/web:test: ✖ File Undo replay keeps actor/current parent guards before returning idempotent result
+@studio/web:test: ✖ Metadata commands and file Undo storage failures leave memory/storage unchanged
+@studio/web:test: ✖ Catalogue query/type/sort pagination beyond200 rejects cursor mismatch and includes eight types
+@studio/web:test: ✖ All file operations invalidate catalogue/preview/Drawer/Search; HTTP byte capability remains unavailable
+@studio/web:test: ✖ normalized seed preserves all canonical identities, task content and relationships
+@studio/web:test: ✖ clock seam is UTC, stable and does not mutate the locked fixture
+@studio/web:test: ✖ all foundation responses parse and private project catalog excludes protected details
+@studio/web:test: ✖ same 83-method StudioApi and truthful capabilities reject unimplemented mock mutations
+@studio/web:test: ✖ input validation and unavailable workspace fail through contract errors
+@studio/web:test: ✖ mock persistence, reload and reset are reproducible and namespace-isolated
+@studio/web:test: ✖ production reset is forbidden; corrupt and foreign persisted state cannot enter mock reads
+@studio/web:test: ✖ blocked storage stays operational in memory without changing other namespaces
+@studio/web:test: ✖ empty, error and offline scenarios produce explicit data states without persistence leaks
+@studio/web:test: ✖ loading exposes real pending Query state then resolves; cancellation clears the timer
+@studio/web:test: ✖ HTTP uses typed JSON responses and advertises HTTP mode only from HTTP session
+@studio/web:test: ✖ HTTP errors, network failures and malformed success never fall back to mock
+@studio/web:test: ✖ HTTP normalizes validated filters with URLSearchParams and forwards abort signals
+@studio/web:test: ✖ query keys canonicalize schema defaults and isolate every workspace read
+@studio/web:test: ✖ mutation invalidation stays in its workspace and includes cross-view task projections
+@studio/web:test: ✖ workspace query cancellation prevents a late old-workspace response entering cache
+@studio/web:test: ✖ dev/test mock reset clears Query cache while production denial leaves cache untouched
+@studio/web:test: ✖ one notification table supplies Source categories and distinct Inbox/Notifications badges
+@studio/web:test: ✖ read/unread/read-all persist across reload; idempotent reads preserve server readAt; no foreign state touched
+@studio/web:test: ✖ private/missing/deleted/cross-workspace/mismatched parents and other recipients are excluded from every count
+@studio/web:test: ✖ keyset cursor covers >200 records and remains stable after the anchor is marked read; scope mismatch rejects
+@studio/web:test: ✖ invalid/foreign requests are zero-write; cancellation and error scenarios never return successful empty results
+@studio/web:test: ✖ Inbox reply uses existing createComment/listComments task owner and shared task count/mention/reaction operations
+@studio/web:test: ✖ notification mutations invalidate shared notifications and bootstrap; comments invalidate the same notification owner
+@studio/web:test: ✖ Direct steps normalize missing prerequisites, including reload and invalid range
+@studio/web:test: ✖ Slug and template naming preserve Source touched semantics
+@studio/web:test: ✖ Draft and receipt persist; double submit/retry/reload complete exactly once
+@studio/web:test: ✖ Port itself serializes same-flow completion across independent facades
+@studio/web:test: ✖ Original onboarding project survives creation, reorder and reload without extra entities
+@studio/web:test: ✖ Receipt storage failure retries existing durable dataset; draft is frozen after finish
+@studio/web:test: ✖ Unavailable completion performs no work, and HTTP explicit demo retains fixed seed context
+@studio/web:test: ✖ HTTP receipts always revalidate current configured seed; late reads never select a workspace
+@studio/web:test: ✖ Edited global principal survives finish and profile changes from either scope
+@studio/web:test: ✖ Concurrent seed/scoped profile writes share CAS and failed storage preserves both scopes after reload
+@studio/web:test: ✖ Development reset clears only registered demo scopes and their receipts
+@studio/web:test: ✖ member ID is membership, profile/user identity remains distinct and summary matches authorized task ownership
+@studio/web:test: ✖ profile summary guards private/archive/deletion/workspace/current actor and active canonical parents
+@studio/web:test: ✖ directory searches email and binds cursor to actor/query; inactive actor and foreign membership are rejected
+@studio/web:test: ✖ member activity has canonical parent/privacy/actor guards and DESC ordering
+@studio/web:test: ✖ demo invitations validate/dedupe/persist pending projection without canonical users/principal/grants/tasks writes
+@studio/web:test: ✖ demo role/Owner/current/Guest/capability/version guards, invited resend and remove Undo conflict
+@studio/web:test: ✖ demo storage failure does not commit and deactivated presentation preserves canonical active status
+@studio/web:test: ✖ demo validates team against canonical workspace teams; forged foreign team produces zero writes
+@studio/web:test: ✖ Project create all seven templates atomic IDs/keys/global append/activity; edit CAS preserves grants, failed merged date range zero writes
+@studio/web:test: ✖ Duplicate remaps only internal dependencies/new children, resets metadata/favorites, creates fresh history and source201 keys
+@studio/web:test: ✖ Project lifecycle/Undo bounds, consumed replay reauthorizes, deleting actor restore, independent child tombstones survive; shared task/project staging races
+@studio/web:test: ✖ Deleted project is absent from every implemented child projection; restricted catalog has only allowed DTO fields and all private child reads fail
+@studio/web:test: ✖ Favorites and personal order persist per member/reload; catalogue complete pages/filter/count and saved three-layout explicit definitions/CAS
+@studio/web:test: ✖ Sharing demo is separate persistent state, guarded local inverses cannot overwrite later changes or grant real private access
+@studio/web:test: ✖ global literal normalized search has five typed categories and full totals before category/page
+@studio/web:test: ✖ descriptions use canonical normalized text; title/key/member/email/file/comment participate
+@studio/web:test: ✖ private/missing/archived/deleted/cross-workspace/mismatched parents never leak children
+@studio/web:test: ✖ deleted comments/files omitted; member scope enforced; >200 complete pages without source30 cap
+@studio/web:test: ✖ mock operation is typed and cancels both before and after wait; errors are not successful empty search
+@studio/web:test: ✖ activity authorizes nullable/mismatched canonical task parents and keeps archived task history
+@studio/web:test: ✖ real rename/date updates stay outside Status changes while completion/reopen remain in the filter
+@studio/web:test: ✖ source password validation preserves exact boundaries and copy
+@studio/web:test: ✖ six-digit prototype code is format only; any six digits accepted
+@studio/web:test: ✖ sample sessions/invoices and renewal use source fixed demo clock
+@studio/web:test: ✖ unavailable rejects every mutation before wait/storage and leaves sample state
+@studio/web:test: ✖ password completion waits 800ms and stores no credentials or state
+@studio/web:test: ✖ session revocation is scoped sample state, current device cannot be revoked
+@studio/web:test: ✖ 2FA and plan demo transitions persist only bounded fields and reload
+@studio/web:test: ✖ payment responses cannot mutate card, plan, sessions or payment records
+@studio/web:test: ✖ explicit error scenario and storage failures retain prior state
+@studio/web:test: ✖ deterministic scenarios are separate scopes and loading holds mutation
+@studio/web:test: ✖ corrupt/foreign stored state cannot change demo or canonical state
+@studio/web:test: ✖ scenario selection is explicit and safely defaults on invalid/blocked storage
+@studio/web:test: ✖ closing demo shows fresh disabled samples; a held operation remains in its old scope
+@studio/web:test: ✖ Settings six Source accents are independent of project color catalog; strict validation excludes empty/unknown fields
+@studio/web:test: ✖ Canonical workspace fields CAS and current profile map to session/member/bootstrap/search, survive actual persistence/reload
+@studio/web:test: ✖ Preferences canonical full patch/reload retains language selections and profile fields remain separate
+@studio/web:test: ✖ Workspace/Profile stale CAS and concurrent staged writes reject with zero partial changes
+@studio/web:test: ✖ Storage failure precedes all profile/member/workspace/preference writes and keeps saved reads exact
+@studio/web:test: ✖ Settings actor/workspace/role guards and profile identity cannot be supplied by a client
+@studio/web:test: ✖ Settings invalidation includes canonical cross-screen profile/workspace/preference consumers
+@studio/web:test: ✖ Date-only formatting respects language and preserves explicit formats without timezone conversion
+@studio/web:test: ✖ Notification fourteen booleans persist independently; old DTO defaults never materialize omitted PATCH keys
+@studio/web:test: ✖ Notification preference storage rejection and actor/scope guards preserve reads; queue merges disjoint writes
+@studio/web:test: ✖ shell aggregates are actual bootstrap data, empty counts and saved view ownership are truthful
+@studio/web:test: ✖ legacy whitelist excludes prototype/project aliases and canonical links retain full prefix
+@studio/web:test: ✖ navigation aggregates apply project authorization, archive and internal tombstone predicates
+@studio/web:test: ✖ complete/archive/sortPriority validate the whole unfiltered ID/version set, oversized and stale fail atomically
+@studio/web:test: ✖ column sortPriority computes canonical positions, preserves scope and returns no Undo
+@studio/web:test: ✖ column complete Undo cancels only new unchanged recurrence successors, releases slot, preserves parent fields, idempotent replay
+@studio/web:test: ✖ any changed successor aggregate blocks whole column Undo; archive Undo, empty command feedback and actor guard
+@studio/web:test: ✖ move rejects contradictory status group, outside-scope neighbor and reversed pairs without writes
+@studio/web:test: ✖ canonical child CRUD, omitted fields, parent versions, progress and promotion inheritance are atomic
+@studio/web:test: ✖ child identity/scope validation and tombstones perform zero writes; every child command guards stale Undo
+@studio/web:test: ✖ comments, mentions, reactions, delete and idempotent bounded Undo survive reload
+@studio/web:test: ✖ comment deletion ownership, reaction/comment parent touches and stale inverse are enforced atomically
+@studio/web:test: ✖ stable comments/activity pagination validates cursor scope and hidden task access
+@studio/web:test: ✖ sanitizer serializes nested six-command content idempotently and rejects encoded/whitespace protocols
+@studio/web:test: ✖ Worker-compatible tree sanitizer allowlist, entities, protocols, discarded namespaces and canonical sanitized text
+@studio/web:test: ✖ atomic draft child create, canonical text, normalized actor/key replay and relations before writes
+@studio/web:test: ✖ single lifecycle Undo bounded guards, child/file touches block completion inverse, duplicate clean IDs
+@studio/web:test: ✖ upload content hash identity, concurrent replay, duplicate names, scope/size checks, file tombstone Undo
+@studio/web:test: ✖ form lost create/upload response, shared pending promise, partial retry and session reload retain identities
+@studio/web:test: ✖ failed file hashing leaves draft editable and never creates a task without its intended files
+@studio/web:test: ✖ edit move succeeds, PATCH fails, retry preserves confirmed phase and does not move twice
+@studio/web:test: ✖ reset during a late attachment preserves original target and cannot redirect into the new submission
+@studio/web:test: ✖ late file reselection cannot clear a newer same-file failure after reset
+@studio/web:test: ✖ source DATA-08 due overlap, done past date, unassigned and AND/OR/NOT empty semantics
+@studio/web:test: ✖ source null/string/date/priority sort rules with explicit canonical stable ID correction
+@studio/web:test: ✖ normalization validates inputs, unique columns/values, current URL independent from saved filters
+@studio/web:test: ✖ pure relation guard rejects foreign workspace/project/member/dependency, self and cycles
+@studio/web:test: ✖ mock fields validate nullable/date/status/relation atomically and omitted fields stay unchanged
+@studio/web:test: ✖ actual command cycle returns409 and keeps versions, tasks, recurrence slots unchanged; incoming links bump targets
+@studio/web:test: ✖ completion Undo is bounded, replay stable and stale parent all-or-nothing
+@studio/web:test: ✖ recurrence calendar correction, one slot and single Undo preserves successor with new subtask IDs
+@studio/web:test: ✖ project field command scope/neighbor guards, move key+file integrity, full counts+opaque query cursors
+@studio/web:test: ✖ command handlers reject actual foreign relation rows with zero writes and persist canonical Undo/sequence state
+@studio/web:test: ✖ plain status PATCH recurrence has no Undo and project task sequence never reuses keys
+@studio/web:test: ✖ new mock clients own independent mutable command metadata
+@studio/web:test: ✖ inline create IDs/key sequence, request replay, title edit and atomic invalid relation
+@studio/web:test: ✖ bulk patch all targets CAS, ordinary status recurrence no Undo, stale zero effects
+@studio/web:test: ✖ retained Delete tombstones: hide reads/counts, preserve children/history, atomic Undo/replay/stale guard
+@studio/web:test: ✖ subtask done aggregate increments parent and rejects stale/cross parent without writes
+@studio/web:test: ✖ deleted dependency targets reject explicit replacement; retained associations project out, scalar edit preserves, removal guards Undo
+@studio/web:test: ✖ create request dedupe is actor scoped and bulk recurrence preserves every incoming target version bump
+@studio/web:test: ✖ bulk over the POC limit returns canonical413 with zero task/count writes
+@studio/web:test: ✖ Table preferences isolate Workspace/Project/saved and initialize Project column once
+@studio/web:test: ✖ Table widths follow source64 minimum and preserve large finite resize in URL state
+@studio/web:test: ✖ Team canonical create/default users/transfer/update and persisted bootstrap agree on one primary team
+@studio/web:test: ✖ Team delete restores exact private/archived/deleted associations, preserves lifecycle, monotonic versions and replay
+@studio/web:test: ✖ Undo refuses member null→teamB→null ABA with zero partial effects and pending record intact
+@studio/web:test: ✖ Undo rejects normalized name reuse and project association ABA; deleting lifecycle cannot be overwritten
+@studio/web:test: ✖ Team CAS/name/foreign member/actor/foreign workspace guards reject atomically; deleted teams reject new project associations
+@studio/web:test: ✖ Team delete bounded targets and persistence failure reject before all writes
+@studio/web:test: ✖ Team summary excludes private/tombstoned/archived tasks and projects; counts follow current canonical ownership
+@studio/web:test: ✖ Team transfer and project update share queue; stale former-team CAS and cache consumers invalidate
+@studio/web:test: ✖ Timeline date ranges retain source91/238 days and UTC weekStart across DST/leap/year
+@studio/web:test: ✖ bar inclusive duration, 110px label threshold, progress and undated/empty rows are deterministic
+@studio/web:test: ✖ shared grouping keeps task set and source reverse-input date ties; project requested group falls back to status
+@studio/web:test: ✖ dependency cubic/arrow coordinates preserve forward/backward dash and omit hidden endpoints
+@studio/web:test: ✖ milestone same-day merge, room threshold, final unbounded label and empty-task lane preserve source geometry
+@studio/web:test: ✖ pointer rounding includes signed half-days and scroll delta; shared PATCH preserves duration/no-start omission
+@studio/web:test: ✖ complete canonical overlap consumes231 records/two pages, excludes outside-range and keeps start-only without bar
+@studio/web:test: ℹ tests 170
+@studio/web:test: ℹ suites 0
+@studio/web:test: ℹ pass 15
+@studio/web:test: ℹ fail 0
+@studio/web:test: ℹ cancelled 155
+@studio/web:test: ℹ skipped 0
+@studio/web:test: ℹ todo 0
+@studio/web:test: ℹ duration_ms 836.178432
+@studio/web:test: 
+@studio/web:test: ✖ failing tests:
+@studio/web:test: 
+@studio/web:test: test at tests/data/calendar.test.ts:44:1
+@studio/web:test: ✖ complete canonical due-range loader consumes >200 records, summary, abort and changed scope guards (43.676177ms)
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/calendar.test.ts:57:1
+@studio/web:test: ✖ read-only events enforce range/project/authorization
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/dashboards.test.ts:11:1
+@studio/web:test: ✖ full authorized counters, per-project progress and workload agree with canonical summary, not previews
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/dashboards.test.ts:17:1
+@studio/web:test: ✖ Home previews/tabs and Overview full totals survive >200 tasks and archived/deleted/private parents
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/dashboards.test.ts:28:1
+@studio/web:test: ✖ elapsed seven-day boundary, completedAt rather than updatedAt, future source predicate and inclusive deadline dates
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/dashboards.test.ts:35:1
+@studio/web:test: ✖ Recent newest seven/total authorize task parent with nullable project; history retains archived task but excludes missing/private/deleted/archived parents
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/dashboards.test.ts:46:1
+@studio/web:test: ✖ real create/reschedule/complete/reopen update Home tabs/deadlines and Overview progress/workload without counters storage
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/dashboards.test.ts:57:1
+@studio/web:test: ✖ empty aggregate is truthful with zero division and no preview limits
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/dashboards.test.ts:60:1
+@studio/web:test: ✖ Home task DTOs reuse actor favorites and visible dependency projection from canonical task reads
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/files.test.ts:15:1
+@studio/web:test: ✖ Files list/Drawer share exact ID; same-name rename/delete/Undo never touches other file
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/files.test.ts:16:1
+@studio/web:test: ✖ Project-only upload replay persists sample provenance and duplicate gets independent ID/intent
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/files.test.ts:17:1
+@studio/web:test: ✖ Canonical guard hides foreign workspace/project, missing/mismatched task, inactive actor and lifecycle in every projection
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/files.test.ts:18:1
+@studio/web:test: ✖ File CAS/shared queue and parent loss reject all partial effects including stale Undo ABA
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/files.test.ts:19:1
+@studio/web:test: ✖ File Undo replay keeps actor/current parent guards before returning idempotent result
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/files.test.ts:20:1
+@studio/web:test: ✖ Metadata commands and file Undo storage failures leave memory/storage unchanged
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/files.test.ts:21:1
+@studio/web:test: ✖ Catalogue query/type/sort pagination beyond200 rejects cursor mismatch and includes eight types
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/files.test.ts:22:1
+@studio/web:test: ✖ All file operations invalidate catalogue/preview/Drawer/Search; HTTP byte capability remains unavailable
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:27:1
+@studio/web:test: ✖ normalized seed preserves all canonical identities, task content and relationships
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:47:1
+@studio/web:test: ✖ clock seam is UTC, stable and does not mutate the locked fixture
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:54:1
+@studio/web:test: ✖ all foundation responses parse and private project catalog excludes protected details
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:72:1
+@studio/web:test: ✖ same 83-method StudioApi and truthful capabilities reject unimplemented mock mutations
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:85:1
+@studio/web:test: ✖ input validation and unavailable workspace fail through contract errors
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:91:1
+@studio/web:test: ✖ mock persistence, reload and reset are reproducible and namespace-isolated
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:110:1
+@studio/web:test: ✖ production reset is forbidden; corrupt and foreign persisted state cannot enter mock reads
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:123:1
+@studio/web:test: ✖ blocked storage stays operational in memory without changing other namespaces
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:131:1
+@studio/web:test: ✖ empty, error and offline scenarios produce explicit data states without persistence leaks
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:142:1
+@studio/web:test: ✖ loading exposes real pending Query state then resolves; cancellation clears the timer
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:159:1
+@studio/web:test: ✖ HTTP uses typed JSON responses and advertises HTTP mode only from HTTP session
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:171:1
+@studio/web:test: ✖ HTTP errors, network failures and malformed success never fall back to mock
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:185:1
+@studio/web:test: ✖ HTTP normalizes validated filters with URLSearchParams and forwards abort signals
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:197:1
+@studio/web:test: ✖ query keys canonicalize schema defaults and isolate every workspace read
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:205:1
+@studio/web:test: ✖ mutation invalidation stays in its workspace and includes cross-view task projections
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:220:1
+@studio/web:test: ✖ workspace query cancellation prevents a late old-workspace response entering cache
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/foundation.test.ts:235:1
+@studio/web:test: ✖ dev/test mock reset clears Query cache while production denial leaves cache untouched
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/notifications.test.ts:16:1
+@studio/web:test: ✖ one notification table supplies Source categories and distinct Inbox/Notifications badges
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/notifications.test.ts:25:1
+@studio/web:test: ✖ read/unread/read-all persist across reload; idempotent reads preserve server readAt; no foreign state touched
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/notifications.test.ts:39:1
+@studio/web:test: ✖ private/missing/deleted/cross-workspace/mismatched parents and other recipients are excluded from every count
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/notifications.test.ts:53:1
+@studio/web:test: ✖ keyset cursor covers >200 records and remains stable after the anchor is marked read; scope mismatch rejects
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/notifications.test.ts:66:1
+@studio/web:test: ✖ invalid/foreign requests are zero-write; cancellation and error scenarios never return successful empty results
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/notifications.test.ts:73:1
+@studio/web:test: ✖ Inbox reply uses existing createComment/listComments task owner and shared task count/mention/reaction operations
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/notifications.test.ts:82:1
+@studio/web:test: ✖ notification mutations invalidate shared notifications and bootstrap; comments invalidate the same notification owner
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:11:1
+@studio/web:test: ✖ Direct steps normalize missing prerequisites, including reload and invalid range
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:21:1
+@studio/web:test: ✖ Slug and template naming preserve Source touched semantics
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:29:1
+@studio/web:test: ✖ Draft and receipt persist; double submit/retry/reload complete exactly once
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:47:1
+@studio/web:test: ✖ Port itself serializes same-flow completion across independent facades
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:52:1
+@studio/web:test: ✖ Original onboarding project survives creation, reorder and reload without extra entities
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:61:1
+@studio/web:test: ✖ Receipt storage failure retries existing durable dataset; draft is frozen after finish
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:69:1
+@studio/web:test: ✖ Unavailable completion performs no work, and HTTP explicit demo retains fixed seed context
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:75:1
+@studio/web:test: ✖ HTTP receipts always revalidate current configured seed; late reads never select a workspace
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:83:1
+@studio/web:test: ✖ Edited global principal survives finish and profile changes from either scope
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:93:1
+@studio/web:test: ✖ Concurrent seed/scoped profile writes share CAS and failed storage preserves both scopes after reload
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/onboarding-demo.test.ts:109:1
+@studio/web:test: ✖ Development reset clears only registered demo scopes and their receipts
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/people.test.ts:15:1
+@studio/web:test: ✖ member ID is membership, profile/user identity remains distinct and summary matches authorized task ownership
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/people.test.ts:16:1
+@studio/web:test: ✖ profile summary guards private/archive/deletion/workspace/current actor and active canonical parents
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/people.test.ts:17:1
+@studio/web:test: ✖ directory searches email and binds cursor to actor/query; inactive actor and foreign membership are rejected
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/people.test.ts:18:1
+@studio/web:test: ✖ member activity has canonical parent/privacy/actor guards and DESC ordering
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/people.test.ts:19:1
+@studio/web:test: ✖ demo invitations validate/dedupe/persist pending projection without canonical users/principal/grants/tasks writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/people.test.ts:20:1
+@studio/web:test: ✖ demo role/Owner/current/Guest/capability/version guards, invited resend and remove Undo conflict
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/people.test.ts:21:1
+@studio/web:test: ✖ demo storage failure does not commit and deactivated presentation preserves canonical active status
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/people.test.ts:23:1
+@studio/web:test: ✖ demo validates team against canonical workspace teams; forged foreign team produces zero writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/projects.test.ts:17:1
+@studio/web:test: ✖ Project create all seven templates atomic IDs/keys/global append/activity; edit CAS preserves grants, failed merged date range zero writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/projects.test.ts:23:1
+@studio/web:test: ✖ Duplicate remaps only internal dependencies/new children, resets metadata/favorites, creates fresh history and source201 keys
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/projects.test.ts:27:1
+@studio/web:test: ✖ Project lifecycle/Undo bounds, consumed replay reauthorizes, deleting actor restore, independent child tombstones survive; shared task/project staging races
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/projects.test.ts:42:1
+@studio/web:test: ✖ Deleted project is absent from every implemented child projection; restricted catalog has only allowed DTO fields and all private child reads fail
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/projects.test.ts:46:1
+@studio/web:test: ✖ Favorites and personal order persist per member/reload; catalogue complete pages/filter/count and saved three-layout explicit definitions/CAS
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/projects.test.ts:52:1
+@studio/web:test: ✖ Sharing demo is separate persistent state, guarded local inverses cannot overwrite later changes or grant real private access
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/search.test.ts:13:1
+@studio/web:test: ✖ global literal normalized search has five typed categories and full totals before category/page
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/search.test.ts:20:1
+@studio/web:test: ✖ descriptions use canonical normalized text; title/key/member/email/file/comment participate
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/search.test.ts:26:1
+@studio/web:test: ✖ private/missing/archived/deleted/cross-workspace/mismatched parents never leak children
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/search.test.ts:40:1
+@studio/web:test: ✖ deleted comments/files omitted; member scope enforced; >200 complete pages without source30 cap
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/search.test.ts:49:1
+@studio/web:test: ✖ mock operation is typed and cancels both before and after wait; errors are not successful empty search
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/search.test.ts:56:1
+@studio/web:test: ✖ activity authorizes nullable/mismatched canonical task parents and keeps archived task history
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/search.test.ts:64:1
+@studio/web:test: ✖ real rename/date updates stay outside Status changes while completion/reopen remain in the filter
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:7:1
+@studio/web:test: ✖ source password validation preserves exact boundaries and copy
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:12:1
+@studio/web:test: ✖ six-digit prototype code is format only; any six digits accepted
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:16:1
+@studio/web:test: ✖ sample sessions/invoices and renewal use source fixed demo clock
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:23:1
+@studio/web:test: ✖ unavailable rejects every mutation before wait/storage and leaves sample state
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:31:1
+@studio/web:test: ✖ password completion waits 800ms and stores no credentials or state
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:38:1
+@studio/web:test: ✖ session revocation is scoped sample state, current device cannot be revoked
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:44:1
+@studio/web:test: ✖ 2FA and plan demo transitions persist only bounded fields and reload
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:53:1
+@studio/web:test: ✖ payment responses cannot mutate card, plan, sessions or payment records
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:58:1
+@studio/web:test: ✖ explicit error scenario and storage failures retain prior state
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:64:1
+@studio/web:test: ✖ deterministic scenarios are separate scopes and loading holds mutation
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:70:1
+@studio/web:test: ✖ corrupt/foreign stored state cannot change demo or canonical state
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:75:1
+@studio/web:test: ✖ scenario selection is explicit and safely defaults on invalid/blocked storage
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/security-billing-demo.test.ts:79:1
+@studio/web:test: ✖ closing demo shows fresh disabled samples; a held operation remains in its old scope
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:16:1
+@studio/web:test: ✖ Settings six Source accents are independent of project color catalog; strict validation excludes empty/unknown fields
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:17:1
+@studio/web:test: ✖ Canonical workspace fields CAS and current profile map to session/member/bootstrap/search, survive actual persistence/reload
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:18:1
+@studio/web:test: ✖ Preferences canonical full patch/reload retains language selections and profile fields remain separate
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:19:1
+@studio/web:test: ✖ Workspace/Profile stale CAS and concurrent staged writes reject with zero partial changes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:20:1
+@studio/web:test: ✖ Storage failure precedes all profile/member/workspace/preference writes and keeps saved reads exact
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:21:1
+@studio/web:test: ✖ Settings actor/workspace/role guards and profile identity cannot be supplied by a client
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:22:1
+@studio/web:test: ✖ Settings invalidation includes canonical cross-screen profile/workspace/preference consumers
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:23:1
+@studio/web:test: ✖ Date-only formatting respects language and preserves explicit formats without timezone conversion
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:25:1
+@studio/web:test: ✖ Notification fourteen booleans persist independently; old DTO defaults never materialize omitted PATCH keys
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/settings.test.ts:26:1
+@studio/web:test: ✖ Notification preference storage rejection and actor/scope guards preserve reads; queue merges disjoint writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/shell.test.ts:10:1
+@studio/web:test: ✖ shell aggregates are actual bootstrap data, empty counts and saved view ownership are truthful
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/shell.test.ts:21:1
+@studio/web:test: ✖ legacy whitelist excludes prototype/project aliases and canonical links retain full prefix
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/shell.test.ts:35:1
+@studio/web:test: ✖ navigation aggregates apply project authorization, archive and internal tombstone predicates
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-board.test.ts:15:1
+@studio/web:test: ✖ complete/archive/sortPriority validate the whole unfiltered ID/version set, oversized and stale fail atomically
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-board.test.ts:23:1
+@studio/web:test: ✖ column sortPriority computes canonical positions, preserves scope and returns no Undo
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-board.test.ts:24:1
+@studio/web:test: ✖ column complete Undo cancels only new unchanged recurrence successors, releases slot, preserves parent fields, idempotent replay
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-board.test.ts:31:1
+@studio/web:test: ✖ any changed successor aggregate blocks whole column Undo; archive Undo, empty command feedback and actor guard
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-board.test.ts:37:1
+@studio/web:test: ✖ move rejects contradictory status group, outside-scope neighbor and reversed pairs without writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-collaboration.test.ts:13:1
+@studio/web:test: ✖ canonical child CRUD, omitted fields, parent versions, progress and promotion inheritance are atomic
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-collaboration.test.ts:23:1
+@studio/web:test: ✖ child identity/scope validation and tombstones perform zero writes; every child command guards stale Undo
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-collaboration.test.ts:31:1
+@studio/web:test: ✖ comments, mentions, reactions, delete and idempotent bounded Undo survive reload
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-collaboration.test.ts:40:1
+@studio/web:test: ✖ comment deletion ownership, reaction/comment parent touches and stale inverse are enforced atomically
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-collaboration.test.ts:47:1
+@studio/web:test: ✖ stable comments/activity pagination validates cursor scope and hidden task access
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-collaboration.test.ts:53:1
+@studio/web:test: ✖ sanitizer serializes nested six-command content idempotently and rejects encoded/whitespace protocols
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:15:1
+@studio/web:test: ✖ Worker-compatible tree sanitizer allowlist, entities, protocols, discarded namespaces and canonical sanitized text
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:21:1
+@studio/web:test: ✖ atomic draft child create, canonical text, normalized actor/key replay and relations before writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:29:1
+@studio/web:test: ✖ single lifecycle Undo bounded guards, child/file touches block completion inverse, duplicate clean IDs
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:39:1
+@studio/web:test: ✖ upload content hash identity, concurrent replay, duplicate names, scope/size checks, file tombstone Undo
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:49:1
+@studio/web:test: ✖ form lost create/upload response, shared pending promise, partial retry and session reload retain identities
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:60:1
+@studio/web:test: ✖ failed file hashing leaves draft editable and never creates a task without its intended files
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:65:1
+@studio/web:test: ✖ edit move succeeds, PATCH fails, retry preserves confirmed phase and does not move twice
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:71:1
+@studio/web:test: ✖ reset during a late attachment preserves original target and cannot redirect into the new submission
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-detail.test.ts:78:1
+@studio/web:test: ✖ late file reselection cannot clear a newer same-file failure after reset
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:20:1
+@studio/web:test: ✖ source DATA-08 due overlap, done past date, unassigned and AND/OR/NOT empty semantics
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:32:1
+@studio/web:test: ✖ source null/string/date/priority sort rules with explicit canonical stable ID correction
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:40:1
+@studio/web:test: ✖ normalization validates inputs, unique columns/values, current URL independent from saved filters
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:46:1
+@studio/web:test: ✖ pure relation guard rejects foreign workspace/project/member/dependency, self and cycles
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:58:1
+@studio/web:test: ✖ mock fields validate nullable/date/status/relation atomically and omitted fields stay unchanged
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:70:1
+@studio/web:test: ✖ actual command cycle returns409 and keeps versions, tasks, recurrence slots unchanged; incoming links bump targets
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:80:1
+@studio/web:test: ✖ completion Undo is bounded, replay stable and stale parent all-or-nothing
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:92:1
+@studio/web:test: ✖ recurrence calendar correction, one slot and single Undo preserves successor with new subtask IDs
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:101:1
+@studio/web:test: ✖ project field command scope/neighbor guards, move key+file integrity, full counts+opaque query cursors
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:115:1
+@studio/web:test: ✖ command handlers reject actual foreign relation rows with zero writes and persist canonical Undo/sequence state
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:128:1
+@studio/web:test: ✖ plain status PATCH recurrence has no Undo and project task sequence never reuses keys
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-fields.test.ts:139:1
+@studio/web:test: ✖ new mock clients own independent mutable command metadata
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-list.test.ts:10:1
+@studio/web:test: ✖ inline create IDs/key sequence, request replay, title edit and atomic invalid relation
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-list.test.ts:19:1
+@studio/web:test: ✖ bulk patch all targets CAS, ordinary status recurrence no Undo, stale zero effects
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-list.test.ts:26:1
+@studio/web:test: ✖ retained Delete tombstones: hide reads/counts, preserve children/history, atomic Undo/replay/stale guard
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-list.test.ts:38:1
+@studio/web:test: ✖ subtask done aggregate increments parent and rejects stale/cross parent without writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-list.test.ts:44:1
+@studio/web:test: ✖ deleted dependency targets reject explicit replacement; retained associations project out, scalar edit preserves, removal guards Undo
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-list.test.ts:59:1
+@studio/web:test: ✖ create request dedupe is actor scoped and bulk recurrence preserves every incoming target version bump
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-list.test.ts:71:1
+@studio/web:test: ✖ bulk over the POC limit returns canonical413 with zero task/count writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-table.test.ts:6:1
+@studio/web:test: ✖ Table preferences isolate Workspace/Project/saved and initialize Project column once
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/task-table.test.ts:17:1
+@studio/web:test: ✖ Table widths follow source64 minimum and preserve large finite resize in URL state
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/teams.test.ts:17:1
+@studio/web:test: ✖ Team canonical create/default users/transfer/update and persisted bootstrap agree on one primary team
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/teams.test.ts:18:1
+@studio/web:test: ✖ Team delete restores exact private/archived/deleted associations, preserves lifecycle, monotonic versions and replay
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/teams.test.ts:19:1
+@studio/web:test: ✖ Undo refuses member null→teamB→null ABA with zero partial effects and pending record intact
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/teams.test.ts:20:1
+@studio/web:test: ✖ Undo rejects normalized name reuse and project association ABA; deleting lifecycle cannot be overwritten
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/teams.test.ts:21:1
+@studio/web:test: ✖ Team CAS/name/foreign member/actor/foreign workspace guards reject atomically; deleted teams reject new project associations
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/teams.test.ts:22:1
+@studio/web:test: ✖ Team delete bounded targets and persistence failure reject before all writes
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/teams.test.ts:23:1
+@studio/web:test: ✖ Team summary excludes private/tombstoned/archived tasks and projects; counts follow current canonical ownership
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/teams.test.ts:24:1
+@studio/web:test: ✖ Team transfer and project update share queue; stale former-team CAS and cache consumers invalidate
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/timeline.test.ts:14:1
+@studio/web:test: ✖ Timeline date ranges retain source91/238 days and UTC weekStart across DST/leap/year
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/timeline.test.ts:20:1
+@studio/web:test: ✖ bar inclusive duration, 110px label threshold, progress and undated/empty rows are deterministic
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/timeline.test.ts:27:1
+@studio/web:test: ✖ shared grouping keeps task set and source reverse-input date ties; project requested group falls back to status
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/timeline.test.ts:32:1
+@studio/web:test: ✖ dependency cubic/arrow coordinates preserve forward/backward dash and omit hidden endpoints
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/timeline.test.ts:37:1
+@studio/web:test: ✖ milestone same-day merge, room threshold, final unbounded label and empty-task lane preserve source geometry
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/timeline.test.ts:42:1
+@studio/web:test: ✖ pointer rounding includes signed half-days and scroll delta; shared PATCH preserves duration/no-start omission
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: 
+@studio/web:test: test at tests/data/timeline.test.ts:46:1
+@studio/web:test: ✖ complete canonical overlap consumes231 records/two pages, excludes outside-range and keeps start-only without bar
+@studio/web:test:   'Promise resolution is still pending but the event loop has already resolved'
+@studio/web:test: [ELIFECYCLE] Test failed. See above for more details.
+
+ Tasks:    4 successful, 6 total
+Cached:    0 cached, 6 total
+  Time:    16.205s 
+Failed:    @studio/api#test
+
+[ELIFECYCLE] Test failed. See above for more details.

@@ -4,7 +4,7 @@ Ngày lập: **12/10/2026**. Chuẩn bắt buộc: [BACKEND_STANDARDS.md](BACKEN
 
 **Mục tiêu:** code của các tính năng đã có phải đạt chất lượng để tiếp tục bổ sung/sửa chữa; phạm vi POC chỉ giới hạn tính năng. Tài liệu gốc đã có yêu cầu này trong [AGENTS.md](../../AGENTS.md), [ARCHITECTURE.md](../poc/ARCHITECTURE.md) và [BACKEND_SCOPE.md](../poc/BACKEND_SCOPE.md). Kế hoạch này cụ thể hóa cách khắc phục các khoảng cách trong implementation.
 
-Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02 DONE; BR-03 DONE; BR-04A DONE; BR-04B DONE; BR-05 DONE; BR-06 DONE; BR-07A DONE; BR-07B DONE; BR-08 chưa triển khai.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
+BR-00 xác lập tài liệu và chỉ dẫn AI coder; yêu cầu hiện tại của Hòa là triển khai tự động toàn bộ các phase còn lại theo prerequisite. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02 DONE; BR-03 DONE; BR-04A DONE; BR-04B DONE; BR-05 DONE; BR-06 DONE; BR-07A DONE; BR-07B DONE; BR-08 DONE.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
 
 ## 1. Baseline và hiệu chỉnh đề xuất review
 
@@ -12,18 +12,18 @@ Code được đọc tại commit `6c25611a3b0346635e2ba3df336a2de9d24b2edd` tr�
 
 | Phát hiện đã đối chiếu code | Bằng chứng | Hành động |
 | --- | --- | --- |
-| Một file task gom nhiều use-case, plan và SQL batch | [tasks.ts](../../apps/api/src/modules/tasks.ts), đặc biệt execute/create/update/move/bulk | Tách theo trách nhiệm, giữ guarded batch |
-| Route vẫn chứa query/aggregate/SQL | [features.ts](../../apps/api/src/modules/features.ts), [task-routes.ts](../../apps/api/src/modules/task-routes.ts), [file-routes.ts](../../apps/api/src/modules/file-routes.ts) | Route mỏng; HTTP adapter + application owner |
+| Một file task gom nhiều use-case, plan và SQL batch | [tasks.ts](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/modules/tasks.ts), đặc biệt execute/create/update/move/bulk | Tách theo trách nhiệm, giữ guarded batch |
+| Route vẫn chứa query/aggregate/SQL | [features.ts](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/modules/features.ts), [task-routes.ts](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/modules/task-routes.ts), [file-routes.ts](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/modules/file-routes.ts) | Route mỏng; HTTP adapter + application owner |
 | Request parser lặp, limit decoding khác nhau | task/file/collaboration/projection routes và features | Shared parsing mechanism + operation schemas |
 | Mọi ZodError thành 400 kể cả mapper/response lỗi | [errors.ts tại baseline](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/errors.ts) | Phân biệt input validation và server failure |
-| Project/member cursor cần anchor vẫn tồn tại với sort value cũ | [shared.ts](../../apps/api/src/modules/shared.ts), helper page | Tuple continuation, preserve query binding/order |
-| List task/file/comment/notification và search full-load rồi slice/filter | [task-read.ts](../../apps/api/src/modules/task-read.ts), files/comments/notifications/projections | Scoped SQL reads, keyset, aggregate và parity tests |
-| RequestRepository public db/binding, reserve thủ công cho Drizzle | [repository.ts](../../apps/api/src/db/repository.ts), middleware/bootstrap/routes | Một execution/accounting boundary cho mọi query |
+| Project/member cursor cần anchor vẫn tồn tại với sort value cũ | [shared.ts](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/modules/shared.ts), helper page | Tuple continuation, preserve query binding/order |
+| List task/file/comment/notification và search full-load rồi slice/filter | [task-read.ts](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/modules/task-read.ts), files/comments/notifications/projections | Scoped SQL reads, keyset, aggregate và parity tests |
+| RequestRepository public db/binding, reserve thủ công cho Drizzle | [repository.ts](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/db/repository.ts), middleware/bootstrap/routes | Một execution/accounting boundary cho mọi query |
 | Project/File DTO được dựng lại nhiều nơi; write policy nằm ở read-model | bootstrap/read-model/task-read/projections/files | Mapper và policy có một owner |
-| API chưa có script test cho Turbo/root; regression chủ yếu theo WU | [package.json](../../apps/api/package.json), [regression.mjs](../../apps/api/tests/wu36/regression.mjs) | Active feature suites và command tổng hợp |
-| API tsconfig chỉ include runtime test Worker trực tiếp | [tsconfig.json](../../apps/api/tsconfig.json) | Include/typecheck toàn active test entries |
+| API chưa có script test cho Turbo/root; regression chủ yếu theo WU | [package.json](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/package.json), [regression.mjs](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/tests/wu36/regression.mjs) | Active feature suites và command tổng hợp |
+| API tsconfig chỉ include runtime test Worker trực tiếp | [tsconfig.json](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/tsconfig.json) | Include/typecheck toàn active test entries |
 | Format dồn gây diff khó review | 38 source files, 402 dòng >200 ký tự, 66 dòng >500 ký tự tại baseline | Formatter khóa version, format-only commit |
-| Existing import guard tập trung packages, chưa bảo vệ nội bộ API | [boundaries.mjs](../../tests/workspace/boundaries.mjs) | API import matrix, cycle/deep-import negative checks |
+| Existing import guard tập trung packages, chưa bảo vệ nội bộ API | [boundaries.mjs](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/tests/workspace/boundaries.mjs) | API import matrix, cycle/deep-import negative checks |
 
 Review trước xác nhận cú pháp 38 file, chưa chạy được lint/typecheck do dependencies chưa đầy đủ và pnpm lỗi store. **Không suy ra runtime PASS từ syntax hoặc evidence của commit cũ.** BR-01 phải establish baseline bằng command thật trong môi trường đúng Node/pnpm.
 
@@ -55,7 +55,7 @@ Error classification và cursor anchor behavior được sửa có chủ đích 
 
 ## 3. Kiến trúc đích và ownership
 
-Sơ đồ thư mục là target cho các trách nhiệm đã có, không yêu cầu tạo mọi thư mục/file cho module nhỏ:
+Sơ đồ thể hiện các trách nhiệm đích, không yêu cầu tạo mọi thư mục/file cho module nhỏ. Implementation/public imports hiện hành ở [API README](../../apps/api/README.md); mapping bên dưới giữ tên code khảo sát tại baseline để review migration:
 
 ```text
 apps/api/
@@ -117,7 +117,7 @@ apps/api/
     wu31/ ... wu36/                # lịch sử giữ nguyên
 ```
 
-| Owner đích | Code hiện tại cần chuyển/hợp nhất | Boundary public cần có |
+| Owner đích | Code tại baseline cần chuyển/hợp nhất | Boundary public cần có |
 | --- | --- | --- |
 | tasks | tasks/task-read/task-relations/task-children/task-undo/task-routes | routes; scoped task read/planning dependencies cần consumer thật; task Undo handler |
 | projects | projects/project-personal/saved-views và project phần features/read-model/bootstrap | routes; named read/write access predicates; scoped catalog/projection; project Undo handler |
@@ -145,7 +145,7 @@ Các `index.ts` chỉ export public surfaces cần thiết, không export mọi 
 | BR-06 | BR-05 | File application/R2 adapter và outcome handling rõ | DONE — [evidence](evidence/BR-06/verification.json) |
 | BR-07A | BR-06 | Scoped SQL paged reads + counts | DONE — [evidence](evidence/BR-07A/verification.json), [design](BACKEND_SQL_READ_DESIGN.md) |
 | BR-07B | BR-07A | Search/dashboard/summary optimization đúng semantics | DONE — [evidence](evidence/BR-07B/verification.json) |
-| BR-08 | BR-07B | Audit cuối, bỏ legacy paths/allowlists, current docs và regression | NOT_STARTED |
+| BR-08 | BR-07B | Audit cuối, bỏ legacy paths/allowlists, current docs và regression | DONE — [evidence](evidence/BR-08/verification.json) |
 
 Mỗi phase có thể chia nhiều commit theo bảng việc dưới, nhưng chỉ báo DONE khi mọi gate phase đủ. Không làm đồng thời các phase thay cùng code ownership. Không ghi số ngày ước đoán trước khi baseline/runtime constraints được xác lập.
 

@@ -1,0 +1,132 @@
+{
+  "phase": "BR-08",
+  "status": "PASS",
+  "baseline": "a76912b755edea59905bdd8d84c6d0ab2e09f3d0",
+  "toolchain": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0"
+  },
+  "commands": "commands.json",
+  "unitTests": 50,
+  "native": [
+    {
+      "feature": "collation-encoder",
+      "status": "PASS",
+      "probes": 2,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "68da85601cacabce1e1a2e0a8f74c03c0e18a8b9c9c67d9d3d89cdd406a37160",
+      "artifact": "collation-encoder.report.json.gz",
+      "routineOutput": "test-results/api/collation-encoder-eXRzca"
+    },
+    {
+      "feature": "files",
+      "status": "PASS",
+      "probes": 140,
+      "snapshotPairs": 0,
+      "checks": 20,
+      "originalSha256": "6dc9346b8bcb5ceea6f4936dd43b277bac9335706a965451d4eb41129f3a3647",
+      "artifact": "files.report.json.gz",
+      "routineOutput": "test-results/api/files-72tfGK"
+    },
+    {
+      "feature": "db",
+      "status": "PASS",
+      "probes": 7,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "4c737884cb70b269c821e587809ec0036106dd9112a4389ba331c510c8a2a659",
+      "artifact": "db.report.json.gz",
+      "routineOutput": "test-results/api/db-EuB1WC"
+    },
+    {
+      "feature": "projections",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 14,
+      "checks": 0,
+      "originalSha256": "7845249062dff752164e8e88d273b01029c62ae534b2e505d862723f6ddd5022",
+      "artifact": "projections.report.json.gz",
+      "routineOutput": "test-results/api/projections-oVmT0R"
+    },
+    {
+      "feature": "collaboration",
+      "status": "PASS",
+      "probes": 219,
+      "snapshotPairs": 21,
+      "checks": 0,
+      "originalSha256": "89a494395da2a32f6d8e83c37d45c29831823ef0e3d937987a6fd8bf476801f7",
+      "artifact": "collaboration.report.json.gz",
+      "routineOutput": "test-results/api/collaboration-Q7tnao"
+    },
+    {
+      "feature": "tasks",
+      "status": "PASS",
+      "probes": 316,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "6e77adf73de4d5713b842b5a10e93918a310d7f7d19e818816a1986fdcc45791",
+      "artifact": "tasks.report.json.gz",
+      "routineOutput": "test-results/api/tasks-pKst6r"
+    },
+    {
+      "feature": "reads",
+      "status": "PASS",
+      "probes": 966,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "6a0fd0cf04d3801cf1727dd97eae1ee93e89b6ecdef2a21034c94b58d12b3216",
+      "artifact": "reads.report.json.gz",
+      "routineOutput": "test-results/api/reads-dJmqya"
+    },
+    {
+      "feature": "core",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "33ae23d5d8e86c83240649d4210dd34061ad4b800ab5e90ef45853252a62bb4a",
+      "artifact": "core.report.json.gz",
+      "routineOutput": "test-results/api/core-sDzQQ5"
+    },
+    {
+      "feature": "http",
+      "status": "PASS",
+      "probes": 25,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "691de5857bfff4ba4acbb68b68f51108f876b00a47fe4a6e7b6193d283bebf78",
+      "artifact": "http.report.json.gz",
+      "routineOutput": "test-results/api/http-VCu9NF"
+    },
+    {
+      "feature": "read-keys-migration",
+      "status": "PASS",
+      "probes": 2,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "bf615731be23c299e327e3e47573956e3b387a8cca03a78daea7db34bb1365c5",
+      "artifact": "read-keys-migration.report.json.gz",
+      "routineOutput": "test-results/api/read-keys-migration-YZIHnh"
+    },
+    {
+      "feature": "projection-reads",
+      "status": "PASS",
+      "probes": 626,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "864fb194c6b43511d3067fb90efb564e9113dcdffcbbf7c9b7df279084e7c259",
+      "artifact": "projection-reads.report.json.gz",
+      "routineOutput": "test-results/api/projection-reads-0mUMav"
+    }
+  ],
+  "nativeProbes": 2675,
+  "executedInputs": "executed-inputs.json",
+  "ownerAudit": "owner-audit.json",
+  "exportReferenceAudit": "export-reference-result.json",
+  "gateSelfCheck": "gate-self-check/commands.json",
+  "docsCheck": "docs-check.json",
+  "limits": "No deploy/reset/new capability; full previews preserved; SQL text/sort scans remain scoped and may use temporary sorting; existing data requires forward migration/backfill.",
+  "rootNodeTests": 329,
+  "domainVerification": "Domain typecheck/build and pure rules exercised by API/web/contract consumers; domain has no separate test script."
+}
