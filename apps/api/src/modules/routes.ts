@@ -1,11 +1,11 @@
-import { Hono } from 'hono';
 import { CapabilitiesSchema, CatalogsSchema, catalogs, operations } from '@studio/contracts/api';
 import { and, asc, eq, isNull } from 'drizzle-orm';
+import { Hono } from 'hono';
+import { workspaceMembers, workspaces } from '../db/schema.ts';
+import { noInput as noQuery } from '../http/request.ts';
 import { workspaceMiddleware } from '../middleware.ts';
-import { workspaces, workspaceMembers } from '../db/schema.ts';
-import { ApiFailure } from '../errors.ts';
-import { readBootstrap, workspaceDto } from './bootstrap.ts';
 import type { ApiEnvironment } from '../runtime.ts';
+import { readBootstrap, workspaceDto } from './bootstrap.ts';
 import { features } from './features.ts';
 export const capabilities = CapabilitiesSchema.parse({
   dataMode: 'http',
@@ -42,13 +42,7 @@ for (const path of [
   '/workspaces/:workspaceId/catalogs',
 ])
   routes.use(path, async (c, next) => {
-    if (
-      c.req.method === 'GET' &&
-      (Object.keys(c.req.query()).length ||
-        Number(c.req.header('content-length') ?? 0) > 0 ||
-        c.req.header('transfer-encoding'))
-    )
-      throw new ApiFailure('VALIDATION_ERROR', 'Read routes do not accept query or body fields');
+    if (c.req.method === 'GET') await noQuery(c);
     await next();
   });
 routes.get('/session', (c) =>

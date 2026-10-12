@@ -1,24 +1,24 @@
+import type {
+  EntityId,
+  MemberDto,
+  UpdateProfileInput,
+  UpdateWorkspaceInput,
+} from '@studio/contracts/api';
 import { UserProfileSchema } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
 import { matchedBatch } from '../db/commands.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { users, workspaces } from '../db/schema.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { workspaceDto } from './bootstrap.ts';
 import {
-  actorSql,
   actorParameters,
+  actorSql,
   administrator,
   fitBatch,
   markerSql,
   newId,
   patchSql,
 } from './shared.ts';
-import { workspaceDto } from './bootstrap.ts';
-import type {
-  UpdateWorkspaceInput,
-  UpdateProfileInput,
-  MemberDto,
-  EntityId,
-} from '@studio/contracts/api';
-import type { WorkspaceContext, RequestRepository } from '../db/repository.ts';
-import type { workspaces, users } from '../db/schema.ts';
 export async function readWorkspace(r: RequestRepository, id: EntityId) {
   const [row] = await r.all<typeof workspaces.$inferSelect>('SELECT * FROM workspaces WHERE id=?', [
     id,

@@ -1,0 +1,75 @@
+{
+  "phase": "BR-02",
+  "status": "PASS",
+  "baseline": "dc8ea63ca9fafbdf094c34bd78c021ccb0d684e7",
+  "toolchain": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0"
+  },
+  "commands": "commands.json",
+  "unitTests": 29,
+  "native": [
+    {
+      "feature": "http",
+      "status": "PASS",
+      "probes": 25,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "c39c66beeaa06da7f687248239f28dbacbadef0ef3d51f2a89b66a33c05becc5",
+      "artifact": "http.report.json.gz",
+      "routineOutput": "test-results/api/http-iiheT3"
+    },
+    {
+      "feature": "tasks",
+      "status": "PASS",
+      "probes": 316,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "a7052ee6b65a6ac56e0cfa2ed4d42fea7692fc55a314a48071162094e00a22b0",
+      "artifact": "tasks.report.json.gz",
+      "routineOutput": "test-results/api/tasks-sProHq"
+    },
+    {
+      "feature": "projections",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 14,
+      "checks": 0,
+      "originalSha256": "7ae47aea841a452d7d7709cef5fef96ed2aed5c479170c445e518df7662b1834",
+      "artifact": "projections.report.json.gz",
+      "routineOutput": "test-results/api/projections-WRtj40"
+    },
+    {
+      "feature": "files",
+      "status": "PASS",
+      "probes": 140,
+      "snapshotPairs": 0,
+      "checks": 20,
+      "originalSha256": "9c2963a70a37301519dc56ea2cd342d12ef332dca8e5c9d0b0302e99aefaa767",
+      "artifact": "files.report.json.gz",
+      "routineOutput": "test-results/api/files-fZN6cI"
+    },
+    {
+      "feature": "collaboration",
+      "status": "PASS",
+      "probes": 219,
+      "snapshotPairs": 21,
+      "checks": 0,
+      "originalSha256": "f601c0ef88f1aa140d4ffc211da5dc082bae2030fec41dfc412bee626099bc2f",
+      "artifact": "collaboration.report.json.gz",
+      "routineOutput": "test-results/api/collaboration-bpwXo9"
+    },
+    {
+      "feature": "core",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "50353f01b815cf0633b64a0a6d7efd191b6c9bbfb2112c14a87fa1ab6123c219",
+      "artifact": "core.report.json.gz",
+      "routineOutput": "test-results/api/core-IHMbG2"
+    }
+  ],
+  "nativeProbes": 1072,
+  "executedInputs": "executed-inputs.json"
+}

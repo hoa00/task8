@@ -681,3 +681,10 @@ All14 Source notification keys are canonical: emailMention/emailAssign/emailComm
 Settings save persists preferences without providing email/push transport. Three Source permission switches stay workspace/principal-scoped/versioned People demo state; no canonical ACL mutation. Settings uses the same People/Teams/Projects intents, canonical records and query invalidation as existing pages. Archived and active project confirmations load canonical project name/version; read failure/Retry and pending guards retain typed draft. A stale row name cannot confirm deletion of a newer renamed record. Omitted project-view navigation resolves canonical defaultTab; explicit tabs remain explicit. Source showDoneBoard has no consumer and remains a stored preference only.
 
 WU24 HTTP evidence uses the actual production HTTP adapter with typed intercepted responses backed by canonical mock operations, not deployed business routes/backend/auth. Archived HTTP01 seven probes and current HTTP03 one renamed-record probe provide no new409/concurrent-CAS evidence, despite the preserved HTTP01 scope string mentioning CAS.
+
+
+### BR-02 — Request validation và transport bytes
+
+Input/schema validation được HTTP wrapper phân loại400; Zod failure của DTO/read projection/response hoặc Undo payload nội bộ là500. Cursor project/member tiếp tục bằng sort tuple và ID khi anchor thay đổi/xóa; binding workspace/principal/query/filter/sort và schema cursor giữ nguyên. Request IDs do server sinh; không reflect client payload vào log.
+
+JSON HTTP body có transport ceiling **16 MiB**, được enforce trên bytes stream, kể cả thiếu/sai Content-Length; vượt ceiling trả413 `PAYLOAD_TOO_LARGE` trước application effects. Ceiling mới ngăn whitespace/unknown fields/stream không giới hạn; cao hơn serialized DTO lớn nhất hiện có, gồm escaped description/subtasks. Đây là transport bound thêm tại BR-02, không tăng/thay field lengths, command budgets, upload10MiB hoặc multipart overhead65536bytes. Valid DTO consumers hiện có không cần đổi payload.

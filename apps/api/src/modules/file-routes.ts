@@ -1,43 +1,25 @@
-import { Hono } from 'hono';
 import { EntityIdSchema, operations } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
-import { changeFile, fileDto, fileRow, listFiles, safeInline, uploadFile } from './files.ts';
-import type { ApiEnvironment } from '../runtime.ts';
 import type { Context } from 'hono';
+import { Hono } from 'hono';
+import {
+  jsonBody as body,
+  multipartBody,
+  parseRequest,
+  readQuery as query,
+} from '../http/request.ts';
+import type { ApiEnvironment } from '../runtime.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { changeFile, fileDto, fileRow, listFiles, safeInline, uploadFile } from './files.ts';
 type C = Context<ApiEnvironment>;
-function query(c: C) {
-  const result: Record<string, unknown> = {};
-  for (const [key, values] of Object.entries(c.req.queries())) {
-    if (values.length !== 1) throw new ApiFailure('VALIDATION_ERROR', 'Repeated query field');
-    result[key] = key === 'limit' ? Number(values[0]) : values[0];
-  }
-  if (
-    c.req.method === 'GET' &&
-    (Number(c.req.header('content-length') ?? 0) > 0 || c.req.header('transfer-encoding'))
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'Read does not accept a body');
-  return result;
-}
-async function body(c: C) {
-  if (
-    Object.keys(c.req.query()).length ||
-    !c.req.header('content-type')?.startsWith('application/json')
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'JSON body required');
-  try {
-    return await c.req.json();
-  } catch {
-    throw new ApiFailure('VALIDATION_ERROR', 'Invalid JSON');
-  }
-}
+
 const prefix = '/workspaces/:workspaceId',
-  fid = (c: C) => EntityIdSchema.parse(c.req.param('fileId'));
+  fid = (c: C) => parseRequest(EntityIdSchema, c.req.param('fileId'));
 export const fileRoutes = new Hono<ApiEnvironment>();
 fileRoutes.get(prefix + '/projects/:projectId/files', async (c) => {
-  const input = operations.listProjectFiles.request.parse({
+  const input = parseRequest(operations.listProjectFiles.request, {
     workspaceId: c.get('workspace').workspaceId,
     projectId: c.req.param('projectId'),
-    query: query(c),
+    query: await query(c),
   });
   return c.json(
     operations.listProjectFiles.response.parse({
@@ -46,8 +28,12 @@ fileRoutes.get(prefix + '/projects/:projectId/files', async (c) => {
   );
 });
 fileRoutes.get(prefix + '/files/:fileId', async (c) => {
-  operations.getFile.request.parse({ workspaceId: c.get('workspace').workspaceId, fileId: fid(c) });
-  if (Object.keys(query(c)).length) throw new ApiFailure('VALIDATION_ERROR', 'Unexpected query');
+  parseRequest(operations.getFile.request, {
+    workspaceId: c.get('workspace').workspaceId,
+    fileId: fid(c),
+  });
+  if (Object.keys(await query(c)).length)
+    throw new ApiFailure('VALIDATION_ERROR', 'Unexpected query');
   return c.json(
     operations.getFile.response.parse({
       data: fileDto(await fileRow(c.get('repository'), c.get('workspace'), fid(c))),
@@ -55,51 +41,12 @@ fileRoutes.get(prefix + '/files/:fileId', async (c) => {
   );
 });
 fileRoutes.post(prefix + '/projects/:projectId/files', async (c) => {
-  if (
-    Object.keys(c.req.query()).length ||
-    !c.req.header('content-type')?.startsWith('multipart/form-data')
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'Multipart file required');
-  if (Number(c.req.header('content-length') ?? 0) > 10485760 + 65536)
-    throw new ApiFailure('PAYLOAD_TOO_LARGE', 'Upload exceeds 10 MiB');
-  // Bound the actual multipart body too; Content-Length is not trusted.
-  const reader = c.req.raw.body?.getReader();
-  if (!reader) throw new ApiFailure('VALIDATION_ERROR', 'File required');
-  const chunks: Uint8Array[] = [],
-    cap = 10485760 + 65536;
-  let length = 0;
-  for (;;) {
-    const item = await reader.read();
-    if (item.done) break;
-    length += item.value.byteLength;
-    if (length > cap) {
-      await reader.cancel();
-      throw new ApiFailure('PAYLOAD_TOO_LARGE', 'Upload exceeds 10 MiB');
-    }
-    chunks.push(item.value);
-  }
-  const bytes = new Uint8Array(length);
-  let offset = 0;
-  for (const chunk of chunks) {
-    bytes.set(chunk, offset);
-    offset += chunk.length;
-  }
-  let form: FormData;
-  try {
-    form = await new Response(bytes, {
-      headers: { 'content-type': c.req.header('content-type')! },
-    }).formData();
-  } catch {
-    throw new ApiFailure('VALIDATION_ERROR', 'Invalid multipart');
-  }
-  for (const key of form.keys())
-    if (!['file', 'clientRequestId', 'taskId'].includes(key) || form.getAll(key).length !== 1)
-      throw new ApiFailure('VALIDATION_ERROR', 'Unexpected multipart field');
+  const form = await multipartBody(c);
   const file = form.get('file');
   if (!(file instanceof File))
     throw new ApiFailure('VALIDATION_ERROR', 'Exactly one file required');
   if (file.size > 10485760) throw new ApiFailure('PAYLOAD_TOO_LARGE', 'File exceeds 10 MiB');
-  const input = operations.uploadProjectFile.request.parse({
+  const input = parseRequest(operations.uploadProjectFile.request, {
     workspaceId: c.get('workspace').workspaceId,
     projectId: c.req.param('projectId'),
     body: {
@@ -126,10 +73,10 @@ fileRoutes.post(prefix + '/projects/:projectId/files', async (c) => {
   );
 });
 fileRoutes.get(prefix + '/files/:fileId/content', async (c) => {
-  const input = operations.getFileContent.request.parse({
+  const input = parseRequest(operations.getFileContent.request, {
       workspaceId: c.get('workspace').workspaceId,
       fileId: fid(c),
-      query: query(c),
+      query: await query(c),
     }),
     f = await fileRow(c.get('repository'), c.get('workspace'), input.fileId);
   if (f.storageMode !== 'r2' || !f.objectKey)
@@ -157,7 +104,7 @@ for (const [op, method, suffix, kind] of [
   ['duplicateFile', 'post', '/duplicate', 'duplicate'],
 ] as const)
   fileRoutes[method](prefix + '/files/:fileId' + suffix, async (c) => {
-    const input = operations[op].request.parse({
+    const input = parseRequest(operations[op].request, {
         workspaceId: c.get('workspace').workspaceId,
         fileId: fid(c),
         body: await body(c),

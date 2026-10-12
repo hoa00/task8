@@ -1,4 +1,5 @@
 import { sql } from 'drizzle-orm';
+import type { AnySQLiteColumn, SQLiteTableExtraConfigValue } from 'drizzle-orm/sqlite-core';
 import {
   check,
   foreignKey,
@@ -9,7 +10,6 @@ import {
   text,
   uniqueIndex,
 } from 'drizzle-orm/sqlite-core';
-import type { AnySQLiteColumn, SQLiteTableExtraConfigValue } from 'drizzle-orm/sqlite-core';
 
 const timestamps = () => ({
   createdAt: integer('createdAt').notNull(),

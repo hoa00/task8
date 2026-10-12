@@ -1,0 +1,9 @@
+[api integration] http
+{"status":"PASS","probes":25,"error":null,"report":"/workspace/task8/test-results/api/http-sX0CGk/report.json"}
+[api integration] core
+{"status":"PASS","commands":9,"probes":186,"error":null,"report":"/workspace/task8/test-results/api/core-s0NB0I/report.json"}
+[api integration] tasks
+{"status":"FAILED","commands":3,"probes":230,"error":{"message":"favorite-add\n\n400 !== 200\n","stack":"AssertionError [ERR_ASSERTION]: favorite-add\n\n400 !== 200\n\n    at get (file:///workspace/task8/apps/api/tests/integration/tasks.mjs:81:10)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///workspace/task8/apps/api/tests/integration/tasks.mjs:765:7"},"report":"/workspace/task8/test-results/api/tasks-kmgilq/report.json"}
+/workspace/task8/apps/api:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @studio/api@0.0.0 test:integration: `node --experimental-transform-types tests/run.mjs`
+Exit status 1

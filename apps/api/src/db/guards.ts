@@ -1,8 +1,8 @@
-import { and, eq, isNull, or, sql } from 'drizzle-orm';
-import { projectMembers, projects } from './schema.ts';
-import { ApiFailure } from '../errors.ts';
 import type { EntityId } from '@studio/contracts/api';
+import { and, eq, isNull, or, sql } from 'drizzle-orm';
+import { ApiFailure } from '../shared/errors.ts';
 import type { RequestRepository, WorkspaceContext } from './repository.ts';
+import { projectMembers, projects } from './schema.ts';
 
 // Reuse this predicate for children and aggregates. Role never bypasses a private grant.
 export function projectAccess(scope: WorkspaceContext, active = true) {

@@ -1,0 +1,51 @@
+✔ feature runner selects known suites and rejects typos (1.956416ms)
+✔ isolated run IDs, storage and ephemeral ports (12.698676ms)
+✔ startup timeout terminates owned process even before launch returns (127.246048ms)
+✔ early exit records real code and command failure cannot pass (300.566846ms)
+✔ spawn failure preserves ENOENT without trying to kill an unowned PID (52.979633ms)
+(node:12467) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+API request failed {
+  requestId: undefined,
+  operation: undefined,
+  errorCode: 'INTERNAL_ERROR',
+  errorType: 'ZodError',
+  phase: 'request',
+  durationMs: 0
+}
+✔ internal DTO ZodError returns500 with no internal message (29.581175ms)
+✔ project/member tuple cursor survives removed or renamed anchors (23.804862ms)
+(node:12468) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ request schema failures are400, with valid null/omitted input intact (58.432197ms)
+✔ all route groups use decimal limit, strict bool/null/filter decoding (9.815551ms)
+✔ actual streamed bytes are bounded without trusting Content-Length (2.185423ms)
+✔ server log has correlation fields and never logs the error payload (0.699677ms)
+✔ current API has only exact documented legacy debt (153.50304ms)
+✔ reject domain importing Hono (0.650573ms)
+✔ reject domain importing D1 rows (0.22493ms)
+✔ reject mapper importing persistence (0.210428ms)
+✔ reject route importing DB (0.415753ms)
+✔ reject application importing Hono (0.328607ms)
+✔ reject shared importing business public API (0.498052ms)
+✔ reject cross-feature deep import (0.223318ms)
+✔ reject frontend relative import (0.266162ms)
+✔ reject frontend package alias (0.416219ms)
+✔ reject computed dynamic import (0.46991ms)
+✔ reject reexport internal business API (0.340535ms)
+✔ allow cross-feature public API and pure domain imports (0.460486ms)
+✔ AST ignores comments and strings, detects static dynamic imports (1.415238ms)
+✔ reject new cycle and reject new edge inside a legacy cycle (1.054623ms)
+✔ reject stale and wildcard legacy exemptions (0.230759ms)
+(node:12520) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ projection desc primary keeps ascending ID ties and survives a removed anchor (19.654266ms)
+✔ history descending feed keeps descending ID ties after anchor removal (10.191674ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1275.03566

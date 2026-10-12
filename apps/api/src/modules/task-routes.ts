@@ -1,11 +1,19 @@
-import { Hono } from 'hono';
 import {
   EntityIdSchema,
   TaskQuerySchema,
   TaskScopeQuerySchema,
   operations,
 } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
+import type { Context } from 'hono';
+import { Hono } from 'hono';
+import {
+  jsonBody as body,
+  noInput as noQuery,
+  parseRequest,
+  readQuery as query,
+} from '../http/request.ts';
+import type { ApiEnvironment } from '../runtime.ts';
+import { ApiFailure } from '../shared/errors.ts';
 import { queryTasks, taskDetail } from './task-read.ts';
 import {
   bulkTasks,
@@ -17,59 +25,17 @@ import {
   moveTask,
   updateTask,
 } from './tasks.ts';
-import type { ApiEnvironment } from '../runtime.ts';
-import type { Context } from 'hono';
 type C = Context<ApiEnvironment>;
 const s = (c: C) => c.get('workspace'),
   r = (c: C) => c.get('repository'),
-  id = (c: C) => EntityIdSchema.parse(c.req.param('taskId'));
-async function body(c: C) {
-  if (
-    Object.keys(c.req.query()).length ||
-    !c.req.header('content-type')?.startsWith('application/json')
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'JSON body required without query fields');
-  try {
-    return await c.req.json();
-  } catch {
-    throw new ApiFailure('VALIDATION_ERROR', 'Invalid JSON');
-  }
-}
-function query(c: C) {
-  if (Number(c.req.header('content-length') ?? 0) > 0 || c.req.header('transfer-encoding'))
-    throw new ApiFailure('VALIDATION_ERROR', 'Read does not accept body');
-  const out: Record<string, unknown> = {};
-  for (const [key, values] of Object.entries(c.req.queries())) {
-    if (values.length !== 1) throw new ApiFailure('VALIDATION_ERROR', 'Repeated query field');
-    let value: unknown = values[0];
-    if (['archived', 'favoriteOnly'].includes(key)) {
-      if (value !== 'true' && value !== 'false')
-        throw new ApiFailure('VALIDATION_ERROR', 'Invalid boolean');
-      value = value === 'true';
-    } else if (key === 'limit') {
-      if (!/^\d+$/.test(String(value))) throw new ApiFailure('VALIDATION_ERROR', 'Invalid limit');
-      value = Number(value);
-    } else if (key === 'filters') {
-      try {
-        value = JSON.parse(String(value));
-      } catch {
-        throw new ApiFailure('VALIDATION_ERROR', 'Invalid filters');
-      }
-    } else if (key === 'assigneeId' && value === 'null') value = null;
-    out[key] = value;
-  }
-  return out;
-}
-function noQuery(c: C) {
-  if (Object.keys(query(c)).length)
-    throw new ApiFailure('VALIDATION_ERROR', 'Query fields not accepted');
-}
+  id = (c: C) => parseRequest(EntityIdSchema, c.req.param('taskId'));
+
 export const taskRoutes = new Hono<ApiEnvironment>();
 const W = '/workspaces/:workspaceId';
 taskRoutes.get(W + '/tasks', async (c) =>
   c.json(
     operations.listTasks.response.parse({
-      data: await queryTasks(r(c), s(c), TaskQuerySchema.parse(query(c)), Date.now()),
+      data: await queryTasks(r(c), s(c), parseRequest(TaskQuerySchema, await query(c)), Date.now()),
     }),
   ),
 );
@@ -79,7 +45,7 @@ taskRoutes.get(W + '/tasks/summary', async (c) =>
       data: await queryTasks(
         r(c),
         s(c),
-        TaskQuerySchema.parse(TaskScopeQuerySchema.parse(query(c))),
+        parseRequest(TaskQuerySchema, parseRequest(TaskScopeQuerySchema, await query(c))),
         Date.now(),
         true,
       ),
@@ -88,9 +54,15 @@ taskRoutes.get(W + '/tasks/summary', async (c) =>
 );
 taskRoutes.post(W + '/tasks/bulk', async (c) => {
   const raw = await body(c);
-  if (Array.isArray(raw?.items) && raw.items.length > 20)
+  if (
+    raw !== null &&
+    typeof raw === 'object' &&
+    'items' in raw &&
+    Array.isArray(raw.items) &&
+    raw.items.length > 20
+  )
     throw new ApiFailure('PAYLOAD_TOO_LARGE', 'Bulk exceeds maxBulkItems');
-  const input = operations.bulkMutateTasks.request.parse({
+  const input = parseRequest(operations.bulkMutateTasks.request, {
     workspaceId: s(c).workspaceId,
     body: raw,
   });
@@ -101,7 +73,7 @@ taskRoutes.post(W + '/tasks/bulk', async (c) => {
   );
 });
 taskRoutes.post(W + '/tasks', async (c) => {
-  const input = operations.createTask.request.parse({
+  const input = parseRequest(operations.createTask.request, {
       workspaceId: s(c).workspaceId,
       body: await body(c),
     }),
@@ -112,8 +84,8 @@ taskRoutes.post(W + '/tasks', async (c) => {
   );
 });
 taskRoutes.get(W + '/task-keys/:taskKey', async (c) => {
-  noQuery(c);
-  const input = operations.resolveTaskKey.request.parse({
+  await noQuery(c);
+  const input = parseRequest(operations.resolveTaskKey.request, {
       workspaceId: s(c).workspaceId,
       taskKey: c.req.param('taskKey'),
     }),
@@ -129,11 +101,11 @@ taskRoutes.get(W + '/task-keys/:taskKey', async (c) => {
   );
 });
 taskRoutes.get(W + '/tasks/:taskId', async (c) => {
-  noQuery(c);
+  await noQuery(c);
   return c.json(operations.getTask.response.parse({ data: await taskDetail(r(c), s(c), id(c)) }));
 });
 taskRoutes.patch(W + '/tasks/:taskId', async (c) => {
-  const input = operations.updateTask.request.parse({
+  const input = parseRequest(operations.updateTask.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c),
     body: await body(c),
@@ -145,7 +117,7 @@ taskRoutes.patch(W + '/tasks/:taskId', async (c) => {
   );
 });
 taskRoutes.post(W + '/tasks/:taskId/completion', async (c) => {
-  const input = operations.setTaskCompletion.request.parse({
+  const input = parseRequest(operations.setTaskCompletion.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c),
     body: await body(c),
@@ -157,7 +129,7 @@ taskRoutes.post(W + '/tasks/:taskId/completion', async (c) => {
   );
 });
 taskRoutes.post(W + '/tasks/:taskId/move', async (c) => {
-  const input = operations.moveTask.request.parse({
+  const input = parseRequest(operations.moveTask.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c),
     body: await body(c),
@@ -169,7 +141,7 @@ taskRoutes.post(W + '/tasks/:taskId/move', async (c) => {
   );
 });
 taskRoutes.post(W + '/tasks/:taskId/duplicate', async (c) => {
-  const input = operations.duplicateTask.request.parse({
+  const input = parseRequest(operations.duplicateTask.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c),
     body: await body(c),
@@ -189,7 +161,7 @@ for (const [suffix, op, method] of [
   taskRoutes[method](
     W + '/tasks/:taskId' + (suffix === 'delete' ? '' : '/' + suffix),
     async (c) => {
-      const input = operations[op].request.parse({
+      const input = parseRequest(operations[op].request, {
         workspaceId: s(c).workspaceId,
         taskId: id(c),
         body: await body(c),
@@ -213,7 +185,7 @@ for (const [method, op, favorite] of [
   ['delete', 'removeTaskFavorite', false],
 ] as const)
   taskRoutes[method](W + '/me/task-favorites/:taskId', async (c) => {
-    noQuery(c);
+    await noQuery(c);
     return c.json(
       operations[op].response.parse({
         data: await favoriteTask(r(c), s(c), id(c), favorite, Date.now()),

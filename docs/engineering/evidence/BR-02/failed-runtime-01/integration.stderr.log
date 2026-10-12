@@ -1,0 +1,17 @@
+$ node --experimental-transform-types tests/run.mjs
+(node:12550) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12807) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13350) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+file:///workspace/task8/apps/api/tests/run.mjs:25
+      throw new Error(`${feature} failed (exit=${result.code}, signal=${result.signal})`);
+            ^
+
+Error: tasks failed (exit=1, signal=null)
+    at runFeatures (file:///workspace/task8/apps/api/tests/run.mjs:25:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///workspace/task8/apps/api/tests/run.mjs:28:57
+
+Node.js v24.13.0

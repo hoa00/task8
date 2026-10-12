@@ -1,4 +1,21 @@
-import { normalizeDescription } from '@studio/domain';
+import type {
+  ActivityDto,
+  CalendarEventDto,
+  CommentDto,
+  EntityId,
+  FileDto,
+  MemberDto,
+  MemberPreferencesDto,
+  NotificationDto,
+  NotificationPreferencesDto,
+  ProjectDto,
+  SavedViewDto,
+  SubtaskDto,
+  TaskDto,
+  TeamDto,
+  UserProfileDto,
+  WorkspaceDto,
+} from '@studio/contracts/api';
 import {
   ActivitySchema,
   CalendarEventSchema,
@@ -18,27 +35,9 @@ import {
   projectColors,
 } from '@studio/contracts/api';
 import { sourceFixtureProvenance, sourceId } from '@studio/contracts/source-identities';
-import { createFixedClock } from '@studio/domain';
 import type { Clock } from '@studio/domain';
+import { createFixedClock, normalizeDescription } from '@studio/domain';
 import sourceFixture from '../../../../docs/poc/reference/source-fixture.json' with { type: 'json' };
-import type {
-  WorkspaceDto,
-  UserProfileDto,
-  MemberDto,
-  TeamDto,
-  ProjectDto,
-  TaskDto,
-  SubtaskDto,
-  CommentDto,
-  FileDto,
-  ActivityDto,
-  NotificationDto,
-  CalendarEventDto,
-  SavedViewDto,
-  MemberPreferencesDto,
-  NotificationPreferencesDto,
-  EntityId,
-} from '@studio/contracts/api';
 export interface SeedDataset {
   workspaceId: EntityId;
   currentMemberId: EntityId;

@@ -1,8 +1,8 @@
 import { normalizeDescription } from '@studio/domain';
-import { ApiFailure } from '../errors.ts';
-import { writeAccessSql } from './read-model.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import type { SqlPredicate } from '../db/commands.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { writeAccessSql } from './read-model.ts';
 
 export function normalizeTaskDescription(value: string) {
   const normalized = normalizeDescription(value);

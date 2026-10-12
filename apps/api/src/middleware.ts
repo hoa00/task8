@@ -1,10 +1,11 @@
 import { EntityIdSchema, MemberSchema, UserProfileSchema } from '@studio/contracts/api';
 import { and, eq, isNull } from 'drizzle-orm';
 import { createMiddleware } from 'hono/factory';
-import { users, workspaceMembers } from './db/schema.ts';
 import { RequestRepository } from './db/repository.ts';
-import { ApiFailure } from './errors.ts';
+import { users, workspaceMembers } from './db/schema.ts';
+import { parseRequest } from './http/request.ts';
 import type { ApiEnvironment } from './runtime.ts';
+import { ApiFailure } from './shared/errors.ts';
 
 export const principalMiddleware = createMiddleware<ApiEnvironment>(async (context, next) => {
   const userId = EntityIdSchema.safeParse(context.env.LOCAL_USER_ID),
@@ -44,7 +45,7 @@ export const principalMiddleware = createMiddleware<ApiEnvironment>(async (conte
   await next();
 });
 export const workspaceMiddleware = createMiddleware<ApiEnvironment>(async (context, next) => {
-  const workspaceId = EntityIdSchema.parse(context.req.param('workspaceId'));
+  const workspaceId = parseRequest(EntityIdSchema, context.req.param('workspaceId'));
   const repository = context.get('repository');
   repository.reserve(1);
   const [row] = await repository.db

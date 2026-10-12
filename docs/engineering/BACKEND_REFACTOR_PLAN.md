@@ -4,7 +4,7 @@ Ngày lập: **12/10/2026**. Chuẩn bắt buộc: [BACKEND_STANDARDS.md](BACKEN
 
 **Mục tiêu:** code của các tính năng đã có phải đạt chất lượng để tiếp tục bổ sung/sửa chữa; phạm vi POC chỉ giới hạn tính năng. Tài liệu gốc đã có yêu cầu này trong [AGENTS.md](../../AGENTS.md), [ARCHITECTURE.md](../poc/ARCHITECTURE.md) và [BACKEND_SCOPE.md](../poc/BACKEND_SCOPE.md). Kế hoạch này cụ thể hóa cách khắc phục các khoảng cách trong implementation.
 
-Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02…BR-08 chưa triển khai.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
+Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02 DONE; BR-03…BR-08 chưa triển khai.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
 
 ## 1. Baseline và hiệu chỉnh đề xuất review
 
@@ -15,7 +15,7 @@ Code được đọc tại commit `6c25611a3b0346635e2ba3df336a2de9d24b2edd` tr�
 | Một file task gom nhiều use-case, plan và SQL batch | [tasks.ts](../../apps/api/src/modules/tasks.ts), đặc biệt execute/create/update/move/bulk | Tách theo trách nhiệm, giữ guarded batch |
 | Route vẫn chứa query/aggregate/SQL | [features.ts](../../apps/api/src/modules/features.ts), [task-routes.ts](../../apps/api/src/modules/task-routes.ts), [file-routes.ts](../../apps/api/src/modules/file-routes.ts) | Route mỏng; HTTP adapter + application owner |
 | Request parser lặp, limit decoding khác nhau | task/file/collaboration/projection routes và features | Shared parsing mechanism + operation schemas |
-| Mọi ZodError thành 400 kể cả mapper/response lỗi | [errors.ts](../../apps/api/src/errors.ts) | Phân biệt input validation và server failure |
+| Mọi ZodError thành 400 kể cả mapper/response lỗi | [errors.ts tại baseline](https://github.com/hoa00/task8/blob/6c25611a3b0346635e2ba3df336a2de9d24b2edd/apps/api/src/errors.ts) | Phân biệt input validation và server failure |
 | Project/member cursor cần anchor vẫn tồn tại với sort value cũ | [shared.ts](../../apps/api/src/modules/shared.ts), helper page | Tuple continuation, preserve query binding/order |
 | List task/file/comment/notification và search full-load rồi slice/filter | [task-read.ts](../../apps/api/src/modules/task-read.ts), files/comments/notifications/projections | Scoped SQL reads, keyset, aggregate và parity tests |
 | RequestRepository public db/binding, reserve thủ công cho Drizzle | [repository.ts](../../apps/api/src/db/repository.ts), middleware/bootstrap/routes | Một execution/accounting boundary cho mọi query |
@@ -137,7 +137,7 @@ Các `index.ts` chỉ export public surfaces cần thiết, không export mọi 
 | --- | --- | --- | --- |
 | BR-00 | Review + chỉ dẫn của Hòa | Chuẩn, kế hoạch, AGENTS và doc links | DONE_DOCS; links/consistency/scope đã kiểm tra, Git thực tế xem PROGRESS |
 | BR-01 | BR-00 | Baseline, active tests, format/type/import guardrails | DONE_TOOLING — [evidence](evidence/BR-01/verification.json) |
-| BR-02 | BR-01 | HTTP parsing/error và cursor fixes có regression | NOT_STARTED |
+| BR-02 | BR-01 | HTTP parsing/error và cursor fixes có regression | DONE — [evidence](evidence/BR-02/verification.json) |
 | BR-03 | BR-02 | D1 execution/accounting, policy ownership và typed primitives | NOT_STARTED |
 | BR-04A | BR-03 | Task core use-cases, domain model, mapper/read boundary | NOT_STARTED |
 | BR-04B | BR-04A | Move/bulk/subtasks/Undo và cross-aggregate commands | NOT_STARTED |

@@ -1,11 +1,11 @@
-import { MemberPreferencesSchema, NotificationPreferencesSchema } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
-import { actorParameters, actorSql } from './shared.ts';
 import type {
-  UpdatePreferencesInput,
   UpdateNotificationPreferencesInput,
+  UpdatePreferencesInput,
 } from '@studio/contracts/api';
+import { MemberPreferencesSchema, NotificationPreferencesSchema } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { actorParameters, actorSql } from './shared.ts';
 // JSON patch merges only parsed keys at SQL execution time, preserving concurrent
 // unrelated fields and the other preference document. There is no client scope.
 export async function preferences(

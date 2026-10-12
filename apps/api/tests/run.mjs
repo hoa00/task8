@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-export const features = ['core', 'tasks', 'collaboration', 'projections', 'files'];
+export const features = ['http', 'core', 'tasks', 'collaboration', 'projections', 'files'];
 export function selectFeatures(args) {
   if (!args.length) return features;
   if (args.length !== 2 || args[0] !== '--feature' || !features.includes(args[1]))

@@ -1,11 +1,11 @@
+import type { CreateSavedViewInput, EntityId, UpdateSavedViewInput } from '@studio/contracts/api';
 import { EntityIdSchema, SavedViewSchema } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
 import { matchedBatch } from '../db/commands.ts';
-import { projectRow, writeAccessSql } from './read-model.ts';
-import { actorParameters, actorSql, newId } from './shared.ts';
-import type { CreateSavedViewInput, UpdateSavedViewInput, EntityId } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import type { savedViews } from '../db/schema.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { projectRow, writeAccessSql } from './read-model.ts';
+import { actorParameters, actorSql, newId } from './shared.ts';
 type ViewRow = Omit<typeof savedViews.$inferSelect, 'filtersJson'> & { filtersJson: string };
 const dto = (v: ViewRow) =>
   SavedViewSchema.parse({

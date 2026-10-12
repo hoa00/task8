@@ -1,0 +1,39 @@
+✖ internal DTO ZodError returns500 with no internal message (54.499553ms)
+✖ project/member tuple cursor survives removed or renamed anchors (6.626672ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 373.665682
+
+✖ failing tests:
+
+test at test-results/api/br02-before-dla461bd/tests/unit/http-errors.test.mjs:9:1
+✖ internal DTO ZodError returns500 with no internal message (54.499553ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 500
+  
+      at TestContext.<anonymous> (file:///workspace/task8/test-results/api/br02-before-dla461bd/tests/unit/http-errors.test.mjs:14:10)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test-results/api/br02-before-dla461bd/tests/unit/http-errors.test.mjs:19:1
+✖ project/member tuple cursor survives removed or renamed anchors (6.626672ms)
+  ApiFailure [Error]: Invalid cursor for query
+      at page (/workspace/task8/test-results/api/br02-before-dla461bd/src/modules/shared.ts:78:13)
+      at async TestContext.<anonymous> (file:///workspace/task8/test-results/api/br02-before-dla461bd/tests/unit/http-errors.test.mjs:27:16)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    code: 'VALIDATION_ERROR'
+  }

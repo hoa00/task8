@@ -1,4 +1,4 @@
-import { ApiFailure } from '../errors.ts';
+import { ApiFailure } from '../shared/errors.ts';
 import type { RequestRepository } from './repository.ts';
 export type SqlValue = string | number | null;
 export interface SqlPredicate {

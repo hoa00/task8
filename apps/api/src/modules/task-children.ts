@@ -1,16 +1,16 @@
+import type { CreateSubtaskInput, EntityId, UpdateSubtaskInput } from '@studio/contracts/api';
 import { CreateSubtaskInputSchema, EntityIdSchema, SubtaskSchema } from '@studio/contracts/api';
 import { plainDescriptionHtml } from '@studio/domain';
-import { ApiFailure } from '../errors.ts';
+import type { SqlPredicate } from '../db/commands.ts';
 import { exactSet, gatedInsert, matchedBatch } from '../db/commands.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import type { SubtaskRow, TaskRow } from './read-model.ts';
 import { projectRow, writeAccessSql } from './read-model.ts';
+import { actorParameters, actorSql, fitBatch, newId } from './shared.ts';
+import type { TaskProjection } from './task-read.ts';
 import { taskDetail, taskDto, taskRow, taskSelect } from './task-read.ts';
 import { normalizeTaskDescription, validateRelations } from './task-relations.ts';
-import { actorParameters, actorSql, fitBatch, newId } from './shared.ts';
-import type { CreateSubtaskInput, EntityId, UpdateSubtaskInput } from '@studio/contracts/api';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
-import type { SqlPredicate } from '../db/commands.ts';
-import type { SubtaskRow, TaskRow } from './read-model.ts';
-import type { TaskProjection } from './task-read.ts';
 
 export async function writableTask(r: RequestRepository, s: WorkspaceContext, id: EntityId) {
   const task = await taskRow(r, s, id);

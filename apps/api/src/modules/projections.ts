@@ -1,17 +1,3 @@
-import {
-  CalendarEventSchema,
-  CommentSchema,
-  FileSchema,
-  MilestoneSchema,
-} from '@studio/contracts/api';
-import { completedInRollingWeek, homeDeadlines, summarizeTasks } from '@studio/domain';
-import { accessSql } from '../db/guards.ts';
-import { readBootstrap } from './bootstrap.ts';
-import { listActivity } from './activity.ts';
-import { projectCatalog, projectRow, today } from './read-model.ts';
-import { taskDataset, taskDto, taskSelect } from './task-read.ts';
-import { instant } from './shared.ts';
-import { projectionPage } from './projection-page.ts';
 import type {
   ArchiveItemDto,
   ArchiveQuerySchema,
@@ -21,10 +7,24 @@ import type {
   SearchQuerySchema,
   SearchResultDto,
 } from '@studio/contracts/api';
+import {
+  CalendarEventSchema,
+  CommentSchema,
+  FileSchema,
+  MilestoneSchema,
+} from '@studio/contracts/api';
+import { completedInRollingWeek, homeDeadlines, summarizeTasks } from '@studio/domain';
 import type { z } from 'zod';
+import { accessSql } from '../db/guards.ts';
 import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
-import type { TaskProjection } from './task-read.ts';
 import type { files } from '../db/schema.ts';
+import { listActivity } from './activity.ts';
+import { readBootstrap } from './bootstrap.ts';
+import { projectionPage } from './projection-page.ts';
+import { projectCatalog, projectRow, today } from './read-model.ts';
+import { instant } from './shared.ts';
+import type { TaskProjection } from './task-read.ts';
+import { taskDataset, taskDto, taskSelect } from './task-read.ts';
 export async function home(
   r: RequestRepository,
   s: WorkspaceContext,

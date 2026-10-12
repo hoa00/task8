@@ -1,17 +1,25 @@
-import { fileRoutes } from './file-routes.ts';
-import { projectionRoutes } from './projection-routes.ts';
-import { taskRoutes } from './task-routes.ts';
-import { collaborationRoutes } from './collaboration-routes.ts';
+import {
+  EntityIdSchema,
+  MemberQuerySchema,
+  operations,
+  ProjectQuerySchema,
+  TextQuerySchema,
+} from '@studio/contracts/api';
+import type { Context } from 'hono';
 import { Hono } from 'hono';
 import {
-  operations,
-  EntityIdSchema,
-  ProjectQuerySchema,
-  MemberQuerySchema,
-  TextQuerySchema,
-  EmptyInputSchema,
-} from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
+  jsonBody as body,
+  noInput as noQuery,
+  parseRequest,
+  readQuery as rawQuery,
+} from '../http/request.ts';
+import type { ApiEnvironment } from '../runtime.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { collaborationRoutes } from './collaboration-routes.ts';
+import { fileRoutes } from './file-routes.ts';
+import { projectionRoutes } from './projection-routes.ts';
+import { createProject, duplicateProject, lifecycleProject, updateProject } from './projects.ts';
+import type { TeamRow } from './read-model.ts';
 import {
   activeTasks,
   member,
@@ -23,66 +31,24 @@ import {
   teamRow,
   today,
 } from './read-model.ts';
-import { createProject, duplicateProject, lifecycleProject, updateProject } from './projects.ts';
+import { page } from './shared.ts';
+import { taskRoutes } from './task-routes.ts';
 import { deleteTeam, mutateTeam } from './teams.ts';
 import { undoCommand } from './undo-command.ts';
 import { readWorkspace, updateProfile, updateWorkspace } from './workspace.ts';
-import { page } from './shared.ts';
-import type { ApiEnvironment } from '../runtime.ts';
-import type { Context } from 'hono';
-import type { TeamRow } from './read-model.ts';
 type C = Context<ApiEnvironment>;
 const scope = (c: C) => c.get('workspace'),
   repo = (c: C) => c.get('repository'),
-  pid = (c: C) => EntityIdSchema.parse(c.req.param('projectId')),
-  tid = (c: C) => EntityIdSchema.parse(c.req.param('teamId'));
-function rawQuery(c: C) {
-  if (
-    c.req.method === 'GET' &&
-    (Number(c.req.header('content-length') ?? 0) > 0 || c.req.header('transfer-encoding'))
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'Read does not accept a body');
-  const result: Record<string, unknown> = {};
-  for (const [key, values] of Object.entries(c.req.queries())) {
-    if (values.length !== 1) throw new ApiFailure('VALIDATION_ERROR', 'Repeated query field');
-    let value: unknown = values[0];
-    if (key === 'limit') {
-      if (!/^\d+$/.test(String(value))) throw new ApiFailure('VALIDATION_ERROR', 'Invalid limit');
-      value = Number(value);
-    }
-    if (key === 'archived') {
-      if (value !== 'true' && value !== 'false')
-        throw new ApiFailure('VALIDATION_ERROR', 'Invalid boolean');
-      value = value === 'true';
-    }
-    result[key] = value;
-  }
-  return result;
-}
-async function body(c: C) {
-  if (
-    Object.keys(c.req.query()).length ||
-    !c.req.header('content-type')?.startsWith('application/json')
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'JSON body required without query fields');
-  try {
-    return await c.req.json();
-  } catch {
-    throw new ApiFailure('VALIDATION_ERROR', 'Invalid JSON');
-  }
-}
-function noQuery(c: C) {
-  EmptyInputSchema.parse(rawQuery(c));
-  if (Number(c.req.header('content-length') ?? 0) > 0 || c.req.header('transfer-encoding'))
-    throw new ApiFailure('VALIDATION_ERROR', 'Read does not accept a body');
-}
+  pid = (c: C) => parseRequest(EntityIdSchema, c.req.param('projectId')),
+  tid = (c: C) => parseRequest(EntityIdSchema, c.req.param('teamId'));
+
 export const features = new Hono<ApiEnvironment>();
-features.get('/me/profile', (c) => {
-  noQuery(c);
+features.get('/me/profile', async (c) => {
+  await noQuery(c);
   return c.json(operations.getProfile.response.parse({ data: c.get('principal').user }));
 });
 features.patch('/me/profile', async (c) => {
-  const input = operations.updateProfile.request.parse({ body: await body(c) });
+  const input = parseRequest(operations.updateProfile.request, { body: await body(c) });
   const principal = c.get('principal');
   return c.json(
     operations.updateProfile.response.parse({
@@ -97,7 +63,7 @@ features.patch('/me/profile', async (c) => {
   );
 });
 features.get('/workspaces/:workspaceId', async (c) => {
-  noQuery(c);
+  await noQuery(c);
   return c.json(
     operations.getWorkspace.response.parse({
       data: await readWorkspace(repo(c), scope(c).workspaceId),
@@ -105,7 +71,7 @@ features.get('/workspaces/:workspaceId', async (c) => {
   );
 });
 features.patch('/workspaces/:workspaceId', async (c) => {
-  const input = operations.updateWorkspace.request.parse({
+  const input = parseRequest(operations.updateWorkspace.request, {
     workspaceId: scope(c).workspaceId,
     body: await body(c),
   });
@@ -122,7 +88,7 @@ features.patch('/workspaces/:workspaceId', async (c) => {
   );
 });
 features.get('/workspaces/:workspaceId/projects', async (c) => {
-  const query = ProjectQuerySchema.parse(rawQuery(c)),
+  const query = parseRequest(ProjectQuerySchema, await rawQuery(c)),
     rows = await projectCatalog(repo(c), scope(c), Date.now());
   // Restricted cards lack archivedAt. Lifecycle filtering uses only catalog root columns.
   const lifecycle = await repo(c).all<{ id: string; archivedAt: number | null }>(
@@ -180,7 +146,7 @@ features.get('/workspaces/:workspaceId/projects', async (c) => {
   );
 });
 features.post('/workspaces/:workspaceId/projects', async (c) => {
-  const input = operations.createProject.request.parse({
+  const input = parseRequest(operations.createProject.request, {
     workspaceId: scope(c).workspaceId,
     body: await body(c),
   });
@@ -192,7 +158,7 @@ features.post('/workspaces/:workspaceId/projects', async (c) => {
   );
 });
 features.get('/workspaces/:workspaceId/projects/:projectId', async (c) => {
-  noQuery(c);
+  await noQuery(c);
   const p = await projectRow(repo(c), scope(c), pid(c));
   return c.json(
     operations.getProject.response.parse({
@@ -201,7 +167,7 @@ features.get('/workspaces/:workspaceId/projects/:projectId', async (c) => {
   );
 });
 features.patch('/workspaces/:workspaceId/projects/:projectId', async (c) => {
-  const input = operations.updateProject.request.parse({
+  const input = parseRequest(operations.updateProject.request, {
     workspaceId: scope(c).workspaceId,
     projectId: pid(c),
     body: await body(c),
@@ -213,7 +179,7 @@ features.patch('/workspaces/:workspaceId/projects/:projectId', async (c) => {
   );
 });
 features.post('/workspaces/:workspaceId/projects/:projectId/duplicate', async (c) => {
-  const input = operations.duplicateProject.request.parse({
+  const input = parseRequest(operations.duplicateProject.request, {
     workspaceId: scope(c).workspaceId,
     projectId: pid(c),
     body: await body(c),
@@ -240,7 +206,7 @@ for (const [suffix, op, method] of [
   const path =
     '/workspaces/:workspaceId/projects/:projectId' + (suffix === 'delete' ? '' : '/' + suffix);
   features[method](path, async (c) => {
-    const input = operations[op].request.parse({
+    const input = parseRequest(operations[op].request, {
       workspaceId: scope(c).workspaceId,
       projectId: pid(c),
       body: await body(c),
@@ -260,7 +226,7 @@ for (const [suffix, op, method] of [
   });
 }
 features.get('/workspaces/:workspaceId/projects/:projectId/members', async (c) => {
-  noQuery(c);
+  await noQuery(c);
   await projectRow(repo(c), scope(c), pid(c), true);
   const grants = await repo(c).all<{ memberId: string; permission: string }>(
       'SELECT memberId,permission FROM projectMembers WHERE workspaceId=? AND projectId=? ORDER BY memberId',
@@ -277,7 +243,7 @@ features.get('/workspaces/:workspaceId/projects/:projectId/members', async (c) =
   );
 });
 features.get('/workspaces/:workspaceId/projects/:projectId/summary', async (c) => {
-  noQuery(c);
+  await noQuery(c);
   await projectRow(repo(c), scope(c), pid(c), true);
   const row = (await projectCatalog(repo(c), scope(c), Date.now())).find(
     (p) => p.project.id === pid(c),
@@ -286,7 +252,7 @@ features.get('/workspaces/:workspaceId/projects/:projectId/summary', async (c) =
   return c.json(operations.getProjectSummary.response.parse({ data: row.summary }));
 });
 features.get('/workspaces/:workspaceId/members', async (c) => {
-  const query = MemberQuerySchema.parse(rawQuery(c)),
+  const query = parseRequest(MemberQuerySchema, await rawQuery(c)),
     rows = (await members(repo(c), scope(c)))
       .filter(
         (m) =>
@@ -310,16 +276,16 @@ features.get('/workspaces/:workspaceId/members', async (c) => {
   );
 });
 features.get('/workspaces/:workspaceId/members/:memberId', async (c) => {
-  noQuery(c);
+  await noQuery(c);
   return c.json(
     operations.getMember.response.parse({
-      data: await member(repo(c), scope(c), EntityIdSchema.parse(c.req.param('memberId'))),
+      data: await member(repo(c), scope(c), parseRequest(EntityIdSchema, c.req.param('memberId'))),
     }),
   );
 });
 features.get('/workspaces/:workspaceId/members/:memberId/summary', async (c) => {
-  noQuery(c);
-  const m = await member(repo(c), scope(c), EntityIdSchema.parse(c.req.param('memberId'))),
+  await noQuery(c);
+  const m = await member(repo(c), scope(c), parseRequest(EntityIdSchema, c.req.param('memberId'))),
     ts = (await activeTasks(repo(c), scope(c))).filter((t) => t.assigneeId === m.id),
     date = await today(repo(c), scope(c), Date.now()),
     ps = await projectCatalog(repo(c), scope(c), Date.now());
@@ -342,7 +308,7 @@ features.get('/workspaces/:workspaceId/members/:memberId/summary', async (c) => 
   );
 });
 features.get('/workspaces/:workspaceId/teams', async (c) => {
-  const query = TextQuerySchema.parse(rawQuery(c)),
+  const query = parseRequest(TextQuerySchema, await rawQuery(c)),
     rows = await repo(c).all<TeamRow>(
       'SELECT * FROM teams WHERE workspaceId=? AND deletedAt IS NULL ORDER BY name,id',
       [scope(c).workspaceId],
@@ -357,7 +323,7 @@ features.get('/workspaces/:workspaceId/teams', async (c) => {
   );
 });
 features.get('/workspaces/:workspaceId/teams/:teamId', async (c) => {
-  noQuery(c);
+  await noQuery(c);
   return c.json(
     operations.getTeam.response.parse({
       data: teamDto(await teamRow(repo(c), scope(c), tid(c)), await members(repo(c), scope(c))),
@@ -365,7 +331,7 @@ features.get('/workspaces/:workspaceId/teams/:teamId', async (c) => {
   );
 });
 features.post('/workspaces/:workspaceId/teams', async (c) => {
-  const input = operations.createTeam.request.parse({
+  const input = parseRequest(operations.createTeam.request, {
     workspaceId: scope(c).workspaceId,
     body: await body(c),
   });
@@ -377,7 +343,7 @@ features.post('/workspaces/:workspaceId/teams', async (c) => {
   );
 });
 features.patch('/workspaces/:workspaceId/teams/:teamId', async (c) => {
-  const input = operations.updateTeam.request.parse({
+  const input = parseRequest(operations.updateTeam.request, {
     workspaceId: scope(c).workspaceId,
     teamId: tid(c),
     body: await body(c),
@@ -396,7 +362,7 @@ features.patch('/workspaces/:workspaceId/teams/:teamId', async (c) => {
   );
 });
 features.delete('/workspaces/:workspaceId/teams/:teamId', async (c) => {
-  const input = operations.deleteTeam.request.parse({
+  const input = parseRequest(operations.deleteTeam.request, {
     workspaceId: scope(c).workspaceId,
     teamId: tid(c),
     body: await body(c),
@@ -415,7 +381,7 @@ features.delete('/workspaces/:workspaceId/teams/:teamId', async (c) => {
   );
 });
 features.get('/workspaces/:workspaceId/teams/:teamId/summary', async (c) => {
-  noQuery(c);
+  await noQuery(c);
   const team = await teamRow(repo(c), scope(c), tid(c)),
     ms = (await members(repo(c), scope(c))).filter((m) => m.teamId === team.id),
     ts = (await activeTasks(repo(c), scope(c))).filter((t) =>
@@ -440,9 +406,9 @@ features.get('/workspaces/:workspaceId/teams/:teamId/summary', async (c) => {
   );
 });
 features.post('/workspaces/:workspaceId/undo/:undoId', async (c) => {
-  const input = operations.undoCommand.request.parse({
+  const input = parseRequest(operations.undoCommand.request, {
     workspaceId: scope(c).workspaceId,
-    undoId: EntityIdSchema.parse(c.req.param('undoId')),
+    undoId: parseRequest(EntityIdSchema, c.req.param('undoId')),
     body: await body(c),
   });
   return c.json(

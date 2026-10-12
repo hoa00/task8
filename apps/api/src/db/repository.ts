@@ -1,7 +1,7 @@
-import { drizzle } from 'drizzle-orm/d1';
-import * as schema from './schema.ts';
-import { ApiFailure } from '../errors.ts';
 import type { EntityId } from '@studio/contracts/api';
+import { drizzle } from 'drizzle-orm/d1';
+import { ApiFailure } from '../shared/errors.ts';
+import * as schema from './schema.ts';
 export interface WorkspaceContext {
   workspaceId: EntityId;
   memberId: EntityId;

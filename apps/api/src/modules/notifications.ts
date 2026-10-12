@@ -1,12 +1,12 @@
-import { NotificationSchema } from '@studio/contracts/api';
-import { accessSql } from '../db/guards.ts';
-import { ApiFailure } from '../errors.ts';
-import { actorParameters, actorSql, instant, nullableInstant } from './shared.ts';
-import { historyPage } from './collaboration-page.ts';
 import type { EntityId, NotificationQuerySchema } from '@studio/contracts/api';
+import { NotificationSchema } from '@studio/contracts/api';
 import type { z } from 'zod';
+import { accessSql } from '../db/guards.ts';
 import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import type { notifications } from '../db/schema.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { historyPage } from './collaboration-page.ts';
+import { actorParameters, actorSql, instant, nullableInstant } from './shared.ts';
 // Shared recipient/current-parent policy owns list, mutations and Bootstrap badges.
 export const notificationFrom = `notifications n LEFT JOIN tasks t ON t.workspaceId=n.workspaceId AND t.id=n.taskId LEFT JOIN projects p ON p.workspaceId=n.workspaceId AND p.id=coalesce(t.projectId,n.projectId)`;
 export const notificationVisible = `n.workspaceId=? AND n.recipientId=? AND (n.taskId IS NULL OR (t.id IS NOT NULL AND t.deletedAt IS NULL AND (n.projectId IS NULL OR n.projectId=t.projectId))) AND ((n.projectId IS NULL AND n.taskId IS NULL) OR (p.id IS NOT NULL AND p.deletedAt IS NULL AND ${accessSql}))`;

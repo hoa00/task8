@@ -1,8 +1,19 @@
+import type {
+  CreateProjectInput,
+  DuplicateProjectInput,
+  EntityId,
+  MemberDto,
+  UpdateProjectInput,
+} from '@studio/contracts/api';
 import { catalogs, EntityIdSchema } from '@studio/contracts/api';
 import { addDateDays } from '@studio/domain';
-import { ApiFailure } from '../errors.ts';
-import { encodeUndoPayload } from '../db/undo.ts';
+import type { SqlPredicate } from '../db/commands.ts';
 import { exactSet, gatedInsert, matchedBatch } from '../db/commands.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { encodeUndoPayload } from '../db/undo.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import type { ProjectRow, SubtaskRow, TaskRow } from './read-model.ts';
+import { createdTaskDtos, projectDto, projectRow, today, writeAccessSql } from './read-model.ts';
 import {
   actorParameters,
   actorSql,
@@ -14,17 +25,6 @@ import {
   nullableInstant,
   patchSql,
 } from './shared.ts';
-import { createdTaskDtos, projectDto, projectRow, today, writeAccessSql } from './read-model.ts';
-import type { ProjectRow, TaskRow, SubtaskRow } from './read-model.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
-import type { SqlPredicate } from '../db/commands.ts';
-import type {
-  CreateProjectInput,
-  DuplicateProjectInput,
-  EntityId,
-  MemberDto,
-  UpdateProjectInput,
-} from '@studio/contracts/api';
 
 async function references(
   r: RequestRepository,

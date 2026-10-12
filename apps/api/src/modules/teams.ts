@@ -1,22 +1,22 @@
+import type { CreateTeamInput, EntityId, MemberDto, UpdateTeamInput } from '@studio/contracts/api';
 import { EntityIdSchema } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
 import { exactSet, gatedInsert, matchedBatch } from '../db/commands.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import type { workspaceMembers } from '../db/schema.ts';
 import { encodeUndoPayload } from '../db/undo.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import type { ProjectRow, TeamRow } from './read-model.ts';
+import { members, teamDto, teamRow } from './read-model.ts';
 import {
-  administrator,
-  actorSql,
   actorParameters,
+  actorSql,
+  administrator,
   fitBatch,
   markerSql,
   newId,
-  patchSql,
   nullableInstant,
+  patchSql,
 } from './shared.ts';
-import { members, teamDto, teamRow } from './read-model.ts';
-import type { CreateTeamInput, UpdateTeamInput, MemberDto, EntityId } from '@studio/contracts/api';
-import type { WorkspaceContext, RequestRepository } from '../db/repository.ts';
-import type { TeamRow, ProjectRow } from './read-model.ts';
-import type { workspaceMembers } from '../db/schema.ts';
 type MemberRow = typeof workspaceMembers.$inferSelect;
 const normalized = (name: string) => name.trim().toLowerCase();
 

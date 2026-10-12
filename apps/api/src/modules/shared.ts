@@ -1,7 +1,8 @@
-import { CursorPayloadSchema, EntityIdSchema } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
-import type { MemberDto, EntityId } from '@studio/contracts/api';
+import type { EntityId, MemberDto } from '@studio/contracts/api';
+import { EntityIdSchema } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { decodeCursor, encodeCursor, queryFingerprint } from '../shared/cursor.ts';
+import { ApiFailure } from '../shared/errors.ts';
 
 export const instant = (value: number) => new Date(value).toISOString();
 export const nullableInstant = (value: number | null) => (value === null ? null : instant(value));
@@ -52,53 +53,42 @@ export async function page<T extends { id: string }>(
   value: (row: T) => string | number,
   sortField: 'title' | 'due' | 'updated' | 'manual' = 'title',
 ) {
-  const bytes = await crypto.subtle.digest(
-    'SHA-256',
-    new TextEncoder().encode(JSON.stringify(fingerprintInput)),
-  );
-  const queryFingerprint = [...new Uint8Array(bytes)]
-    .map((v) => v.toString(16).padStart(2, '0'))
-    .join('');
-  let start = 0;
+  const fingerprint = await queryFingerprint(fingerprintInput);
+  const sortDirection = sortField === 'updated' ? 'desc' : 'asc';
+  let selected = rows;
   if (query.cursor) {
-    try {
-      const encoded = query.cursor.replaceAll('-', '+').replaceAll('_', '/'),
-        decoded = new TextDecoder().decode(Uint8Array.from(atob(encoded), (c) => c.charCodeAt(0)));
-      const cursor = CursorPayloadSchema.parse(JSON.parse(decoded));
-      if (
-        cursor.queryFingerprint !== queryFingerprint ||
-        cursor.sortField !== sortField ||
-        cursor.sortDirection !== (sortField === 'updated' ? 'desc' : 'asc')
-      )
-        throw new Error();
-      const at = rows.findIndex((row) => row.id === cursor.id && value(row) === cursor.sortValue);
-      if (at < 0) throw new Error();
-      start = at + 1;
-    } catch {
+    const cursor = decodeCursor(query.cursor, {
+      queryFingerprint: fingerprint,
+      sortField,
+      sortDirection,
+    });
+    const sortValue = cursor.sortValue;
+    if (sortValue === null || (rows[0] && typeof value(rows[0]) !== typeof sortValue))
       throw new ApiFailure('VALIDATION_ERROR', 'Invalid cursor for query');
-    }
+    selected = rows.filter((row) => {
+      const current = value(row);
+      const order =
+        typeof current === 'number' && typeof sortValue === 'number'
+          ? current - sortValue
+          : String(current).localeCompare(String(sortValue));
+      return ((sortDirection === 'desc' ? -1 : 1) * order || row.id.localeCompare(cursor.id)) > 0;
+    });
   }
-  const items = rows.slice(start, start + query.limit),
+  const items = selected.slice(0, query.limit),
     last = items.at(-1);
-  const cursor = last
-    ? JSON.stringify({
-        formatVersion: 1,
-        queryFingerprint,
-        sortField,
-        sortDirection: sortField === 'updated' ? 'desc' : 'asc',
-        sortValue: value(last),
-        id: last.id,
-      })
-    : '';
   return {
     items,
     total: rows.length,
     nextCursor:
-      start + items.length < rows.length && last
-        ? btoa(String.fromCharCode(...new TextEncoder().encode(cursor)))
-            .replaceAll('+', '-')
-            .replaceAll('/', '_')
-            .replaceAll('=', '')
+      selected.length > items.length && last
+        ? encodeCursor({
+            formatVersion: 1,
+            queryFingerprint: fingerprint,
+            sortField,
+            sortDirection,
+            sortValue: value(last),
+            id: last.id,
+          })
         : null,
   };
 }

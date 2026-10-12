@@ -72,7 +72,7 @@ export function classify(path) {
           : file === 'mapper.ts'
             ? 'mapper'
             : (Object.keys(layers).find((name) => parts.includes(name)) ??
-              (owner === 'shared' ? 'shared' : 'application'));
+              (owner === 'shared' ? 'shared' : owner === 'composition' ? 'http' : 'application'));
     return { owner, layer };
   }
   if (parts[0] === 'db' || parts[0] === 'storage' || parts[0] === 'shared' || parts[0] === 'http')

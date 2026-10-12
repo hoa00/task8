@@ -1,18 +1,18 @@
+import type { EntityId, MemberDto, ProjectListItemDto } from '@studio/contracts/api';
 import {
   DateOnlySchema,
   MemberSchema,
   ProjectSchema,
-  RestrictedProjectSchema,
-  TeamSchema,
-  TaskSchema,
   ProjectSummarySchema,
+  RestrictedProjectSchema,
+  TaskSchema,
+  TeamSchema,
 } from '@studio/contracts/api';
 import { accessSql } from '../db/guards.ts';
-import { ApiFailure } from '../errors.ts';
-import { instant, nullableInstant } from './shared.ts';
-import type { MemberDto, ProjectListItemDto, EntityId } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
-import type { projects, teams, tasks, subtasks } from '../db/schema.ts';
+import type { projects, subtasks, tasks, teams } from '../db/schema.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import { instant, nullableInstant } from './shared.ts';
 
 export type ProjectRow = typeof projects.$inferSelect;
 export type TeamRow = typeof teams.$inferSelect;

@@ -1,10 +1,10 @@
-import { ApiFailure } from '../errors.ts';
-import { accessSql } from '../db/guards.ts';
+import type { EntityId } from '@studio/contracts/api';
 import { exactSet, gatedInsert, matchedBatch } from '../db/commands.ts';
+import { accessSql } from '../db/guards.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { ApiFailure } from '../shared/errors.ts';
 import { projectRow } from './read-model.ts';
 import { actorParameters, actorSql, markerSql, newId } from './shared.ts';
-import type { EntityId } from '@studio/contracts/api';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 export async function favoriteProject(
   r: RequestRepository,
   s: WorkspaceContext,

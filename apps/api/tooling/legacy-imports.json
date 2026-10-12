@@ -8,12 +8,6 @@
       "removeIn": "BR-08"
     },
     {
-      "from": "src/errors.ts",
-      "to": "hono",
-      "rule": "layer",
-      "removeIn": "BR-02"
-    },
-    {
       "from": "src/index.ts",
       "to": "src/modules/routes.ts",
       "rule": "public-entry",
@@ -93,44 +87,14 @@
     },
     {
       "from": "src/modules/features.ts",
-      "to": "src/modules/file-routes.ts",
-      "rule": "layer",
-      "removeIn": "BR-05"
-    },
-    {
-      "from": "src/modules/features.ts",
       "to": "src/modules/projection-routes.ts",
       "rule": "public-entry",
       "removeIn": "BR-05"
     },
     {
       "from": "src/modules/features.ts",
-      "to": "src/modules/projection-routes.ts",
-      "rule": "layer",
-      "removeIn": "BR-05"
-    },
-    {
-      "from": "src/modules/features.ts",
       "to": "src/modules/task-routes.ts",
       "rule": "public-entry",
-      "removeIn": "BR-05"
-    },
-    {
-      "from": "src/modules/features.ts",
-      "to": "src/modules/task-routes.ts",
-      "rule": "layer",
-      "removeIn": "BR-05"
-    },
-    {
-      "from": "src/modules/features.ts",
-      "to": "src/modules/collaboration-routes.ts",
-      "rule": "layer",
-      "removeIn": "BR-05"
-    },
-    {
-      "from": "src/modules/features.ts",
-      "to": "hono",
-      "rule": "layer",
       "removeIn": "BR-05"
     },
     {
@@ -302,15 +266,5 @@
       "removeIn": "BR-03"
     }
   ],
-  "cycles": [
-    {
-      "paths": ["src/db/repository.ts", "src/errors.ts", "src/runtime.ts"],
-      "edges": [
-        ["src/db/repository.ts", "src/errors.ts"],
-        ["src/errors.ts", "src/runtime.ts"],
-        ["src/runtime.ts", "src/db/repository.ts"]
-      ],
-      "removeIn": "BR-03"
-    }
-  ]
+  "cycles": []
 }

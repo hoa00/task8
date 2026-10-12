@@ -1,15 +1,15 @@
-import { z } from 'zod';
 import {
+  ColumnScopeSchema,
   EntityIdSchema,
   InstantSchema,
-  TaskStatusSchema,
-  SubtaskSchema,
   LabelIdSchema,
-  ColumnScopeSchema,
+  SubtaskSchema,
+  TaskStatusSchema,
   UndoResultSchema,
   VersionSchema,
 } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
+import { z } from 'zod';
+import { ApiFailure } from '../shared/errors.ts';
 const identity = { id: EntityIdSchema, postVersion: VersionSchema };
 const lifecycle = z.strictObject({
   ...identity,

@@ -1,60 +1,30 @@
-import { Hono } from 'hono';
 import {
   ActivityQuerySchema,
   CursorQuerySchema,
   EntityIdSchema,
   operations,
 } from '@studio/contracts/api';
-import { ApiFailure } from '../errors.ts';
-import { mutateSubtask } from './task-children.ts';
-import { createComment, lifecycleComment, listComments, reactComment } from './comments.ts';
-import { listActivity } from './activity.ts';
 import type { Context } from 'hono';
+import { Hono } from 'hono';
+import {
+  jsonBody as body,
+  noInput as empty,
+  parseRequest,
+  readQuery as query,
+} from '../http/request.ts';
 import type { ApiEnvironment } from '../runtime.ts';
+import { listActivity } from './activity.ts';
+import { createComment, lifecycleComment, listComments, reactComment } from './comments.ts';
+import { mutateSubtask } from './task-children.ts';
 type C = Context<ApiEnvironment>;
 const r = (c: C) => c.get('repository'),
   s = (c: C) => c.get('workspace'),
-  id = (c: C, key: string) => EntityIdSchema.parse(c.req.param(key));
-function query(c: C) {
-  if (
-    c.req.method === 'GET' &&
-    (Number(c.req.header('content-length') ?? 0) > 0 || c.req.header('transfer-encoding'))
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'Read does not accept a body');
-  const values: Record<string, unknown> = {};
-  for (const [key, rows] of Object.entries(c.req.queries())) {
-    if (rows.length !== 1) throw new ApiFailure('VALIDATION_ERROR', 'Repeated query field');
-    if (key === 'limit') {
-      if (!/^\d+$/.test(rows[0]!)) throw new ApiFailure('VALIDATION_ERROR', 'Invalid limit');
-      values[key] = Number(rows[0]);
-    } else values[key] = rows[0];
-  }
-  return values;
-}
-async function body(c: C) {
-  if (
-    Object.keys(c.req.query()).length ||
-    !c.req.header('content-type')?.startsWith('application/json')
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'JSON body required without query fields');
-  try {
-    return await c.req.json();
-  } catch {
-    throw new ApiFailure('VALIDATION_ERROR', 'Invalid JSON');
-  }
-}
-function empty(c: C) {
-  if (
-    Object.keys(query(c)).length ||
-    Number(c.req.header('content-length') ?? 0) > 0 ||
-    c.req.header('transfer-encoding')
-  )
-    throw new ApiFailure('VALIDATION_ERROR', 'Operation does not accept input');
-}
+  id = (c: C, key: string) => parseRequest(EntityIdSchema, c.req.param(key));
+
 export const collaborationRoutes = new Hono<ApiEnvironment>();
 const W = '/workspaces/:workspaceId';
 collaborationRoutes.post(W + '/tasks/:taskId/subtasks', async (c) => {
-  const input = operations.createSubtask.request.parse({
+  const input = parseRequest(operations.createSubtask.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c, 'taskId'),
     body: await body(c),
@@ -67,7 +37,7 @@ collaborationRoutes.post(W + '/tasks/:taskId/subtasks', async (c) => {
   );
 });
 collaborationRoutes.patch(W + '/tasks/:taskId/subtasks/:subtaskId', async (c) => {
-  const input = operations.updateSubtask.request.parse({
+  const input = parseRequest(operations.updateSubtask.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c, 'taskId'),
     subtaskId: id(c, 'subtaskId'),
@@ -88,7 +58,7 @@ collaborationRoutes.patch(W + '/tasks/:taskId/subtasks/:subtaskId', async (c) =>
   );
 });
 collaborationRoutes.delete(W + '/tasks/:taskId/subtasks/:subtaskId', async (c) => {
-  const input = operations.deleteSubtask.request.parse({
+  const input = parseRequest(operations.deleteSubtask.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c, 'taskId'),
     subtaskId: id(c, 'subtaskId'),
@@ -109,7 +79,7 @@ collaborationRoutes.delete(W + '/tasks/:taskId/subtasks/:subtaskId', async (c) =
   );
 });
 collaborationRoutes.post(W + '/tasks/:taskId/subtasks/:subtaskId/promote', async (c) => {
-  const input = operations.promoteSubtask.request.parse({
+  const input = parseRequest(operations.promoteSubtask.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c, 'taskId'),
     subtaskId: id(c, 'subtaskId'),
@@ -130,10 +100,10 @@ collaborationRoutes.post(W + '/tasks/:taskId/subtasks/:subtaskId/promote', async
   );
 });
 collaborationRoutes.get(W + '/tasks/:taskId/comments', async (c) => {
-  const input = operations.listComments.request.parse({
+  const input = parseRequest(operations.listComments.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c, 'taskId'),
-    query: CursorQuerySchema.parse(query(c)),
+    query: parseRequest(CursorQuerySchema, await query(c)),
   });
   return c.json(
     operations.listComments.response.parse({
@@ -142,7 +112,7 @@ collaborationRoutes.get(W + '/tasks/:taskId/comments', async (c) => {
   );
 });
 collaborationRoutes.post(W + '/tasks/:taskId/comments', async (c) => {
-  const input = operations.createComment.request.parse({
+  const input = parseRequest(operations.createComment.request, {
     workspaceId: s(c).workspaceId,
     taskId: id(c, 'taskId'),
     body: await body(c),
@@ -161,7 +131,7 @@ for (const [method, op, restore] of [
   collaborationRoutes[method](
     W + '/comments/:commentId' + (restore ? '/restore-deleted' : ''),
     async (c) => {
-      const input = operations[op].request.parse({
+      const input = parseRequest(operations[op].request, {
         workspaceId: s(c).workspaceId,
         commentId: id(c, 'commentId'),
         body: await body(c),
@@ -185,8 +155,8 @@ for (const [method, op, add] of [
   ['delete', 'removeCommentReaction', false],
 ] as const)
   collaborationRoutes[method](W + '/comments/:commentId/reactions/:reactionKey', async (c) => {
-    empty(c);
-    const input = operations[op].request.parse({
+    await empty(c);
+    const input = parseRequest(operations[op].request, {
       workspaceId: s(c).workspaceId,
       commentId: id(c, 'commentId'),
       reactionKey: c.req.param('reactionKey'),
@@ -198,9 +168,9 @@ for (const [method, op, add] of [
     );
   });
 collaborationRoutes.get(W + '/activity', async (c) => {
-  const input = operations.listActivity.request.parse({
+  const input = parseRequest(operations.listActivity.request, {
     workspaceId: s(c).workspaceId,
-    query: ActivityQuerySchema.parse(query(c)),
+    query: parseRequest(ActivityQuerySchema, await query(c)),
   });
   return c.json(
     operations.listActivity.response.parse({ data: await listActivity(r(c), s(c), input.query) }),

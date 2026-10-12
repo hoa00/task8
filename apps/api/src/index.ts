@@ -1,11 +1,13 @@
-import { Hono } from 'hono';
 import { ApiErrorSchema, operations } from '@studio/contracts/api';
-import { mapError } from './errors.ts';
+import { Hono } from 'hono';
+import { correlationMiddleware } from './http/correlation.ts';
+import { mapError } from './http/error-handler.ts';
 import { principalMiddleware } from './middleware.ts';
 import { routes } from './modules/routes.ts';
 import type { ApiEnvironment } from './runtime.ts';
 const app = new Hono<ApiEnvironment>();
 app.onError(mapError);
+app.use('*', correlationMiddleware);
 app.use('/api/v1/*', principalMiddleware);
 app.route('/api/v1', routes);
 app.notFound((c) => {

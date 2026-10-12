@@ -1,4 +1,4 @@
-import { notificationFrom, notificationVisible } from './notifications.ts';
+import type { BootstrapDto, MemberDto, TaskSummaryDto } from '@studio/contracts/api';
 import {
   BootstrapSchema,
   catalogs,
@@ -12,6 +12,8 @@ import {
   WorkspaceSchema,
 } from '@studio/contracts/api';
 import { and, asc, eq, isNull, sql } from 'drizzle-orm';
+import { accessSql } from '../db/guards.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import {
   memberPreferences,
   memberProjectOrder,
@@ -24,9 +26,7 @@ import {
   workspaceMembers,
   workspaces,
 } from '../db/schema.ts';
-import { accessSql } from '../db/guards.ts';
-import type { BootstrapDto, MemberDto, TaskSummaryDto } from '@studio/contracts/api';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
+import { notificationFrom, notificationVisible } from './notifications.ts';
 const instant = (value: number) => new Date(value).toISOString();
 export function workspaceDto(row: typeof workspaces.$inferSelect) {
   return WorkspaceSchema.parse({

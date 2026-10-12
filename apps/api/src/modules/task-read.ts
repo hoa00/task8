@@ -1,4 +1,5 @@
-import { CursorPayloadSchema, FileSchema, SubtaskSchema, TaskSchema } from '@studio/contracts/api';
+import type { EntityId, TaskQuery } from '@studio/contracts/api';
+import { FileSchema, SubtaskSchema, TaskSchema } from '@studio/contracts/api';
 import {
   compareTaskTuple,
   filterTasks,
@@ -7,13 +8,13 @@ import {
   taskSortValue,
 } from '@studio/domain';
 import { accessSql } from '../db/guards.ts';
-import { ApiFailure } from '../errors.ts';
-import { members, today } from './read-model.ts';
-import { instant, nullableInstant } from './shared.ts';
-import type { EntityId, TaskQuery } from '@studio/contracts/api';
 import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import type { files } from '../db/schema.ts';
-import type { TaskRow, SubtaskRow } from './read-model.ts';
+import { decodeCursor, encodeCursor, queryFingerprint } from '../shared/cursor.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import type { SubtaskRow, TaskRow } from './read-model.ts';
+import { members, today } from './read-model.ts';
+import { instant, nullableInstant } from './shared.ts';
 
 export type TaskProjection = TaskRow & {
   projectKey: string;
@@ -153,59 +154,38 @@ export async function queryTasks(
     rows = sortTasks(filterTasks(dataset.items, query, dataset.env), query, dataset.env.lookups);
   if (summary) return summarizeTasks(rows, dataset.env.today);
   const fingerprintInput = { scope: s, query: { ...query, cursor: undefined, limit: undefined } };
-  const digest = await crypto.subtle.digest(
-      'SHA-256',
-      new TextEncoder().encode(JSON.stringify(fingerprintInput)),
-    ),
-    fingerprint = [...new Uint8Array(digest)].map((v) => v.toString(16).padStart(2, '0')).join('');
+  const fingerprint = await queryFingerprint(fingerprintInput);
   let selected = rows;
   if (query.cursor) {
-    try {
-      const decoded = new TextDecoder().decode(
-          Uint8Array.from(atob(query.cursor.replaceAll('-', '+').replaceAll('_', '/')), (c) =>
-            c.charCodeAt(0),
-          ),
-        ),
-        cursor = CursorPayloadSchema.parse(JSON.parse(decoded));
-      if (
-        cursor.queryFingerprint !== fingerprint ||
-        cursor.sortField !== query.sortField ||
-        cursor.sortDirection !== query.sortDirection
-      )
-        throw new Error();
-      selected = rows.filter(
-        (row) =>
-          compareTaskTuple(
-            { value: taskSortValue(row, query.sortField, dataset.env.lookups), id: row.id },
-            { value: cursor.sortValue, id: cursor.id },
-            query.sortDirection,
-          ) > 0,
-      );
-    } catch {
-      throw new ApiFailure('VALIDATION_ERROR', 'Invalid cursor for query');
-    }
+    const cursor = decodeCursor(query.cursor, {
+      queryFingerprint: fingerprint,
+      sortField: query.sortField,
+      sortDirection: query.sortDirection,
+    });
+    selected = rows.filter(
+      (row) =>
+        compareTaskTuple(
+          { value: taskSortValue(row, query.sortField, dataset.env.lookups), id: row.id },
+          { value: cursor.sortValue, id: cursor.id },
+          query.sortDirection,
+        ) > 0,
+    );
   }
   const items = selected.slice(0, query.limit),
-    last = items.at(-1),
-    cursor = last
-      ? JSON.stringify({
-          formatVersion: 1,
-          queryFingerprint: fingerprint,
-          sortField: query.sortField,
-          sortDirection: query.sortDirection,
-          sortValue: taskSortValue(last, query.sortField, dataset.env.lookups),
-          id: last.id,
-        })
-      : '';
+    last = items.at(-1);
   return {
     items,
     total: rows.length,
     nextCursor:
       selected.length > items.length && last
-        ? btoa(String.fromCharCode(...new TextEncoder().encode(cursor)))
-            .replaceAll('+', '-')
-            .replaceAll('/', '_')
-            .replaceAll('=', '')
+        ? encodeCursor({
+            formatVersion: 1,
+            queryFingerprint: fingerprint,
+            sortField: query.sortField,
+            sortDirection: query.sortDirection,
+            sortValue: taskSortValue(last, query.sortField, dataset.env.lookups),
+            id: last.id,
+          })
         : null,
   };
 }

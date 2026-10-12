@@ -1,3 +1,15 @@
+import type {
+  BulkMutateTasksInput,
+  ColumnScope,
+  CreateTaskInput,
+  DuplicateTaskInput,
+  EntityId,
+  MoveTaskInput,
+  SetTaskCompletionInput,
+  TaskStatus,
+  UndoDescriptor,
+  UpdateTaskInput,
+} from '@studio/contracts/api';
 import {
   EntityIdSchema,
   InstantSchema,
@@ -11,9 +23,12 @@ import {
   groupTasks,
   nextRecurrenceDate,
 } from '@studio/domain';
-import { ApiFailure } from '../errors.ts';
+import type { SqlPredicate } from '../db/commands.ts';
 import { exactSet, gatedInsert } from '../db/commands.ts';
+import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
 import { encodeUndoPayload } from '../db/undo.ts';
+import { ApiFailure } from '../shared/errors.ts';
+import type { SubtaskRow, TaskRow } from './read-model.ts';
 import {
   actorParameters,
   actorSql,
@@ -23,25 +38,10 @@ import {
   newId,
   nullableInstant,
 } from './shared.ts';
-import { taskDataset, taskDto, taskRow, taskSelect } from './task-read.ts';
-import { normalizeTaskDescription, validateRelations } from './task-relations.ts';
-import type { TaskRelations } from './task-relations.ts';
 import type { TaskProjection } from './task-read.ts';
-import type { TaskRow, SubtaskRow } from './read-model.ts';
-import type { RequestRepository, WorkspaceContext } from '../db/repository.ts';
-import type { SqlPredicate } from '../db/commands.ts';
-import type {
-  BulkMutateTasksInput,
-  CreateTaskInput,
-  DuplicateTaskInput,
-  EntityId,
-  MoveTaskInput,
-  SetTaskCompletionInput,
-  UpdateTaskInput,
-  UndoDescriptor,
-  ColumnScope,
-  TaskStatus,
-} from '@studio/contracts/api';
+import { taskDataset, taskDto, taskRow, taskSelect } from './task-read.ts';
+import type { TaskRelations } from './task-relations.ts';
+import { normalizeTaskDescription, validateRelations } from './task-relations.ts';
 
 interface Plan {
   before: TaskProjection[];
