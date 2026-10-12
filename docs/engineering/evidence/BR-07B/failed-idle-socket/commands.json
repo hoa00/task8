@@ -1,0 +1,117 @@
+[
+  {
+    "name": "format-check",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "format:check"
+    ],
+    "startedAt": "2026-10-12T12:43:04.334779+00:00",
+    "completedAt": "2026-10-12T12:43:14.560792+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "format-check.stdout.log",
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    "stderr": {
+      "path": "format-check.stderr.log",
+      "bytes": 158,
+      "sha256": "848ef9e36ff3de72d3f3d603a0c6926a712fb54566cfa2405d0391a552f935b7"
+    }
+  },
+  {
+    "name": "typecheck",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "typecheck"
+    ],
+    "startedAt": "2026-10-12T12:43:14.562970+00:00",
+    "completedAt": "2026-10-12T12:43:24.892547+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "typecheck.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "typecheck.stderr.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    }
+  },
+  {
+    "name": "lint",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "lint"
+    ],
+    "startedAt": "2026-10-12T12:43:24.893545+00:00",
+    "completedAt": "2026-10-12T12:43:33.231781+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "lint.stdout.log",
+      "bytes": 71,
+      "sha256": "b49ffd1dec0b139e6271f10c4b83cf02f2cb56c78eb5c3a5cad71b67812c29d0"
+    },
+    "stderr": {
+      "path": "lint.stderr.log",
+      "bytes": 142,
+      "sha256": "34305a46229b6bfa27dab76bf1c59aacee5fbc8ee95752d5b11b43a958720c50"
+    }
+  },
+  {
+    "name": "unit",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "test:unit"
+    ],
+    "startedAt": "2026-10-12T12:43:33.233425+00:00",
+    "completedAt": "2026-10-12T12:43:45.135671+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "unit.stdout.log",
+      "bytes": 5786,
+      "sha256": "fc0397ad1c52ed58473ca8618ff9b799666808ce24d33cb582ec925b2febe0bb"
+    },
+    "stderr": {
+      "path": "unit.stderr.log",
+      "bytes": 108,
+      "sha256": "95a180b1f361de8941189eaa79fff4b9913790da511aac44e3049af8958a0b34"
+    }
+  },
+  {
+    "name": "integration",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "test:integration"
+    ],
+    "startedAt": "2026-10-12T12:43:45.139536+00:00",
+    "completedAt": "2026-10-12T12:49:51.941667+00:00",
+    "exitCode": 1,
+    "signal": null,
+    "stdout": {
+      "path": "integration.stdout.log",
+      "bytes": 1027,
+      "sha256": "e2841aa886e6d15d7a7188620175e558a90b7e6b76470b7678a7b21036cf82f4"
+    },
+    "stderr": {
+      "path": "integration.stderr.log",
+      "bytes": 2663,
+      "sha256": "bf01f7d214ae3d4384f7a5a79e5b539c0764d86d80efb961f93116c99a847c78"
+    }
+  }
+]

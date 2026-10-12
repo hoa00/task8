@@ -9,6 +9,7 @@ export function historySeek(
   idExpression: string,
   cursor: CursorPayload,
   direction: 'asc' | 'desc',
+  idDirection: 'asc' | 'desc' = direction,
 ): SqlPredicate {
   if (typeof cursor.sortValue !== 'string')
     throw new ApiFailure('VALIDATION_ERROR', 'Invalid cursor for query');
@@ -16,7 +17,7 @@ export function historySeek(
     canonical = Number.isFinite(epoch) && new Date(epoch).toISOString() === cursor.sortValue;
   const value = canonical ? epoch : textKeyEncoder.locale(cursor.sortValue),
     expression = canonical ? epochExpression : instantLocaleKeySql(epochExpression);
-  const tie = localeIdSeek(idExpression, cursor.id, direction);
+  const tie = localeIdSeek(idExpression, cursor.id, idDirection);
   return {
     sql: `(${expression}${direction === 'desc' ? '<' : '>'}? OR (${expression}=? AND ${tie.sql}))`,
     parameters: [value, value, ...tie.parameters],

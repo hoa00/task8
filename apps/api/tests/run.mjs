@@ -12,6 +12,7 @@ export const features = [
   'collation-encoder',
   'read-keys-migration',
   'reads',
+  'projection-reads',
 ];
 export function selectFeatures(args) {
   if (!args.length) return features;

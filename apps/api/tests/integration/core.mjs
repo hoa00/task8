@@ -1,3 +1,4 @@
+import { localFetch as fetch } from '../support/harness.mjs';
 import { readKeysFor } from '../../scripts/read-keys.mjs';
 // Active core scenarios adapted from WU-31 for current implemented capabilities.
 import { createHarness } from '../support/harness.mjs';

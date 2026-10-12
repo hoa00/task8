@@ -1,3 +1,4 @@
+import { localFetch as fetch } from '../support/harness.mjs';
 import assert from 'node:assert/strict';
 import { createHarness } from '../support/harness.mjs';
 const report = { status: 'RUNNING', commands: [], probes: [] },

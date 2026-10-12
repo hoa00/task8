@@ -8,7 +8,7 @@ import { pagedProjects } from '../persistence/paged-projects.ts';
 import { projectCatalogForIds } from './scoped-catalog.ts';
 import { projectRow } from '../access.ts';
 import { listProjectMembersReadProjectMembers } from '../persistence/queries.ts';
-import { projectCatalog, projectDto } from '../projections.ts';
+import { projectDto } from '../projections.ts';
 export async function listProjects(
   r: RequestRepository,
   s: WorkspaceContext,
@@ -84,7 +84,7 @@ export async function projectSummary(
     lifecycle: 'detail',
     access: 'read',
   });
-  const row = (await projectCatalog(r, s, now)).find((p) => p.project.id === id);
+  const row = (await projectCatalogForIds(r, s, now, [id])).find((p) => p.project.id === id);
   if (row?.access !== 'allowed') throw new ApiFailure('NOT_FOUND', 'Project not found');
   return row.summary;
 }

@@ -1,3 +1,4 @@
+import { localFetch as fetch } from '../support/harness.mjs';
 import { withReadKeys } from '../../scripts/read-keys.mjs';
 // Active feature scenarios adapted from WU-36; production code is imported by the Worker.
 import { createHarness } from '../support/harness.mjs';

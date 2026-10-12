@@ -1,11 +1,11 @@
 import type { EntityId, MemberQuerySchema } from '@studio/contracts/api';
 import type { z } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
-import { projectCatalog } from '../../projects/projections.ts';
+import { projectCatalogForIds } from '../../projects/projections.ts';
 import { bindReadCursor, finishReadPage } from '../../../shared/read-page.ts';
 import { pagedDirectory } from '../persistence/paged-directory.ts';
 import { memberDto } from '../mapper.ts';
-import { activeTasks } from '../../tasks/projections.ts';
+import { memberTaskCounts, memberProjectIds } from '../persistence/summary.ts';
 import { today } from '../../workspaces/index.ts';
 import { member } from './directory.ts';
 export async function listMembers(
@@ -32,20 +32,14 @@ export async function memberSummary(
   now: number,
 ) {
   const m = await member(r, s, id),
-    ts = (await activeTasks(r, s)).filter((t) => t.assigneeId === m.id),
-    date = await today(r, s, now),
-    ps = await projectCatalog(r, s, now);
-  return {
-    memberId: m.id,
-    open: ts.filter((t) => t.status !== 'done').length,
-    done: ts.filter((t) => t.status === 'done').length,
-    overdue: ts.filter((t) => t.status !== 'done' && t.dueDate && t.dueDate < date).length,
-    projects: ps.filter(
-      (p) =>
-        p.access === 'allowed' &&
-        !p.project.archivedAt &&
-        p.project.memberIds.includes(m.id) &&
-        p.project.status !== 'complete',
-    ),
-  };
+    date = await today(r, s, now);
+  const counts = await memberTaskCounts(r, s, m.id, date),
+    ids = await memberProjectIds(r, s, m.id);
+  const projects = await projectCatalogForIds(
+    r,
+    s,
+    now,
+    ids.map((row) => row.id),
+  );
+  return { memberId: m.id, ...counts, projects };
 }

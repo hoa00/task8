@@ -4,7 +4,7 @@ Ngày lập: **12/10/2026**. Chuẩn bắt buộc: [BACKEND_STANDARDS.md](BACKEN
 
 **Mục tiêu:** code của các tính năng đã có phải đạt chất lượng để tiếp tục bổ sung/sửa chữa; phạm vi POC chỉ giới hạn tính năng. Tài liệu gốc đã có yêu cầu này trong [AGENTS.md](../../AGENTS.md), [ARCHITECTURE.md](../poc/ARCHITECTURE.md) và [BACKEND_SCOPE.md](../poc/BACKEND_SCOPE.md). Kế hoạch này cụ thể hóa cách khắc phục các khoảng cách trong implementation.
 
-Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02 DONE; BR-03 DONE; BR-04A DONE; BR-04B DONE; BR-05 DONE; BR-06 DONE; BR-07A BLOCKED_SQL_PARITY; BR-07B/08 chưa triển khai.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
+Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02 DONE; BR-03 DONE; BR-04A DONE; BR-04B DONE; BR-05 DONE; BR-06 DONE; BR-07A DONE; BR-07B DONE; BR-08 chưa triển khai.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
 
 ## 1. Baseline và hiệu chỉnh đề xuất review
 
@@ -144,7 +144,7 @@ Các `index.ts` chỉ export public surfaces cần thiết, không export mọi 
 | BR-05 | BR-04B | Các modules workspace/member/team/project/personal/collaboration/projections | DONE — [evidence](evidence/BR-05/verification.json) |
 | BR-06 | BR-05 | File application/R2 adapter và outcome handling rõ | DONE — [evidence](evidence/BR-06/verification.json) |
 | BR-07A | BR-06 | Scoped SQL paged reads + counts | DONE — [evidence](evidence/BR-07A/verification.json), [design](BACKEND_SQL_READ_DESIGN.md) |
-| BR-07B | BR-07A | Search/dashboard/summary optimization đúng semantics | NOT_STARTED |
+| BR-07B | BR-07A | Search/dashboard/summary optimization đúng semantics | DONE — [evidence](evidence/BR-07B/verification.json) |
 | BR-08 | BR-07B | Audit cuối, bỏ legacy paths/allowlists, current docs và regression | NOT_STARTED |
 
 Mỗi phase có thể chia nhiều commit theo bảng việc dưới, nhưng chỉ báo DONE khi mọi gate phase đủ. Không làm đồng thời các phase thay cùng code ownership. Không ghi số ngày ước đoán trước khi baseline/runtime constraints được xác lập.

@@ -1,0 +1,1208 @@
+{
+  "actualBefore": "reads-G7SXEB",
+  "actualAfter": "br07b-compare-1a3YGB",
+  "sameOwnedPersist": "/tmp/task8-api-reads-wHxUzg/storage",
+  "requests": [
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+      "before": {
+        "returnedRows": 696,
+        "rowsRead": 34509
+      },
+      "after": {
+        "returnedRows": 277,
+        "rowsRead": 5807
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/overview",
+      "before": {
+        "returnedRows": 687,
+        "rowsRead": 34067
+      },
+      "after": {
+        "returnedRows": 330,
+        "rowsRead": 3917
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "before": {
+        "returnedRows": 243,
+        "rowsRead": 1893
+      },
+      "after": {
+        "returnedRows": 243,
+        "rowsRead": 1893
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary",
+      "before": {
+        "returnedRows": 510,
+        "rowsRead": 967
+      },
+      "after": {
+        "returnedRows": 33,
+        "rowsRead": 783
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7249-8034-93bbfb2174a2/summary",
+      "before": {
+        "returnedRows": 872,
+        "rowsRead": 1694
+      },
+      "after": {
+        "returnedRows": 84,
+        "rowsRead": 1074
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a11abd-aa80-7c4b-88b5-79c301cf70d7/summary",
+      "before": {
+        "returnedRows": 872,
+        "rowsRead": 1694
+      },
+      "after": {
+        "returnedRows": 111,
+        "rowsRead": 988
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/archive?kind=tasks&limit=17",
+      "before": {
+        "returnedRows": 16,
+        "rowsRead": 1596
+      },
+      "after": {
+        "returnedRows": 31,
+        "rowsRead": 1945
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/archive?kind=projects&limit=17",
+      "before": {
+        "returnedRows": 516,
+        "rowsRead": 1539
+      },
+      "after": {
+        "returnedRows": 18,
+        "rowsRead": 131
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%C3%A4&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 6630
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%C3%A4&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 5390
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%C3%A4&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 44,
+        "rowsRead": 2681
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%C3%A4&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 27,
+        "rowsRead": 2587
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%C3%A4&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 27,
+        "rowsRead": 2666
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%C3%A4&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 27,
+        "rowsRead": 2709
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%25_&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 6675
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%25_&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 5410
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%25_&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 44,
+        "rowsRead": 2702
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%25_&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 2673
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%25_&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2659
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%25_&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2697
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=k&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 6319
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=k&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 5104
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=k&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 68,
+        "rowsRead": 2496
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=k&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 19,
+        "rowsRead": 2396
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=k&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 19,
+        "rowsRead": 2475
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=k&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 25,
+        "rowsRead": 2533
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=i%CC%87&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 44,
+        "rowsRead": 5743
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=i%CC%87&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 31,
+        "rowsRead": 4478
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=i%CC%87&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 11,
+        "rowsRead": 2230
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=i%CC%87&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2361
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=i%CC%87&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2440
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=i%CC%87&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2473
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=a&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 7013
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=a&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 5646
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=a&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 44,
+        "rowsRead": 2909
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=a&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 2907
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=a&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 2921
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=a&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 2974
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=Query&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 38,
+        "rowsRead": 4272
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=Query&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2900
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=Query&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2262
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=Query&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 38,
+        "rowsRead": 2556
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=Query&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2473
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=Query&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2501
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=comment&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 38,
+        "rowsRead": 4306
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=comment&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2900
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=comment&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2262
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=comment&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2399
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=comment&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2473
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=comment&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 33810
+      },
+      "after": {
+        "returnedRows": 38,
+        "rowsRead": 2692
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/home",
+      "before": {
+        "returnedRows": 696,
+        "rowsRead": 35358
+      },
+      "after": {
+        "returnedRows": 277,
+        "rowsRead": 5886
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/overview",
+      "before": {
+        "returnedRows": 687,
+        "rowsRead": 34915
+      },
+      "after": {
+        "returnedRows": 330,
+        "rowsRead": 3928
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/bootstrap",
+      "before": {
+        "returnedRows": 243,
+        "rowsRead": 1901
+      },
+      "after": {
+        "returnedRows": 243,
+        "rowsRead": 1901
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/projects/01a11abd-aa80-7ae7-8304-32062c509b49/summary",
+      "before": {
+        "returnedRows": 510,
+        "rowsRead": 970
+      },
+      "after": {
+        "returnedRows": 33,
+        "rowsRead": 786
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/members/01a11abd-aa80-783a-862c-12dc62e17460/summary",
+      "before": {
+        "returnedRows": 872,
+        "rowsRead": 1698
+      },
+      "after": {
+        "returnedRows": 84,
+        "rowsRead": 1080
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/teams/01a11abd-aa80-7ea7-846a-0d97e63b815c/summary",
+      "before": {
+        "returnedRows": 872,
+        "rowsRead": 1698
+      },
+      "after": {
+        "returnedRows": 111,
+        "rowsRead": 992
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/archive?kind=tasks&limit=17",
+      "before": {
+        "returnedRows": 16,
+        "rowsRead": 1639
+      },
+      "after": {
+        "returnedRows": 31,
+        "rowsRead": 1990
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/archive?kind=projects&limit=17",
+      "before": {
+        "returnedRows": 516,
+        "rowsRead": 1544
+      },
+      "after": {
+        "returnedRows": 18,
+        "rowsRead": 134
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%C3%A4&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 6687
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%C3%A4&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 5444
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%C3%A4&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 44,
+        "rowsRead": 2685
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%C3%A4&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 27,
+        "rowsRead": 2591
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%C3%A4&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 27,
+        "rowsRead": 2670
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%C3%A4&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 27,
+        "rowsRead": 2713
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%25_&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 6732
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%25_&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 5464
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%25_&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 44,
+        "rowsRead": 2706
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%25_&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 2677
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%25_&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2663
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=%25_&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2701
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=k&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 6381
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=k&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 5163
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=k&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 68,
+        "rowsRead": 2502
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=k&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 19,
+        "rowsRead": 2400
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=k&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 19,
+        "rowsRead": 2479
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=k&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 25,
+        "rowsRead": 2537
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=i%CC%87&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 44,
+        "rowsRead": 5786
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=i%CC%87&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 31,
+        "rowsRead": 4517
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=i%CC%87&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 11,
+        "rowsRead": 2234
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=i%CC%87&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2365
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=i%CC%87&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2444
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=i%CC%87&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 17,
+        "rowsRead": 2477
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=a&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 7070
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=a&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 5700
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=a&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 44,
+        "rowsRead": 2913
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=a&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 2911
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=a&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 2925
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=a&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 42,
+        "rowsRead": 2978
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=Query&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 38,
+        "rowsRead": 4278
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=Query&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2903
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=Query&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2265
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=Query&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 38,
+        "rowsRead": 2560
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=Query&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2477
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=Query&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2505
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=comment&category=all&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 38,
+        "rowsRead": 4312
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=comment&category=tasks&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2903
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=comment&category=projects&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2265
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=comment&category=people&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2403
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=comment&category=files&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 3,
+        "rowsRead": 2477
+      },
+      "dtoEquality": "PASS"
+    },
+    {
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=comment&category=comments&limit=17",
+      "before": {
+        "returnedRows": 1154,
+        "rowsRead": 34654
+      },
+      "after": {
+        "returnedRows": 38,
+        "rowsRead": 2696
+      },
+      "dtoEquality": "PASS"
+    }
+  ],
+  "qualification": "Drizzle raw rows_read unavailable; totals use exposed native metrics, never substitute estimates."
+}

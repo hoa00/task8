@@ -1,0 +1,53 @@
+$ node --experimental-transform-types tests/run.mjs
+(node:157120) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:157400) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:157697) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:158332) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:158763) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:159162) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:159601) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:16416:13
+    at async req (file:///workspace/task8/apps/api/tests/integration/files.mjs:42:20)
+    at async file:///workspace/task8/apps/api/tests/integration/files.mjs:567:3 {
+  [cause]: SocketError: other side closed
+      at Socket.onHttpSocketEnd (node:internal/deps/undici/undici:7611:26)
+      at Socket.emit (node:events:520:35)
+      at endReadableNT (node:internal/streams/readable:1701:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+    code: 'UND_ERR_SOCKET',
+    socket: {
+      localAddress: '127.0.0.1',
+      localPort: 41472,
+      remoteAddress: undefined,
+      remotePort: undefined,
+      remoteFamily: undefined,
+      timeout: undefined,
+      bytesWritten: 2994,
+      bytesRead: 67612
+    }
+  }
+}
+
+Node.js v24.13.0
+file:///workspace/task8/apps/api/tests/run.mjs:37
+      throw new Error(`${feature} failed (exit=${result.code}, signal=${result.signal})`);
+            ^
+
+Error: files failed (exit=1, signal=null)
+    at runFeatures (file:///workspace/task8/apps/api/tests/run.mjs:37:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///workspace/task8/apps/api/tests/run.mjs:40:57
+
+Node.js v24.13.0

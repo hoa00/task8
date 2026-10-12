@@ -1,3 +1,11 @@
+import {
+  searchReadFiles,
+  searchReadCommentReactions,
+  archiveRead,
+  archiveReadProjects,
+  archiveReadResult,
+} from '../../src/modules/projections/persistence/queries.ts';
+import { today } from '../../src/modules/workspaces/index.ts';
 import { z } from 'zod';
 import {
   EntityIdSchema,
@@ -7,12 +15,14 @@ import {
   FileQuerySchema,
   ActivityQuerySchema,
   NotificationQuerySchema,
+  SearchQuerySchema,
+  ArchiveQuerySchema,
 } from '@studio/contracts/api';
 import { filterTasks, sortTasks, summarizeTasks } from '@studio/domain';
 import app from '../../src/index.ts';
 import { RequestRepository } from '../../src/db/client.ts';
 import { principal, membership, members } from '../../src/modules/members/index.ts';
-import { taskDataset } from '../../src/modules/tasks/projections.ts';
+import { taskDataset, taskDto } from '../../src/modules/tasks/projections.ts';
 import { projectCatalog } from '../../src/modules/projects/projections.ts';
 import { fileDto } from '../../src/modules/files/projections.ts';
 import { listFilesReadFiles } from '../../src/modules/files/persistence/queries.ts';
@@ -31,6 +41,8 @@ const OracleSchema = z.object({
     'comments',
     'activity',
     'notifications',
+    'search',
+    'archive',
   ]),
   query: z.unknown(),
   projectId: EntityIdSchema.optional(),
@@ -60,6 +72,148 @@ export default {
       const member = await membership(repository, user.currentWorkspaceId, user.user.id),
         scope = { workspaceId: user.currentWorkspaceId, memberId: member.id };
       const q = input.query;
+      if (input.kind === 'search') {
+        const query = SearchQuerySchema.parse(q),
+          needle = query.q.trim().toLowerCase(),
+          has = (value: string) => !!needle && value.toLowerCase().includes(needle);
+        const dataset = await taskDataset(repository, scope, input.now),
+          tasks = dataset.items.filter((task) => !task.archivedAt),
+          projects = (await projectCatalog(repository, scope, input.now)).filter(
+            (project) => project.access === 'allowed' && !project.project.archivedAt,
+          );
+        const files = await searchReadFiles(repository, scope),
+          comments = await searchReadCommentReactions(repository, scope);
+        const rows = [
+          ...tasks
+            .filter(
+              (task) =>
+                has(task.title) ||
+                has(task.key) ||
+                has(dataset.rows.find((row) => row.id === task.id)?.descriptionText ?? ''),
+            )
+            .map((task) => ({
+              id: task.id,
+              kind: 'tasks',
+              rank: 0,
+              item: { kind: 'tasks', task },
+            })),
+          ...projects
+            .filter(
+              (project) =>
+                has(project.project.name) ||
+                (project.access === 'allowed' && has(project.project.description)),
+            )
+            .map((project) => ({
+              id: project.project.id,
+              kind: 'projects',
+              rank: 1,
+              item: { kind: 'projects', project },
+            })),
+          ...dataset.env.lookups.members
+            .filter((member) => [member.name, member.email, member.title].some(has))
+            .map((member) => ({
+              id: member.id,
+              kind: 'people',
+              rank: 2,
+              item: { kind: 'people', member },
+            })),
+          ...files
+            .filter((file) => has(file.name))
+            .map((file) => ({
+              id: file.id,
+              kind: 'files',
+              rank: 3,
+              item: { kind: 'files', file: fileDto(file) },
+            })),
+          ...comments
+            .filter(
+              (comment) =>
+                tasks.some((task) => task.id === comment.taskId) && has(comment.bodyText),
+            )
+            .map((row) => {
+              const task = tasks.find((task) => task.id === row.taskId);
+              if (!task) throw new Error('Missing scoped search task');
+              return {
+                id: row.id,
+                kind: 'comments',
+                rank: 4,
+                item: {
+                  kind: 'comments',
+                  comment: commentDto(
+                    row,
+                    reactionProjection(ReactionPairsSchema.parse(JSON.parse(row.reactionsJson))),
+                  ),
+                  taskKey: task.key,
+                  taskTitle: task.title,
+                },
+              };
+            }),
+        ];
+        const totals = Object.fromEntries(
+          ['tasks', 'projects', 'people', 'files', 'comments'].map((kind) => [
+            kind,
+            rows.filter((row) => row.kind === kind).length,
+          ]),
+        );
+        const selected = rows
+          .filter((row) => query.category === 'all' || row.kind === query.category)
+          .sort((a, b) => a.rank - b.rank || a.id.localeCompare(b.id));
+        return Response.json({
+          items: selected.map((row) => row.item),
+          total: selected.length,
+          totals,
+        });
+      }
+      if (input.kind === 'archive') {
+        const query = ArchiveQuerySchema.parse(q),
+          needle = query.q.trim().toLowerCase(),
+          has = (value: string) => !needle || value.toLowerCase().includes(needle);
+        if (query.kind === 'tasks') {
+          const rows = (await archiveRead(repository, scope))
+            .map(taskDto)
+            .filter((task) => has(task.title + ' ' + task.key));
+          rows.sort(
+            (a, b) =>
+              String(b.archivedAt).localeCompare(String(a.archivedAt)) || a.id.localeCompare(b.id),
+          );
+          return Response.json({
+            items: rows.map((task) => ({ kind: 'tasks', task })),
+            total: rows.length,
+          });
+        }
+        const ranks = await archiveReadProjects(repository, scope),
+          tasks = (await archiveReadResult(repository, scope)).map(taskDto),
+          date = await today(repository, scope, input.now);
+        const projects = (await projectCatalog(repository, scope, input.now)).filter(
+          (project) =>
+            project.access === 'allowed' && project.project.archivedAt && has(project.project.name),
+        );
+        projects.sort(
+          (a, b) =>
+            (ranks.find((row) => row.id === a.project.id)?.rank ?? 0) -
+              (ranks.find((row) => row.id === b.project.id)?.rank ?? 0) ||
+            a.project.id.localeCompare(b.project.id),
+        );
+        return Response.json({
+          items: projects.map((project) => ({
+            kind: 'projects',
+            project:
+              project.access === 'allowed'
+                ? {
+                    ...project,
+                    summary: {
+                      ...project.summary,
+                      taskSummary: summarizeTasks(
+                        tasks.filter((task) => task.projectId === project.project.id),
+                        date,
+                      ),
+                    },
+                  }
+                : project,
+          })),
+          total: projects.length,
+        });
+      }
       if (input.kind === 'tasks' || input.kind === 'summary') {
         const query = TaskQuerySchema.parse(q),
           dataset = await taskDataset(repository, scope, input.now);

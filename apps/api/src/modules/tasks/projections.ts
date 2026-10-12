@@ -7,3 +7,5 @@ export { taskRow, taskSelect } from './persistence/reads.ts';
 export { taskReadTextKeys } from './domain/read-text.ts';
 export { taskSummaryFromGroups } from './domain/summary.ts';
 export type { TaskCountGroup } from './domain/summary.ts';
+export { selectedTaskProjections } from './persistence/projection-reads.ts';
+export { taskReadPlan, taskQuerySummary } from './persistence/paged-reads.ts';

@@ -11,6 +11,16 @@ export const root = fileURLToPath(new URL('../../../../', import.meta.url));
 export const api = resolve(root, 'apps/api');
 export const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 
+// CLI/build fixtures can block Node's event loop past the Workerd idle timeout.
+// Each local request finishes its own socket; do not retry writes or reuse an idle one.
+export function localFetch(input, init = {}) {
+  const headers = new Headers(
+    init.headers ?? (input instanceof Request ? input.headers : undefined),
+  );
+  headers.set('connection', 'close');
+  return globalThis.fetch(input, { ...init, headers });
+}
+
 export async function freePort() {
   const server = createServer();
   await new Promise((accept, reject) => {

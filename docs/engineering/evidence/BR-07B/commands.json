@@ -1,0 +1,161 @@
+[
+  {
+    "name": "format-check",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "format:check"
+    ],
+    "startedAt": "2026-10-12T12:53:36.337425+00:00",
+    "completedAt": "2026-10-12T12:53:44.410388+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "format-check.stdout.log",
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    "stderr": {
+      "path": "format-check.stderr.log",
+      "bytes": 158,
+      "sha256": "848ef9e36ff3de72d3f3d603a0c6926a712fb54566cfa2405d0391a552f935b7"
+    }
+  },
+  {
+    "name": "typecheck",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "typecheck"
+    ],
+    "startedAt": "2026-10-12T12:53:44.412607+00:00",
+    "completedAt": "2026-10-12T12:53:52.912620+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "typecheck.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "typecheck.stderr.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    }
+  },
+  {
+    "name": "lint",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "lint"
+    ],
+    "startedAt": "2026-10-12T12:53:52.916906+00:00",
+    "completedAt": "2026-10-12T12:54:00.714425+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "lint.stdout.log",
+      "bytes": 71,
+      "sha256": "b49ffd1dec0b139e6271f10c4b83cf02f2cb56c78eb5c3a5cad71b67812c29d0"
+    },
+    "stderr": {
+      "path": "lint.stderr.log",
+      "bytes": 142,
+      "sha256": "34305a46229b6bfa27dab76bf1c59aacee5fbc8ee95752d5b11b43a958720c50"
+    }
+  },
+  {
+    "name": "unit",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "test:unit"
+    ],
+    "startedAt": "2026-10-12T12:54:00.715411+00:00",
+    "completedAt": "2026-10-12T12:54:05.727221+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "unit.stdout.log",
+      "bytes": 5776,
+      "sha256": "00fa302e1de137058e592be598ca1d2965513a164f43ba08355914be9ccb7817"
+    },
+    "stderr": {
+      "path": "unit.stderr.log",
+      "bytes": 108,
+      "sha256": "95a180b1f361de8941189eaa79fff4b9913790da511aac44e3049af8958a0b34"
+    }
+  },
+  {
+    "name": "integration",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "test:integration"
+    ],
+    "startedAt": "2026-10-12T12:54:05.729613+00:00",
+    "completedAt": "2026-10-12T13:07:43.059527+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "integration.stdout.log",
+      "bytes": 3407,
+      "sha256": "427f0b3faae98f96bc1ff731e324951eafd1a20034e23eb28474230060b8b6e9"
+    },
+    "stderr": {
+      "path": "integration.stderr.log",
+      "bytes": 1842,
+      "sha256": "1bdf59f1526c1db5e53b3bf2497671a303059d1de6d532e4fd2d2733d4ba87a7"
+    }
+  },
+  {
+    "name": "contracts",
+    "argv": [
+      "pnpm",
+      "contracts:consumers"
+    ],
+    "startedAt": "2026-10-12T13:07:43.061835+00:00",
+    "completedAt": "2026-10-12T13:07:48.411168+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "contracts.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "contracts.stderr.log",
+      "bytes": 108,
+      "sha256": "acd18fc0b18c86ad14234e2b6e42b97ab04d403065c05dc67320a718102d3f12"
+    }
+  },
+  {
+    "name": "build",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "build"
+    ],
+    "startedAt": "2026-10-12T13:07:48.421690+00:00",
+    "completedAt": "2026-10-12T13:07:57.872996+00:00",
+    "exitCode": 0,
+    "signal": null,
+    "stdout": {
+      "path": "build.stdout.log",
+      "bytes": 783,
+      "sha256": "831a43446c4152edb7003caf522114466d29d30fb06262f12aa12a386c4d0341"
+    },
+    "stderr": {
+      "path": "build.stderr.log",
+      "bytes": 178,
+      "sha256": "98f562258abb1ba00558ab591696b1230919f159f54fa56504ab411328f5af7a"
+    }
+  }
+]

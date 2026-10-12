@@ -2,8 +2,8 @@ import type { EntityId, TextQuerySchema } from '@studio/contracts/api';
 import type { z } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
 import { members } from '../../members/projections.ts';
-import { projectCatalog } from '../../projects/projections.ts';
-import { activeTasks } from '../../tasks/projections.ts';
+import { projectCatalogForIds } from '../../projects/projections.ts';
+import { teamWorkload, teamProjectIds } from '../persistence/summary.ts';
 import { listTeamsReadTeams } from '../persistence/queries.ts';
 import { teamDto, teamRow } from '../projections.ts';
 export async function listTeams(
@@ -27,19 +27,19 @@ export async function teamSummary(
   now: number,
 ) {
   const team = await teamRow(r, s, id),
-    ms = (await members(r, s)).filter((m) => m.teamId === team.id),
-    ts = (await activeTasks(r, s)).filter((t) => ms.some((m) => m.id === t.assigneeId)),
-    ps = await projectCatalog(r, s, now);
+    workload = await teamWorkload(r, s, team.id),
+    ids = await teamProjectIds(r, s, team.id);
+  const projects = await projectCatalogForIds(
+    r,
+    s,
+    now,
+    ids.map((row) => row.id),
+  );
   return {
     teamId: team.id,
-    open: ts.filter((t) => t.status !== 'done').length,
-    completed: ts.filter((t) => t.status === 'done').length,
-    projects: ps.filter(
-      (p) => p.access === 'allowed' && !p.project.archivedAt && p.project.teamId === team.id,
-    ),
-    workload: ms.map((m) => ({
-      memberId: m.id,
-      open: ts.filter((t) => t.assigneeId === m.id && t.status !== 'done').length,
-    })),
+    open: workload.reduce((sum, row) => sum + row.open, 0),
+    completed: workload.reduce((sum, row) => sum + row.completed, 0),
+    projects,
+    workload: workload.map(({ memberId, open }) => ({ memberId, open })),
   };
 }

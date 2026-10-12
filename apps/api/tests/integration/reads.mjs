@@ -1,3 +1,4 @@
+import { localFetch as fetch } from '../support/harness.mjs';
 import assert from 'node:assert/strict';
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -254,6 +255,7 @@ async function anchorCases(scope) {
     sqlFile,
     `UPDATE activity SET revertedAt=${now} WHERE workspaceId='${scope.workspaceId}' AND id='${activityAnchor.id}';`,
   );
+  await h.stopWorker();
   h.run('retract-anchor-' + scope.workspaceId, [
     'pnpm',
     'exec',
@@ -268,6 +270,10 @@ async function anchorCases(scope) {
     sqlFile,
     '--json',
   ]);
+  await h.start('after-retract-' + scope.workspaceId, {
+    LOCAL_USER_ID: scope.userId,
+    LOCAL_WORKSPACE_ID: scope.workspaceId,
+  });
   const activityAfter = await oracle(scope, 'activity', { taskId: scope.taskId });
   assert.deepEqual(
     (await get(scope, 'activity', { taskId: scope.taskId, limit: 17, cursor: activity.nextCursor }))
