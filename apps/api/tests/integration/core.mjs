@@ -1,0 +1,852 @@
+// Active core scenarios adapted from WU-31 for current implemented capabilities.
+import { createHarness } from '../support/harness.mjs';
+import assert from 'node:assert/strict';
+import { resolve } from 'node:path';
+import { request as httpRequest } from 'node:http';
+import { seedRows } from '../../scripts/seed-data.mjs';
+
+import { ApiErrorSchema, operations, EntityIdSchema, catalogs } from '@studio/contracts/api';
+import { sourceId } from '@studio/contracts/source-identities';
+// Independent consumer canonical mapping used only by verification, never an API import.
+
+import { assertBootstrapParity } from '../runtime/parity.mjs';
+const report = {
+  status: 'RUNNING',
+  runtime: 'Wrangler local workerd + actual D1',
+  commands: [],
+  probes: [],
+  primary: null,
+  isolation: null,
+};
+const harness = await createHarness('core', report);
+const { out, persist, baseUrl, save, run, start, stopWorker: stop } = harness;
+async function get(name, path, { status = 200, method = 'GET', headers = {}, body } = {}) {
+  let code,
+    data,
+    budget = null;
+  if (method === 'GET' && body) {
+    ({ code, data } = await new Promise((resolve, reject) => {
+      const req = httpRequest(
+        baseUrl + path,
+        {
+          method,
+          headers: {
+            ...headers,
+            'content-type': 'application/json',
+            'content-length': Buffer.byteLength(body),
+          },
+        },
+        (res) => {
+          let bytes = '';
+          res.on('data', (b) => (bytes += b));
+          res.on('end', () => resolve({ code: res.statusCode, data: JSON.parse(bytes) }));
+        },
+      );
+      req.on('error', reject);
+      req.end(body);
+    }));
+  } else {
+    const response = await fetch(baseUrl + path, {
+      method,
+      headers,
+      ...(body ? { body } : {}),
+      signal: AbortSignal.timeout(15000),
+    });
+    code = response.status;
+    data = await response.json();
+    if (response.headers.has('x-wu31-queries')) {
+      budget = {
+        queries: Number(response.headers.get('x-wu31-queries')),
+        parameters: Number(response.headers.get('x-wu31-parameters')),
+      };
+      assert(budget.queries <= 50 && budget.parameters <= 100, name + ' query/parameter budget');
+    }
+  }
+  save(name + '.json', {
+    method,
+    path,
+    headers,
+    ...(body ? { body } : {}),
+    status: code,
+    response: data,
+    budget,
+  });
+  report.probes.push({ name, status: code, path, evidence: name + '.json', budget });
+  assert.equal(code, status, name);
+  if (code >= 400) ApiErrorSchema.parse(data);
+  return data;
+}
+const W = '/api/v1/workspaces/' + sourceId('workspaces', 'w1'),
+  m1 = sourceId('members', 'm1'),
+  m2 = sourceId('members', 'm2'),
+  m3 = sourceId('members', 'm3'),
+  p1 = sourceId('projects', 'p1'),
+  p6 = sourceId('projects', 'p6');
+const principal = (m = 'm1') => ({
+  LOCAL_USER_ID: sourceId('users', m),
+  LOCAL_WORKSPACE_ID: sourceId('workspaces', 'w1'),
+});
+let serial = 0;
+const sql = async (query, parameters = []) =>
+  get('sql-' + ++serial, '/__wu31/sql', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ sql: query, parameters }),
+  });
+const snap = async (name) => (await get(name, '/__wu31/snapshot')).rows;
+async function command(name, operation, path, payload, status = 200, injection) {
+  const data = await get(name, path, {
+    method: operations[operation].method,
+    status,
+    headers: {
+      'content-type': 'application/json',
+      ...(injection
+        ? { 'x-wu31-test': typeof injection === 'string' ? injection : JSON.stringify(injection) }
+        : {}),
+    },
+    body: JSON.stringify(payload),
+  });
+  if (status < 400) operations[operation].response.parse(data);
+  return data.data;
+}
+const projectInput = (name) => ({
+  name,
+  description: 'WU31 integration',
+  icon: 'folder',
+  color: '#5A67D8',
+  teamId: null,
+  leadId: m1,
+  dueDate: null,
+  templateId: 'blank',
+});
+const teamInput = (name, ids = []) => ({
+  name,
+  description: 'WU31 integration',
+  icon: 'users',
+  color: '#5A67D8',
+  memberIds: ids,
+});
+const project = async (name, input = projectInput(name)) =>
+  command(name, 'createProject', W + '/projects', input, 201);
+const team = async (name, ids = []) =>
+  command(name, 'createTeam', W + '/teams', teamInput(name, ids), 201);
+const undo = (name, id, status = 200, injection) =>
+  command(name, 'undoCommand', W + '/undo/' + id, {}, status, injection);
+try {
+  const seed = seedRows();
+  report.primary = seed.primary;
+  report.isolation = seed.isolation;
+  run('migrate', [
+    'pnpm',
+    'exec',
+    'wrangler',
+    'd1',
+    'migrations',
+    'apply',
+    'DB',
+    '--local',
+    '--persist-to',
+    persist,
+  ]);
+  run('seed', ['node', 'scripts/seed-local.mjs', '--persist-to', persist]);
+  await start('owner', principal());
+  const initial = await get('snapshot-initial', '/__wu31/snapshot');
+  const bootstrap = await get('bootstrap-initial', W + '/bootstrap');
+  save('canonical-bootstrap-parity.json', assertBootstrapParity(bootstrap, initial.now));
+  const session = await get('session', '/api/v1/session');
+  assert.equal(session.data.capabilities.features.teams, 'implemented');
+  assert.equal(session.data.capabilities.features.projects, 'implemented');
+  assert.equal(session.data.capabilities.features.tasks, 'implemented');
+  const workspace = (await get('workspace', W)).data;
+  operations.getWorkspace.response.parse({ data: workspace });
+  await command('workspace-patch', 'updateWorkspace', W, {
+    expectedVersion: workspace.version,
+    name: 'WU31 workspace',
+  });
+  await command(
+    'workspace-stale',
+    'updateWorkspace',
+    W,
+    { expectedVersion: workspace.version, name: 'stale' },
+    409,
+  );
+  await command(
+    'workspace-unknown',
+    'updateWorkspace',
+    W,
+    { expectedVersion: 2, role: 'Owner' },
+    400,
+  );
+  const profile = (await get('profile', '/api/v1/me/profile')).data;
+  await command('profile-patch', 'updateProfile', '/api/v1/me/profile', {
+    expectedVersion: profile.version,
+    title: 'WU31 profile',
+  });
+  await command(
+    'profile-email-forbidden',
+    'updateProfile',
+    '/api/v1/me/profile',
+    { expectedVersion: profile.version + 1, email: 'other@invalid.test' },
+    400,
+  );
+  const profileBefore = await snap('before-profile-failure');
+  await command(
+    'profile-batch-failure',
+    'updateProfile',
+    '/api/v1/me/profile',
+    { expectedVersion: 2, title: 'fail' },
+    500,
+    'fail',
+  );
+  assert.deepEqual(await snap('after-profile-failure'), profileBefore);
+  await command(
+    'profile-stale',
+    'updateProfile',
+    '/api/v1/me/profile',
+    { expectedVersion: 1, title: 'stale' },
+    409,
+  );
+  assert.deepEqual(await snap('after-profile-stale'), profileBefore);
+  assert.equal(
+    profileBefore.workspaceMembers.find((m) => m.id === m1).version,
+    initial.rows.workspaceMembers.find((m) => m.id === m1).version + 1,
+  );
+  const catalog = (await get('projects-recent', W + '/projects')).data;
+  operations.listProjects.response.parse({ data: catalog });
+  assert.equal(
+    catalog.total,
+    initial.rows.projects.filter(
+      (p) => p.workspaceId === seed.primary.workspaceId && !p.archivedAt && !p.deletedAt,
+    ).length,
+  );
+  const allowed = catalog.items.filter((p) => p.access === 'allowed');
+  assert.deepEqual(
+    allowed.map((p) => p.project.lastActivityAt),
+    allowed
+      .map((p) => p.project.lastActivityAt)
+      .sort()
+      .reverse(),
+  );
+  const restricted = catalog.items.find((p) => p.project.id === p6);
+  assert.equal(restricted.access, 'restricted');
+  assert.deepEqual(
+    Object.keys(restricted.project).sort(),
+    [
+      'id',
+      'workspaceId',
+      'name',
+      'key',
+      'icon',
+      'color',
+      'status',
+      'dueDate',
+      'lead',
+      'catalogSummary',
+    ].sort(),
+  );
+  await get('private-detail', W + '/projects/' + p6, { status: 403 });
+  await get('private-members', W + '/projects/' + p6 + '/members', { status: 404 });
+  await get('private-summary', W + '/projects/' + p6 + '/summary', { status: 404 });
+  await command(
+    'private-patch',
+    'updateProject',
+    W + '/projects/' + p6,
+    { expectedVersion: 1, name: 'leak' },
+    403,
+  );
+  await get('project-detail', W + '/projects/' + p1);
+  await get('project-members', W + '/projects/' + p1 + '/members');
+  await get('project-summary', W + '/projects/' + p1 + '/summary');
+  const first = (await get('page-projects-1', W + '/projects?sort=name&limit=2')).data;
+  const second = (
+    await get(
+      'page-projects-2',
+      W + '/projects?sort=name&limit=3&cursor=' + encodeURIComponent(first.nextCursor),
+    )
+  ).data;
+  assert(!second.items.some((p) => first.items.some((a) => a.project.id === p.project.id)));
+  assert.equal(second.total, first.total);
+  await get(
+    'page-query-conflict',
+    W + '/projects?sort=due&cursor=' + encodeURIComponent(first.nextCursor),
+    { status: 400 },
+  );
+  await get('invalid-cursor', W + '/projects?cursor=garbage', { status: 400 });
+  await get('unknown-query', W + '/projects?actorId=' + m2, { status: 400 });
+  await get('repeated-query', W + '/projects?q=a&q=b', { status: 400 });
+  const memberPage = (await get('members-page', W + '/members?limit=2')).data;
+  operations.listMembers.response.parse({ data: memberPage });
+  await get(
+    'members-next',
+    W + '/members?limit=4&cursor=' + encodeURIComponent(memberPage.nextCursor),
+  );
+  await get('invited-directory', W + '/members?status=invited');
+  await get('member-detail', W + '/members/' + m3);
+  const memberSummary = await get('member-summary', W + '/members/' + m3 + '/summary');
+  assert(!JSON.stringify(memberSummary).includes(p6));
+  assert(
+    memberSummary.data.projects.every(
+      (p) =>
+        p.access === 'allowed' &&
+        p.project.status !== 'complete' &&
+        p.project.memberIds.includes(m3),
+    ),
+  );
+  const teamRows = (await get('teams', W + '/teams')).data;
+  await get('teams-query', W + '/teams?q=' + encodeURIComponent(teamRows[0].name));
+  const research = (await get('teams-description-query', W + '/teams?q=research')).data;
+  assert(research.some((t) => t.name === 'Design'));
+  await get('team-detail', W + '/teams/' + teamRows[0].id);
+  const teamSummary = await get('team-summary', W + '/teams/' + teamRows[0].id + '/summary');
+  assert(!JSON.stringify(teamSummary).includes(p6));
+  await get('foreign-workspace', '/api/v1/workspaces/' + seed.isolation.workspaceId + '/projects', {
+    status: 404,
+  });
+  await get('foreign-project', W + '/projects/' + seed.secondary.projects[0].id, { status: 404 });
+  const beforeFailure = await snap('before-template-failure');
+  await command(
+    'template-failure',
+    'createProject',
+    W + '/projects',
+    { ...projectInput('Failed template'), templateId: 'software' },
+    500,
+    'fail',
+  );
+  assert.deepEqual(await snap('after-template-failure'), beforeFailure);
+  const templated = await project('template-software', {
+    ...projectInput('Software WU31'),
+    templateId: 'software',
+  });
+  assert.deepEqual(
+    templated.createdTasks.map((t) => t.title),
+    catalogs.templates.find((t) => t.id === 'software').tasks,
+  );
+  assert.equal(templated.createdTasks.length, 6);
+  assert.deepEqual(
+    templated.createdTasks.map((t) => t.key),
+    Array.from({ length: 6 }, (_, i) => `${templated.project.key}-${201 + i}`),
+  );
+  const blank = await project('blank-create');
+  assert.equal(blank.createdTasks.length, 0);
+  const unicode = await project('unicode-create', {
+    ...projectInput('東京 WU31'),
+    name: '東京 WU31',
+  });
+  const unicodePages = [];
+  let cursor = null;
+  do {
+    const p = (
+      await get(
+        'unicode-page-' + unicodePages.length,
+        W + '/projects?sort=name&limit=1' + (cursor ? '&cursor=' + encodeURIComponent(cursor) : ''),
+      )
+    ).data;
+    unicodePages.push(...p.items);
+    cursor = p.nextCursor;
+  } while (cursor);
+  assert(unicodePages.some((p) => p.project.id === unicode.project.id));
+  const copy = await command(
+    'duplicate-seeded',
+    'duplicateProject',
+    W + '/projects/' + p1 + '/duplicate',
+    { expectedVersion: 1, name: 'Copy WU31' },
+  );
+  assert(copy.createdTasks.length > 0);
+  assert(
+    copy.createdTasks.every(
+      (t) =>
+        t.status === 'todo' &&
+        t.version === 1 &&
+        !t.isFavorite &&
+        t.attachmentCount === 0 &&
+        t.commentCount === 0,
+    ),
+  );
+  assert.equal(new Set(copy.createdTasks.map((t) => t.id)).size, copy.createdTasks.length);
+  copy.createdTasks.forEach((t) => EntityIdSchema.parse(t.id));
+  const copySnapshot = await snap('copy-snapshot'),
+    map = new Map(copy.taskIdMap.map((m) => [m.sourceTaskId, m.targetTaskId])),
+    sourceTasks = initial.rows.tasks.filter(
+      (t) => t.projectId === p1 && !t.archivedAt && !t.deletedAt,
+    ),
+    originalIds = new Set(sourceTasks.map((t) => t.id));
+  assert.equal(copy.createdTasks.length, sourceTasks.length);
+  assert.equal(
+    copySnapshot.projects.find((p) => p.id === copy.project.id).taskSequence,
+    200 + sourceTasks.length,
+  );
+  const originalChildren = initial.rows.subtasks.filter((c) => originalIds.has(c.taskId)),
+    newChildren = copySnapshot.subtasks.filter((c) =>
+      copy.createdTasks.some((t) => t.id === c.taskId),
+    );
+  assert(originalChildren.length > 0);
+  assert.equal(newChildren.length, originalChildren.length);
+  for (const child of originalChildren) {
+    const next = newChildren.find(
+      (c) => c.taskId === map.get(child.taskId) && c.title === child.title,
+    );
+    assert(
+      next &&
+        next.id !== child.id &&
+        next.done === 0 &&
+        next.createdAt !== child.createdAt &&
+        next.createdAt === next.updatedAt,
+    );
+  }
+  for (const task of sourceTasks) {
+    const copied = copy.createdTasks.find((t) => t.id === map.get(task.id));
+    assert.deepEqual(
+      copied.dependencyIds.sort(),
+      initial.rows.taskDependencies
+        .filter((d) => d.taskId === task.id && map.has(d.dependsOnTaskId))
+        .map((d) => map.get(d.dependsOnTaskId))
+        .sort(),
+    );
+    assert.equal(copied.recurrence, task.recurrence);
+    assert.equal(copySnapshot.tasks.find((t) => t.id === copied.id).recurrenceSourceTaskId, null);
+    assert.equal(copySnapshot.tasks.find((t) => t.id === copied.id).createRequestId, null);
+  }
+  await command(
+    'create-foreign-reference',
+    'createProject',
+    W + '/projects',
+    { ...projectInput('foreign'), teamId: seed.secondary.teams[0].id },
+    400,
+  );
+  await command(
+    'create-invited-lead',
+    'createProject',
+    W + '/projects',
+    { ...projectInput('invited lead'), leadId: sourceId('members', 'm8') },
+    400,
+  );
+  await command(
+    'project-date-invalid',
+    'updateProject',
+    W + '/projects/' + blank.project.id,
+    { expectedVersion: 1, dueDate: '2020-01-01' },
+    400,
+  );
+  const renamed = await command(
+    'project-patch',
+    'updateProject',
+    W + '/projects/' + blank.project.id,
+    { expectedVersion: 1, name: 'Renamed WU31', startDate: null, dueDate: null },
+  );
+  assert.equal(renamed.project.startDate, null);
+  const staleBefore = await snap('before-stale-project');
+  await command(
+    'project-stale',
+    'updateProject',
+    W + '/projects/' + blank.project.id,
+    { expectedVersion: 1, name: 'stale' },
+    409,
+  );
+  assert.deepEqual(await snap('after-stale-project'), staleBefore);
+  const archived = await command(
+    'project-archive',
+    'archiveProject',
+    W + '/projects/' + blank.project.id + '/archive',
+    { expectedVersion: 2 },
+  );
+  assert(archived.undo);
+  await get('archive-catalog', W + '/projects?archived=true');
+  const undoFailure = await snap('before-undo-failure');
+  await undo('undo-failure', archived.undo.id, 500, 'fail');
+  assert.deepEqual(await snap('after-undo-failure'), undoFailure);
+  const [u1, u2] = await Promise.all([
+    undo('undo-project-first', archived.undo.id),
+    undo('undo-project-concurrent', archived.undo.id),
+  ]);
+  assert.deepEqual(u1, u2);
+  assert.deepEqual(await undo('undo-project-retry', archived.undo.id), u1);
+  const afterUndo = await snap('project-undo-snapshot');
+  assert.equal(afterUndo.projects.find((p) => p.id === blank.project.id).version, 4);
+  assert(afterUndo.commandUndoRecords.find((u) => u.id === archived.undo.id).consumedAt);
+  const archiveABA = await command(
+    'project-archive-aba',
+    'archiveProject',
+    W + '/projects/' + blank.project.id + '/archive',
+    { expectedVersion: 4 },
+  );
+  await command(
+    'project-restore',
+    'restoreProject',
+    W + '/projects/' + blank.project.id + '/restore',
+    { expectedVersion: 5 },
+  );
+  await command(
+    'project-archive-again',
+    'archiveProject',
+    W + '/projects/' + blank.project.id + '/archive',
+    { expectedVersion: 6 },
+  );
+  const ab = await snap('before-project-aba-undo');
+  await undo('project-aba-undo', archiveABA.undo.id, 409);
+  assert.deepEqual(await snap('after-project-aba-undo'), ab);
+  const child = templated.createdTasks[0];
+  await sql('UPDATE tasks SET deletedAt=1,deletedBy=?,version=version+1 WHERE id=?', [
+    m1,
+    child.id,
+  ]);
+  const deleted = await command(
+    'project-delete',
+    'deleteProject',
+    W + '/projects/' + templated.project.id,
+    { expectedVersion: 1 },
+  );
+  await get('deleted-project-hidden', W + '/projects/' + templated.project.id, { status: 404 });
+  await undo('project-delete-undo', deleted.undo.id);
+  const afterDeleteUndo = await snap('deleted-child-preserved');
+  assert.equal(afterDeleteUndo.tasks.find((t) => t.id === child.id).deletedAt, 1);
+  const deletedAgain = await command(
+    'project-delete-again',
+    'deleteProject',
+    W + '/projects/' + templated.project.id,
+    { expectedVersion: 3 },
+  );
+  await command(
+    'project-restore-deleted',
+    'restoreDeletedProject',
+    W + '/projects/' + templated.project.id + '/restore-deleted',
+    { expectedVersion: 4 },
+  );
+  await undo('deleted-undo-stale', deletedAgain.undo.id, 409);
+  const ta = await team('transfer-team-a', [m3]);
+  const tb = await team('transfer-team-b', [m3]);
+  assert.equal((await get('transfer-member', W + '/members/' + m3)).data.teamId, tb.team.id);
+  assert(!(await get('transfer-old-team', W + '/teams/' + ta.team.id)).data.memberIds.includes(m3));
+  const updatedTeam = await command('team-patch', 'updateTeam', W + '/teams/' + tb.team.id, {
+    expectedVersion: 1,
+    description: 'changed',
+  });
+  assert.equal(updatedTeam.team.description, 'changed');
+  await command(
+    'team-stale',
+    'updateTeam',
+    W + '/teams/' + tb.team.id,
+    { expectedVersion: 1, name: 'stale' },
+    409,
+  );
+  await command(
+    'team-duplicate-name',
+    'createTeam',
+    W + '/teams',
+    teamInput(tb.team.name.toUpperCase()),
+    409,
+  );
+  const beforeTeamFailure = await snap('before-team-delete-failure');
+  await command(
+    'team-delete-failure',
+    'deleteTeam',
+    W + '/teams/' + tb.team.id,
+    { expectedVersion: 2 },
+    500,
+    'fail',
+  );
+  assert.deepEqual(await snap('after-team-delete-failure'), beforeTeamFailure);
+  // Include active private and independently archived/deleted project associations.
+  const tl = await team('lifecycle-team', [m2]);
+  const lp = await project('lifecycle-project', {
+    ...projectInput('Lifecycle project'),
+    teamId: tl.team.id,
+  });
+  await command(
+    'lifecycle-project-archive',
+    'archiveProject',
+    W + '/projects/' + lp.project.id + '/archive',
+    { expectedVersion: 1 },
+  );
+  await command('lifecycle-project-delete', 'deleteProject', W + '/projects/' + lp.project.id, {
+    expectedVersion: 2,
+  });
+  await sql('UPDATE projects SET teamId=?,version=version+1 WHERE id=?', [tl.team.id, p6]);
+  const lifecycleBefore = await snap('team-lifecycle-before'),
+    td = await command('team-delete-lifecycle', 'deleteTeam', W + '/teams/' + tl.team.id, {
+      expectedVersion: 1,
+    });
+  assert(td.affectedProjectIds.includes(p6));
+  assert(!JSON.stringify(td).includes('Customer Portal'));
+  await get('team-deleted-hidden', W + '/teams/' + tl.team.id, { status: 404 });
+  await undo('team-undo-lifecycle', td.undo.id);
+  const lifecycleAfter = await snap('team-lifecycle-after');
+  for (const id of [lp.project.id, p6]) {
+    const before = lifecycleBefore.projects.find((p) => p.id === id),
+      after = lifecycleAfter.projects.find((p) => p.id === id);
+    assert.equal(after.teamId, tl.team.id);
+    assert.equal(after.archivedAt, before.archivedAt);
+    assert.equal(after.deletedAt, before.deletedAt);
+    assert.equal(after.deletedBy, before.deletedBy);
+    assert.equal(after.version, before.version + 2);
+  }
+  assert.deepEqual(
+    await undo('team-undo-retry', td.undo.id),
+    JSON.parse(lifecycleAfter.commandUndoRecords.find((r) => r.id === td.undo.id).resultJson),
+  );
+  const taba = await team('aba-team', [m3]);
+  const abdel = await command('team-delete-aba', 'deleteTeam', W + '/teams/' + taba.team.id, {
+    expectedVersion: 1,
+  });
+  const moved = await team('aba-other-team', [m3]);
+  await command('aba-clear', 'updateTeam', W + '/teams/' + moved.team.id, {
+    expectedVersion: 1,
+    memberIds: [],
+  });
+  const abaBefore = await snap('before-team-aba');
+  await undo('team-aba-undo', abdel.undo.id, 409);
+  assert.deepEqual(await snap('after-team-aba'), abaBefore);
+  const reuse = await team('name-reuse');
+  const reusedel = await command('name-reuse-delete', 'deleteTeam', W + '/teams/' + reuse.team.id, {
+    expectedVersion: 1,
+  });
+  await team('name-reuse-new', []);
+  await sql('UPDATE teams SET nameNormalized=? WHERE name=?', [
+    reuse.team.name.toLowerCase(),
+    'name-reuse-new',
+  ]);
+  const reuseBefore = await snap('before-name-reuse');
+  await undo('name-reuse-undo', reusedel.undo.id, 409);
+  assert.deepEqual(await snap('after-name-reuse'), reuseBefore);
+  const profileTeam = await team('profile-stale-team', [m1]);
+  const profileTeamDeleted = await command(
+    'profile-team-delete',
+    'deleteTeam',
+    W + '/teams/' + profileTeam.team.id,
+    { expectedVersion: 1 },
+  );
+  await command('profile-after-team-delete', 'updateProfile', '/api/v1/me/profile', {
+    expectedVersion: 2,
+    title: 'WU31 profile final',
+  });
+  const profileUndoBefore = await snap('before-profile-team-undo');
+  await undo('profile-team-undo-stale', profileTeamDeleted.undo.id, 409);
+  assert.deepEqual(await snap('after-profile-team-undo'), profileUndoBefore);
+  const raced = await team('race-team');
+  const raceBefore = await snap('before-association-race');
+  await command(
+    'association-race',
+    'deleteTeam',
+    W + '/teams/' + raced.team.id,
+    { expectedVersion: 1 },
+    409,
+    {
+      sql: 'UPDATE workspaceMembers SET teamId=?,version=version+1 WHERE id=?',
+      parameters: [raced.team.id, m3],
+    },
+  );
+  const raceAfter = await snap('after-association-race');
+  assert.deepEqual(raceAfter.teams, raceBefore.teams);
+  assert.deepEqual(raceAfter.commandUndoRecords, raceBefore.commandUndoRecords);
+  assert.deepEqual(raceAfter.activity, raceBefore.activity);
+  assert.equal(raceAfter.workspaceMembers.find((m) => m.id === m3).teamId, raced.team.id);
+  const racedDelete = await command(
+    'race-team-delete-current',
+    'deleteTeam',
+    W + '/teams/' + raced.team.id,
+    { expectedVersion: 1 },
+  );
+  const racedUndoBefore = await snap('before-undo-race');
+  await undo('undo-member-race', racedDelete.undo.id, 409, {
+    sql: 'UPDATE workspaceMembers SET version=version+1 WHERE id=?',
+    parameters: [m3],
+  });
+  const racedUndoAfter = await snap('after-undo-race');
+  assert.deepEqual(racedUndoAfter.teams, racedUndoBefore.teams);
+  assert.deepEqual(racedUndoAfter.projects, racedUndoBefore.projects);
+  assert.deepEqual(racedUndoAfter.commandUndoRecords, racedUndoBefore.commandUndoRecords);
+  assert.deepEqual(racedUndoAfter.activity, racedUndoBefore.activity);
+  // Scope too large is rejected before writes, using test-only actual rows.
+  const large = await project('large-project');
+  const largeId = large.project.id;
+  await sql(
+    `INSERT INTO tasks(id,workspaceId,projectId,number,title,descriptionHtml,descriptionText,status,priority,position,createdBy,createdAt,updatedAt,version) SELECT printf('019a1111-1111-7000-8000-%012d',value),?,?,201+value,'Large','','','todo','none',value*100,?,0,0,1 FROM json_each(?)`,
+    [
+      seed.primary.workspaceId,
+      largeId,
+      m1,
+      JSON.stringify(Array.from({ length: 129 }, (_, i) => i)),
+    ],
+  );
+  const largeBefore = await snap('before-large-copy');
+  await command(
+    'large-copy',
+    'duplicateProject',
+    W + '/projects/' + largeId + '/duplicate',
+    { expectedVersion: 1, name: 'Oversized copy' },
+    409,
+  );
+  assert.deepEqual(await snap('after-large-copy'), largeBefore);
+  // View-grant read versus write, and authorization revocation at final SQL boundary.
+  await sql(
+    'INSERT INTO projectMembers(workspaceId,projectId,memberId,permission) VALUES (?,?,?,?)',
+    [seed.primary.workspaceId, p6, m1, 'view'],
+  );
+  await get('private-view-detail', W + '/projects/' + p6);
+  const pp = (await get('private-view-current', W + '/projects/' + p6)).data;
+  await command(
+    'private-view-write',
+    'updateProject',
+    W + '/projects/' + p6,
+    { expectedVersion: pp.version, name: 'forbidden' },
+    403,
+  );
+  await sql(
+    "UPDATE projectMembers SET permission='edit' WHERE workspaceId=? AND projectId=? AND memberId=?",
+    [seed.primary.workspaceId, p6, m1],
+  );
+  const privateArchive = await command(
+    'private-edit-archive',
+    'archiveProject',
+    W + '/projects/' + p6 + '/archive',
+    { expectedVersion: pp.version },
+  );
+  await undo('private-undo-applied', privateArchive.undo.id);
+  await sql('DELETE FROM projectMembers WHERE workspaceId=? AND projectId=? AND memberId=?', [
+    seed.primary.workspaceId,
+    p6,
+    m1,
+  ]);
+  await undo('private-undo-revoked-replay', privateArchive.undo.id, 403);
+  const authorizationTarget = await project('authorization-target');
+  const authBefore = await snap('before-role-race');
+  await command(
+    'create-role-race',
+    'createProject',
+    W + '/projects',
+    projectInput('role race'),
+    409,
+    { sql: "UPDATE workspaceMembers SET role='Guest' WHERE id=?", parameters: [m1] },
+  );
+  const authAfter = await snap('after-role-race');
+  assert.deepEqual(authAfter.projects, authBefore.projects);
+  assert.deepEqual(authAfter.activity, authBefore.activity);
+  await sql("UPDATE workspaceMembers SET role='Owner' WHERE id=?", [m1]);
+  await sql("UPDATE workspaceMembers SET role='Member' WHERE id=?", [m2]);
+  await stop();
+  await start('member', principal('m2'));
+  await get('member-project-read', W + '/projects/' + authorizationTarget.project.id);
+  await command(
+    'member-workspace-forbidden',
+    'updateWorkspace',
+    W,
+    { expectedVersion: 2, name: 'no' },
+    403,
+  );
+  await command(
+    'member-team-forbidden',
+    'createTeam',
+    W + '/teams',
+    teamInput('No member team'),
+    403,
+  );
+  await command(
+    'member-project-edit',
+    'updateProject',
+    W + '/projects/' + authorizationTarget.project.id,
+    { expectedVersion: 1, name: 'Member edit' },
+  );
+  await command(
+    'member-create',
+    'createProject',
+    W + '/projects',
+    { ...projectInput('Member create'), leadId: m2 },
+    201,
+  );
+  await undo('other-actor-undo', archived.undo.id, 404);
+  await command(
+    'other-deleting-actor',
+    'restoreDeletedProject',
+    W + '/projects/' + lp.project.id + '/restore-deleted',
+    { expectedVersion: lifecycleAfter.projects.find((p) => p.id === lp.project.id).version },
+    403,
+  );
+  await sql("UPDATE workspaceMembers SET role='Guest' WHERE id=?", [m2]);
+  await stop();
+  await start('guest', principal('m2'));
+  await command(
+    'guest-create-forbidden',
+    'createProject',
+    W + '/projects',
+    { ...projectInput('Guest create'), leadId: m2 },
+    403,
+  );
+  await command(
+    'guest-duplicate-forbidden',
+    'duplicateProject',
+    W + '/projects/' + authorizationTarget.project.id + '/duplicate',
+    { expectedVersion: 2, name: 'Guest copy' },
+    403,
+  );
+  await command('guest-team-forbidden', 'createTeam', W + '/teams', teamInput('Guest team'), 403);
+  await command(
+    'guest-existing-project-edit',
+    'updateProject',
+    W + '/projects/' + authorizationTarget.project.id,
+    { expectedVersion: 2, description: 'Canonical Guest editable policy' },
+  );
+  await get('guest-member-read', W + '/members/' + m1);
+  await sql("UPDATE workspaceMembers SET role='Admin' WHERE id=?", [m2]);
+  await stop();
+  await start('admin', principal('m2'));
+  await command('admin-team-create', 'createTeam', W + '/teams', teamInput('Admin team'), 201);
+  await command('admin-workspace-patch', 'updateWorkspace', W, {
+    expectedVersion: 2,
+    iconColor: '#5A67D8',
+  });
+  await get('admin-private-restricted', W + '/projects/' + p6, { status: 403 });
+  await stop();
+  await start('isolation', {
+    LOCAL_USER_ID: seed.isolation.userId,
+    LOCAL_WORKSPACE_ID: seed.isolation.workspaceId,
+  });
+  await get(
+    'second-workspace-projects',
+    '/api/v1/workspaces/' + seed.isolation.workspaceId + '/projects',
+  );
+  await get('second-to-first', W + '/projects', { status: 404 });
+  await stop();
+  await start('invited', principal('m8'));
+  await get('invited-not-principal', '/api/v1/session', { status: 401 });
+  await stop();
+  await start('restart', principal(), true);
+  assert.equal((await get('restart-workspace', W)).data.name, 'WU31 workspace');
+  assert.equal(
+    (await get('restart-profile', '/api/v1/me/profile')).data.title,
+    'WU31 profile final',
+  );
+  assert.equal(
+    (await get('restart-template', W + '/projects/' + templated.project.id)).data.id,
+    templated.project.id,
+  );
+  assert.equal(
+    (await get('restart-copy', W + '/projects/' + copy.project.id)).data.id,
+    copy.project.id,
+  );
+  assert.deepEqual(await undo('restart-undo-replay', archived.undo.id), u1);
+  await get('production-no-test-sql', '/__wu31/sql', { status: 404 });
+  await get('current-tasks-available', W + '/tasks', { status: 200 });
+  await get('current-views-available', W + '/projects/' + p1 + '/views', { status: 200 });
+  report.status = 'PASS';
+  report.acceptance = {
+    AC1: 'workspace/profile/projects/template/duplicate/team assignment persisted across actual production Worker restart',
+    AC2: 'Owner/Admin/Member/Guest, view/edit grants/private children, invited401, two workspace principals, current authorization including final SQL',
+    AC3: 'actual local D1 multi-row template/copy/association/lifecycle/Undo, injected midbatch FK rollback, stale/ABA/name reuse/association races/concurrent replay',
+  };
+} catch (error) {
+  report.status = 'FAILED';
+  report.error = { message: error.message, stack: error.stack };
+  process.exitCode = 1;
+} finally {
+  await harness.cleanup();
+  report.completedAt = new Date().toISOString();
+  save('report.json', report);
+  console.log(
+    JSON.stringify({
+      status: report.status,
+      commands: report.commands.length,
+      probes: report.probes.length,
+      error: report.error ?? null,
+      report: resolve(out, 'report.json'),
+    }),
+  );
+}

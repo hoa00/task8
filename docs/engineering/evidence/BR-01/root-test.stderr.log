@@ -1,0 +1,4 @@
+$ turbo run test && pnpm test:reference && pnpm test:workspace && pnpm test:i18n
+$ node --test tests/visual/reference/*.test.mjs
+$ node --test tests/workspace/*.test.mjs
+$ node --experimental-strip-types --test --test-isolation=none tests/i18n/*.test.mjs

@@ -1,0 +1,16 @@
+
+ ⛅️ wrangler 4.148.0
+────────────────────
+Your Worker has access to the following bindings:
+Binding                                                              Resource                  Mode
+env.DB (task8-local)                                                 D1 Database               local
+env.FILES (task8-local-files)                                        R2 Bucket                 local
+env.STUDIO_ENV ("local")                                             Environment Variable      local
+env.LOCAL_USER_ID ("01a11abd-aa80-7d3f-879a-dd89204bcd77")           Environment Variable      local
+env.LOCAL_WORKSPACE_ID ("01a11abd-aa80-72ea-8b87-b31ad015a24e")      Environment Variable      local
+
+❓ Your types might be out of date. Re-run `wrangler types` to ensure your types are correct.
+⎔ Starting local server...
+[wrangler:info] Ready on http://127.0.0.1:40793
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/files/01a12e7b-801a-7094-b19d-eb6cfa5c346b/content 200 OK (31ms)
+[wrangler:info] GET /__wu35/objects 404 Not Found (3ms)

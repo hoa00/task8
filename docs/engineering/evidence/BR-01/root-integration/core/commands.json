@@ -1,0 +1,317 @@
+[
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "d1",
+      "migrations",
+      "apply",
+      "DB",
+      "--local",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:56:25.287Z",
+    "completedAt": "2026-10-12T04:56:32.827Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "migrate.stdout.log",
+      "bytes": 1466,
+      "sha256": "5c76e5a66e0da1095dda18fe69f357b5011a14d32376f445d506d2bc3166aa32"
+    },
+    "stderr": {
+      "path": "migrate.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "seed",
+    "argv": [
+      "node",
+      "scripts/seed-local.mjs",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:56:32.828Z",
+    "completedAt": "2026-10-12T04:56:40.327Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "seed.stdout.log",
+      "bytes": 48600,
+      "sha256": "9aea1c7c5117676385b308ab53732908b164f38a29e0b00f6a069c450b3a417c"
+    },
+    "stderr": {
+      "path": "seed.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "owner",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "39827",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-core-KmYfel/owner.json",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:56:40.332Z",
+    "completedAt": "2026-10-12T04:56:46.958Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "owner.stdout.log",
+      "bytes": 16770,
+      "sha256": "93d615000ff50d4c482de25dccdd46ec4fe063714384b77f28f6c5cce270b090"
+    },
+    "stderr": {
+      "path": "owner.stderr.log",
+      "bytes": 562,
+      "sha256": "d2d19032faaa5d4e4eaa3295926581d3fd7da9781ebbc974c3d5a35573965b5a"
+    }
+  },
+  {
+    "name": "member",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "39827",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-core-KmYfel/member.json",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:56:46.959Z",
+    "completedAt": "2026-10-12T04:56:53.347Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "member.stdout.log",
+      "bytes": 1839,
+      "sha256": "3ed22987c1ef63824a65458b6dee03d566f1a17ae991a5b9d276dcba4a8d438a"
+    },
+    "stderr": {
+      "path": "member.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "guest",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "39827",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-core-KmYfel/guest.json",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:56:53.355Z",
+    "completedAt": "2026-10-12T04:56:59.901Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "guest.stdout.log",
+      "bytes": 1596,
+      "sha256": "2b0efef67aa3a12c0703aeb70ca1d44595c477d8a63831939ca826578df21f2d"
+    },
+    "stderr": {
+      "path": "guest.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "admin",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "39827",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-core-KmYfel/admin.json",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:56:59.910Z",
+    "completedAt": "2026-10-12T04:57:06.367Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "admin.stdout.log",
+      "bytes": 1252,
+      "sha256": "05854de7651faa9c0d570e27dc1dbc1c5358f48a757e02e9ad5bf0fac8caa394"
+    },
+    "stderr": {
+      "path": "admin.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "isolation",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "39827",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-core-KmYfel/isolation.json",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:57:06.367Z",
+    "completedAt": "2026-10-12T04:57:13.361Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "isolation.stdout.log",
+      "bytes": 1119,
+      "sha256": "e8a988bfcd4a7318ae8170c399750b50de01e3d667efe2db91eda7d4b3178703"
+    },
+    "stderr": {
+      "path": "isolation.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "invited",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "39827",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-core-KmYfel/invited.json",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:57:13.362Z",
+    "completedAt": "2026-10-12T04:57:20.189Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "invited.stdout.log",
+      "bytes": 975,
+      "sha256": "32e57b437a483618c2298cac355ab178fe79dd8f433918ed4e9de6d32341bf77"
+    },
+    "stderr": {
+      "path": "invited.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "restart",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "39827",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-core-KmYfel/restart.json",
+      "--persist-to",
+      "/tmp/task8-api-core-KmYfel/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:57:20.189Z",
+    "completedAt": "2026-10-12T04:57:27.048Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "restart.stdout.log",
+      "bytes": 1752,
+      "sha256": "258c7048ac558e00c8c1a233ef46adf710b1eeefe2d2d692ce76c98b2cfa2d83"
+    },
+    "stderr": {
+      "path": "restart.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  }
+]

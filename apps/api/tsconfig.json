@@ -1,12 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "lib": [
-      "ES2022"
-    ],
-    "types": [
-      "@cloudflare/workers-types"
-    ],
+    "lib": ["ES2022"],
+    "types": ["@cloudflare/workers-types"],
     "noEmit": true,
     "allowImportingTsExtensions": true
   },
@@ -14,6 +10,9 @@
     "src",
     "worker-configuration.d.ts",
     "drizzle.config.ts",
-    "tests/runtime/worker.ts"
+    "tests/runtime/worker.ts",
+    "tests/integration/**/*.ts",
+    "tests/support/**/*.ts",
+    "tests/contracts.api.ts"
   ]
 }

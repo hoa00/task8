@@ -1,0 +1,2022 @@
+{
+  "status": "PASS",
+  "runtime": "actual Wrangler local Worker/D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-api-projections-3P72w7/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:28.407Z",
+      "completedAt": "2026-10-12T04:46:35.607Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1473,
+        "sha256": "316c2312cf0718c098681ae6039d85b0c1658a34f9c581421a9e49fad0b57d5c"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-api-projections-3P72w7/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:35.609Z",
+      "completedAt": "2026-10-12T04:46:42.962Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48607,
+        "sha256": "f666aa2d90e08004c102fb43233b04cb3e6441c29b48051f95a2258081d3e986"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "43807",
+        "--inspector-port",
+        "0",
+        "--config",
+        "/tmp/task8-api-projections-3P72w7/owner.json",
+        "--persist-to",
+        "/tmp/task8-api-projections-3P72w7/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:42.964Z",
+      "completedAt": "2026-10-12T04:46:50.203Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Owned process group SIGTERM",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 18362,
+        "sha256": "da4019721c410124d85aef4ec90b879247ad158ac862fbefe6120e8a6b1183d3"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 7544,
+        "sha256": "c88ef6674ed6e2cf3d769d78c843958c3ad9b6a78087d8bd6e8c6e5993375709"
+      }
+    },
+    {
+      "name": "member",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "43807",
+        "--inspector-port",
+        "0",
+        "--config",
+        "/tmp/task8-api-projections-3P72w7/member.json",
+        "--persist-to",
+        "/tmp/task8-api-projections-3P72w7/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:50.204Z",
+      "completedAt": "2026-10-12T04:46:56.743Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Owned process group SIGTERM",
+      "stdout": {
+        "path": "member.stdout.log",
+        "bytes": 4027,
+        "sha256": "c908c11e893592ba1c7f5b94a954557b39d47f905f16c7427829baa7520c26e4"
+      },
+      "stderr": {
+        "path": "member.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "isolation",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "43807",
+        "--inspector-port",
+        "0",
+        "--config",
+        "/tmp/task8-api-projections-3P72w7/isolation.json",
+        "--persist-to",
+        "/tmp/task8-api-projections-3P72w7/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:56.749Z",
+      "completedAt": "2026-10-12T04:47:03.527Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Owned process group SIGTERM",
+      "stdout": {
+        "path": "isolation.stdout.log",
+        "bytes": 3615,
+        "sha256": "85a3d41924d55a541f2de36137b759d7cca5b6b908ce10912ccfb8671e60be37"
+      },
+      "stderr": {
+        "path": "isolation.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "production-restart",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "43807",
+        "--inspector-port",
+        "0",
+        "--config",
+        "/tmp/task8-api-projections-3P72w7/production-restart.json",
+        "--persist-to",
+        "/tmp/task8-api-projections-3P72w7/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:47:03.528Z",
+      "completedAt": "2026-10-12T04:47:10.504Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Owned process group SIGTERM",
+      "stdout": {
+        "path": "production-restart.stdout.log",
+        "bytes": 3323,
+        "sha256": "c5e798a161f4c811e79972d3bbc2cc2f1726d4b1cd06d4bc59add58744634d97"
+      },
+      "stderr": {
+        "path": "production-restart.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "session",
+      "path": "/api/v1/session",
+      "status": 200,
+      "budget": {
+        "queries": 1,
+        "parameters": 4
+      },
+      "evidence": "session.json"
+    },
+    {
+      "name": "baseline-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "baseline-bootstrap.json"
+    },
+    {
+      "name": "baseline-home",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+      "status": 200,
+      "budget": {
+        "queries": 18,
+        "parameters": 8
+      },
+      "evidence": "baseline-home.json"
+    },
+    {
+      "name": "baseline-overview",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/overview",
+      "status": 200,
+      "budget": {
+        "queries": 17,
+        "parameters": 8
+      },
+      "evidence": "baseline-overview.json"
+    },
+    {
+      "name": "adapter-1",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-1.json"
+    },
+    {
+      "name": "adapter-2",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-2.json"
+    },
+    {
+      "name": "baseline-notifications",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "baseline-notifications.json"
+    },
+    {
+      "name": "baseline-events",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2000-01-01&to=2099-12-31",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "baseline-events.json"
+    },
+    {
+      "name": "baseline-milestones",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/milestones",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "baseline-milestones.json"
+    },
+    {
+      "name": "sql-3",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-3.json"
+    },
+    {
+      "name": "sql-4",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-4.json"
+    },
+    {
+      "name": "sql-5",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-5.json"
+    },
+    {
+      "name": "sql-6",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-6.json"
+    },
+    {
+      "name": "adapter-7",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-7.json"
+    },
+    {
+      "name": "adapter-8",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-8.json"
+    },
+    {
+      "name": "adapter-9",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiODA4YjczZjk2ZWZkOTVkM2M0ZjUwZWNlNjlkZGM1NmI5MmQ0Yzk4NzEyYTc1NTkxYTM4ZDNhZWY2NmM0ZjQwYyIsInNvcnRGaWVsZCI6Im1hbnVhbCIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOjM1MTAwLCJpZCI6IjAxZDAwMDAwLTAwMDAtNzAwMC04MDAwLTAwMDAwMDAwMDQ3ZiJ9&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-9.json"
+    },
+    {
+      "name": "adapter-10",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-10.json"
+    },
+    {
+      "name": "adapter-11",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-11.json"
+    },
+    {
+      "name": "adapter-12",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=due&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiN2I2OWU4YjM5MDlkMGY4MWZiYTA5NDg5YjIxZjZhMmNiZTkwMGMzMzU2ZTM4ZjUwNDY2MTY0YmExZTg3OTdjYiIsInNvcnRGaWVsZCI6Im1hbnVhbCIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOjM5OTAwLCJpZCI6IjAxZDAwMDAwLTAwMDAtNzAwMC04MDAwLTAwMDAwMDAwMDRhZiJ9&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-12.json"
+    },
+    {
+      "name": "adapter-13",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=overlap",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-13.json"
+    },
+    {
+      "name": "adapter-14",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=overlap&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-14.json"
+    },
+    {
+      "name": "adapter-15",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeFrom=2028-02-01&rangeTo=2028-02-01&rangeBasis=overlap&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiYWEzMjVjZDhjZmRhNjVhNWUzY2M1M2I5Zjg5Y2JlZjNlYzYyMzQ0OWQ5N2QyZWNkMTIzNmQ0ZTUxMGZmMjg2MyIsInNvcnRGaWVsZCI6Im1hbnVhbCIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOjM5OTAwLCJpZCI6IjAxZDAwMDAwLTAwMDAtNzAwMC04MDAwLTAwMDAwMDAwMDRhZiJ9&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-15.json"
+    },
+    {
+      "name": "multi-home",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+      "status": 200,
+      "budget": {
+        "queries": 18,
+        "parameters": 8
+      },
+      "evidence": "multi-home.json"
+    },
+    {
+      "name": "multi-overview",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/overview",
+      "status": 200,
+      "budget": {
+        "queries": 17,
+        "parameters": 8
+      },
+      "evidence": "multi-overview.json"
+    },
+    {
+      "name": "project-summary-01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/summary",
+      "status": 200,
+      "budget": {
+        "queries": 11,
+        "parameters": 4
+      },
+      "evidence": "project-summary-01a11abd-aa80-7d11-86d8-e6545859cd14.json"
+    },
+    {
+      "name": "project-summary-01a11abd-aa80-7f23-849c-94f63946ff17",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7f23-849c-94f63946ff17/summary",
+      "status": 200,
+      "budget": {
+        "queries": 11,
+        "parameters": 4
+      },
+      "evidence": "project-summary-01a11abd-aa80-7f23-849c-94f63946ff17.json"
+    },
+    {
+      "name": "member-summary",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7249-8034-93bbfb2174a2/summary",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 4
+      },
+      "evidence": "member-summary.json"
+    },
+    {
+      "name": "team-summary",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/teams/01a11abd-aa80-7c4b-88b5-79c301cf70d7/summary",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 4
+      },
+      "evidence": "team-summary.json"
+    },
+    {
+      "name": "search-page1",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page1.json"
+    },
+    {
+      "name": "search-page-16",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0MTkifQ",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page-16.json"
+    },
+    {
+      "name": "search-page-17",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0NGIifQ",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page-17.json"
+    },
+    {
+      "name": "search-page-18",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0N2QifQ",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page-18.json"
+    },
+    {
+      "name": "search-page-19",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0YWYifQ",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-page-19.json"
+    },
+    {
+      "name": "search-category",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle+%25_+quote%27&limit=50&category=comments",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-category.json"
+    },
+    {
+      "name": "search-description",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=descriptionOnly+%25_",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-description.json"
+    },
+    {
+      "name": "search-injection-literal",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=%27+OR+1%3D1+--",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-injection-literal.json"
+    },
+    {
+      "name": "search-secondary-hidden",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=secondary+secret",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-secondary-hidden.json"
+    },
+    {
+      "name": "search-comments",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=Tablet+layout+f&category=comments",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-comments.json"
+    },
+    {
+      "name": "comment-canonical",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a11abd-aa80-75fa-877e-0c56eef0ad59/comments",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      },
+      "evidence": "comment-canonical.json"
+    },
+    {
+      "name": "search-files",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=home&category=files",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-files.json"
+    },
+    {
+      "name": "adapter-20",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-20.json"
+    },
+    {
+      "name": "adapter-21",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-21.json"
+    },
+    {
+      "name": "adapter-22",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiODA4YjczZjk2ZWZkOTVkM2M0ZjUwZWNlNjlkZGM1NmI5MmQ0Yzk4NzEyYTc1NTkxYTM4ZDNhZWY2NmM0ZjQwYyIsInNvcnRGaWVsZCI6Im1hbnVhbCIsInNvcnREaXJlY3Rpb24iOiJhc2MiLCJzb3J0VmFsdWUiOjM1MTAwLCJpZCI6IjAxZDAwMDAwLTAwMDAtNzAwMC04MDAwLTAwMDAwMDAwMDQ3ZiJ9&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-22.json"
+    },
+    {
+      "name": "adapter-23",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-23.json"
+    },
+    {
+      "name": "adapter-24",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/summary?favoriteOnly=false&archived=false&q=&filters=%5B%5D&sortField=manual&sortDirection=asc&rangeBasis=due",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "adapter-24.json"
+    },
+    {
+      "name": "adapter-25",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/files?limit=50&q=&sort=recent",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "adapter-25.json"
+    },
+    {
+      "name": "sql-26",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-26.json"
+    },
+    {
+      "name": "sql-27",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-27.json"
+    },
+    {
+      "name": "notification-page1",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications?unreadOnly=true&limit=1",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "notification-page1.json"
+    },
+    {
+      "name": "notification-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "notification-bootstrap.json"
+    },
+    {
+      "name": "notification-full-cohort",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications?limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "notification-full-cohort.json"
+    },
+    {
+      "name": "read-anchor",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/01d00000-0000-7000-8000-000000000bf8",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 7
+      },
+      "evidence": "read-anchor.json"
+    },
+    {
+      "name": "notification-after-anchor-read",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications?unreadOnly=true&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiMDc3Nzk2MGQ1MTdjN2VmZWQ1YjIyZDgzOTcyZTNlN2MyNzY4YWFjZmRmZGIzOGE1ZmVjYTllZWFjNmRkNjVkYSIsInNvcnRGaWVsZCI6InVwZGF0ZWQiLCJzb3J0RGlyZWN0aW9uIjoiZGVzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6NDcuMTc4WiIsImlkIjoiMDFkMDAwMDAtMDAwMC03MDAwLTgwMDAtMDAwMDAwMDAwYmY4In0",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "notification-after-anchor-read.json"
+    },
+    {
+      "name": "read-one",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/01d00000-0000-7000-8000-000000000bf8",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 7
+      },
+      "evidence": "read-one.json"
+    },
+    {
+      "name": "read-idempotent-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "read-idempotent-before.json"
+    },
+    {
+      "name": "read-one-again",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/01d00000-0000-7000-8000-000000000bf8",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 7
+      },
+      "evidence": "read-one-again.json"
+    },
+    {
+      "name": "read-idempotent-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "read-idempotent-after.json"
+    },
+    {
+      "name": "mark-unread",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/01d00000-0000-7000-8000-000000000bf8",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "mark-unread.json"
+    },
+    {
+      "name": "before-mark-all",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "before-mark-all.json"
+    },
+    {
+      "name": "mark-all",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/read-all",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "mark-all.json"
+    },
+    {
+      "name": "markall-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "markall-bootstrap.json"
+    },
+    {
+      "name": "markall-idempotent-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "markall-idempotent-before.json"
+    },
+    {
+      "name": "mark-all-again",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/read-all",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "mark-all-again.json"
+    },
+    {
+      "name": "markall-idempotent-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "markall-idempotent-after.json"
+    },
+    {
+      "name": "sql-28",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-28.json"
+    },
+    {
+      "name": "markall-lost-actor-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "markall-lost-actor-before.json"
+    },
+    {
+      "name": "markall-noop-lost-actor",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/read-all",
+      "status": 409,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "markall-noop-lost-actor.json"
+    },
+    {
+      "name": "markall-lost-actor-observation",
+      "path": "/__wu34/injection",
+      "status": 200,
+      "budget": null,
+      "evidence": "markall-lost-actor-observation.json"
+    },
+    {
+      "name": "markall-lost-actor-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "markall-lost-actor-after.json"
+    },
+    {
+      "name": "notification-unread-restore",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/01d00000-0000-7000-8000-000000000bf8",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "notification-unread-restore.json"
+    },
+    {
+      "name": "preferences-before",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "preferences-before.json"
+    },
+    {
+      "name": "notification-preferences-before",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/notification-preferences",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "notification-preferences-before.json"
+    },
+    {
+      "name": "prefs-concurrent-theme",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "prefs-concurrent-theme.json"
+    },
+    {
+      "name": "prefs-concurrent-density",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "prefs-concurrent-density.json"
+    },
+    {
+      "name": "preferences-merged",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "preferences-merged.json"
+    },
+    {
+      "name": "np-concurrent-email",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/notification-preferences",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "np-concurrent-email.json"
+    },
+    {
+      "name": "np-concurrent-push",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/notification-preferences",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "np-concurrent-push.json"
+    },
+    {
+      "name": "notification-preferences-merged",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/notification-preferences",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "notification-preferences-merged.json"
+    },
+    {
+      "name": "preferences-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "preferences-bootstrap.json"
+    },
+    {
+      "name": "profile-before",
+      "path": "/api/v1/me/profile",
+      "status": 200,
+      "budget": {
+        "queries": 1,
+        "parameters": 4
+      },
+      "evidence": "profile-before.json"
+    },
+    {
+      "name": "profile-update",
+      "path": "/api/v1/me/profile",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 8
+      },
+      "evidence": "profile-update.json"
+    },
+    {
+      "name": "profile-member",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/members/01a11abd-aa80-7249-8034-93bbfb2174a2",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "profile-member.json"
+    },
+    {
+      "name": "profile-home-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "profile-home-bootstrap.json"
+    },
+    {
+      "name": "view-create",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 201,
+      "budget": {
+        "queries": 5,
+        "parameters": 17
+      },
+      "evidence": "view-create.json"
+    },
+    {
+      "name": "view-concurrent-a",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 201,
+      "budget": {
+        "queries": 5,
+        "parameters": 17
+      },
+      "evidence": "view-concurrent-a.json"
+    },
+    {
+      "name": "view-concurrent-b",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 201,
+      "budget": {
+        "queries": 5,
+        "parameters": 17
+      },
+      "evidence": "view-concurrent-b.json"
+    },
+    {
+      "name": "view-update",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/views/01a12e6f-4b03-7d11-a06c-9378d1822f5b",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 12
+      },
+      "evidence": "view-update.json"
+    },
+    {
+      "name": "view-stale-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "view-stale-before.json"
+    },
+    {
+      "name": "view-stale-update",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/views/01a12e6f-4b03-7d11-a06c-9378d1822f5b",
+      "status": 409,
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      },
+      "evidence": "view-stale-update.json"
+    },
+    {
+      "name": "view-stale-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "view-stale-after.json"
+    },
+    {
+      "name": "view-delete",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/views/01a12e6f-4b0f-749e-a2a9-efad7ac2a399",
+      "status": 200,
+      "budget": {
+        "queries": 5,
+        "parameters": 8
+      },
+      "evidence": "view-delete.json"
+    },
+    {
+      "name": "view-list-after-delete",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      },
+      "evidence": "view-list-after-delete.json"
+    },
+    {
+      "name": "favorite-add",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-favorites/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "budget": {
+        "queries": 5,
+        "parameters": 9
+      },
+      "evidence": "favorite-add.json"
+    },
+    {
+      "name": "favorite-idempotent-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "favorite-idempotent-before.json"
+    },
+    {
+      "name": "favorite-repeat",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-favorites/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "budget": {
+        "queries": 5,
+        "parameters": 9
+      },
+      "evidence": "favorite-repeat.json"
+    },
+    {
+      "name": "favorite-idempotent-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "favorite-idempotent-after.json"
+    },
+    {
+      "name": "favorite-lost-actor-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "favorite-lost-actor-before.json"
+    },
+    {
+      "name": "favorite-noop-lost-actor",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-favorites/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 409,
+      "budget": {
+        "queries": 5,
+        "parameters": 9
+      },
+      "evidence": "favorite-noop-lost-actor.json"
+    },
+    {
+      "name": "favorite-lost-actor-observation",
+      "path": "/__wu34/injection",
+      "status": 200,
+      "budget": null,
+      "evidence": "favorite-lost-actor-observation.json"
+    },
+    {
+      "name": "favorite-lost-actor-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "favorite-lost-actor-after.json"
+    },
+    {
+      "name": "favorite-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "favorite-bootstrap.json"
+    },
+    {
+      "name": "favorite-remove",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-favorites/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "budget": {
+        "queries": 5,
+        "parameters": 8
+      },
+      "evidence": "favorite-remove.json"
+    },
+    {
+      "name": "favorite-remove-idempotent-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "favorite-remove-idempotent-before.json"
+    },
+    {
+      "name": "favorite-remove-repeat",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-favorites/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "budget": {
+        "queries": 5,
+        "parameters": 8
+      },
+      "evidence": "favorite-remove-repeat.json"
+    },
+    {
+      "name": "favorite-remove-idempotent-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "favorite-remove-idempotent-after.json"
+    },
+    {
+      "name": "order-update",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-order",
+      "status": 200,
+      "budget": {
+        "queries": 7,
+        "parameters": 14
+      },
+      "evidence": "order-update.json"
+    },
+    {
+      "name": "order-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "order-bootstrap.json"
+    },
+    {
+      "name": "mutation-rollback-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "mutation-rollback-before.json"
+    },
+    {
+      "name": "preference-fk-rollback",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 500,
+      "budget": {
+        "queries": 4,
+        "parameters": 6
+      },
+      "evidence": "preference-fk-rollback.json"
+    },
+    {
+      "name": "view-fk-rollback",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 500,
+      "budget": {
+        "queries": 5,
+        "parameters": 17
+      },
+      "evidence": "view-fk-rollback.json"
+    },
+    {
+      "name": "order-fk-rollback",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-order",
+      "status": 500,
+      "budget": {
+        "queries": 7,
+        "parameters": 14
+      },
+      "evidence": "order-fk-rollback.json"
+    },
+    {
+      "name": "read-fk-rollback",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/01d00000-0000-7000-8000-000000000bf8",
+      "status": 500,
+      "budget": {
+        "queries": 4,
+        "parameters": 7
+      },
+      "evidence": "read-fk-rollback.json"
+    },
+    {
+      "name": "mutation-rollback-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "mutation-rollback-after.json"
+    },
+    {
+      "name": "validation-errors-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "validation-errors-before.json"
+    },
+    {
+      "name": "preferences-empty",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "preferences-empty.json"
+    },
+    {
+      "name": "preferences-unknown",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "preferences-unknown.json"
+    },
+    {
+      "name": "notification-prefs-unknown",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/notification-preferences",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "notification-prefs-unknown.json"
+    },
+    {
+      "name": "profile-stale",
+      "path": "/api/v1/me/profile",
+      "status": 409,
+      "budget": {
+        "queries": 3,
+        "parameters": 6
+      },
+      "evidence": "profile-stale.json"
+    },
+    {
+      "name": "order-duplicate",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-order",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "order-duplicate.json"
+    },
+    {
+      "name": "order-foreign",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-order",
+      "status": 400,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "order-foreign.json"
+    },
+    {
+      "name": "view-actor-injected",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "view-actor-injected.json"
+    },
+    {
+      "name": "view-foreign",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/views/01a11abd-aa80-7ba5-83ae-3725222e85f2",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "view-foreign.json"
+    },
+    {
+      "name": "notification-private",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/01d00000-0000-7000-8000-000000000c12",
+      "status": 404,
+      "budget": {
+        "queries": 4,
+        "parameters": 7
+      },
+      "evidence": "notification-private.json"
+    },
+    {
+      "name": "validation-errors-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "validation-errors-after.json"
+    },
+    {
+      "name": "read-errors-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "read-errors-before.json"
+    },
+    {
+      "name": "search-bad-cursor",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=changed&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNmZhM2EyZjRlNWRhMWFhMmE0NGUxNWM3ZWVjN2ZmZmY1MjQ0MDhlOGE4Y2Q1NzIzYjk4ZThkMmQ3NzJhY2E1ZCIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6MCwiaWQiOiIwMWQwMDAwMC0wMDAwLTcwMDAtODAwMC0wMDAwMDAwMDA0MTkifQ",
+      "status": 400,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-bad-cursor.json"
+    },
+    {
+      "name": "notification-wrong-scope",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications?category=mention&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiMDc3Nzk2MGQ1MTdjN2VmZWQ1YjIyZDgzOTcyZTNlN2MyNzY4YWFjZmRmZGIzOGE1ZmVjYTllZWFjNmRkNjVkYSIsInNvcnRGaWVsZCI6InVwZGF0ZWQiLCJzb3J0RGlyZWN0aW9uIjoiZGVzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6NDcuMTc4WiIsImlkIjoiMDFkMDAwMDAtMDAwMC03MDAwLTgwMDAtMDAwMDAwMDAwYmY4In0",
+      "status": 400,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "notification-wrong-scope.json"
+    },
+    {
+      "name": "archive-bad-cursor",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/archive?kind=tasks&cursor=not-cursor",
+      "status": 400,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "archive-bad-cursor.json"
+    },
+    {
+      "name": "task-malformed-filters",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks?filters=%7B%22SQL%22%3A%22drop%22%7D",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "task-malformed-filters.json"
+    },
+    {
+      "name": "notification-bad-bool",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications?unreadOnly=1",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "notification-bad-bool.json"
+    },
+    {
+      "name": "search-duplicate-q",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=x&q=y",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "search-duplicate-q.json"
+    },
+    {
+      "name": "calendar-invalid-date",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2028-02-30&to=2028-03-01",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "calendar-invalid-date.json"
+    },
+    {
+      "name": "calendar-reversed",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2028-03-02&to=2028-03-01",
+      "status": 400,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "calendar-reversed.json"
+    },
+    {
+      "name": "private-view-list",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/views",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "private-view-list.json"
+    },
+    {
+      "name": "private-view-create",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/views",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "private-view-create.json"
+    },
+    {
+      "name": "private-calendar",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2000-01-01&to=2099-01-01&projectId=01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "private-calendar.json"
+    },
+    {
+      "name": "private-favorite",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-favorites/01a11abd-aa80-7e33-8144-0756dfd8e8c3",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "private-favorite.json"
+    },
+    {
+      "name": "read-errors-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "read-errors-after.json"
+    },
+    {
+      "name": "archive-task",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01d00000-0000-7000-8000-0000000003e8/archive",
+      "status": 200,
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      },
+      "evidence": "archive-task.json"
+    },
+    {
+      "name": "archive-task2",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01d00000-0000-7000-8000-0000000003ea/archive",
+      "status": 200,
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      },
+      "evidence": "archive-task2.json"
+    },
+    {
+      "name": "archive-page1",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/archive?kind=tasks&q=WU34&limit=1",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "archive-page1.json"
+    },
+    {
+      "name": "restore-archive-anchor",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01d00000-0000-7000-8000-0000000003ea/restore",
+      "status": 200,
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      },
+      "evidence": "restore-archive-anchor.json"
+    },
+    {
+      "name": "archive-continuation",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/archive?kind=tasks&q=WU34&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiMDA5ZmI2NjAxNDQzZTU3NzIyMGU2YjU2YTA2MTNmYzM2NDc2NzY1YjQyNzJjYmE2ZWU4ZWZhMDkwMTY0NDAxZCIsInNvcnRGaWVsZCI6InVwZGF0ZWQiLCJzb3J0RGlyZWN0aW9uIjoiZGVzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6NDkuNzQwWiIsImlkIjoiMDFkMDAwMDAtMDAwMC03MDAwLTgwMDAtMDAwMDAwMDAwM2VhIn0",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "archive-continuation.json"
+    },
+    {
+      "name": "project-before-archive",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      },
+      "evidence": "project-before-archive.json"
+    },
+    {
+      "name": "archive-project",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/archive",
+      "status": 200,
+      "budget": {
+        "queries": 10,
+        "parameters": 14
+      },
+      "evidence": "archive-project.json"
+    },
+    {
+      "name": "archive-active-parents",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/archive?kind=tasks&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "archive-active-parents.json"
+    },
+    {
+      "name": "archive-projects",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/archive?kind=projects&limit=200",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 4
+      },
+      "evidence": "archive-projects.json"
+    },
+    {
+      "name": "archive-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": {
+        "queries": 13,
+        "parameters": 8
+      },
+      "evidence": "archive-bootstrap.json"
+    },
+    {
+      "name": "archived-view-command-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "archived-view-command-before.json"
+    },
+    {
+      "name": "archived-view-update",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/views/01a12e6f-4b03-7d11-a06c-9378d1822f5b",
+      "status": 409,
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      },
+      "evidence": "archived-view-update.json"
+    },
+    {
+      "name": "archived-view-command-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "archived-view-command-after.json"
+    },
+    {
+      "name": "search-archived-parent",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/search?q=needle",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "search-archived-parent.json"
+    },
+    {
+      "name": "calendar-archived-parent",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/calendar-events?from=2000-01-01&to=2099-01-01",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "calendar-archived-parent.json"
+    },
+    {
+      "name": "restore-project",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/restore",
+      "status": 200,
+      "budget": {
+        "queries": 9,
+        "parameters": 14
+      },
+      "evidence": "restore-project.json"
+    },
+    {
+      "name": "member-preferences",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "member-preferences.json"
+    },
+    {
+      "name": "member-view-shared",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      },
+      "evidence": "member-view-shared.json"
+    },
+    {
+      "name": "member-view-edit",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/views/01a12e6f-4b03-7d11-a06c-9378d1822f5b",
+      "status": 200,
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      },
+      "evidence": "member-view-edit.json"
+    },
+    {
+      "name": "member-favorite",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-favorites/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 200,
+      "budget": {
+        "queries": 5,
+        "parameters": 9
+      },
+      "evidence": "member-favorite.json"
+    },
+    {
+      "name": "member-order",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/project-order",
+      "status": 200,
+      "budget": {
+        "queries": 7,
+        "parameters": 14
+      },
+      "evidence": "member-order.json"
+    },
+    {
+      "name": "recipient-scope-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "recipient-scope-before.json"
+    },
+    {
+      "name": "member-notification-hidden",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications/01d00000-0000-7000-8000-000000000bf8",
+      "status": 404,
+      "budget": {
+        "queries": 4,
+        "parameters": 7
+      },
+      "evidence": "member-notification-hidden.json"
+    },
+    {
+      "name": "recipient-scope-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "recipient-scope-after.json"
+    },
+    {
+      "name": "sql-29",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-29.json"
+    },
+    {
+      "name": "sql-30",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-30.json"
+    },
+    {
+      "name": "sql-31",
+      "path": "/__wu34/sql",
+      "status": 200,
+      "budget": null,
+      "evidence": "sql-31.json"
+    },
+    {
+      "name": "view-only-read",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/views",
+      "status": 200,
+      "budget": {
+        "queries": 4,
+        "parameters": 4
+      },
+      "evidence": "view-only-read.json"
+    },
+    {
+      "name": "view-only-write-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "view-only-write-before.json"
+    },
+    {
+      "name": "view-only-rejected",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7e33-8144-0756dfd8e8c3/views",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "view-only-rejected.json"
+    },
+    {
+      "name": "view-only-write-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "view-only-write-after.json"
+    },
+    {
+      "name": "isolation-home",
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/home",
+      "status": 200,
+      "budget": {
+        "queries": 18,
+        "parameters": 8
+      },
+      "evidence": "isolation-home.json"
+    },
+    {
+      "name": "isolation-search",
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=secondary+secret",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "isolation-search.json"
+    },
+    {
+      "name": "isolation-needle",
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/search?q=needle",
+      "status": 200,
+      "budget": {
+        "queries": 16,
+        "parameters": 4
+      },
+      "evidence": "isolation-needle.json"
+    },
+    {
+      "name": "isolation-prefs",
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/me/preferences",
+      "status": 200,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "isolation-prefs.json"
+    },
+    {
+      "name": "workspace-scope-before",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "workspace-scope-before.json"
+    },
+    {
+      "name": "foreign-workspace-home",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/home",
+      "status": 404,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "foreign-workspace-home.json"
+    },
+    {
+      "name": "foreign-workspace-pref",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 404,
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      },
+      "evidence": "foreign-workspace-pref.json"
+    },
+    {
+      "name": "foreign-view-id",
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/views/01a12e6f-4b03-7d11-a06c-9378d1822f5b",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "foreign-view-id.json"
+    },
+    {
+      "name": "foreign-project-favorite",
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/me/project-favorites/01a11abd-aa80-7d11-86d8-e6545859cd14",
+      "status": 404,
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      },
+      "evidence": "foreign-project-favorite.json"
+    },
+    {
+      "name": "workspace-scope-after",
+      "path": "/__wu34/snapshot",
+      "status": 200,
+      "budget": null,
+      "evidence": "workspace-scope-after.json"
+    },
+    {
+      "name": "persistent-prefs",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/preferences",
+      "status": 200,
+      "budget": null,
+      "evidence": "persistent-prefs.json"
+    },
+    {
+      "name": "persistent-notification-prefs",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/me/notification-preferences",
+      "status": 200,
+      "budget": null,
+      "evidence": "persistent-notification-prefs.json"
+    },
+    {
+      "name": "persistent-bootstrap",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/bootstrap",
+      "status": 200,
+      "budget": null,
+      "evidence": "persistent-bootstrap.json"
+    },
+    {
+      "name": "persistent-view",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/views",
+      "status": 200,
+      "budget": null,
+      "evidence": "persistent-view.json"
+    },
+    {
+      "name": "persistent-profile",
+      "path": "/api/v1/me/profile",
+      "status": 200,
+      "budget": null,
+      "evidence": "persistent-profile.json"
+    },
+    {
+      "name": "no-production-test-hook",
+      "path": "/__wu34/snapshot",
+      "status": 404,
+      "budget": null,
+      "evidence": "no-production-test-hook.json"
+    },
+    {
+      "name": "current-files-available",
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a11abd-aa80-7d11-86d8-e6545859cd14/files",
+      "status": 200,
+      "budget": null,
+      "evidence": "current-files-available.json"
+    }
+  ],
+  "snapshotPairs": [
+    [
+      "read-idempotent-before",
+      "read-idempotent-after"
+    ],
+    [
+      "markall-idempotent-before",
+      "markall-idempotent-after"
+    ],
+    [
+      "markall-lost-actor-before",
+      "markall-lost-actor-after"
+    ],
+    [
+      "view-stale-before",
+      "view-stale-after"
+    ],
+    [
+      "favorite-idempotent-before",
+      "favorite-idempotent-after"
+    ],
+    [
+      "favorite-lost-actor-before",
+      "favorite-lost-actor-after"
+    ],
+    [
+      "favorite-remove-idempotent-before",
+      "favorite-remove-idempotent-after"
+    ],
+    [
+      "mutation-rollback-before",
+      "mutation-rollback-after"
+    ],
+    [
+      "validation-errors-before",
+      "validation-errors-after"
+    ],
+    [
+      "read-errors-before",
+      "read-errors-after"
+    ],
+    [
+      "archived-view-command-before",
+      "archived-view-command-after"
+    ],
+    [
+      "recipient-scope-before",
+      "recipient-scope-after"
+    ],
+    [
+      "view-only-write-before",
+      "view-only-write-after"
+    ],
+    [
+      "workspace-scope-before",
+      "workspace-scope-after"
+    ]
+  ],
+  "acceptance": [
+    "AC1: >200 rows full cursor Board/Calendar/Timeline + full summary/project/member/team/Home/Overview/search totals",
+    "AC2: shared recipient list+Bootstrap/Inbox badges/read-state continuation and persisted personal preferences/notification prefs/favorites/order; shared project saved views/CAS/profile",
+    "AC3: literal q, malformed filters/cursors/dates/repeated query; two disjoint scopes/private/current parent/lifecycle; view-only write rejection; actual rollback+full24table zero effects; HTTP errors never Mock fallback"
+  ],
+  "feature": "projections",
+  "startedAt": "2026-10-12T04:46:28.368Z",
+  "run": {
+    "out": "/workspace/task8/test-results/api/projections-pxp7mC",
+    "runtime": "/tmp/task8-api-projections-3P72w7",
+    "persist": "/tmp/task8-api-projections-3P72w7/storage",
+    "port": 43807,
+    "node": "v24.13.0"
+  },
+  "multiPage": {
+    "primaryTasks": 235,
+    "secondaryTasks": 235,
+    "full": 283,
+    "calendar": 234,
+    "timeline": 234,
+    "search": 235
+  },
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "completedAt": "2026-10-12T04:47:10.507Z"
+}

@@ -1,0 +1,2348 @@
+{
+  "status": "PASS",
+  "runtime": "Wrangler local workerd + actual D1",
+  "commands": [
+    {
+      "name": "migrate",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "d1",
+        "migrations",
+        "apply",
+        "DB",
+        "--local",
+        "--persist-to",
+        "/tmp/task8-api-collaboration-aKmn5H/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:45:49.423Z",
+      "completedAt": "2026-10-12T04:45:56.599Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "migrate.stdout.log",
+        "bytes": 1475,
+        "sha256": "2305892f7c9d0d69c423e5ed11c716d2f80de7140b94655b4f48f2033aa8c335"
+      },
+      "stderr": {
+        "path": "migrate.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "seed",
+      "argv": [
+        "node",
+        "scripts/seed-local.mjs",
+        "--persist-to",
+        "/tmp/task8-api-collaboration-aKmn5H/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:45:56.600Z",
+      "completedAt": "2026-10-12T04:46:04.093Z",
+      "exitCode": 0,
+      "signal": null,
+      "error": null,
+      "stdout": {
+        "path": "seed.stdout.log",
+        "bytes": 48610,
+        "sha256": "381a317b0409e5fd8193d0ea76cbda1623d4cff926321011e40def9319a5586a"
+      },
+      "stderr": {
+        "path": "seed.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "owner",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "34125",
+        "--inspector-port",
+        "0",
+        "--config",
+        "/tmp/task8-api-collaboration-aKmn5H/owner.json",
+        "--persist-to",
+        "/tmp/task8-api-collaboration-aKmn5H/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:04.095Z",
+      "completedAt": "2026-10-12T04:46:11.843Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Owned process group SIGTERM",
+      "stdout": {
+        "path": "owner.stdout.log",
+        "bytes": 26276,
+        "sha256": "94927265a39ec05febbdb22fbc8cdf5c5a4d0f2f7822ce33223f9dba54c49150"
+      },
+      "stderr": {
+        "path": "owner.stderr.log",
+        "bytes": 9401,
+        "sha256": "e45be884b3ab15aca6cc3766fb294275a5301098b60f951f9ecb65fbd64d0719"
+      }
+    },
+    {
+      "name": "member",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "34125",
+        "--inspector-port",
+        "0",
+        "--config",
+        "/tmp/task8-api-collaboration-aKmn5H/member.json",
+        "--persist-to",
+        "/tmp/task8-api-collaboration-aKmn5H/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:11.845Z",
+      "completedAt": "2026-10-12T04:46:18.647Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Owned process group SIGTERM",
+      "stdout": {
+        "path": "member.stdout.log",
+        "bytes": 3548,
+        "sha256": "7d0a8d6ae2cf671f0ea1fd76b1b30f227ee597d4ff6f28c2e37fc14326f3e698"
+      },
+      "stderr": {
+        "path": "member.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "isolation",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "34125",
+        "--inspector-port",
+        "0",
+        "--config",
+        "/tmp/task8-api-collaboration-aKmn5H/isolation.json",
+        "--persist-to",
+        "/tmp/task8-api-collaboration-aKmn5H/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:18.649Z",
+      "completedAt": "2026-10-12T04:46:25.360Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Owned process group SIGTERM",
+      "stdout": {
+        "path": "isolation.stdout.log",
+        "bytes": 2961,
+        "sha256": "2f91b88861ea81934481ceff02d4a08735e5f829c3df338c64544628235ec70d"
+      },
+      "stderr": {
+        "path": "isolation.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    },
+    {
+      "name": "restart",
+      "argv": [
+        "pnpm",
+        "exec",
+        "wrangler",
+        "dev",
+        "--local",
+        "--ip",
+        "127.0.0.1",
+        "--port",
+        "34125",
+        "--inspector-port",
+        "0",
+        "--config",
+        "/tmp/task8-api-collaboration-aKmn5H/restart.json",
+        "--persist-to",
+        "/tmp/task8-api-collaboration-aKmn5H/storage"
+      ],
+      "cwd": "/workspace/task8/apps/api",
+      "startedAt": "2026-10-12T04:46:25.365Z",
+      "completedAt": "2026-10-12T04:46:28.102Z",
+      "exitCode": null,
+      "signal": "SIGTERM",
+      "error": null,
+      "shutdown": "Owned process group SIGTERM",
+      "stdout": {
+        "path": "restart.stdout.log",
+        "bytes": 3312,
+        "sha256": "778231e908afdb8d9f7fe0480de5f33d738df511811264ee13b5a0e1cd5daba8"
+      },
+      "stderr": {
+        "path": "restart.stderr.log",
+        "bytes": 136,
+        "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "name": "session",
+      "status": 200,
+      "path": "/api/v1/session",
+      "evidence": "session.json",
+      "budget": {
+        "queries": 1,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "WU33 main",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "WU33 main.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Subtasks parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Subtasks parent.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Other parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Other parent.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "First child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks",
+      "evidence": "First child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "child-scope-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "child-scope-before.json",
+      "budget": null
+    },
+    {
+      "name": "wrong-parent-child",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/subtasks/01a12e6e-abb1-76a5-8381-eebbb670ad3e",
+      "evidence": "wrong-parent-child.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "wrong-parent-promote",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/subtasks/01a12e6e-abb1-76a5-8381-eebbb670ad3e/promote",
+      "evidence": "wrong-parent-promote.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "wrong-parent-delete",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/subtasks/01a12e6e-abb1-76a5-8381-eebbb670ad3e",
+      "evidence": "wrong-parent-delete.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "child-scope-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "child-scope-after.json",
+      "budget": null
+    },
+    {
+      "name": "Complete child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-abb1-76a5-8381-eebbb670ad3e",
+      "evidence": "Complete child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "promotion-rollback-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-rollback-before.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-fk-failure",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-abb1-76a5-8381-eebbb670ad3e/promote",
+      "evidence": "promotion-fk-failure.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "promotion-rollback-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-rollback-after.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-stale-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-stale-before.json",
+      "budget": null
+    },
+    {
+      "name": "promotion-stale-request",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-abb1-76a5-8381-eebbb670ad3e/promote",
+      "evidence": "promotion-stale-request.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "promotion-stale-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "promotion-stale-after.json",
+      "budget": null
+    },
+    {
+      "name": "Promote child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-abb1-76a5-8381-eebbb670ad3e/promote",
+      "evidence": "Promote child.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "promoted-parent-detail",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a",
+      "evidence": "promoted-parent-detail.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "promotion-activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-ab70-75e2-8835-73ca2fe6299a",
+      "evidence": "promotion-activity.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "created-activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-ae00-75b6-b565-e567b4afb1d8",
+      "evidence": "created-activity.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Max child parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Max child parent.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "subtask-limit-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "subtask-limit-before.json",
+      "budget": null
+    },
+    {
+      "name": "Child 129",
+      "status": 413,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ae5e-7c33-8efb-a41e9e70cf38/subtasks",
+      "evidence": "Child 129.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "subtask-limit-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "subtask-limit-after.json",
+      "budget": null
+    },
+    {
+      "name": "Delete child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks",
+      "evidence": "Delete child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "delete-child",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-af2c-798f-8504-fe9a95204594",
+      "evidence": "delete-child.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 15
+      }
+    },
+    {
+      "name": "Fallback child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks",
+      "evidence": "Fallback child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "Fallback promotion",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-af6a-78c4-b603-8ddcdaf5a9be/promote",
+      "evidence": "Fallback promotion.json",
+      "budget": {
+        "queries": 14,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "Invited assignee",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks",
+      "evidence": "Invited assignee.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "invalid-child-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "invalid-child-before.json",
+      "budget": null
+    },
+    {
+      "name": "Foreign child member",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks",
+      "evidence": "Foreign child member.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "Foreign update member",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-af9e-7410-b1d2-801e910a7f31",
+      "evidence": "Foreign update member.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "Bad date",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-af9e-7410-b1d2-801e910a7f31",
+      "evidence": "Bad date.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Unknown input",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-af9e-7410-b1d2-801e910a7f31",
+      "evidence": "Unknown input.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Note overflow",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/subtasks/01a12e6e-af9e-7410-b1d2-801e910a7f31",
+      "evidence": "Note overflow.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "invalid-child-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "invalid-child-after.json",
+      "budget": null
+    },
+    {
+      "name": "comment-rollback-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "comment-rollback-before.json",
+      "budget": null
+    },
+    {
+      "name": "Comment FK rollback",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Comment FK rollback.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "comment-rollback-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "comment-rollback-after.json",
+      "budget": null
+    },
+    {
+      "name": "Plain comment",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Plain comment.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "invalid-comment-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "invalid-comment-before.json",
+      "budget": null
+    },
+    {
+      "name": "Foreign mention",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Foreign mention.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Comment overflow",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Comment overflow.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Actor injection",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Actor injection.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "No comment edit",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd",
+      "evidence": "No comment edit.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "invalid-comment-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "invalid-comment-after.json",
+      "budget": null
+    },
+    {
+      "name": "Before reaction",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5",
+      "evidence": "Before reaction.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Concurrent reaction1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/reactions/%F0%9F%91%8D",
+      "evidence": "Concurrent reaction1.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 15
+      }
+    },
+    {
+      "name": "Concurrent reaction2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/reactions/%F0%9F%91%8D",
+      "evidence": "Concurrent reaction2.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "After reaction",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5",
+      "evidence": "After reaction.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Reaction comment",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Reaction comment.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "reaction-noop-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "reaction-noop-before.json",
+      "budget": null
+    },
+    {
+      "name": "Duplicate reaction",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/reactions/%F0%9F%91%8D",
+      "evidence": "Duplicate reaction.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Absent remove",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/reactions/%F0%9F%9A%80",
+      "evidence": "Absent remove.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "reaction-noop-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "reaction-noop-after.json",
+      "budget": null
+    },
+    {
+      "name": "reaction-rollback-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "reaction-rollback-before.json",
+      "budget": null
+    },
+    {
+      "name": "Reaction FK rollback",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/reactions/%F0%9F%8E%89",
+      "evidence": "Reaction FK rollback.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 15
+      }
+    },
+    {
+      "name": "reaction-rollback-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "reaction-rollback-after.json",
+      "budget": null
+    },
+    {
+      "name": "Remove reaction",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/reactions/%F0%9F%91%8D",
+      "evidence": "Remove reaction.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 15
+      }
+    },
+    {
+      "name": "Restore reaction",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/reactions/%F0%9F%91%8D",
+      "evidence": "Restore reaction.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 15
+      }
+    },
+    {
+      "name": "Current comments",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Current comments.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "delete-comment-rollback-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "delete-comment-rollback-before.json",
+      "budget": null
+    },
+    {
+      "name": "Delete comment FK rollback",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd",
+      "evidence": "Delete comment FK rollback.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "delete-comment-rollback-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "delete-comment-rollback-after.json",
+      "budget": null
+    },
+    {
+      "name": "Delete comment",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd",
+      "evidence": "Delete comment.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Deleted hidden",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Deleted hidden.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Deleted reaction forbidden",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/reactions/%F0%9F%91%8D",
+      "evidence": "Deleted reaction forbidden.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "comment-undo-rollback-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "comment-undo-rollback-before.json",
+      "budget": null
+    },
+    {
+      "name": "Comment Undo FK rollback",
+      "status": 500,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b2bb-7005-9828-0db3872ea967",
+      "evidence": "Comment Undo FK rollback.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 19
+      }
+    },
+    {
+      "name": "comment-undo-rollback-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "comment-undo-rollback-after.json",
+      "budget": null
+    },
+    {
+      "name": "Concurrent comment Undo1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b2bb-7005-9828-0db3872ea967",
+      "evidence": "Concurrent comment Undo1.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 19
+      }
+    },
+    {
+      "name": "Concurrent comment Undo2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b2bb-7005-9828-0db3872ea967",
+      "evidence": "Concurrent comment Undo2.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Comment Undo replay",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b2bb-7005-9828-0db3872ea967",
+      "evidence": "Comment Undo replay.json",
+      "budget": {
+        "queries": 7,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Undo preserved reaction",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Undo preserved reaction.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Comment parent restored",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5",
+      "evidence": "Comment parent restored.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Delete for restore",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd",
+      "evidence": "Delete for restore.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Explicit comment restore",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/restore-deleted",
+      "evidence": "Explicit comment restore.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "undo-after-restore-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-after-restore-before.json",
+      "budget": null
+    },
+    {
+      "name": "Undo restore ABA",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b37b-7db5-9ce4-cebd6bfcabd7",
+      "evidence": "Undo restore ABA.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 19
+      }
+    },
+    {
+      "name": "undo-after-restore-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-after-restore-after.json",
+      "budget": null
+    },
+    {
+      "name": "Delete for stale Undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd",
+      "evidence": "Delete for stale Undo.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Parent after delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5",
+      "evidence": "Parent after delete.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "undo-parent-stale-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-parent-stale-before.json",
+      "budget": null
+    },
+    {
+      "name": "Undo changed aggregate",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b3f7-7d5c-bc7e-e71d1aa9f2fc",
+      "evidence": "Undo changed aggregate.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 19
+      }
+    },
+    {
+      "name": "undo-parent-stale-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-parent-stale-after.json",
+      "budget": null
+    },
+    {
+      "name": "Restore after stale Undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b095-77a2-8cad-f84d66b1f2fd/restore-deleted",
+      "evidence": "Restore after stale Undo.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Before comment2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5",
+      "evidence": "Before comment2.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Second comment",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Second comment.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Third comment",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Third comment.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Comments page1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments?limit=1",
+      "evidence": "Comments page1.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Comments page2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments?limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiMjg4ZWUwMDc3ODYzNzE1NGZlNDMwNDg2ODhiYTNkNDNiZWQ5NDk4NzU5MTRiOGQ5MmUzYjI4M2M3ZmYzYjg5YyIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6MDguNTMxWiIsImlkIjoiMDFhMTJlNmUtYjA5NS03N2EyLThjYWQtZjg0ZDY2YjFmMmZkIn0",
+      "evidence": "Comments page2.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Wrong comment cursor",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/comments?cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiMjg4ZWUwMDc3ODYzNzE1NGZlNDMwNDg2ODhiYTNkNDNiZWQ5NDk4NzU5MTRiOGQ5MmUzYjI4M2M3ZmYzYjg5YyIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6MDguNTMxWiIsImlkIjoiMDFhMTJlNmUtYjA5NS03N2EyLThjYWQtZjg0ZDY2YjFmMmZkIn0",
+      "evidence": "Wrong comment cursor.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Activity page1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-ab99-7998-82dc-0825114137b5&limit=1",
+      "evidence": "Activity page1.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Activity page2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-ab99-7998-82dc-0825114137b5&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiMjY1ZWQzNmU5MzM4ZDJjMjJkZGM0NGY0ODQyZDVlMGFkN2QxNGM1NDlkODdiYjZlMGZlMzBlNWYwNjAyZDQ4YyIsInNvcnRGaWVsZCI6InVwZGF0ZWQiLCJzb3J0RGlyZWN0aW9uIjoiZGVzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6MDkuNTU4WiIsImlkIjoiMDFhMTJlNmUtYjQ5OS03NmQyLWJmYTgtNjJkOWQxMGEwN2MyIn0",
+      "evidence": "Activity page2.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Wrong activity cursor",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-ab70-75e2-8835-73ca2fe6299a&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiMjY1ZWQzNmU5MzM4ZDJjMjJkZGM0NGY0ODQyZDVlMGFkN2QxNGM1NDlkODdiYjZlMGZlMzBlNWYwNjAyZDQ4YyIsInNvcnRGaWVsZCI6InVwZGF0ZWQiLCJzb3J0RGlyZWN0aW9uIjoiZGVzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6MDkuNTU4WiIsImlkIjoiMDFhMTJlNmUtYjQ5OS03NmQyLWJmYTgtNjJkOWQxMGEwN2MyIn0",
+      "evidence": "Wrong activity cursor.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Before archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5",
+      "evidence": "Before archive.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Archive child parent",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/archive",
+      "evidence": "Archive child parent.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "archived-writes-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "archived-writes-before.json",
+      "budget": null
+    },
+    {
+      "name": "Archived subtask",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/subtasks",
+      "evidence": "Archived subtask.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Archived comment",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Archived comment.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Archived reaction",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b499-753a-a0b4-a26f4e8f2816/reactions/%F0%9F%91%8D",
+      "evidence": "Archived reaction.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "archived-writes-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "archived-writes-after.json",
+      "budget": null
+    },
+    {
+      "name": "Archived activity retained",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-ab99-7998-82dc-0825114137b5",
+      "evidence": "Archived activity retained.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Restore parent",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/restore",
+      "evidence": "Restore parent.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Worker rich 0",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Worker rich 0.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Worker rich PATCH 0",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b58d-7e84-9693-3622d2ff463b",
+      "evidence": "Worker rich PATCH 0.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Worker rich 1",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Worker rich 1.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Worker rich PATCH 1",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5ab-7e7e-bf02-e75a2b967ee6",
+      "evidence": "Worker rich PATCH 1.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Worker rich 2",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Worker rich 2.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Worker rich PATCH 2",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5c4-7609-8b6d-28b5cdea38f4",
+      "evidence": "Worker rich PATCH 2.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Worker rich 3",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Worker rich 3.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Worker rich PATCH 3",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5de-7668-857d-08ec3f5f6495",
+      "evidence": "Worker rich PATCH 3.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Dependency A",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Dependency A.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Dependency B",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Dependency B.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Dependency C",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Dependency C.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "dependency-invalid-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "dependency-invalid-before.json",
+      "budget": null
+    },
+    {
+      "name": "Self dependency",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "Self dependency.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Foreign dependency",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "Foreign dependency.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "Hidden dependency",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "Hidden dependency.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "Duplicate dependency",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "Duplicate dependency.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Unknown label",
+      "status": 400,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "Unknown label.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "dependency-invalid-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "dependency-invalid-after.json",
+      "budget": null
+    },
+    {
+      "name": "A depends B",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "A depends B.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Incoming B version",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b607-74f2-876e-bc72951c01cb",
+      "evidence": "Incoming B version.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "B depends C",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b607-74f2-876e-bc72951c01cb",
+      "evidence": "B depends C.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Incoming C version",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b613-77df-a249-a0d2137e69db",
+      "evidence": "Incoming C version.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "dependency-cycle-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "dependency-cycle-before.json",
+      "budget": null
+    },
+    {
+      "name": "Three-node cycle",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b613-77df-a249-a0d2137e69db",
+      "evidence": "Three-node cycle.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 11
+      }
+    },
+    {
+      "name": "dependency-cycle-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "dependency-cycle-after.json",
+      "budget": null
+    },
+    {
+      "name": "Remove A dependency",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "Remove A dependency.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Incoming B ABA version",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b607-74f2-876e-bc72951c01cb",
+      "evidence": "Incoming B ABA version.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "A current",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "A current.json",
+      "budget": {
+        "queries": 5,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Label replacement",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b5fa-7f2e-8d42-713de317d615",
+      "evidence": "Label replacement.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "Race parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Race parent.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Race child",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b7a3-740a-ba69-f61c7ebc921d/subtasks",
+      "evidence": "Race child.json",
+      "budget": {
+        "queries": 12,
+        "parameters": 24
+      }
+    },
+    {
+      "name": "Race guard promotion",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b7a3-740a-ba69-f61c7ebc921d/subtasks/01a12e6e-b7b4-7371-8566-3fefb733486f/promote",
+      "evidence": "Race guard promotion.json",
+      "budget": {
+        "queries": 13,
+        "parameters": 33
+      }
+    },
+    {
+      "name": "race-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "race-after.json",
+      "budget": null
+    },
+    {
+      "name": "Column aggregate",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Column aggregate.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Column parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Column parent.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Column complete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/bulk",
+      "evidence": "Column complete.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 59
+      }
+    },
+    {
+      "name": "Successor comment",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b848-7c09-b655-0c5d421b4050/comments",
+      "evidence": "Successor comment.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Successor comment delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b867-75ef-93f6-6068103b92ae",
+      "evidence": "Successor comment delete.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Successor comment Undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b877-7bda-ac0d-2bab7badc78c",
+      "evidence": "Successor comment Undo.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 19
+      }
+    },
+    {
+      "name": "column-nested-aba-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "column-nested-aba-before.json",
+      "budget": null
+    },
+    {
+      "name": "Column Undo nested ABA",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b848-7d6d-ae58-4679481cf56a",
+      "evidence": "Column Undo nested ABA.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 48
+      }
+    },
+    {
+      "name": "column-nested-aba-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "column-nested-aba-after.json",
+      "budget": null
+    },
+    {
+      "name": "Cursor parent",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Cursor parent.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Cursor one",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b901-7444-bf5e-40468993a9ee/comments",
+      "evidence": "Cursor one.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Cursor two",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b901-7444-bf5e-40468993a9ee/comments",
+      "evidence": "Cursor two.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Cursor three",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b901-7444-bf5e-40468993a9ee/comments",
+      "evidence": "Cursor three.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Delete cursor first",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b901-7444-bf5e-40468993a9ee/comments?limit=1",
+      "evidence": "Delete cursor first.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Delete cursor comment",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b90f-7f09-877f-dd87865e3dfb",
+      "evidence": "Delete cursor comment.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Deleted cursor continuation",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b901-7444-bf5e-40468993a9ee/comments?limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiNjI3ZDlkNThlNmJhN2Y2NDlkYjdmZDU1MTRjNWIxOTI5NGUyMWE4YTgwMjA0NTBiYzQ1NDk1NDJlNTk0N2UzYSIsInNvcnRGaWVsZCI6InRpdGxlIiwic29ydERpcmVjdGlvbiI6ImFzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6MTAuNzAxWiIsImlkIjoiMDFhMTJlNmUtYjkwZi03ZjA5LTg3N2YtZGQ4Nzg2NWUzZGZiIn0",
+      "evidence": "Deleted cursor continuation.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Retract cursor first",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-b901-7444-bf5e-40468993a9ee&limit=1",
+      "evidence": "Retract cursor first.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "sql-1",
+      "status": 200,
+      "path": "/__wu33/sql",
+      "evidence": "sql-1.json",
+      "budget": null
+    },
+    {
+      "name": "Retracted cursor continuation",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-b901-7444-bf5e-40468993a9ee&limit=1&cursor=eyJmb3JtYXRWZXJzaW9uIjoxLCJxdWVyeUZpbmdlcnByaW50IjoiYWMwZWM2ZDUxMzMzOTc1NTU5Y2Q3N2Y2NDVkM2MxNTk2ZDJmOGZlYzVmYWFiZjUzODllYzgyMGJjNDY5NWZjMCIsInNvcnRGaWVsZCI6InVwZGF0ZWQiLCJzb3J0RGlyZWN0aW9uIjoiZGVzYyIsInNvcnRWYWx1ZSI6IjIwMjYtMTAtMTJUMDQ6NDY6MTAuNzI3WiIsImlkIjoiMDFhMTJlNmUtYjkyYS03NWVlLTk0NjQtY2RjMTBiNWI3NDI5In0",
+      "evidence": "Retracted cursor continuation.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Cursor comment totals",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b901-7444-bf5e-40468993a9ee/comments",
+      "evidence": "Cursor comment totals.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Undo lifecycle task-delete",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Undo lifecycle task-delete.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Undo lifecycle task task-delete",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Undo lifecycle task task-delete.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Undo lifecycle comment task-delete",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b9a9-75fd-bf33-40a64c8a9f46/comments",
+      "evidence": "Undo lifecycle comment task-delete.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Undo lifecycle delete comment task-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b9b9-7282-aa2a-342d3cb551df",
+      "evidence": "Undo lifecycle delete comment task-delete.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Undo lifecycle delete parent",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-b9a9-75fd-bf33-40a64c8a9f46",
+      "evidence": "Undo lifecycle delete parent.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 28
+      }
+    },
+    {
+      "name": "undo-task-delete-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-task-delete-before.json",
+      "budget": null
+    },
+    {
+      "name": "Known lifecycle conflict task-delete",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-b9cb-72ff-bc41-27f5f72dbd91",
+      "evidence": "Known lifecycle conflict task-delete.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "undo-task-delete-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-task-delete-after.json",
+      "budget": null
+    },
+    {
+      "name": "Undo lifecycle project-archive",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Undo lifecycle project-archive.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Undo lifecycle task project-archive",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Undo lifecycle task project-archive.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Undo lifecycle comment project-archive",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ba65-78f1-a090-46b84d554603/comments",
+      "evidence": "Undo lifecycle comment project-archive.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Undo lifecycle delete comment project-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-ba75-7209-97bd-bb7d68cf0d3b",
+      "evidence": "Undo lifecycle delete comment project-archive.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Undo lifecycle project project-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a12e6e-ba50-71ba-89ca-5383188a3c7c",
+      "evidence": "Undo lifecycle project project-archive.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Undo lifecycle parent project-archive",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a12e6e-ba50-71ba-89ca-5383188a3c7c/archive",
+      "evidence": "Undo lifecycle parent project-archive.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 14
+      }
+    },
+    {
+      "name": "undo-project-archive-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-project-archive-before.json",
+      "budget": null
+    },
+    {
+      "name": "Known lifecycle conflict project-archive",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-ba8b-7fcc-8bce-522fc41fd2db",
+      "evidence": "Known lifecycle conflict project-archive.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "undo-project-archive-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-project-archive-after.json",
+      "budget": null
+    },
+    {
+      "name": "Undo lifecycle project-delete",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "Undo lifecycle project-delete.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Undo lifecycle task project-delete",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Undo lifecycle task project-delete.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Undo lifecycle comment project-delete",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-bb49-7e63-afe1-e2f4ae056da8/comments",
+      "evidence": "Undo lifecycle comment project-delete.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Undo lifecycle delete comment project-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-bb59-77e6-9b6c-4e3a8c409b33",
+      "evidence": "Undo lifecycle delete comment project-delete.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "Undo lifecycle project project-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a12e6e-bb32-7c55-9deb-4aee7262c8b4",
+      "evidence": "Undo lifecycle project project-delete.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Undo lifecycle parent project-delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a12e6e-bb32-7c55-9deb-4aee7262c8b4",
+      "evidence": "Undo lifecycle parent project-delete.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 14
+      }
+    },
+    {
+      "name": "undo-project-delete-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-project-delete-before.json",
+      "budget": null
+    },
+    {
+      "name": "Known lifecycle conflict project-delete",
+      "status": 409,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-bb68-7d5b-80b0-eda9284a4402",
+      "evidence": "Known lifecycle conflict project-delete.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "undo-project-delete-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "undo-project-delete-after.json",
+      "budget": null
+    },
+    {
+      "name": "WU33 private",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects",
+      "evidence": "WU33 private.json",
+      "budget": {
+        "queries": 18,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "sql-2",
+      "status": 200,
+      "path": "/__wu33/sql",
+      "evidence": "sql-2.json",
+      "budget": null
+    },
+    {
+      "name": "Private task",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Private task.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Private comment",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-bc2b-75cc-a454-5585b27a252f/comments",
+      "evidence": "Private comment.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Private delete",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-bc3e-7052-a1e8-310ada55409b",
+      "evidence": "Private delete.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 16
+      }
+    },
+    {
+      "name": "sql-3",
+      "status": 200,
+      "path": "/__wu33/sql",
+      "evidence": "sql-3.json",
+      "budget": null
+    },
+    {
+      "name": "private-pending-undo-before",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "private-pending-undo-before.json",
+      "budget": null
+    },
+    {
+      "name": "Private pending own Undo",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-bc51-7668-bde1-4ccdbd05c837",
+      "evidence": "Private pending own Undo.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "private-pending-undo-after",
+      "status": 200,
+      "path": "/__wu33/snapshot",
+      "evidence": "private-pending-undo-after.json",
+      "budget": null
+    },
+    {
+      "name": "sql-4",
+      "status": 200,
+      "path": "/__wu33/sql",
+      "evidence": "sql-4.json",
+      "budget": null
+    },
+    {
+      "name": "Private allowed Undo",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-bc51-7668-bde1-4ccdbd05c837",
+      "evidence": "Private allowed Undo.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 19
+      }
+    },
+    {
+      "name": "sql-5",
+      "status": 200,
+      "path": "/__wu33/sql",
+      "evidence": "sql-5.json",
+      "budget": null
+    },
+    {
+      "name": "Private consumed own Undo",
+      "status": 403,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-bc51-7668-bde1-4ccdbd05c837",
+      "evidence": "Private consumed own Undo.json",
+      "budget": {
+        "queries": 6,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "sql-6",
+      "status": 200,
+      "path": "/__wu33/sql",
+      "evidence": "sql-6.json",
+      "budget": null
+    },
+    {
+      "name": "Activity moved",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks",
+      "evidence": "Activity moved.json",
+      "budget": {
+        "queries": 9,
+        "parameters": 22
+      }
+    },
+    {
+      "name": "Moved comment",
+      "status": 201,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-bd11-74ae-9822-e869b37d37df/comments",
+      "evidence": "Moved comment.json",
+      "budget": {
+        "queries": 10,
+        "parameters": 10
+      }
+    },
+    {
+      "name": "Move before activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-bd11-74ae-9822-e869b37d37df",
+      "evidence": "Move before activity.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Move task",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-bd11-74ae-9822-e869b37d37df/move",
+      "evidence": "Move task.json",
+      "budget": {
+        "queries": 15,
+        "parameters": 40
+      }
+    },
+    {
+      "name": "Moved current history",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-bd11-74ae-9822-e869b37d37df",
+      "evidence": "Moved current history.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Other author delete",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b499-753a-a0b4-a26f4e8f2816",
+      "evidence": "Other author delete.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Other author Undo",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-bc51-7668-bde1-4ccdbd05c837",
+      "evidence": "Other author Undo.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Private child comments",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-bc2b-75cc-a454-5585b27a252f/comments",
+      "evidence": "Private child comments.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Private activity filter",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity?taskId=01a12e6e-bc2b-75cc-a454-5585b27a252f",
+      "evidence": "Private activity filter.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Member workspace activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity",
+      "evidence": "Member workspace activity.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Member reaction",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/comments/01a12e6e-b499-753a-a0b4-a26f4e8f2816/reactions/%F0%9F%91%8D",
+      "evidence": "Member reaction.json",
+      "budget": {
+        "queries": 11,
+        "parameters": 15
+      }
+    },
+    {
+      "name": "Member current comment",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Member current comment.json",
+      "budget": {
+        "queries": 4,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Foreign workspace",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/activity",
+      "evidence": "Foreign workspace.json",
+      "budget": {
+        "queries": 2,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Isolation activity",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/activity",
+      "evidence": "Isolation activity.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 4
+      }
+    },
+    {
+      "name": "Foreign nested child",
+      "status": 404,
+      "path": "/api/v1/workspaces/01a11abd-aa80-7290-8c9b-7aa9af2af468/tasks/01a12e6e-ab70-75e2-8835-73ca2fe6299a/comments",
+      "evidence": "Foreign nested child.json",
+      "budget": {
+        "queries": 3,
+        "parameters": 5
+      }
+    },
+    {
+      "name": "Persistent comments",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ab99-7998-82dc-0825114137b5/comments",
+      "evidence": "Persistent comments.json",
+      "budget": null
+    },
+    {
+      "name": "Persistent promoted task",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e6e-ae00-75b6-b565-e567b4afb1d8",
+      "evidence": "Persistent promoted task.json",
+      "budget": null
+    },
+    {
+      "name": "Persistent comment Undo replay",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e6e-bc51-7668-bde1-4ccdbd05c837",
+      "evidence": "Persistent comment Undo replay.json",
+      "budget": null
+    },
+    {
+      "name": "Production no test route",
+      "status": 404,
+      "path": "/__wu33/sql",
+      "evidence": "Production no test route.json",
+      "budget": null
+    },
+    {
+      "name": "Current saved views available",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a12e6e-ab32-7790-9055-7ebec04e63dd/views",
+      "evidence": "Current saved views available.json",
+      "budget": null
+    },
+    {
+      "name": "Current notifications available",
+      "status": 200,
+      "path": "/api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/notifications",
+      "evidence": "Current notifications available.json",
+      "budget": null
+    }
+  ],
+  "primary": {
+    "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+    "memberId": "01a11abd-aa80-7249-8034-93bbfb2174a2",
+    "userId": "01a11abd-aa80-7d3f-879a-dd89204bcd77"
+  },
+  "isolation": {
+    "workspaceId": "01a11abd-aa80-7290-8c9b-7aa9af2af468",
+    "memberId": "01a11abd-aa80-783a-862c-12dc62e17460",
+    "userId": "01a11abd-aa80-786e-8116-7c6e3927d385"
+  },
+  "feature": "collaboration",
+  "startedAt": "2026-10-12T04:45:49.381Z",
+  "run": {
+    "out": "/workspace/task8/test-results/api/collaboration-KFL4Cg",
+    "runtime": "/tmp/task8-api-collaboration-aKmn5H",
+    "persist": "/tmp/task8-api-collaboration-aKmn5H/storage",
+    "port": 34125,
+    "node": "v24.13.0"
+  },
+  "acceptance": {
+    "AC1": "workspace/task/child scope, own author policy, concurrent unique reactions and no-op versions",
+    "AC2": "real Worker shared parse5 create/PATCH and escaped nested promotion; comments remain literal plain text",
+    "AC3": "native D1 promotion/comment/reaction/delete/Undo FK rollback, aggregate counters/versions, current authorization and recurrence ABA"
+  },
+  "snapshotPairs": [
+    [
+      "child-scope-before",
+      "child-scope-after"
+    ],
+    [
+      "promotion-rollback-before",
+      "promotion-rollback-after"
+    ],
+    [
+      "promotion-stale-before",
+      "promotion-stale-after"
+    ],
+    [
+      "subtask-limit-before",
+      "subtask-limit-after"
+    ],
+    [
+      "invalid-child-before",
+      "invalid-child-after"
+    ],
+    [
+      "comment-rollback-before",
+      "comment-rollback-after"
+    ],
+    [
+      "invalid-comment-before",
+      "invalid-comment-after"
+    ],
+    [
+      "reaction-noop-before",
+      "reaction-noop-after"
+    ],
+    [
+      "reaction-rollback-before",
+      "reaction-rollback-after"
+    ],
+    [
+      "delete-comment-rollback-before",
+      "delete-comment-rollback-after"
+    ],
+    [
+      "comment-undo-rollback-before",
+      "comment-undo-rollback-after"
+    ],
+    [
+      "undo-after-restore-before",
+      "undo-after-restore-after"
+    ],
+    [
+      "undo-parent-stale-before",
+      "undo-parent-stale-after"
+    ],
+    [
+      "archived-writes-before",
+      "archived-writes-after"
+    ],
+    [
+      "dependency-invalid-before",
+      "dependency-invalid-after"
+    ],
+    [
+      "dependency-cycle-before",
+      "dependency-cycle-after"
+    ],
+    [
+      "column-nested-aba-before",
+      "column-nested-aba-after"
+    ],
+    [
+      "undo-task-delete-before",
+      "undo-task-delete-after"
+    ],
+    [
+      "undo-project-archive-before",
+      "undo-project-archive-after"
+    ],
+    [
+      "undo-project-delete-before",
+      "undo-project-delete-after"
+    ],
+    [
+      "private-pending-undo-before",
+      "private-pending-undo-after"
+    ]
+  ],
+  "completedAt": "2026-10-12T04:46:28.103Z"
+}

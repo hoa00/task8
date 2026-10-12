@@ -4,7 +4,7 @@ Ngày lập: **12/10/2026**. Chuẩn bắt buộc: [BACKEND_STANDARDS.md](BACKEN
 
 **Mục tiêu:** code của các tính năng đã có phải đạt chất lượng để tiếp tục bổ sung/sửa chữa; phạm vi POC chỉ giới hạn tính năng. Tài liệu gốc đã có yêu cầu này trong [AGENTS.md](../../AGENTS.md), [ARCHITECTURE.md](../poc/ARCHITECTURE.md) và [BACKEND_SCOPE.md](../poc/BACKEND_SCOPE.md). Kế hoạch này cụ thể hóa cách khắc phục các khoảng cách trong implementation.
 
-Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01…BR-08 chưa triển khai runtime.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
+Phạm vi phiên lập kế hoạch là docs và chỉ dẫn AI coder. **BR-00 hoàn tất tài liệu; BR-01 DONE_TOOLING (baseline/active tests/guardrails/format); BR-02…BR-08 chưa triển khai.** Không mở lại hoặc thay đổi kết quả nghiệm thu lịch sử WU-00…36, không tự bắt đầu code phase tiếp theo.
 
 ## 1. Baseline và hiệu chỉnh đề xuất review
 
@@ -136,7 +136,7 @@ Các `index.ts` chỉ export public surfaces cần thiết, không export mọi 
 | Phase | Prerequisite | Deliverable | Trạng thái |
 | --- | --- | --- | --- |
 | BR-00 | Review + chỉ dẫn của Hòa | Chuẩn, kế hoạch, AGENTS và doc links | DONE_DOCS; links/consistency/scope đã kiểm tra, Git thực tế xem PROGRESS |
-| BR-01 | BR-00 | Baseline, active tests, format/type/import guardrails | NOT_STARTED |
+| BR-01 | BR-00 | Baseline, active tests, format/type/import guardrails | DONE_TOOLING — [evidence](evidence/BR-01/verification.json) |
 | BR-02 | BR-01 | HTTP parsing/error và cursor fixes có regression | NOT_STARTED |
 | BR-03 | BR-02 | D1 execution/accounting, policy ownership và typed primitives | NOT_STARTED |
 | BR-04A | BR-03 | Task core use-cases, domain model, mapper/read boundary | NOT_STARTED |
@@ -164,6 +164,10 @@ Các bước:
 7. Mở import guard nội bộ API bằng AST/rules phù hợp, kèm negative fixtures. Chốt exact legacy allowlist và phase gỡ cho từng path, không miễn toàn modules directory.
 
 Nghiệm thu: baseline thực có command/exit/artifact; code-only failures sửa/ghi blocker riêng trước refactor; root test chứng minh API được chạy và lỗi API làm root fail; active Worker type error bị reject; formatter repeat idempotent; negative import/cycle checks reject. Existing tests tiếp tục pass sau format.
+
+Kết quả BR-01 ngày 12/10/2026: baseline native task/collaboration/projection/files PASS trên Node24.13.0/pnpm11.19.0; active suite core bổ sung với expectations capabilities hiện hành. Root `pnpm test` thực chạy API: 23 API unit tests, năm native suites/1.047 HTTP probes, tổng 302 unit/contract/data/reference/workspace/i18n tests. File/R2 suite chạy lại sau explicit test-injector grant guard, 140 probes/20 checks PASS. Số polling probes có thể khác giữa runs; scenario/assertion sets được giữ.
+
+Format/lint/typecheck/consumers/build dry-run PASS; active Worker type error và API/root failure propagation đã được inject và reject thật; import/cycle negative tests và cleanup timeout/early-exit/ENOENT PASS. Prettier3.6.2 pin; 63 files format repeat không đổi byte, 39 production/config files AST tương đương. Format-only commit `9965c97c6f41ccecb4726b339d4485400fe7951b`. Import allowlist có 50 exact violations và một type-dependency cycle với phase gỡ; không miễn toàn directory. [API README](../../apps/api/README.md) ghi command/owners/harness và legacy references. Chưa sửa error/cursor/D1/policy/module ownership/SQL semantics của các phase sau.
 
 ### BR-02 — HTTP và cursor correctness
 

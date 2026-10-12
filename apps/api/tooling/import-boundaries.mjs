@@ -1,0 +1,260 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { dirname, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import ts from 'typescript';
+
+const api = fileURLToPath(new URL('../', import.meta.url));
+const legacyOwners = {
+  'tasks.ts': 'tasks',
+  'task-read.ts': 'tasks',
+  'task-relations.ts': 'tasks',
+  'task-children.ts': 'tasks',
+  'task-undo.ts': 'tasks',
+  'task-routes.ts': 'tasks',
+  'projects.ts': 'projects',
+  'project-personal.ts': 'projects',
+  'saved-views.ts': 'projects',
+  'read-model.ts': 'projects',
+  'workspace.ts': 'workspaces',
+  'teams.ts': 'teams',
+  'comments.ts': 'comments',
+  'activity.ts': 'activity',
+  'notifications.ts': 'notifications',
+  'member-settings.ts': 'preferences',
+  'files.ts': 'files',
+  'file-routes.ts': 'files',
+  'bootstrap.ts': 'projections',
+  'projections.ts': 'projections',
+  'projection-routes.ts': 'projections',
+  'undo-command.ts': 'undo',
+  'features.ts': 'composition',
+  'routes.ts': 'composition',
+  'collaboration-routes.ts': 'composition',
+  'shared.ts': 'shared',
+  'projection-page.ts': 'shared',
+  'collaboration-page.ts': 'shared',
+};
+const layers = {
+  http: new Set(['http', 'application', 'shared']),
+  application: new Set([
+    'application',
+    'domain',
+    'policy',
+    'mapper',
+    'persistence',
+    'storage',
+    'db',
+    'shared',
+  ]),
+  domain: new Set(['domain', 'policy', 'shared']),
+  policy: new Set(['domain', 'policy', 'shared']),
+  mapper: new Set(['domain', 'mapper', 'shared']),
+  persistence: new Set(['domain', 'policy', 'persistence', 'db', 'shared']),
+  storage: new Set(['storage', 'domain', 'shared']),
+  db: new Set(['db', 'shared']),
+  shared: new Set(['shared']),
+  composition: new Set(['composition', 'http', 'application', 'shared', 'db']),
+};
+const pureLayers = new Set(['domain', 'policy', 'mapper', 'shared']);
+const packageName = (name) =>
+  name.startsWith('@') ? name.split('/').slice(0, 2).join('/') : name.split('/')[0];
+
+export function classify(path) {
+  const parts = path.replace(/^src\//, '').split('/');
+  if (parts[0] === 'modules') {
+    const file = parts.at(-1);
+    const owner = parts.length === 2 ? (legacyOwners[file] ?? file.replace(/\.ts$/, '')) : parts[1];
+    const layer =
+      file === 'index.ts'
+        ? 'application'
+        : file === 'routes.ts' || file.endsWith('-routes.ts')
+          ? 'http'
+          : file === 'mapper.ts'
+            ? 'mapper'
+            : (Object.keys(layers).find((name) => parts.includes(name)) ??
+              (owner === 'shared' ? 'shared' : 'application'));
+    return { owner, layer };
+  }
+  if (parts[0] === 'db' || parts[0] === 'storage' || parts[0] === 'shared' || parts[0] === 'http')
+    return { owner: null, layer: parts[0] };
+  return {
+    owner: null,
+    layer:
+      parts[0] === 'index.ts' || parts[0] === 'app.ts'
+        ? 'composition'
+        : parts[0] === 'middleware.ts'
+          ? 'http'
+          : 'shared',
+  };
+}
+
+export function importsOf(path, content) {
+  const source = ts.createSourceFile(path, content, ts.ScriptTarget.Latest, true);
+  const imports = [];
+  const visit = (node) => {
+    if ((ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) && node.moduleSpecifier)
+      imports.push(
+        ts.isStringLiteral(node.moduleSpecifier) ? node.moduleSpecifier.text : '<dynamic>',
+      );
+    if (
+      ts.isCallExpression(node) &&
+      (node.expression.kind === ts.SyntaxKind.ImportKeyword ||
+        node.expression.getText(source) === 'require')
+    )
+      imports.push(
+        node.arguments.length === 1 && ts.isStringLiteral(node.arguments[0])
+          ? node.arguments[0].text
+          : '<dynamic>',
+      );
+    ts.forEachChild(node, visit);
+  };
+  visit(source);
+  return imports;
+}
+
+export function inspectBoundaries(files) {
+  const violations = [];
+  const graph = new Map([...files.keys()].map((path) => [path, new Set()]));
+  const add = (from, to, rule) => violations.push({ from, to, rule });
+  for (const [from, content] of files) {
+    const source = classify(from);
+    for (const specifier of importsOf(from, content)) {
+      if (specifier === '<dynamic>') {
+        add(from, specifier, 'static-import');
+        continue;
+      }
+      if (!specifier.startsWith('.')) {
+        const dependency = packageName(specifier);
+        if (
+          !['@studio/contracts', '@studio/domain', 'hono', 'zod', 'drizzle-orm'].includes(
+            dependency,
+          )
+        )
+          add(from, specifier, 'external-dependency');
+        if (
+          (pureLayers.has(source.layer) && ['hono', 'drizzle-orm'].includes(dependency)) ||
+          (source.layer !== 'http' && source.layer !== 'composition' && dependency === 'hono')
+        )
+          add(from, specifier, 'layer');
+        continue;
+      }
+      const target = relative(api, resolve(api, dirname(from), specifier)).replaceAll('\\', '/');
+      if (!target.startsWith('src/') || /(?:^|\/)(tests|web)(?:\/|$)/.test(target)) {
+        add(from, target, 'source-scope');
+        continue;
+      }
+      if (!files.has(target)) {
+        add(from, target, 'unresolved-import');
+        continue;
+      }
+      graph.get(from).add(target);
+      const destination = classify(target);
+      if (
+        destination.owner &&
+        source.owner !== destination.owner &&
+        destination.owner !== 'shared' &&
+        !/^src\/modules\/[^/]+\/index\.ts$/.test(target)
+      )
+        add(from, target, 'public-entry');
+      if (!layers[source.layer]?.has(destination.layer)) add(from, target, 'layer');
+      if (
+        !source.owner &&
+        destination.owner &&
+        destination.owner !== 'shared' &&
+        source.layer !== 'http' &&
+        source.layer !== 'composition'
+      )
+        add(from, target, 'primitive-owner');
+    }
+  }
+  // Tarjan SCC catches cycles without exponential path enumeration.
+  let next = 0;
+  const indices = new Map(),
+    low = new Map(),
+    stack = [],
+    active = new Set(),
+    cycles = [];
+  function visit(node) {
+    indices.set(node, next);
+    low.set(node, next++);
+    stack.push(node);
+    active.add(node);
+    for (const target of graph.get(node)) {
+      if (!indices.has(target)) {
+        visit(target);
+        low.set(node, Math.min(low.get(node), low.get(target)));
+      } else if (active.has(target)) low.set(node, Math.min(low.get(node), indices.get(target)));
+    }
+    if (low.get(node) === indices.get(node)) {
+      const component = [];
+      let member;
+      do {
+        member = stack.pop();
+        active.delete(member);
+        component.push(member);
+      } while (member !== node);
+      if (component.length > 1 || graph.get(node).has(node)) {
+        const paths = component.sort();
+        const edges = paths
+          .flatMap((from) =>
+            [...graph.get(from)].filter((to) => paths.includes(to)).map((to) => [from, to]),
+          )
+          .sort();
+        cycles.push({ paths, edges });
+      }
+    }
+  }
+  for (const node of graph.keys()) if (!indices.has(node)) visit(node);
+  return { violations, cycles };
+}
+const key = (row) => JSON.stringify([row.from, row.to, row.rule]);
+export function checkBoundaries(
+  files = readSources(),
+  allowlist = JSON.parse(readFileSync(resolve(api, 'tooling/legacy-imports.json'), 'utf8')),
+) {
+  const result = inspectBoundaries(files);
+  const allowed = new Set(allowlist.imports.map(key));
+  for (const row of [...allowlist.imports, ...allowlist.cycles]) {
+    if (!/^BR-0[2-8][AB]?$/.test(row.removeIn) || JSON.stringify(row).includes('*'))
+      throw new Error('Invalid finite legacy exemption');
+  }
+  const unexpected = result.violations.filter((row) => !allowed.has(key(row)));
+  const stale = allowlist.imports.filter(
+    (row) => !result.violations.some((actual) => key(row) === key(actual)),
+  );
+  const unexpectedCycles = result.cycles.filter(
+    (paths) =>
+      !allowlist.cycles.some(
+        (row) => JSON.stringify({ paths: row.paths, edges: row.edges }) === JSON.stringify(paths),
+      ),
+  );
+  const staleCycles = allowlist.cycles.filter(
+    (row) =>
+      !result.cycles.some(
+        (paths) => JSON.stringify({ paths: row.paths, edges: row.edges }) === JSON.stringify(paths),
+      ),
+  );
+  if (unexpected.length || stale.length || unexpectedCycles.length || staleCycles.length)
+    throw new Error(JSON.stringify({ unexpected, stale, unexpectedCycles, staleCycles }, null, 2));
+  return {
+    status: 'PASS',
+    sourceFiles: files.size,
+    legacyImports: allowed.size,
+    legacyCycles: allowlist.cycles.length,
+  };
+}
+export function readSources() {
+  const walk = (directory) =>
+    readdirSync(resolve(api, directory), { withFileTypes: true }).flatMap((entry) =>
+      entry.isDirectory()
+        ? entry.name === 'migrations'
+          ? []
+          : walk(directory + '/' + entry.name)
+        : entry.name.endsWith('.ts')
+          ? [directory + '/' + entry.name]
+          : [],
+    );
+  return new Map(walk('src').map((path) => [path, readFileSync(resolve(api, path), 'utf8')]));
+}
+if (process.argv[1] === fileURLToPath(import.meta.url))
+  console.log(JSON.stringify(checkBoundaries()));

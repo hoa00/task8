@@ -1,0 +1,102 @@
+{
+  "phase": "BR-01",
+  "status": "PASS",
+  "baseline": "5a779b758345441d1072cfcd3501b9f77eded21c",
+  "formatCommit": "9965c97c6f41ccecb4726b339d4485400fe7951b",
+  "toolchain": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0",
+    "prettier": "3.6.2"
+  },
+  "rootTest": {
+    "argv": [
+      "pnpm",
+      "test"
+    ],
+    "exitCode": 0,
+    "stdout": "root-test.stdout.log",
+    "stderr": "root-test.stderr.log",
+    "unitTests": 302,
+    "apiUnitTests": 23,
+    "apiIntegration": [
+      {
+        "feature": "core",
+        "status": "PASS",
+        "probes": 186,
+        "report": "root-integration/core/report.json",
+        "routineArtifacts": "test-results/api/core-q55MGa"
+      },
+      {
+        "feature": "tasks",
+        "status": "PASS",
+        "probes": 316,
+        "report": "root-integration/tasks/report.json",
+        "routineArtifacts": "test-results/api/tasks-bCqkpU"
+      },
+      {
+        "feature": "collaboration",
+        "status": "PASS",
+        "probes": 219,
+        "report": "root-integration/collaboration/report.json",
+        "routineArtifacts": "test-results/api/collaboration-58Qnoo"
+      },
+      {
+        "feature": "projections",
+        "status": "PASS",
+        "probes": 186,
+        "report": "root-integration/projections/report.json",
+        "routineArtifacts": "test-results/api/projections-FyXQji"
+      },
+      {
+        "feature": "files",
+        "status": "PASS",
+        "probes": 140,
+        "report": "root-integration/files/report.json",
+        "routineArtifacts": "test-results/api/files-fPdbSW"
+      }
+    ],
+    "httpProbes": 1047
+  },
+  "checks": "commands.json",
+  "negativeGates": "negative-gates/commands.json",
+  "formatEquivalence": "format-equivalence.json",
+  "formatIdempotence": "format-idempotence.json",
+  "executedInputs": "executed-inputs.json",
+  "finalFiles": {
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/api",
+      "test:integration",
+      "--feature",
+      "files"
+    ],
+    "exitCode": 0,
+    "report": "final-files/report.json",
+    "probes": 140,
+    "checks": 20
+  },
+  "legacyDebt": {
+    "imports": 50,
+    "cycles": 1,
+    "allowlist": "../../../../apps/api/tooling/legacy-imports.json"
+  },
+  "preserved": [
+    "Production semantic AST and SQL/string literals across 39 files",
+    "Methods/DTO/status/permissions/idempotency/Undo/D1/R2 semantics",
+    "Historical WU tests/evidence, fixtures, source lock, migrations and constraints"
+  ],
+  "decisions": [
+    "Core copied scenarios update only obsolete capabilities and tasks/views 501 expectations to current implemented behavior.",
+    "WU36 scenario assertions retained; harness/provenance replaced, test DB locale en for existing UI selectors.",
+    "Active R2 injector fixes TypeScript closure narrowing with typed state and explicit missing-grant error; production untouched.",
+    "One failed initial harness adaptation retained; subsequent native PASS reports are separate.",
+    "New pin Prettier only; other lockfile versions unchanged."
+  ],
+  "next": "BR-02; not started",
+  "limitations": [
+    "Local native D1/R2 and Chromium behavior only; no new production/provider/deploy/full-visual claim.",
+    "Legacy architecture/import debt remains finite through BR-02…08.",
+    "Routine artifacts and isolated storage remain at the report paths for debugging; acceptance saves reports/logs/hashes rather than code-tree copies."
+  ]
+}

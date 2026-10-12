@@ -1,0 +1,157 @@
+[
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "d1",
+      "migrations",
+      "apply",
+      "DB",
+      "--local",
+      "--persist-to",
+      "/tmp/task8-api-files-URuee0/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:48:22.595Z",
+    "completedAt": "2026-10-12T04:48:30.127Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "migrate.stdout.log",
+      "bytes": 1467,
+      "sha256": "eccac3234196d06c0a8df4d2184f1daf5feef011a118fe65c7fdcc383ea2ecd2"
+    },
+    "stderr": {
+      "path": "migrate.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "seed",
+    "argv": [
+      "node",
+      "scripts/seed-local.mjs",
+      "--persist-to",
+      "/tmp/task8-api-files-URuee0/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:48:30.128Z",
+    "completedAt": "2026-10-12T04:48:37.744Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "seed.stdout.log",
+      "bytes": 48601,
+      "sha256": "6d86ad43936736e628b0026a7004c2f50f2f5dbcc19a143005031b63e865cbe1"
+    },
+    "stderr": {
+      "path": "seed.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "build-http",
+    "argv": [
+      "pnpm",
+      "--filter",
+      "@studio/web",
+      "build:http"
+    ],
+    "cwd": "/workspace/task8/",
+    "startedAt": "2026-10-12T04:48:43.260Z",
+    "completedAt": "2026-10-12T04:48:46.401Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "build-http.stdout.log",
+      "bytes": 19006,
+      "sha256": "ce90b424f46e41c30558cf5a413b8414a05c66fbd28303cb3f556afb5268fac3"
+    },
+    "stderr": {
+      "path": "build-http.stderr.log",
+      "bytes": 50,
+      "sha256": "7565e095260c7d52d09978ace1e2ea7aab1846150749be88f487e94db03369db"
+    }
+  },
+  {
+    "name": "owner",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "38311",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-files-URuee0/owner.json",
+      "--persist-to",
+      "/tmp/task8-api-files-URuee0/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:48:37.754Z",
+    "completedAt": "2026-10-12T04:48:51.518Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "owner.stdout.log",
+      "bytes": 25474,
+      "sha256": "804f4889664214c7f44264a3158d7af107ef155bc633ef65da2194bb58b07e9d"
+    },
+    "stderr": {
+      "path": "owner.stderr.log",
+      "bytes": 2910,
+      "sha256": "3eb0e506fd7cb46a27293cbc72f54b4ac1a7b0d56bdd636a78dd96cf52ed928c"
+    }
+  },
+  {
+    "name": "production",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "38311",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-files-URuee0/production.json",
+      "--persist-to",
+      "/tmp/task8-api-files-URuee0/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:48:51.520Z",
+    "completedAt": "2026-10-12T04:48:58.124Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "production.stdout.log",
+      "bytes": 2804,
+      "sha256": "af5d2273adbb8b6986b8622c1655997e042f49ef4d8fdb9802534e226e43d903"
+    },
+    "stderr": {
+      "path": "production.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  }
+]

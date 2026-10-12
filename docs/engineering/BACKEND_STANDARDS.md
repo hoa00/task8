@@ -4,7 +4,7 @@ Ngày xác lập: **12/10/2026**. Phạm vi: `apps/api`, các thay đổi backen
 
 **POC giới hạn tính năng, không giảm chất lượng kiến trúc, code, dữ liệu hoặc kiểm thử.** Một tính năng đã triển khai phải có cấu trúc cho phép mở rộng, sửa lỗi và kiểm chứng mà không phải viết lại nền tảng.
 
-Tài liệu này là yêu cầu cho code mới và phần code được sửa, không phải tuyên bố code hiện tại đã đạt chuẩn. Lộ trình chuyển code hiện có nằm trong [BACKEND_REFACTOR_PLAN.md](BACKEND_REFACTOR_PLAN.md). Các phase runtime của kế hoạch vẫn chưa triển khai.
+Tài liệu này là yêu cầu cho code mới và phần code được sửa, không phải tuyên bố code hiện tại đã đạt chuẩn. Lộ trình chuyển code hiện có nằm trong [BACKEND_REFACTOR_PLAN.md](BACKEND_REFACTOR_PLAN.md). Trạng thái triển khai từng phase được ghi trong kế hoạch và PROGRESS; tooling BR-01 không đồng nghĩa các feature owners đã chuyển sang kiến trúc đích.
 
 ## 1. Nguồn chuẩn và cách áp dụng
 
@@ -197,9 +197,9 @@ Ba mức có mục đích riêng:
 
 Sửa bug phải có regression cho trigger cụ thể. Sửa SQL/mutation/policy phải chạy native scenarios liên quan và snapshot zero effects khi failure. Test cross-feature khi command thay dependency/files/activity/projections; không chỉ happy path.
 
-Lệnh chuẩn cần được hiện thực ở BR-01, **chưa tồn tại chỉ vì được ghi ở đây**:
+Các lệnh chuẩn dưới đây được hiện thực ở BR-01; package.json và [API README](../../apps/api/README.md) là nguồn command usage hiện hành:
 
-| Lệnh dự kiến | Trách nhiệm |
+| Lệnh hiện hành | Trách nhiệm |
 | --- | --- |
 | pnpm --filter @studio/api test:unit | Các unit tests hiện hành |
 | pnpm --filter @studio/api test:integration | Active HTTP và native D1/R2 suites |

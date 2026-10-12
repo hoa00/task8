@@ -1,0 +1,316 @@
+{
+  "baseline": "5a779b758345441d1072cfcd3501b9f77eded21c",
+  "imports": [
+    {
+      "from": "src/db/fixture.ts",
+      "to": "../../docs/poc/reference/source-fixture.json",
+      "rule": "source-scope",
+      "removeIn": "BR-08"
+    },
+    {
+      "from": "src/errors.ts",
+      "to": "hono",
+      "rule": "layer",
+      "removeIn": "BR-02"
+    },
+    {
+      "from": "src/index.ts",
+      "to": "src/modules/routes.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/middleware.ts",
+      "to": "src/db/schema.ts",
+      "rule": "layer",
+      "removeIn": "BR-03"
+    },
+    {
+      "from": "src/middleware.ts",
+      "to": "src/db/repository.ts",
+      "rule": "layer",
+      "removeIn": "BR-03"
+    },
+    {
+      "from": "src/modules/activity.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/activity.ts",
+      "to": "src/modules/task-read.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/bootstrap.ts",
+      "to": "src/modules/notifications.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/collaboration-routes.ts",
+      "to": "src/modules/task-children.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/collaboration-routes.ts",
+      "to": "src/modules/comments.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/collaboration-routes.ts",
+      "to": "src/modules/activity.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/comments.ts",
+      "to": "src/modules/task-children.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/comments.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/comments.ts",
+      "to": "src/modules/task-read.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/file-routes.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/file-routes.ts",
+      "rule": "layer",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/projection-routes.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/projection-routes.ts",
+      "rule": "layer",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/task-routes.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/task-routes.ts",
+      "rule": "layer",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/collaboration-routes.ts",
+      "rule": "layer",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "hono",
+      "rule": "layer",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/projects.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/teams.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/undo-command.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/features.ts",
+      "to": "src/modules/workspace.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/files.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-06"
+    },
+    {
+      "from": "src/modules/projection-routes.ts",
+      "to": "src/modules/notifications.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/projection-routes.ts",
+      "to": "src/modules/member-settings.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/projection-routes.ts",
+      "to": "src/modules/saved-views.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/projection-routes.ts",
+      "to": "src/modules/project-personal.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/projections.ts",
+      "to": "src/modules/activity.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/projections.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/projections.ts",
+      "to": "src/modules/task-read.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/routes.ts",
+      "to": "src/db/schema.ts",
+      "rule": "layer",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/routes.ts",
+      "to": "src/modules/bootstrap.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/shared.ts",
+      "to": "src/db/repository.ts",
+      "rule": "layer",
+      "removeIn": "BR-03"
+    },
+    {
+      "from": "src/modules/task-children.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-04B"
+    },
+    {
+      "from": "src/modules/task-read.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-04B"
+    },
+    {
+      "from": "src/modules/task-relations.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-04B"
+    },
+    {
+      "from": "src/modules/task-undo.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-04B"
+    },
+    {
+      "from": "src/modules/tasks.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-04B"
+    },
+    {
+      "from": "src/modules/teams.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/undo-command.ts",
+      "to": "src/modules/task-undo.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/undo-command.ts",
+      "to": "src/modules/files.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/undo-command.ts",
+      "to": "src/modules/comments.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/undo-command.ts",
+      "to": "src/modules/read-model.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/modules/workspace.ts",
+      "to": "src/modules/bootstrap.ts",
+      "rule": "public-entry",
+      "removeIn": "BR-05"
+    },
+    {
+      "from": "src/runtime.ts",
+      "to": "src/db/repository.ts",
+      "rule": "layer",
+      "removeIn": "BR-03"
+    }
+  ],
+  "cycles": [
+    {
+      "paths": ["src/db/repository.ts", "src/errors.ts", "src/runtime.ts"],
+      "edges": [
+        ["src/db/repository.ts", "src/errors.ts"],
+        ["src/errors.ts", "src/runtime.ts"],
+        ["src/runtime.ts", "src/db/repository.ts"]
+      ],
+      "removeIn": "BR-03"
+    }
+  ]
+}

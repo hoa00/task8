@@ -1,0 +1,19 @@
+
+ ⛅️ wrangler 4.148.0
+────────────────────
+Your Worker has access to the following bindings:
+Binding                                                              Resource                  Mode
+env.DB (task8-local)                                                 D1 Database               local
+env.FILES (task8-local-files)                                        R2 Bucket                 local
+env.STUDIO_ENV ("local")                                             Environment Variable      local
+env.LOCAL_USER_ID ("01a11abd-aa80-7d3f-879a-dd89204bcd77")           Environment Variable      local
+env.LOCAL_WORKSPACE_ID ("01a11abd-aa80-72ea-8b87-b31ad015a24e")      Environment Variable      local
+
+❓ Your types might be out of date. Re-run `wrangler types` to ensure your types are correct.
+⎔ Starting local server...
+[wrangler:info] Ready on http://127.0.0.1:41385
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e79-5e6f-701e-9237-b43540b34fb2 200 OK (104ms)
+[wrangler:info] POST /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/undo/01a12e79-5108-7cd5-ace0-e65ba8e1d81f 200 OK (60ms)
+[wrangler:info] GET /__wu32/sql 404 Not Found (8ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/tasks/01a12e79-5e6f-701e-9237-b43540b34fb2/comments 200 OK (33ms)
+[wrangler:info] GET /api/v1/workspaces/01a11abd-aa80-72ea-8b87-b31ad015a24e/projects/01a12e79-4bb9-7d8d-8dc9-5924b8346735/views 200 OK (24ms)

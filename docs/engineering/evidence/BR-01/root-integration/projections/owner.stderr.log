@@ -1,0 +1,96 @@
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mWU34 D1 batch failure Error: D1_ERROR: FOREIGN KEY constraint failed: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_FOREIGNKEY)[0m
+
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:188:19)
+      at null.<anonymous> (async cloudflare-internal:d1-api:137:19)
+      ... 7 lines matching cause stack trace ...
+      at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11) {
+    [cause]: Error: FOREIGN KEY constraint failed: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_FOREIGNKEY)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:189:24)
+        at null.<anonymous> (async cloudflare-internal:d1-api:137:19)
+        at async Proxy.<anonymous> (file:///workspace/task8/apps/api/tests/wu34/worker.ts:24:24)
+        at async preferences (file:///workspace/task8/apps/api/src/modules/member-settings.ts:21:21)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:39914:15)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29364:3)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29331:3)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+  }
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mAPI request failed Error[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mWU34 D1 batch failure Error: D1_ERROR: FOREIGN KEY constraint failed: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_FOREIGNKEY)[0m
+
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:188:19)
+      at null.<anonymous> (async cloudflare-internal:d1-api:137:19)
+      ... 7 lines matching cause stack trace ...
+      at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29331:3) {
+    [cause]: Error: FOREIGN KEY constraint failed: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_FOREIGNKEY)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:189:24)
+        at null.<anonymous> (async cloudflare-internal:d1-api:137:19)
+        at async Proxy.<anonymous> (file:///workspace/task8/apps/api/tests/wu34/worker.ts:24:24)
+        at async matchedBatch (file:///workspace/task8/apps/api/src/db/commands.ts:40:19)
+        at async createSavedView (file:///workspace/task8/apps/api/src/modules/saved-views.ts:49:19)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:39966:13)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29364:3)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29331:3)
+  }
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mAPI request failed Error[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mWU34 D1 batch failure Error: D1_ERROR: FOREIGN KEY constraint failed: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_FOREIGNKEY)[0m
+
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:188:19)
+      at null.<anonymous> (async cloudflare-internal:d1-api:137:19)
+      ... 7 lines matching cause stack trace ...
+      at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29331:3) {
+    [cause]: Error: FOREIGN KEY constraint failed: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_FOREIGNKEY)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:189:24)
+        at null.<anonymous> (async cloudflare-internal:d1-api:137:19)
+        at async Proxy.<anonymous> (file:///workspace/task8/apps/api/tests/wu34/worker.ts:24:24)
+        at async matchedBatch (file:///workspace/task8/apps/api/src/db/commands.ts:40:19)
+        at async projectOrder (file:///workspace/task8/apps/api/src/modules/project-personal.ts:104:3)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:40006:13)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29364:3)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29331:3)
+  }
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mAPI request failed Error[0m
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mWU34 D1 batch failure Error: D1_ERROR: FOREIGN KEY constraint failed: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_FOREIGNKEY)[0m
+
+      at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:188:19)
+      at null.<anonymous> (async cloudflare-internal:d1-api:137:19)
+      ... 7 lines matching cause stack trace ...
+      at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11) {
+    [cause]: Error: FOREIGN KEY constraint failed: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_FOREIGNKEY)
+        at D1DatabaseSessionAlwaysPrimary._sendOrThrow (cloudflare-internal:d1-api:189:24)
+        at null.<anonymous> (async cloudflare-internal:d1-api:137:19)
+        at async Proxy.<anonymous> (file:///workspace/task8/apps/api/tests/wu34/worker.ts:24:24)
+        at async updateNotification (file:///workspace/task8/apps/api/src/modules/notifications.ts:63:19)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:39946:13)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29364:3)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+        at null.<anonymous> (async file:///tmp/task8-api-projections-aDhouV/.wrangler/tmp/dev-Fy8IRV/projections.worker.js:29331:3)
+        at async dispatch (file:///workspace/task8/node_modules/.pnpm/hono@4.13.13/node_modules/hono/dist/compose.js:35:11)
+  }
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mAPI request failed Error[0m
+
+
+🪵  Logs were written to "/tmp/task8-br01-toolchain/wrangler-logs/wrangler-2026-10-12_04-59-16_287.log"

@@ -17,18 +17,25 @@
     "test:wu32": "node tests/wu32/verify.mjs",
     "test:wu33": "node tests/wu33/verify.mjs",
     "test:wu34": "node tests/wu34/verify.mjs",
-    "test:wu35": "node tests/wu35/verify.mjs"
+    "test:wu35": "node tests/wu35/verify.mjs",
+    "test:unit": "node --experimental-transform-types --test tests/unit/*.test.mjs",
+    "test:integration": "node --experimental-transform-types tests/run.mjs",
+    "test": "pnpm test:unit && pnpm test:integration",
+    "format": "prettier --write src tests/unit tests/integration tests/support tests/run.mjs tooling drizzle.config.ts tsconfig.json package.json .prettierrc.json",
+    "format:check": "prettier --check src tests/unit tests/integration tests/support tests/run.mjs tooling drizzle.config.ts tsconfig.json package.json .prettierrc.json",
+    "lint": "eslint src tests/unit tests/integration tests/support tests/run.mjs tooling drizzle.config.ts && node tooling/import-boundaries.mjs"
   },
   "dependencies": {
     "@studio/contracts": "workspace:*",
     "@studio/domain": "workspace:*",
-    "hono": "4.13.13",
     "drizzle-orm": "0.45.3",
+    "hono": "4.13.13",
     "zod": "4.6.5"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "5.20261006.1",
     "drizzle-kit": "0.31.11",
+    "prettier": "3.6.2",
     "wrangler": "4.148.0"
   }
 }

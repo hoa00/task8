@@ -2,9 +2,49 @@
 
 ## Quy tắc phát triển và trạng thái kế hoạch
 
-Đọc [AGENTS.md](AGENTS.md) và [BACKEND_STANDARDS.md](../../docs/engineering/BACKEND_STANDARDS.md) trước khi thêm/sửa backend. POC giới hạn tính năng, không giảm chất lượng kiến trúc/code/kiểm thử. [BACKEND_REFACTOR_PLAN.md](../../docs/engineering/BACKEND_REFACTOR_PLAN.md) là kế hoạch điều chỉnh có thứ tự và tiêu chí nghiệm thu; các phase runtime chưa triển khai. Các script mới và cấu trúc thư mục trong kế hoạch là target, không phải command/file hiện đã có.
+Đọc [AGENTS.md](AGENTS.md) và [BACKEND_STANDARDS.md](../../docs/engineering/BACKEND_STANDARDS.md) trước khi thêm/sửa backend. POC giới hạn tính năng, không giảm chất lượng kiến trúc/code/kiểm thử. [BACKEND_REFACTOR_PLAN.md](../../docs/engineering/BACKEND_REFACTOR_PLAN.md) là kế hoạch điều chỉnh có thứ tự và tiêu chí nghiệm thu. BR-01 hiện thực tooling/active tests bên dưới; việc tách feature owners, HTTP/D1/R2 và tối ưu SQL thuộc BR-02…08, chưa triển khai. Cấu trúc thư mục đích vẫn là target.
 
 Các mục WU dưới đây ghi implementation và verification lịch sử; trạng thái/code/commands hiện hành phải đối chiếu [PROGRESS.md](../../docs/poc/PROGRESS.md) và package.json, không suy ra PASS của code mới từ evidence cũ.
+
+## Kiểm thử và tooling hiện hành (BR-01)
+
+Dùng Node `24.13.0`, pnpm `11.19.0`, `pnpm install --frozen-lockfile`. Chạy `pnpm build` sau lần cài đầu để có exports contracts/domain. Cài Chromium cho file/TaskForm integration bằng `pnpm exec playwright install chromium`; Linux cần các thư viện hệ thống Playwright. Không đổi lockfile/toolchain khi môi trường thiếu dependency.
+
+```sh
+pnpm --filter @studio/api test:unit
+pnpm --filter @studio/api test:integration
+pnpm --filter @studio/api test:integration --feature tasks
+pnpm --filter @studio/api test
+pnpm --filter @studio/api format:check
+pnpm --filter @studio/api lint
+pnpm --filter @studio/api typecheck
+pnpm test
+```
+
+`pnpm test` ở root gọi API qua Turbo, build dependencies trước test và truyền lỗi API lên root. API chạy unit rồi native integration **serial**, đủ năm owners:
+
+| Feature | Active suite | Trách nhiệm |
+| --- | --- | --- |
+| core | tests/integration/core.mjs | Workspace/profile/project/member/team, policy/CAS/Undo và production restart |
+| tasks | tests/integration/tasks.mjs | Task fields/ordering/recurrence/bulk/idempotency/native rollback/Undo |
+| collaboration | tests/integration/collaboration.mjs | Subtasks/promotion/comments/reactions/activity và parent guards |
+| projections | tests/integration/projections.mjs | Bootstrap/Home/Overview/search/calendar/archive/preferences/notifications/saved views; full-view HTTP consumer |
+| files | tests/integration/files.mjs | Actual R2+D1 fault outcomes/checksum/replay; Chromium upload/download và partial TaskForm retry |
+
+`--feature` chỉ chấp nhận một trong năm tên trên. Unit owners ở `tests/unit` kiểm tra paging semantics, import guard và lifecycle của harness. Các Workers active import production `src/index.ts`; không có implementation API fork. Core/task/collaboration/projection tái dùng fault injectors lịch sử, typecheck cả dependency đó. `tests/support/files.worker.ts` là injector active đã sửa type narrowing; WU-35 cũ bất biến. Các adapter/Mock dùng trong expected parity là consumer độc lập, không được production import.
+
+`tests/support/harness.mjs` cấp unique output/run ID, storage/config trong `/tmp`, ephemeral HTTP port và inspector port, quản lý đúng process group. Timeout, early exit, spawn failure đều được ghi exitCode/signal thật và cleanup. Output mặc định là `test-results/api/<feature>-<unique>/`; có thể đặt `API_TEST_OUTPUT_DIR` (Turbo truyền biến này). Storage riêng được giữ sau chạy để điều tra, không reset local DB của người dùng. Report ghi đường dẫn storage và command logs. Routine runs không ghi/copy code vào historical docs/evidence. Chromium preview dùng server/port riêng và proxy tới Worker của đúng suite; suite đặt English trong DB test để chạy assertions hiện hành, không đổi locale sản phẩm.
+
+Prettier `3.6.2` được pin tại API cùng `.prettierrc.json`; `format`/`format:check` chỉ bao phủ backend hiện hành. Migrations/generated bindings và WU tests/evidence được loại trừ. Root lint còn kiểm tra toàn repo; API lint thêm AST import boundary. [Legacy allowlist](tooling/legacy-imports.json) có 50 import violations cụ thể và một cycle, từng entry có phase gỡ; entry stale hoặc edge/cycle mới đều fail. Không miễn toàn modules directory. Matrix gồm routes/application/domain/policy/persistence/storage/mapper/shared, public module entry và cấm frontend/dynamic imports. Production source hiện vẫn có ownership debt theo kế hoạch; BR-01 không tuyên bố đã đạt target architecture.
+
+Hai lệnh phục vụ acceptance riêng (chạy độc lập khi không có formatter/typecheck/root test khác đang chạy):
+
+```sh
+node apps/api/tooling/verify-gates.mjs
+node apps/api/tooling/verify-format.mjs 5a779b758345441d1072cfcd3501b9f77eded21c
+```
+
+`verify-gates` tạo test/Worker probe hữu hạn, chứng minh active Worker type error bị reject và API failure làm root test fail, rồi xóa probes trong finally; không overwrite file đã tồn tại. `verify-format` so AST/literals với commit baseline rõ ràng (bỏ parentheses dư/quote của object key), không thay thế native regression. [Evidence BR-01](../../docs/engineering/evidence/BR-01/verification.json) ghi baseline, source hashes, commands và native reports. Các mục WU dưới đây vẫn là lịch sử, không phải lệnh kiểm thử thường ngày.
 
 ## Chạy local và phạm vi đã triển khai
 

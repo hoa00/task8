@@ -1,0 +1,206 @@
+[
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "d1",
+      "migrations",
+      "apply",
+      "DB",
+      "--local",
+      "--persist-to",
+      "/tmp/task8-api-tasks-8k9efe/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:57:27.512Z",
+    "completedAt": "2026-10-12T04:57:34.815Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "migrate.stdout.log",
+      "bytes": 1467,
+      "sha256": "09d5d7d1474d53fb5dfa76f0600afd0439482bfade0534e071eea81ca676e446"
+    },
+    "stderr": {
+      "path": "migrate.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "seed",
+    "argv": [
+      "node",
+      "scripts/seed-local.mjs",
+      "--persist-to",
+      "/tmp/task8-api-tasks-8k9efe/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:57:34.816Z",
+    "completedAt": "2026-10-12T04:57:39.299Z",
+    "exitCode": 0,
+    "signal": null,
+    "error": null,
+    "stdout": {
+      "path": "seed.stdout.log",
+      "bytes": 48602,
+      "sha256": "9b1b88b358d25302fc71dee6326df405ecdf7874c603cc68b720d875e594d759"
+    },
+    "stderr": {
+      "path": "seed.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "owner",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "41385",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-tasks-8k9efe/owner.json",
+      "--persist-to",
+      "/tmp/task8-api-tasks-8k9efe/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:57:39.301Z",
+    "completedAt": "2026-10-12T04:57:51.020Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "owner.stdout.log",
+      "bytes": 33761,
+      "sha256": "c90aa482ff35245658f5cb57ef70b2a44af1ce33e3ed55781cf8d52cdd05fa6c"
+    },
+    "stderr": {
+      "path": "owner.stderr.log",
+      "bytes": 7289,
+      "sha256": "1dd8ad82cdc5d6c7a663bfe40912f231fdbc985bb1a3efa49e34016724984b54"
+    }
+  },
+  {
+    "name": "member",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "41385",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-tasks-8k9efe/member.json",
+      "--persist-to",
+      "/tmp/task8-api-tasks-8k9efe/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:57:51.021Z",
+    "completedAt": "2026-10-12T04:57:57.699Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "member.stdout.log",
+      "bytes": 1344,
+      "sha256": "013c66917b133d3d10db0211d169abba303ce1f7ec2160a190d21cb835e5b3d5"
+    },
+    "stderr": {
+      "path": "member.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "isolation",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "41385",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-tasks-8k9efe/isolation.json",
+      "--persist-to",
+      "/tmp/task8-api-tasks-8k9efe/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:57:57.700Z",
+    "completedAt": "2026-10-12T04:58:04.455Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "isolation.stdout.log",
+      "bytes": 1114,
+      "sha256": "4151c1c0be4c6a3361b3dc1f6177d4055dfb8a1901114b3003b27388fa768a79"
+    },
+    "stderr": {
+      "path": "isolation.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  },
+  {
+    "name": "restart",
+    "argv": [
+      "pnpm",
+      "exec",
+      "wrangler",
+      "dev",
+      "--local",
+      "--ip",
+      "127.0.0.1",
+      "--port",
+      "41385",
+      "--inspector-port",
+      "0",
+      "--config",
+      "/tmp/task8-api-tasks-8k9efe/restart.json",
+      "--persist-to",
+      "/tmp/task8-api-tasks-8k9efe/storage"
+    ],
+    "cwd": "/workspace/task8/apps/api",
+    "startedAt": "2026-10-12T04:58:04.456Z",
+    "completedAt": "2026-10-12T04:58:12.049Z",
+    "exitCode": null,
+    "signal": "SIGTERM",
+    "error": null,
+    "shutdown": "Owned process group SIGTERM",
+    "stdout": {
+      "path": "restart.stdout.log",
+      "bytes": 1518,
+      "sha256": "7be88b4abd44c610053fd462f5aab5ff186493b1300c4e0ebec3bde305f3080d"
+    },
+    "stderr": {
+      "path": "restart.stderr.log",
+      "bytes": 136,
+      "sha256": "6205e22497347c74bf6517d7c67792b17cc2051d7b12f33098353c4b1b9bed4a"
+    }
+  }
+]
