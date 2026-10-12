@@ -1,0 +1,85 @@
+{
+  "phase": "BR-06",
+  "status": "PASS",
+  "baseline": "0309cc831581b619fc8f6a3a6a3754c469547cf5",
+  "toolchain": {
+    "node": "24.13.0",
+    "pnpm": "11.19.0"
+  },
+  "commands": "commands.json",
+  "unitTests": 45,
+  "native": [
+    {
+      "feature": "projections",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 14,
+      "checks": 0,
+      "originalSha256": "3834a8a6c10a12dfe55a77e43a6c36710446d514f798274598433df91bf3bc35",
+      "artifact": "projections.report.json.gz",
+      "routineOutput": "test-results/api/projections-syvduR"
+    },
+    {
+      "feature": "http",
+      "status": "PASS",
+      "probes": 25,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "158ba24b4e942cc536d416c454807ba519a74cf04e30360df99fe4aaa1883135",
+      "artifact": "http.report.json.gz",
+      "routineOutput": "test-results/api/http-xuuUrZ"
+    },
+    {
+      "feature": "tasks",
+      "status": "PASS",
+      "probes": 316,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "55d19ba1ae265fc257b186de68bffce9bc9c9424335ce06170c7f0cf1103ccfa",
+      "artifact": "tasks.report.json.gz",
+      "routineOutput": "test-results/api/tasks-WXxpTo"
+    },
+    {
+      "feature": "core",
+      "status": "PASS",
+      "probes": 186,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "15a2a314ddd9f54a499a3d1ad57eb0ec82533c6a4811318a38a9e6662bd890c5",
+      "artifact": "core.report.json.gz",
+      "routineOutput": "test-results/api/core-xIc2S4"
+    },
+    {
+      "feature": "collaboration",
+      "status": "PASS",
+      "probes": 219,
+      "snapshotPairs": 21,
+      "checks": 0,
+      "originalSha256": "3b226304b803fb622c888035869b5ecc256f317605dfd3da16cfd5211ef3988f",
+      "artifact": "collaboration.report.json.gz",
+      "routineOutput": "test-results/api/collaboration-4g7AUa"
+    },
+    {
+      "feature": "files",
+      "status": "PASS",
+      "probes": 140,
+      "snapshotPairs": 0,
+      "checks": 20,
+      "originalSha256": "0ee146474cc757c16bf5edb25240289f98f3c511e1c73b531d6a9e3eefcc7138",
+      "artifact": "files.report.json.gz",
+      "routineOutput": "test-results/api/files-YuNk7v"
+    },
+    {
+      "feature": "db",
+      "status": "PASS",
+      "probes": 7,
+      "snapshotPairs": 0,
+      "checks": 0,
+      "originalSha256": "9f0fb8636fdb83f10301d366860a5386efac8b68b4065ae9c9caada16ebbfce5",
+      "artifact": "db.report.json.gz",
+      "routineOutput": "test-results/api/db-0yKyGe"
+    }
+  ],
+  "nativeProbes": 1079,
+  "executedInputs": "executed-inputs.json"
+}

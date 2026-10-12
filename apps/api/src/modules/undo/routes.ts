@@ -24,7 +24,8 @@ undoRoutes.post('/workspaces/:workspaceId/undo/:undoId', async (c) => {
         c.get('currentMember'),
         input.undoId,
         serverClock.now(),
-        (repository, scope, record, now) => undoFile(repository, scope, record, now, c.env.FILES),
+        (repository, scope, record, now) =>
+          undoFile(repository, scope, record, now, c.get('fileStorage')),
       ),
     }),
   );

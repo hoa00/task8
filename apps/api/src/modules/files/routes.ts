@@ -1,6 +1,7 @@
 import { EntityIdSchema, operations } from '@studio/contracts/api';
 import type { Context } from 'hono';
 import { Hono } from 'hono';
+import { z } from 'zod';
 import {
   jsonBody as body,
   multipartBody,
@@ -9,8 +10,17 @@ import {
 } from '../../http/request.ts';
 import type { ApiEnvironment } from '../../runtime.ts';
 import { serverClock } from '../../shared/clock.ts';
-import { ApiFailure } from '../../shared/errors.ts';
-import { changeFile, fileDto, fileRow, listFiles, safeInline, uploadFile } from '../files.ts';
+import { ApiFailure, required } from '../../shared/errors.ts';
+import { apiLimits } from '../../shared/limits.ts';
+import {
+  changeFile,
+  fileContent,
+  fileDto,
+  fileRow,
+  listFiles,
+  safeInline,
+  uploadFile,
+} from './index.ts';
 type C = Context<ApiEnvironment>;
 
 const prefix = '/workspaces/:workspaceId',
@@ -46,7 +56,8 @@ fileRoutes.post(prefix + '/projects/:projectId/files', async (c) => {
   const file = form.get('file');
   if (!(file instanceof File))
     throw new ApiFailure('VALIDATION_ERROR', 'Exactly one file required');
-  if (file.size > 10485760) throw new ApiFailure('PAYLOAD_TOO_LARGE', 'File exceeds 10 MiB');
+  if (file.size > apiLimits.maxUploadBytes)
+    throw new ApiFailure('PAYLOAD_TOO_LARGE', 'File exceeds 10 MiB');
   const input = parseRequest(operations.uploadProjectFile.request, {
     workspaceId: c.get('workspace').workspaceId,
     projectId: c.req.param('projectId'),
@@ -63,10 +74,12 @@ fileRoutes.post(prefix + '/projects/:projectId/files', async (c) => {
   const result = await uploadFile(
     c.get('repository'),
     c.get('workspace'),
-    c.env.FILES,
+    c.get('fileStorage'),
     input.projectId,
     input.body,
     serverClock.now(),
+    undefined,
+    c.get('diagnostics'),
   );
   return c.json(
     operations.uploadProjectFile.response.parse({ data: result.file }),
@@ -79,16 +92,20 @@ fileRoutes.get(prefix + '/files/:fileId/content', async (c) => {
       fileId: fid(c),
       query: await query(c),
     }),
-    f = await fileRow(c.get('repository'), c.get('workspace'), input.fileId);
-  if (f.storageMode !== 'r2' || !f.objectKey)
-    throw new ApiFailure('NOT_FOUND', 'Sample file has no original bytes');
-  const object = await c.env.FILES.get(f.objectKey);
-  if (!object) throw new ApiFailure('NOT_FOUND', 'File bytes not found');
+    { file: f, object } = await fileContent(
+      c.get('repository'),
+      c.get('workspace'),
+      c.get('fileStorage'),
+      input.fileId,
+    );
   const disposition =
-    input.query.disposition === 'inline' && safeInline(f.mimeType!) ? 'inline' : 'attachment';
+    input.query.disposition === 'inline' &&
+    safeInline(required(f.mimeType, 'Missing file media type'))
+      ? 'inline'
+      : 'attachment';
   return new Response(object.body, {
     headers: {
-      'Content-Type': f.mimeType!,
+      'Content-Type': required(f.mimeType, 'Missing file media type'),
       'Content-Length': String(object.size),
       'Content-Disposition': `${disposition}; filename="download"; filename*=UTF-8''${encodeURIComponent(f.name)}`,
       ETag: object.httpEtag,
@@ -113,12 +130,26 @@ for (const [op, method, suffix, kind] of [
       result = await changeFile(
         c.get('repository'),
         c.get('workspace'),
-        c.env.FILES,
+        c.get('fileStorage'),
         input.fileId,
-        input.body.expectedVersion,
-        kind,
-        'name' in input.body && typeof input.body.name === 'string' ? input.body.name : undefined,
+        kind === 'rename'
+          ? {
+              kind,
+              expectedVersion: input.body.expectedVersion,
+              name: parseRequest(z.string(), 'name' in input.body ? input.body.name : undefined),
+            }
+          : kind === 'duplicate'
+            ? {
+                kind,
+                expectedVersion: input.body.expectedVersion,
+                ...('name' in input.body && input.body.name !== undefined
+                  ? { name: input.body.name }
+                  : {}),
+              }
+            : { kind, expectedVersion: input.body.expectedVersion },
         serverClock.now(),
+        undefined,
+        c.get('diagnostics'),
       );
     return c.json(
       operations[op].response.parse({ data: op === 'deleteFile' ? result : result.file }),

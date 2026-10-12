@@ -1,5 +1,4 @@
 import type { EntityId, TaskQuery } from '@studio/contracts/api';
-import { FileSchema } from '@studio/contracts/api';
 import {
   compareTaskTuple,
   filterTasks,
@@ -8,8 +7,8 @@ import {
   taskSortValue,
 } from '@studio/domain';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
-import { instant } from '../../../shared/clock.ts';
 import { decodeCursor, encodeCursor, queryFingerprint } from '../../../shared/cursor.ts';
+import { fileDto } from '../../files/projections.ts';
 import { members } from '../../members/projections.ts';
 import { today } from '../../workspaces/index.ts';
 import { subtaskDto, taskDto } from '../mapper.ts';
@@ -33,24 +32,7 @@ export async function taskDetail(r: RequestRepository, s: WorkspaceContext, id: 
   return {
     task: taskDto(row),
     subtasks: children.map(subtaskDto),
-    attachments: attachments.map((f) =>
-      FileSchema.parse({
-        id: f.id,
-        workspaceId: f.workspaceId,
-        projectId: f.projectId,
-        taskId: f.taskId,
-        name: f.name,
-        fileType: f.fileType,
-        mimeType: f.mimeType,
-        sizeBytes: f.sizeBytes,
-        displaySize: f.displaySize,
-        storageMode: f.storageMode,
-        contentAvailable: f.storageMode === 'r2',
-        createdBy: f.createdBy,
-        createdAt: instant(f.createdAt),
-        version: f.version,
-      }),
-    ),
+    attachments: attachments.map((f) => fileDto(f)),
   };
 }
 export async function queryTasks(

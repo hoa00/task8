@@ -7,12 +7,7 @@ import type {
   SearchQuerySchema,
   SearchResultDto,
 } from '@studio/contracts/api';
-import {
-  CalendarEventSchema,
-  EntityIdSchema,
-  FileSchema,
-  MilestoneSchema,
-} from '@studio/contracts/api';
+import { CalendarEventSchema, EntityIdSchema, MilestoneSchema } from '@studio/contracts/api';
 import { completedInRollingWeek, homeDeadlines, summarizeTasks } from '@studio/domain';
 import { z } from 'zod';
 import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
@@ -20,6 +15,7 @@ import { instant } from '../../../shared/clock.ts';
 import { required } from '../../../shared/errors.ts';
 import { listActivity } from '../../activity/index.ts';
 import { commentDto, reactionProjection } from '../../comments/projections.ts';
+import { fileDto } from '../../files/projections.ts';
 import { projectionPage } from '../../projection-page.ts';
 import { projectRow } from '../../projects/access.ts';
 import { projectCatalog } from '../../projects/projections.ts';
@@ -200,22 +196,7 @@ export async function search(
       .filter((f) => has(f.name))
       .map((f) => ({
         kind: 'files' as const,
-        file: FileSchema.parse({
-          id: f.id,
-          workspaceId: f.workspaceId,
-          projectId: f.projectId,
-          taskId: f.taskId,
-          name: f.name,
-          fileType: f.fileType,
-          mimeType: f.mimeType,
-          sizeBytes: f.sizeBytes,
-          displaySize: f.displaySize,
-          storageMode: f.storageMode,
-          contentAvailable: f.storageMode === 'r2',
-          createdBy: f.createdBy,
-          createdAt: instant(f.createdAt),
-          version: f.version,
-        }),
+        file: fileDto(f),
       })),
     ...commentRows
       .filter((c) => taskIds.has(c.taskId) && has(c.bodyText))

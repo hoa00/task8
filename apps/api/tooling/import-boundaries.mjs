@@ -41,6 +41,7 @@ const publicFacades = new Set([
   'src/modules/projects/access.ts',
   'src/modules/tasks/aggregate.ts',
   'src/modules/files/plans.ts',
+  'src/modules/files/projections.ts',
   'src/modules/comments/projections.ts',
   'src/modules/tasks/projections.ts',
   'src/modules/projects/projections.ts',
@@ -70,8 +71,16 @@ const layers = {
   storage: new Set(['storage', 'domain', 'shared']),
   db: new Set(['db', 'shared']),
   shared: new Set(['shared']),
-  composition: new Set(['composition', 'http', 'application', 'shared', 'db', 'context']),
-  context: new Set(['context', 'db', 'application', 'shared']),
+  composition: new Set([
+    'composition',
+    'http',
+    'application',
+    'shared',
+    'db',
+    'storage',
+    'context',
+  ]),
+  context: new Set(['context', 'db', 'storage', 'application', 'shared']),
 };
 const pureLayers = new Set(['domain', 'policy', 'mapper', 'shared']);
 const packageName = (name) =>
