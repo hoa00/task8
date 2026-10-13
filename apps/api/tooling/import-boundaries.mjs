@@ -6,6 +6,7 @@ import ts from 'typescript';
 const api = fileURLToPath(new URL('../', import.meta.url));
 // Public facades are explicit contracts; deeper implementation paths remain private.
 const publicFacades = new Set([
+  'src/modules/auth/http/index.ts',
   'src/modules/tasks/subtask-routes.ts',
   'src/modules/projects/personal-routes.ts',
   'src/modules/projects/access.ts',
@@ -62,7 +63,7 @@ export function classify(path) {
     const file = parts.at(-1);
     const owner = parts[1];
     const layer =
-      file === 'index.ts'
+      file === 'index.ts' && parts.length === 3
         ? 'application'
         : file === 'routes.ts' || file.endsWith('-routes.ts')
           ? 'http'
@@ -169,9 +170,14 @@ export function inspectBoundaries(files) {
       if (!specifier.startsWith('.')) {
         const dependency = packageName(specifier);
         if (
-          !['@studio/contracts', '@studio/domain', 'hono', 'zod', 'drizzle-orm'].includes(
-            dependency,
-          )
+          ![
+            '@studio/contracts',
+            '@studio/domain',
+            'hono',
+            'zod',
+            'drizzle-orm',
+            '@hoa00/i24h-auth-honojs',
+          ].includes(dependency)
         )
           add(from, specifier, 'external-dependency');
         if (
@@ -179,7 +185,9 @@ export function inspectBoundaries(files) {
           (source.layer !== 'http' &&
             source.layer !== 'composition' &&
             source.layer !== 'context' &&
-            dependency === 'hono')
+            ['hono', '@hoa00/i24h-auth-honojs'].includes(dependency)) ||
+          (dependency === '@hoa00/i24h-auth-honojs' &&
+            !['src/modules/auth/http/access.ts'].includes(from))
         )
           add(from, specifier, 'layer');
         continue;

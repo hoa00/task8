@@ -2,6 +2,7 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 export const features = [
+  'auth-provider',
   'db',
   'http',
   'core',

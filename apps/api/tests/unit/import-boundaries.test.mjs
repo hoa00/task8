@@ -10,6 +10,29 @@ test('current API has zero legacy exemptions', () =>
   ));
 const invalid = [
   [
+    'application importing public HTTP factory',
+    {
+      'src/modules/tasks/application/auth.ts':
+        "import { createAccessVerifier } from '../../auth/http/index.ts';",
+      'src/modules/auth/http/index.ts': "export {createAccessVerifier} from './access.ts';",
+      'src/modules/auth/http/access.ts': '',
+    },
+  ],
+  [
+    'library outside auth adapter',
+    {
+      'src/modules/tasks/http/auth.ts':
+        "import { I24HTokenAuthGuard } from '@hoa00/i24h-auth-honojs';",
+    },
+  ],
+  [
+    'auth application importing library',
+    {
+      'src/modules/auth/application/access.ts':
+        "import { I24HTokenAuthGuard } from '@hoa00/i24h-auth-honojs';",
+    },
+  ],
+  [
     'flat compatibility feature owner',
     {
       'src/modules/tasks.ts': "export {createTask} from './tasks/index.ts';",

@@ -1,0 +1,45 @@
+{
+  "name": "@hoa00/i24h-auth-honojs",
+  "version": "0.1.1",
+  "distTags": {
+    "latest": "0.1.1"
+  },
+  "dist": {
+    "integrity": "sha512-kdQ42nX4G0uPRO1gviMYPmTMaycfdxvfAf0yjU/EMJ1c4/L//Bl/vwj3sj9lkq4rwk6FoIKaZp4jdvXqJfSgjQ==",
+    "shasum": "cdac0bbe3ad22cc4a2f8d94a529eaa58c13ad5b8",
+    "tarball": "https://npm.pkg.github.com/download/@hoa00/i24h-auth-honojs/0.1.1/cdac0bbe3ad22cc4a2f8d94a529eaa58c13ad5b8"
+  },
+  "tarballSha256": "c6ce5c0de29e103f5885088c731eb11029f6c8ed7961c123bc90309a4efc2a6a",
+  "sha1MatchesRegistry": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "jsonwebtoken": "9.0.3"
+  },
+  "peerDependencies": {
+    "hono": "4.13.13"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "publicRuntimeExports": [
+    "validateAuthConfig",
+    "I24HTokenAuthGuard",
+    "I24HSrvGuard",
+    "UserAuthInfo"
+  ],
+  "trustedConfig": "NPM_CONFIG_USERCONFIG=/tmp/task8-auth-registry/npmrc; literal env placeholder only",
+  "readiness": {
+    "observationsCurrent": true,
+    "revision": "2",
+    "NODE_AUTH_TOKEN": "unknown",
+    "networkPolicyState": "unknown",
+    "actualRegistryQuery": "PASS",
+    "actualTarballDownload": "PASS"
+  },
+  "networkGrant": "exec_command additional_permissions.network.enabled=true; inherited proxy and TLS trust preserved"
+}
