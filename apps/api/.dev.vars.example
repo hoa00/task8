@@ -4,6 +4,9 @@
 # Do not generate your own RSA key for live login; do not put a private key here.
 AUTH_MODE=ict24h
 STUDIO_ENV=local
+# Trusted fixture overrides retained for AUTH_MODE=local; ignored in ICT24H mode.
+LOCAL_USER_ID=01a11abd-aa80-7d3f-879a-dd89204bcd77
+LOCAL_WORKSPACE_ID=01a11abd-aa80-72ea-8b87-b31ad015a24e
 AUTH_PROVIDER_KEY=ict24h-identity
 AUTH_PROVIDER_BASE_URL=https://hrm-api-v2.cwr.i24h.app
 AUTH_TENANT_ID=ict24h-rdn-dev
