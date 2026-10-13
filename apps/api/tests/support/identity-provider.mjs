@@ -13,6 +13,7 @@ export async function createControlledIdentityProvider() {
     accessTtlSeconds: 600,
     extraClaims: {},
     redirectLogin: false,
+    loginUnavailable: false,
     refreshUnavailable: false,
     whoamiMissing: false,
     mismatch: false,
@@ -62,6 +63,11 @@ export async function createControlledIdentityProvider() {
     let status = 201,
       result;
     if (req.url === '/v1/auth/login') {
+      if (state.loginUnavailable) {
+        res.writeHead(503, { 'content-type': 'application/json' });
+        res.end(JSON.stringify(failure(503)));
+        return;
+      }
       if (state.redirectLogin) {
         res.writeHead(302, { location: providerUrl + '/redirect-target' });
         res.end();

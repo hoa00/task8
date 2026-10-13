@@ -1,0 +1,73 @@
+{
+  "status": "PASS_AUTH_SCOPE_WITH_INHERITED_STRICT_VISUAL_DEBT",
+  "prerequisiteCommit": "fbc373b83ceda290bf982f58e03fd9cd8f959d03",
+  "gates": [
+    {
+      "gate": "types-final",
+      "exitCode": 0,
+      "logSha256": "5213ae18fa0111db82ae42e9a4a2b0145c6bf17d3c3f793c7b61ae01e9215ab8"
+    },
+    {
+      "gate": "lint-final",
+      "exitCode": 0,
+      "logSha256": "479d6b457c7f13e1a4d2f1fd32a28f7f4f342aa08ba5c50b8b646813a5a80eab"
+    },
+    {
+      "gate": "api-format-final",
+      "exitCode": 0,
+      "logSha256": "b6b2149205593a02020bea94b8262906537cf6d0b41a829e14a8bb7bd7567dfb"
+    },
+    {
+      "gate": "api-lint-final",
+      "exitCode": 0,
+      "logSha256": "7594d81a97a058fcdc4fa616ba0fc246cf1921890ce6bda31923df782701bd81"
+    },
+    {
+      "gate": "data-final-02",
+      "exitCode": 0,
+      "logSha256": "2bdb4268c7c2ed6e3dc48178f312d2845ab2789a770412ef9f176dad92089a1f"
+    },
+    {
+      "gate": "build-final",
+      "exitCode": 0,
+      "logSha256": "395916de3df5dbb4025e3cfcbb9622c024bfb4a398770accfa374f53ae3c0473"
+    },
+    {
+      "gate": "http-bundle-final",
+      "exitCode": 0,
+      "logSha256": "96d30800f5e10e514a0f763dfac5692990979a3b6458d0550aeeb40251055f8a"
+    },
+    {
+      "gate": "consumers-final",
+      "exitCode": 0,
+      "logSha256": "d9bad4212175fe72a325138bc9c407ac7ee405350ebda68ac0aef835158c5599"
+    },
+    {
+      "gate": "browser-final",
+      "exitCode": 0,
+      "logSha256": "53e1bb7fe7fe9e777bebb012cdb3c958dbfa6720d125b2b69dba0c35557e4685"
+    },
+    {
+      "gate": "i18n",
+      "exitCode": 0,
+      "logSha256": "d5d3690b938fe90886302baab1dde33be4bdf2cbeb219b8b6613c2ad94378482"
+    }
+  ],
+  "browserProbes": 20,
+  "webDataTests": 177,
+  "browserReport": "browser-report.json.gz",
+  "browserNode": "v24.13.0",
+  "browserVersion": "145.0.7632.6",
+  "visual": {
+    "strictSourceStatus": "FAILED_UNACCEPTED",
+    "samples": 14,
+    "maximumDiffPixels": 1070,
+    "geometryEqual": true,
+    "sameSideRepeatPixels": 0,
+    "finalVsParentTargetByteIdentical": true,
+    "comparison": "visual-parent-comparison.json",
+    "qualification": "No new visual difference from this auth work. Whole strict source parity remains unaccepted; no tolerance/baseline/mask modification."
+  },
+  "liveProvider": "NOT_RUN: deployment public key/test account/revision/TTL absent",
+  "scope": "Actual local Worker/D1 controlled HTTP Identity and browser; no deployment/provider modification/provisioning public API."
+}

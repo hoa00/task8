@@ -1,3 +1,4 @@
+import { captureIntent } from '../../../data/operations';
 import { translate as t } from '../../../i18n/i18n';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
@@ -57,16 +58,17 @@ export function TaskFormDialog({ open, onClose, data, tasks, detail, onSuccess, 
   if (!frozen && !title.trim()) { setError(t("Give the task a name")); titleRef.current?.focus(); return Promise.resolve(); }
   const work = async () => {
    setError(''); setPending(true);
+   const intentClient=captureIntent(client);
    try {
     if (!submission.state) { const payload = CreateTaskInputSchema.parse({ ...properties, title, descriptionHtml: task && description === normalizeDescription(task.descriptionHtml).text ? task.descriptionHtml : plainDescriptionHtml(description), subtasks: task ? [] : children, clientRequestId: crypto.randomUUID() }); await submission.freeze(payload, files); }
     const state = submission.state!;
     if (task) {
      const { title: savedTitle, descriptionHtml, status, assigneeId, priority, startDate, dueDate, estimate, recurrence, labelIds, dependencyIds } = state.payload;
      const patch = { title: savedTitle, descriptionHtml, status, assigneeId, priority, startDate, dueDate, estimate, recurrence, labelIds, dependencyIds };
-     editSaved.current ??= new EditTaskCommit(task); await editSaved.current.save(client, data.workspace.id, state.payload.projectId, patch, () => cache.invalidateQueries({ queryKey: queryKeys.workspace(data.workspace.id) }));
+     editSaved.current ??= new EditTaskCommit(task); await editSaved.current.save(intentClient, data.workspace.id, state.payload.projectId, patch, () => cache.invalidateQueries({ queryKey: queryKeys.workspace(data.workspace.id) }));
      submission.bindTask(task.id, task.key);
     }
-    const complete = await submission.run(client, refresh, invalidate); refresh();
+    const complete = await submission.run(intentClient, refresh, invalidate); refresh();
     if (!mounted.current) return;
     if (!complete) { setError(t("Task {{value1}} has been saved. Some attachments need retry.", { value1: String(state.taskKey ?? '') })); return; }
     onSuccess(state.taskId!, state.taskKey!, !task && more);

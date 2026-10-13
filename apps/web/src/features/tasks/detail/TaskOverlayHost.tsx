@@ -1,3 +1,4 @@
+import { captureIntent } from '../../../data/operations';
 import { translate as t } from '../../../i18n/i18n';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { useContext, useRef, useState } from 'react';
@@ -39,13 +40,14 @@ export function TaskOverlayHost({ data, taskId, onTaskOpen, onTaskClose, opener,
  function toast(message: string, action?: ToastMessage['action'], kind: ToastMessage['kind'] = 'success') { setToasts(current => [{ id: crypto.randomUUID(), message, kind, ...(action ? { action, duration: 0 } : {}) }, ...current]); }
  function undo(descriptor: UndoDescriptorDto, message: string) { toast(message, { label: t("Undo"), onAction: () => { void commands.undo(descriptor); } }); }
  async function copy(url: string) { try { await navigator.clipboard.writeText(url); toast(t("Link copied")); } catch { toast(t("Link could not be copied")); } }
- async function deleteTask(id: string) { const latest = await commands.run('getTask', { workspaceId, taskId: id }); if (!latest) return; const result = await commands.run('deleteTask', { workspaceId, taskId: id, body: { expectedVersion: latest.data.task.version } }); if (result?.data.undo) { if (taskId === id) closeTask(); undo(result.data.undo, 'Task deleted'); } }
+ async function deleteTask(id: string) { const intentClient=captureIntent(client); const latest = await commands.run('getTask', { workspaceId, taskId: id },intentClient); if (!latest) return; const result = await commands.run('deleteTask', { workspaceId, taskId: id, body: { expectedVersion: latest.data.task.version } },intentClient); if (result?.data.undo) { if (taskId === id) closeTask(); undo(result.data.undo, 'Task deleted'); } }
  function closeTask() { setOpenField(null); onTaskClose(); }
  async function removeFile(file: FileDto) { const result = await commands.run('deleteFile', { workspaceId, fileId: file.id, body: { expectedVersion: file.version } }); if (result?.data.undo) { if (files) files.deleted(file, result.data.undo); else undo(result.data.undo, t("Deleted “{{name}}”", { name: file.name })); } }
  async function upload(job: UploadJob) {
   if (activeJobs.current.has(job.id)) return; activeJobs.current.add(job.id);
   setJobs(current => current.map(row => row.id === job.id ? { ...row, status: 'uploading', error: '' } : row));
-  try { await client.api.uploadProjectFile({ workspaceId, projectId: job.projectId, body: { taskId: job.taskId, clientRequestId: job.id, file: { name: job.file.name, mimeType: job.file.type || 'application/octet-stream', bytes: new Uint8Array(await job.file.arrayBuffer()) } } }); setJobs(current => current.filter(row => row.id !== job.id)); }
+  const intentClient=captureIntent(client);
+  try { await intentClient.api.uploadProjectFile({ workspaceId, projectId: job.projectId, body: { taskId: job.taskId, clientRequestId: job.id, file: { name: job.file.name, mimeType: job.file.type || 'application/octet-stream', bytes: new Uint8Array(await job.file.arrayBuffer()) } } }); setJobs(current => current.filter(row => row.id !== job.id)); }
   catch (cause) { setJobs(current => current.map(row => row.id === job.id ? { ...row, status: 'failed', error: cause instanceof Error ? cause.message : t("Attachment upload failed") } : row)); }
   finally { activeJobs.current.delete(job.id); await invalidateOperation(cache, 'uploadProjectFile', { workspaceId, projectId: job.projectId, body: { taskId: job.taskId, clientRequestId: job.id, file: { name: job.file.name, mimeType: job.file.type || 'application/octet-stream', bytes: new Uint8Array() } } }); }
  }

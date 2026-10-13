@@ -1,3 +1,4 @@
+import { captureIntent } from '../../data/operations';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { fileTypeCatalog } from './file-types';
@@ -39,14 +40,15 @@ export function ProjectFilesPage() { useTranslation();
   async function upload(job: CatalogueUpload) {
     if (controllers.current.has(job.id)) return; const controller = new AbortController(); controllers.current.set(job.id, controller);
     setJobs(rows => rows.map(row => row.id === job.id ? { ...row, status: 'uploading', percent: 0, error: '' } : row));
-    try {
+    const intentClient=captureIntent(client);
+  try {
       if (session.data?.data.capabilities.dataMode === 'http' && session.data.data.capabilities.features.fileBytes !== 'implemented') throw Error('File upload is unavailable here.');
       if (job.file.size > 10485760) throw Error('File exceeds 10 MiB');
       if (session.data?.data.capabilities.dataMode === 'mock') for (const percent of [15, 35, 60, 85]) { await new Promise<void>((resolve, reject) => { const timer = setTimeout(() => { controller.signal.removeEventListener('abort', abort); resolve(); }, 180); const abort = () => { clearTimeout(timer); reject(new DOMException('Cancelled', 'AbortError')); }; controller.signal.addEventListener('abort', abort, { once: true }); }); if (controller.signal.aborted) return; setJobs(rows => rows.map(row => row.id === job.id ? { ...row, percent } : row)); }
       const bytes = new Uint8Array(await job.file.arrayBuffer()); if (controller.signal.aborted) return;
       setJobs(rows => rows.map(row => row.id === job.id ? { ...row, status: 'committing', percent: 95 } : row));
       const body = { clientRequestId: job.id, file: { name: job.file.name, mimeType: job.file.type || 'application/octet-stream', bytes } };
-      await client.execute('uploadProjectFile', { workspaceId, projectId, body });
+      await intentClient.execute('uploadProjectFile', { workspaceId, projectId, body });
       await invalidateOperation(cache, 'uploadProjectFile', { workspaceId, projectId, body });
       if (active.current) setJobs(rows => rows.filter(row => row.id !== job.id));
     } catch (error) { if (controller.signal.aborted) return; if (active.current) setJobs(rows => rows.map(row => row.id === job.id ? { ...row, status: 'failed', error: error instanceof Error ? error.message : t("Upload failed") } : row)); }

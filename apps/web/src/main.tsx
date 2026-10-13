@@ -1,4 +1,5 @@
 import { StrictMode } from 'react';
+import type { OperationOutput } from '@studio/contracts/api';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from '@tanstack/react-router';
 import { createDataRuntime } from '#studio-adapter';
@@ -33,6 +34,14 @@ if (Object.hasOwn(legacyAliases, location.hash.slice(1))) {
 
 }
 const router = createStudioRouter({runtime, queryClient});
+runtime.auth?.subscribe(event=>{
+  if(event==='signed-out')void router.navigate({to:'/login',search:{},replace:true});
+  else if(event==='session-changed'){
+    const session=queryClient.getQueryData<OperationOutput<'getSession'>>(['session']);
+    void router.navigate({href:session?(session.data.currentWorkspaceId===null?'/waiting-for-workspace':'/'):'/login',replace:true});
+  }
+});
+runtime.auth?.start();
 createRoot(rootElement).render(
   <StrictMode>
     <TranslationProvider>

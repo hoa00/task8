@@ -88,7 +88,9 @@ try {
     const sourceFixture = store(`${sample.id}-source-fixture.json`, Buffer.from(JSON.stringify(fixture, null, 2) + '\n'));
     const targetFixture = store(`${sample.id}-target-fixture.json`, Buffer.from(JSON.stringify({ dataset, scenario: sample.state === 'login-error' ? 'login-error' : 'normal', clock: environment.clock, ephemeralDraft: { email: 'hello@gr8rstudio.com', name: '' } }, null, 2) + '\n'));
     const config = { viewport: { width: sample.width, height }, mobile: sample.width === 390 }, a = await newPage(browser, config, fixture, true, 'http://127.0.0.1:4173'), b = await newPage(browser, config, undefined, true, 'http://127.0.0.1:5173');
-    await b.context.addInitScript(scenario => { localStorage.setItem('task8.ui.theme.v1', JSON.stringify({ theme: 'light', accent: 'indigo', motion: 'system' })); localStorage.setItem('task8.demo.auth.scenario.v1', scenario); }, sample.state === 'login-error' ? 'login-error' : 'normal');
+    // Source auth baseline is English. Current app defaults to Vietnamese after i18n;
+    // select the supported English preference for this parity comparison only.
+    await b.context.addInitScript(scenario => { localStorage.setItem('task8.ui.language.v1','en'); localStorage.setItem('task8.ui.theme.v1', JSON.stringify({ theme: 'light', accent: 'indigo', motion: 'system' })); localStorage.setItem('task8.demo.auth.scenario.v1', scenario); }, sample.state === 'login-error' ? 'login-error' : 'normal');
     const responses = [[], []], pending = [];
     for (const [session, side] of [[a, 0], [b, 1]]) session.page.on('response', response => { if (/\.woff2(?:\?|$)/.test(response.url())) pending.push((async () => { const bytes = await response.body(); responses[side].push({ url: response.url(), status: response.status(), bytes: bytes.length, sha256: sha256(bytes) }); })()); });
     for (const [page, side] of [[a.page, 'source'], [b.page, 'target']]) { report.active = { id: sample.id, side }; save(); await setup(page, side, sample); }

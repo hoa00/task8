@@ -1,6 +1,7 @@
 import { CreateTaskInputSchema, EntityIdSchema, ClientRequestIdSchema } from '@studio/contracts/api';
 import type { CreateTaskInput, EntityId, TaskDto, UpdateTaskInput } from '@studio/contracts/api';
 import type { StudioClient } from '../../../data/operations.ts';
+import { captureIntent } from '../../../data/operations.ts';
 export type FileIntentStatus = 'queued' | 'uploading' | 'attached' | 'failed';
 export interface FileIntent { requestId: string; name: string; mimeType: string; size: number; hash: string; status: FileIntentStatus; fileId?: EntityId; error?: string }
 export interface PendingSubmission { requestId: string; payload: CreateTaskInput; prepared: boolean; taskId?: EntityId; taskKey?: string; files: FileIntent[] }
@@ -36,13 +37,14 @@ export class TaskSubmission {
   if (!state.prepared) return Promise.reject(new Error('File preparation has not completed'));
   if (this.inflight?.state === state) return this.inflight.promise;
   const files = this.files;
+  const intentClient=captureIntent(client);
   const execute = async () => {
-    if (!state.taskId) { const result = await client.api.createTask({ workspaceId: this.workspaceId, body: state.payload }); state.taskId = result.data.task.id; state.taskKey = result.data.task.key; if (this.state === state) this.save(); changed(); await invalidate(state.taskId); }
+    if (!state.taskId) { const result = await intentClient.api.createTask({ workspaceId: this.workspaceId, body: state.payload }); state.taskId = result.data.task.id; state.taskKey = result.data.task.key; if (this.state === state) this.save(); changed(); await invalidate(state.taskId); }
     for (const intent of state.files) {
       if (intent.status === 'attached') continue;
       const file = files.get(intent.requestId); if (!file) { intent.status = 'failed'; intent.error = 'Select this file again to retry'; if (this.state === state) this.save(); changed(); continue; }
       intent.status = 'uploading'; delete intent.error; if (this.state === state) this.save(); changed();
-      try { const result = await client.api.uploadProjectFile({ workspaceId: this.workspaceId, projectId: state.payload.projectId, body: { taskId: state.taskId, clientRequestId: intent.requestId, file: { name: intent.name, mimeType: intent.mimeType, bytes: new Uint8Array(await file.arrayBuffer()) } } }); intent.status = 'attached'; intent.fileId = result.data.id; }
+      try { const result = await intentClient.api.uploadProjectFile({ workspaceId: this.workspaceId, projectId: state.payload.projectId, body: { taskId: state.taskId, clientRequestId: intent.requestId, file: { name: intent.name, mimeType: intent.mimeType, bytes: new Uint8Array(await file.arrayBuffer()) } } }); intent.status = 'attached'; intent.fileId = result.data.id; }
       catch (cause) { intent.status = 'failed'; intent.error = cause instanceof Error ? cause.message : 'Attachment could not be confirmed'; }
       if (this.state === state) this.save(); changed(); await invalidate(state.taskId);
     }
@@ -59,7 +61,8 @@ export class EditTaskCommit {
  readonly taskId: TaskDto['id']; readonly originalProjectId: TaskDto['projectId'];
  constructor(task: Pick<TaskDto, 'id' | 'version' | 'projectId'>) { this.taskId = task.id; this.version = task.version; this.originalProjectId = task.projectId; }
  async save(client: StudioClient, workspaceId: string, projectId: TaskDto['projectId'], patch: Omit<UpdateTaskInput, 'expectedVersion'>, invalidated: () => Promise<void>) {
-  if (!this.moved && projectId !== this.originalProjectId) { const result = await client.api.moveTask({ workspaceId, taskId: this.taskId, body: { expectedVersion: this.version, targetProjectId: projectId, scope: { sortField: 'manual', sortDirection: 'asc' } } }); this.version = result.data.task.version; this.moved = true; await invalidated(); }
-  if (!this.patched) { const result = await client.api.updateTask({ workspaceId, taskId: this.taskId, body: { expectedVersion: this.version, ...patch } }); this.version = result.data.task.version; this.patched = true; await invalidated(); }
+  const intentClient=captureIntent(client);
+  if (!this.moved && projectId !== this.originalProjectId) { const result = await intentClient.api.moveTask({ workspaceId, taskId: this.taskId, body: { expectedVersion: this.version, targetProjectId: projectId, scope: { sortField: 'manual', sortDirection: 'asc' } } }); this.version = result.data.task.version; this.moved = true; await invalidated(); }
+  if (!this.patched) { const result = await intentClient.api.updateTask({ workspaceId, taskId: this.taskId, body: { expectedVersion: this.version, ...patch } }); this.version = result.data.task.version; this.patched = true; await invalidated(); }
  }
 }

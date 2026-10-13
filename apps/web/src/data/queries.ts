@@ -9,7 +9,7 @@ import { useDataRuntime } from './context.ts';
 export function createStudioQueryClient(): QueryClient {
   return new QueryClient({ defaultOptions: { queries: {
     staleTime: 30000,
-    retry: (failures, error) => !(error instanceof StudioApiError && (error.status < 500 || error.detail.code === 'CAPABILITY_UNAVAILABLE')) && failures < 1,
+    retry: (failures, error) => !(error instanceof StudioApiError && (error.status < 500 || error.detail.code === 'CAPABILITY_UNAVAILABLE' || error.detail.code==='AUTH_SERVICE_UNAVAILABLE')) && failures < 1,
   }, mutations: { retry: false } } });
 }
 

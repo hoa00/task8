@@ -59,6 +59,21 @@ export default {
           .all(),
       );
     }
+    if (path === '/__auth/batch') {
+      const input = z
+        .array(
+          z.object({
+            sql: z.string(),
+            parameters: z.array(z.union([z.string(), z.number(), z.null()])),
+          }),
+        )
+        .min(1)
+        .max(50)
+        .parse(await request.json());
+      return Response.json(
+        await env.DB.batch(input.map((row) => env.DB.prepare(row.sql).bind(...row.parameters))),
+      );
+    }
     const app = createApp({ identityProvider: () => provider(env.TEST_PROVIDER_URL) });
     let primary = false,
       batches = 0,

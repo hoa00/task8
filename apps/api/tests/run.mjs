@@ -6,6 +6,7 @@ export const features = [
   'auth-identity',
   'auth-session',
   'auth-principal',
+  'auth-web',
   'db',
   'http',
   'core',
