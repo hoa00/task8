@@ -1,0 +1,54 @@
+{
+  "source": "Direct HTTPS requests from the managed environment",
+  "baseUrl": "https://hrm-api-v2.cwr.i24h.app",
+  "recordFileModifiedAtUtc": "2026-10-13T05:16:30.839203+00:00",
+  "requestPolicy": "GET documentation/root paths and POST empty JSON bodies; no user credentials supplied",
+  "successAuthenticationVerified": false,
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/",
+      "httpStatus": 404,
+      "contentType": "application/json; charset=utf-8",
+      "bodyType": "dict",
+      "bodyKeys": [
+        "statusCode",
+        "message",
+        "error"
+      ],
+      "statusCode": 404,
+      "message": "Cannot GET /",
+      "errorType": "dict"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/auth/login",
+      "httpStatus": 400,
+      "contentType": "application/json; charset=utf-8",
+      "bodyType": "dict",
+      "bodyKeys": [
+        "statusCode",
+        "message",
+        "error"
+      ],
+      "statusCode": 400,
+      "message": "Bad Request Exception",
+      "errorType": "dict"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/auth/refresh-token",
+      "httpStatus": 201,
+      "contentType": "application/json; charset=utf-8",
+      "bodyType": "dict",
+      "bodyKeys": [
+        "statusCode",
+        "message",
+        "error"
+      ],
+      "statusCode": 400,
+      "message": "error",
+      "errorType": "list"
+    }
+  ]
+}

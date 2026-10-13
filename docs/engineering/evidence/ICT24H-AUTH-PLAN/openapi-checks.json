@@ -1,0 +1,24 @@
+{
+  "source": "Direct HTTPS requests from the managed environment",
+  "baseUrl": "https://hrm-api-v2.cwr.i24h.app",
+  "recordFileModifiedAtUtc": "2026-10-13T05:18:27.266883+00:00",
+  "requestPolicy": "GET documentation/root paths and POST empty JSON bodies; no user credentials supplied",
+  "successAuthenticationVerified": false,
+  "checks": [
+    {
+      "path": "/api-json",
+      "httpStatus": 404,
+      "openapiFound": false
+    },
+    {
+      "path": "/docs-json",
+      "httpStatus": 404,
+      "openapiFound": false
+    },
+    {
+      "path": "/openapi.json",
+      "httpStatus": 404,
+      "openapiFound": false
+    }
+  ]
+}

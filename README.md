@@ -31,6 +31,8 @@ Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương t
 
 **Chuẩn bắt buộc khi phát triển backend:** [BACKEND_STANDARDS.md](docs/engineering/BACKEND_STANDARDS.md), [apps/api/AGENTS.md](apps/api/AGENTS.md). POC chỉ giới hạn tính năng; chất lượng kiến trúc/code/kiểm thử phải phục vụ phát triển lâu dài. [BACKEND_REFACTOR_PLAN.md](docs/engineering/BACKEND_REFACTOR_PLAN.md) ghi các phase điều chỉnh implementation hiện tại, prerequisite và gate. Việc lập/lưu kế hoạch không có nghĩa các phase runtime đã triển khai.
 
+**Xác thực ICT24H:** [ICT24H_AUTH_INTEGRATION_PLAN.md](docs/engineering/ICT24H_AUTH_INTEGRATION_PLAN.md) mô tả sáu unit để giữ form đăng nhập, xác minh danh tính trên Worker, tạo hồ sơ chờ cấp workspace và quản lý phiên task8. Tenant đã chốt là `ict24h-rdn-dev`; kế hoạch đã lập, các unit auth chưa triển khai.
+
 **Kiểm chứng:** [VISUAL_PARITY.md](docs/poc/VISUAL_PARITY.md), [ACCEPTANCE.md](docs/poc/ACCEPTANCE.md), [reference/source-lock.json](docs/poc/reference/source-lock.json).
 
 **Tình trạng bộ bàn giao:** [HANDOFF_REVIEW.md](docs/poc/HANDOFF_REVIEW.md) ghi những gì đã kiểm tra và những gate ứng dụng vẫn chờ triển khai; [handoff-manifest.json](docs/poc/reference/handoff-manifest.json) chứa checksum của bộ tài liệu ban đầu.
