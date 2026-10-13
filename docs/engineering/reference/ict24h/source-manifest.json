@@ -17,9 +17,27 @@
   "library": {
     "documentationUrl": "https://github.com/hoa00/i24h-auth-honojs/blob/main/packages/i24h-auth-honojs/llms-full.txt",
     "documentationReadInSession": true,
-    "packageOrTarballVerified": false,
+    "packageOrTarballVerified": true,
     "versionInInstallExample": "0.1.1",
-    "workerRuntimeVerified": false
+    "workerRuntimeVerified": true,
+    "initialPlanObservation": {
+      "packageOrTarballVerified": false,
+      "workerRuntimeVerified": false
+    },
+    "verifiedVersion": "0.1.1",
+    "tarball": "https://npm.pkg.github.com/download/@hoa00/i24h-auth-honojs/0.1.1/cdac0bbe3ad22cc4a2f8d94a529eaa58c13ad5b8",
+    "integrity": "sha512-kdQ42nX4G0uPRO1gviMYPmTMaycfdxvfAf0yjU/EMJ1c4/L//Bl/vwj3sj9lkq4rwk6FoIKaZp4jdvXqJfSgjQ==",
+    "tarballSha256": "c6ce5c0de29e103f5885088c731eb11029f6c8ed7961c123bc90309a4efc2a6a",
+    "publicRuntimeExports": [
+      "validateAuthConfig",
+      "I24HTokenAuthGuard",
+      "I24HSrvGuard",
+      "UserAuthInfo"
+    ],
+    "packageEvidence": "../../evidence/AUTH-01/worker-proof/package.json",
+    "workerEvidence": "../../evidence/AUTH-01/worker-proof/verification.json",
+    "verificationDate": "2026-10-13",
+    "scope": "Actual local Worker/fresh RSA keys, not successful live deployment login/refresh/whoami"
   },
   "configurationFromUser": {
     "identityApiBaseUrl": "https://hrm-api-v2.cwr.i24h.app",
@@ -30,5 +48,14 @@
       "task8_logout"
     ],
     "newUserPolicy": "Create task8 profile; wait for an externally granted workspace membership"
+  },
+  "liveAcceptance": {
+    "status": "LOCAL_VERIFIED_LIVE_PENDING",
+    "deploymentPublicKeyProvided": false,
+    "testAccountProvided": false,
+    "deploymentRevisionVerified": false,
+    "deploymentTtlVerified": false,
+    "deploymentRefreshSemanticsVerified": false,
+    "contractSnapshotUnchanged": true
   }
 }

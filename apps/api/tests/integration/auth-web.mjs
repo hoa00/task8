@@ -310,6 +310,19 @@ try {
   assert.equal(provider.state.refreshCount, refreshBefore);
   assert.equal((await session(page)).status, 200);
   probe('stale-browser-refresh-and-logout-cannot-affect-current-account');
+  await page.route('**/api/v1/auth/logout', async (route) => {
+    const response = await route.fetch({
+      headers: { ...route.request().headers(), 'X-Test-DB': 'fail' },
+    });
+    assert.equal(response.status(), 503);
+    await route.fulfill({ response });
+  });
+  await page.locator('#waiting-logout').click();
+  await page.locator('[data-waiting-for-workspace] [role=alert]').waitFor();
+  assert.equal((await session(page)).status, 200);
+  assert.equal(await page.locator('#waiting-logout').isEnabled(), true);
+  await page.unroute('**/api/v1/auth/logout');
+  probe('logout503-keeps-active-session-and-offers-retry');
   await page.locator('#waiting-logout').click();
   await page.locator('#l-email').waitFor();
   await tab.locator('#l-email').waitFor();
@@ -326,6 +339,44 @@ try {
   await page.reload();
   await page.locator('[data-waiting-for-workspace]').waitFor();
   probe('remember-session-survives-reload');
+  await tab.goto(web + '/');
+  await tab.locator('[data-waiting-for-workspace]').waitFor();
+  const previousCookie = (await context.cookies()).find(
+    (item) => item.name === 'task8_local_session',
+  );
+  const sessionsBefore = (await sql('SELECT count(*) count FROM authSessions'))[0].count;
+  const lateLogin = provider.block();
+  provider.state.blockLogin = lateLogin;
+  let received;
+  const completed = new Promise((resolve) => (received = resolve));
+  await page.route('**/api/v1/auth/login', async (route) => {
+    // Keep the actual Worker exchange observable even if generation aborts the form fetch.
+    const response = await route.fetch();
+    received({ status: response.status(), hasCookie: !!response.headers()['set-cookie'] });
+    try {
+      await route.fulfill({ response });
+    } catch {
+      // The production facade cancels the old browser request after tab logout.
+    }
+  });
+  await page.goto(web + '/login');
+  await signIn(page);
+  await lateLogin.ready;
+  try {
+    await tab.locator('#waiting-logout').click();
+    await tab.locator('#l-email').waitFor();
+  } finally {
+    lateLogin.release();
+  }
+  assert.deepEqual(await completed, { status: 409, hasCookie: false });
+  await page.locator('#l-email').waitFor();
+  assert.equal((await session(page)).status, 401);
+  assert.equal((await sql('SELECT count(*) count FROM authSessions'))[0].count, sessionsBefore);
+  assert.equal(
+    (await context.cookies()).find((item) => item.name === 'task8_local_session')?.value,
+    previousCookie?.value,
+  );
+  probe('late-form-login-with-previous-SID-after-tab-logout-cannot-resurrect-or-write-cookie');
   await context.close();
   report.status = 'PASS';
 } catch (error) {

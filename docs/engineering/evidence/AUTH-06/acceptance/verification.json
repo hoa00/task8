@@ -1,0 +1,180 @@
+{
+  "status": "LOCAL_VERIFIED_LIVE_PENDING",
+  "units": {
+    "1": "LOCAL_COMPLETE",
+    "2": "LOCAL_COMPLETE",
+    "3": "LOCAL_COMPLETE",
+    "4": "LOCAL_COMPLETE",
+    "5": "LOCAL_COMPLETE",
+    "6": "LOCAL_COMPLETE"
+  },
+  "prerequisiteMain": "b56c5f0df20f5f04c7bd55e7dfb312efb42bb5b3",
+  "gates": [
+    {
+      "gate": "full-root",
+      "argv": [
+        "pnpm",
+        "test"
+      ],
+      "exitCode": 0,
+      "logSha256": "89aa33bebf6c03ee036fa3105a7c31e5612de095cad5d0c117a34b8293f91afe"
+    },
+    {
+      "gate": "api-format",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "format:check"
+      ],
+      "exitCode": 0,
+      "logSha256": "b6b2149205593a02020bea94b8262906537cf6d0b41a829e14a8bb7bd7567dfb"
+    },
+    {
+      "gate": "api-lint",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "lint"
+      ],
+      "exitCode": 0,
+      "logSha256": "7594d81a97a058fcdc4fa616ba0fc246cf1921890ce6bda31923df782701bd81"
+    },
+    {
+      "gate": "types",
+      "argv": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "logSha256": "33d1019ad0274682a87a6a7938fbdbfaab7d28e7b7de7e3d42a6cb2a98feabaa"
+    },
+    {
+      "gate": "lint",
+      "argv": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 0,
+      "logSha256": "479d6b457c7f13e1a4d2f1fd32a28f7f4f342aa08ba5c50b8b646813a5a80eab"
+    },
+    {
+      "gate": "consumers",
+      "argv": [
+        "pnpm",
+        "contracts:consumers"
+      ],
+      "exitCode": 0,
+      "logSha256": "d9bad4212175fe72a325138bc9c407ac7ee405350ebda68ac0aef835158c5599"
+    },
+    {
+      "gate": "build",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "logSha256": "103b7710b2ad6acbe99b46f98bd0fd5f60bfd466ad256ad6e97d752d00acb278"
+    },
+    {
+      "gate": "browser-supplement",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "test:integration",
+        "--feature",
+        "auth-web"
+      ],
+      "exitCode": 0,
+      "logSha256": "37339f99bec69e221006c5b4fa7f0fb8aff9c2bca0b5cc92983e5fea1e6136c0"
+    },
+    {
+      "gate": "api-format-final",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "format:check"
+      ],
+      "exitCode": 0,
+      "logSha256": "b6b2149205593a02020bea94b8262906537cf6d0b41a829e14a8bb7bd7567dfb"
+    },
+    {
+      "gate": "api-lint-final",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "lint"
+      ],
+      "exitCode": 0,
+      "logSha256": "7594d81a97a058fcdc4fa616ba0fc246cf1921890ce6bda31923df782701bd81"
+    }
+  ],
+  "nodeTests": {
+    "api": 66,
+    "contracts": 99,
+    "web": 177,
+    "reference": 3,
+    "workspace": 4,
+    "i18n": 9,
+    "total": 358
+  },
+  "fullRootNative": {
+    "suiteCount": 16,
+    "reportProbes": 2883,
+    "fileBrowserChecks": 20,
+    "reports": "full-native-reports.json",
+    "nodeVersions": [
+      "v24.13.0"
+    ],
+    "authWebProbesAtFullRun": 20
+  },
+  "browserSupplement": {
+    "probes": 22,
+    "newCases": [
+      "Actual logout DB503 keeps session/UI retry",
+      "Held form login previous SID after other-tab logout yields409/no Set-Cookie/no insert/subsequent401"
+    ],
+    "report": "auth-web-supplement-report.json.gz",
+    "sourceBridge": "supplement-bridge.json",
+    "fullRoot22Claim": false
+  },
+  "runtimeFix": "Missing-SID/row logout remains idempotent200 with old expected metadata; found S2/expectedS1 still409. Native auth-session70 passes.",
+  "package": "@hoa00/i24h-auth-honojs@0.1.1 official registry/tarball/public exports/actual guard; no source-copy verifier",
+  "sourceSnapshotSha256": "ce4fd4be93639c421059d84938ce2d91566beaa33b9b4ed34641b6fe29a5b3da",
+  "liveGate": {
+    "status": "NOT_RUN",
+    "missingInputs": [
+      "Deployment public RSA key",
+      "Test account via secure environment",
+      "Deployment revision/TTL and refresh semantics confirmation"
+    ],
+    "identitySourceRevision": "429a7df143938ff3f6d82c29db5cf31f0feb1386",
+    "deploymentRevisionVerified": false,
+    "controlledProviderIsNotLiveEvidence": true
+  },
+  "visual": {
+    "strictSourceStatus": "FAILED_UNACCEPTED_INHERITED",
+    "samples": 14,
+    "maximumDiffPixels": 1070,
+    "currentVsParentTargetByteIdentical": true,
+    "reference": "../../AUTH-05/web-lifecycle/visual-parent-comparison.json",
+    "sourceBaselineOrToleranceChanged": false
+  },
+  "authorization": "Direct origin/main commits/push permitted; no force push/deploy/Identity Service change/live workspace provisioning",
+  "runbook": "../../../ICT24H_AUTH_RUNBOOK.md",
+  "inputs": "executed-inputs.json",
+  "docsEvidence": {
+    "status": "PASS",
+    "command": [
+      "python3",
+      "/tmp/task8-auth-tools/docs-check.py"
+    ],
+    "localDocLinks": 46,
+    "logSha256": "1842f556255560eed120d0fdf589c15c716bfc7b27f2ef2248c7f5742f3895dd",
+    "snapshotAndHistoricalReportsPreserved": true
+  }
+}

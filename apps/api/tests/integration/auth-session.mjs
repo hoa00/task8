@@ -219,6 +219,9 @@ try {
     expected: secondId,
   });
   await request('anonymous-logout', '/api/v1/auth/logout');
+  await request('missing-SID-with-old-metadata-logout', '/api/v1/auth/logout', 200, {
+    expected: secondId,
+  });
   for (const [name, column, value] of [
     ['access-expired', 'accessExpiresAt', 1],
     ['refresh-expired', 'refreshExpiresAt', 1],

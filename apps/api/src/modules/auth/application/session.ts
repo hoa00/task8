@@ -193,9 +193,9 @@ export function createSessionService(deps: SessionDependencies): AuthSessionServ
     },
     async logout(sid, expectedId) {
       const record = await lookup(sid);
+      if (!record) return { signedOut: true };
       requireExpectedSession(record, expectedId);
-      if (record && record.revokedAt === null)
-        await revokeSession(repository, record.id, clock.now());
+      if (record.revokedAt === null) await revokeSession(repository, record.id, clock.now());
       return { signedOut: true };
     },
     async authenticate(sid) {

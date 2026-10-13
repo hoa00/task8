@@ -4,7 +4,7 @@
 
 ## Owners và dependency direction
 
-ICT24H integration: [kế hoạch](../../docs/engineering/ICT24H_AUTH_INTEGRATION_PLAN.md), [package setup và checkpoint AUTH-01](../../docs/engineering/ICT24H_AUTH_SETUP.md). Module auth hiện cung cấp adapter provider và standalone contracts; production vẫn dùng local principal cho tới khi Worker proof và các unit composition đạt gate.
+ICT24H integration: [kế hoạch](../../docs/engineering/ICT24H_AUTH_INTEGRATION_PLAN.md), [package setup và checkpoint AUTH-01](../../docs/engineering/ICT24H_AUTH_SETUP.md). Real auth hiện được compose khi AUTH_MODE=ict24h: package guard, primary D1 encrypted sessions và web login/waiting/generation. Repo default AUTH_MODE=local phục vụ dev/regression; không fallback khi ICT24H lỗi. Xem [runbook](../../docs/engineering/ICT24H_AUTH_RUNBOOK.md) và [AUTH-06 acceptance](../../docs/engineering/evidence/AUTH-06/acceptance/verification.json); live provider acceptance còn pending.
 
 `src/app.ts` compose repository/storage/middleware/error/routes; `src/index.ts` export production app. Một request đi qua HTTP route → application use-case → pure domain/policy và typed persistence/storage → pure DTO mapper. Application không nhận Hono context hoặc raw binding; domain/mapper không query DB. Cross-feature imports chỉ qua public entry dưới đây, không deep-import implementation.
 
@@ -82,6 +82,11 @@ Root `pnpm test` qua Turbo build dependencies, chạy API và truyền lỗi API
 
 | Feature | Active suite trong `tests/integration` | Evidence |
 | --- | --- | --- |
+| auth-provider | `auth-provider.mjs` | Actual package0.1.1 guard/RS256/bounds/body streams trên Workerd |
+| auth-identity | `auth-identity.mjs` | Native mapping/JIT concurrency/collision/Unicode/upgrade/linking |
+| auth-session | `auth-session.mjs` | Native primary D1/crypto/cookie/Origin/CAS/late results/logout/outcomes |
+| auth-principal | `auth-principal.mjs` | Waiting/active memberships/private/final SQL race/auth budgets |
+| auth-web | `auth-web.mjs` | Real browser form/controlled HTTP provider/tab/generation/remember/returnTo |
 | db | `db.mjs` | Native/Drizzle budgets/accounting, typed boundary/policy parity |
 | http | `http.mjs` | Request/response/errors/correlation và cursor anchor mutation |
 | core | `core.mjs` | Workspace/profile/project/member/team, policy/CAS/Undo/restart |
@@ -132,7 +137,7 @@ pnpm --filter @studio/api auth:link:local --persist-to /absolute/local-storage -
 
 This bounded procedure uses the production members public use-case on an ephemeral loopback-only Worker. It changes only the external mapping; same mapping/user is idempotent, a different user/missing user conflicts with zero writes. It does not identify users by email, migrate/reset the database, grant a workspace or expose a production linking route. Runtime logs/artifacts contain no credentials. Remote linking remains a trusted operator action outside this local command.
 
-Sessions native suite: `pnpm --filter @studio/api test:integration --feature auth-session`. It runs public login/refresh/logout on actual Workerd/D1 with a controlled HTTP provider issuing fresh RSA tokens; it does not contact the live Identity Service. Production composition uses provider/public guard factories, primary RequestRepository reads and AES-GCM storage. Business principal activation follows AUTH-04 canonical consumers.
+Sessions native suite: `pnpm --filter @studio/api test:integration --feature auth-session`. It runs public login/refresh/logout on actual Workerd/D1 with a controlled HTTP provider issuing fresh RSA tokens; it does not contact the live Identity Service. Production composition uses provider/public guard factories, primary RequestRepository reads and AES-GCM storage. Business principal activation is enabled in ICT24H mode with canonical AUTH-04 consumers.
 
 ICT24H mode requires AUTH_MODE=ict24h, AUTH_PROVIDER_KEY=ict24h-identity, HTTPS AUTH_PROVIDER_BASE_URL, exact AUTH_TENANT_ID, deployment AUTH_PUBLIC_KEY, secret AUTH_SESSION_ENCRYPTION_KEY (canonical base64url32bytes), exact AUTH_APP_ORIGIN and optional max-age1…1209600seconds (default14days). Never expose those secrets as VITE config. Local mode is explicit AUTH_MODE=local plus STUDIO_ENV=local/trusted LOCAL IDs. Missing/invalid ICT24H config fails closed. JWT key factories normalize escaped newlines. HTTP provider transport uses manual redirects and rejects every3xx before decoding; Workerd does not support redirect:error.
 
@@ -140,4 +145,4 @@ Auth POSTs require exact Origin. HTTPS cookie is __Host-task8_session; local HTT
 
 Principal/native permission suite: `pnpm --filter @studio/api test:integration --feature auth-principal`. ICT24H mode authenticates SID/JWT on each protected request with the same primary RequestRepository used by business queries/commands. Waiting users receive session200/currentWorkspaceId=null, GET profile200 and workspace list[]; PATCH profile403. Mutations require Origin and matching X-Task8-Session-Id before dispatch. Workspace membership, private grants and final SQL guards remain canonical; central roles are ignored. Maximum20-task bulk was measured at16statements including auth in the native fixture.
 
-Canonical session consumers now require authSession:null in local/mock mode and metadata in ICT24H mode. HTTP facade/route consumers use Query metadata; waiting route does not bootstrap a seed workspace. Form/lifecycle browser acceptance is tracked separately in AUTH-05. Existing task PATCH readonly-private relation validation400 is retained; it is distinct from hidden-child404 and profile-waiting403.
+Canonical session consumers now require authSession:null in local/mock mode and metadata in ICT24H mode. HTTP facade/route consumers use Query metadata; waiting route does not bootstrap a seed workspace. Form/lifecycle browser acceptance has20actual probes in AUTH-05 and22in the AUTH-06 supplement (logout503 retry and late form login after tab logout); shared refresh/GET retry/generation/captured mutation intent/BroadcastChannel/focus use Query metadata, never credential cache. Missing-SID logout with old metadata is idempotent200; found S2/expectedS1 stays409. Existing task PATCH readonly-private relation validation400 is retained; it is distinct from hidden-child404 and profile-waiting403.

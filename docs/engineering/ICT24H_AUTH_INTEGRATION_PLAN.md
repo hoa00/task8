@@ -4,7 +4,7 @@ Ngày lập: **13/10/2026**. Baseline khảo sát: `3355609294e36de9b4770586a335
 
 Giữ form đăng nhập của task8, dùng Identity Service để kiểm tra email/password và cấp token, dùng `@hoa00/i24h-auth-honojs` trên backend để xác minh danh tính. task8 tạo hồ sơ cho người đăng nhập lần đầu và chỉ mở workspace khi D1 xác nhận membership đang hoạt động. Phiên ứng dụng dùng cookie HttpOnly chứa mã phiên ngẫu nhiên, với dữ liệu phiên lưu trong D1.
 
-**Trạng thái: AUTH-01 LOCAL_VERIFIED_LIVE_PENDING; AUTH-02/03/04/05 PASS (visual source debt kế thừa được giữ nguyên); AUTH-06 tiếp theo.** Package0.1.1/tarball/public exports và actual Worker26probes đã xác minh; [checkpoint AUTH-01](ICT24H_AUTH_SETUP.md) giữ commands/evidence. Live verification còn thiếu deployment public key/test account. Các phương án kỹ thuật dưới đây là thiết kế triển khai của task8; tài liệu Identity Service là nguồn contract, không phải chỉ dẫn thay đổi stack hoặc vận hành dịch vụ bên ngoài.
+**Trạng thái: AUTH-01…06 đã hoàn tất phần độc lập — LOCAL_VERIFIED_LIVE_PENDING.** AUTH-02/03/04/05 PASS trong phạm vi auth; AUTH-06 full local regression/runbook PASS. Strict source visual debt kế thừa vẫn FAILED/unaccepted, không được nâng thành parity. Package0.1.1/tarball/public exports và actual Worker26probes đã xác minh; [checkpoint AUTH-01](ICT24H_AUTH_SETUP.md) giữ commands/evidence. Live verification còn thiếu deployment public key/test account. Các phương án kỹ thuật dưới đây là thiết kế triển khai của task8; tài liệu Identity Service là nguồn contract, không phải chỉ dẫn thay đổi stack hoặc vận hành dịch vụ bên ngoài.
 
 ## 1. Phạm vi đã chốt
 
@@ -39,7 +39,7 @@ Giữ form đăng nhập của task8, dùng Identity Service để kiểm tra em
 
 [Kiểm tra endpoint](evidence/ICT24H-AUTH-PLAN/endpoint-checks.json) bằng request `{}` đã ghi: login HTTP400/body400; refresh HTTP201/body400; GET `/` HTTP404. Đây là bằng chứng route/error envelope, không phải login hoặc refresh thành công. [Ba path OpenAPI](evidence/ICT24H-AUTH-PLAN/openapi-checks.json) được kiểm tra trả404, không suy ra service không có tài liệu ở path khác.
 
-[Tài liệu thư viện](https://github.com/hoa00/i24h-auth-honojs/blob/main/packages/i24h-auth-honojs/llms-full.txt) đã đọc trong phiên: Node24 ESM, Hono4.13.13, Bearer guard RS256, `UserAuthInfo` trả `{userId,tenantId}`; Workers chưa được thư viện xác nhận. Ví dụ version0.1.1 chưa được đối chiếu tarball. AUTH-01 phải kiểm chứng package thực trong Worker; không suy ra PASS từ tài liệu hoặc từ Node của máy build.
+[Tài liệu thư viện](https://github.com/hoa00/i24h-auth-honojs/blob/main/packages/i24h-auth-honojs/llms-full.txt) đã đọc trong phiên: Node24 ESM, Hono4.13.13, Bearer guard RS256, `UserAuthInfo` trả `{userId,tenantId}`; Workers chưa được thư viện xác nhận. Lúc lập kế hoạch, ví dụ version0.1.1 chưa được đối chiếu tarball. AUTH-01 hiện đã kiểm exact registry/tarball0.1.1/exports và actual Worker26probes; xem [setup](ICT24H_AUTH_SETUP.md). Local proof không xác minh live deployment.
 
 ## 3. Luồng ứng dụng và ownership
 
@@ -237,10 +237,10 @@ Runbook phải có explicit-link trước login cho existing profiles; migrate/b
 | --- | --- |
 | Base URL, tenant và phạm vi sản phẩm | Đã chốt theo yêu cầu Hòa |
 | RSA public key đúng deployment + cách nhận key mới | Operator cần cấp trước live verification; không cần private key |
-| Quyền đọc package private/installed tarball | Cần cấu hình để AUTH-01 chạy package thật; token URL raw không phải npm credential |
+| Quyền đọc package private/installed tarball | Đã query/download official0.1.1 và pin integrity bằng trusted npm config; readiness metadata unknown được giữ đúng |
 | Test account của tenant, deployment revision/TTL | Cần cho success smoke; cung cấp qua môi trường bảo mật, không đưa vào Git/chat logs |
-| Session encryption secret và app origin | Tạo/cấu hình trong unit session; kế hoạch không chứa secret values |
+| Session encryption secret và app origin | Factory/config đã triển khai; local fixtures dùng fresh secret, operator cần cấu hình deployment qua secure manager |
 | Existing-user linking inputs | Chỉ cần nếu muốn giữ profile/membership có sẵn cho central principal đó; không tự link email |
 | Workspace grant | Quy trình quản trị riêng; profile chờ không được phép vào workspace trước grant |
 
-AUTH-01 là unit code tiếp theo khi được giao triển khai. Public key/package access/live account là prerequisite kiểm chứng, không ngăn hoàn tất tài liệu kế hoạch. Không thực thi AUTH-01…06, provision Identity Service hoặc deploy từ nhiệm vụ lập kế hoạch này.
+Phần chỉ dẫn docs-only ban đầu đã được thay bằng yêu cầu triển khai AUTH-01…06 và commit/push main trong session13/10/2026. Các unit chạy tuần tự sau local prerequisite; quyền deploy/provision Identity Service/workspace nằm ngoài scope. [Runbook](ICT24H_AUTH_RUNBOOK.md) và acceptance evidence ghi current status; thiếu deployment public key/test account chỉ giữ live gate pending, không chặn phần độc lập.

@@ -20,7 +20,7 @@ Thiết kế này không biến tất cả màn demo trong source thành dịch 
 | Calendar events/milestones | Source read-only fixtures | Read-only seeded data; task reschedule qua Task API |
 | File metadata/art/preview | One normalized file identity; artwork source | Same DTO/components, real R2 content khi có actual bytes |
 | Upload bytes | Scenario mô phỏng có chủ đích để capture | WU-35: bytes thật, cap 10MiB và progress/error thực |
-| Auth/password/OAuth/reset/verify/2FA/session revocation | DemoAdapter riêng giữ screen/state | Unavailable real service; demo auth không đổi API principal |
+| Auth/password/OAuth/reset/verify/2FA/session revocation | DemoAdapter riêng giữ screen/state | AUTH_MODE=ict24h: real email/password login, refresh và current task8 logout; OAuth/signup/reset/verify/2FA/all-devices account security unavailable, không demo success. AUTH_MODE=local: trusted dev principal |
 | Workspace provisioning/onboarding tạo workspace/invite/email | Full UI và scoped demo datasets | Không có real provisioning/email; dùng workspace seed |
 | Sharing/role/account removal/access request | Full UI demo states | Read quyền/grants để enforcement; chỉnh ACL là demo/unavailable |
 | Plan/payment/invoices | Full UI fixture/demo | Chưa provider, chưa thanh toán hoặc subscription enforcement |
@@ -60,7 +60,7 @@ User-facing business capability chỉ được báo implemented khi endpoint/ope
 
 Workspace scope, private child access, input validation, date semantics, FK, concurrent key allocation và atomicity là phần cần để API hiện tại đúng. Không loại chúng chỉ vì gọi là POC. Đồng thời chưa bổ sung SSO, session rotation, audit platform, queues, realtime, observability stack, distributed cache hoặc deploy pipeline.
 
-Danh tính phát triển được inject từ Worker config local; không nhận arbitrary x-user-id/userId do frontend gửi rồi coi đã xác thực. M3 chỉ đủ chạy local với demo data. Trước public deployment cần chọn auth provider thật trong nhiệm vụ tiếp theo; đây là giới hạn kết quả, không phải yêu cầu thêm auth vào UI conversion.
+Danh tính phát triển được inject từ Worker config local; không nhận arbitrary x-user-id/userId do frontend gửi rồi coi đã xác thực. M3 chỉ đủ chạy local với demo data. ICT24H provider đã tích hợp trong nhiệm vụ AUTH-01…06 tiếp theo; default repo local không tự bật public deployment. Public deployment/live acceptance vẫn cần operator public key/account/revision/TTL và config/secret; xem [runbook](../engineering/ICT24H_AUTH_RUNBOOK.md). Workspace grant là trusted operator action, không có provisioning API/UI.
 
 ## 6. D1/R2 giới hạn phải biết khi viết code
 

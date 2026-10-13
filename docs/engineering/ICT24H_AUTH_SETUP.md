@@ -1,6 +1,6 @@
 # ICT24H AUTH-01: package setup và checkpoint
 
-Ngày: 13/10/2026. Baseline `becfc49e231c0914a4733738631af6fcb2229479`. Checkpoint contract/provider ban đầu được giữ bên dưới. AUTH-01 nay có package/Worker proof thật; xem cập nhật cuối tài liệu. AUTH-02…06 chưa triển khai tại checkpoint AUTH-01 này.
+Ngày: 13/10/2026. Baseline `becfc49e231c0914a4733738631af6fcb2229479`. Checkpoint contract/provider ban đầu được giữ bên dưới. AUTH-01 nay có package/Worker proof thật; xem cập nhật cuối tài liệu. Nội dung checkpoint AUTH-01 được giữ theo thời điểm; trạng thái toàn bộ hiện tại xem [runbook](ICT24H_AUTH_RUNBOOK.md), [kế hoạch](ICT24H_AUTH_INTEGRATION_PLAN.md) và PROGRESS.
 
 ## Phần đã triển khai
 

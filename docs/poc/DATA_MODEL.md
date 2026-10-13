@@ -119,7 +119,7 @@ Notification `readAt` không phải global read boolean dùng chung mọi ngư�
 
 Không có bảng attachment riêng có nội dung copy từ files. TaskDetail.attachments là `files WHERE taskId = ... AND deletedAt IS NULL`. ProjectFiles lấy cùng bảng. File gắn task tombstoned bị ẩn theo task scope; restore task làm file hiện lại nếu chính file chưa bị tombstone. Archive không xóa file bytes.
 
-Không có D1 tables cho billing invoice/card/plan, security sessions/2FA/password, invitation email delivery, public share token, access request hay offline queue. Các screen này giữ dataset trong DemoAdapter để không lẫn với dịch vụ thật.
+Không có D1 tables cho billing invoice/card/plan, account-security device list/2FA/password (authSessions cho current app auth được thêm bởi AUTH-03), invitation email delivery, public share token, access request hay offline queue. Các screen này giữ dataset trong DemoAdapter để không lẫn với dịch vụ thật.
 
 ### 3.5 Bounded Undo records
 
@@ -469,4 +469,4 @@ Applied migrations0000…0002 remain immutable. Forward0003 adds authIdentities(
 
 Forward0004 adds authSessions(id,sidHash,identityId,userId,accessCiphertext,refreshCiphertext,accessExpiresAt,refreshExpiresAt,expiresAt,tokenVersion,authGeneration,createdAt,revokedAt), unique SID hash and composite identity/user FK. Revoked rows have null credentials, active rows have encrypted pair; version/generation positive. SID itself and provider token plaintext never reside in D1. AES-GCM AAD binds session/kind/version and each envelope has its own random nonce. Primary request session decisions, guarded replacement/login generation, refresh CAS and logout revocation retain request limits. New storage does not alter historical user/membership/activity/Undo IDs.
 
-A trusted test/operator workspace grant needs workspaceMembers plus one memberPreferences row containing canonical preferencesJson and notificationPreferencesJson with updatedAt; the row is keyed by memberId, not a separate notification table or a version field. Public workspace provisioning remains outside auth scope. See [integration/runbook](../engineering/ICT24H_AUTH_INTEGRATION_PLAN.md).
+A trusted test/operator workspace grant needs workspaceMembers plus one memberPreferences row containing canonical preferencesJson and notificationPreferencesJson with updatedAt; the row is keyed by memberId, not a separate notification table or a version field. Public workspace provisioning remains outside auth scope. See [runbook](../engineering/ICT24H_AUTH_RUNBOOK.md).
