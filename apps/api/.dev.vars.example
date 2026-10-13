@@ -1,6 +1,15 @@
-# Optional local overrides of committed development fixture identity.
-# Never accept browser x-user-id, authorization, query, or body fields as identity.
-# Only active memberships in LOCAL_WORKSPACE_ID are valid; invited fixtures are not principals.
+# Local ICT24H configuration for Wrangler. Copy to apps/api/.dev.vars.
+# This template cannot authenticate until BOTH key placeholders are replaced.
+# Obtain the RSA PUBLIC key from the operator of the actual ICT24H deployment.
+# Do not generate your own RSA key for live login; do not put a private key here.
+AUTH_MODE=ict24h
 STUDIO_ENV=local
-LOCAL_USER_ID=01a11abd-aa80-7d3f-879a-dd89204bcd77
-LOCAL_WORKSPACE_ID=01a11abd-aa80-72ea-8b87-b31ad015a24e
+AUTH_PROVIDER_KEY=ict24h-identity
+AUTH_PROVIDER_BASE_URL=https://hrm-api-v2.cwr.i24h.app
+AUTH_TENANT_ID=ict24h-rdn-dev
+AUTH_APP_ORIGIN=http://127.0.0.1:5173
+AUTH_SESSION_MAX_AGE_SECONDS=1209600
+AUTH_PUBLIC_KEY="REPLACE_WITH_COMPLETE_DEPLOYMENT_RSA_PUBLIC_PEM"
+# Generate once: exactly 32 random bytes encoded as canonical base64url.
+# Keep this key stable across restarts; rotating it invalidates old sessions.
+AUTH_SESSION_ENCRYPTION_KEY=REPLACE_WITH_32_BYTE_BASE64URL_SECRET

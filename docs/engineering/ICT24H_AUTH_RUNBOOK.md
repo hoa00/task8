@@ -31,6 +31,80 @@ Không đặt public deployment private signing key/SubApp secret trong task8. K
 
 Local HTTP chỉ được dùng khi server cấu hình STUDIO_ENV=local và AUTH_APP_ORIGIN là loopback cụ thể, ví dụ `http://127.0.0.1:5173`. Cookie local `task8_local_session`; HTTPS `__Host-task8_session`, Secure/HttpOnly/SameSite=Lax/Path=/, không Domain. Browser HTTP adapter gọi relative `/api/v1` với same-origin credentials; dev proxy cùng origin. AUTH_APP_ORIGIN kiểm exact Origin của auth POST và business writes trước effects. Browser Bearer/user headers không chọn actor.
 
+## Lưu các biến AUTH ở đâu
+
+Đây là **backend Worker bindings**, được code đọc từ `context.env`/`env`. Khai báo tên trong TypeScript không tạo giá trị cấu hình. `NODE_AUTH_TOKEN` của cloud/npm phục vụ cài package; nó không cung cấp các bindings AUTH cho Worker. Các biến AUTH không nằm trong database và không đặt ở file `.env` của frontend.
+
+| Biến | Local `wrangler dev --local` | Deployment Cloudflare Worker |
+| --- | --- | --- |
+| AUTH_MODE, AUTH_PROVIDER_KEY, AUTH_PROVIDER_BASE_URL, AUTH_TENANT_ID | `apps/api/.dev.vars` cho máy cá nhân; hoặc `vars` trong `apps/api/wrangler.jsonc` cho cấu hình chung | `vars` trong Wrangler config của đúng deployment/environment |
+| AUTH_APP_ORIGIN, AUTH_SESSION_MAX_AGE_SECONDS, STUDIO_ENV | Cùng file `.dev.vars`; local origin chính xác và STUDIO_ENV=local | `vars` của deployment; HTTPS origin thực và STUDIO_ENV=production |
+| AUTH_PUBLIC_KEY | `apps/api/.dev.vars`, RSA PUBLIC PEM đầy đủ của deployment ICT24H | Có thể dùng `vars` vì là public key; runbook chọn Worker secret binding để quản lý theo môi trường/rotation |
+| AUTH_SESSION_ENCRYPTION_KEY | `apps/api/.dev.vars`, secret riêng của task8 | Worker secret binding, không commit vào Wrangler config |
+
+Repo đang giữ `AUTH_MODE=local` trong [wrangler.jsonc](../../apps/api/wrangler.jsonc). Muốn thử ICT24H ở máy cá nhân, `.dev.vars` ghi đè các key trùng trong `vars` khi chạy local. Đường dẫn phải cạnh Wrangler config, tức **apps/api/.dev.vars**, không phải `.dev.vars` ở root repo. `.dev.vars` đã được gitignore; chỉ [template .dev.vars.example](../../apps/api/.dev.vars.example) được commit. Wrangler không tự đọc template này.
+
+### Cấu hình local từ root repo
+
+1. Tạo `apps/api/.dev.vars` từ template **chỉ khi chưa có file**. Lệnh dưới đọc template public, tạo encryption key riêng32random bytes base64url rồi ghi file mode0600; không in key và không đọc secrets hiện hữu. `flag:'wx'` dừng nếu file đã có, giữ nguyên cấu hình/key đang dùng:
+
+   ```sh
+   node --input-type=module <<'JS'
+   import { readFileSync, writeFileSync } from 'node:fs';
+   import { randomBytes } from 'node:crypto';
+   const template = readFileSync('apps/api/.dev.vars.example', 'utf8');
+   const config = template.replace('REPLACE_WITH_32_BYTE_BASE64URL_SECRET',
+     randomBytes(32).toString('base64url'));
+   writeFileSync('apps/api/.dev.vars', config, { flag: 'wx', mode: 0o600 });
+   JS
+   ```
+
+   Nếu đã có `.dev.vars`, chỉnh file đó và giữ encryption key hiện hữu; nếu key còn là placeholder thì cấp secret32bytes qua secure tooling của operator. Không chạy tạo key mỗi lần startup. Việc đổi encryption key sẽ khiến sessions cũ không decrypt được.
+
+2. Thay placeholder **AUTH_PUBLIC_KEY** trong file bằng nguyên PEM `-----BEGIN PUBLIC KEY-----`…`-----END PUBLIC KEY-----` của đúng ICT24H deployment. Dùng quoted multiline PEM hoặc một dòng với escaped `\n`, ví dụ cấu trúc sau (dòng REPLACE phải thay bằng nội dung key thật):
+
+   ```dotenv
+   AUTH_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----\nREPLACE_WITH_DEPLOYMENT_PUBLIC_KEY_BASE64\n-----END PUBLIC KEY-----"
+   ```
+
+   RSA public key phải do operator ICT24H cấp; tự tạo cặp RSA mới chỉ phù hợp fixture tests, không verify token live. Copy template nguyên vẹn chưa thay cả hai key không phải config dùng được; lệnh tạo file ở bước1 đã thay encryption placeholder, vẫn cần public PEM ở bước2. Không đưa private signing key vào file.
+
+3. Apply migrations trên storage đã chọn theo phần Upgrade, rồi restart API để Wrangler nạp `.dev.vars`. Chạy backend và frontend HTTP trong hai terminal:
+
+   ```sh
+   pnpm --filter @studio/api dev
+   ```
+
+   ```sh
+   VITE_DATA_MODE=http pnpm --filter @studio/web dev
+   ```
+
+   Mở `http://127.0.0.1:5173`, khớp AUTH_APP_ORIGIN. `http://localhost:5173` là origin khác; đổi cấu hình cùng URL nếu muốn dùng localhost. Frontend chỉ cần public VITE_DATA_MODE=http và VITE_API_BASE_URL=/api/v1, không nhận AUTH_PUBLIC_KEY/encryption key/token. Thay giá trị `.dev.vars` xong restart API; khi thay frontend mode phải restart Vite.
+
+Không chỉ `export AUTH_MODE=ict24h` rồi kỳ vọng tự thành Worker binding; procedure này dùng file `.dev.vars` rõ ràng và không cần bật import toàn bộ process env. Nếu dùng `--env NAME`, Wrangler chọn `.dev.vars.NAME` khi file đó tồn tại thay vì merge với `.dev.vars`: file riêng phải có đủ auth bindings. Repo hiện không khai báo named deployment environment; không giả định `--env production` đã cấu hình sẵn.
+
+### Khi operator cấu hình deployment
+
+`.dev.vars` chỉ cho local development, không được upload bằng deploy. Nonsecret `vars` phải nằm trong Wrangler config của Worker đích; ví dụ dưới đây là **phần vars**, không phải full deployment config và không thay D1/R2 bindings bằng placeholder local:
+
+```json
+{
+  "vars": {
+    "AUTH_MODE": "ict24h",
+    "STUDIO_ENV": "production",
+    "AUTH_PROVIDER_KEY": "ict24h-identity",
+    "AUTH_PROVIDER_BASE_URL": "https://hrm-api-v2.cwr.i24h.app",
+    "AUTH_TENANT_ID": "ict24h-rdn-dev",
+    "AUTH_APP_ORIGIN": "https://REPLACE_WITH_ACTUAL_FRONTEND_HOST",
+    "AUTH_SESSION_MAX_AGE_SECONDS": "1209600"
+  }
+}
+```
+
+AUTH_PUBLIC_KEY và AUTH_SESSION_ENCRYPTION_KEY đặt ở **Cloudflare Dashboard → Workers & Pages → Worker đích → Settings → Variables and Secrets**, loại Secret; hoặc operator dùng Wrangler `secret put` với đúng Worker/config/environment đã được giao. Public key không phải RSA private key; chọn secret binding ở đây là cách quản lý cấu hình môi trường. Không lưu encryption secret vào `vars`/Git, không dùng key fixture hoặc placeholder trong ví dụ.
+
+Phần này chỉ mô tả vị trí cấu hình; chưa tạo deployment/environment, chưa upload secret, chưa deploy hoặc nghiệm thu live. Cần operator public key/account/revision/TTL như live gate cuối runbook. Secret upload/deploy là thao tác riêng được giao cho operator, không là bước của `auth:link:local`.
+
 ## Upgrade và explicit link
 
 Với storage có dữ liệu, giữ backup/ledger theo procedure D1 hiện hành. Apply forward migrations0003/0004 sau0000…0002; không reset, sửa applied SQL hoặc chạy seed để sửa account. Nếu storage chưa backfill readKeys, chạy bounded backfill trước sử dụng profile/directory. Local commands hiện có:
