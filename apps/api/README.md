@@ -135,6 +135,8 @@ Local operator linking, after migrations and after confirming both IDs through t
 pnpm --filter @studio/api auth:link:local --persist-to /absolute/local-storage --tenant ict24h-rdn-dev --subject CENTRAL_UUID --user-id LOCAL_UUIDv7
 ```
 
+Local linking requires the same storage to have users + authIdentities (forward0003) and the supplied existing user ID. The CLI checks those prerequisites before its guarded write and reports missing tables/user, resolved storage path and log directory. Apply pending migrations first; it does not migrate/reset/seed automatically and never contacts ICT24H. CENTRAL_UUID/LOCAL_UUIDv7/path in the example are placeholders, not literal inputs.
+
 This bounded procedure uses the production members public use-case on an ephemeral loopback-only Worker. It changes only the external mapping; same mapping/user is idempotent, a different user/missing user conflicts with zero writes. It does not identify users by email, migrate/reset the database, grant a workspace or expose a production linking route. Runtime logs/artifacts contain no credentials. Remote linking remains a trusted operator action outside this local command.
 
 Sessions native suite: `pnpm --filter @studio/api test:integration --feature auth-session`. It runs public login/refresh/logout on actual Workerd/D1 with a controlled HTTP provider issuing fresh RSA tokens; it does not contact the live Identity Service. Production composition uses provider/public guard factories, primary RequestRepository reads and AES-GCM storage. Business principal activation is enabled in ICT24H mode with canonical AUTH-04 consumers.

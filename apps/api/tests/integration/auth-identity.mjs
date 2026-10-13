@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 import { createHarness, localFetch, api } from '../support/harness.mjs';
 import { seedRows } from '../../scripts/seed-data.mjs';
 import { textKeyVersion } from '../../src/shared/text-key-encoder.ts';
@@ -15,6 +16,41 @@ const profile = {
   email: 'fresh@example.invalid',
   fullname: 'Hòa é é 𐀀',
 };
+function operatorFailure(name, persist, userId) {
+  const argv = [
+    '--experimental-transform-types',
+    'scripts/link-identity.mjs',
+    '--persist-to',
+    persist,
+    '--tenant',
+    profile.tenant,
+    '--subject',
+    profile.subject,
+    '--user-id',
+    userId,
+  ];
+  const result = spawnSync(process.execPath, argv, {
+    cwd: api,
+    env: process.env,
+    encoding: 'utf8',
+    timeout: 120000,
+    maxBuffer: 4 * 1024 * 1024,
+  });
+  h.save(name + '.json', {
+    argv: [process.execPath, ...argv],
+    exitCode: result.status,
+    signal: result.signal,
+    error: result.error?.message ?? null,
+    stdout: result.stdout,
+    stderr: result.stderr,
+  });
+  assert.equal(result.error, undefined, name);
+  assert.equal(result.signal, null, name);
+  assert.equal(result.status, 1, name);
+  assert(result.stderr.includes('Local D1 storage: ' + persist));
+  assert(result.stderr.includes('Operator logs: '));
+  return result.stderr;
+}
 async function request(name, path, status = 200, body) {
   const res = await localFetch(h.baseUrl + path, {
     method: body ? 'POST' : 'GET',
@@ -82,6 +118,18 @@ try {
       ]),
     ).map((result) => result.results);
   const beforeUpgrade = snapshot('before-upgrade');
+  const emptyStorage = resolve(h.runtime, 'empty-link-storage');
+  assert.match(
+    operatorFailure('operator-empty-storage', emptyStorage, fixture.primary.userId),
+    /Local D1 schema is missing: users, authIdentities/,
+  );
+  report.probes.push({ name: 'operator-empty-schema-actionable-error', status: 'PASS' });
+  assert.match(
+    operatorFailure('operator-old-storage', h.persist, fixture.primary.userId),
+    /Local D1 schema is missing: authIdentities/,
+  );
+  assert.deepEqual(snapshot('after-failed-operator'), beforeUpgrade);
+  report.probes.push({ name: 'operator-missing-auth-migration-zero-effects', status: 'PASS' });
   migrate('upgrade');
   assert.deepEqual(
     snapshot('after-upgrade'),
@@ -90,7 +138,30 @@ try {
   );
   report.probes.push({ name: 'upgrade-preservation', status: 'PASS' });
   migrate('rerun');
-  migrate('fresh', resolve(h.runtime, 'fresh-storage'));
+  const freshStorage = resolve(h.runtime, 'fresh-storage');
+  migrate('fresh', freshStorage);
+  assert.match(
+    operatorFailure('operator-missing-user', freshStorage, fixture.primary.userId),
+    /The --user-id profile does not exist in this local D1 storage/,
+  );
+  const emptyRows = JSON.parse(
+    h.run('operator-missing-user-no-writes', [
+      'pnpm',
+      'exec',
+      'wrangler',
+      'd1',
+      'execute',
+      'DB',
+      '--local',
+      '--persist-to',
+      freshStorage,
+      '--command',
+      'SELECT (SELECT count(*) FROM users) users, (SELECT count(*) FROM authIdentities) identities;',
+      '--json',
+    ]),
+  );
+  assert.deepEqual(emptyRows[0].results, [{ users: 0, identities: 0 }]);
+  report.probes.push({ name: 'operator-missing-user-actionable-zero-effects', status: 'PASS' });
   await h.start('mapping', { TEST_MEMBER_ID: fixture.primary.memberId });
   const existing = await sql('SELECT * FROM users ORDER BY id');
   const first = await request('JIT-native-batch', '/identity', 200, profile);

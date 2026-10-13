@@ -16,6 +16,7 @@ const input = {
   subject: z.uuid().parse(args[5]),
   userId: EntityIdSchema.parse(args[7]),
 };
+const persist = resolve(args[1]);
 const report = { status: 'RUNNING', commands: [], probes: [] };
 const harness = await createHarness('operator-link-identity', report);
 try {
@@ -43,20 +44,42 @@ try {
     '--config',
     file,
     '--persist-to',
-    resolve(args[1]),
+    persist,
   ]);
   const response = await localFetch(harness.baseUrl + '/link', {
     method: 'POST',
     signal: AbortSignal.timeout(30000),
   });
   const result = await response.json();
-  if (!response.ok) throw new Error('Explicit link failed: ' + result.error);
+  if (!response.ok) {
+    const failure = z
+      .object({
+        error: z.string(),
+        reason: z.enum(['LOCAL_SCHEMA_MISSING', 'LOCAL_USER_NOT_FOUND']).optional(),
+        missingTables: z.array(z.enum(['users', 'authIdentities'])).optional(),
+      })
+      .parse(result);
+    report.failure = failure;
+    if (failure.reason === 'LOCAL_SCHEMA_MISSING')
+      throw new Error(
+        `Local D1 schema is missing: ${failure.missingTables?.join(', ')}. ` +
+          'Apply migrations to the same --persist-to storage before linking; no reset is needed.',
+      );
+    if (failure.reason === 'LOCAL_USER_NOT_FOUND')
+      throw new Error(
+        'The --user-id profile does not exist in this local D1 storage. ' +
+          'Verify the storage path and use an existing users.id; linking does not create profiles.',
+      );
+    throw new Error('Explicit link failed: ' + failure.error);
+  }
   report.status = 'PASS';
   console.log(JSON.stringify(result));
 } catch (error) {
   report.status = 'FAIL';
   process.exitCode = 1;
-  throw error;
+  console.error(error instanceof Error ? error.message : 'Explicit link failed');
+  console.error('Local D1 storage: ' + persist);
+  console.error('Operator logs: ' + harness.out);
 } finally {
   await harness.cleanup();
 }

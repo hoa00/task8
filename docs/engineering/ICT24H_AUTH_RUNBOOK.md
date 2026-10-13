@@ -42,11 +42,22 @@ pnpm --filter @studio/api db:backfill:local --persist-to /absolute/local-storage
 
 Migration command mặc định dùng storage local của Wrangler; khi dùng persist path riêng, dùng cùng `--persist-to` cho `wrangler d1 migrations apply DB --local` và các procedure sau. Forward tables giữ nguyên users/memberships/Undo/activity/history và derived readKeys. Native old-ledger/fresh/rerun/preservation evidence nằm ở AUTH-02 và full regression AUTH-06. Remote migration là thao tác operator được giao riêng, không có remote script triển khai trong session này.
 
-Với local profile có cùng email central user, xác nhận **cả central UUID/tenant và local UUIDv7** bằng trusted operator access. Explicit link trước login, không tự link theo email:
+Với local profile có cùng email central user, xác nhận **cả central UUID/tenant và local UUIDv7** bằng trusted operator access. Các giá trị CENTRAL_UUID/LOCAL_UUIDv7/path dưới đây là placeholder cần thay bằng IDs và storage thật. Explicit link trước login, không tự link theo email:
 
 ```sh
 pnpm --filter @studio/api auth:link:local --persist-to /absolute/local-storage --tenant ict24h-rdn-dev --subject CENTRAL_UUID --user-id LOCAL_UUIDv7
 ```
+
+Trước link, storage phải có `users` và `authIdentities` (forward0003). Command hiện kiểm schema/user bằng bounded readonly preflight; thiếu bảng báo rõ tên và yêu cầu apply migrations cùng persist path, user không tồn tại yêu cầu kiểm storage/users.id. Không tự migrate/reset/seed hoặc tạo user. Unexpected failure giữ error code, resolved storage path và operator log directory; expected failure không chỉ báo AUTH_SERVICE_UNAVAILABLE/stack nữa.
+
+Với storage mặc định, từ root repo có thể kiểm prerequisite rồi apply missing migrations (giữ dữ liệu):
+
+```sh
+pnpm --filter @studio/api exec wrangler d1 execute DB --local --command "SELECT name FROM sqlite_master WHERE type='table' AND name IN ('users','authIdentities');" --json
+pnpm --filter @studio/api db:migrate:local
+```
+
+Nếu query chỉ có users, cần apply0003 trước link; migrations apply cũng chạy0004 nếu pending. Với persist path riêng, truyền cùng absolute path cho migration và link, không chạy migration vào DB default rồi link một DB khác. Linking không cần public key/password hoặc request tới ICT24H; thành công linking không chứng minh live auth thành công.
 
 Command dùng public members use-case trên ephemeral loopback-only Worker. Mapping cùng key/user idempotent; key đã trỏ user khác hoặc user không tồn tại conflict với zero effects. Không ghi đè mapping, không sửa user IDs/profile/history/membership, không tạo principal từ client input. Không dùng command local với database remote; remote link phải là trusted operator procedure cùng invariants. Sau link, login giữ name/title/version đã chỉnh trong task8; central profile không overwrite hồ sơ nội bộ.
 

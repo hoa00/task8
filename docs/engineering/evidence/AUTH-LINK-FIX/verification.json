@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "baseline": "695085e1751e7ed6e764d14946883488f03d3919",
+  "reproduction": "Old CLI returned AUTH_SERVICE_UNAVAILABLE on empty local D1; user schema output confirms users exists, authIdentities absent. Linking only touches local DB, no provider network.",
+  "fix": "Readonly bounded schema/user preflight; actionable missing schema/user messages; resolved storage/log directory printed on failure. Migrations/manual setup remain operator steps.",
+  "gates": [
+    {
+      "label": "native",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "test:integration",
+        "--feature",
+        "auth-identity"
+      ],
+      "exitCode": 0,
+      "logSha256": "871e9a66a6ec17c38e3c4668e01a160278ec68033b0065fb5c767535de5254b0"
+    },
+    {
+      "label": "format",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "format:check"
+      ],
+      "exitCode": 0,
+      "logSha256": "b6b2149205593a02020bea94b8262906537cf6d0b41a829e14a8bb7bd7567dfb"
+    },
+    {
+      "label": "lint",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "lint"
+      ],
+      "exitCode": 0,
+      "logSha256": "7594d81a97a058fcdc4fa616ba0fc246cf1921890ce6bda31923df782701bd81"
+    },
+    {
+      "label": "types",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "logSha256": "edfa4ed646e95a8880ddfe6ce75ef12146d34a1d95c6101aaa6c003dfaae882e"
+    },
+    {
+      "label": "build",
+      "argv": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "build"
+      ],
+      "exitCode": 0,
+      "logSha256": "c4154a6bf02202557aca6165e0d11fedecfc7e9b22c1a129c82b99d5fd158477"
+    }
+  ],
+  "nativeProbes": 49,
+  "nativeNode": "v24.13.0",
+  "preservation": "Old-ledger failed link leaves all existing fixture rows unchanged; migrated missing-user storage remains users0/identities0; existing JIT/concurrency/collision/rollback/linking rules unchanged.",
+  "scope": "Local linking script/loopback Worker/typed readonly diagnostic helper + regression/docs. No production application/SQL/migration/provider/credential/deploy changes.",
+  "fullRegression": "NOT_RERUN: unchanged production owners; focused native auth-identity49 and API gates cover changed command."
+}
