@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-14",
+  "baseCommit": "511c4eba4b7f2903c3b99c0f133cdd2bad75ffbe",
+  "node": "24.13.0",
+  "cause": "ICT24H serializes profiles without srv_t; CommonBaseEntity excludes srv_t toPlainOnly; tenant remains required in verified JWT",
+  "providerSource": {
+    "repository": "hoa00/i24h-user-service",
+    "revision": "429a7df143938ff3f6d82c29db5cf31f0feb1386",
+    "path": "src/common/common-base.entity.ts",
+    "field": "srv_t",
+    "decorator": "@Exclude({ toPlainOnly: true })",
+    "readWith": "gh api contents at exact source revision"
+  },
+  "commands": [
+    {
+      "path": "build.log.gz",
+      "exitCode": 0,
+      "rawBytes": 1029,
+      "rawSha256": "132834832069660f0231422b3b9b2a1282320c0269ee9a89059e7f6281d56554"
+    },
+    {
+      "path": "format.log.gz",
+      "exitCode": 0,
+      "rawBytes": 224,
+      "rawSha256": "0b631fbc0473203f1577159bfd047debea44599c578c026fa3e610da837134ab"
+    },
+    {
+      "path": "lint.log.gz",
+      "exitCode": 0,
+      "rawBytes": 213,
+      "rawSha256": "45272edc010a9de9ed4d5b3700b85d28d029434a865ede225b9b9d6f1b8bcb6a"
+    },
+    {
+      "path": "native-session.log.gz",
+      "exitCode": 0,
+      "rawBytes": 428,
+      "rawSha256": "e4d1d428c0b8912e9668d512840e51a87807a8906e9ade4cfc2d8f443924bbe1"
+    },
+    {
+      "path": "typecheck.log.gz",
+      "exitCode": 0,
+      "rawBytes": 15,
+      "rawSha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "unit-green.log.gz",
+      "exitCode": 0,
+      "rawBytes": 1361,
+      "rawSha256": "b4a837fce09aa48357982f922aaa5db6e4be48f0b41b48069fadbd358ffae602"
+    },
+    {
+      "path": "unit-red.log.gz",
+      "exitCode": 1,
+      "rawBytes": 1876,
+      "rawSha256": "3bfe92e98ed9fe27d79891072efd5b07f6efe6de6fdc84c9f8a4df756534892b"
+    },
+    {
+      "path": "unit.log.gz",
+      "exitCode": 0,
+      "rawBytes": 7991,
+      "rawSha256": "9bca18160b2daf8e6d5cda8cffc82fbd7ea41275260e834e2c20acece85c23d8"
+    }
+  ],
+  "nativeSession": {
+    "status": "PASS",
+    "probes": 74,
+    "archive": "native-session.tar.gz"
+  },
+  "inputs": [
+    {
+      "path": "apps/api/src/modules/auth/application/provider.ts",
+      "beforeSha256": "0c32e992b5261967ba68ee65f9cd7f92652f8095a1fde0bc27664926501d3312",
+      "afterSha256": "295f8e13d14fcfafe224e252ece40939359e0f2051046b1fe0ac04d2cc5abebc"
+    },
+    {
+      "path": "apps/api/src/modules/auth/application/session.ts",
+      "beforeSha256": "1623a6d78657b66ee74bbcffc0795f923bc92c790418887efeb3736107b505f7",
+      "afterSha256": "a206c6bc20d49c27989c97519afd08ce45ec7b6907e2aeeb195063243a5c98c8"
+    },
+    {
+      "path": "apps/api/src/modules/auth/http/provider.ts",
+      "beforeSha256": "7d5d030e8fd84f2a8f03c874539ef2ae7fb9b0e2e5aa410482ce7f0a2510e69a",
+      "afterSha256": "1651d37033312605d9a574b47302614906661c602ed2a3d1c280410929f115a0"
+    },
+    {
+      "path": "apps/api/tests/unit/auth-provider.test.mjs",
+      "beforeSha256": "37e6e16cdcf3de6b4cb0f16019242aeb5f02496949841cd90d32df0df0ff8a5d",
+      "afterSha256": "7f91d5c058cd242a0696f7dcdff2575bc9bbe1a3bc4e1d00526724e612f30ac0"
+    },
+    {
+      "path": "apps/api/tests/support/identity-provider.mjs",
+      "beforeSha256": "767ec724812d9b5ee3a5b71df59847f92a2f987acf7e163aefde10393ac69fe4",
+      "afterSha256": "8b9009b93d39b63ec6d00a313433f8bf2e35de890a3d669f34c55e72474d1e27"
+    },
+    {
+      "path": "apps/api/tests/integration/auth-session.mjs",
+      "beforeSha256": "c1b89f607596c167148b63237c2b315cd2f0f34b6a1a490897fabd286328f349",
+      "afterSha256": "7e6e74da0f8206205f09cec6797ed591b115cdd73a42e4a0a34a056ce7e9817b"
+    }
+  ],
+  "review": {
+    "skill": "ak-code-review",
+    "mode": "pending",
+    "checklists": [
+      "base",
+      "api"
+    ],
+    "findings": [],
+    "verifiedBoundaries": [
+      "JWT RS256/configured tenant/type/expiry remain mandatory",
+      "Login and whoami profile IDs match verified subject before mapping/session writes",
+      "Present malformed/foreign tenant still rejected",
+      "Native omitted-profile wrong JWT tenant/subject has no identity/session effects",
+      "Temporary diagnostics removed; no private DB SQL or keys in Git"
+    ]
+  },
+  "liveLogin": {
+    "outcome": "success confirmed by user",
+    "route": "existing workspace home",
+    "fullLiveAcceptance": "not claimed"
+  },
+  "localUpgrade": {
+    "status": "PASS",
+    "fieldsChanged": [
+      "readKeys"
+    ],
+    "rowsUpdated": 171,
+    "pendingAfter": 0,
+    "tablesCompared": 26,
+    "nonDerivedDataUnchanged": true,
+    "backup": "/tmp/task8-local-before-read-key-backfill.sql",
+    "backupRestoreIntegrity": "ok",
+    "homeUi": {
+      "status": "user-confirmed-ready-after-refresh",
+      "agentScreenshot": "not-captured"
+    }
+  },
+  "limitations": [
+    "Full provider rotation/logout live acceptance not run",
+    "No unrelated frontend visual or complete native regression campaign"
+  ]
+}

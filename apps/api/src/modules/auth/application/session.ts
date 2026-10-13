@@ -76,7 +76,11 @@ export function createSessionService(deps: SessionDependencies): AuthSessionServ
   }
   async function profile(identity: VerifiedAccess, accessToken: string): Promise<ProviderProfile> {
     const result = await provider.whoami(accessToken);
-    if (result.id !== identity.subject || result.srv_t !== identity.tenant) throw invalid();
+    if (
+      result.id !== identity.subject ||
+      (result.srv_t !== undefined && result.srv_t !== identity.tenant)
+    )
+      throw invalid();
     return result;
   }
   async function encrypted(
@@ -126,7 +130,10 @@ export function createSessionService(deps: SessionDependencies): AuthSessionServ
       const previous = await lookup(previousSid);
       const result = await provider.login(input);
       const identity = await verified(result.tokens);
-      if (result.user.id !== identity.subject || result.user.srv_t !== identity.tenant)
+      if (
+        result.user.id !== identity.subject ||
+        (result.user.srv_t !== undefined && result.user.srv_t !== identity.tenant)
+      )
         throw invalid();
       const central = await profile(identity, result.tokens.access.token);
       const mapping = await ensureExternalProfile(

@@ -165,7 +165,8 @@ export function createIdentityProvider(
         ProviderLoginSchema,
       );
       validateTokens(result.tokens);
-      if (result.user.srv_t !== config.tenantId) throw invalidCredentials();
+      if (result.user.srv_t !== undefined && result.user.srv_t !== config.tenantId)
+        throw invalidCredentials();
       return result;
     },
     async refresh(refreshToken) {
@@ -185,7 +186,8 @@ export function createIdentityProvider(
         { method: 'GET', headers: { ...headers, authorization: `Bearer ${accessToken}` } },
         ProviderProfileSchema,
       );
-      if (profile.srv_t !== config.tenantId) throw invalidCredentials();
+      if (profile.srv_t !== undefined && profile.srv_t !== config.tenantId)
+        throw invalidCredentials();
       return profile;
     },
   };

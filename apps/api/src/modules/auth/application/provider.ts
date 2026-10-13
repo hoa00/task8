@@ -3,7 +3,8 @@ import { z } from 'zod';
 // Central IDs are not task8 UUIDv7 IDs. Unknown central fields are discarded.
 export const ProviderProfileSchema = z.object({
   id: z.uuid(),
-  srv_t: z.string().min(1).max(240),
+  // ICT24H excludes this entity field from serialized profiles; JWT tenant is authoritative.
+  srv_t: z.string().min(1).max(240).optional(),
   email: z.email().max(254),
   username: z.string().max(4096).nullable().optional(),
   fullname: z.string().max(4096).nullable().optional(),

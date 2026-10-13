@@ -17,6 +17,7 @@ export async function createControlledIdentityProvider() {
     refreshUnavailable: false,
     whoamiMissing: false,
     mismatch: false,
+    omitProfileTenant: false,
     blockLogin: null,
     blockRefresh: null,
     refreshCount: 0,
@@ -56,6 +57,11 @@ export async function createControlledIdentityProvider() {
     const hold = new Promise((resolve) => (release = resolve));
     return { release, arrived, ready, hold };
   }
+  function serializedProfile(profile) {
+    const result = { ...profile };
+    if (state.omitProfileTenant) delete result.srv_t;
+    return result;
+  }
   const upstream = createServer(async (req, res) => {
     let body = '';
     for await (const bytes of req) body += bytes;
@@ -83,7 +89,7 @@ export async function createControlledIdentityProvider() {
       if (!profile || input.password !== 'correct-password') {
         status = 401;
         result = failure(401);
-      } else result = success({ user: profile, tokens: issue(profile) });
+      } else result = success({ user: serializedProfile(profile), tokens: issue(profile) });
     } else if (req.url === '/v1/auth/refresh-token') {
       state.refreshCount++;
       const controlled = state.blockRefresh;
@@ -112,7 +118,7 @@ export async function createControlledIdentityProvider() {
       if (state.whoamiMissing || !profile) {
         status = 404;
         result = failure(404);
-      } else result = success(profile);
+      } else result = success(serializedProfile(profile));
     } else {
       status = 404;
       result = failure(404);

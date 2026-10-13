@@ -78,6 +78,34 @@ test('HTTP201 with body400 is rejected for both credential routes', async () => 
   await rejects(provider(json(failure(400))).refresh(tokens.refresh.token), 'UNAUTHENTICATED');
 });
 
+test('provider accepts serialized profiles without tenant while rejecting a supplied mismatch', async () => {
+  const serialized = { ...profile };
+  delete serialized.srv_t;
+  assert.deepEqual(await provider(json(success({ user: serialized, tokens }))).login(credentials), {
+    user: serialized,
+    tokens,
+  });
+  assert.deepEqual(
+    await provider(json(success(serialized), 200)).whoami(tokens.access.token),
+    serialized,
+  );
+  for (const srv_t of [null, 7, ''])
+    await rejects(
+      provider(json(success({ user: { ...serialized, srv_t }, tokens }))).login(credentials),
+      'AUTH_SERVICE_UNAVAILABLE',
+    );
+  await rejects(
+    provider(json(success({ user: { ...serialized, srv_t: 'foreign' }, tokens }))).login(
+      credentials,
+    ),
+    'UNAUTHENTICATED',
+  );
+  await rejects(
+    provider(json(success({ ...serialized, srv_t: 'foreign' }), 200)).whoami(tokens.access.token),
+    'UNAUTHENTICATED',
+  );
+});
+
 test('provider calls injected fetch without a dependency-object receiver', async () => {
   const receivers = [];
   const api = createIdentityProvider(config, {

@@ -100,7 +100,15 @@ try {
   await request('oversized-login-stream', '/api/v1/auth/login', 413, {
     body: { password: 'x'.repeat(9000) },
   });
-  const first = await login();
+  state.omitProfileTenant = true;
+  state.extraClaims = { tenant: 'foreign-tenant' };
+  await login('omitted-profile-tenant-wrong-JWT-tenant', { status: 401 });
+  state.extraClaims = { sub: accounts[1].id };
+  await login('omitted-profile-tenant-wrong-JWT-subject', { status: 401 });
+  state.extraClaims = {};
+  assert.equal((await sql('SELECT count(*) count FROM authIdentities'))[0].count, 0);
+  assert.equal((await sql('SELECT count(*) count FROM authSessions'))[0].count, 0);
+  const first = await login('serialized-profile-login-with-verified-JWT-tenant');
   authOperations.authLogin.response.parse(first.data);
   assert(first.cookie);
   assert.match(first.response.headers.get('set-cookie'), /HttpOnly/);
@@ -131,6 +139,7 @@ try {
     (await sql('SELECT tokenVersion FROM authSessions WHERE id=?', [id]))[0].tokenVersion,
     version + 1,
   );
+  state.omitProfileTenant = false;
   state.refreshUnavailable = true;
   const unavailable = await request('refresh-503-keeps-pair', '/api/v1/auth/refresh', 503, {
     cookie: first.cookie,
