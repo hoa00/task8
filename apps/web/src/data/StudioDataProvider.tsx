@@ -6,5 +6,6 @@ import type { DataRuntime } from './runtime.ts';
 
 export interface StudioDataProviderProps { runtime: DataRuntime; queryClient: QueryClient; children: ReactNode }
 export function StudioDataProvider({ runtime, queryClient, children }: StudioDataProviderProps) {
+  runtime.auth?.connect(queryClient);
   return <DataContext value={runtime}><QueryClientProvider client={queryClient}>{children}</QueryClientProvider></DataContext>;
 }

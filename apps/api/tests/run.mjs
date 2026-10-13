@@ -5,6 +5,7 @@ export const features = [
   'auth-provider',
   'auth-identity',
   'auth-session',
+  'auth-principal',
   'db',
   'http',
   'core',

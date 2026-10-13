@@ -18,7 +18,7 @@ import './styles/app.css';
 
 const original=createMockClient({environment:'test'}),queryClient=createStudioQueryClient();
 const session=(await original.api.getSession({})).data,catalog=(await original.api.listWorkspaces({})).data;
-const workspaceA=session.currentWorkspaceId,workspaceB=catalog[1]!.id;
+const workspaceA=EntityIdSchema.parse(session.currentWorkspaceId),workspaceB=catalog[1]!.id;
 const a=(await original.api.getBootstrap({workspaceId:workspaceA})).data;
 const memberId=EntityIdSchema.parse('019f4800-0000-7000-8000-000000000001');
 const b={...a,workspace:catalog[1]!,currentMember:{...a.currentMember,id:memberId,workspaceId:workspaceB},members:[{id:memberId,name:a.currentMember.name,avatarColor:a.currentMember.avatarColor}],projects:[],teams:[],unreadCount:0,navigationCounts:{inbox:0,myTasks:0,archive:0}};

@@ -20,9 +20,20 @@ for (const path of [
     if (c.req.method === 'GET') await noQuery(c);
     await next();
   });
-routes.get('/session', (c) =>
-  c.json(operations.getSession.response.parse({ data: { ...c.get('principal'), capabilities } })),
-);
+routes.get('/session', (c) => {
+  const principal = c.get('principal');
+  const advertised = principal.authSession
+    ? {
+        ...capabilities,
+        identityMode: 'ict24h',
+        features: { ...capabilities.features, authentication: 'implemented' },
+      }
+    : capabilities;
+  c.header('cache-control', 'no-store');
+  return c.json(
+    operations.getSession.response.parse({ data: { ...principal, capabilities: advertised } }),
+  );
+});
 routes.get('/workspaces', async (c) => {
   return c.json(
     operations.listWorkspaces.response.parse({

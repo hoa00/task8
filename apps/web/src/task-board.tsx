@@ -1,3 +1,4 @@
+import type { EntityId } from '@studio/contracts/api';
 import { StrictMode, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Button, OverlayProvider } from '@studio/ui';
@@ -24,15 +25,16 @@ const client = createStudioClient(async (id, input, options) => { calls.push(id)
 const queryClient = createStudioQueryClient();
 declare global { interface Window { __taskBoardQA: { client: typeof client; queryClient: typeof queryClient; failNext(): void; holdNextCreate(): void; releaseCreate(): void; calls: string[] } } }
 window.__taskBoardQA = { client, queryClient, calls, failNext: () => { failNext = true; }, holdNextCreate:()=>{holdNextCreate=true;}, releaseCreate:()=>releaseCreate?.() };
-export function Harness() {
+export function Harness(){const session=useStudioQuery('getSession',{});const workspaceId=session.data?.data.currentWorkspaceId;return workspaceId?<WorkspaceHarness workspaceId={workspaceId}/>:<div>Loading…</div>;}
+function WorkspaceHarness({workspaceId}:{workspaceId:EntityId}) {
  const opener=useRef<HTMLElement|null>(null),[form,setForm]=useState<TaskFormIntent>({open:false,generation:0}),[menu,setMenu]=useState<TaskMenuIntent|null>(null);
- const session = useStudioQuery('getSession', {}), [selected, setSelected] = useState<readonly string[]>(()=>JSON.parse(new URLSearchParams(location.search).get('selectedIds') ?? '[]') as string[]), [opened, setOpened] = useState('');
- const rows = useStudioQuery('listTasks', {workspaceId: session.data?.data.currentWorkspaceId ?? '019a6257-0480-7000-8000-000000000001', query:{limit:200}});
- const bootstrap = useStudioQuery('getBootstrap', { workspaceId: session.data?.data.currentWorkspaceId ?? '019a6257-0480-7000-8000-000000000001' });
- if (!session.data || !bootstrap.data || !rows.data) return <div>Loading…</div>;
+ const [selected, setSelected] = useState<readonly string[]>(()=>JSON.parse(new URLSearchParams(location.search).get('selectedIds') ?? '[]') as string[]), [opened, setOpened] = useState('');
+ const rows = useStudioQuery('listTasks', {workspaceId: workspaceId, query:{limit:200}});
+ const bootstrap = useStudioQuery('getBootstrap', { workspaceId: workspaceId });
+ if (!bootstrap.data || !rows.data) return <div>Loading…</div>;
  const params = new URLSearchParams(location.search), kind = params.get('scope') ?? 'workspace', project = bootstrap.data.data.projects.find(item => item.access === 'allowed')?.project;
- const scope: TaskListScope = kind === 'project' ? { kind, projectId: project?.id ?? session.data.data.currentWorkspaceId } : kind === 'saved' ? { kind, projectId: project?.id ?? session.data.data.currentWorkspaceId, savedViewId: project?.id ?? session.data.data.currentWorkspaceId } : { kind: kind === 'mine' ? 'mine' : 'workspace' };
- return <>{params.get('visual') !== '1' && <Button onClick={() => { failNext = true; }}>Fail next mutation</Button>}<TaskListPage initialMode="board" initialBoardState={JSON.parse(params.get('boardState') ?? '{}') as TaskBoardUiState} showHeading={!(params.get('visual') === '1' && (scope.kind === 'project' || scope.kind === 'saved'))} workspaceId={session.data.data.currentWorkspaceId} scope={scope} selectedIds={selected} onSelectionChange={setSelected} onTaskOpen={id=>{opener.current=document.activeElement as HTMLElement;setOpened(id);}} onTitleEdit={() => setOpened('')} onTaskEdit={id=>setForm({open:true,taskId:id,generation:form.generation+1})} onTaskMenu={(taskId,anchor,point)=>setMenu({taskId,anchor,...(point?{point}:{})})} onNewTask={()=>setForm({open:true,generation:form.generation+1})} /><TaskOverlayHost data={bootstrap.data.data} {...(opened?{taskId:opened}:{})} onTaskOpen={setOpened} onTaskClose={()=>setOpened('')} opener={opener} form={form} onFormChange={setForm} menu={menu} onMenuChange={setMenu} onProjectOpen={()=>setOpened('')} /><output data-open-task hidden>{opened}</output></>;
+ const scope: TaskListScope = kind === 'project' ? { kind, projectId: project?.id ?? workspaceId } : kind === 'saved' ? { kind, projectId: project?.id ?? workspaceId, savedViewId: project?.id ?? workspaceId } : { kind: kind === 'mine' ? 'mine' : 'workspace' };
+ return <>{params.get('visual') !== '1' && <Button onClick={() => { failNext = true; }}>Fail next mutation</Button>}<TaskListPage initialMode="board" initialBoardState={JSON.parse(params.get('boardState') ?? '{}') as TaskBoardUiState} showHeading={!(params.get('visual') === '1' && (scope.kind === 'project' || scope.kind === 'saved'))} workspaceId={workspaceId} scope={scope} selectedIds={selected} onSelectionChange={setSelected} onTaskOpen={id=>{opener.current=document.activeElement as HTMLElement;setOpened(id);}} onTitleEdit={() => setOpened('')} onTaskEdit={id=>setForm({open:true,taskId:id,generation:form.generation+1})} onTaskMenu={(taskId,anchor,point)=>setMenu({taskId,anchor,...(point?{point}:{})})} onNewTask={()=>setForm({open:true,generation:form.generation+1})} /><TaskOverlayHost data={bootstrap.data.data} {...(opened?{taskId:opened}:{})} onTaskOpen={setOpened} onTaskClose={()=>setOpened('')} opener={opener} form={form} onFormChange={setForm} menu={menu} onMenuChange={setMenu} onProjectOpen={()=>setOpened('')} /><output data-open-task hidden>{opened}</output></>;
 }
 const root = document.getElementById('root'); if (!root) throw new Error('Missing task list root');
 createRoot(root).render(<StrictMode><ThemeProvider><StudioDataProvider runtime={{ client, clock: fixtureClock }} queryClient={queryClient}><OverlayProvider><Harness /></OverlayProvider></StudioDataProvider></ThemeProvider></StrictMode>);

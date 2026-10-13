@@ -61,7 +61,8 @@ export default {
     }
     const app = createApp({ identityProvider: () => provider(env.TEST_PROVIDER_URL) });
     let primary = false,
-      batches = 0;
+      batches = 0,
+      queries = 0;
     const binding = new Proxy(env.DB, {
       get(target, key) {
         if (key === 'withSession')
@@ -70,8 +71,25 @@ export default {
             const session = target.withSession(constraint);
             return new Proxy(session, {
               get(owner, property) {
+                if (property === 'prepare')
+                  return (sql: string) => {
+                    queries++;
+                    return owner.prepare(sql);
+                  };
                 if (property === 'batch')
                   return async <T>(statements: D1PreparedStatement[]) => {
+                    const race = request.headers.get('X-Test-DB-Race');
+                    if (race) {
+                      const input = z
+                        .object({
+                          sql: z.string(),
+                          parameters: z.array(z.union([z.string(), z.number(), z.null()])),
+                        })
+                        .parse(JSON.parse(race));
+                      await env.DB.prepare(input.sql)
+                        .bind(...input.parameters)
+                        .run();
+                    }
                     if (request.headers.get('X-Test-DB') === 'fail')
                       throw new Error('controlled storage failure');
                     const result = await owner.batch<T>(statements);
@@ -110,6 +128,7 @@ export default {
     }
     const response = await app.fetch(request, bindings, context);
     response.headers.set('X-Test-Primary', String(primary));
+    response.headers.set('X-Test-Queries', String(queries));
     return response;
   },
 };

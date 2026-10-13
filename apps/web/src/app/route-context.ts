@@ -1,4 +1,4 @@
-import { notFound } from '@tanstack/react-router';
+import { notFound, redirect } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import { EntityIdSchema } from '@studio/contracts/api';
 import { studioQueryOptions } from '../data/queries';
@@ -12,7 +12,10 @@ export function validId(id: string): string {
   return id;
 }
 export async function resolveWorkspace(context: StudioRouterContext, workspaceId?: string) {
-  const session = await context.queryClient.ensureQueryData(studioQueryOptions(context.runtime.client, 'getSession', {}));
+  const session = await context.queryClient.ensureQueryData(studioQueryOptions(context.runtime.client, 'getSession', {})).catch(error=>{
+    if(error instanceof StudioApiError&&error.status===401)throw redirect({to:'/login',search:{},replace:true});throw error;
+  });
+  if(session.data.currentWorkspaceId===null)throw redirect({to:'/waiting-for-workspace',replace:true});
   const id = validId(workspaceId ?? session.data.currentWorkspaceId);
   try { await context.queryClient.ensureQueryData(studioQueryOptions(context.runtime.client, 'getBootstrap', { workspaceId: id })); }
   catch (error) { if (error instanceof StudioApiError && error.status === 404) throw notFound(); throw error; }

@@ -11,21 +11,26 @@ import { studioQueryOptions } from './data/queries';
 import { ThemeProvider } from './theme/ThemeProvider';
 import { applyRootPreferences, readThemePreferences } from './theme/preferences';
 import './styles/app.css';
+import { StudioApiError } from './data/errors';
 import { TranslationProvider } from './i18n/TranslationProvider';
 
 applyRootPreferences(readThemePreferences());
 const publicEnv = parsePublicEnv(import.meta.env);
 const runtime = createDataRuntime(publicEnv);
 const queryClient = createStudioQueryClient();
+runtime.auth?.connect(queryClient);
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Missing React root element');
 rootElement.dataset.dataMode = publicEnv.dataMode;
 
 // Startup aliases are resolved once, before Router history observes the URL.
 if (Object.hasOwn(legacyAliases, location.hash.slice(1))) {
-  const session = await queryClient.ensureQueryData(studioQueryOptions(runtime.client, 'getSession', {}));
-  const destination = legacyDestination(location.hash, session.data.currentWorkspaceId);
-  if (destination) history.replaceState(history.state, '', destination);
+  try {
+    const session = await queryClient.ensureQueryData(studioQueryOptions(runtime.client,'getSession',{}));
+    const destination=session.data.currentWorkspaceId===null?'/waiting-for-workspace':legacyDestination(location.hash,session.data.currentWorkspaceId);
+    if(destination)history.replaceState(history.state,'',destination);
+  }catch(error){ if(error instanceof StudioApiError&&error.status===401)history.replaceState(history.state,'','/login'); }
+
 }
 const router = createStudioRouter({runtime, queryClient});
 createRoot(rootElement).render(

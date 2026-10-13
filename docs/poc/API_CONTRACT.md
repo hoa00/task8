@@ -688,3 +688,17 @@ WU24 HTTP evidence uses the actual production HTTP adapter with typed intercepte
 Input/schema validation được HTTP wrapper phân loại400; Zod failure của DTO/read projection/response hoặc Undo payload nội bộ là500. Cursor project/member tiếp tục bằng sort tuple và ID khi anchor thay đổi/xóa; binding workspace/principal/query/filter/sort và schema cursor giữ nguyên. Request IDs do server sinh; không reflect client payload vào log.
 
 JSON HTTP body có transport ceiling **16 MiB**, được enforce trên bytes stream, kể cả thiếu/sai Content-Length; vượt ceiling trả413 `PAYLOAD_TOO_LARGE` trước application effects. Ceiling mới ngăn whitespace/unknown fields/stream không giới hạn; cao hơn serialized DTO lớn nhất hiện có, gồm escaped description/subtasks. Đây là transport bound thêm tại BR-02, không tăng/thay field lengths, command budgets, upload10MiB hoặc multipart overhead65536bytes. Valid DTO consumers hiện có không cần đổi payload.
+
+## ICT24H auth — canonical activation AUTH-04
+
+Các semantics auth dưới đây bổ sung/ghi đè giả định development-only ở phần POC lịch sử. AUTH_MODE=local giữ trusted local IDs; AUTH_MODE=ict24h dùng verified external identity + primary D1 SID session. Không fallback local/mock; client không chọn actor hoặc role. D1 membership và private view/edit/final SQL guards tiếp tục quyết định quyền.
+
+| Endpoint | Operation ID | Input | Output |
+| --- | --- | --- | --- |
+| `POST /api/v1/auth/login` | `authLogin` | JSON email/password/remember, max8192streamed bytes | 200 SessionDto + HttpOnly SID cookie |
+| `POST /api/v1/auth/refresh` | `authRefresh` | empty body; optional expected session ID | 200 SessionDto; no Set-Cookie |
+| `POST /api/v1/auth/logout` | `authLogout` | empty body; optional expected session ID | 200 {signedOut:true}; no Set-Cookie; idempotent |
+
+Canonical SessionDto có currentWorkspaceId UUIDv7|null, authSession {id,accessExpiresAt,expiresAt}|null và capabilities.identityMode development|ict24h. ICT24H phải dataMode=http, authentication=implemented và metadata không null. Local/mock metadata null, default workspace vẫn nonnull. Profile và workspace list không cần membership; waiting user session200/null, workspaces[], protected bootstrap không mở. PATCH profile khi không có workspace403; active-membership/CAS guard vẫn ở final SQL.
+
+Mọi state-changing business request ICT24H cần exact Origin và X-Task8-Session-Id khớp SID đã resolve. Header không chọn actor; mismatch/missing409 SESSION_CHANGED trước business dispatch, không replay dưới tài khoản mới. Refresh/logout cho phép metadata chưa biết sau reload, nhưng khi có header vẫn đối chiếu trước effects. Provider timeout/5xx/malformed response hoặc session storage unavailable503 AUTH_SERVICE_UNAVAILABLE; invalid session/JWT/credentials401 UNAUTHENTICATED. Hai mã này thuộc canonical ApiError. Logout không cần JWT/decrypt còn hợp lệ; chỉ revoke phiên task8, không revoke central token/devices. Xem [kế hoạch/runbook](../engineering/ICT24H_AUTH_INTEGRATION_PLAN.md) và [setup/evidence](../engineering/ICT24H_AUTH_SETUP.md).

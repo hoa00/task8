@@ -3,12 +3,13 @@ import { test } from 'node:test';
 import { AuthLoginInputSchema, ApiErrorSchema, Ict24hSessionSchema, SessionSchema, authOperations, errorHttpStatus } from '../../packages/contracts/src/api.ts';
 import { capabilities, user, ids } from './fixtures.ts';
 
-test('standalone ICT24H session admits waiting users while canonical consumers remain coherent', () => {
-  const local = { user, currentWorkspaceId: ids.workspaceId, capabilities };
+test('canonical and standalone ICT24H sessions admit waiting users with metadata', () => {
+  const local = { user, currentWorkspaceId: ids.workspaceId, capabilities,authSession:null };
   assert.ok(SessionSchema.safeParse(local).success);
   assert.equal(SessionSchema.safeParse({ ...local, currentWorkspaceId: null }).success, false);
   const session = { user, currentWorkspaceId: null, capabilities: { ...capabilities, dataMode: 'http', identityMode: 'ict24h', features: { ...capabilities.features, authentication: 'implemented' } }, authSession: { id: ids.workspaceId, accessExpiresAt: '2030-01-01T00:30:00.000Z', expiresAt: '2030-01-15T00:00:00.000Z' } };
   assert.deepEqual(Ict24hSessionSchema.parse(session), session);
+  assert.deepEqual(SessionSchema.parse(session),session);
   assert.equal(Ict24hSessionSchema.safeParse({ ...session, authSession: null }).success, false);
   assert.equal(Ict24hSessionSchema.safeParse({ ...session, capabilities }).success, false);
   assert.deepEqual(authOperations.authLogin.response.parse({ data: session }), { data: session });

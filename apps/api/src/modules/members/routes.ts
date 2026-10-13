@@ -3,6 +3,7 @@ import type { Context } from 'hono';
 import { Hono } from 'hono';
 import { jsonBody, noInput, parseRequest, readQuery } from '../../http/request.ts';
 import type { ApiEnvironment } from '../../runtime.ts';
+import { ApiFailure } from '../../shared/errors.ts';
 import { serverClock } from '../../shared/clock.ts';
 import { listMembers, member, memberSummary, updateProfile } from './index.ts';
 type C = Context<ApiEnvironment>;
@@ -17,6 +18,8 @@ memberRoutes.get('/me/profile', async (c) => {
 memberRoutes.patch('/me/profile', async (c) => {
   const input = parseRequest(operations.updateProfile.request, { body: await jsonBody(c) }),
     principal = c.get('principal');
+  if (principal.currentWorkspaceId === null)
+    throw new ApiFailure('FORBIDDEN', 'An active workspace membership is required');
   return c.json(
     operations.updateProfile.response.parse({
       data: await updateProfile(

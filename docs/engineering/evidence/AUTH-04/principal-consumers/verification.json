@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "prerequisites": [
+    "e95e893f AUTH-03",
+    "c3cf77a3 AUTH-02"
+  ],
+  "principalProbes": 46,
+  "sessionRegressionProbes": 69,
+  "localHttpProbes": 25,
+  "apiUnitTests": 66,
+  "contractTests": 99,
+  "webDataTests": 171,
+  "i18nTests": 9,
+  "maximumBulkQueriesIncludingAuth": 16,
+  "gates": [
+    "final-native",
+    "session-regression",
+    "local-http",
+    "api-format",
+    "api-lint",
+    "api-unit",
+    "types",
+    "final-web-types",
+    "contracts",
+    "consumers",
+    "final-lint",
+    "fixed-data",
+    "build",
+    "i18n"
+  ],
+  "decisions": [
+    "Keep existing task PATCH readonly-private validation status400, hidden child404 and waiting profile PATCH403",
+    "Waiting page uses existing AuthLayout; no workspace/dummy bootstrap",
+    "Session header reads Query metadata, credentials never cached"
+  ],
+  "preliminaryFailures": [
+    "Fixture grant column names corrected to actual schema",
+    "Task detail assertion corrected to canonical data.task",
+    "Read-only task PATCH expectation aligned with existing relation owner400",
+    "Node test runtime imports require explicit .ts extension"
+  ],
+  "liveProvider": "NOT_RUN: operator deployment public key/account absent"
+}

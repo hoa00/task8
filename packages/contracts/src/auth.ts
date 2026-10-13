@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { CapabilitiesSchema, UserProfileSchema } from './models.ts';
-import { EntityIdSchema, InstantSchema } from './primitives.ts';
+import { CapabilitiesSchema, UserProfileSchema, AuthSessionMetadataSchema } from './models.ts';
+import { EntityIdSchema } from './primitives.ts';
 
 // These contracts remain separate until canonical session consumers activate together.
 function passwordWithinByteLimit(value: string): boolean {
@@ -18,12 +18,9 @@ export const AuthLoginInputSchema = z.strictObject({
   password: z.string().min(6).max(1024).refine(passwordWithinByteLimit, 'Expected valid Unicode within password byte limit'),
   remember: z.boolean(),
 });
-export const AuthSessionMetadataSchema = z.strictObject({
-  id: EntityIdSchema,
-  accessExpiresAt: InstantSchema,
-  expiresAt: InstantSchema,
-});
-export const Ict24hCapabilitiesSchema = CapabilitiesSchema.extend({
+export { AuthSessionMetadataSchema } from './models.ts';
+export type { AuthSessionMetadata } from './models.ts';
+export const Ict24hCapabilitiesSchema = CapabilitiesSchema.safeExtend({
   dataMode: z.literal('http'),
   identityMode: z.literal('ict24h'),
   features: CapabilitiesSchema.shape.features.extend({ authentication: z.literal('implemented') }),
@@ -36,5 +33,4 @@ export const Ict24hSessionSchema = z.strictObject({
 });
 export const AuthLogoutResultSchema = z.strictObject({ signedOut: z.literal(true) });
 export type AuthLoginInput = z.infer<typeof AuthLoginInputSchema>;
-export type AuthSessionMetadata = z.infer<typeof AuthSessionMetadataSchema>;
 export type Ict24hSessionDto = z.infer<typeof Ict24hSessionSchema>;

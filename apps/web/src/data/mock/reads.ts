@@ -42,5 +42,5 @@ export function readBootstrap(data: MockDataset, clock: Clock) {
 
 export function readSession(data: MockDataset) {
   const member = data.members[data.currentMemberId]!;
-  return SessionSchema.parse({ user: data.users[member.userId], currentWorkspaceId: data.workspaceId, capabilities: mockCapabilities });
+  return SessionSchema.parse({ user: data.users[member.userId], currentWorkspaceId: data.workspaceId, capabilities: mockCapabilities, authSession:null });
 }

@@ -1,3 +1,4 @@
+import type { EntityId } from '@studio/contracts/api';
 import { StrictMode, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { OverlayProvider } from '@studio/ui';
@@ -42,13 +43,14 @@ const client = createStudioClient(async (id, input, options) => {
 const queryClient = createStudioQueryClient();
 declare global { interface Window { __timelineQA: { client: typeof client; queryClient: typeof queryClient; calls: typeof calls; failNext(code?: 'CONFLICT' | 'INTERNAL_ERROR'): void; holdNext(): void; release(): void } } }
 window.__timelineQA = { client, queryClient, calls, failNext: (code = 'CONFLICT') => { fail = code; }, holdNext: () => { held = true; }, release: () => release?.() };
-export function Harness() {
+export function Harness(){const session=useStudioQuery('getSession',{});const workspaceId=session.data?.data.currentWorkspaceId;return workspaceId?<WorkspaceHarness workspaceId={workspaceId}/>:<div>Loading…</div>;}
+function WorkspaceHarness({workspaceId}:{workspaceId:EntityId}) {
   const opener = useRef<HTMLElement | null>(null), [opened, setOpened] = useState(''), [form, setForm] = useState<TaskFormIntent>({ open: false, generation: 0 }), [menu, setMenu] = useState<TaskMenuIntent | null>(null);
-  const session = useStudioQuery('getSession', {}), bootstrap = useStudioQuery('getBootstrap', { workspaceId: session.data?.data.currentWorkspaceId ?? '019a6257-0480-7000-8000-000000000001' });
-  if (!session.data || !bootstrap.data) return <div>Loading…</div>;
+  const bootstrap = useStudioQuery('getBootstrap', { workspaceId: workspaceId });
+  if (!bootstrap.data) return <div>Loading…</div>;
   const data = bootstrap.data.data, project = data.projects.find(row => row.access === 'allowed')!.project, projectScope = params.get('scope') === 'project';
   const grouping = params.get('group') ?? (projectScope ? 'status' : 'project'), date = calendarDateParam(params.get('today')), weekStart = Number(params.get('weekStart') ?? data.preferences.weekStart);
-  return <><TimelinePage workspaceId={session.data.data.currentWorkspaceId} scope={projectScope ? { kind: 'project', projectId: project.id } : { kind: 'workspace' }} showHeading={!projectScope} initialZoom={(params.get('zoom') === 'month' ? 'month' : 'week') as TimelineZoom} initialGrouping={(['status', 'assignee', 'project', 'none'].includes(grouping) ? grouping : 'status') as TimelineGrouping} {...(date ? { today: date } : {})} weekStart={([0, 1, 6].includes(weekStart) ? weekStart : 1) as WeekStart} onTaskOpen={id => { opener.current = document.activeElement as HTMLElement; setOpened(id); }} onTaskMenu={(taskId, anchor, point) => setMenu({ taskId, anchor, point })} onNewTask={defaults => setForm(current => ({ open: true, generation: current.generation + 1, defaults }))} /><TaskOverlayHost data={data} {...(opened ? { taskId: opened } : {})} onTaskOpen={setOpened} onTaskClose={() => setOpened('')} opener={opener} form={form} onFormChange={setForm} menu={menu} onMenuChange={setMenu} onProjectOpen={() => setOpened('')} /><output data-open-task hidden>{opened}</output></>;
+  return <><TimelinePage workspaceId={workspaceId} scope={projectScope ? { kind: 'project', projectId: project.id } : { kind: 'workspace' }} showHeading={!projectScope} initialZoom={(params.get('zoom') === 'month' ? 'month' : 'week') as TimelineZoom} initialGrouping={(['status', 'assignee', 'project', 'none'].includes(grouping) ? grouping : 'status') as TimelineGrouping} {...(date ? { today: date } : {})} weekStart={([0, 1, 6].includes(weekStart) ? weekStart : 1) as WeekStart} onTaskOpen={id => { opener.current = document.activeElement as HTMLElement; setOpened(id); }} onTaskMenu={(taskId, anchor, point) => setMenu({ taskId, anchor, point })} onNewTask={defaults => setForm(current => ({ open: true, generation: current.generation + 1, defaults }))} /><TaskOverlayHost data={data} {...(opened ? { taskId: opened } : {})} onTaskOpen={setOpened} onTaskClose={() => setOpened('')} opener={opener} form={form} onFormChange={setForm} menu={menu} onMenuChange={setMenu} onProjectOpen={() => setOpened('')} /><output data-open-task hidden>{opened}</output></>;
 }
 const root = document.getElementById('root'); if (!root) throw new Error('Missing timeline root');
 createRoot(root).render(<StrictMode><ThemeProvider><StudioDataProvider runtime={{ client, clock: fixtureClock }} queryClient={queryClient}><OverlayProvider><Harness /></OverlayProvider></StudioDataProvider></ThemeProvider></StrictMode>);

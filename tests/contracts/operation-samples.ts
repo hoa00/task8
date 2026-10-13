@@ -2,7 +2,10 @@ import type { OperationId } from '../../packages/contracts/src/operations.ts';
 import * as f from './fixtures.ts';
 
 export const operationSamples = {
-  getSession: { request: {  }, response: { data: { user: f.user, currentWorkspaceId: f.ids.workspaceId, capabilities: f.capabilities } } },
+  authLogin:{request:{body:{email:'test@example.invalid',password:'test-only-password',remember:false}},response:{data:{user:f.user,currentWorkspaceId:null,capabilities:{...f.capabilities,dataMode:'http',identityMode:'ict24h',features:{...f.capabilities.features,authentication:'implemented'}},authSession:{id:f.ids.workspaceId,accessExpiresAt:'2030-01-01T00:30:00.000Z',expiresAt:'2030-01-15T00:00:00.000Z'}}}},
+  authRefresh:{request:{},response:{data:{user:f.user,currentWorkspaceId:null,capabilities:{...f.capabilities,dataMode:'http',identityMode:'ict24h',features:{...f.capabilities.features,authentication:'implemented'}},authSession:{id:f.ids.workspaceId,accessExpiresAt:'2030-01-01T00:30:00.000Z',expiresAt:'2030-01-15T00:00:00.000Z'}}}},
+  authLogout:{request:{},response:{data:{signedOut:true}}},
+  getSession: { request: {  }, response: { data: { user: f.user, currentWorkspaceId: f.ids.workspaceId, capabilities: f.capabilities, authSession:null } } },
   listWorkspaces: { request: {  }, response: { data: [f.workspace] } },
   getBootstrap: { request: { workspaceId: f.ids.workspaceId }, response: { data: f.bootstrap } },
   getWorkspace: { request: { workspaceId: f.ids.workspaceId }, response: { data: f.workspace } },

@@ -462,3 +462,11 @@ Create template fixture nhỏ phải chạy trọn vẹn trên local configurati
 | R2 success/failure | Actual bytes downloadable; oversize blocked; confirmed rollback/loser cleanup; unknown commit không delete winning bytes; no false upload success |
 
 Không cần benchmark tổng quát, production hardening, deployment pipeline hay tests chỉ mirror implementation. Chạy meaningful tests bằng Worker/local D1 runtime, không chỉ SQLite khác driver rồi coi như D1 đã được kiểm chứng. Kết quả thực phải cập nhật PROGRESS sau đúng WU.
+
+## ICT24H forward identity/session storage (AUTH-02…04)
+
+Applied migrations0000…0002 remain immutable. Forward0003 adds authIdentities(id,providerKey,tenant,subject,userId,createdAt), unique external key and composite(id,userId) FK target; providerKey fixed ict24h-identity. External subject is central UUID, local user remains UUIDv7. JIT profile/mapping writes one guarded native batch; email collision requires explicit link and has zero orphan effects. Profile readKeys are complete via the members/pinned encoder owner; no membership/Owner/workspace is created.
+
+Forward0004 adds authSessions(id,sidHash,identityId,userId,accessCiphertext,refreshCiphertext,accessExpiresAt,refreshExpiresAt,expiresAt,tokenVersion,authGeneration,createdAt,revokedAt), unique SID hash and composite identity/user FK. Revoked rows have null credentials, active rows have encrypted pair; version/generation positive. SID itself and provider token plaintext never reside in D1. AES-GCM AAD binds session/kind/version and each envelope has its own random nonce. Primary request session decisions, guarded replacement/login generation, refresh CAS and logout revocation retain request limits. New storage does not alter historical user/membership/activity/Undo IDs.
+
+A trusted test/operator workspace grant needs workspaceMembers plus one memberPreferences row containing canonical preferencesJson and notificationPreferencesJson with updatedAt; the row is keyed by memberId, not a separate notification table or a version field. Public workspace provisioning remains outside auth scope. See [integration/runbook](../engineering/ICT24H_AUTH_INTEGRATION_PLAN.md).

@@ -1,12 +1,17 @@
 import { memberDto, profileDto } from '../mapper.ts';
 import { membershipIdentity, principalIdentity, profileIdentity } from '../persistence/identity.ts';
 
-import type { EntityId, UserProfileDto } from '@studio/contracts/api';
+import type { EntityId, UserProfileDto, AuthSessionMetadata } from '@studio/contracts/api';
 import type { RequestRepository } from '../../../db/client.ts';
 import { ApiFailure } from '../../../shared/errors.ts';
 export interface AuthenticatedPrincipal {
   user: UserProfileDto;
+  currentWorkspaceId: EntityId | null;
+  authSession: AuthSessionMetadata | null;
+}
+export interface LocalPrincipal extends AuthenticatedPrincipal {
   currentWorkspaceId: EntityId;
+  authSession: null;
 }
 export async function resolveProfile(
   repository: RequestRepository,
@@ -20,13 +25,14 @@ export async function principal(
   repository: RequestRepository,
   userId: EntityId,
   currentWorkspaceId: EntityId,
-): Promise<AuthenticatedPrincipal> {
+): Promise<LocalPrincipal> {
   const [identity] = await principalIdentity(repository, userId, currentWorkspaceId);
   if (!identity) throw new ApiFailure('UNAUTHENTICATED', 'Valid local principal required');
   const u = identity.user;
   return {
     user: profileDto(u),
     currentWorkspaceId,
+    authSession: null,
   };
 }
 export async function membership(

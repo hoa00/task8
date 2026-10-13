@@ -3,9 +3,9 @@ import { StudioApiError, StudioTransportError } from '../errors.ts';
 import { createStudioClient } from '../operations.ts';
 import type { StudioClient } from '../operations.ts';
 
-export interface HttpApiOptions { baseUrl?: string; fetch?: typeof globalThis.fetch }
+export interface HttpApiOptions { baseUrl?: string; fetch?: typeof globalThis.fetch; expectedSessionId?:()=>string|undefined }
 
-export function createHttpClient({ baseUrl = '/api/v1', fetch: fetcher = globalThis.fetch }: HttpApiOptions = {}): StudioClient {
+export function createHttpClient({ baseUrl = '/api/v1', fetch: fetcher = globalThis.fetch, expectedSessionId }: HttpApiOptions = {}): StudioClient {
   if (!/^\/api(?:\/[A-Za-z0-9_-]+)*$/.test(baseUrl)) throw new TypeError('HTTP API requires an origin-relative /api path');
   return createStudioClient(async (id, input, { signal }) => {
     const operation = operations[id];
@@ -19,9 +19,10 @@ export function createHttpClient({ baseUrl = '/api/v1', fetch: fetcher = globalT
     let requestBody: BodyInit | undefined;
     if (id === 'uploadProjectFile') { const upload = operations.uploadProjectFile.request.parse(input).body; const form = new FormData(); form.set('file', new Blob([upload.file.bytes.slice().buffer], { type: upload.file.mimeType }), upload.file.name); form.set('clientRequestId', upload.clientRequestId); if (upload.taskId) form.set('taskId', upload.taskId); requestBody = form; } else if (input.body) requestBody = JSON.stringify(input.body);
     let response: Response;
+    const expected=operation.method!=='GET'&&id!=='authLogin'?expectedSessionId?.():undefined;
     try {
       response = await fetcher(path, {
-        method: operation.method, credentials: 'same-origin', headers: { Accept: operation.transport === 'bytes' ? '*/*' : 'application/json', ...(input.body && id !== 'uploadProjectFile' ? { 'Content-Type': 'application/json' } : {}) },
+        method: operation.method, credentials: 'same-origin', headers: { Accept: operation.transport === 'bytes' ? '*/*' : 'application/json', ...((input.body||id==='authRefresh'||id==='authLogout') && id !== 'uploadProjectFile' ? { 'Content-Type': 'application/json' } : {}),...(expected?{'X-Task8-Session-Id':expected}:{}) },
         ...(requestBody ? { body: requestBody } : {}), ...(signal ? { signal } : {}),
       });
     } catch (error) {

@@ -11,7 +11,7 @@ function operation<M extends 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE', I exte
 function binaryOperation<I extends z.ZodType>(path: string, request: I) {
   return { method: 'GET' as const, path, request, data: m.FileContentSchema, response: m.FileContentSchema, successStatuses: [200] as const, transport: 'bytes' as const, requestMediaType: 'application/json' as const };
 }
-// Independent auth contracts; canonical session/runtime activation follows Worker proof.
+// Auth contracts are part of the canonical operation manifest after Worker/native proof.
 export const authOperations = {
   authLogin: operation('POST', '/api/v1/auth/login', z.strictObject({ body: auth.AuthLoginInputSchema }), auth.Ict24hSessionSchema),
   authRefresh: operation('POST', '/api/v1/auth/refresh', p.EmptyInputSchema, auth.Ict24hSessionSchema),
@@ -22,6 +22,7 @@ export type AuthOperationInput<K extends AuthOperationId> = z.input<(typeof auth
 export type AuthOperationOutput<K extends AuthOperationId> = z.output<(typeof authOperations)[K]['data']>;
 // Contract declarations only: this manifest does not advertise implemented endpoints.
 export const operations = {
+  ...authOperations,
   getSession: operation('GET', '/api/v1/session', z.strictObject({  }), m.SessionSchema),
   listWorkspaces: operation('GET', '/api/v1/workspaces', z.strictObject({  }), z.array(m.WorkspaceSchema)),
   getBootstrap: operation('GET', '/api/v1/workspaces/{workspaceId}/bootstrap', z.strictObject({ workspaceId: p.EntityIdSchema }), m.BootstrapSchema),

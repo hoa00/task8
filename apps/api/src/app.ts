@@ -64,7 +64,13 @@ export function createApp(deps: AppDependencies = {}) {
   );
   app.use(
     '/api/v1/*',
-    createPrincipalMiddleware((bindings) => new RequestRepository(bindings.DB)),
+    createPrincipalMiddleware(
+      (bindings) =>
+        bindings.AUTH_MODE === 'ict24h'
+          ? authRepository(bindings)
+          : new RequestRepository(bindings.DB),
+      (env, repository, settings) => createAuthService(env, repository, settings, deps),
+    ),
   );
   app.use('/api/v1/*', async (c, next) => {
     c.set('fileStorage', createR2Storage(c.env.FILES));

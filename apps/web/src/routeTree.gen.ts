@@ -17,6 +17,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as VerifyEmailRouteImport } from './routes/verify-email'
+import { Route as WaitingForWorkspaceRouteImport } from './routes/waiting-for-workspace'
 import { Route as ShellDevDesignSystemRouteImport } from './routes/_shell.dev.design-system'
 import { Route as ShellDevShellHarnessRouteImport } from './routes/_shell.dev.shell-harness'
 import { Route as ShellDevSystemStatesRouteImport } from './routes/_shell.dev.system-states'
@@ -87,6 +88,11 @@ const SignupRoute = SignupRouteImport.update({
 const VerifyEmailRoute = VerifyEmailRouteImport.update({
   id: '/verify-email',
   path: '/verify-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitingForWorkspaceRoute = WaitingForWorkspaceRouteImport.update({
+  id: '/waiting-for-workspace',
+  path: '/waiting-for-workspace',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShellDevDesignSystemRoute = ShellDevDesignSystemRouteImport.update({
@@ -280,6 +286,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/verify-email': typeof VerifyEmailRoute
+  '/waiting-for-workspace': typeof WaitingForWorkspaceRoute
   '/dev/design-system': typeof ShellDevDesignSystemRoute
   '/dev/shell-harness': typeof ShellDevShellHarnessRoute
   '/dev/system-states': typeof ShellDevSystemStatesRoute
@@ -321,6 +328,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/verify-email': typeof VerifyEmailRoute
+  '/waiting-for-workspace': typeof WaitingForWorkspaceRoute
   '/dev/design-system': typeof ShellDevDesignSystemRoute
   '/dev/shell-harness': typeof ShellDevShellHarnessRoute
   '/dev/system-states': typeof ShellDevSystemStatesRoute
@@ -358,6 +366,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/verify-email': typeof VerifyEmailRoute
+  '/waiting-for-workspace': typeof WaitingForWorkspaceRoute
   '/_shell/dev/design-system': typeof ShellDevDesignSystemRoute
   '/_shell/dev/shell-harness': typeof ShellDevShellHarnessRoute
   '/_shell/dev/system-states': typeof ShellDevSystemStatesRoute
@@ -401,6 +410,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/verify-email'
+    | '/waiting-for-workspace'
     | '/dev/design-system'
     | '/dev/shell-harness'
     | '/dev/system-states'
@@ -442,6 +452,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/verify-email'
+    | '/waiting-for-workspace'
     | '/dev/design-system'
     | '/dev/shell-harness'
     | '/dev/system-states'
@@ -478,6 +489,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/verify-email'
+    | '/waiting-for-workspace'
     | '/_shell/dev/design-system'
     | '/_shell/dev/shell-harness'
     | '/_shell/dev/system-states'
@@ -521,6 +533,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   SignupRoute: typeof SignupRoute
   VerifyEmailRoute: typeof VerifyEmailRoute
+  WaitingForWorkspaceRoute: typeof WaitingForWorkspaceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -579,6 +592,13 @@ declare module '@tanstack/react-router' {
       path: '/verify-email'
       fullPath: '/verify-email'
       preLoaderRoute: typeof VerifyEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/waiting-for-workspace': {
+      id: '/waiting-for-workspace'
+      path: '/waiting-for-workspace'
+      fullPath: '/waiting-for-workspace'
+      preLoaderRoute: typeof WaitingForWorkspaceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_shell/dev/design-system': {
@@ -964,6 +984,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   SignupRoute: SignupRoute,
   VerifyEmailRoute: VerifyEmailRoute,
+  WaitingForWorkspaceRoute: WaitingForWorkspaceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
