@@ -78,6 +78,24 @@ test('HTTP201 with body400 is rejected for both credential routes', async () => 
   await rejects(provider(json(failure(400))).refresh(tokens.refresh.token), 'UNAUTHENTICATED');
 });
 
+test('provider calls injected fetch without a dependency-object receiver', async () => {
+  const receivers = [];
+  const api = createIdentityProvider(config, {
+    clock,
+    fetch: async function (url) {
+      receivers.push(this);
+      if (this !== undefined) throw new TypeError('Illegal invocation');
+      if (url.endsWith('/login')) return json(success({ user: profile, tokens }));
+      if (url.endsWith('/refresh-token')) return json(success(tokens));
+      return json(success(profile), 200);
+    },
+  });
+  assert.deepEqual(await api.login(credentials), { user: profile, tokens });
+  assert.deepEqual(await api.refresh(tokens.refresh.token), tokens);
+  assert.deepEqual(await api.whoami(tokens.access.token), profile);
+  assert.deepEqual(receivers, [undefined, undefined, undefined]);
+});
+
 test('malformed success, contradictory errors and wrong envelope are service failures', async () => {
   for (const body of [
     success(tokens),

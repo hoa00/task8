@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-14",
+  "baseCommit": "9a5449b215d05d63da5d05d03c9f3ffc6e9b303e",
+  "node": "24.13.0",
+  "cause": "Workerd native fetch throws Illegal invocation when called with the dependency object as receiver",
+  "records": [
+    {
+      "path": "build.log.gz",
+      "exitCode": 0,
+      "rawBytes": 1029,
+      "rawSha256": "d22513088b351f250f5addf09f3a77ffb82ae1b871f687df20fc33041c379f6a"
+    },
+    {
+      "path": "format.log.gz",
+      "exitCode": 0,
+      "rawBytes": 224,
+      "rawSha256": "0b631fbc0473203f1577159bfd047debea44599c578c026fa3e610da837134ab"
+    },
+    {
+      "path": "lint.log.gz",
+      "exitCode": 0,
+      "rawBytes": 213,
+      "rawSha256": "45272edc010a9de9ed4d5b3700b85d28d029434a865ede225b9b9d6f1b8bcb6a"
+    },
+    {
+      "path": "native-provider.log.gz",
+      "exitCode": 0,
+      "rawBytes": 253,
+      "rawSha256": "517a3626702582ba8df8e46ab046b41b497d73f787d7e76104adc1a2f48f1ae6"
+    },
+    {
+      "path": "native-session.log.gz",
+      "exitCode": 0,
+      "rawBytes": 427,
+      "rawSha256": "3473e1b396420f5f66893995900839fd5eb3136fd5e9125ef38cb85a115d69be"
+    },
+    {
+      "path": "provider-unit-green.log.gz",
+      "exitCode": 0,
+      "rawBytes": 1255,
+      "rawSha256": "41f03b4ff051be49316e3272d4ae70c40b9f7f6e836e8f41a9dff9aac8d25054"
+    },
+    {
+      "path": "typecheck.log.gz",
+      "exitCode": 0,
+      "rawBytes": 15,
+      "rawSha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "unit-red.log.gz",
+      "exitCode": 1,
+      "rawBytes": 1551,
+      "rawSha256": "f4fdf964798206e35812c9cc41fd9e398646ebb420034170cec5e3351db99c59"
+    },
+    {
+      "path": "unit-sandbox-denied.log.gz",
+      "exitCode": 1,
+      "rawBytes": 10081,
+      "rawSha256": "4916576601b747f7499a1746d564225301d103a09f9f242760ab59361dd3f29f"
+    },
+    {
+      "path": "unit.log.gz",
+      "exitCode": 0,
+      "rawBytes": 7890,
+      "rawSha256": "88ce17ee31e4ae23a0fd989b0ec0d6a8c7c2c332521409f6251243a7b11f058f"
+    },
+    {
+      "path": "native-live-before.tar.gz",
+      "status": "DIAGNOSTIC",
+      "probes": 1,
+      "shutdowns": [
+        "Owned process group SIGTERM"
+      ]
+    },
+    {
+      "path": "native-live-after.tar.gz",
+      "status": "DIAGNOSTIC",
+      "probes": 1,
+      "shutdowns": [
+        "Owned process group SIGTERM"
+      ]
+    },
+    {
+      "path": "native-provider.tar.gz",
+      "status": "PASS",
+      "probes": 26,
+      "shutdowns": [
+        "Owned process group SIGTERM"
+      ]
+    },
+    {
+      "path": "native-session.tar.gz",
+      "status": "PASS",
+      "probes": 70,
+      "shutdowns": [
+        "Owned process group SIGTERM",
+        "Owned process group SIGTERM"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "path": "apps/api/src/modules/auth/http/provider.ts",
+      "beforeSha256": "3b542551cfadb7b4b99a08006724d87f4fc35599d24ba4a2420e88797ba1df0b",
+      "afterSha256": "7d5d030e8fd84f2a8f03c874539ef2ae7fb9b0e2e5aa410482ce7f0a2510e69a"
+    },
+    {
+      "path": "apps/api/tests/unit/auth-provider.test.mjs",
+      "beforeSha256": "7ec81e10e6f5b4a4eaad241240dea3812de0ac14ba8460a1dda525f559cc5a83",
+      "afterSha256": "37e6e16cdcf3de6b4cb0f16019242aeb5f02496949841cd90d32df0df0ff8a5d"
+    }
+  ],
+  "productionNegativeLogin": {
+    "path": "/api/v1/auth/login",
+    "httpStatus": 401,
+    "code": "UNAUTHENTICATED",
+    "setsCookie": false,
+    "account": "generated nonexistent account; credentials not retained"
+  },
+  "limits": [
+    "No successful live-account login claimed",
+    "No user database/configuration/deployment changed by runtime fix",
+    "Full unrelated native/frontend suites not rerun"
+  ]
+}

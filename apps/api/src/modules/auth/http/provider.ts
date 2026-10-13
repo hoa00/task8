@@ -103,6 +103,8 @@ export function createIdentityProvider(
   dependencies: ProviderDependencies,
 ): IdentityProvider {
   const config = providerConfig(input);
+  // Workerd's native fetch rejects a dependency object as its receiver.
+  const fetchProvider = dependencies.fetch;
   const headers = {
     'content-type': 'application/json',
     accept: 'application/json',
@@ -117,7 +119,7 @@ export function createIdentityProvider(
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), authProviderLimits.timeoutMs);
     try {
-      const response = await dependencies.fetch(config.baseUrl.replace(/\/+$/u, '') + path, {
+      const response = await fetchProvider(config.baseUrl.replace(/\/+$/u, '') + path, {
         ...init,
         redirect: 'manual',
         signal: controller.signal,
