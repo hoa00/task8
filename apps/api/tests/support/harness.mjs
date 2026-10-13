@@ -163,20 +163,27 @@ export async function createHarness(feature, report) {
   }
 
   let worker;
-  async function start(name, vars, production = false) {
+  async function start(name, vars, production = false, secrets = {}) {
     await stopWorker();
     const config = JSON.parse(readFileSync(resolve(api, 'wrangler.jsonc')));
     config.main = resolve(
       api,
       production ? 'src/index.ts' : `tests/integration/${feature}.worker.ts`,
     );
-    config.vars = { STUDIO_ENV: 'local', ...vars };
+    config.vars = { STUDIO_ENV: 'local', AUTH_MODE: 'local', ...vars };
     config.d1_databases = config.d1_databases.map((binding) => ({
       ...binding,
       migrations_dir: resolve(api, binding.migrations_dir),
     }));
     const file = resolve(runtime, name + '.json');
     writeFileSync(file, JSON.stringify(config));
+    writeFileSync(
+      resolve(runtime, '.dev.vars'),
+      Object.entries(secrets)
+        .map(([key, value]) => `${key}=${JSON.stringify(value)}`)
+        .join('\n') + '\n',
+      { mode: 0o600 },
+    );
     worker = await launch(name, [
       'pnpm',
       'exec',

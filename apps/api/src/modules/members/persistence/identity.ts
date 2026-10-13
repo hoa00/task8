@@ -44,3 +44,6 @@ export function membershipIdentity(
       .limit(1),
   );
 }
+export function profileIdentity(repository: RequestRepository, userId: EntityId) {
+  return repository.read((db) => db.select().from(users).where(eq(users.id, userId)).limit(1));
+}

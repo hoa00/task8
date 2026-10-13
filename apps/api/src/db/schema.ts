@@ -60,6 +60,38 @@ export const authIdentities = sqliteTable(
   ],
 );
 
+export const authSessions = sqliteTable(
+  'authSessions',
+  {
+    id: text('id').primaryKey(),
+    sidHash: text('sidHash').notNull(),
+    identityId: text('identityId').notNull(),
+    userId: text('userId').notNull(),
+    accessCiphertext: text('accessCiphertext'),
+    refreshCiphertext: text('refreshCiphertext'),
+    accessExpiresAt: integer('accessExpiresAt').notNull(),
+    refreshExpiresAt: integer('refreshExpiresAt').notNull(),
+    expiresAt: integer('expiresAt').notNull(),
+    tokenVersion: integer('tokenVersion').notNull(),
+    authGeneration: integer('authGeneration').notNull(),
+    createdAt: integer('createdAt').notNull(),
+    revokedAt: integer('revokedAt'),
+  },
+  (t): SQLiteTableExtraConfigValue[] => [
+    uniqueIndex('authSessions_sidHash').on(t.sidHash),
+    index('authSessions_expiry').on(t.expiresAt, t.id),
+    foreignKey({
+      columns: [t.identityId, t.userId],
+      foreignColumns: [authIdentities.id, authIdentities.userId],
+    }),
+    check('authSessions_version', sql`${t.tokenVersion} > 0 AND ${t.authGeneration} > 0`),
+    check(
+      'authSessions_credential_state',
+      sql`(${t.revokedAt} IS NULL AND ${t.accessCiphertext} IS NOT NULL AND ${t.refreshCiphertext} IS NOT NULL) OR (${t.revokedAt} IS NOT NULL AND ${t.accessCiphertext} IS NULL AND ${t.refreshCiphertext} IS NULL)`,
+    ),
+  ],
+);
+
 export const workspaces = sqliteTable(
   'workspaces',
   {

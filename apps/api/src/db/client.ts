@@ -6,6 +6,7 @@ import * as schema from './schema.ts';
 export { queryLimits } from '../shared/limits.ts';
 export type { WorkspaceContext } from '../shared/scope.ts';
 export type SqlValue = string | number | null;
+export type DatabaseExecutionBinding = Pick<D1Database, 'prepare' | 'batch'>;
 type ReadBuilder = Pick<
   DrizzleD1Database<typeof schema>,
   'select' | 'selectDistinct' | 'batch' | 'with'
@@ -22,14 +23,14 @@ export interface QueryTrace {
 
 // Native and Drizzle paths share one actual execution boundary. Planning does not reserve queries.
 export class RequestRepository {
-  readonly #binding: D1Database;
+  readonly #binding: DatabaseExecutionBinding;
   readonly #database: DrizzleD1Database<typeof schema>;
   readonly #nativeStatements = new WeakMap<D1PreparedStatement, D1PreparedStatement>();
   readonly #parameterCounts = new WeakMap<D1PreparedStatement, number>();
   readonly #trace: QueryTrace[] = [];
   #statements = 0;
-  constructor(binding: D1Database) {
-    this.#binding = binding;
+  constructor(binding: D1Database, options: { primary: boolean } = { primary: false }) {
+    this.#binding = options.primary ? binding.withSession('first-primary') : binding;
     const accounted = new Proxy(binding, {
       get: (_target, key) => {
         if (key === 'prepare') return (sql: string) => this.#prepare(sql);

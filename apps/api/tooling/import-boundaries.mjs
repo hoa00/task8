@@ -7,6 +7,7 @@ const api = fileURLToPath(new URL('../', import.meta.url));
 // Public facades are explicit contracts; deeper implementation paths remain private.
 const publicFacades = new Set([
   'src/modules/auth/http/index.ts',
+  'src/modules/auth/storage/index.ts',
   'src/modules/tasks/subtask-routes.ts',
   'src/modules/projects/personal-routes.ts',
   'src/modules/projects/access.ts',

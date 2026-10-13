@@ -98,13 +98,13 @@ export async function readRequestBytes(request: Request, cap: number): Promise<U
   }
   return bytes;
 }
-export async function jsonBody(context: ApiContext): Promise<unknown> {
+export async function jsonBody(context: ApiContext, cap = maxJsonBodyBytes): Promise<unknown> {
   if (
     Object.keys(context.req.query()).length ||
     context.req.header('content-type')?.split(';')[0]?.trim().toLowerCase() !== 'application/json'
   )
     throw new ApiFailure('VALIDATION_ERROR', 'JSON body required without query fields');
-  const bytes = await readRequestBytes(context.req.raw, maxJsonBodyBytes);
+  const bytes = await readRequestBytes(context.req.raw, cap);
   try {
     return JSON.parse(new TextDecoder().decode(bytes));
   } catch {

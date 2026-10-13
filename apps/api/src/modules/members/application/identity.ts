@@ -1,5 +1,5 @@
 import { memberDto, profileDto } from '../mapper.ts';
-import { membershipIdentity, principalIdentity } from '../persistence/identity.ts';
+import { membershipIdentity, principalIdentity, profileIdentity } from '../persistence/identity.ts';
 
 import type { EntityId, UserProfileDto } from '@studio/contracts/api';
 import type { RequestRepository } from '../../../db/client.ts';
@@ -7,6 +7,14 @@ import { ApiFailure } from '../../../shared/errors.ts';
 export interface AuthenticatedPrincipal {
   user: UserProfileDto;
   currentWorkspaceId: EntityId;
+}
+export async function resolveProfile(
+  repository: RequestRepository,
+  userId: EntityId,
+): Promise<UserProfileDto> {
+  const [row] = await profileIdentity(repository, userId);
+  if (!row) throw new ApiFailure('UNAUTHENTICATED', 'Authentication required');
+  return profileDto(row);
 }
 export async function principal(
   repository: RequestRepository,

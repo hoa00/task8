@@ -11,7 +11,12 @@ export function createPrincipalMiddleware(
   return createMiddleware<ApiEnvironment>(async (context, next) => {
     const userId = EntityIdSchema.safeParse(context.env.LOCAL_USER_ID),
       currentWorkspaceId = EntityIdSchema.safeParse(context.env.LOCAL_WORKSPACE_ID);
-    if (context.env.STUDIO_ENV !== 'local' || !userId.success || !currentWorkspaceId.success)
+    if (
+      context.env.AUTH_MODE !== 'local' ||
+      context.env.STUDIO_ENV !== 'local' ||
+      !userId.success ||
+      !currentWorkspaceId.success
+    )
       throw new ApiFailure('UNAUTHENTICATED', 'Valid local principal required');
     const repository = createRepository(context.env);
     context.set('repository', repository);

@@ -119,9 +119,15 @@ export function createIdentityProvider(
     try {
       const response = await dependencies.fetch(config.baseUrl.replace(/\/+$/u, '') + path, {
         ...init,
-        redirect: 'error',
+        redirect: 'manual',
         signal: controller.signal,
       });
+      // Workers reject fetch redirect:'error'. Manual fetch never forwards credentials;
+      // reject every redirect before reading or decoding an upstream response.
+      if (response.status >= 300 && response.status < 400) {
+        await response.body?.cancel();
+        throw unavailable();
+      }
       const body = await responseJson(response);
       return decode(response, body, operation, dataSchema);
     } catch (error) {

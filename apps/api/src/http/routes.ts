@@ -1,33 +1,14 @@
-import { CapabilitiesSchema, CatalogsSchema, catalogs, operations } from '@studio/contracts/api';
+import { CatalogsSchema, catalogs, operations } from '@studio/contracts/api';
 import { Hono } from 'hono';
 import { workspaceMiddleware } from '../middleware.ts';
 import { readBootstrap } from '../modules/projections/index.ts';
 import { listWorkspaces } from '../modules/workspaces/index.ts';
 import type { ApiEnvironment } from '../runtime.ts';
 import { serverClock } from '../shared/clock.ts';
-import { apiLimits } from '../shared/limits.ts';
 import { features } from './features.ts';
 import { noInput as noQuery } from './request.ts';
-export const capabilities = CapabilitiesSchema.parse({
-  dataMode: 'http',
-  identityMode: 'development',
-  features: {
-    projects: 'implemented',
-    tasks: 'implemented',
-    teams: 'implemented',
-    comments: 'implemented',
-    notificationState: 'implemented',
-    fileMetadata: 'implemented',
-    fileBytes: 'implemented',
-    workspaceProvisioning: 'unavailable',
-    invitations: 'unavailable',
-    projectSharing: 'unavailable',
-    authentication: 'unavailable',
-    accountSecurity: 'unavailable',
-    billing: 'unavailable',
-  },
-  limits: apiLimits,
-});
+export { apiCapabilities as capabilities } from '../shared/capabilities.ts';
+import { apiCapabilities as capabilities } from '../shared/capabilities.ts';
 export const routes = new Hono<ApiEnvironment>();
 for (const path of [
   '/session',

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 export const features = [
   'auth-provider',
   'auth-identity',
+  'auth-session',
   'db',
   'http',
   'core',

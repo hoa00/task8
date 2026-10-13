@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "prerequisites": [
+    "108a02ee AUTH-01",
+    "c3cf77a3 AUTH-02"
+  ],
+  "unitTests": 66,
+  "nativeSessionProbes": 69,
+  "localHttpProbes": 25,
+  "mappingUpgradeProbes": 46,
+  "gates": [
+    "format",
+    "types",
+    "lint",
+    "final-unit",
+    "build",
+    "native",
+    "local-http",
+    "identity-upgrade"
+  ],
+  "migration": "0004_puzzling_rattler",
+  "workerTransportConflict": "Workers reject redirect:error; manual fetch and explicit 3xx rejection verified on actual Worker",
+  "primarySessionReads": true,
+  "liveProvider": "NOT_RUN: deployment RSA public key/test account not supplied",
+  "businessAuthActivation": "AUTH-04; ICT24H business requests fail closed until canonical consumers activate"
+}

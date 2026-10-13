@@ -18,3 +18,10 @@ export function workspaceMemberships(r: RequestRepository, userId: EntityId) {
       .orderBy(asc(workspaces.id)),
   );
 }
+export function firstWorkspaceMembership(r: RequestRepository, userId: EntityId) {
+  return r.all<{ id: string }>(
+    `SELECT w.id FROM workspaces w JOIN workspaceMembers m ON m.workspaceId=w.id
+    WHERE m.userId=? AND m.status='active' AND m.removedAt IS NULL ORDER BY w.id ASC LIMIT 1`,
+    [userId],
+  );
+}

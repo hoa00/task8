@@ -1,4 +1,4 @@
-export { membership, principal } from './application/identity.ts';
+export { membership, principal, resolveProfile } from './application/identity.ts';
 export type { AuthenticatedPrincipal } from './application/identity.ts';
 
 export { member, members } from './application/directory.ts';

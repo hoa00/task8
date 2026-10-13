@@ -68,7 +68,7 @@ test('provider keeps distinct login, refresh and whoami envelopes and paths', as
   assert.equal(requests[2].init.headers.authorization, 'Bearer ' + tokens.access.token);
   for (const { init } of requests) {
     assert.equal(init.headers['i24h-tenant'], config.tenantId);
-    assert.equal(init.redirect, 'error');
+    assert.equal(init.redirect, 'manual');
     assert.ok(init.signal instanceof AbortSignal);
   }
 });
@@ -223,4 +223,21 @@ test('HTTP maps auth errors without leaking upstream details or logging payloads
     error: { code: 'AUTH_SERVICE_UNAVAILABLE', message: 'Authentication service is unavailable' },
   });
   assert.equal(logs.mock.callCount(), 0);
+});
+
+test('provider rejects manual redirects before decoding or forwarding credentials', async () => {
+  let calls = 0;
+  const adapter = createIdentityProvider(config, {
+    clock,
+    fetch: async (_url, init) => {
+      calls++;
+      assert.equal(init.redirect, 'manual');
+      return new Response('redirect response', {
+        status: 302,
+        headers: { location: 'https://foreign.example.invalid/credentials' },
+      });
+    },
+  });
+  await rejects(adapter.login(credentials), 'AUTH_SERVICE_UNAVAILABLE');
+  assert.equal(calls, 1);
 });
