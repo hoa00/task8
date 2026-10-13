@@ -4,6 +4,8 @@
 
 ## Owners và dependency direction
 
+ICT24H integration: [kế hoạch](../../docs/engineering/ICT24H_AUTH_INTEGRATION_PLAN.md), [package setup và checkpoint AUTH-01](../../docs/engineering/ICT24H_AUTH_SETUP.md). Module auth hiện cung cấp adapter provider và standalone contracts; production vẫn dùng local principal cho tới khi Worker proof và các unit composition đạt gate.
+
 `src/app.ts` compose repository/storage/middleware/error/routes; `src/index.ts` export production app. Một request đi qua HTTP route → application use-case → pure domain/policy và typed persistence/storage → pure DTO mapper. Application không nhận Hono context hoặc raw binding; domain/mapper không query DB. Cross-feature imports chỉ qua public entry dưới đây, không deep-import implementation.
 
 | Owner | Trách nhiệm | Public entries dưới `src/modules` |

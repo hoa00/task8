@@ -1,0 +1,147 @@
+{
+  "startedDate": "2026-10-13",
+  "baseline": "becfc49e231c0914a4733738631af6fcb2229479",
+  "environmentOverrides": {
+    "pnpm_config_verify_deps_before_run": "never",
+    "XDG_CONFIG_HOME": "/tmp/task8-auth-tools/config",
+    "XDG_DATA_HOME": "/tmp/task8-auth-pnpm/data",
+    "XDG_CACHE_HOME": "/tmp/task8-auth-pnpm/cache"
+  },
+  "commands": [
+    {
+      "name": "format",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "format:check"
+      ],
+      "exitCode": 0,
+      "log": "format.log.gz"
+    },
+    {
+      "name": "api-types",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "log": "api-types.log.gz"
+    },
+    {
+      "name": "api-lint",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "lint"
+      ],
+      "exitCode": 0,
+      "log": "api-lint.log.gz"
+    },
+    {
+      "name": "api-unit",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "test:unit"
+      ],
+      "exitCode": 0,
+      "log": "api-unit.log.gz"
+    },
+    {
+      "name": "contracts",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/contracts",
+        "test"
+      ],
+      "exitCode": 0,
+      "log": "contracts.log.gz"
+    },
+    {
+      "name": "consumers",
+      "command": [
+        "pnpm",
+        "contracts:consumers"
+      ],
+      "exitCode": 0,
+      "log": "consumers.log.gz"
+    },
+    {
+      "name": "types",
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "log": "types.log.gz"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "pnpm",
+        "lint"
+      ],
+      "exitCode": 0,
+      "log": "lint.log.gz"
+    },
+    {
+      "name": "build",
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "log": "build.log.gz"
+    },
+    {
+      "name": "final-format",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "format:check"
+      ],
+      "exitCode": 0,
+      "log": "final-format.log.gz"
+    },
+    {
+      "name": "final-api-types",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "log": "final-api-types.log.gz"
+    },
+    {
+      "name": "final-api-lint",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "lint"
+      ],
+      "exitCode": 0,
+      "log": "final-api-lint.log.gz"
+    },
+    {
+      "name": "final-api-unit",
+      "command": [
+        "pnpm",
+        "--filter",
+        "@studio/api",
+        "test:unit"
+      ],
+      "exitCode": 0,
+      "log": "final-api-unit.log.gz"
+    }
+  ]
+}

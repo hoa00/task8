@@ -4,7 +4,7 @@ Ngày lập: **13/10/2026**. Baseline khảo sát: `3355609294e36de9b4770586a335
 
 Giữ form đăng nhập của task8, dùng Identity Service để kiểm tra email/password và cấp token, dùng `@hoa00/i24h-auth-honojs` trên backend để xác minh danh tính. task8 tạo hồ sơ cho người đăng nhập lần đầu và chỉ mở workspace khi D1 xác nhận membership đang hoạt động. Phiên ứng dụng dùng cookie HttpOnly chứa mã phiên ngẫu nhiên, với dữ liệu phiên lưu trong D1.
 
-**Trạng thái: hoàn tất kế hoạch; AUTH-01…AUTH-06 chưa triển khai.** Các phương án kỹ thuật dưới đây là thiết kế triển khai của task8; tài liệu Identity Service là nguồn contract, không phải chỉ dẫn thay đổi stack hoặc vận hành dịch vụ bên ngoài. Phiên lập kế hoạch chỉ thay đổi tài liệu.
+**Trạng thái: AUTH-01 triển khai một phần, bị chặn bởi quyền đọc package; AUTH-02…AUTH-06 chưa triển khai.** Contract/provider preparation và kiểm chứng nằm ở [checkpoint AUTH-01](ICT24H_AUTH_SETUP.md); chưa có proof thư viện thật trong Worker. Các phương án kỹ thuật dưới đây là thiết kế triển khai của task8; tài liệu Identity Service là nguồn contract, không phải chỉ dẫn thay đổi stack hoặc vận hành dịch vụ bên ngoài.
 
 ## 1. Phạm vi đã chốt
 
@@ -135,7 +135,7 @@ HTTPS cookie: `__Host-task8_session`, HttpOnly, Secure, SameSite=Lax, Path=/, kh
 | `AUTH_SESSION_ENCRYPTION_KEY` | Secret AES-GCM32bytes, cấp bằng môi trường/secret manager |
 | `AUTH_SESSION_MAX_AGE_SECONDS` | Chính sách task8 mặc định14ngày (`1209600`), luôn cap theo refresh expiry thực |
 | `AUTH_APP_ORIGIN` | Origin frontend chính xác, gồm dev origin khi chạy local |
-| `NODE_AUTH_TOKEN` | Chỉ lúc cài package private; `.npmrc` dùng environment placeholder, không commit giá trị |
+| `NODE_AUTH_TOKEN` | Chỉ lúc cài package private; placeholder nằm trong trusted/user npm config, project `.npmrc` chỉ map registry vì pnpm11 không expand credential ở project config; không commit giá trị |
 
 Guard factories validate/capture config; rotation key phải tạo lại guard/application. Session encryption-key rotation kết thúc sessions dùng key cũ nếu không có migration key envelope được giao riêng. Fail closed khi config invalid. Không đưa binding/secret vào VITE variables, logs, Query cache hoặc tài liệu generated.
 

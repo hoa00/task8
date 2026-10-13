@@ -38,11 +38,11 @@ export function cursorPageSchema<T extends z.ZodType>(item: T) {
 export type CursorPage<T> = { items: T[]; nextCursor: string | null; total: number };
 export function apiSuccessSchema<T extends z.ZodType>(data: T) { return z.strictObject({ data }); }
 export type ApiSuccess<T> = { data: T };
-export const ErrorCodeSchema = z.enum(['VALIDATION_ERROR', 'UNAUTHENTICATED', 'FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'VIEW_SCOPE_TOO_LARGE', 'PAYLOAD_TOO_LARGE', 'CAPABILITY_UNAVAILABLE', 'INTERNAL_ERROR']);
+export const ErrorCodeSchema = z.enum(['VALIDATION_ERROR', 'UNAUTHENTICATED', 'FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'SESSION_CHANGED', 'AUTH_SERVICE_UNAVAILABLE', 'VIEW_SCOPE_TOO_LARGE', 'PAYLOAD_TOO_LARGE', 'CAPABILITY_UNAVAILABLE', 'INTERNAL_ERROR']);
 export const ApiErrorSchema = z.strictObject({ error: z.strictObject({
   code: ErrorCodeSchema, message: z.string().min(1).max(1000),
   // The contract permits a dictionary here; values are bounded arrays of messages.
   fieldErrors: z.record(z.string().min(1).max(200), z.array(z.string().max(500)).max(20)).optional(),
 }) });
 export type ApiError = z.infer<typeof ApiErrorSchema>;
-export const errorHttpStatus = { VALIDATION_ERROR: 400, UNAUTHENTICATED: 401, FORBIDDEN: 403, NOT_FOUND: 404, CONFLICT: 409, VIEW_SCOPE_TOO_LARGE: 409, PAYLOAD_TOO_LARGE: 413, CAPABILITY_UNAVAILABLE: 501, INTERNAL_ERROR: 500 } as const satisfies { [K in z.infer<typeof ErrorCodeSchema>]: number };
+export const errorHttpStatus = { VALIDATION_ERROR: 400, UNAUTHENTICATED: 401, FORBIDDEN: 403, NOT_FOUND: 404, CONFLICT: 409, SESSION_CHANGED: 409, AUTH_SERVICE_UNAVAILABLE: 503, VIEW_SCOPE_TOO_LARGE: 409, PAYLOAD_TOO_LARGE: 413, CAPABILITY_UNAVAILABLE: 501, INTERNAL_ERROR: 500 } as const satisfies { [K in z.infer<typeof ErrorCodeSchema>]: number };

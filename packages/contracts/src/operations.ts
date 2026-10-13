@@ -3,6 +3,7 @@ import * as p from './primitives.ts';
 import * as i from './inputs.ts';
 import * as q from './queries.ts';
 import * as m from './models.ts';
+import * as auth from './auth.ts';
 
 function operation<M extends 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE', I extends z.ZodType, O extends z.ZodType>(method: M, path: string, request: I, data: O, successStatuses: readonly number[] = [200], requestMediaType: 'application/json' | 'multipart/form-data' = 'application/json') {
   return { method, path, request, data, response: p.apiSuccessSchema(data), successStatuses, transport: 'json' as const, requestMediaType };
@@ -10,6 +11,15 @@ function operation<M extends 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE', I exte
 function binaryOperation<I extends z.ZodType>(path: string, request: I) {
   return { method: 'GET' as const, path, request, data: m.FileContentSchema, response: m.FileContentSchema, successStatuses: [200] as const, transport: 'bytes' as const, requestMediaType: 'application/json' as const };
 }
+// Independent auth contracts; canonical session/runtime activation follows Worker proof.
+export const authOperations = {
+  authLogin: operation('POST', '/api/v1/auth/login', z.strictObject({ body: auth.AuthLoginInputSchema }), auth.Ict24hSessionSchema),
+  authRefresh: operation('POST', '/api/v1/auth/refresh', p.EmptyInputSchema, auth.Ict24hSessionSchema),
+  authLogout: operation('POST', '/api/v1/auth/logout', p.EmptyInputSchema, auth.AuthLogoutResultSchema),
+} as const;
+export type AuthOperationId = keyof typeof authOperations;
+export type AuthOperationInput<K extends AuthOperationId> = z.input<(typeof authOperations)[K]['request']>;
+export type AuthOperationOutput<K extends AuthOperationId> = z.output<(typeof authOperations)[K]['data']>;
 // Contract declarations only: this manifest does not advertise implemented endpoints.
 export const operations = {
   getSession: operation('GET', '/api/v1/session', z.strictObject({  }), m.SessionSchema),
