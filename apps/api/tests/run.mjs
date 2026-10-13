@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 export const features = [
   'auth-provider',
+  'auth-identity',
   'db',
   'http',
   'core',

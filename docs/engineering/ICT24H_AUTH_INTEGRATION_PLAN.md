@@ -4,7 +4,7 @@ Ngày lập: **13/10/2026**. Baseline khảo sát: `3355609294e36de9b4770586a335
 
 Giữ form đăng nhập của task8, dùng Identity Service để kiểm tra email/password và cấp token, dùng `@hoa00/i24h-auth-honojs` trên backend để xác minh danh tính. task8 tạo hồ sơ cho người đăng nhập lần đầu và chỉ mở workspace khi D1 xác nhận membership đang hoạt động. Phiên ứng dụng dùng cookie HttpOnly chứa mã phiên ngẫu nhiên, với dữ liệu phiên lưu trong D1.
 
-**Trạng thái: AUTH-01 LOCAL_VERIFIED_LIVE_PENDING; AUTH-02…AUTH-06 chưa triển khai.** Package0.1.1/tarball/public exports và actual Worker26probes đã xác minh; [checkpoint AUTH-01](ICT24H_AUTH_SETUP.md) giữ commands/evidence. Live verification còn thiếu deployment public key/test account. Các phương án kỹ thuật dưới đây là thiết kế triển khai của task8; tài liệu Identity Service là nguồn contract, không phải chỉ dẫn thay đổi stack hoặc vận hành dịch vụ bên ngoài.
+**Trạng thái: AUTH-01 LOCAL_VERIFIED_LIVE_PENDING; AUTH-02 PASS; AUTH-03…AUTH-06 chưa triển khai.** Package0.1.1/tarball/public exports và actual Worker26probes đã xác minh; [checkpoint AUTH-01](ICT24H_AUTH_SETUP.md) giữ commands/evidence. Live verification còn thiếu deployment public key/test account. Các phương án kỹ thuật dưới đây là thiết kế triển khai của task8; tài liệu Identity Service là nguồn contract, không phải chỉ dẫn thay đổi stack hoặc vận hành dịch vụ bên ngoài.
 
 ## 1. Phạm vi đã chốt
 

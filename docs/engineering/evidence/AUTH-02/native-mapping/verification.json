@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "prerequisite": "108a02ee AUTH-01 actual Worker proof",
+  "nativeProbes": 46,
+  "unitTests": 63,
+  "gates": [
+    "format",
+    "lint",
+    "types",
+    "unit",
+    "build",
+    "native"
+  ],
+  "migration": "0003_known_cassandra_nova",
+  "scope": "native local D1 and operator linking; no production provisioning",
+  "limits": {
+    "JITStatements": 3,
+    "JITMaxParameters": 15,
+    "linkStatements": 2
+  },
+  "liveProvider": "NOT_RUN; deployment key/account absent"
+}

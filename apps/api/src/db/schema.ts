@@ -41,6 +41,25 @@ export const users = sqliteTable(
   ],
 );
 
+export const authIdentities = sqliteTable(
+  'authIdentities',
+  {
+    id: text('id').primaryKey(),
+    providerKey: text('providerKey').notNull(),
+    tenant: text('tenant').notNull(),
+    subject: text('subject').notNull(),
+    userId: text('userId')
+      .notNull()
+      .references(() => users.id),
+    createdAt: integer('createdAt').notNull(),
+  },
+  (t): SQLiteTableExtraConfigValue[] => [
+    uniqueIndex('authIdentities_external').on(t.providerKey, t.tenant, t.subject),
+    uniqueIndex('authIdentities_id_user').on(t.id, t.userId),
+    check('authIdentities_provider', sql`${t.providerKey} = 'ict24h-identity'`),
+  ],
+);
+
 export const workspaces = sqliteTable(
   'workspaces',
   {

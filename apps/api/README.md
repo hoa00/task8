@@ -121,3 +121,13 @@ Lệnh này chứng minh active Worker type error và API failure làm root test
 Không suy ra production deploy/full visual/new capability từ native local PASS. Các visual/environment/scope limits lịch sử và capability chưa triển khai vẫn theo PROGRESS/BACKEND_SCOPE.
 
 ICT24H package/Worker proof: `pnpm --filter @studio/api test:integration --feature auth-provider`. Dùng package registry exact0.1.1 và fresh RSA test keys trên actual Workerd với nodejs_compat; không phải live deployment login. Public `auth/index.ts` chỉ application types; `auth/http/index.ts` sở hữu factories cho HTTP composition. Xem [setup/evidence](../../docs/engineering/ICT24H_AUTH_SETUP.md).
+
+Identity mapping native suite: `pnpm --filter @studio/api test:integration --feature auth-identity` (forward0003, concurrency/collision/rollback/Unicode/preservation). `members` owns `ensureExternalProfile` and `explicitlyLinkIdentity`; no membership/Owner is granted by them.
+
+Local operator linking, after migrations and after confirming both IDs through trusted operator access:
+
+```sh
+pnpm --filter @studio/api auth:link:local --persist-to /absolute/local-storage --tenant ict24h-rdn-dev --subject CENTRAL_UUID --user-id LOCAL_UUIDv7
+```
+
+This bounded procedure uses the production members public use-case on an ephemeral loopback-only Worker. It changes only the external mapping; same mapping/user is idempotent, a different user/missing user conflicts with zero writes. It does not identify users by email, migrate/reset the database, grant a workspace or expose a production linking route. Runtime logs/artifacts contain no credentials. Remote linking remains a trusted operator action outside this local command.
