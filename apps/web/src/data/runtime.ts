@@ -8,4 +8,17 @@ import type { OnboardingDemoAdapter } from './onboarding-demo.ts';
 import type { AuthFacade } from './auth.ts';
 
 // Services only. Server state stays in TanStack Query, never in this context.
-export interface DataRuntime { client: StudioClient; clock: Clock; auth?:AuthFacade; sharingDemo?: SharingDemoAdapter; peopleDemo?: PeopleDemoAdapter; securityBillingDemo?: SecurityBillingDemoAdapter; authDemo?: AuthDemoAdapter; onboardingDemo?: OnboardingDemoAdapter; resetDemoFixture?: () => Promise<string>; setDemoOffline?: (value: boolean) => void; isDemoOffline?: () => boolean; selectDemoWorkspace?: (workspaceId: string) => void }
+export interface DataRuntime {
+  client: StudioClient;
+  clock: Clock;
+  auth?: AuthFacade;
+  sharingDemo?: SharingDemoAdapter;
+  peopleDemo?: PeopleDemoAdapter;
+  securityBillingDemo?: SecurityBillingDemoAdapter;
+  authDemo?: AuthDemoAdapter;
+  onboardingDemo?: OnboardingDemoAdapter;
+  resetDemoFixture?: () => Promise<string>;
+  setDemoOffline?: (value: boolean) => void;
+  isDemoOffline?: () => boolean;
+  selectDemoWorkspace?: (workspaceId: string) => void;
+}

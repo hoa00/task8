@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-const relativeApiPath = z.string().regex(/^\/api(?:\/[A-Za-z0-9_-]+)*$/, 'API URL must be an origin-relative /api path');
+const relativeApiPath = z
+  .string()
+  .regex(/^\/api(?:\/[A-Za-z0-9_-]+)*$/, 'API URL must be an origin-relative /api path');
 const publicEnvSchema = z.object({
   dataMode: z.enum(['mock', 'http']).default('mock'),
   apiBaseUrl: relativeApiPath.default('/api/v1'),
@@ -15,5 +17,8 @@ export function parsePublicEnv(input: Record<string, unknown>): PublicEnv {
       throw new Error('Unsupported public environment variable');
     }
   }
-  return publicEnvSchema.parse({ dataMode: input.VITE_DATA_MODE, apiBaseUrl: input.VITE_API_BASE_URL });
+  return publicEnvSchema.parse({
+    dataMode: input.VITE_DATA_MODE,
+    apiBaseUrl: input.VITE_API_BASE_URL,
+  });
 }
