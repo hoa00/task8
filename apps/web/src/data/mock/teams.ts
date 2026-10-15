@@ -1,3 +1,4 @@
+import { fail } from './primitives.ts';
 import {
   CreateTeamInputSchema,
   EntityIdSchema,
@@ -11,9 +12,8 @@ import {
 import type { OperationId, TeamDto, TeamMutationDto } from '@studio/contracts/api';
 import type { Clock } from '@studio/domain';
 import type { MockDataset } from './dataset.ts';
-import { StudioApiError } from '../errors.ts';
 import { transactMock } from './transaction.ts';
-import { newMockId } from './task-fields.ts';
+import { newMockId } from './primitives.ts';
 import { readDashboardScope } from './dashboards.ts';
 import { projectCatalogItem } from './reads.ts';
 
@@ -25,21 +25,6 @@ export const teamOperations = [
   'updateTeam',
   'deleteTeam',
 ] as const satisfies readonly OperationId[];
-function fail(
-  code:
-    | 'NOT_FOUND'
-    | 'FORBIDDEN'
-    | 'CONFLICT'
-    | 'VALIDATION_ERROR'
-    | 'PAYLOAD_TOO_LARGE'
-    | 'INTERNAL_ERROR',
-  message: string,
-  field?: string,
-): never {
-  throw new StudioApiError({
-    error: { code, message, ...(field ? { fieldErrors: { [field]: [message] } } : {}) },
-  });
-}
 function actor(data: MockDataset, write = false) {
   const member = data.members[data.currentMemberId];
   if (!member || member.workspaceId !== data.workspaceId || member.status !== 'active')

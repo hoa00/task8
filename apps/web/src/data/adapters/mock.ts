@@ -1,28 +1,24 @@
+import { readMockProjection } from '../mock/projection-reads.ts';
 import { transactMock } from '../mock/transaction.ts';
-import { DateRangeQuerySchema, EntityIdSchema, catalogs, operations } from '@studio/contracts/api';
+import { EntityIdSchema, catalogs, operations } from '@studio/contracts/api';
 import type { OperationId } from '@studio/contracts/api';
 import { normalizeDescription } from '@studio/domain';
-import {
-  canReadMockProject as canReadProject,
-  projectOperations,
-  runProjectOperation,
-  hasProjectUndo,
-} from '../mock/projects.ts';
+import { projectOperations, runProjectOperation, hasProjectUndo } from '../mock/projects.ts';
 import type { Clock } from '@studio/domain';
 import { StudioApiError, StudioTransportError, unavailable } from '../errors.ts';
 import { createStudioClient } from '../operations.ts';
 import { createEmptyDataset, createSeedDataset, fixtureClock } from '../mock/seed.ts';
-import { readBootstrap, readSession } from '../mock/reads.ts';
 import { loadMockDataset, persistMockDataset, mockStorageKey } from '../mock/persistence.ts';
 import type { MockStorage } from '../mock/persistence.ts';
 import { mockScenarios, waitForScenario } from '../mock/scenarios.ts';
-import { runTaskFieldOperation, taskFieldOperations } from '../mock/task-fields.ts';
-import { dashboardReads, readHome, readOverview } from '../mock/dashboards.ts';
-import { readSearch } from '../mock/search.ts';
+import {
+  runTaskOperation as runTaskFieldOperation,
+  taskOperationIds as taskFieldOperations,
+} from '../mock/operation-registry.ts';
+import { dashboardReads } from '../mock/dashboards.ts';
 import type { MockScenarioId } from '../mock/scenarios.ts';
-import { peopleReads, readMember, readMemberSummary } from '../mock/people.ts';
-import { notificationOperations, runNotificationOperation } from '../mock/notifications.ts';
-import { readArchive } from '../mock/archive.ts';
+import { peopleReads } from '../mock/people.ts';
+import { notificationOperations, runNotificationCommand } from '../mock/notifications.ts';
 import { teamOperations, runTeamOperation, hasTeamUndo } from '../mock/teams.ts';
 
 import { settingsOperations, runSettingsOperation } from '../mock/settings.ts';
@@ -121,6 +117,21 @@ export function createMockClient({
         scoped.users[user.id] = structuredClone(user);
       }
   }
+  function syncPrincipal(scoped: MockDataset) {
+    const user = canonicalPrincipal.users[canonicalUserId]!;
+    const changed = Object.values(scoped.members).some(
+      (member) =>
+        member.userId === user.id &&
+        (scoped.users[user.id]?.version !== user.version ||
+          ['name', 'email', 'title', 'avatarColor', 'timezone'].some(
+            (key) => member[key as keyof typeof member] !== user[key as keyof typeof user],
+          )),
+    );
+    if (changed)
+      return transactMock(scoped, async (staged) => {
+        reconcilePrincipal(staged);
+      });
+  }
   const workspaceCatalog = () => [
     ...new Map(
       [...datasets.values()]
@@ -154,7 +165,8 @@ export function createMockClient({
         error: { code: 'NOT_FOUND', message: 'Workspace data is not available' },
       });
     const dataset = scoped;
-    reconcilePrincipal(dataset);
+    const principalSync = syncPrincipal(dataset);
+    if (principalSync) await principalSync;
     if (
       ![
         ...shellReads,
@@ -203,7 +215,7 @@ export function createMockClient({
           : undefined,
       );
       if (id === 'updateProfile')
-        for (const scoped of datasets.values()) reconcilePrincipal(scoped);
+        for (const scoped of datasets.values()) await syncPrincipal(scoped);
       return result;
     }
     if (
@@ -219,18 +231,16 @@ export function createMockClient({
           ? (staged) => persistMockDataset(storage, staged)
           : undefined,
       );
-    if ((notificationOperations as readonly string[]).includes(id)) {
-      if (operations[id].method === 'GET')
-        return runNotificationOperation(id, input, dataset, clock);
-      return transactMock(dataset, async (staged) => {
-        const result = runNotificationOperation(id, input, staged, clock);
-        if (scenario === 'populated' && storage && !persistMockDataset(storage, staged))
-          throw new StudioApiError({
-            error: { code: 'INTERNAL_ERROR', message: 'Changes could not be saved. Try again.' },
-          });
-        return result;
-      });
-    }
+    if ((notificationOperations as readonly string[]).includes(id))
+      return runNotificationCommand(
+        id,
+        input,
+        dataset,
+        clock,
+        scenario === 'populated' && storage
+          ? (staged) => persistMockDataset(storage, staged)
+          : undefined,
+      );
     if (
       (projectOperations as readonly string[]).includes(id) ||
       (id === 'undoCommand' && hasProjectUndo(dataset, input.undoId))
@@ -257,78 +267,14 @@ export function createMockClient({
           ? (staged) => persistMockDataset(storage, staged)
           : undefined,
       );
-    switch (id) {
-      case 'listArchive':
-        return { data: await readArchive(dataset, input.query, clock) };
-      case 'getMember':
-        return { data: readMember(dataset, input.memberId) };
-      case 'getMemberSummary':
-        return { data: readMemberSummary(dataset, input.memberId, clock) };
-      case 'search':
-        return { data: await readSearch(dataset, input.query, clock) };
-      case 'getHome':
-        return { data: readHome(dataset, clock) };
-      case 'getOverview':
-        return { data: readOverview(dataset, clock) };
-      case 'listCalendarEvents': {
-        const query = DateRangeQuerySchema.parse(input.query);
-        if (
-          query.projectId &&
-          (!canReadProject(dataset.projects[query.projectId], dataset) ||
-            dataset.projects[query.projectId]!.archivedAt)
-        )
-          throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Project not found' } });
-        return {
-          data: Object.values(dataset.events)
-            .filter(
-              (event) =>
-                event.workspaceId === dataset.workspaceId &&
-                event.date >= query.from &&
-                event.date <= query.to &&
-                (!query.projectId || event.projectId === query.projectId) &&
-                canReadProject(dataset.projects[event.projectId], dataset) &&
-                !dataset.projects[event.projectId]!.archivedAt,
-            )
-            .sort((a, b) => a.id.localeCompare(b.id)),
-        };
-      }
-      case 'getSession':
-        return { data: readSession(dataset) };
-      case 'listWorkspaces':
-        return { data: workspaceCatalog() };
-      case 'getBootstrap':
-        return { data: readBootstrap(dataset, clock) };
-      case 'getWorkspace':
-        return { data: dataset.workspaces[dataset.workspaceId] };
-      case 'getProfile':
-        return { data: readSession(dataset).user };
-      case 'getPreferences':
-        return { data: dataset.preferences };
-      case 'getNotificationPreferences':
-        return { data: dataset.notificationPreferences };
-      case 'listSavedViews': {
-        const project = dataset.projects[EntityIdSchema.parse(input.projectId)];
-        if (!project)
-          throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Project not found' } });
-        if (
-          project.visibility === 'private' &&
-          !project.memberIds.includes(dataset.currentMemberId)
-        )
-          throw new StudioApiError({ error: { code: 'NOT_FOUND', message: 'Project not found' } });
-        return {
-          data: Object.values(dataset.savedViews).filter((view) => view.projectId === project.id),
-        };
-      }
-      default:
-        throw unavailable(id);
-    }
+    return readMockProjection(id, input, dataset, clock, workspaceCatalog);
   });
   const completions = new Map<string, Promise<OnboardingResult>>();
   async function completeOnboarding(draft: OnboardingDraft): Promise<OnboardingResult> {
     if (scenario !== 'populated') throw unavailable('createProject');
     let scoped = datasets.get(draft.flowId) ?? loadMockDataset(storage, draft.flowId);
     if (!scoped) {
-      reconcilePrincipal(activeDataset);
+      await syncPrincipal(activeDataset);
       scoped = await createOnboardingDataset(draft, clock, activeDataset);
       const project = scoped.projects[scoped.projectOrder[0]!]!,
         template = catalogs.templates.find((row) => row.id === draft.tmpl)!;

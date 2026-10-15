@@ -3,7 +3,7 @@ import { completedInRollingWeek, homeDeadlines, summarizeTasks } from '@studio/d
 import type { Clock } from '@studio/domain';
 import type { MockDataset } from './dataset.ts';
 import { canReadMockProject } from './project-access.ts';
-import { projectTask } from './task-fields.ts';
+import { projectTask } from './task-aggregate.ts';
 import { readBootstrap } from './reads.ts';
 
 export const dashboardReads = ['getHome', 'getOverview'] as const;

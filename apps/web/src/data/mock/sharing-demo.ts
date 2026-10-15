@@ -4,7 +4,7 @@ import type { Clock } from '@studio/domain';
 import type { MockStorage } from './persistence.ts';
 import type { SharingDemoAdapter } from '../sharing-demo.ts';
 import { sharingPermissions } from '../sharing-demo.ts';
-import { newMockId } from './task-fields.ts';
+import { newMockId } from './primitives.ts';
 const stateSchema = z.strictObject({
   visibility: z.enum(['workspace', 'private']),
   memberIds: z.array(z.string()).refine((ids) => new Set(ids).size === ids.length),

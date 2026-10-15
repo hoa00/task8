@@ -1,6 +1,6 @@
 import { createPeopleDemo } from '../people-demo.ts';
 import { systemClock } from '@studio/domain';
-import type { PublicEnv } from '../../app/env.ts';
+import type { PublicEnv } from '../runtime.ts';
 import type { DataRuntime } from '../runtime.ts';
 import { createHttpClient } from './http.ts';
 import { createSecurityBillingDemo } from '../security-billing-demo.ts';

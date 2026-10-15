@@ -1,3 +1,4 @@
+import { transactMock } from './transaction.ts';
 import { encodeMockCursor, decodeMockCursor, notificationCursorSchema } from './cursor.ts';
 import {
   NotificationQuerySchema,
@@ -116,4 +117,23 @@ export function runNotificationOperation(
   return {
     data: NotificationsPageSchema.parse({ items, total: filtered.length, unreadCount, nextCursor }),
   };
+}
+
+export function runNotificationCommand(
+  id: OperationId,
+  input: Record<string, unknown>,
+  data: MockDataset,
+  clock: Clock,
+  persist?: (staged: MockDataset) => boolean,
+) {
+  if (id === 'listNotifications')
+    return Promise.resolve(runNotificationOperation(id, input, data, clock));
+  return transactMock(data, async (staged) => {
+    const result = runNotificationOperation(id, input, staged, clock);
+    if (persist && !persist(staged))
+      throw new StudioApiError({
+        error: { code: 'INTERNAL_ERROR', message: 'Changes could not be saved. Try again.' },
+      });
+    return result;
+  });
 }

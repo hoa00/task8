@@ -1,4 +1,4 @@
-import type { PublicEnv } from '../../app/env.ts';
+import type { PublicEnv } from '../runtime.ts';
 import type { DataRuntime } from '../runtime.ts';
 import { browserMockStorage } from '../mock/persistence.ts';
 import { fixtureClock } from '../mock/seed.ts';
@@ -8,7 +8,7 @@ import { createMockClient } from './mock.ts';
 import { createSecurityBillingDemo } from '../security-billing-demo.ts';
 import { createAuthDemo, readAuthScenario } from '../auth-demo.ts';
 import { createOnboardingDemo } from '../onboarding-demo.ts';
-import { newMockId } from '../mock/task-fields.ts';
+import { newMockId } from '../mock/primitives.ts';
 
 export function createDataRuntime(env: PublicEnv): DataRuntime {
   if (env.dataMode !== 'mock') throw new Error('Data mode differs from the built adapter');

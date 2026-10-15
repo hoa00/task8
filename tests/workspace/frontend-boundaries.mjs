@@ -19,6 +19,10 @@ export function inspectFrontend(edges, policy) {
   for (const edge of edges) {
     const { from, to, specifier } = edge;
     const rules = [];
+    if (from.startsWith('apps/web/src/data/mock/') && to?.endsWith('/mock/task-fields.ts'))
+      rules.push('mock-compat-import');
+    if (from.endsWith('/mock/primitives.ts') && to?.startsWith('apps/web/src/data/mock/'))
+      rules.push('mock-primitive-direction');
     if (from.startsWith('apps/web/src/')) {
       if (to?.startsWith('packages/') && specifier.startsWith('.'))
         rules.push('web-package-private');

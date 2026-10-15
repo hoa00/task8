@@ -1,0 +1,11 @@
+# FR-03 ownership and rollback
+
+`mock/primitives.ts` owns IDs, fingerprints and canonical mock errors; `cursor-page.ts` owns generic scoped seek pagination. Business owners use these directly. The task aggregate policy owns task visibility, CAS/date/relation validation, task projection, version/activity touch and bounded lifecycle Undo. Operation-specific modules own task reads/commands, subtasks, comments, files, activity/member reads and Undo. The explicit registry covers all 33 supported task-related operation IDs. Adapter resolves scope/capabilities, principal synchronization and dispatch; projection reads have a separate owner.
+
+Every mutating task-related handler still runs through `transactMock` on the same dataset object; notification, project, team and settings commands share that coordinator. Canonical profile projection synchronization also joins this queue when the projection differs. No-change reads remain synchronous until the existing scenario delay. A regression holds a task transaction on a second workspace, updates the canonical profile, then verifies both results survive.
+
+Domain `task-query.ts` owns strict semantic query/evaluation normalization. Mock consumers no longer import web column normalization. Compatibility is exact: `task-view.ts` presentation exports (taskColumns, TaskColumnId, TaskViewState, normalizeTaskView) remain for existing web callers only until FR-04. `mock/task-fields.ts` only reexports the registry names for current QA/test entry imports, removed during FR-07 audit. Business mock modules are forbidden from importing that compatibility path.
+
+`PublicEnv` is declared by data/runtime and reexported by app/env; both adapter entry modules now point toward data rather than app. Two exact FR-03 legacy entries removed; ceiling not expanded. Guards reject new primitive-to-business and business-to-compatibility edges.
+
+Persisted DTO/command data and cursor semantics are unchanged. Rollback: revert the FR-03 structural commit; existing persisted state remains readable. Keep evidence and the independent baseline formatting commit. An initial full gate exposed an extra microtask before loading scenario callbacks; corrected by awaiting profile synchronization only when an actual projection update is queued. The failure log is retained, with subsequent full gates authoritative.

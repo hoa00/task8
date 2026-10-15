@@ -7,3 +7,5 @@ export * from './dashboard.ts';
 export { normalizeDescription, plainDescriptionHtml } from './description.ts';
 export type { NormalizedDescription } from './description.ts';
 export { sourceFileType, displayFileSize } from './files.ts';
+export { normalizeTaskQuery, normalizeTaskEvaluation } from './task-query.ts';
+export type { TaskEvaluation } from './task-query.ts';

@@ -1,3 +1,4 @@
+import { fail } from './primitives.ts';
 import { encodeMockCursor, decodeMockCursor, idCursorSchema } from './cursor.ts';
 import {
   ActivitySchema,
@@ -22,7 +23,7 @@ import { addDateDays, canReadProject, summarizeTasks } from '@studio/domain';
 import type { Clock } from '@studio/domain';
 import type { MockDataset } from './dataset.ts';
 import { projectCatalogItem } from './reads.ts';
-import { newMockId, fingerprint } from './task-fields.ts';
+import { newMockId, fingerprint } from './primitives.ts';
 import { canReadMockProject } from './project-access.ts';
 import { transactMock } from './transaction.ts';
 import { StudioApiError } from '../errors.ts';
@@ -46,12 +47,6 @@ export const projectOperations = [
   'removeProjectFavorite',
   'updateProjectOrder',
 ] as const satisfies readonly OperationId[];
-function fail(
-  code: 'NOT_FOUND' | 'FORBIDDEN' | 'CONFLICT' | 'VALIDATION_ERROR',
-  message: string,
-): never {
-  throw new StudioApiError({ error: { code, message } });
-}
 function projectOf(data: MockDataset, id: unknown, detail = false, deleted = false): ProjectDto {
   const project = data.projects[EntityIdSchema.parse(id)];
   if (!project || (!deleted && data.projectCommands.deletedProjects[project.id]))

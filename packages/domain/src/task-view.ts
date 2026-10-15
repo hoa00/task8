@@ -1,10 +1,7 @@
-import {
-  DateOnlySchema,
-  GroupBySchema,
-  TaskQuerySchema,
-  priorities,
-  taskStatuses,
-} from '@studio/contracts/api';
+import { normalizeTaskEvaluation } from './task-query.ts';
+import type { TaskEvaluation, TaskGroupBy } from './task-query.ts';
+export type { TaskGroupBy } from './task-query.ts';
+import { DateOnlySchema, priorities, taskStatuses } from '@studio/contracts/api';
 import type {
   DateOnly,
   MemberDisplayDto,
@@ -15,6 +12,7 @@ import type {
   TaskSummaryDto,
 } from '@studio/contracts/api';
 
+// Compatibility presentation exports until web migration in FR-04; semantic consumers use task-query.
 export const taskColumns = [
   { id: 'title', name: 'Task', width: 314 },
   { id: 'status', name: 'Status', width: 132, listWidth: 126 },
@@ -29,7 +27,6 @@ export const taskColumns = [
   { id: 'project', name: 'Project', width: 156, listWidth: 160 },
 ] as const;
 export type TaskColumnId = (typeof taskColumns)[number]['id'];
-export type TaskGroupBy = 'none' | 'status' | 'priority' | 'assignee' | 'project' | 'due';
 export interface TaskViewState {
   query: TaskQuery;
   groupBy: TaskGroupBy;
@@ -55,16 +52,8 @@ export function normalizeTaskView(
     )
   )
     throw new TypeError('Invalid column width');
-  const query = TaskQuerySchema.parse(input.query ?? {});
   return {
-    query: {
-      ...query,
-      filters: query.filters.map(
-        (filter) =>
-          ({ ...filter, values: [...new Set<string | null>(filter.values)] }) as TaskFilter,
-      ),
-    },
-    groupBy: GroupBySchema.parse(input.groupBy ?? 'status'),
+    ...normalizeTaskEvaluation(input),
     hiddenColumns: [...new Set(hidden)] as TaskColumnId[],
     columnWidths: { ...widths },
   };
@@ -334,7 +323,7 @@ export interface TaskRowModel {
 }
 export function evaluateTaskView(
   tasks: readonly TaskDto[],
-  view: TaskViewState,
+  view: TaskEvaluation,
   env: TaskViewEnvironment,
 ) {
   const filtered = sortTasks(filterTasks(tasks, view.query, env), view.query, env.lookups);

@@ -1,3 +1,4 @@
+import { fail } from './primitives.ts';
 import {
   MemberPreferencesSchema,
   NotificationPreferencesSchema,
@@ -10,7 +11,6 @@ import {
 } from '@studio/contracts/api';
 import type { OperationId } from '@studio/contracts/api';
 import type { Clock } from '@studio/domain';
-import { StudioApiError } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
 import { transactMock } from './transaction.ts';
 
@@ -20,12 +20,6 @@ export const settingsOperations = [
   'updatePreferences',
   'updateNotificationPreferences',
 ] as const satisfies readonly OperationId[];
-function fail(
-  code: 'NOT_FOUND' | 'FORBIDDEN' | 'CONFLICT' | 'INTERNAL_ERROR',
-  message: string,
-): never {
-  throw new StudioApiError({ error: { code, message } });
-}
 // Use the same staged queue as task/project/team commands. Persistence must succeed
 // before committing memory, including the canonical profile/membership projection.
 export function runSettingsOperation(

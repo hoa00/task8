@@ -7,7 +7,8 @@ import { StudioApiError } from '../errors.ts';
 import type { MockDataset } from './dataset.ts';
 import { canReadMockProject } from './project-access.ts';
 import { projectCatalogItem } from './reads.ts';
-import { fingerprint, projectTask } from './task-fields.ts';
+import { fingerprint } from './primitives.ts';
+import { projectTask } from './task-aggregate.ts';
 
 export async function readArchive(data: MockDataset, input: unknown, clock: Clock) {
   const query = ArchiveQuerySchema.parse(input),

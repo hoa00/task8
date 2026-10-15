@@ -1,17 +1,5 @@
 [
   {
-    "rule": "data-presentation",
-    "edge": "apps/web/src/data/adapters/http-entry.ts|apps/web/src/app/env.ts|import|PublicEnv",
-    "removeIn": "FR-03",
-    "reason": "Move bootstrap environment type to the runtime input owner."
-  },
-  {
-    "rule": "data-presentation",
-    "edge": "apps/web/src/data/adapters/mock-entry.ts|apps/web/src/app/env.ts|import|PublicEnv",
-    "removeIn": "FR-03",
-    "reason": "Move bootstrap environment type to the runtime input owner."
-  },
-  {
     "rule": "feature-private",
     "edge": "apps/web/src/features/activity/WorkspaceActivity.tsx|apps/web/src/features/tasks/loadTaskViewDataset.ts|import|loadTaskViewDataset",
     "removeIn": "FR-04",

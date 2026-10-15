@@ -1,5 +1,5 @@
 import { catalogs, MemberSchema, WorkspaceSchema } from '@studio/contracts/api';
-import { newMockId } from './task-fields.ts';
+import { newMockId } from './primitives.ts';
 import { createSeedDataset } from './seed.ts';
 import { MockDatasetSchema, assertDatasetRelations } from './dataset.ts';
 import { runProjectOperation } from './projects.ts';

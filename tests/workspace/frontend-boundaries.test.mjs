@@ -166,3 +166,20 @@ test('every feature JSX file must declare its role and current real graph passes
   );
   assert.equal(checkFrontend().status, 'passed');
 });
+
+test('mock owners cannot reopen compatibility imports or make primitives depend on business handlers', () => {
+  assert.equal(
+    inspectFrontend(
+      [edge('apps/web/src/data/mock/projects.ts', 'apps/web/src/data/mock/task-fields.ts')],
+      policy,
+    )[0].rule,
+    'mock-compat-import',
+  );
+  assert.equal(
+    inspectFrontend(
+      [edge('apps/web/src/data/mock/primitives.ts', 'apps/web/src/data/mock/task-commands.ts')],
+      policy,
+    )[0].rule,
+    'mock-primitive-direction',
+  );
+});

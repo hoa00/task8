@@ -8,7 +8,8 @@ const publicEnvSchema = z.object({
   apiBaseUrl: relativeApiPath.default('/api/v1'),
 });
 
-export type PublicEnv = z.infer<typeof publicEnvSchema>;
+import type { PublicEnv } from '../data/runtime.ts';
+export type { PublicEnv } from '../data/runtime.ts';
 
 export function parsePublicEnv(input: Record<string, unknown>): PublicEnv {
   const publicKeys = new Set(['VITE_DATA_MODE', 'VITE_API_BASE_URL']);

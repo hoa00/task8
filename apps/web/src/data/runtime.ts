@@ -22,3 +22,8 @@ export interface DataRuntime {
   isDemoOffline?: () => boolean;
   selectDemoWorkspace?: (workspaceId: string) => void;
 }
+
+export interface PublicEnv {
+  dataMode: 'mock' | 'http';
+  apiBaseUrl: string;
+}

@@ -67,7 +67,7 @@ Phải bảo toàn: canonical DTO/errors/null-versus-omission/date-only/UTC; ses
 | FR-01 | FR-00 | Baseline non-API, guardrails/format/readability và safe check runner nền | **DONE**; [acceptance](evidence/FR-01/verification.json), [entry](../../tests/frontend/README.md), [case matrix](FRONTEND_REGRESSION_MATRIX.md) |
 | FR-02A | FR-01 | Sửa transaction/cursor/notification invalidation | **DONE**; [verification](evidence/FR-02A/verification.json) |
 | FR-02B | FR-01 | URL ownership và workspace transient intent | **DONE**; [verification](evidence/FR-02B/verification.json) |
-| FR-03 | FR-02A | Mock module ownership, semantic query boundary | **NOT_STARTED** |
+| FR-03 | FR-02A | Mock module ownership, semantic query boundary | **DONE**; [verification](evidence/FR-03/verification.json) |
 | FR-04 | FR-02B + FR-03 | Controller/dataset/date/UI services/persistence | **NOT_STARTED** |
 | FR-05 | FR-04 | Field/keyboard/focus và translation ownership | **NOT_STARTED** |
 | FR-06 | FR-03 + FR-04 + FR-05 | Active test ownership/harness migration và documentation commands | **NOT_STARTED** |

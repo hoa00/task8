@@ -6,7 +6,7 @@ import type { Clock } from '@studio/domain';
 import type { MockDataset } from './dataset.ts';
 import { readDashboardScope } from './dashboards.ts';
 import { projectCatalogItem } from './reads.ts';
-import { fingerprint } from './task-fields.ts';
+import { fingerprint } from './primitives.ts';
 import { StudioApiError } from '../errors.ts';
 
 const resultId = (row: SearchResultDto) =>
