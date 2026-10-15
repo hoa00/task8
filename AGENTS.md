@@ -67,7 +67,7 @@ Then implement the plan immediately in this same session.
 5. Commit toàn bộ thay đổi thuộc unit và push `main` của repo đích Hòa đã cấu hình, theo quy tắc branch hiện hữu nếu session có chỉ dẫn cụ thể hơn. Kiểm tra remote/branch trước; không push vào repo tham chiếu `gr8rstudio/gr8r-studio`, không force-push, không stage file riêng không liên quan của người dùng. Nếu repo đích chưa có remote/quyền push, giữ công việc local và ghi chính xác blocker ở bước push; việc này không ngăn implement/test trước đó.
 Ủy quyền Git trực tiếp của Hòa ngày **15/10/2026**: được **commit và push lần này cùng các lần sau** trong phạm vi công việc được giao tới repo đích đã cấu hình `hoa00/task8`, gồm normal push lên `main`. Không hỏi lại chỉ vì thao tác commit/push; tiếp tục tuân thủ scope, kiểm chứng, bảo toàn thay đổi không liên quan và quy tắc Git ở trên. Ủy quyền này không tự mở phase hoặc nhiệm vụ mới.
 
-6. Stop. Không tiếp tục unit sau trong cùng session.
+6. Stop sau unit được giao, trừ khi Hòa trực tiếp giao triển khai nhiều phase. **Ủy quyền 15/10/2026:** tự động triển khai toàn bộ FR-02A…FR-07 đến khi hoàn thành, kiểm chứng và commit/push từng phase; không dừng xin giao lại phase kế tiếp. Chỉ dừng khi có blocker thực sự cần Hòa xử lý.
 
 Commit chỉ được báo bằng SHA thật sau khi commit thành công. Push chỉ được báo thành công sau khi kiểm chứng kết quả; không bịa commit/push hoặc browser evidence.
 

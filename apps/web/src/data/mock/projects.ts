@@ -1,3 +1,4 @@
+import { encodeMockCursor, decodeMockCursor, idCursorSchema } from './cursor.ts';
 import {
   ActivitySchema,
   CreateProjectInputSchema,
@@ -259,13 +260,16 @@ async function execute(
       const scope = Object.fromEntries(
         Object.entries(query).filter(([key]) => !['cursor', 'limit'].includes(key)),
       );
-      const signature = await fingerprint({ ...scope, memberId: data.currentMemberId });
+      const signature = await fingerprint({
+        ...scope,
+        operation: 'listProjects',
+        workspaceId: data.workspaceId,
+        memberId: data.currentMemberId,
+      });
       let start = 0;
       if (query.cursor) {
         try {
-          const anchor = JSON.parse(
-            atob(query.cursor.replaceAll('-', '+').replaceAll('_', '/')),
-          ) as { signature: string; id: string };
+          const anchor = decodeMockCursor(query.cursor, idCursorSchema);
           if (anchor.signature !== signature)
             return fail('VALIDATION_ERROR', 'Cursor belongs to a different project query');
           const index = rows.findIndex((row) => row.project.id === anchor.id);
@@ -282,10 +286,7 @@ async function execute(
           total: rows.length,
           nextCursor:
             start + items.length < rows.length
-              ? btoa(JSON.stringify({ signature, id: items.at(-1)!.project.id }))
-                  .replaceAll('+', '-')
-                  .replaceAll('/', '_')
-                  .replaceAll('=', '')
+              ? encodeMockCursor({ signature, id: items.at(-1)!.project.id })
               : null,
         },
       };

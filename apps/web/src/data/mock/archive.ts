@@ -1,3 +1,4 @@
+import { encodeMockCursor, decodeMockCursor, archiveCursorSchema } from './cursor.ts';
 import { ArchiveQuerySchema } from '@studio/contracts/api';
 import type { ArchiveItemDto } from '@studio/contracts/api';
 import type { Clock } from '@studio/domain';
@@ -62,6 +63,7 @@ export async function readArchive(data: MockDataset, input: unknown, clock: Cloc
       : rank(a) - rank(b) || entity(a).id.localeCompare(entity(b).id),
   );
   const signature = await fingerprint({
+    operation: 'listArchive',
     workspaceId: data.workspaceId,
     memberId: data.currentMemberId,
     kind: query.kind,
@@ -70,12 +72,7 @@ export async function readArchive(data: MockDataset, input: unknown, clock: Cloc
   let start = 0;
   if (query.cursor) {
     try {
-      const anchor = JSON.parse(atob(query.cursor.replaceAll('-', '+').replaceAll('_', '/'))) as {
-        signature: string;
-        id: string;
-        at: string;
-        rank: number;
-      };
+      const anchor = decodeMockCursor(query.cursor, archiveCursorSchema);
       if (
         anchor.signature !== signature ||
         typeof anchor.id !== 'string' ||
@@ -107,17 +104,12 @@ export async function readArchive(data: MockDataset, input: unknown, clock: Cloc
     total: rows.length,
     nextCursor:
       last && start + items.length < rows.length
-        ? btoa(
-            JSON.stringify({
-              signature,
-              id: entity(last).id,
-              at: archivedAt(last),
-              rank: rank(last),
-            }),
-          )
-            .replaceAll('+', '-')
-            .replaceAll('/', '_')
-            .replaceAll('=', '')
+        ? encodeMockCursor({
+            signature,
+            id: entity(last).id,
+            at: archivedAt(last),
+            rank: rank(last),
+          })
         : null,
   };
 }

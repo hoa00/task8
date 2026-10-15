@@ -1,3 +1,4 @@
+import { encodeMockCursor, decodeMockCursor, notificationCursorSchema } from './cursor.ts';
 import {
   NotificationQuerySchema,
   NotificationsPageSchema,
@@ -69,6 +70,7 @@ export function runNotificationOperation(
     )
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id.localeCompare(a.id));
   const signature = JSON.stringify([
+    'listNotifications',
     data.workspaceId,
     data.currentMemberId,
     query.category,
@@ -77,9 +79,7 @@ export function runNotificationOperation(
   let start = 0;
   if (query.cursor) {
     try {
-      const value: unknown = JSON.parse(
-        atob(query.cursor.replaceAll('-', '+').replaceAll('_', '/')),
-      );
+      const value: unknown = decodeMockCursor(query.cursor, notificationCursorSchema);
       if (
         !value ||
         typeof value !== 'object' ||
@@ -111,10 +111,7 @@ export function runNotificationOperation(
     last = items.at(-1);
   const nextCursor =
     last && start + items.length < filtered.length
-      ? btoa(JSON.stringify({ scope: signature, id: last.id, at: last.createdAt }))
-          .replaceAll('+', '-')
-          .replaceAll('/', '_')
-          .replaceAll('=', '')
+      ? encodeMockCursor({ scope: signature, id: last.id, at: last.createdAt })
       : null;
   return {
     data: NotificationsPageSchema.parse({ items, total: filtered.length, unreadCount, nextCursor }),

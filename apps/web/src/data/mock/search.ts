@@ -1,3 +1,4 @@
+import { encodeMockCursor, decodeMockCursor, idCursorSchema } from './cursor.ts';
 import { canReadMockFile } from './file-access.ts';
 import { SearchQuerySchema, SearchSchema } from '@studio/contracts/api';
 import type { SearchResultDto } from '@studio/contracts/api';
@@ -71,6 +72,7 @@ export async function readSearch(data: MockDataset, input: unknown, clock: Clock
   const filtered =
     query.category === 'all' ? rows : rows.filter((row) => row.kind === query.category);
   const signature = await fingerprint({
+    operation: 'search',
     workspaceId: data.workspaceId,
     actorId: data.currentMemberId,
     q,
@@ -79,9 +81,7 @@ export async function readSearch(data: MockDataset, input: unknown, clock: Clock
   let start = 0;
   if (query.cursor) {
     try {
-      const cursor: unknown = JSON.parse(
-        atob(query.cursor.replaceAll('-', '+').replaceAll('_', '/')),
-      );
+      const cursor: unknown = decodeMockCursor(query.cursor, idCursorSchema);
       if (
         !cursor ||
         typeof cursor !== 'object' ||
@@ -108,10 +108,7 @@ export async function readSearch(data: MockDataset, input: unknown, clock: Clock
     last = items.at(-1);
   const nextCursor =
     last && start + items.length < filtered.length
-      ? btoa(JSON.stringify({ signature, id: resultId(last) }))
-          .replaceAll('+', '-')
-          .replaceAll('/', '_')
-          .replaceAll('=', '')
+      ? encodeMockCursor({ signature, id: resultId(last) })
       : null;
   return SearchSchema.parse({ items, total: filtered.length, nextCursor, totals });
 }

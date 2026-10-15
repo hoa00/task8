@@ -23,7 +23,13 @@ const taskProjections = [
   'milestones',
 ] as const;
 // Lifecycle/copy commands also change which related children can be read.
-const taskLifecycleProjections = [...taskProjections, 'files', 'file', 'comments'] as const;
+const taskLifecycleProjections = [
+  ...taskProjections,
+  'files',
+  'file',
+  'comments',
+  'notifications',
+] as const;
 const teamProjections = [
   'team',
   'teams',
@@ -46,6 +52,15 @@ export const operationInvalidations: Partial<Record<OperationId, readonly string
   duplicateFile: [...taskProjections, 'files', 'file'],
   deleteFile: [...taskProjections, 'files', 'file'],
   uploadProjectFile: [...taskProjections, 'files', 'file'],
+  undoCommand: [...projectProjections, ...teamProjections, 'notifications'],
+  restoreDeletedFile: [...taskProjections, 'files', 'file'],
+  addTaskFavorite: taskProjections,
+  removeTaskFavorite: taskProjections,
+  addProjectFavorite: projectProjections,
+  removeProjectFavorite: projectProjections,
+  createSavedView: ['savedViews', 'bootstrap'],
+  updateSavedView: ['savedViews', 'bootstrap'],
+  deleteSavedView: ['savedViews', 'bootstrap'],
   createTeam: teamProjections,
   updateTeam: teamProjections,
   deleteTeam: teamProjections,
@@ -54,7 +69,7 @@ export const operationInvalidations: Partial<Record<OperationId, readonly string
   createTask: taskProjections,
   updateTask: taskProjections,
   setTaskCompletion: taskProjections,
-  moveTask: [...taskProjections, 'files', 'file'],
+  moveTask: [...taskLifecycleProjections],
   duplicateTask: taskLifecycleProjections,
   archiveTask: taskLifecycleProjections,
   restoreTask: taskLifecycleProjections,

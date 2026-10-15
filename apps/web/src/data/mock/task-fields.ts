@@ -1,4 +1,12 @@
 import {
+  encodeMockCursor as encode,
+  decodeMockCursor,
+  anchorCursorSchema,
+  fileCursorSchema,
+  fileTupleSchema,
+  fileCursorTuple,
+} from './cursor.ts';
+import {
   BulkMutateTasksInputSchema,
   CreateTaskInputSchema,
   UpdateSubtaskInputSchema,
@@ -411,8 +419,6 @@ export async function fingerprint(query: object): Promise<string> {
   const digest = await crypto.subtle.digest('SHA-256', bytes);
   return [...new Uint8Array(digest)].map((value) => value.toString(16).padStart(2, '0')).join('');
 }
-const encode = (data: unknown) =>
-  btoa(JSON.stringify(data)).replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
 function detailOf(data: MockDataset, task: TaskDto) {
   return {
     task: projectTask(task, data),
@@ -460,11 +466,7 @@ async function cursorPage<T extends { id: string; createdAt?: string }>(
   let start = 0;
   if (query.cursor) {
     try {
-      const value = JSON.parse(atob(query.cursor.replaceAll('-', '+').replaceAll('_', '/'))) as {
-        signature: string;
-        id: string;
-        at: string;
-      };
+      const value = decodeMockCursor(query.cursor, anchorCursorSchema);
       if (
         value.signature !== signature ||
         typeof value.id !== 'string' ||
@@ -737,7 +739,10 @@ async function executeTaskOperation(
           (!query.q || file.name.toLowerCase().includes(query.q.toLowerCase())) &&
           (!query.type || file.fileType === query.type),
       );
-      const compare = (a: (typeof rows)[number], b: (typeof rows)[number]) =>
+      const compare = (
+        a: Pick<(typeof rows)[number], 'id' | 'name' | 'fileType' | 'sizeBytes' | 'createdAt'>,
+        b: Pick<(typeof rows)[number], 'id' | 'name' | 'fileType' | 'sizeBytes' | 'createdAt'>,
+      ) =>
         (query.sort === 'name'
           ? a.name.localeCompare(b.name)
           : query.sort === 'type'
@@ -751,16 +756,14 @@ async function executeTaskOperation(
           workspaceId: data.workspaceId,
           actorId: data.currentMemberId,
           projectId,
+          operation: id,
           ...filters,
         });
       let start = 0;
       if (cursor) {
         try {
-          const value = JSON.parse(atob(cursor.replaceAll('-', '+').replaceAll('_', '/'))) as {
-            signature: string;
-            tuple: (typeof rows)[number];
-          };
-          if (value.signature !== signature || !FileSchema.safeParse(value.tuple).success)
+          const value = decodeMockCursor(cursor, fileCursorSchema);
+          if (value.signature !== signature || !fileTupleSchema.safeParse(value.tuple).success)
             return fail('VALIDATION_ERROR', 'Cursor belongs to a different query', 'cursor');
           const index = rows.findIndex((row) => compare(row, value.tuple) > 0);
           start = index < 0 ? rows.length : index;
@@ -775,7 +778,9 @@ async function executeTaskOperation(
           items,
           total: rows.length,
           nextCursor:
-            last && start + items.length < rows.length ? encode({ signature, tuple: last }) : null,
+            last && start + items.length < rows.length
+              ? encode({ signature, tuple: fileCursorTuple(last) })
+              : null,
         },
       };
     }
@@ -1043,7 +1048,7 @@ async function executeTaskOperation(
         data: await cursorPage(
           rows,
           { cursor, limit },
-          { ...scope, workspaceId: data.workspaceId, actorId: data.currentMemberId },
+          { ...scope, operation: id, workspaceId: data.workspaceId, actorId: data.currentMemberId },
           false,
         ),
       };
@@ -1054,7 +1059,14 @@ async function executeTaskOperation(
       const rows = Object.values(data.comments)
         .filter((row) => row.taskId === task.id && !data.taskCommands.deletedComments[row.id])
         .sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.id.localeCompare(b.id));
-      return { data: await cursorPage(rows, query, { taskId }, false) };
+      return {
+        data: await cursorPage(
+          rows,
+          query,
+          { operation: id, workspaceId: data.workspaceId, actorId: data.currentMemberId, taskId },
+          false,
+        ),
+      };
     }
     case 'listActivity': {
       const actor = data.members[data.currentMemberId];
@@ -1099,7 +1111,14 @@ async function executeTaskOperation(
           );
         })
         .sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id.localeCompare(a.id));
-      return { data: await cursorPage(rows, { cursor, limit }, scope, true) };
+      return {
+        data: await cursorPage(
+          rows,
+          { cursor, limit },
+          { ...scope, operation: id, workspaceId: data.workspaceId, actorId: data.currentMemberId },
+          true,
+        ),
+      };
     }
     case 'createComment': {
       const body = CreateCommentInputSchema.parse(input.body),
@@ -1426,13 +1445,16 @@ async function executeTaskOperation(
         ),
         tasks = view.taskIds.map((value) => data.tasks[value]!);
       if (id === 'getTaskSummary') return { data: summarizeTasks(tasks, clock.today()) };
-      const queryFingerprint = await fingerprint(scope);
+      const queryFingerprint = await fingerprint({
+        ...scope,
+        operation: id,
+        workspaceId: data.workspaceId,
+        actorId: data.currentMemberId,
+      });
       let start = 0;
       if (cursor) {
         try {
-          const decoded = CursorPayloadSchema.parse(
-            JSON.parse(atob(cursor.replaceAll('-', '+').replaceAll('_', '/'))),
-          );
+          const decoded = decodeMockCursor(cursor, CursorPayloadSchema);
           if (
             decoded.queryFingerprint !== queryFingerprint ||
             decoded.sortField !== query.sortField ||

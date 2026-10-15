@@ -1,3 +1,4 @@
+import { transactMock } from '../mock/transaction.ts';
 import { DateRangeQuerySchema, EntityIdSchema, catalogs, operations } from '@studio/contracts/api';
 import type { OperationId } from '@studio/contracts/api';
 import { normalizeDescription } from '@studio/domain';
@@ -219,9 +220,16 @@ export function createMockClient({
           : undefined,
       );
     if ((notificationOperations as readonly string[]).includes(id)) {
-      const result = runNotificationOperation(id, input, dataset, clock);
-      if (scenario === 'populated') persistMockDataset(storage, dataset);
-      return result;
+      if (operations[id].method === 'GET')
+        return runNotificationOperation(id, input, dataset, clock);
+      return transactMock(dataset, async (staged) => {
+        const result = runNotificationOperation(id, input, staged, clock);
+        if (scenario === 'populated' && storage && !persistMockDataset(storage, staged))
+          throw new StudioApiError({
+            error: { code: 'INTERNAL_ERROR', message: 'Changes could not be saved. Try again.' },
+          });
+        return result;
+      });
     }
     if (
       (projectOperations as readonly string[]).includes(id) ||
@@ -239,29 +247,16 @@ export function createMockClient({
       if (scenario === 'populated' && !storage) persistMockDataset(storage, dataset);
       return result;
     }
-    if ((taskFieldOperations as readonly string[]).includes(id)) {
-      const lifecycleWrite =
-        ['archiveTask', 'restoreTask', 'deleteTask'].includes(id) ||
-        (id === 'undoCommand' &&
-          !!dataset.taskCommands.lifecycleUndoRecords[EntityIdSchema.parse(input.undoId)]);
-      const fileWrite =
-        ['renameFile', 'duplicateFile', 'uploadProjectFile', 'deleteFile'].includes(id) ||
-        (id === 'undoCommand' &&
-          dataset.taskCommands.lifecycleUndoRecords[EntityIdSchema.parse(input.undoId)]?.kind ===
-            'file.delete');
-      const result = await runTaskFieldOperation(
+    if ((taskFieldOperations as readonly string[]).includes(id))
+      return runTaskFieldOperation(
         id,
         input,
         dataset,
         clock,
-        (fileWrite || lifecycleWrite) && scenario === 'populated' && storage
+        scenario === 'populated' && storage
           ? (staged) => persistMockDataset(storage, staged)
           : undefined,
       );
-      if (!(fileWrite || lifecycleWrite) && scenario === 'populated')
-        persistMockDataset(storage, dataset);
-      return result;
-    }
     switch (id) {
       case 'listArchive':
         return { data: await readArchive(dataset, input.query, clock) };
