@@ -1,5 +1,7 @@
 # Kiến trúc chuyển đổi
 
+Chuẩn hiện hành cho frontend/package dùng chung là [FRONTEND_STANDARDS.md](../engineering/FRONTEND_STANDARDS.md); review và lộ trình thực thi ở [FRONTEND_REFACTOR_PLAN.md](../engineering/FRONTEND_REFACTOR_PLAN.md). Route/URL, transient scope, public imports, mock transaction/cache, accessibility và i18n phải theo chuẩn này. Các checkpoint WU bên dưới là lịch sử, không xác nhận runtime refactor đã xong. Điều chỉnh ownership mới: domain giữ semantic query/filter/order/date; pixel widths/column labels/hidden-column preferences thuộc feature web, chuyển theo FR-03/04 thay vì tiếp tục thêm UI metadata vào domain.
+
 Chuẩn kỹ thuật backend hiện hành là [BACKEND_STANDARDS.md](../engineering/BACKEND_STANDARDS.md), bắt buộc cả sau POC. [BACKEND_REFACTOR_PLAN.md](../engineering/BACKEND_REFACTOR_PLAN.md) cụ thể hóa module ownership, dependency direction, các bước chuyển code hiện có và gate. POC chỉ giới hạn tính năng; không cho phép hạ chất lượng code. Cấu trúc đích trong kế hoạch chưa phải implementation đã hoàn tất; các checkpoint WU bên dưới giữ giá trị lịch sử theo PROGRESS.
 
 ## 1. Quyết định cốt lõi

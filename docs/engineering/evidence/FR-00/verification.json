@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-15",
+  "task": "FR-00 non-API review, plan and mandatory instructions",
+  "status": "DONE_DOCS",
+  "baseline": {
+    "branch": "work",
+    "head": "55c7f7192b30cb5a5dfe502ebbc1355f89f6bc17",
+    "remote_main_before_commit": "55c7f7192b30cb5a5dfe502ebbc1355f89f6bc17"
+  },
+  "scope": {
+    "excluded": "apps/api implementation and changes",
+    "runtime_changes": false,
+    "historical_evidence_changes": false,
+    "changed_files": [
+      "AGENTS.md",
+      "README.md",
+      "apps/web/AGENTS.md",
+      "apps/web/src/data/README.md",
+      "docs/engineering/FRONTEND_REFACTOR_PLAN.md",
+      "docs/engineering/FRONTEND_STANDARDS.md",
+      "docs/engineering/evidence/FR-00/verification.json",
+      "docs/poc/ARCHITECTURE.md",
+      "docs/poc/COMPONENT_CATALOG.md",
+      "docs/poc/PROGRESS.md",
+      "docs/poc/WORK_UNIT_PROMPT.md",
+      "packages/ui/README.md"
+    ]
+  },
+  "environment": {
+    "node_actual": "24.19.0",
+    "node_pinned": "24.13.0",
+    "pnpm_actual": "11.19.0",
+    "dependencies_complete": false
+  },
+  "docs_verification": {
+    "relative_links_checked": 676,
+    "missing_links": [],
+    "git_diff_check_exit": 0,
+    "exact_docs_instruction_scope": "passed",
+    "independent_review": "web and tooling reviewers; corrections incorporated"
+  },
+  "read_only_probes": [
+    {
+      "name": "unicode_cursor_primitive",
+      "exit": 0,
+      "observed": "btoa(JSON.stringify({sortValue: Vietnamese text})) throws InvalidCharacterError",
+      "limit": "codec primitive; not full adapter pagination"
+    },
+    {
+      "name": "real_transactMock_minimal_aggregate",
+      "exit": 0,
+      "observed": "notification readAt direct write overwritten to null by pending staged commit",
+      "limit": "actual transaction function; not full task/notification/persistence suite"
+    },
+    {
+      "name": "actual_people_teams_gate_declarations_and_filters",
+      "exit": 0,
+      "flags": [
+        "--affected",
+        "--skip-tests"
+      ],
+      "remaining_checks": [
+        "lint",
+        "http-build",
+        "http-bundle",
+        "reference"
+      ],
+      "observed": "build removed by index-based splice combination",
+      "limit": "read-only VM evaluation; gate runners not executed"
+    }
+  ],
+  "blocked_before_execution": [
+    {
+      "command": "node --test tests/workspace/boundaries.test.mjs",
+      "reason": "ERR_MODULE_NOT_FOUND: typescript"
+    },
+    {
+      "check": "full StudioApi adapter probe",
+      "reason": "ERR_MODULE_NOT_FOUND: @studio/contracts workspace links"
+    }
+  ],
+  "not_run": [
+    "full runtime regression",
+    "typecheck",
+    "build",
+    "browser interaction",
+    "visual comparison"
+  ],
+  "runtime_phases": "FR-01 through FR-07 NOT_STARTED; FR-02 has A/B units",
+  "findings": {
+    "total": 19,
+    "P1_ids": [
+      "F01",
+      "F02",
+      "F03"
+    ],
+    "plan": "../../FRONTEND_REFACTOR_PLAN.md"
+  },
+  "next": "FR-01 when implementation is assigned; no runtime phases started by this documentation task"
+}

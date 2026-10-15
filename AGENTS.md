@@ -27,6 +27,17 @@ Then implement the plan immediately in this same session.
 - Code mới và phần sửa phải tuân thủ chuẩn ngay; nợ cũ được xử lý theo phase có phạm vi, không lấy nợ cũ làm mẫu hoặc âm thầm mở rộng refactor toàn repo.
 - Yêu cầu lập kế hoạch/lưu chỉ dẫn có deliverable là tài liệu: hoàn tất và kiểm tra tài liệu, không tự bắt đầu các phase sửa runtime. Lịch sử WU-00…36 và evidence giữ nguyên; nhiệm vụ mới ghi entry riêng trong PROGRESS.
 
+## Frontend và package dùng chung: chuẩn bắt buộc khi thêm hoặc sửa code
+
+- Đọc [FRONTEND_STANDARDS.md](docs/engineering/FRONTEND_STANDARDS.md) trước thay đổi `apps/web`, `packages/ui`, `packages/contracts`, `packages/domain` hoặc test/tooling phục vụ chúng. Khi sửa web đọc thêm [apps/web/AGENTS.md](apps/web/AGENTS.md). Chuẩn áp dụng cả sau POC; code mới/phần sửa phải tuân thủ ngay, không lấy nợ cũ làm mẫu.
+- Nhiệm vụ điều chỉnh kiến trúc theo phase/read-set/gates của [FRONTEND_REFACTOR_PLAN.md](docs/engineering/FRONTEND_REFACTOR_PLAN.md). Review/plan đã xong không có nghĩa runtime phases đã triển khai; không tự chạy các phase từ một yêu cầu chỉ lưu tài liệu. Chỉ dẫn mới trực tiếp của Hòa quyết định phạm vi/việc được phép tiếp theo; không tự mở WU-37.
+- Route sở hữu URL; controller nhận scope và điều phối query/command/draft; controlled view chỉ render model và phát typed intent. Không đọc global location/history/storage/fetch trong reusable view. Server DTO ở Query; transient intent/form/menu/opener phải gắn workspace/entity/session generation và chặn late response tác động UI scope mới.
+- Giữ operation schemas, CAS/version/idempotency/Undo, complete-dataset coverage, auth intent và HTTP/mock isolation. Mọi mock write cùng aggregate dùng chung transaction owner; cursor xử lý UTF-8/scope; mutation phải kiểm đủ affected projections, gồm notifications khi lifecycle/access đổi.
+- UI không phụ thuộc app/router/data/business DTO. Feature dùng public surface có owner, không deep-import/cycle; không đặt toast/motion dùng chung trong một business feature. Tách semantic domain khỏi pixel/column preference metadata; không tạo framework/repository/event bus tổng quát chỉ để refactor.
+- Field phải nối label/error/control; group/overlay có đầy đủ keyboard/Tab-order/focus behavior. Mỗi text có một translation owner; primitive render nguyên nội dung caller, chỉ dịch nhãn nội bộ. Giữ cả vi/en và source tokens/layout.
+- Active tests có entry/scope và output riêng `test-results/<run-id>`; không mặc định chạy runner ghi đè WU evidence. Dùng check/scenario IDs, report skips/exit thật. Khi nhiệm vụ loại API, dùng commands scoped non-API, không chạy root task kéo `apps/api` rồi gọi đó là kiểm tra frontend.
+- Giữ diff theo trách nhiệm: format-only, structural moves và behavior fixes phân biệt được. Không dùng số file/LOC/build pass làm bằng chứng kiến trúc đạt; mỗi phase phải có regression cho failure mode và gỡ seam/allowlist đúng kế hoạch.
+
 ## Rules
 
 - Do not implement later work units.

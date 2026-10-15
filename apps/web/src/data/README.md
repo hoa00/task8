@@ -1,5 +1,7 @@
 # Studio data foundation (WU-06)
 
+Maintenance rules: [FRONTEND_STANDARDS](../../../../docs/engineering/FRONTEND_STANDARDS.md), with current findings and migration gates in [FRONTEND_REFACTOR_PLAN](../../../../docs/engineering/FRONTEND_REFACTOR_PLAN.md). The WU descriptions below are historical checkpoints, not a complete current capability inventory. Use the operation manifest/adapter handlers and current PROGRESS for implementation status. New or edited code must preserve one transaction owner, scoped UTF-8 cursors, Query ownership and explicit affected projections. Do not run the historical `verify:data`/HTTP-bundle defaults against accepted WU evidence; active checks need a safe separate output as specified in FR-01/06. The refactor plan itself has not implemented these runtime changes.
+
 `main.tsx` creates one runtime and one QueryClient. Vite resolves `#studio-adapter`
 to a static mock or HTTP entry using `VITE_DATA_MODE`; rebuild/restart to change
 mode. Features use `useStudioQuery`, `studioQueryOptions` or the typed

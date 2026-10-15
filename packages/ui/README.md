@@ -1,5 +1,7 @@
 # @studio/ui foundation
 
+Mandatory maintenance rules: [FRONTEND_STANDARDS](../../docs/engineering/FRONTEND_STANDARDS.md). [FRONTEND_REFACTOR_PLAN](../../docs/engineering/FRONTEND_REFACTOR_PLAN.md) records current Field/keyboard/focus/i18n gaps and their FR-05 migration gates; publishing the plan does not mean those gaps are fixed. Reuse controlled primitives, keep app/business imports out, bind labels/errors to real controls and preserve source geometry. Caller-provided content has one translation owner; the target rule is to render it unchanged and translate only internal primitive labels, with consumer migration performed together in FR-05.
+
 Public React icons use locked Lucide0.460.0 paths, viewBox24, stroke1.8 and source custom status/priority glyphs. Static geometry uses Tailwind; props contain values and callbacks, with no app/router/data imports.
 
 Import `@studio/ui/styles.css` after explicit Tailwind theme/utilities imports. Preflight stays disabled. Source properties own exact values; theme mapping adds semantic utilities (`bg-canvas`, `text-body`, `h-row`, `w-sidebar`, `p-card`, `shadow-elevation-card`). Source variants preserve inclusive1100/900/640, unguarded hover, OS/preference reduced motion and dark mode.

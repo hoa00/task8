@@ -2,6 +2,8 @@
 
 ## Prompt chuẩn
 
+Frontend/package dùng chung và test/tooling liên quan luôn đọc [FRONTEND_STANDARDS.md](../engineering/FRONTEND_STANDARDS.md); sửa web đọc thêm [apps/web/AGENTS.md](../../apps/web/AGENTS.md). Refactor sau POC dùng phase/read-set/gates trong [FRONTEND_REFACTOR_PLAN.md](../engineering/FRONTEND_REFACTOR_PLAN.md), không mở WU mới hoặc coi review là runtime đã xong. Task chỉ lập/lưu kế hoạch dừng ở docs đã kiểm chứng. Nhiệm vụ loại API dùng scoped commands và output riêng, tránh root commands hoặc harness ghi WU evidence.
+
 Thay `WU-NN` bằng unit được giao. Với repo đích đã có code, không chạy lại scaffold chỉ vì bắt đầu session mới.
 
 Backend changes luôn đọc [BACKEND_STANDARDS.md](../engineering/BACKEND_STANDARDS.md) và [apps/api/AGENTS.md](../../apps/api/AGENTS.md). Sau POC, nhiệm vụ refactor dùng phase/read-set/gates trong [BACKEND_REFACTOR_PLAN.md](../engineering/BACKEND_REFACTOR_PLAN.md), không tự tạo WU-37 hoặc mở lại WU cũ. Yêu cầu chỉ lập kế hoạch/lưu tài liệu thì deliverable là docs đã kiểm chứng; không tự bắt đầu sửa runtime.
@@ -14,6 +16,8 @@ Before editing:
    and only its relevant read-set.
    For backend-related changes also read apps/api/AGENTS.md and
    docs/engineering/BACKEND_STANDARDS.md.
+   For frontend/shared-package changes also read
+   docs/engineering/FRONTEND_STANDARDS.md and apps/web/AGENTS.md when applicable.
 2. Inspect the current implementation and previous progress.
 3. Verify that the work unit's prerequisites are already complete.
 4. Give a concise 3–7 step implementation plan.
@@ -25,6 +29,11 @@ Rules:
 - Do not perform unrelated refactors.
 - Follow existing project conventions and the agreed architecture.
 - POC limits feature scope, not architecture/code/test quality.
+- Frontend/shared changes must meet FRONTEND_STANDARDS: URL/cache/transient
+  ownership, scoped intents, public imports, atomic mock writes, accessibility
+  and translation boundaries. Keep current code and target-plan status distinct.
+- Choose risk-based scoped checks and unique active output; never overwrite
+  historical WU evidence. Do not run API tasks when the task excludes apps/api.
 - Backend changes must meet BACKEND_STANDARDS and its risk-based gates;
   preserve final D1 guards, Undo/idempotency and R2 outcome semantics.
 - Add only tests needed for this work unit.

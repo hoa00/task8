@@ -27,6 +27,8 @@ Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương t
 
 **Thiết kế component:** [ARCHITECTURE.md](docs/poc/ARCHITECTURE.md), [COMPONENT_CATALOG.md](docs/poc/COMPONENT_CATALOG.md), [SCREEN_INVENTORY.md](docs/poc/SCREEN_INVENTORY.md), [TOOLCHAIN.md](docs/poc/TOOLCHAIN.md).
 
+**Chuẩn bắt buộc cho frontend/package dùng chung:** [FRONTEND_STANDARDS.md](docs/engineering/FRONTEND_STANDARDS.md), [apps/web/AGENTS.md](apps/web/AGENTS.md). [FRONTEND_REFACTOR_PLAN.md](docs/engineering/FRONTEND_REFACTOR_PLAN.md) lưu review ngoài `apps/api` ngày 15/10/2026, các vấn đề có dẫn chứng và phase FR-01…07 với prerequisites/gates. FR-00 chỉ hoàn tất tài liệu; runtime refactor chưa bắt đầu. Mọi tính năng/sửa lỗi mới phải theo chuẩn này; POC không phải ngoại lệ về chất lượng code.
+
 **Backend và dữ liệu:** [API_CONTRACT.md](docs/poc/API_CONTRACT.md), [DATA_MODEL.md](docs/poc/DATA_MODEL.md), [BACKEND_SCOPE.md](docs/poc/BACKEND_SCOPE.md).
 
 **Chuẩn bắt buộc khi phát triển backend:** [BACKEND_STANDARDS.md](docs/engineering/BACKEND_STANDARDS.md), [apps/api/AGENTS.md](apps/api/AGENTS.md). POC chỉ giới hạn tính năng; chất lượng kiến trúc/code/kiểm thử phải phục vụ phát triển lâu dài. [BACKEND_REFACTOR_PLAN.md](docs/engineering/BACKEND_REFACTOR_PLAN.md) ghi các phase điều chỉnh implementation hiện tại, prerequisite và gate. Việc lập/lưu kế hoạch không có nghĩa các phase runtime đã triển khai.

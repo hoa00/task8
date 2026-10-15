@@ -8,6 +8,8 @@ Nguồn: [gr8r-studio tại commit 904205c626918ee96054eb35495c394a60c0c601](htt
 
 Source đã có khả năng tái sử dụng: `listHtml/taskRow/miniRow`, `boardHtml/kcard`, `tableHtml`, `calendarHtml`, `timelineHtml`, task property cells, avatar/progress/status helpers và activity rows. Bản React giữ và làm rõ các ranh giới này. [Shared list source][c-list], [project view composition][c-project], [workspace task composition][c-tasks].
 
+Chuẩn phát triển hiện hành: [FRONTEND_STANDARDS](../engineering/FRONTEND_STANDARDS.md); các khoản nợ implementation và phase migration ở [FRONTEND_REFACTOR_PLAN](../engineering/FRONTEND_REFACTOR_PLAN.md). Catalog là bản đồ reuse, không là bằng chứng từng consumer đã tuân thủ. Code mới/phần sửa phải giữ controlled view, typed intents, Field/keyboard/focus và translation ownership theo chuẩn; không copy component có sẵn chỉ vì route khác.
+
 ### Nguyên tắc phân rã
 
 1. **UI primitives** thuộc `packages/ui`: không có task store, router, fetch, tenant/workspace ID hoặc dữ liệu seed.
