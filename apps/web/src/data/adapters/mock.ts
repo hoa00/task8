@@ -11,10 +11,7 @@ import { createEmptyDataset, createSeedDataset, fixtureClock } from '../mock/see
 import { loadMockDataset, persistMockDataset, mockStorageKey } from '../mock/persistence.ts';
 import type { MockStorage } from '../mock/persistence.ts';
 import { mockScenarios, waitForScenario } from '../mock/scenarios.ts';
-import {
-  runTaskOperation as runTaskFieldOperation,
-  taskOperationIds as taskFieldOperations,
-} from '../mock/operation-registry.ts';
+import { runTaskOperation, taskOperationIds } from '../mock/operation-registry.ts';
 import { dashboardReads } from '../mock/dashboards.ts';
 import type { MockScenarioId } from '../mock/scenarios.ts';
 import { peopleReads } from '../mock/people.ts';
@@ -170,7 +167,7 @@ export function createMockClient({
     if (
       ![
         ...shellReads,
-        ...taskFieldOperations,
+        ...taskOperationIds,
         ...projectOperations,
         ...dashboardReads,
         ...notificationOperations,
@@ -180,7 +177,7 @@ export function createMockClient({
       ].includes(
         id as
           | (typeof shellReads)[number]
-          | (typeof taskFieldOperations)[number]
+          | (typeof taskOperationIds)[number]
           | (typeof projectOperations)[number]
           | (typeof dashboardReads)[number]
           | (typeof notificationOperations)[number]
@@ -257,8 +254,8 @@ export function createMockClient({
       if (scenario === 'populated' && !storage) persistMockDataset(storage, dataset);
       return result;
     }
-    if ((taskFieldOperations as readonly string[]).includes(id))
-      return runTaskFieldOperation(
+    if ((taskOperationIds as readonly string[]).includes(id))
+      return runTaskOperation(
         id,
         input,
         dataset,

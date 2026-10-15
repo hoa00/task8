@@ -1,0 +1,35 @@
+$ node --experimental-strip-types --test --test-isolation=none --test-reporter=tap tests/*.test.ts
+TAP version 13
+# Subtest: calendar DateOnly is invariant across UTC, DST transitions and fractional-offset timezones
+ok 1 - calendar DateOnly is invariant across UTC, DST transitions and fractional-offset timezones
+  ---
+  duration_ms: 3.741507
+  type: 'test'
+  ...
+# Subtest: month geometry uses source minimum35 or42, leap boundaries and every weekStart
+ok 2 - month geometry uses source minimum35 or42, leap boundaries and every weekStart
+  ---
+  duration_ms: 2.164371
+  type: 'test'
+  ...
+# Subtest: previous/next reset month to first, week crosses year and Today retains fixture day
+ok 3 - previous/next reset month to first, week crosses year and Today retains fixture day
+  ---
+  duration_ms: 0.304169
+  type: 'test'
+  ...
+# Subtest: Timeline date ranges retain source91/238 days and UTC weekStart across DST/leap/year
+ok 4 - Timeline date ranges retain source91/238 days and UTC weekStart across DST/leap/year
+  ---
+  duration_ms: 1.232517
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 176.937922

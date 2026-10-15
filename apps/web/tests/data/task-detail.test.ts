@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { normalizeDescription, plainDescriptionHtml } from '@studio/domain';
 import { createMockClient } from '../../src/data/adapters/mock.ts';
-import { runTaskFieldOperation } from '../../src/data/mock/task-fields.ts';
+import { runTaskOperation } from '../../src/data/mock/operation-registry.ts';
 import { createSeedDataset, fixtureClock } from '../../src/data/mock/seed.ts';
 import { StudioApiError } from '../../src/data/errors.ts';
 import { sourceId } from '@studio/contracts/source-identities';
@@ -20,11 +20,11 @@ test('Worker-compatible tree sanitizer allowlist, entities, protocols, discarded
 });
 test('atomic draft child create, canonical text, normalized actor/key replay and relations before writes', async () => {
  const data = createSeedDataset(), requestId = crypto.randomUUID(), body = { clientRequestId: requestId, projectId, title:'Draft aggregate', descriptionHtml:'<b>Hello</b><script>bad</script>', subtasks:[{title:'Child',assigneeId:data.currentMemberId}] };
- const create = () => runTaskFieldOperation('createTask',{body},data,fixtureClock) as Promise<{data:{task:typeof data.tasks[keyof typeof data.tasks]}}>;
+ const create = () => runTaskOperation('createTask',{body},data,fixtureClock) as Promise<{data:{task:typeof data.tasks[keyof typeof data.tasks]}}>;
  const [a,b] = await Promise.all([create(),create()]); assert.equal(a.data.task.id,b.data.task.id); assert.equal(a.data.task.key,'WEB-201'); assert.equal(data.taskCommands.descriptionTexts[a.data.task.id],'Hello'); assert.equal(data.tasks[a.data.task.id]!.descriptionHtml,'<strong>Hello</strong>'); assert.equal(Object.values(data.subtasks).filter(row=>row.taskId===a.data.task.id).length,1);
- await assert.rejects(runTaskFieldOperation('createTask',{body:{...body,title:'Different'}},data,fixtureClock),code('CONFLICT'));
- const before=structuredClone(data); await assert.rejects(runTaskFieldOperation('createTask',{body:{...body,clientRequestId:crypto.randomUUID(),subtasks:[{title:'Bad',assigneeId:'019a6257-0480-7000-8000-000000009999'}]}},data,fixtureClock),code('VALIDATION_ERROR')); assert.deepEqual(data,before);
- await runTaskFieldOperation('updateTask',{taskId:a.data.task.id,body:{expectedVersion:1,descriptionHtml:'<p>Updated <i>text</i><img src=x onerror=x></p>'}},data,fixtureClock); assert.equal(data.taskCommands.descriptionTexts[a.data.task.id],'Updated text');
+ await assert.rejects(runTaskOperation('createTask',{body:{...body,title:'Different'}},data,fixtureClock),code('CONFLICT'));
+ const before=structuredClone(data); await assert.rejects(runTaskOperation('createTask',{body:{...body,clientRequestId:crypto.randomUUID(),subtasks:[{title:'Bad',assigneeId:'019a6257-0480-7000-8000-000000009999'}]}},data,fixtureClock),code('VALIDATION_ERROR')); assert.deepEqual(data,before);
+ await runTaskOperation('updateTask',{taskId:a.data.task.id,body:{expectedVersion:1,descriptionHtml:'<p>Updated <i>text</i><img src=x onerror=x></p>'}},data,fixtureClock); assert.equal(data.taskCommands.descriptionTexts[a.data.task.id],'Updated text');
 });
 test('single lifecycle Undo bounded guards, child/file touches block completion inverse, duplicate clean IDs', async () => {
  const client=createMockClient(), created=(await client.api.createTask({workspaceId,body:{clientRequestId:crypto.randomUUID(),projectId,title:'Lifecycle',subtasks:[{title:'child'}]}})).data.task;

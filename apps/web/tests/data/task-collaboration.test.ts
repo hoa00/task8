@@ -4,7 +4,7 @@ import { sourceId } from '@studio/contracts/source-identities';
 import { normalizeDescription } from '@studio/domain';
 import { createMockClient } from '../../src/data/adapters/mock.ts';
 import { createSeedDataset, fixtureClock } from '../../src/data/mock/seed.ts';
-import { runTaskFieldOperation } from '../../src/data/mock/task-fields.ts';
+import { runTaskOperation } from '../../src/data/mock/operation-registry.ts';
 import { StudioApiError } from '../../src/data/errors.ts';
 import { mockStorageKey } from '../../src/data/mock/persistence.ts';
 const workspaceId=sourceId('workspaces','w1'),projectId=sourceId('projects','p1');
@@ -39,10 +39,10 @@ test('comments, mentions, reactions, delete and idempotent bounded Undo survive 
 });
 test('comment deletion ownership, reaction/comment parent touches and stale inverse are enforced atomically',async()=>{
  const data=createSeedDataset(fixtureClock),task=Object.values(data.tasks).find(row=>row.key==='WEB-103')??Object.values(data.tasks)[0]!,other=Object.values(data.comments).find(row=>row.authorId!==data.currentMemberId)!;
- const before=structuredClone(data);await assert.rejects(runTaskFieldOperation('deleteComment',{workspaceId,commentId:other.id,body:{expectedVersion:other.version}},data,fixtureClock),code('NOT_FOUND'));assert.deepEqual(data,before);
- const posted=await runTaskFieldOperation('createComment',{workspaceId,taskId:task.id,body:{bodyText:'Own'}},data,fixtureClock) as {data:{comment:{id:string;version:number}}};const deleted=await runTaskFieldOperation('deleteComment',{workspaceId,commentId:posted.data.comment.id,body:{expectedVersion:1}},data,fixtureClock) as {data:{undo:{id:string}}};
- await runTaskFieldOperation('createSubtask',{workspaceId,taskId:task.id,body:{expectedTaskVersion:data.tasks[task.id]!.version,title:'Later child'}},data,fixtureClock);const stale=structuredClone(data);await assert.rejects(runTaskFieldOperation('undoCommand',{workspaceId,undoId:deleted.data.undo.id,body:{}},data,fixtureClock),code('CONFLICT'));assert.deepEqual(data,stale);
- await assert.rejects(runTaskFieldOperation('addCommentReaction',{workspaceId,commentId:posted.data.comment.id,reactionKey:'👍'},data,fixtureClock),code('NOT_FOUND'));assert.deepEqual(data,stale);
+ const before=structuredClone(data);await assert.rejects(runTaskOperation('deleteComment',{workspaceId,commentId:other.id,body:{expectedVersion:other.version}},data,fixtureClock),code('NOT_FOUND'));assert.deepEqual(data,before);
+ const posted=await runTaskOperation('createComment',{workspaceId,taskId:task.id,body:{bodyText:'Own'}},data,fixtureClock) as {data:{comment:{id:string;version:number}}};const deleted=await runTaskOperation('deleteComment',{workspaceId,commentId:posted.data.comment.id,body:{expectedVersion:1}},data,fixtureClock) as {data:{undo:{id:string}}};
+ await runTaskOperation('createSubtask',{workspaceId,taskId:task.id,body:{expectedTaskVersion:data.tasks[task.id]!.version,title:'Later child'}},data,fixtureClock);const stale=structuredClone(data);await assert.rejects(runTaskOperation('undoCommand',{workspaceId,undoId:deleted.data.undo.id,body:{}},data,fixtureClock),code('CONFLICT'));assert.deepEqual(data,stale);
+ await assert.rejects(runTaskOperation('addCommentReaction',{workspaceId,commentId:posted.data.comment.id,reactionKey:'👍'},data,fixtureClock),code('NOT_FOUND'));assert.deepEqual(data,stale);
 });
 test('stable comments/activity pagination validates cursor scope and hidden task access',async()=>{
  const client=createMockClient(),task=await create(client),other=await create(client,'Other');for(let i=0;i<5;i++)await client.api.createComment({workspaceId,taskId:task.id,body:{bodyText:`Comment ${i}`}});

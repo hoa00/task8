@@ -2,7 +2,7 @@
 
 Tên package là `task8`; repository đích là [hoa00/task8](https://github.com/hoa00/task8) (private). Tiến độ triển khai và evidence hiện tại nằm trong [PROGRESS.md](docs/poc/PROGRESS.md).
 
-**Cập nhật:** 10/10/2026. React UI và backend Hono/Drizzle/D1/R2 local đã triển khai đến WU-35; các gate HTTP local WU-36 đã PASS. Checkpoint kỹ thuật và Git thực tế xem PROGRESS. Phạm vi visual được chấp nhận có giới hạn; các khoản nợ M2 lịch sử vẫn chưa được nghiệm thu. Kết quả cuối và bằng chứng thật nằm trong [M3 acceptance](docs/poc/evidence/WU-36/ACCEPTANCE_REPORT.md) và [PROGRESS](docs/poc/PROGRESS.md).
+**Cập nhật frontend:** 15/10/2026; checkpoint POC bên dưới ngày 10/10/2026. React UI và backend Hono/Drizzle/D1/R2 local đã triển khai đến WU-35; các gate HTTP local WU-36 đã PASS. Checkpoint kỹ thuật và Git thực tế xem PROGRESS. Phạm vi visual được chấp nhận có giới hạn; các khoản nợ M2 lịch sử vẫn chưa được nghiệm thu. Kết quả cuối và bằng chứng thật nằm trong [M3 acceptance](docs/poc/evidence/WU-36/ACCEPTANCE_REPORT.md) và [PROGRESS](docs/poc/PROGRESS.md).
 
 Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương tác của Gr8r Studio sang **React + TypeScript + Vite + TanStack Router + Tailwind CSS**, tổ chức component dùng lại theo chức năng, và chuẩn bị contract để backend **Hono + Drizzle ORM + Cloudflare D1** thay mock mà không phải viết lại màn hình.
 
@@ -10,7 +10,7 @@ Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương t
 
 | Nội dung | Quyết định |
 | --- | --- |
-| Fidelity | Giữ cấu trúc màn hình, thứ tự điều hướng, nội dung tiếng Anh, token, font, icon, spacing, responsive và tương tác hiện có. Baseline là source cố định, không phải ảnh tự tạo từ React. |
+| Fidelity | Giữ cấu trúc màn hình, thứ tự điều hướng, nội dung nguồn và tên người dùng nguyên trạng; sản phẩm có vi mặc định/en. Giữ token, font, icon, spacing, responsive và tương tác hiện có. Baseline là source cố định, không phải ảnh tự tạo từ React. |
 | Tailwind | Dùng ngay từ component React đầu tiên. Chuyển style thành utilities/token chính xác; không nhập nguyên bộ CSS legacy vào target. CSS nền/token, pseudo-element, scrollbar, keyframes và tọa độ động vẫn được phép có phạm vi rõ ràng. |
 | Frontend | React SPA, TypeScript strict, Vite, TanStack Router file routing, TanStack Query cho server state. |
 | Workspace | pnpm + Turborepo; `apps/web`, `apps/api`, `packages/ui`, `packages/contracts`, `packages/domain`. Chưa publish npm package. |
@@ -27,7 +27,7 @@ Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương t
 
 **Thiết kế component:** [ARCHITECTURE.md](docs/poc/ARCHITECTURE.md), [COMPONENT_CATALOG.md](docs/poc/COMPONENT_CATALOG.md), [SCREEN_INVENTORY.md](docs/poc/SCREEN_INVENTORY.md), [TOOLCHAIN.md](docs/poc/TOOLCHAIN.md).
 
-**Chuẩn bắt buộc cho frontend/package dùng chung:** [FRONTEND_STANDARDS.md](docs/engineering/FRONTEND_STANDARDS.md), [apps/web/AGENTS.md](apps/web/AGENTS.md). [FRONTEND_REFACTOR_PLAN.md](docs/engineering/FRONTEND_REFACTOR_PLAN.md) lưu review ngoài `apps/api` ngày 15/10/2026, các vấn đề có dẫn chứng và phase FR-01…07 với prerequisites/gates. FR-00 hoàn tất tài liệu; FR-01 đã mở baseline/guardrails và entry kiểm tra hiện hành. Behavior refactor FR-02…07 theo trạng thái trong kế hoạch. Mọi tính năng/sửa lỗi mới phải theo chuẩn này; POC không phải ngoại lệ về chất lượng code.
+**Chuẩn bắt buộc cho frontend/package dùng chung:** [FRONTEND_STANDARDS.md](docs/engineering/FRONTEND_STANDARDS.md), [apps/web/AGENTS.md](apps/web/AGENTS.md). [FRONTEND_REFACTOR_PLAN.md](docs/engineering/FRONTEND_REFACTOR_PLAN.md) lưu review ngoài `apps/api` ngày 15/10/2026, các vấn đề có dẫn chứng và phase FR-01…07 với prerequisites/gates. FR-01…07 đã nghiệm thu; [audit F01…F19 và walkthrough](docs/engineering/FRONTEND_REFACTOR_AUDIT.md) cùng bằng chứng nằm trong kế hoạch/PROGRESS. Mọi tính năng/sửa lỗi mới phải theo chuẩn này; POC không phải ngoại lệ về chất lượng code.
 
 Frontend hiện hành: [entry checks ngoài API](tests/frontend/README.md), [ma trận regression F01…F19](docs/engineering/FRONTEND_REGRESSION_MATRIX.md).
 

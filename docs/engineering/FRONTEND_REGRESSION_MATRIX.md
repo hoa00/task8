@@ -1,4 +1,6 @@
-# Ma trận regression frontend — FR-01
+# Ma trận regression frontend
+
+Checkpoint hiện hành: [audit F01…F19 và walkthrough](FRONTEND_REFACTOR_AUDIT.md), active risk selection FR-06 ở cuối tài liệu. Bảng baseline FR-01 dưới đây là lịch sử inventory/gaps trước sửa; resolution hiện tại không suy từ bảng này.
 
 Baseline thực thi `edda61113d4170e4cde9bc1b319dbf820d006efd` (FR-00), Node24.13.0/pnpm11.19.0. [Kế hoạch](FRONTEND_REFACTOR_PLAN.md) giữ finding/source evidence; bảng dưới xác định case có sẵn, case cần bổ sung và owner. Chỉ guardrails FR-01 được triển khai ở checkpoint này. `web-tests` chạy mọi adapter/feature `*.test.ts`; `tooling-tests`, `workspace-tests`, `i18n-tests`, `consumers`, `http-build`, `http-bundle` là IDs của [entry hiện hành](../../tests/frontend/README.md). Logs/scenario names/TAP totals thật ở report của run, không cố định số tests trong runner.
 
@@ -45,3 +47,6 @@ FR-06 active selection theo risk:
 | Runner/support/selection | tooling-tests, workspace-tests, lint | actual migrated consumers + negative startup/timeout/cancel |
 
 Foundation còn gồm identities/build; reference integrity khi thay UI/capture. Full checkpoint chọn tất cả active IDs trong manifest. Browser scenario IDs/skips được aggregate từ report child, counts Node từ TAP thực. Historical aliases không tự trở thành active chỉ vì package script còn tồn tại.
+
+
+FR-07 final: tất cả21active checks PASS,338Node tests (web189/domain4/contracts99/workspace14/tooling18/i18n14),45browser cases và8independent source pairs0changed/repeatability pixels. [Final evidence](evidence/FR-07/verification.json) giữ failed inventory attempt cùng successful rerun; deletion/recreation inventory regression là test mới thứ338, không đếm lại4domain-entry smoke tests vào tổng. [Audit](FRONTEND_REFACTOR_AUDIT.md) đối chiếu19findings/commits/owners/evidence và current walkthroughs.

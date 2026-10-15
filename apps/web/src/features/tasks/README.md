@@ -1,3 +1,5 @@
+Current FR-07 owners: controlled Views/row-card slots, one complete dataset/key, record/draft date policy and app-owned notices/motion are detailed at the end of this file and in [final audit](../../../../../docs/engineering/FRONTEND_REFACTOR_AUDIT.md). WU paragraphs below are historical context, not pending work or active test instructions.
+
 # Shared task fields, query, List, Drawer and Board ownership (WU-08..12)
 
 `TaskFields` composes the same controlled editors in row, detail and draft
@@ -129,8 +131,8 @@ The six accepted pairs do not cover the extra Workspace/Project List Date raster
 diagnostics retained as explicit M2 parity debt.
 
 
-WU-14 reuses `loadTaskViewDataset` as a pure canonical loader (the Board hook
-reexports it) for Calendar due-range data and full-scope legend. It strips
+WU-14 reuses `loadTaskViewDataset` as a pure canonical loader (the shared dataset hook
+uses it) for Calendar due-range data and full-scope legend. It strips
 caller paging state, consumes all cursors and checks summary count; chips/count/
 overflow never use the first200 as a whole scope. Calendar rescheduling reuses
 updateTask/version guards/cache and domain rescheduleDateOnly; no date Undo.
@@ -144,3 +146,6 @@ Workspace Calendar on its dedicated existing route. Event preview is read-only.
 FR-04 current ownership: `TaskList`, `TaskBoard` and `TaskTable` are controllers. List/Board own command, draft, drag and Undo lifecycle; Table composes its row controllers. Their `*View` modules render typed state and controller-provided row/card slots without a data/router/controller import. Row/card/cell views receive dates and typed patch/rename intents. `TaskPropertyGrid` and `Subtasks` receive today explicitly. `date-patch.ts` owns record endpoint clamping and independent draft inputs; Calendar/Timeline rescheduling remains in domain.
 
 `useTaskDataset` and `task-dataset-key` share one complete scope cache. List selects items; Board/Table consume coverage and summary. Overlay catalogue is enabled only for an open form or dependency editor; drawer fetches by ID. Cursor repetition and summary mismatch reject partial coverage. App notice/surface/motion are in `app/services`, outside Projects. Current tests: `pnpm frontend:check` and `node tests/frontend/controllers.mjs --output=test-results/<new-run>` after the mock build. The browser suite covers date consumers, lazy catalogue counts, unavailable notification tasks, read-only preference restore, delayed saved routes and app notice/Undo/focus.
+
+
+FR-07 cleanup: useTaskBoardDataset compatibility alias removed; all complete catalogue consumers use useTaskDataset, and List selects its items through useTaskListDataset. Mock QA/tests use operation-registry directly, no task-fields facade. Current Field consumers forward required IDs/ARIA; labels/errors/notices are translated once at feature presentation boundaries. Public surfaces and view/controller roles are enforced without legacy exemptions.

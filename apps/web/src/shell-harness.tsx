@@ -11,7 +11,7 @@ import { StudioTransportError, StudioApiError } from './data/errors';
 import { createStudioClient } from './data/operations';
 import { createEmptyDataset, fixtureClock } from './data/mock/seed';
 import { readHome, readOverview } from './data/mock/dashboards';
-import { runTaskFieldOperation, taskFieldOperations } from './data/mock/task-fields';
+import { runTaskOperation, taskOperationIds } from './data/mock/operation-registry';
 import { createStudioQueryClient, studioQueryOptions } from './data/queries';
 import { StudioDataProvider } from './data/StudioDataProvider';
 import { createStudioRouter } from './app/router';
@@ -103,8 +103,8 @@ const client = createStudioClient(async (id, input, options) => {
   if (input.workspaceId === workspaceB) {
     if (id === 'getHome') return { data: readHome(empty, fixtureClock) };
     if (id === 'getOverview') return { data: readOverview(empty, fixtureClock) };
-    if ((taskFieldOperations as readonly string[]).includes(id))
-      return runTaskFieldOperation(id, input, empty, fixtureClock);
+    if ((taskOperationIds as readonly string[]).includes(id))
+      return runTaskOperation(id, input, empty, fixtureClock);
   }
   return original.execute(id, input as never, options);
 });

@@ -1,3 +1,5 @@
+Current FR checkpoint: production Router wrappers supply controlled normalized search on every render; standalone QA has its own URL adapter. Shared complete loader/key and domain semantics are current owners. Pure date/range tests run under `pnpm --filter @studio/domain test`; adapter/loader/cache integration remains in web. Active URL/controller/browser commands are documented in [tests/frontend](../../../../../tests/frontend/README.md); old WU visual commands below are reproduction-only and historical debt is unchanged.
+
 # Shared Calendar
 
 CalendarView is controlled and has one Month/Week/chip/overflow renderer for
@@ -16,7 +18,7 @@ Source geometry retains35/42 cells, min-height640, explicit minmax112 rows and
 pointer center as in source; trusted pointer limitation and keyboard success are
 recorded. QUIRK-02 overflow uses the same complete scoped/filter/auth dataset
 as chips; raw source leakage diagnostics and corrected source fixtures remain
-separate in WU14 evidence. Project full wrapper remains WU16.
+separate in WU14 evidence. Project uses the same controlled renderer.
 
 Required source comparison explicitly runs42 Calendar cases. Two mobile supplemental
 actual page content pairs are strict0; both desktop whole-content search-corner0/5

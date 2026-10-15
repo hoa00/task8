@@ -1,9 +1,11 @@
+Current FR checkpoint: production Router wrappers supply controlled normalized search on every render; standalone QA has its own URL adapter. Shared complete loader/key and domain semantics are current owners. Pure date/range tests run under `pnpm --filter @studio/domain test`; adapter/loader/cache integration remains in web. Active URL/controller/browser commands are documented in [tests/frontend](../../../../../tests/frontend/README.md); old WU visual commands below are reproduction-only and historical debt is unchanged.
+
 # Shared Timeline
 
 TimelinePage/Panel compose the existing toolbar, complete canonical overlap
 loader, query cache, task-open intent, full Drawer/form and updateTask command.
 TimelineView owns one rail/header/bar/milestone/dependency renderer for Workspace
-and Project; Project remains a feature harness until WU16.
+and Project; Project uses the same controlled renderer.
 
 domain/timeline derives DateOnly ranges91/238days,32/11px day widths,36px rows,
 inclusive bars, progress, forward/backward curves and same-day milestone lanes.

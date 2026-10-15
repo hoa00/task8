@@ -8,7 +8,7 @@ import { parseImports, resolveImport, cyclicEdges } from './import-graph.mjs';
 import { validatePackageEdge, validateImport } from './boundaries.mjs';
 import {
   inspectFrontend,
-  enforceAllowlist,
+  enforceFrontend,
   validateRoles,
   checkFrontend,
 } from './frontend-boundaries.mjs';
@@ -137,28 +137,18 @@ test('runtime cycle detection includes dynamic edges and ignores type-only refer
   assert.equal(cyclicEdges([edge('a', 'a')]).length, 1);
 });
 
-test('legacy budget rejects new edges, symbol changes, broad/stale exemptions and expansion', () => {
-  const violation = { rule: 'feature-private', edge: 'a|b|import|Thing' };
-  const allowed = {
-    ...violation,
-    reason: 'Existing dependency, migrate to public owner.',
-    removeIn: 'FR-04',
-  };
-  assert.equal(
-    enforceAllowlist([violation], [allowed], ['feature-private:a|b|import|Thing']).status,
-    'passed',
-  );
-  assert.throws(
-    () => enforceAllowlist([{ ...violation, edge: 'a|b|import|Thing,Other' }], [allowed]),
-    /Stale allowlist/,
-  );
-  assert.throws(
-    () => enforceAllowlist([violation], [{ ...allowed, edge: '*' }]),
-    /Stale allowlist/,
-  );
-  assert.throws(() => enforceAllowlist([violation], [allowed], []), /Allowlist expansion/);
-  assert.throws(() => enforceAllowlist([violation], []), /New frontend dependency/);
-  assert.throws(() => enforceAllowlist([], [allowed]), /Stale allowlist/);
+test('completed migrations reject every dependency violation without legacy exemptions', () => {
+  assert.equal(enforceFrontend([]).status, 'passed');
+  for (const violation of [
+    { rule: 'feature-private', edge: 'a|b|import|Thing' },
+    { rule: 'feature-private', edge: 'a|b|import|Thing,Other' },
+    {
+      rule: 'data-presentation',
+      edge: 'apps/web/src/data/adapters/http-entry.ts|apps/web/src/app/env.ts|import|PublicEnv',
+    },
+    { rule: 'view-data', edge: '*' },
+  ])
+    assert.throws(() => enforceFrontend([violation]), /Frontend dependency violation/);
 });
 
 test('every feature JSX file must declare its role and current real graph passes', () => {

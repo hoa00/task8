@@ -36,7 +36,19 @@ export function implementationAssets() {
     }
   }
   walk('apps/web/dist');
+  return implementationFileHashes(files);
+}
+// Keep missing tracked paths in the inventory so before/after detects deletion
+// or recreation without crashing on an intentional, uncommitted structural move.
+export function implementationFileHashes(files) {
   return Object.fromEntries(
-    [...new Set(files)].sort().map((file) => [file, sha256(fs.readFileSync(file))]),
+    [...new Set(files)].sort().map((file) => {
+      try {
+        return [file, sha256(fs.readFileSync(file))];
+      } catch (error) {
+        if (error.code === 'ENOENT') return [file, null];
+        throw error;
+      }
+    }),
   );
 }

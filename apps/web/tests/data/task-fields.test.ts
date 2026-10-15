@@ -17,7 +17,7 @@ import {
 import { normalizeTaskView } from '../../src/features/tasks/task-view.ts';
 import { createMockApi } from '../../src/data/adapters/mock.ts';
 import { createSeedDataset, fixtureClock } from '../../src/data/mock/seed.ts';
-import { runTaskFieldOperation } from '../../src/data/mock/task-fields.ts';
+import { runTaskOperation } from '../../src/data/mock/operation-registry.ts';
 import { StudioApiError } from '../../src/data/errors.ts';
 import {
   decodeCurrentTaskView,
@@ -268,7 +268,7 @@ test('actual command cycle returns409 and keeps versions, tasks, recurrence slot
   local.tasks[other.id] = { ...other, dependencyIds: [base.id] };
   const before = structuredClone(local);
   await assert.rejects(
-    runTaskFieldOperation(
+    runTaskOperation(
       'updateTask',
       {
         workspaceId,
@@ -284,7 +284,7 @@ test('actual command cycle returns409 and keeps versions, tasks, recurrence slot
   assert.deepEqual(local, before);
   local.tasks[other.id] = { ...other, dependencyIds: [] };
   const targetVersion = other.version;
-  await runTaskFieldOperation(
+  await runTaskOperation(
     'updateTask',
     { workspaceId, taskId, body: { expectedVersion: base.version, dependencyIds: [other.id] } },
     local,
@@ -292,7 +292,7 @@ test('actual command cycle returns409 and keeps versions, tasks, recurrence slot
   );
   assert.equal(local.tasks[other.id]!.version, targetVersion + 1);
   assert.equal(local.tasks[other.id]!.updatedAt, other.updatedAt);
-  await runTaskFieldOperation(
+  await runTaskOperation(
     'updateTask',
     { workspaceId, taskId, body: { expectedVersion: base.version + 1, dependencyIds: [] } },
     local,
@@ -465,7 +465,7 @@ test('command handlers reject actual foreign relation rows with zero writes and 
   const before = structuredClone(local);
   for (const patch of [{ assigneeId: id(901) }, { dependencyIds: [id(903)] }]) {
     await assert.rejects(
-      runTaskFieldOperation(
+      runTaskOperation(
         'updateTask',
         { workspaceId, taskId, body: { expectedVersion: base.version, ...patch } },
         local,
@@ -476,7 +476,7 @@ test('command handlers reject actual foreign relation rows with zero writes and 
     assert.deepEqual(local, before);
   }
   await assert.rejects(
-    runTaskFieldOperation(
+    runTaskOperation(
       'moveTask',
       {
         workspaceId,

@@ -21,7 +21,7 @@ import { CalendarPanel } from '../calendar/CalendarPages';
 import type { TaskFormDefaults } from './field-types';
 import type { CalendarPanelProps } from '../calendar/CalendarPages';
 import { persistTaskColumns, restoreTaskColumns, taskTablePreferenceKey } from './table-view';
-import { useTaskBoardDataset } from './useTaskBoardDataset';
+import { useTaskDataset } from './useTaskDataset';
 import type { TaskBoardComposerHandle } from './TaskBoard';
 import type { TaskBoardUiState } from './board-types';
 import type { TaskListComposerHandle } from './TaskList';
@@ -232,7 +232,7 @@ export function TaskListPage({
   const columnQuery = normalizeTaskView({
     query: { ...(project ? { projectId: scope.projectId } : {}) },
   }).query;
-  const columnsDataset = useTaskBoardDataset(
+  const columnsDataset = useTaskDataset(
     workspaceId,
     columnQuery,
     mode === 'board' || mode === 'table',

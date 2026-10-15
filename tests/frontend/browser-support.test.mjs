@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { startBrowserServer } from './browser-server.mjs';
 import { withBrowserSession } from './browser-session.mjs';
 import { createBrowserReport, browserResults } from './browser-report.mjs';
+import { implementationFileHashes } from '../visual/teams/assets.mjs';
 import { decodeOperation } from './http-intercept.mjs';
 
 const fixture = () => {
@@ -153,4 +154,23 @@ test('HTTP interceptor matches canonical operations, decodes path and typed quer
   assert.equal(write.id, 'createTeam');
   assert.equal(write.input.body.name, 'Home');
   assert.throws(() => decodeOperation(request('/api/v1/unknown')), /Unknown contract operation/);
+});
+
+test('implementation asset inventory records missing tracked paths and detects deletion or recreation', () => {
+  const f = fixture(),
+    live = join(f.directory, 'index.html'),
+    removed = join(f.directory, 'removed.ts');
+  try {
+    const before = implementationFileHashes([live, removed]);
+    assert.equal(before[removed], null);
+    assert.equal(typeof before[live], 'string');
+    rmSync(live);
+    const after = implementationFileHashes([live, removed]);
+    assert.equal(after[live], null);
+    assert.notDeepEqual(before, after);
+    writeFileSync(removed, 'new implementation');
+    assert.notDeepEqual(implementationFileHashes([live, removed]), after);
+  } finally {
+    f.clean();
+  }
 });

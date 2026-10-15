@@ -8,7 +8,7 @@ import { sourceId } from '@studio/contracts/source-identities';
 import { createStudioClient } from '../../src/data/operations.ts';
 import { createMockClient } from '../../src/data/adapters/mock.ts';
 import { createSeedDataset, fixtureClock } from '../../src/data/mock/seed.ts';
-import { runTaskFieldOperation } from '../../src/data/mock/task-fields.ts';
+import { runTaskOperation } from '../../src/data/mock/operation-registry.ts';
 import { loadTaskViewDataset } from '../../src/features/tasks/loadTaskViewDataset.ts';
 const date = (value: string) => DateOnlySchema.parse(value),
   today = fixtureClock.today(),
@@ -82,7 +82,7 @@ test('complete canonical due-range loader consumes >200 records, summary, abort 
   const calls: string[] = [];
   const client = createStudioClient(async (id, input) => {
     calls.push(`${id}:${String((input.query as { cursor?: string })?.cursor ?? '')}`);
-    return runTaskFieldOperation(id, input, data, fixtureClock);
+    return runTaskOperation(id, input, data, fixtureClock);
   });
   const query = normalizeTaskView({
     query: {
@@ -107,7 +107,7 @@ test('complete canonical due-range loader consumes >200 records, summary, abort 
   });
   assert.equal(restarted.items.length, 231);
   const repeating = createStudioClient(async (id, input) =>
-    id === 'listTasks' ? first : runTaskFieldOperation(id, input, data, fixtureClock),
+    id === 'listTasks' ? first : runTaskOperation(id, input, data, fixtureClock),
   );
   await assert.rejects(
     loadTaskViewDataset(repeating, workspaceId, query),
@@ -121,7 +121,7 @@ test('complete canonical due-range loader consumes >200 records, summary, abort 
   const changing = createStudioClient(async (id, input) => {
     if (id === 'listTasks' && (input.query as { cursor?: string })?.cursor)
       delete data.tasks[EntityIdSchema.parse('019a6257-0480-7000-8000-000000010230')];
-    return runTaskFieldOperation(id, input, data, fixtureClock);
+    return runTaskOperation(id, input, data, fixtureClock);
   });
   await assert.rejects(loadTaskViewDataset(changing, workspaceId, query), /scope changed/);
 });

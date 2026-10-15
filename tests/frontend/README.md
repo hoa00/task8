@@ -22,7 +22,8 @@ Formatter dùng Prettier **3.6.2** (version đã có trong lockfile, thêm direc
 
 `tests/workspace/frontend-policy.json` công bố public paths/symbols có consumer, vai trò mọi feature TSX và controlled views. Không bắt sinh barrel; module path đã công bố là public surface. Resolver chung xử lý import/export/import-type/dynamic/require, relative target thực và symlinks. Package gate dùng exports thật. Frontend gate kiểm data→presentation/router, view→data/router/query, web→server, cross-feature private symbols và runtime module cycles. Type-only edges vẫn kiểm dependency direction, không tạo runtime cycle; generated Router tree không được coi mã handwritten. Đây là guard import, không chứng minh absence của global URL/storage side effects hoặc indirect controller coupling.
 
-`frontend-legacy.json` có exact path/target/kind/symbol, lý do và phase gỡ. Ceiling được hash pin, chỉ được giảm; entry đã hết vi phạm cũng fail cho tới khi xóa. Không regenerate ceiling, thêm wildcard hoặc công bố toàn implementation là public để làm gate pass. Tất cả entries đã gỡ ở FR-03/04, hiện legacy0; FR-07 audit và gỡ cấu hình chuyển tiếp còn lại.
+FR-07 đã gỡ empty legacy allowlist và frozen ceiling sau khi tất cả91edges chuyển owner ở FR-03/04. Gate hiện reject mọi violation, không còn cơ chế exemption; negative fixtures vẫn kiểm former bootstrap edge và private/mixed-symbol imports. `legacyEdges:0` trong report chỉ là metric tương thích, không phải budget cho phép. Temporary mock/task-fields và useTaskBoardDataset aliases đã gỡ; consumers dùng operation-registry/useTaskDataset trực tiếp.
+
 
 Rollback FR-01 không cần migration/reset/storage change: revert các tooling/config commits và format-only commit. Giữ report mới, không overwrite WU evidence và không chạy harness cũ vào checkout đang dùng.
 

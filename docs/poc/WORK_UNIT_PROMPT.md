@@ -91,3 +91,13 @@ Không bắt đầu unit tiếp theo khi prerequisite còn `IN_PROGRESS/BLOCKED`
 4. Dừng xem POC ở WU-12; tiếp tục full UI tới WU-29 khi cần toàn bộ source; chạy backend WU-30…36 theo roadmap.
 
 Đây là prompt thực thi repo, không tạo automation tự chạy nhiều session hoặc tự merge/deploy.
+
+
+## Checklist tính năng mới và bug fix frontend
+
+1. Xác định trigger/kết quả mong đợi, scope và owner hiện có; feature mới phải có public surface/role rõ, bug fix phải có regression đúng failure mode khi cần. Không dùng tên file hoặc LOC làm tiêu chí kiến trúc.
+2. Route giữ URL; Query giữ DTO; controller giữ transient theo workspace/entity/session generation. Kiểm same-route/Back/Forward và late-response nếu đổi scope/state lifecycle.
+3. Dùng typed operation/schema/key/invalidation, complete-dataset guards và một transaction owner. Liệt kê projections bị ảnh hưởng; giữ version/idempotency/Undo/null-versus-omission/auth và HTTP/mock isolation.
+4. Tái sử dụng controlled view/policy/UI primitives; Field forward ID/ARIA; choice/overlay kiểm keyboard/focus; feature dịch caller text một lần, giữ cả vi/en và user text literal.
+5. Chọn foundation + affected browser/source visual IDs theo [risk matrix](../engineering/FRONTEND_REGRESSION_MATRIX.md); active output riêng, actual counts/scenarios/skips. Không chạy alias lịch sử ghi WU hoặc root commands có API cho scope non-API.
+6. Kiểm import graph/cycles/roles/public symbols; hiện không có legacy exemption. Tách format-only/structural/behavior, cập nhật docs owner/test/rollback và PROGRESS; commit/push theo quyền hiện có, báo SHA/remote thực.

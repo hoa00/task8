@@ -4,18 +4,32 @@
 
 Chuyển source thành **React components thật**, sử dụng TypeScript và Tailwind ngay từ component đầu tiên. Cấu trúc thị giác, hierarchy, typography, spacing, color, icon, responsive layout và các hành vi POC đang có được lấy từ source đã ghim commit. Không tạo bản markup riêng cho từng route chỉ vì route khác nhau.
 
-Nguồn: [gr8r-studio tại commit 904205c626918ee96054eb35495c394a60c0c601](https://github.com/gr8rstudio/gr8r-studio/tree/904205c626918ee96054eb35495c394a60c0c601). Danh mục màn hình đầy đủ nằm trong [SCREEN_INVENTORY.md](./SCREEN_INVENTORY.md). Đây là thiết kế triển khai từ audit source; chưa phải kết quả pixel diff của bản React đã hoàn thành.
+Nguồn: [gr8r-studio tại commit 904205c626918ee96054eb35495c394a60c0c601](https://github.com/gr8rstudio/gr8r-studio/tree/904205c626918ee96054eb35495c394a60c0c601). Danh mục màn hình đầy đủ nằm trong [SCREEN_INVENTORY.md](./SCREEN_INVENTORY.md). Đây là bản đồ reuse từ audit source; nghiệm thu cụ thể nằm ở checkpoint/evidence, không suy toàn bộ pixel parity từ catalog.
 
 Source đã có khả năng tái sử dụng: `listHtml/taskRow/miniRow`, `boardHtml/kcard`, `tableHtml`, `calendarHtml`, `timelineHtml`, task property cells, avatar/progress/status helpers và activity rows. Bản React giữ và làm rõ các ranh giới này. [Shared list source][c-list], [project view composition][c-project], [workspace task composition][c-tasks].
 
 Chuẩn phát triển hiện hành: [FRONTEND_STANDARDS](../engineering/FRONTEND_STANDARDS.md); các khoản nợ implementation và phase migration ở [FRONTEND_REFACTOR_PLAN](../engineering/FRONTEND_REFACTOR_PLAN.md). Catalog là bản đồ reuse, không là bằng chứng từng consumer đã tuân thủ. Code mới/phần sửa phải giữ controlled view, typed intents, Field/keyboard/focus và translation ownership theo chuẩn; không copy component có sẵn chỉ vì route khác.
+
+### Owners đã triển khai trong FR-01…07
+
+| Surface | Controller/policy owner | Controlled presentation/public contract |
+| --- | --- | --- |
+| List/Board/Table | TaskList/TaskBoard/TaskTable + command hooks + useTaskDataset | tương ứng *View; row/card/cell View nhận typed state/intents/slots, không import data/controller |
+| Task fields/date | TaskFields + date-patch, domain duration reschedule | FieldControl + typed patch, một policy cho List/Table/Drawer/draft |
+| Files | FilePreviewDialog query controller | FileFoundation render model/callback; không query |
+| Settings | route/SettingsLayout/query consumers | SettingsComponents render translated caller labels |
+| UI forms/choices | Field required bindings, FieldGroup collection semantics, useChoiceGroup | native label/ARIA, roving arrows/Home/End, ref/focus giữ qua pending |
+| App surfaces | app/services + OverlayProvider | generic Dialog/Popover/Toast; business feature không sở hữu global notice/motion |
+| Locale | feature presentation + UI internal translator bridge | caller text literal; event message snapshot, live internal labels |
+
+Public paths/symbols hiện hành là `tests/workspace/frontend-policy.json`; không export toàn bộ implementation hoặc deep-import module chỉ vì cùng feature family. Kiểm chứng: active manifest và [FR audit](../engineering/FRONTEND_REFACTOR_AUDIT.md).
 
 ### Nguyên tắc phân rã
 
 1. **UI primitives** thuộc `packages/ui`: không có task store, router, fetch, tenant/workspace ID hoặc dữ liệu seed.
 2. **DTO/types dùng giữa web và API** thuộc `packages/contracts`; không chứa React hoặc trình bày.
 3. **Tính toán thuần** thuộc `packages/domain`: filter/sort/group/date/progress/timeline geometry nhận input rõ ràng; không đọc DOM, localStorage hoặc gọi network.
-4. **Feature composites/controllers** thuộc `apps/web/src/features`: lấy dữ liệu qua repository/query layer, kết hợp domain và UI, phát typed actions.
+4. **Feature composites/controllers** thuộc `apps/web/src/features`: lấy dữ liệu qua typed client/query layer, kết hợp domain và UI, phát typed actions.
 5. **Route components** chọn context, layout và điều hướng. Một route không tự sao chép task row/card/property menu.
 6. **API** thuộc `apps/api`, không import React/UI; không đưa code API vào component package chỉ vì cùng monorepo.
 

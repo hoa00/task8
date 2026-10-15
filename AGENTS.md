@@ -84,3 +84,13 @@ Commit chỉ được báo bằng SHA thật sau khi commit thành công. Push c
 ## Source reference
 
 `904205c626918ee96054eb35495c394a60c0c601`. Không tự cập nhật lên main mới trong một unit. Nếu Hòa yêu cầu đổi source, tạo lại manifest/baseline theo quy trình trước khi so sánh tiếp.
+
+
+## Checklist tính năng mới và bug fix frontend
+
+1. Xác định trigger/kết quả mong đợi, scope và owner hiện có; feature mới phải có public surface/role rõ, bug fix phải có regression đúng failure mode khi cần. Không dùng tên file hoặc LOC làm tiêu chí kiến trúc.
+2. Route giữ URL; Query giữ DTO; controller giữ transient theo workspace/entity/session generation. Kiểm same-route/Back/Forward và late-response nếu đổi scope/state lifecycle.
+3. Dùng typed operation/schema/key/invalidation, complete-dataset guards và một transaction owner. Liệt kê projections bị ảnh hưởng; giữ version/idempotency/Undo/null-versus-omission/auth và HTTP/mock isolation.
+4. Tái sử dụng controlled view/policy/UI primitives; Field forward ID/ARIA; choice/overlay kiểm keyboard/focus; feature dịch caller text một lần, giữ cả vi/en và user text literal.
+5. Chọn foundation + affected browser/source visual IDs theo [risk matrix](docs/engineering/FRONTEND_REGRESSION_MATRIX.md); active output riêng, actual counts/scenarios/skips. Không chạy alias lịch sử ghi WU hoặc root commands có API cho scope non-API.
+6. Kiểm import graph/cycles/roles/public symbols; hiện không có legacy exemption. Tách format-only/structural/behavior, cập nhật docs owner/test/rollback và PROGRESS; commit/push theo quyền hiện có, báo SHA/remote thực.
