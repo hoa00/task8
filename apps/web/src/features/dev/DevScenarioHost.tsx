@@ -4,27 +4,224 @@ import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
-import { Alert, Button, Dialog, DialogBody, DialogFooter, Icon, ToastViewport, useToastQueue } from '@studio/ui';
+import {
+  Alert,
+  Button,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  Icon,
+  ToastViewport,
+  useToastQueue,
+} from '@studio/ui';
 import type { BootstrapDto } from '@studio/contracts/api';
 import { useDataRuntime } from '../../data/context';
 import { links } from '../../app/navigation';
 import { DevScenarioContext } from './dev-context';
-export interface DevScenarioHostProps { data: BootstrapDto; children: ReactNode }
-export function DevScenarioHost({ data, children }: DevScenarioHostProps) { useTranslation();
-  const runtime = useDataRuntime(), cache = useQueryClient(), navigate = useNavigate(), toasts = useToastQueue(), cancel = useRef<HTMLButtonElement>(null), timers = useRef<ReturnType<typeof setTimeout>[]>([]), active = useRef(true);
-  const resetBusy = useRef(false), currentScope = useRef(data.workspace.id);
-  useEffect(() => { currentScope.current = data.workspace.id; }, [data.workspace.id]);
+export interface DevScenarioHostProps {
+  data: BootstrapDto;
+  children: ReactNode;
+}
+export function DevScenarioHost({ data, children }: DevScenarioHostProps) {
+  useTranslation();
+  const runtime = useDataRuntime(),
+    cache = useQueryClient(),
+    navigate = useNavigate(),
+    toasts = useToastQueue(),
+    cancel = useRef<HTMLButtonElement>(null),
+    timers = useRef<ReturnType<typeof setTimeout>[]>([]),
+    active = useRef(true);
+  const resetBusy = useRef(false),
+    currentScope = useRef(data.workspace.id);
+  useEffect(() => {
+    currentScope.current = data.workspace.id;
+  }, [data.workspace.id]);
   const [resetPending, setResetPending] = useState(false);
-  const [offline, setOffline] = useState(() => runtime.isDemoOffline?.() ?? false), [retrying, setRetrying] = useState(false), [loading, setLoading] = useState(false), [confirm, setConfirm] = useState<'reset' | 'preview' | 'unavailable' | null>(null), [error, setError] = useState('');
-  useEffect(() => { active.current = true; const scheduled = timers.current; return () => { active.current = false; scheduled.forEach(clearTimeout); }; }, []);
-  const schedule = (run: () => void, ms: number) => timers.current.push(setTimeout(() => { if (active.current) run(); }, ms));
+  const [offline, setOffline] = useState(() => runtime.isDemoOffline?.() ?? false),
+    [retrying, setRetrying] = useState(false),
+    [loading, setLoading] = useState(false),
+    [confirm, setConfirm] = useState<'reset' | 'preview' | 'unavailable' | null>(null),
+    [error, setError] = useState('');
+  useEffect(() => {
+    active.current = true;
+    const scheduled = timers.current;
+    return () => {
+      active.current = false;
+      scheduled.forEach(clearTimeout);
+    };
+  }, []);
+  const schedule = (run: () => void, ms: number) =>
+    timers.current.push(
+      setTimeout(() => {
+        if (active.current) run();
+      }, ms),
+    );
   const demoToast = (kind: 'ok' | 'err' | 'retry') => {
-    if (kind === 'err') toasts.enqueue({ message: t("Your changes couldn't be saved."), kind: 'error', action: { label: t("Try again"), onAction: () => toasts.enqueue({ message: t("Saved in this preview"), kind: 'info' }) } });
-    else if (kind === 'retry') { toasts.enqueue({ message: t("Retrying…"), kind: 'info', duration: 1200 }); schedule(() => toasts.enqueue({ message: t("Loaded successfully in this preview") }), 1300); }
-    else toasts.enqueue({ message: t("Moved “Create homepage wireframes” to Review"), action: { label: t("Undo"), onAction: () => toasts.enqueue({ message: t("Undone in this preview"), kind: 'info' }) } });
+    if (kind === 'err')
+      toasts.enqueue({
+        message: t("Your changes couldn't be saved."),
+        kind: 'error',
+        action: {
+          label: t('Try again'),
+          onAction: () => toasts.enqueue({ message: t('Saved in this preview'), kind: 'info' }),
+        },
+      });
+    else if (kind === 'retry') {
+      toasts.enqueue({ message: t('Retrying…'), kind: 'info', duration: 1200 });
+      schedule(() => toasts.enqueue({ message: t('Loaded successfully in this preview') }), 1300);
+    } else
+      toasts.enqueue({
+        message: t('Moved “Create homepage wireframes” to Review'),
+        action: {
+          label: t('Undo'),
+          onAction: () => toasts.enqueue({ message: t('Undone in this preview'), kind: 'info' }),
+        },
+      });
   };
-  return <DevScenarioContext value={{ loadComplete: () => toasts.enqueue({ message: t("Loaded in this preview") }), demoMutation: run => { if (runtime.resetDemoFixture) run(); else setConfirm('unavailable'); }, offline, retrying, loading, toggleOffline: () => { runtime.setDemoOffline?.(!offline); setOffline(value => !value); toasts.enqueue({ message: offline ? t("Back online in this preview") : t("Offline preview on — no changes are queued"), kind: 'info' }); }, retryOnline: () => { if (retrying) return; setRetrying(true); schedule(() => { runtime.setDemoOffline?.(false); setOffline(false); setRetrying(false); toasts.enqueue({ message: t("Offline preview ended. No changes were synced.") }); }, 700); }, replaySkeleton: () => { setLoading(true); schedule(() => setLoading(false), 1400); }, resetFixture: () => { setError(''); setConfirm(runtime.resetDemoFixture ? 'reset' : 'unavailable'); }, previewConfirm: () => { setError(''); setConfirm('preview'); }, demoToast }}>{children}
-    {confirm && <Dialog open size="sm" initialFocus={cancel} entryRevision={error} aria-labelledby="dev-confirm-title" onOpenChange={open => { if (!open && !resetPending) setConfirm(null); }} data-dev-confirm><DialogBody className="pt-[18px]! gap-[10px]!"><div className="flex items-start gap-3"><span className={`grid size-[34px] shrink-0 place-items-center rounded-[9px] ${confirm === 'reset' ? "bg-red-soft text-red" : "bg-amber-soft text-amber"}`}><Icon name={confirm === 'reset' ? 'rotate-ccw' : 'archive'} size={17}/></span><div className="min-w-0 flex-1"><h2 id="dev-confirm-title" className="mt-1 mb-[6px] text-[15px] font-semibold">{confirm === 'reset' ? t("Reset demo data?") : confirm === 'preview' ? t("Archive Marketing Website?") : t("Demo reset unavailable")}</h2><p className="m-0 text-sm leading-[1.55] text-secondary">{confirm === 'reset' ? t("All projects, tasks, and settings in this browser go back to the original sample workspace.") : confirm === 'preview' ? t("The project will be hidden from the sidebar. You can restore it any time.") : t("HTTP data cannot be reset from a demo control. No server data has been changed.")}</p></div></div>{error && <Alert tone="danger">{error}</Alert>}</DialogBody><DialogFooter><span className="flex-1"/><Button ref={cancel} disabled={resetPending} onClick={() => setConfirm(null)}>{t("Cancel")}</Button>{confirm !== 'unavailable' && <Button variant={confirm === 'reset' ? 'danger' : 'primary'} loading={resetPending} onClick={async () => { if (confirm === 'preview') { setConfirm(null); toasts.enqueue({ message: t("This was a preview — nothing was archived"), kind: 'info' }); return; } if (resetBusy.current) return; resetBusy.current = true; const startedScope = currentScope.current; setResetPending(true); try { await cache.cancelQueries(); if (!active.current || currentScope.current !== startedScope) return; const workspaceId = await runtime.resetDemoFixture?.(); if (!active.current || !workspaceId || currentScope.current !== startedScope) return; cache.clear(); setOffline(false); setConfirm(null); await navigate({ to: links.workspace(workspaceId, 'home'), search: {} }); if (active.current) toasts.enqueue({ message: t("Demo data restored") }); } catch (cause) { if (active.current) setError(cause instanceof Error ? cause.message : t("Demo data could not be restored")); } finally { resetBusy.current = false; if (active.current) setResetPending(false); } }}>{confirm === 'reset' ? t("Reset data") : t("Archive project")}</Button>}</DialogFooter></Dialog>}
-    <ToastViewport items={toasts.items} onDismiss={toasts.dismiss}/>
-  </DevScenarioContext>;
+  return (
+    <DevScenarioContext
+      value={{
+        loadComplete: () => toasts.enqueue({ message: t('Loaded in this preview') }),
+        demoMutation: (run) => {
+          if (runtime.resetDemoFixture) run();
+          else setConfirm('unavailable');
+        },
+        offline,
+        retrying,
+        loading,
+        toggleOffline: () => {
+          runtime.setDemoOffline?.(!offline);
+          setOffline((value) => !value);
+          toasts.enqueue({
+            message: offline
+              ? t('Back online in this preview')
+              : t('Offline preview on — no changes are queued'),
+            kind: 'info',
+          });
+        },
+        retryOnline: () => {
+          if (retrying) return;
+          setRetrying(true);
+          schedule(() => {
+            runtime.setDemoOffline?.(false);
+            setOffline(false);
+            setRetrying(false);
+            toasts.enqueue({ message: t('Offline preview ended. No changes were synced.') });
+          }, 700);
+        },
+        replaySkeleton: () => {
+          setLoading(true);
+          schedule(() => setLoading(false), 1400);
+        },
+        resetFixture: () => {
+          setError('');
+          setConfirm(runtime.resetDemoFixture ? 'reset' : 'unavailable');
+        },
+        previewConfirm: () => {
+          setError('');
+          setConfirm('preview');
+        },
+        demoToast,
+      }}
+    >
+      {children}
+      {confirm && (
+        <Dialog
+          open
+          size="sm"
+          initialFocus={cancel}
+          entryRevision={error}
+          aria-labelledby="dev-confirm-title"
+          onOpenChange={(open) => {
+            if (!open && !resetPending) setConfirm(null);
+          }}
+          data-dev-confirm
+        >
+          <DialogBody className="pt-[18px]! gap-[10px]!">
+            <div className="flex items-start gap-3">
+              <span
+                className={`grid size-[34px] shrink-0 place-items-center rounded-[9px] ${confirm === 'reset' ? 'bg-red-soft text-red' : 'bg-amber-soft text-amber'}`}
+              >
+                <Icon name={confirm === 'reset' ? 'rotate-ccw' : 'archive'} size={17} />
+              </span>
+              <div className="min-w-0 flex-1">
+                <h2 id="dev-confirm-title" className="mt-1 mb-[6px] text-[15px] font-semibold">
+                  {confirm === 'reset'
+                    ? t('Reset demo data?')
+                    : confirm === 'preview'
+                      ? t('Archive Marketing Website?')
+                      : t('Demo reset unavailable')}
+                </h2>
+                <p className="m-0 text-sm leading-[1.55] text-secondary">
+                  {confirm === 'reset'
+                    ? t(
+                        'All projects, tasks, and settings in this browser go back to the original sample workspace.',
+                      )
+                    : confirm === 'preview'
+                      ? t(
+                          'The project will be hidden from the sidebar. You can restore it any time.',
+                        )
+                      : t(
+                          'HTTP data cannot be reset from a demo control. No server data has been changed.',
+                        )}
+                </p>
+              </div>
+            </div>
+            {error && <Alert tone="danger">{error}</Alert>}
+          </DialogBody>
+          <DialogFooter>
+            <span className="flex-1" />
+            <Button ref={cancel} disabled={resetPending} onClick={() => setConfirm(null)}>
+              {t('Cancel')}
+            </Button>
+            {confirm !== 'unavailable' && (
+              <Button
+                variant={confirm === 'reset' ? 'danger' : 'primary'}
+                loading={resetPending}
+                onClick={async () => {
+                  if (confirm === 'preview') {
+                    setConfirm(null);
+                    toasts.enqueue({
+                      message: t('This was a preview — nothing was archived'),
+                      kind: 'info',
+                    });
+                    return;
+                  }
+                  if (resetBusy.current) return;
+                  resetBusy.current = true;
+                  const startedScope = currentScope.current;
+                  setResetPending(true);
+                  try {
+                    await cache.cancelQueries();
+                    if (!active.current || currentScope.current !== startedScope) return;
+                    const workspaceId = await runtime.resetDemoFixture?.();
+                    if (!active.current || !workspaceId || currentScope.current !== startedScope)
+                      return;
+                    cache.clear();
+                    setOffline(false);
+                    setConfirm(null);
+                    await navigate({ to: links.workspace(workspaceId, 'home'), search: {} });
+                    if (active.current) toasts.enqueue({ message: t('Demo data restored') });
+                  } catch (cause) {
+                    if (active.current)
+                      setError(
+                        cause instanceof Error
+                          ? cause.message
+                          : t('Demo data could not be restored'),
+                      );
+                  } finally {
+                    resetBusy.current = false;
+                    if (active.current) setResetPending(false);
+                  }
+                }}
+              >
+                {confirm === 'reset' ? t('Reset data') : t('Archive project')}
+              </Button>
+            )}
+          </DialogFooter>
+        </Dialog>
+      )}
+      <ToastViewport items={toasts.items} onDismiss={toasts.dismiss} />
+    </DevScenarioContext>
+  );
 }
