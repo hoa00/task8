@@ -1668,3 +1668,9 @@ Current status DONE_BOUNDED_ROOT_PASS(localM3/qualifiedLinuxselectedvisual); ful
 - Format-only commit actual `204822a376933f1459748afe83b0c3a2b0dfc6d6`; implementation/evidence actual `ac6012ff` (SHA đầy đủ trong Git checkpoint). Verification305Node tests/8browser probes và six before-after byte-equal pairs giữ nguyên; không runtime edit sau acceptance.
 - `git push origin HEAD:main` bị **automatic approval review rejected trước thực thi**: user đã authorize local FR-01 nhưng chưa explicit authorize remote default-branch push; review nêu rủi ro cập nhật nhánh main dùng chung. Không retry/bypass bằng branch/PR/indirect execution. Công việc local hoàn tất; push cần Hòa cho phép rõ tới hoa00/task8/main. Remote SHA kiểm bằng read-only Git trước báo final; không claim push thành công.
 - Blocker mới chỉ ở push, không ở implementation/gates. Docs checkpoint ghi lỗi thật này; session vẫn dừng FR-01, không tự triển khai FR-02A/02B.
+
+### FR-01 — Hòa cấp quyền commit/push, 15/10/2026
+
+- Hòa trực tiếp xác nhận: “tôi cho phép bạn commit & push lần này và cả những lần sau”. Blocker thiếu explicit authorization của lần review trước đã được giải quyết; root AGENTS lưu quyền này cho những unit được giao tiếp theo, không tự mở thêm phase.
+- Local commits204822a3/ac6012ff/bc9f272a đã có, working tree sạch trước cập nhật docs này; origin được xác minh hoa00/task8. Chỉ bổ sung ghi nhận quyền và tiến độ; không thay runtime hoặc chạy lại305tests/8browser probes đã PASS cho FR-01. Git whitespace check cho docs mới; normal push HEAD:main và remote SHA được kiểm bằng Git thực tế sau commit, không force-push.
+- Next vẫn FR-02A hoặc FR-02B; không có phase runtime mới được thực thi trong lượt xử lý quyền push này.
