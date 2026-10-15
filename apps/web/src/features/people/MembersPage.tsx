@@ -16,7 +16,141 @@ import { MemberTable } from './MemberTable';
 import { PermissionMatrix } from './PermissionMatrix';
 import { permissionRoles } from './permission-roles';
 import './people.css';
-export function MembersPage() { useTranslation(); const data = useWorkspaceBootstrap().data!.data, workspaceId = useWorkspaceId(), directory = usePeopleDirectory(data), intents = usePeopleIntents(), { clock } = useDataRuntime(), tasks = useTaskListDataset(workspaceId, TaskQuerySchema.parse({})), [tab, setTab] = useState('members'), [q, setQ] = useState(''), [role, setRole] = useState('all');
- const location = useLocation(), projects = useProjectIntents(), { hostRef, onAnimationEnd } = useProjectMotion(location.pathname, `${directory.ready}/${tasks.dataUpdatedAt}/${directory.demo.dataUpdatedAt}/${tab}/${q}/${role}`, 'page', projects.overlayState);
- const members = directory.members.filter(member => (role === 'all' || member.role === role) && (!q || `${member.name} ${member.email}`.toLowerCase().includes(q.toLowerCase())));
- return <div ref={hostRef} onAnimationEnd={onAnimationEnd} data-project-page-motion className="mx-auto max-w-[1200px] px-[var(--gutter)] pb-[72px] pt-7 source-tablet:pb-24 source-tablet:pt-5" data-members-page data-people-ready={directory.ready && tasks.data ? '' : undefined}><div className="mb-5 flex flex-wrap items-start gap-3"><div><h1 className="m-0 text-balance text-2xl font-semibold leading-[1.2] tracking-[-.022em] source-mobile:text-xl">{t("Members")}</h1><p className="mb-0 mt-1 text-body text-secondary">{directory.members.length}  {t("people in")} {data.workspace.name} · {directory.members.filter(member => member.status === 'invited').length}  {t("pending")}</p></div><div className="ml-auto flex gap-[6px] source-mobile:ml-0 source-mobile:w-full"><Button variant="primary" onClick={intents.invite}><Icon name="user-plus" size={14}/>{t("Invite member")}</Button></div></div><Tabs className="mb-[14px]" label={t("Members sections")} value={tab} items={[{ value: 'members', label: t("Members") }, { value: 'teams', label: t("Teams") }, { value: 'roles', label: t("Roles & permissions") }]} onValueChange={value => { projects.projectSurfaceOpened(); setTab(value); }}/>{directory.error || tasks.error ? <Alert tone="danger">{directory.error?.message ?? tasks.error?.message}<Button size="sm" onClick={() => { void directory.catalog.refetch(); void directory.session.refetch(); if (directory.context) void directory.demo.refetch(); void tasks.refetch(); }}>{t("Retry")}</Button></Alert> : !directory.ready || !tasks.data ? <div role="status">{t("Loading members…")}</div> : tab === 'roles' ? <PermissionMatrix/> : tab === 'teams' ? <TeamDirectory membersTab/> : <><div className="mb-3 flex flex-wrap items-center gap-2"><div className="relative flex items-center"><Icon className="pointer-events-none absolute left-[9px] text-faint" name="search" size={13}/><Input className="h-[var(--h-sm)]! w-[200px]! pl-[30px]! text-sm!" placeholder={t("Search by name or email")} aria-label={t("Search members")} value={q} onChange={event => { projects.projectSurfaceOpened(); setQ(event.target.value); }}/></div><SegmentedControl value={role} label={t("Member role")} items={['all', ...permissionRoles].map(value => ({ value, label: t(value === 'all' ? 'All' : value) }))} onValueChange={value => { projects.projectSurfaceOpened(); setRole(value); }}/></div><MemberTable members={members} data={data} tasks={tasks.data} now={clock.now()} enabled={directory.enabled} onProfile={intents.openProfile} onMenu={intents.memberMenu} onRole={intents.changeRole}/></>}</div>; }
+export function MembersPage() {
+  useTranslation();
+  const data = useWorkspaceBootstrap().data!.data,
+    workspaceId = useWorkspaceId(),
+    directory = usePeopleDirectory(data),
+    intents = usePeopleIntents(),
+    { clock } = useDataRuntime(),
+    tasks = useTaskListDataset(workspaceId, TaskQuerySchema.parse({})),
+    [tab, setTab] = useState('members'),
+    [q, setQ] = useState(''),
+    [role, setRole] = useState('all');
+  const location = useLocation(),
+    projects = useProjectIntents(),
+    { hostRef, onAnimationEnd } = useProjectMotion(
+      location.pathname,
+      `${directory.ready}/${tasks.dataUpdatedAt}/${directory.demo.dataUpdatedAt}/${tab}/${q}/${role}`,
+      'page',
+      projects.overlayState,
+    );
+  const members = directory.members.filter(
+    (member) =>
+      (role === 'all' || member.role === role) &&
+      (!q || `${member.name} ${member.email}`.toLowerCase().includes(q.toLowerCase())),
+  );
+  return (
+    <div
+      ref={hostRef}
+      onAnimationEnd={onAnimationEnd}
+      data-project-page-motion
+      className="mx-auto max-w-[1200px] px-[var(--gutter)] pb-[72px] pt-7 source-tablet:pb-24 source-tablet:pt-5"
+      data-members-page
+      data-people-ready={directory.ready && tasks.data ? '' : undefined}
+    >
+      <div className="mb-5 flex flex-wrap items-start gap-3">
+        <div>
+          <h1 className="m-0 text-balance text-2xl font-semibold leading-[1.2] tracking-[-.022em] source-mobile:text-xl">
+            {t('Members')}
+          </h1>
+          <p className="mb-0 mt-1 text-body text-secondary">
+            {directory.members.length}
+            {'  '}
+            {t('people in')} {data.workspace.name}
+            {' · '}
+            {directory.members.filter((member) => member.status === 'invited').length}
+            {'  '}
+            {t('pending')}
+          </p>
+        </div>
+        <div className="ml-auto flex gap-[6px] source-mobile:ml-0 source-mobile:w-full">
+          <Button variant="primary" onClick={intents.invite}>
+            <Icon name="user-plus" size={14} />
+            {t('Invite member')}
+          </Button>
+        </div>
+      </div>
+      <Tabs
+        className="mb-[14px]"
+        label={t('Members sections')}
+        value={tab}
+        items={[
+          { value: 'members', label: t('Members') },
+          { value: 'teams', label: t('Teams') },
+          { value: 'roles', label: t('Roles & permissions') },
+        ]}
+        onValueChange={(value) => {
+          projects.projectSurfaceOpened();
+          setTab(value);
+        }}
+      />
+      {directory.error || tasks.error ? (
+        <Alert tone="danger">
+          {directory.error?.message ?? tasks.error?.message}
+          <Button
+            size="sm"
+            onClick={() => {
+              void directory.catalog.refetch();
+              void directory.session.refetch();
+              if (directory.context) void directory.demo.refetch();
+              void tasks.refetch();
+            }}
+          >
+            {t('Retry')}
+          </Button>
+        </Alert>
+      ) : !directory.ready || !tasks.data ? (
+        <div role="status">{t('Loading members…')}</div>
+      ) : tab === 'roles' ? (
+        <PermissionMatrix />
+      ) : tab === 'teams' ? (
+        <TeamDirectory membersTab />
+      ) : (
+        <>
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <div className="relative flex items-center">
+              <Icon
+                className="pointer-events-none absolute left-[9px] text-faint"
+                name="search"
+                size={13}
+              />
+              <Input
+                className="h-[var(--h-sm)]! w-[200px]! pl-[30px]! text-sm!"
+                placeholder={t('Search by name or email')}
+                aria-label={t('Search members')}
+                value={q}
+                onChange={(event) => {
+                  projects.projectSurfaceOpened();
+                  setQ(event.target.value);
+                }}
+              />
+            </div>
+            <SegmentedControl
+              value={role}
+              label={t('Member role')}
+              items={['all', ...permissionRoles].map((value) => ({
+                value,
+                label: t(value === 'all' ? 'All' : value),
+              }))}
+              onValueChange={(value) => {
+                projects.projectSurfaceOpened();
+                setRole(value);
+              }}
+            />
+          </div>
+          <MemberTable
+            members={members}
+            data={data}
+            tasks={tasks.data}
+            now={clock.now()}
+            enabled={directory.enabled}
+            onProfile={intents.openProfile}
+            onMenu={intents.memberMenu}
+            onRole={intents.changeRole}
+          />
+        </>
+      )}
+    </div>
+  );
+}

@@ -15,4 +15,154 @@ import { TaskMiniRow } from '../tasks/TaskMiniRow';
 import { ProjectCard } from './ProjectComponents';
 import { useProjectMotion } from './project-motion';
 import { useProjectIntents } from './project-intents';
-export function Favorites() { useTranslation(); const workspaceId = useWorkspaceId(), data = useWorkspaceBootstrap().data!.data, { clock } = useDataRuntime(), intents = useWorkspaceIntents(), projects = useProjectIntents(), navigate = useNavigate(), dataset = useTaskListDataset(workspaceId, TaskQuerySchema.parse({ favoriteOnly: true })), commands = useTaskListCommands(workspaceId), [toasts, setToasts] = useState<ToastMessage[]>([]), favorites = data.projects.filter(item => item.access === 'allowed' && item.project.isFavorite), tasks = dataset.data ?? [], route = useLocation(); const { hostRef, onAnimationEnd } = useProjectMotion(route.pathname, `${JSON.stringify(favorites)}/${JSON.stringify(tasks)}`, 'page', projects.overlayState); return <div ref={hostRef} onAnimationEnd={onAnimationEnd} data-project-page-motion className="px-[var(--gutter)] pb-[72px] pt-7 max-[900px]:pb-24 max-[900px]:pt-5" data-favorites><div className="mb-5 flex flex-wrap items-start gap-3"><div><h1 className="m-0 text-2xl font-semibold leading-[1.2] tracking-[-.022em] max-[640px]:text-xl">{t("Favorites")}</h1><p className="mb-0 mt-1 text-body text-secondary">{t("Projects and tasks you've starred for quick access.")}</p></div></div>{dataset.error ? <Alert tone="danger">{dataset.error.message}</Alert> : !dataset.data ? <div role="status">{t("Loading favorites…")}</div> : !favorites.length && !tasks.length ? <div className="rounded-lg border border-solid border-border bg-surface"><EmptyState icon="star" heading={t("No favorites yet")} description={t("Star a project or task to pin it here.")} action={<Button variant="secondary" size="sm" onClick={() => { void navigate({ to: links.workspace(workspaceId, 'projects') }); }}>{t("Browse projects")}</Button>} /></div> : <><h2 className="mb-[10px] mt-0 text-md font-semibold tracking-[-.01em]">{t("Projects")} <span className="font-medium text-muted">{favorites.length}</span></h2>{favorites.length ? <div className="project-grid mb-7">{favorites.map(item => <ProjectCard key={item.project.id} item={item} data={data} now={clock.now()} onOpen={id => { void navigate({ to: links.project(workspaceId, id) }); }} onMenu={projects.projectMenu} />)}</div> : <p className="mb-7 text-muted">{t("No favorite projects.")}</p>}<h2 className="mb-[6px] mt-0 text-md font-semibold tracking-[-.01em]">{t("Tasks")} <span className="font-medium text-muted">{tasks.length}</span></h2>{tasks.length ? <div data-project-panel className="overflow-hidden rounded-lg border border-solid border-border bg-surface">{tasks.map(task => { const project = data.projects.find(item => item.access === 'allowed' && item.project.id === task.projectId); if (!project || project.access !== 'allowed') return null; return <TaskMiniRow key={task.id} task={task} project={project.project} today={clock.today()} member={data.members.find(member => member.id === task.assigneeId) ?? null} onOpen={id => { projects.projectSurfaceOpened(); intents.openTask(id); }} onComplete={async task => { const result = await commands.run('setTaskCompletion', { workspaceId, taskId: task.id, body: { expectedVersion: task.version, completed: task.status !== 'done' } }); if (result?.data.undo) { const undo = result.data.undo; setToasts(rows => [{ id: crypto.randomUUID(), message: t("Completed {{value1}}", { value1: String(task.title) }), action: { label: t("Undo"), onAction: () => { void commands.undo(undo); } }, duration: 5000 }, ...rows]); } }} />; })}</div> : <p className="text-muted">{t("Open a task and click the star to add it here.")}</p>}</>}{commands.error && <Alert tone="danger">{commands.error}</Alert>}<ToastViewport items={toasts} onDismiss={id => setToasts(rows => rows.filter(row => row.id !== id))} /></div>; }
+export function Favorites() {
+  useTranslation();
+  const workspaceId = useWorkspaceId(),
+    data = useWorkspaceBootstrap().data!.data,
+    { clock } = useDataRuntime(),
+    intents = useWorkspaceIntents(),
+    projects = useProjectIntents(),
+    navigate = useNavigate(),
+    dataset = useTaskListDataset(workspaceId, TaskQuerySchema.parse({ favoriteOnly: true })),
+    commands = useTaskListCommands(workspaceId),
+    [toasts, setToasts] = useState<ToastMessage[]>([]),
+    favorites = data.projects.filter(
+      (item) => item.access === 'allowed' && item.project.isFavorite,
+    ),
+    tasks = dataset.data ?? [],
+    route = useLocation();
+  const { hostRef, onAnimationEnd } = useProjectMotion(
+    route.pathname,
+    `${JSON.stringify(favorites)}/${JSON.stringify(tasks)}`,
+    'page',
+    projects.overlayState,
+  );
+  return (
+    <div
+      ref={hostRef}
+      onAnimationEnd={onAnimationEnd}
+      data-project-page-motion
+      className="px-[var(--gutter)] pb-[72px] pt-7 max-[900px]:pb-24 max-[900px]:pt-5"
+      data-favorites
+    >
+      <div className="mb-5 flex flex-wrap items-start gap-3">
+        <div>
+          <h1 className="m-0 text-2xl font-semibold leading-[1.2] tracking-[-.022em] max-[640px]:text-xl">
+            {t('Favorites')}
+          </h1>
+          <p className="mb-0 mt-1 text-body text-secondary">
+            {t("Projects and tasks you've starred for quick access.")}
+          </p>
+        </div>
+      </div>
+      {dataset.error ? (
+        <Alert tone="danger">{dataset.error.message}</Alert>
+      ) : !dataset.data ? (
+        <div role="status">{t('Loading favorites…')}</div>
+      ) : !favorites.length && !tasks.length ? (
+        <div className="rounded-lg border border-solid border-border bg-surface">
+          <EmptyState
+            icon="star"
+            heading={t('No favorites yet')}
+            description={t('Star a project or task to pin it here.')}
+            action={
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  void navigate({ to: links.workspace(workspaceId, 'projects') });
+                }}
+              >
+                {t('Browse projects')}
+              </Button>
+            }
+          />
+        </div>
+      ) : (
+        <>
+          <h2 className="mb-[10px] mt-0 text-md font-semibold tracking-[-.01em]">
+            {t('Projects')} <span className="font-medium text-muted">{favorites.length}</span>
+          </h2>
+          {favorites.length ? (
+            <div className="project-grid mb-7">
+              {favorites.map((item) => (
+                <ProjectCard
+                  key={item.project.id}
+                  item={item}
+                  data={data}
+                  now={clock.now()}
+                  onOpen={(id) => {
+                    void navigate({ to: links.project(workspaceId, id) });
+                  }}
+                  onMenu={projects.projectMenu}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="mb-7 text-muted">{t('No favorite projects.')}</p>
+          )}
+          <h2 className="mb-[6px] mt-0 text-md font-semibold tracking-[-.01em]">
+            {t('Tasks')} <span className="font-medium text-muted">{tasks.length}</span>
+          </h2>
+          {tasks.length ? (
+            <div
+              data-project-panel
+              className="overflow-hidden rounded-lg border border-solid border-border bg-surface"
+            >
+              {tasks.map((task) => {
+                const project = data.projects.find(
+                  (item) => item.access === 'allowed' && item.project.id === task.projectId,
+                );
+                if (!project || project.access !== 'allowed') return null;
+                return (
+                  <TaskMiniRow
+                    key={task.id}
+                    task={task}
+                    project={project.project}
+                    today={clock.today()}
+                    member={data.members.find((member) => member.id === task.assigneeId) ?? null}
+                    onOpen={(id) => {
+                      projects.projectSurfaceOpened();
+                      intents.openTask(id);
+                    }}
+                    onComplete={async (task) => {
+                      const result = await commands.run('setTaskCompletion', {
+                        workspaceId,
+                        taskId: task.id,
+                        body: { expectedVersion: task.version, completed: task.status !== 'done' },
+                      });
+                      if (result?.data.undo) {
+                        const undo = result.data.undo;
+                        setToasts((rows) => [
+                          {
+                            id: crypto.randomUUID(),
+                            message: t('Completed {{value1}}', { value1: String(task.title) }),
+                            action: {
+                              label: t('Undo'),
+                              onAction: () => {
+                                void commands.undo(undo);
+                              },
+                            },
+                            duration: 5000,
+                          },
+                          ...rows,
+                        ]);
+                      }
+                    }}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <p className="text-muted">{t('Open a task and click the star to add it here.')}</p>
+          )}
+        </>
+      )}
+      {commands.error && <Alert tone="danger">{commands.error}</Alert>}
+      <ToastViewport
+        items={toasts}
+        onDismiss={(id) => setToasts((rows) => rows.filter((row) => row.id !== id))}
+      />
+    </div>
+  );
+}

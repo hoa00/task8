@@ -6,6 +6,10 @@ import { loadTaskViewDataset } from './loadTaskViewDataset';
 export { loadTaskViewDataset } from './loadTaskViewDataset';
 export type { TaskViewDataset } from './loadTaskViewDataset';
 export function useTaskBoardDataset(workspaceId: string, query: TaskQuery, enabled: boolean) {
- const {client}=useDataRuntime();
- return useQuery({enabled,queryKey:[...queryKeys.workspace(workspaceId),'tasks','complete-view',query],queryFn:({signal})=>loadTaskViewDataset(client,workspaceId,query,signal)});
+  const { client } = useDataRuntime();
+  return useQuery({
+    enabled,
+    queryKey: [...queryKeys.workspace(workspaceId), 'tasks', 'complete-view', query],
+    queryFn: ({ signal }) => loadTaskViewDataset(client, workspaceId, query, signal),
+  });
 }
