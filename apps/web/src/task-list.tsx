@@ -17,25 +17,148 @@ import { TaskListPage } from './features/tasks/TaskListPages';
 import type { TaskListScope, TaskListUiState } from './features/tasks/list-types';
 import './styles/app.css';
 applyRootPreferences(readThemePreferences());
-const raw = createMockClient({ environment: 'test', scenario: new URLSearchParams(location.search).get('empty') === '1' ? 'empty' : 'populated' }); let failNext = false;
-const client = createStudioClient(async (id, input, options) => { if (failNext && ['createTask', 'updateTask', 'updateSubtask', 'bulkMutateTasks', 'moveTask'].includes(id)) { failNext = false; throw new StudioApiError({ error: { code: 'CONFLICT', message: 'The task changed. Review and try again.' } }); } return raw.execute(id, input as OperationInput<typeof id>, options); });
+const raw = createMockClient({
+  environment: 'test',
+  scenario: new URLSearchParams(location.search).get('empty') === '1' ? 'empty' : 'populated',
+});
+let failNext = false;
+const client = createStudioClient(async (id, input, options) => {
+  if (
+    failNext &&
+    ['createTask', 'updateTask', 'updateSubtask', 'bulkMutateTasks', 'moveTask'].includes(id)
+  ) {
+    failNext = false;
+    throw new StudioApiError({
+      error: { code: 'CONFLICT', message: 'The task changed. Review and try again.' },
+    });
+  }
+  return raw.execute(id, input as OperationInput<typeof id>, options);
+});
 const queryClient = createStudioQueryClient();
-declare global { interface Window { __taskListQA: { client: typeof client; queryClient: typeof queryClient; failNext(): void } } }
-window.__taskListQA = { client, queryClient, failNext: () => { failNext = true; } };
-export function Harness(){const session=useStudioQuery('getSession',{});const workspaceId=session.data?.data.currentWorkspaceId;return workspaceId?<WorkspaceHarness workspaceId={workspaceId}/>:<div>Loading…</div>;}
-function WorkspaceHarness({workspaceId}:{workspaceId:EntityId}) {
- const [selected, setSelected] = useState<readonly string[]>(()=>JSON.parse(new URLSearchParams(location.search).get('selectedIds') ?? '[]') as string[]), [opened, setOpened] = useState('');
- const rows = useStudioQuery('listTasks', {workspaceId: workspaceId, query:{limit:200}}), commands=useTaskListCommands(workspaceId);
- const bootstrap = useStudioQuery('getBootstrap', { workspaceId: workspaceId });
- if (!bootstrap.data || !rows.data) return <div>Loading…</div>;
- const params = new URLSearchParams(location.search), kind = params.get('scope') ?? 'workspace', project = bootstrap.data.data.projects.find(item => item.access === 'allowed')?.project;
- const scope: TaskListScope = kind === 'project' ? { kind, projectId: project?.id ?? workspaceId } : kind === 'saved' ? { kind, projectId: project?.id ?? workspaceId, savedViewId: project?.id ?? workspaceId } : { kind: kind === 'mine' ? 'mine' : 'workspace' };
- if(params.get('mini')==='1')return <section id="task-mini-sample">{rows.data.data.items.filter(task=>['WEB-112','WEB-130','WEB-127'].includes(task.key)).map(task=><TaskMiniRow key={task.id} today={fixtureClock.today()} task={task} project={bootstrap.data.data.projects.find(item=>item.project.id===task.projectId)!.project as ProjectDto} member={bootstrap.data.data.members.find(member=>member.id===task.assigneeId)??null} showProject={params.get('noProject')!=='1'} showAvatar={params.get('noAvatar')!=='1'} onOpen={setOpened} onComplete={task=>{void commands.run('setTaskCompletion',{workspaceId:task.workspaceId,taskId:task.id,body:{expectedVersion:task.version,completed:task.status!=='done'}});}} />)}</section>;
- return <>{params.get('visual') !== '1' && <Button onClick={() => { failNext = true; }}>Fail next mutation</Button>}<TaskListPage initialListState={JSON.parse(params.get('listState') ?? '{}') as TaskListUiState} showHeading={!(params.get('visual') === '1' && (scope.kind === 'project' || scope.kind === 'saved'))} workspaceId={workspaceId} scope={scope} selectedIds={selected} onSelectionChange={setSelected} onTaskOpen={setOpened} onTitleEdit={() => setOpened('')} /><output data-open-task hidden>{opened}</output></>;
+declare global {
+  interface Window {
+    __taskListQA: { client: typeof client; queryClient: typeof queryClient; failNext(): void };
+  }
 }
-const initial = JSON.parse(new URLSearchParams(location.search).get('listState') ?? '{}') as TaskListUiState;
-if (initial.expandedTaskIds?.length) { const session = await queryClient.fetchQuery(studioQueryOptions(client,'getSession',{}));const workspaceId=session.data.currentWorkspaceId;if(!workspaceId)throw new Error('Workspace access is required'); await Promise.all(initial.expandedTaskIds.map(taskId => queryClient.fetchQuery(studioQueryOptions(client,'getTask',{workspaceId,taskId})))); }
+window.__taskListQA = {
+  client,
+  queryClient,
+  failNext: () => {
+    failNext = true;
+  },
+};
+export function Harness() {
+  const session = useStudioQuery('getSession', {});
+  const workspaceId = session.data?.data.currentWorkspaceId;
+  return workspaceId ? <WorkspaceHarness workspaceId={workspaceId} /> : <div>Loading…</div>;
+}
+function WorkspaceHarness({ workspaceId }: { workspaceId: EntityId }) {
+  const [selected, setSelected] = useState<readonly string[]>(
+      () => JSON.parse(new URLSearchParams(location.search).get('selectedIds') ?? '[]') as string[],
+    ),
+    [opened, setOpened] = useState('');
+  const rows = useStudioQuery('listTasks', { workspaceId: workspaceId, query: { limit: 200 } }),
+    commands = useTaskListCommands(workspaceId);
+  const bootstrap = useStudioQuery('getBootstrap', { workspaceId: workspaceId });
+  if (!bootstrap.data || !rows.data) return <div>Loading…</div>;
+  const params = new URLSearchParams(location.search),
+    kind = params.get('scope') ?? 'workspace',
+    project = bootstrap.data.data.projects.find((item) => item.access === 'allowed')?.project;
+  const scope: TaskListScope =
+    kind === 'project'
+      ? { kind, projectId: project?.id ?? workspaceId }
+      : kind === 'saved'
+        ? { kind, projectId: project?.id ?? workspaceId, savedViewId: project?.id ?? workspaceId }
+        : { kind: kind === 'mine' ? 'mine' : 'workspace' };
+  if (params.get('mini') === '1')
+    return (
+      <section id="task-mini-sample">
+        {rows.data.data.items
+          .filter((task) => ['WEB-112', 'WEB-130', 'WEB-127'].includes(task.key))
+          .map((task) => (
+            <TaskMiniRow
+              key={task.id}
+              today={fixtureClock.today()}
+              task={task}
+              project={
+                bootstrap.data.data.projects.find((item) => item.project.id === task.projectId)!
+                  .project as ProjectDto
+              }
+              member={
+                bootstrap.data.data.members.find((member) => member.id === task.assigneeId) ?? null
+              }
+              showProject={params.get('noProject') !== '1'}
+              showAvatar={params.get('noAvatar') !== '1'}
+              onOpen={setOpened}
+              onComplete={(task) => {
+                void commands.run('setTaskCompletion', {
+                  workspaceId: task.workspaceId,
+                  taskId: task.id,
+                  body: { expectedVersion: task.version, completed: task.status !== 'done' },
+                });
+              }}
+            />
+          ))}
+      </section>
+    );
+  return (
+    <>
+      {params.get('visual') !== '1' && (
+        <Button
+          onClick={() => {
+            failNext = true;
+          }}
+        >
+          Fail next mutation
+        </Button>
+      )}
+      <TaskListPage
+        initialListState={JSON.parse(params.get('listState') ?? '{}') as TaskListUiState}
+        showHeading={
+          !(params.get('visual') === '1' && (scope.kind === 'project' || scope.kind === 'saved'))
+        }
+        workspaceId={workspaceId}
+        scope={scope}
+        selectedIds={selected}
+        onSelectionChange={setSelected}
+        onTaskOpen={setOpened}
+        onTitleEdit={() => setOpened('')}
+      />
+      <output data-open-task hidden>
+        {opened}
+      </output>
+    </>
+  );
+}
+const initial = JSON.parse(
+  new URLSearchParams(location.search).get('listState') ?? '{}',
+) as TaskListUiState;
+if (initial.expandedTaskIds?.length) {
+  const session = await queryClient.fetchQuery(studioQueryOptions(client, 'getSession', {}));
+  const workspaceId = session.data.currentWorkspaceId;
+  if (!workspaceId) throw new Error('Workspace access is required');
+  await Promise.all(
+    initial.expandedTaskIds.map((taskId) =>
+      queryClient.fetchQuery(studioQueryOptions(client, 'getTask', { workspaceId, taskId })),
+    ),
+  );
+}
 // The isolated source section has an auto-sized block parent; mirror that QA host.
-if (new URLSearchParams(location.search).get('visual') === '1') { const style = document.createElement('style'); style.textContent = '#root { height: auto; }'; document.head.append(style); }
-const root = document.getElementById('root'); if (!root) throw new Error('Missing task list root');
-createRoot(root).render(<StrictMode><ThemeProvider><StudioDataProvider runtime={{ client, clock: fixtureClock }} queryClient={queryClient}><OverlayProvider><Harness /></OverlayProvider></StudioDataProvider></ThemeProvider></StrictMode>);
+if (new URLSearchParams(location.search).get('visual') === '1') {
+  const style = document.createElement('style');
+  style.textContent = '#root { height: auto; }';
+  document.head.append(style);
+}
+const root = document.getElementById('root');
+if (!root) throw new Error('Missing task list root');
+createRoot(root).render(
+  <StrictMode>
+    <ThemeProvider>
+      <StudioDataProvider runtime={{ client, clock: fixtureClock }} queryClient={queryClient}>
+        <OverlayProvider>
+          <Harness />
+        </OverlayProvider>
+      </StudioDataProvider>
+    </ThemeProvider>
+  </StrictMode>,
+);
