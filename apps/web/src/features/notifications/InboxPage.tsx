@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
@@ -8,8 +9,7 @@ import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
 import { useDataRuntime } from '../../data/context';
 import { links } from '../../app/navigation';
-import { useProjectMotion } from '../projects/project-motion';
-import { useProjectIntents } from '../projects/project-intents';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { ago } from '../tasks/date-display';
 import {
   NotificationAvatar,
@@ -43,7 +43,7 @@ export function InboxPage() {
     model = useNotifications(workspaceId),
     commands = useNotificationCommands(workspaceId),
     { clock } = useDataRuntime(),
-    intents = useProjectIntents(),
+    intents = useAppServices(),
     { openTask } = useWorkspaceIntents(),
     navigate = useNavigate(),
     location = useLocation();
@@ -70,13 +70,13 @@ export function InboxPage() {
   useLayoutEffect(() => {
     if (tabs.current) tabs.current.scrollLeft = 0;
   }, [category, unread, model.query.dataUpdatedAt]);
-  const { hostRef, onAnimationEnd } = useProjectMotion(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion(
     location.pathname,
     `${category}/${unread}/${selectedId}/${model.query.dataUpdatedAt}`,
     'page',
-    intents.overlayState,
+    intents.surfaceRevision,
   );
-  const consume = () => intents.projectSurfaceOpened();
+  const consume = () => intents.surfaceOpened();
   function select(notification: NotificationDto, element: HTMLElement) {
     consume();
     opener.current = element;

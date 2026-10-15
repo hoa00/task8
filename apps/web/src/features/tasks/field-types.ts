@@ -1,5 +1,5 @@
 import type { ReactNode, RefObject } from 'react';
-import type { EntityId, TaskDto } from '@studio/contracts/api';
+import type { EntityId, TaskDto, UndoDescriptorDto } from '@studio/contracts/api';
 export type TaskFieldTarget =
   | { kind: 'record'; workspaceId: EntityId; taskId: EntityId }
   | { kind: 'draft'; draftId: string };
@@ -33,4 +33,13 @@ export interface FieldControlProps<T> {
   presentation?: FieldPresentation;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+}
+
+export interface TaskFieldCommandModel {
+  patch: (patch: TaskFieldPatch) => Promise<boolean>;
+  complete: () => Promise<UndoDescriptorDto | null>;
+  undo: (descriptor: UndoDescriptorDto) => Promise<boolean>;
+  attempt: TaskFieldPatch;
+  error: string;
+  pending: boolean;
 }

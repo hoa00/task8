@@ -1,9 +1,10 @@
+import { taskFieldPatch } from '../date-patch';
 import { translate as t, locale } from '../../../i18n/i18n';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { Fragment } from 'react';
 import { ColorDot, Icon } from '@studio/ui';
 import type { IconName } from '@studio/ui';
-import type { BootstrapDto, TaskDto } from '@studio/contracts/api';
+import type { BootstrapDto, TaskDto, DateOnly } from '@studio/contracts/api';
 import { recurrences } from '@studio/contracts/api';
 import {
   AssigneeField,
@@ -19,8 +20,8 @@ import {
 import { TaskLabel } from '../atoms';
 import { MemberIdentity } from '../../people/MemberIdentity';
 import type { TaskFieldValues, TaskFieldPatch } from '../field-types';
-import { useDataRuntime } from '../../../data/context';
 export interface TaskPropertyGridProps {
+  today: DateOnly;
   value: TaskFieldValues;
   data: BootstrapDto;
   tasks: readonly TaskDto[];
@@ -34,6 +35,7 @@ export interface TaskPropertyGridProps {
   error?: string;
 }
 export function TaskPropertyGrid({
+  today,
   value,
   data,
   tasks,
@@ -47,23 +49,14 @@ export function TaskPropertyGrid({
   error,
 }: TaskPropertyGridProps) {
   useTranslation();
-  const { clock } = useDataRuntime(),
-    projects = data.projects
-      .filter((item) => item.access === 'allowed')
-      .map((item) => item.project);
+  const projects = data.projects
+    .filter((item) => item.access === 'allowed')
+    .map((item) => item.project);
   function control<K extends keyof TaskFieldValues>(field: K) {
     return {
       value: value[field],
       onChange: (next: TaskFieldValues[K]) =>
-        onPatch(
-          field === 'dueDate' &&
-            taskId &&
-            typeof next === 'string' &&
-            value.startDate &&
-            String(value.startDate) > String(next)
-            ? { dueDate: next as TaskDto['dueDate'], startDate: next as TaskDto['startDate'] }
-            : { [field]: next },
-        ),
+        onPatch(taskFieldPatch(value, field, next, taskId ? 'record' : 'draft')),
       open: openField === field,
       onOpenChange: (open: boolean) => onOpenFieldChange(open ? field : null),
       disabled: !!disabled,
@@ -128,9 +121,9 @@ export function TaskPropertyGrid({
         <TaskDateField
           {...control('dueDate')}
           field="dueDate"
-          today={clock.today()}
+          today={today}
           weekStart={data.preferences.weekStart}
-          overdue={value.status !== 'done' && !!value.dueDate && value.dueDate < clock.today()}
+          overdue={value.status !== 'done' && !!value.dueDate && value.dueDate < today}
           {...(form
             ? {
                 trigger: (
@@ -154,7 +147,7 @@ export function TaskPropertyGrid({
         <TaskDateField
           {...control('startDate')}
           field="startDate"
-          today={clock.today()}
+          today={today}
           weekStart={data.preferences.weekStart}
           trigger={
             <>

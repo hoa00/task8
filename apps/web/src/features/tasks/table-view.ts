@@ -1,5 +1,5 @@
-import { normalizeTaskView } from '@studio/domain';
-import type { TaskViewState } from '@studio/domain';
+import { normalizeTaskView } from './task-view.ts';
+import type { TaskViewState } from './task-view.ts';
 import type { TaskListScope } from './list-types';
 
 export function taskTablePreferenceKey(workspaceId: string, scope: TaskListScope): string {

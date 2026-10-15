@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useState } from 'react';
@@ -24,8 +25,7 @@ import { useTaskListDataset } from '../tasks/useTaskListDataset';
 import { TaskMiniRow } from '../tasks/TaskMiniRow';
 import { useTaskListCommands } from '../tasks/useTaskListCommands';
 import { CompactProjectRow } from '../projects/ProjectComponents';
-import { useProjectMotion } from '../projects/project-motion';
-import { useProjectIntents } from '../projects/project-intents';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { ActivityFeed } from '../activity/ActivityFeed';
 import { MemberIdentity } from './MemberIdentity';
 import { MemberStatus } from './MemberStatus';
@@ -47,7 +47,7 @@ export function MemberDetail({ memberId }: MemberDetailProps) {
     tasks = useTaskListDataset(workspaceId, TaskQuerySchema.parse({})),
     intents = usePeopleIntents(),
     taskIntents = useWorkspaceIntents(),
-    projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     navigate = useNavigate(),
     commands = useTaskListCommands(workspaceId),
     [tab, setTab] = useState('assigned');
@@ -67,11 +67,11 @@ export function MemberDetail({ memberId }: MemberDetailProps) {
       enabled: directory.ready && !!member && !member.demo,
     });
   const location = useLocation(),
-    { hostRef, onAnimationEnd } = useProjectMotion(
+    { hostRef, onAnimationEnd } = useSurfaceMotion(
       location.pathname,
       `${directory.ready}/${tasks.dataUpdatedAt}/${summary.dataUpdatedAt}/${activity.dataUpdatedAt}/${directory.demo.dataUpdatedAt}/${tab}`,
       'page',
-      projects.overlayState,
+      projectsServices.surfaceRevision,
     );
   const error = directory.error ?? tasks.error ?? profile.error ?? summary.error ?? activity.error;
   if (error)
@@ -174,9 +174,9 @@ export function MemberDetail({ memberId }: MemberDetailProps) {
             onClick={async () => {
               try {
                 await navigator.clipboard.writeText(member.email);
-                projects.notice('Copied to clipboard', undefined, { duration: 4200 });
+                projectsServices.notice('Copied to clipboard', undefined, { duration: 4200 });
               } catch {
-                projects.notice("Copy isn't available here — " + member.email, undefined, {
+                projectsServices.notice("Copy isn't available here — " + member.email, undefined, {
                   kind: 'info',
                   duration: 6000,
                 });
@@ -240,7 +240,7 @@ export function MemberDetail({ memberId }: MemberDetailProps) {
               },
             ]}
             onValueChange={(value) => {
-              projects.projectSurfaceOpened();
+              projectsServices.surfaceOpened();
               setTab(value);
             }}
           />
@@ -263,7 +263,7 @@ export function MemberDetail({ memberId }: MemberDetailProps) {
                       body: { expectedVersion: task.version, completed: task.status !== 'done' },
                     });
                     if (result?.data.undo)
-                      projects.notice(
+                      projectsServices.notice(
                         t('Completed {{name}}', { name: task.title }),
                         result.data.undo,
                       );

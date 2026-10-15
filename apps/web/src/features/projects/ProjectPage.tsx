@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { useCalendarRouteState } from '../../app/useCalendarRouteState';
 import { ProjectFilesPage } from '../files/ProjectFilesPage';
 import { useParams, useNavigate } from '@tanstack/react-router';
@@ -10,7 +11,6 @@ import { CalendarPage } from '../calendar/CalendarPages';
 import { TimelinePage } from '../timeline/TimelinePages';
 import { ProjectOverview, ProjectActivity } from './ProjectOverview';
 import { useProjectView } from './project-view';
-import { useProjectIntents } from './project-intents';
 export function ProjectPage() {
   const calendarState = useCalendarRouteState(),
     workspaceId = useWorkspaceId(),
@@ -18,15 +18,15 @@ export function ProjectPage() {
     intents = useWorkspaceIntents(),
     navigate = useNavigate(),
     controller = useProjectView(),
-    projectIntents = useProjectIntents(),
+    projectIntents = useAppServices(),
     { projectId, view, onViewChange, savedView } = controller,
     type = savedView?.type ?? params.view;
   const openForm: typeof intents.openTaskForm = (...args) => {
-      projectIntents.projectSurfaceOpened();
+      projectIntents.surfaceOpened();
       intents.openTaskForm(...args);
     },
     openMenu: typeof intents.openTaskMenu = (...args) => {
-      projectIntents.projectSurfaceOpened();
+      projectIntents.surfaceOpened();
       intents.openTaskMenu(...args);
     };
   const newTask = () => openForm(undefined, { projectId });

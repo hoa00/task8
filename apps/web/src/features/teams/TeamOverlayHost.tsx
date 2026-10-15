@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
@@ -8,7 +9,6 @@ import type { ToastMessage } from '@studio/ui';
 import type { BootstrapDto, UndoDescriptorDto } from '@studio/contracts/api';
 import { useCompleteMembers } from '../people/catalogue';
 import { useProjectCommands } from '../projects/useProjectCommands';
-import { useProjectIntents } from '../projects/project-intents';
 import { useStudioQuery } from '../../data/queries';
 import { TeamIntentContext } from './team-intents';
 import { TeamFormDialog } from './TeamFormDialog';
@@ -23,7 +23,7 @@ export function TeamOverlayHost({ data, children, onOpenOverlay }: TeamOverlayHo
     catalog = useCompleteMembers(workspaceId),
     session = useStudioQuery('getSession', {}),
     commands = useProjectCommands(workspaceId),
-    projects = useProjectIntents(),
+    projects = useAppServices(),
     navigate = useNavigate(),
     opener = useRef<HTMLElement | null>(null),
     cancel = useRef<HTMLButtonElement>(null),
@@ -71,7 +71,7 @@ export function TeamOverlayHost({ data, children, onOpenOverlay }: TeamOverlayHo
     ]);
   }
   function open(id?: string) {
-    projects.projectSurfaceOpened();
+    projects.surfaceOpened();
     opener.current =
       onOpenOverlay?.() ??
       (document.activeElement instanceof HTMLElement ? document.activeElement : null);

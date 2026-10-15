@@ -1,5 +1,5 @@
-import { normalizeTaskView } from '@studio/domain';
-import type { TaskViewState } from '@studio/domain';
+import { normalizeTaskView } from './task-view.ts';
+import type { TaskViewState } from './task-view.ts';
 // Current configuration is URL/UI state. Named views are explicit server records;
 // neither conversion nor editing invokes a saved-view write operation.
 export function decodeCurrentTaskView(search: string): TaskViewState {

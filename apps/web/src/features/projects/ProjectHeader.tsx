@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import type { ReactNode } from 'react';
@@ -15,7 +16,7 @@ export interface ProjectStatusPickerProps {
 }
 export function ProjectStatusPicker({ project, overview = false }: ProjectStatusPickerProps) {
   useTranslation();
-  const intents = useProjectIntents(),
+  const intentsServices = useAppServices(),
     anchor = useRef<HTMLButtonElement>(null),
     [open, setOpen] = useState(false),
     commands = useProjectCommands(project.workspaceId),
@@ -29,7 +30,7 @@ export function ProjectStatusPicker({ project, overview = false }: ProjectStatus
         aria-expanded={open}
         className={`inline-flex max-w-full items-center gap-[6px] whitespace-nowrap rounded-sm px-[7px] text-sm transition-[background] [transition-timing-function:ease] source-hover:bg-surface-2 ${overview ? 'h-[26px]' : 'h-6 border border-solid border-border'}`}
         onClick={() => {
-          if (!open) intents.projectSurfaceOpened();
+          if (!open) intentsServices.surfaceOpened();
           setOpen(!open);
         }}
       >

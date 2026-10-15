@@ -3,8 +3,9 @@ import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
 import { Alert, Button, Icon, SegmentedControl } from '@studio/ui';
-import { addDateDays, evaluateTaskView, normalizeTaskView } from '@studio/domain';
-import type { TaskViewState } from '@studio/domain';
+import { addDateDays, evaluateTaskView } from '@studio/domain';
+import { normalizeTaskView } from './task-view.ts';
+import type { TaskViewState } from './task-view.ts';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useDataRuntime } from '../../data/context';
 import { useStudioQuery } from '../../data/queries';
@@ -12,7 +13,7 @@ import { useWorkspaceId } from '../../app/shell/workspace-context';
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
 import { useTaskListDataset } from './useTaskListDataset';
 import { TaskList } from './TaskList';
-import { useProjectMotion } from '../projects/project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { TaskBoard } from './TaskBoard';
 import { TaskTable } from './TaskTable';
 import { CalendarPanel } from '../calendar/CalendarPages';
@@ -235,18 +236,28 @@ export function TaskListPage({
     columnQuery,
     mode === 'board' || mode === 'table',
   );
-  const { hostRef, onAnimationEnd } = useProjectMotion<HTMLElement>(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion<HTMLElement>(
     `${workspaceId}/${scope.kind}/${'projectId' in scope ? scope.projectId : ''}`,
     JSON.stringify(dataset.data),
     'page',
     `${JSON.stringify(view)}/${mode}/${selectedIds.join(',')}`,
     project && !showHeading ? false : undefined,
   );
+  const pageProps = {
+    ref: hostRef,
+    onAnimationEnd,
+    'data-project-page-motion': showHeading || undefined,
+    className: project && !showHeading ? 'task-page contents!' : 'task-page',
+    'data-project-task-page': (project && !showHeading) || undefined,
+    'data-list-scope': scope.kind,
+  };
   if (bootstrap.error || dataset.error || columnsDataset.error)
     return (
-      <Alert tone="danger">
-        {(bootstrap.error ?? dataset.error ?? columnsDataset.error)!.message}
-      </Alert>
+      <main {...pageProps} data-query-coverage="failed">
+        <Alert tone="danger">
+          {(bootstrap.error ?? dataset.error ?? columnsDataset.error)!.message}
+        </Alert>
+      </main>
     );
   if (
     !bootstrap.data ||
@@ -254,9 +265,11 @@ export function TaskListPage({
     ((mode === 'board' || mode === 'table') && !columnsDataset.data)
   )
     return (
-      <div className="p-6" role="status">
-        {t('Loading tasks…')}
-      </div>
+      <main {...pageProps} aria-busy data-query-coverage="pending">
+        <div className="p-6" role="status">
+          {t('Loading tasks…')}
+        </div>
+      </main>
     );
   const data = bootstrap.data.data,
     tasks = dataset.data,
@@ -330,12 +343,7 @@ export function TaskListPage({
       : 'Tasks';
   return (
     <main
-      ref={hostRef}
-      onAnimationEnd={onAnimationEnd}
-      data-project-page-motion={showHeading || undefined}
-      className={project && !showHeading ? 'task-page contents!' : 'task-page'}
-      data-project-task-page={(project && !showHeading) || undefined}
-      data-list-scope={scope.kind}
+      {...pageProps}
       aria-busy={dataset.isFetching}
       data-query-coverage={dataset.isPlaceholderData ? 'pending' : 'complete'}
     >

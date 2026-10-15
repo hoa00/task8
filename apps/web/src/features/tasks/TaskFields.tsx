@@ -1,3 +1,4 @@
+import { taskFieldPatch } from './date-patch';
 import type { DateOnly, MemberDisplayDto, ProjectDto, TaskDto } from '@studio/contracts/api';
 import type {
   TaskFieldPatch,
@@ -52,19 +53,7 @@ export function TaskFields({
     return {
       value: value[field],
       onChange: (next: TaskFieldValues[K]) =>
-        onPatch(
-          target,
-          field === 'dueDate' &&
-            target.kind === 'record' &&
-            typeof next === 'string' &&
-            value.startDate &&
-            String(value.startDate) > String(next)
-            ? {
-                dueDate: next as TaskFieldValues['dueDate'],
-                startDate: next as TaskFieldValues['startDate'],
-              }
-            : { [field]: next },
-        ),
+        onPatch(target, taskFieldPatch(value, field, next, target.kind)),
       open: openField === field,
       onOpenChange: (open: boolean) => onOpenFieldChange(open ? field : null),
       presentation,

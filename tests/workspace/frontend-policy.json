@@ -24,7 +24,7 @@
     "apps/web/src/features/files/FileOverlayHost.tsx": "controller",
     "apps/web/src/features/files/ProjectFilesPage.tsx": "controller",
     "apps/web/src/features/notifications/InboxPage.tsx": "controller",
-    "apps/web/src/features/notifications/InboxPreview.tsx": "view",
+    "apps/web/src/features/notifications/InboxPreview.tsx": "controller",
     "apps/web/src/features/notifications/NotificationContent.tsx": "view",
     "apps/web/src/features/notifications/NotificationsPage.tsx": "controller",
     "apps/web/src/features/onboarding/OnboardingLayout.tsx": "controller",
@@ -41,14 +41,14 @@
     "apps/web/src/features/projects/Favorites.tsx": "controller",
     "apps/web/src/features/projects/ProjectCatalogue.tsx": "controller",
     "apps/web/src/features/projects/ProjectComponents.tsx": "view",
-    "apps/web/src/features/projects/ProjectFormDialog.tsx": "view",
+    "apps/web/src/features/projects/ProjectFormDialog.tsx": "controller",
     "apps/web/src/features/projects/ProjectHeader.tsx": "view",
     "apps/web/src/features/projects/ProjectIdentity.tsx": "view",
     "apps/web/src/features/projects/ProjectLayout.tsx": "controller",
     "apps/web/src/features/projects/ProjectOverlayHost.tsx": "controller",
     "apps/web/src/features/projects/ProjectOverview.tsx": "controller",
     "apps/web/src/features/projects/ProjectPage.tsx": "controller",
-    "apps/web/src/features/projects/ShareDialog.tsx": "view",
+    "apps/web/src/features/projects/ShareDialog.tsx": "controller",
     "apps/web/src/features/search/CommandPalette.tsx": "controller",
     "apps/web/src/features/search/Highlight.tsx": "view",
     "apps/web/src/features/search/SearchOverlayHost.tsx": "controller",
@@ -62,25 +62,25 @@
     "apps/web/src/features/settings/WorkspaceNotifications.tsx": "controller",
     "apps/web/src/features/tasks/BulkActionBar.tsx": "view",
     "apps/web/src/features/tasks/ControllerRaceProbe.tsx": "controller",
-    "apps/web/src/features/tasks/TaskBoard.tsx": "view",
-    "apps/web/src/features/tasks/TaskBoardCard.tsx": "view",
+    "apps/web/src/features/tasks/TaskBoard.tsx": "controller",
+    "apps/web/src/features/tasks/TaskBoardCard.tsx": "controller",
     "apps/web/src/features/tasks/TaskBoardColumn.tsx": "view",
     "apps/web/src/features/tasks/TaskFields.tsx": "view",
     "apps/web/src/features/tasks/TaskFieldsGallery.tsx": "controller",
     "apps/web/src/features/tasks/TaskFieldsGalleryEntry.tsx": "controller",
-    "apps/web/src/features/tasks/TaskList.tsx": "view",
+    "apps/web/src/features/tasks/TaskList.tsx": "controller",
     "apps/web/src/features/tasks/TaskListPages.tsx": "controller",
-    "apps/web/src/features/tasks/TaskListRow.tsx": "view",
+    "apps/web/src/features/tasks/TaskListRow.tsx": "controller",
     "apps/web/src/features/tasks/TaskMiniRow.tsx": "view",
-    "apps/web/src/features/tasks/TaskTable.tsx": "view",
-    "apps/web/src/features/tasks/TaskTableCell.tsx": "view",
+    "apps/web/src/features/tasks/TaskTable.tsx": "controller",
+    "apps/web/src/features/tasks/TaskTableCell.tsx": "controller",
     "apps/web/src/features/tasks/TaskViewToolbar.tsx": "view",
     "apps/web/src/features/tasks/atoms.tsx": "view",
     "apps/web/src/features/tasks/detail/DescriptionEditor.tsx": "view",
     "apps/web/src/features/tasks/detail/Subtasks.tsx": "view",
-    "apps/web/src/features/tasks/detail/TaskConversation.tsx": "view",
-    "apps/web/src/features/tasks/detail/TaskDrawer.tsx": "view",
-    "apps/web/src/features/tasks/detail/TaskFormDialog.tsx": "view",
+    "apps/web/src/features/tasks/detail/TaskConversation.tsx": "controller",
+    "apps/web/src/features/tasks/detail/TaskDrawer.tsx": "controller",
+    "apps/web/src/features/tasks/detail/TaskFormDialog.tsx": "controller",
     "apps/web/src/features/tasks/detail/TaskOverlayHost.tsx": "controller",
     "apps/web/src/features/tasks/detail/TaskPropertyGrid.tsx": "view",
     "apps/web/src/features/tasks/fields.tsx": "view",
@@ -91,7 +91,16 @@
     "apps/web/src/features/teams/TeamOverlayHost.tsx": "controller",
     "apps/web/src/features/teams/TeamsPage.tsx": "controller",
     "apps/web/src/features/timeline/TimelinePages.tsx": "controller",
-    "apps/web/src/features/timeline/TimelineView.tsx": "view"
+    "apps/web/src/features/timeline/TimelineView.tsx": "view",
+    "apps/web/src/features/tasks/TaskListRowView.tsx": "view",
+    "apps/web/src/features/tasks/TaskBoardCardView.tsx": "view",
+    "apps/web/src/features/tasks/TaskTableCellView.tsx": "view",
+    "apps/web/src/features/tasks/TaskSubrows.tsx": "controller",
+    "apps/web/src/features/files/FilePreviewDialog.tsx": "controller",
+    "apps/web/src/features/tasks/TaskListView.tsx": "view",
+    "apps/web/src/features/tasks/TaskBoardView.tsx": "view",
+    "apps/web/src/features/tasks/TaskTableView.tsx": "view",
+    "apps/web/src/features/settings/SettingsComponents.tsx": "view"
   },
   "views": [
     "apps/web/src/features/activity/ActivityFeed.tsx",
@@ -105,7 +114,6 @@
     "apps/web/src/features/dev/Skeletons.tsx",
     "apps/web/src/features/files/FileCatalogue.tsx",
     "apps/web/src/features/files/FileFoundation.tsx",
-    "apps/web/src/features/notifications/InboxPreview.tsx",
     "apps/web/src/features/notifications/NotificationContent.tsx",
     "apps/web/src/features/people/InviteDialog.tsx",
     "apps/web/src/features/people/MemberIdentity.tsx",
@@ -114,42 +122,41 @@
     "apps/web/src/features/people/PermissionMatrix.tsx",
     "apps/web/src/features/people/RolePicker.tsx",
     "apps/web/src/features/projects/ProjectComponents.tsx",
-    "apps/web/src/features/projects/ProjectFormDialog.tsx",
     "apps/web/src/features/projects/ProjectHeader.tsx",
     "apps/web/src/features/projects/ProjectIdentity.tsx",
-    "apps/web/src/features/projects/ShareDialog.tsx",
     "apps/web/src/features/search/Highlight.tsx",
     "apps/web/src/features/search/SearchResultContent.tsx",
     "apps/web/src/features/search/ShortcutsDialog.tsx",
     "apps/web/src/features/settings/Appearance.tsx",
     "apps/web/src/features/tasks/BulkActionBar.tsx",
-    "apps/web/src/features/tasks/TaskBoard.tsx",
-    "apps/web/src/features/tasks/TaskBoardCard.tsx",
     "apps/web/src/features/tasks/TaskBoardColumn.tsx",
     "apps/web/src/features/tasks/TaskFields.tsx",
-    "apps/web/src/features/tasks/TaskList.tsx",
-    "apps/web/src/features/tasks/TaskListRow.tsx",
     "apps/web/src/features/tasks/TaskMiniRow.tsx",
-    "apps/web/src/features/tasks/TaskTable.tsx",
-    "apps/web/src/features/tasks/TaskTableCell.tsx",
     "apps/web/src/features/tasks/TaskViewToolbar.tsx",
     "apps/web/src/features/tasks/atoms.tsx",
     "apps/web/src/features/tasks/detail/DescriptionEditor.tsx",
     "apps/web/src/features/tasks/detail/Subtasks.tsx",
-    "apps/web/src/features/tasks/detail/TaskConversation.tsx",
-    "apps/web/src/features/tasks/detail/TaskDrawer.tsx",
-    "apps/web/src/features/tasks/detail/TaskFormDialog.tsx",
     "apps/web/src/features/tasks/detail/TaskPropertyGrid.tsx",
     "apps/web/src/features/tasks/fields.tsx",
     "apps/web/src/features/teams/TeamFormDialog.tsx",
     "apps/web/src/features/teams/TeamGrid.tsx",
     "apps/web/src/features/teams/TeamIdentity.tsx",
-    "apps/web/src/features/timeline/TimelineView.tsx"
+    "apps/web/src/features/timeline/TimelineView.tsx",
+    "apps/web/src/features/tasks/TaskListRowView.tsx",
+    "apps/web/src/features/tasks/TaskBoardCardView.tsx",
+    "apps/web/src/features/tasks/TaskTableCellView.tsx",
+    "apps/web/src/features/tasks/TaskListView.tsx",
+    "apps/web/src/features/tasks/TaskBoardView.tsx",
+    "apps/web/src/features/tasks/TaskTableView.tsx",
+    "apps/web/src/features/settings/SettingsComponents.tsx"
   ],
   "publicSurfaces": [
     {
       "path": "apps/web/src/features/people/MemberIdentity.tsx",
-      "symbols": ["MemberIdentity", "MemberIdentityProps"]
+      "symbols": [
+        "MemberIdentity",
+        "MemberIdentityProps"
+      ]
     },
     {
       "path": "apps/web/src/features/people/index.ts",
@@ -166,103 +173,170 @@
     },
     {
       "path": "apps/web/src/features/people/people-intents.ts",
-      "symbols": ["usePeopleIntents"]
+      "symbols": [
+        "usePeopleIntents"
+      ]
     },
     {
       "path": "apps/web/src/features/people/people-query.ts",
-      "symbols": ["canAdministerMember", "usePeopleDirectory"]
+      "symbols": [
+        "canAdministerMember",
+        "usePeopleDirectory"
+      ]
     },
     {
       "path": "apps/web/src/features/people/catalogue.ts",
-      "symbols": ["useCompleteMembers"]
+      "symbols": [
+        "useCompleteMembers"
+      ]
     },
     {
       "path": "apps/web/src/features/people/people.css",
-      "symbols": ["<side-effect>"]
+      "symbols": [
+        "<side-effect>"
+      ]
     },
     {
       "path": "apps/web/src/features/projects/ProjectComponents.tsx",
-      "symbols": ["ProjectIcon", "ProjectMemberStack", "ProjectStatus", "CompactProjectRow"]
+      "symbols": [
+        "ProjectIcon",
+        "ProjectMemberStack",
+        "ProjectStatus",
+        "CompactProjectRow"
+      ]
     },
     {
       "path": "apps/web/src/features/projects/ProjectIdentity.tsx",
-      "symbols": ["ProjectIdentity"]
+      "symbols": [
+        "ProjectIdentity"
+      ]
     },
     {
       "path": "apps/web/src/features/projects/format.ts",
-      "symbols": ["projectDate"]
+      "symbols": [
+        "projectDate"
+      ]
     },
     {
       "path": "apps/web/src/features/projects/useProjectCommands.ts",
-      "symbols": ["useProjectCommands"]
+      "symbols": [
+        "useProjectCommands"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/date-display.ts",
-      "symbols": ["ago", "formatTaskDate", "formatAbsoluteDate"]
+      "symbols": [
+        "ago",
+        "formatTaskDate",
+        "formatAbsoluteDate"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/atoms.tsx",
-      "symbols": ["PriorityIcon", "TaskStatusIcon", "TaskLabel"]
+      "symbols": [
+        "PriorityIcon",
+        "TaskStatusIcon",
+        "TaskLabel"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/TaskMiniRow.tsx",
-      "symbols": ["TaskMiniRow"]
+      "symbols": [
+        "TaskMiniRow"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/TaskBoardCard.tsx",
-      "symbols": ["TaskBoardCard"]
+      "symbols": [
+        "TaskBoardCard"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/useTaskListCommands.ts",
-      "symbols": ["useTaskListCommands"]
+      "symbols": [
+        "useTaskListCommands"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/useTaskFieldCommands.ts",
-      "symbols": ["useTaskFieldCommands"]
+      "symbols": [
+        "useTaskFieldCommands"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/TaskViewToolbar.tsx",
-      "symbols": ["TaskViewToolbar"]
+      "symbols": [
+        "TaskViewToolbar"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/current-view.ts",
-      "symbols": ["decodeCurrentTaskView", "encodeCurrentTaskView"]
+      "symbols": [
+        "decodeCurrentTaskView",
+        "encodeCurrentTaskView"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/field-types.ts",
-      "symbols": ["TaskFormDefaults", "TaskFieldValues"]
+      "symbols": [
+        "TaskFormDefaults",
+        "TaskFieldValues"
+      ]
     },
     {
       "path": "apps/web/src/features/tasks/fields.tsx",
-      "symbols": ["AssigneeField", "TaskDateField", "TaskPriorityField", "TaskStatusField"]
+      "symbols": [
+        "AssigneeField",
+        "TaskDateField",
+        "TaskPriorityField",
+        "TaskStatusField"
+      ]
     },
     {
       "path": "apps/web/src/features/activity/ActivityFeed.tsx",
-      "symbols": ["ActivityFeed"]
+      "symbols": [
+        "ActivityFeed"
+      ]
     },
     {
       "path": "apps/web/src/features/activity/format.ts",
-      "symbols": ["activityDay"]
+      "symbols": [
+        "activityDay"
+      ]
     },
     {
       "path": "apps/web/src/features/activity/project-feed.ts",
-      "symbols": ["useProjectFeed"]
+      "symbols": [
+        "useProjectFeed"
+      ]
     },
     {
       "path": "apps/web/src/features/comments/draft-context.ts",
-      "symbols": ["useTaskCommentDraftStore"]
+      "symbols": [
+        "useTaskCommentDraftStore"
+      ]
     },
     {
       "path": "apps/web/src/features/comments/Comments.tsx",
-      "symbols": ["CommentComposer", "CommentList", "CommentText"]
+      "symbols": [
+        "CommentComposer",
+        "CommentList",
+        "CommentText"
+      ]
     },
     {
       "path": "apps/web/src/features/comments/queries.ts",
-      "symbols": ["useTaskComments", "useTaskConversation"]
+      "symbols": [
+        "useTaskComments",
+        "useTaskConversation"
+      ]
     },
     {
       "path": "apps/web/src/features/files/file-intents.ts",
-      "symbols": ["useFileIntents", "FileIntentContext"]
+      "symbols": [
+        "useFileIntents",
+        "FileIntentContext"
+      ]
     },
     {
       "path": "apps/web/src/features/files/FileFoundation.tsx",
@@ -270,29 +344,150 @@
         "FileTypeIcon",
         "AttachmentCard",
         "Dropzone",
-        "UploadProgress",
-        "FilePreviewDialog"
+        "UploadProgress"
       ]
     },
     {
       "path": "apps/web/src/features/auth/AuthLayout.tsx",
-      "symbols": ["AuthLayout", "AuthMessage"]
+      "symbols": [
+        "AuthLayout",
+        "AuthMessage"
+      ]
     },
     {
       "path": "apps/web/src/features/search/search-intents.ts",
-      "symbols": ["useSearchIntents"]
+      "symbols": [
+        "useSearchIntents"
+      ]
     },
     {
       "path": "apps/web/src/features/search/commands.ts",
-      "symbols": ["modLabel", "shortcutGroups"]
+      "symbols": [
+        "modLabel",
+        "shortcutGroups"
+      ]
     },
     {
       "path": "apps/web/src/features/dev/Skeletons.tsx",
-      "symbols": ["SkeletonRows"]
+      "symbols": [
+        "SkeletonRows"
+      ]
     },
     {
       "path": "apps/web/src/features/calendar/date-format.ts",
-      "symbols": ["calendarDateLabel", "calendarMonths"]
+      "symbols": [
+        "calendarDateLabel",
+        "calendarMonths"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/tasks/task-view.ts",
+      "symbols": [
+        "taskColumns",
+        "TaskColumnId",
+        "TaskViewState",
+        "normalizeTaskView"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/tasks/useTaskListDataset.ts",
+      "symbols": [
+        "useTaskListDataset"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/tasks/loadTaskViewDataset.ts",
+      "symbols": [
+        "loadTaskViewDataset",
+        "TaskViewDataset"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/tasks/date-patch.ts",
+      "symbols": [
+        "taskFieldPatch"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/tasks/table-view.ts",
+      "symbols": [
+        "restoreTaskColumns",
+        "taskTablePreferenceKey"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/projects/project-view.ts",
+      "symbols": [
+        "useProjectView"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/projects/project-intents.ts",
+      "symbols": [
+        "useProjectIntents"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/projects/loadProjectCatalogue.ts",
+      "symbols": [
+        "loadProjectCatalogue"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/settings/useSettingsCommands.ts",
+      "symbols": [
+        "useSettingsCommands"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/tasks/detail/TaskOverlayHost.tsx",
+      "symbols": [
+        "DeleteController"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/teams/TeamsPage.tsx",
+      "symbols": [
+        "TeamDirectory"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/teams/TeamGrid.tsx",
+      "symbols": [
+        "TeamGrid"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/tasks/TaskListPages.tsx",
+      "symbols": [
+        "TaskListPage"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/calendar/CalendarPages.tsx",
+      "symbols": [
+        "CalendarPage",
+        "CalendarPanel",
+        "CalendarPanelProps"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/timeline/TimelinePages.tsx",
+      "symbols": [
+        "TimelinePage"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/files/ProjectFilesPage.tsx",
+      "symbols": [
+        "ProjectFilesPage"
+      ]
+    },
+    {
+      "path": "apps/web/src/features/files/FilePreviewDialog.tsx",
+      "symbols": [
+        "FilePreviewDialog"
+      ]
     }
   ]
 }

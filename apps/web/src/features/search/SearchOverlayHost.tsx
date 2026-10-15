@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
@@ -13,7 +14,7 @@ import { useSettingsCommands } from '../settings/useSettingsCommands';
 import { useTheme } from '../../theme/theme-context';
 import { useProjectIntents } from '../projects/project-intents';
 import { useFileIntents } from '../files/file-intents';
-import { normalizeTaskView } from '@studio/domain';
+import { normalizeTaskView } from '../tasks/task-view.ts';
 import { SearchIntentContext } from './search-intents';
 import { recentSearchKey, readRecentSearches } from './recent-searches';
 import { usePeopleIntents } from '../people/people-intents';
@@ -41,6 +42,7 @@ export function SearchOverlayHost({
     files = useFileIntents(),
     people = usePeopleIntents(),
     projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     tasks = useWorkspaceIntents(),
     navigate = useNavigate(),
     location = useLocation(),
@@ -70,7 +72,7 @@ export function SearchOverlayHost({
   };
   const prepare = () => {
     onOpenOverlay();
-    projects.projectSurfaceOpened();
+    projectsServices.surfaceOpened();
   };
   const openPalette = (mode: PaletteMode = 'cmd') => {
     prepare();
@@ -151,7 +153,7 @@ export function SearchOverlayHost({
         })
         .then((result) => {
           if (result)
-            projects.notice(dark ? 'Light mode on' : 'Dark mode on', undefined, {
+            projectsServices.notice(dark ? 'Light mode on' : 'Dark mode on', undefined, {
               kind: 'info',
               duration: 1800,
             });

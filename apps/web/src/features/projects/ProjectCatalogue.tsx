@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useLocation, useNavigate } from '@tanstack/react-router';
@@ -9,7 +10,7 @@ import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace
 import { useDataRuntime } from '../../data/context';
 import { queryKeys } from '../../data/query-keys';
 import { links, validateRouteSearch } from '../../app/navigation';
-import { useProjectMotion } from './project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { useProjectIntents } from './project-intents';
 import { loadProjectCatalogue } from './catalogue';
 import { ProjectCard, ProjectRow, ProjectTable } from './ProjectComponents';
@@ -19,6 +20,7 @@ export function ProjectCatalogue() {
     data = useWorkspaceBootstrap().data!.data,
     { client, clock } = useDataRuntime(),
     intents = useProjectIntents(),
+    intentsServices = useAppServices(),
     route = useLocation(),
     navigate = useNavigate(),
     search = validateRouteSearch(route.search),
@@ -42,11 +44,11 @@ export function ProjectCatalogue() {
   const open = (id: string) => {
     void navigate({ to: links.project(workspaceId, id, data.preferences.defaultTab) });
   };
-  const { hostRef, onAnimationEnd } = useProjectMotion(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion(
     route.pathname,
     `${route.searchStr}/${JSON.stringify(catalogue.data)}`,
     'page',
-    `${route.searchStr}/${intents.overlayState}`,
+    `${route.searchStr}/${intentsServices.surfaceRevision}`,
   );
   const rows = catalogue.data?.items ?? [];
   const common = { data, now: clock.now(), onOpen: open, onMenu: intents.projectMenu };

@@ -18,8 +18,7 @@ canonical Undo descriptors; ordinary field/status patches do not. Undo calls
 `TaskViewToolbar` and its filter/sort/group/column controls receive a controlled
 `TaskViewState`. URL configuration is normalized separately from named saved
 view DTOs; changing the current view does not persist a saved definition.
-`packages/domain` owns normalization, filter/sort/group/progress, data-only row
-models and column definitions. Due Today/Next 7 days overlap and source null
+`packages/domain` owns semantic query normalization, filter/sort/group/progress and data-only row models. Web `task-view.ts` owns column definitions, widths and personal presentation preferences. Due Today/Next 7 days overlap and source null
 ordering are preserved; equal sort values use the API's ascending ID tie-breaker.
 
 WU-09 extends scoped mock operations with createTask, title updateTask,
@@ -140,3 +139,8 @@ full form through TaskOverlayHost/AppShell. Fresh seeded open resets cancelled
 fields while busy/frozen submissions preserve original payload/recovery identity.
 My Tasks exposes List/Calendar; Workspace Tasks keeps List/Board/Table, with
 Workspace Calendar on its dedicated existing route. Event preview is read-only.
+
+
+FR-04 current ownership: `TaskList`, `TaskBoard` and `TaskTable` are controllers. List/Board own command, draft, drag and Undo lifecycle; Table composes its row controllers. Their `*View` modules render typed state and controller-provided row/card slots without a data/router/controller import. Row/card/cell views receive dates and typed patch/rename intents. `TaskPropertyGrid` and `Subtasks` receive today explicitly. `date-patch.ts` owns record endpoint clamping and independent draft inputs; Calendar/Timeline rescheduling remains in domain.
+
+`useTaskDataset` and `task-dataset-key` share one complete scope cache. List selects items; Board/Table consume coverage and summary. Overlay catalogue is enabled only for an open form or dependency editor; drawer fetches by ID. Cursor repetition and summary mismatch reject partial coverage. App notice/surface/motion are in `app/services`, outside Projects. Current tests: `pnpm frontend:check` and `node tests/frontend/controllers.mjs --output=test-results/<new-run>` after the mock build. The browser suite covers date consumers, lazy catalogue counts, unavailable notification tasks, read-only preference restore, delayed saved routes and app notice/Undo/focus.

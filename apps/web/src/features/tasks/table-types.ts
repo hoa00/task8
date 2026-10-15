@@ -1,6 +1,6 @@
 import type { BootstrapDto, TaskDto } from '@studio/contracts/api';
 import type { OverlayPoint } from '@studio/ui';
-import type { TaskViewState } from '@studio/domain';
+import type { TaskViewState } from './task-view.ts';
 import type { ListGroup, TaskListScope } from './list-types';
 
 export interface TaskTableModel {

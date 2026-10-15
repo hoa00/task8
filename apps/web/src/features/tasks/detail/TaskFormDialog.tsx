@@ -55,7 +55,7 @@ export function TaskFormDialog({
   defaults,
 }: TaskFormDialogProps) {
   useTranslation();
-  const { client } = useDataRuntime(),
+  const { client, clock } = useDataRuntime(),
     cache = useQueryClient(),
     titleRef = useRef<HTMLInputElement>(null),
     busy = useRef<Promise<void> | null>(null),
@@ -429,6 +429,7 @@ export function TaskFormDialog({
           />
         </div>
         <TaskPropertyGrid
+          today={clock.today()}
           form
           value={properties}
           data={data}

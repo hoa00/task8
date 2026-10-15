@@ -1,7 +1,7 @@
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { Outlet, Link, useLocation, useRouter } from '@tanstack/react-router';
-import { useLayoutEffect, useRef, type ReactNode } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { Icon } from '@studio/ui';
 import type { IconName } from '@studio/ui';
 import { links } from '../../app/navigation';
@@ -124,67 +124,6 @@ export function SettingsLayout() {
       <div key={`body:${path}`} ref={bodyRef} data-settings-body className="overflow-y-auto">
         <Outlet />
       </div>
-    </div>
-  );
-}
-export interface SectionHeadingProps {
-  title: string;
-  lead: string;
-}
-export function SectionHeading({ title, lead }: SectionHeadingProps) {
-  useTranslation();
-  return (
-    <>
-      <h1 className="mb-1 mt-0 text-xl font-semibold tracking-[-.015em]">
-        {typeof title === 'string' ? t(title) : title}
-      </h1>
-      <p className="mb-6 mt-0 text-secondary">{t(lead)}</p>
-    </>
-  );
-}
-export interface SettingsBlockProps {
-  title?: string;
-  children: ReactNode;
-  className?: string;
-  danger?: boolean;
-}
-export function SettingsBlock({ title, children, className = '', danger }: SettingsBlockProps) {
-  useTranslation();
-  return (
-    <div data-settings-block className={`mt-7 ${className}`}>
-      {title && (
-        <h2
-          className={`mb-1 mt-0 border-0 border-b border-solid border-border pb-2 text-body font-semibold ${danger ? 'text-red' : ''}`}
-        >
-          {typeof title === 'string' ? t(title) : title}
-        </h2>
-      )}
-      {children}
-    </div>
-  );
-}
-export interface SettingRowProps {
-  title: ReactNode;
-  description?: ReactNode;
-  children: ReactNode;
-  className?: string;
-}
-export function SettingRow({ title, description, children, className = '' }: SettingRowProps) {
-  useTranslation();
-  return (
-    <div
-      data-setting-row
-      className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-6 border-0 border-b border-solid border-divider py-[14px] source-mobile:grid-cols-[minmax(0,1fr)] ${className}`}
-    >
-      <div>
-        <div className="text-body font-medium">{typeof title === 'string' ? t(title) : title}</div>
-        {description && (
-          <div className="mt-[2px] text-sm text-secondary">
-            {typeof description === 'string' ? t(description) : description}
-          </div>
-        )}
-      </div>
-      <div className="flex items-center gap-2">{children}</div>
     </div>
   );
 }

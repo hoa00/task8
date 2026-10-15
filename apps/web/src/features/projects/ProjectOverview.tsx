@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useNavigate } from '@tanstack/react-router';
@@ -42,6 +43,7 @@ export function ProjectOverview() {
     { clock } = useDataRuntime(),
     intents = useWorkspaceIntents(),
     projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     navigate = useNavigate(),
     dataset = useTaskListDataset(workspaceId, TaskQuerySchema.parse({ projectId: project.id })),
     summary = useStudioQuery('getProjectSummary', { workspaceId, projectId }),
@@ -80,7 +82,7 @@ export function ProjectOverview() {
       body: { expectedVersion: task.version, completed: task.status !== 'done' },
     });
     if (result?.data.undo)
-      projects.notice(t('Completed {{name}}', { name: task.title }), result.data.undo);
+      projectsServices.notice(t('Completed {{name}}', { name: task.title }), result.data.undo);
   };
   const commonFeed = {
     onActorOpen: (id: string) => {

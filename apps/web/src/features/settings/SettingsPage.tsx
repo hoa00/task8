@@ -28,7 +28,7 @@ import type {
 import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace-context';
 import { useStudioQuery } from '../../data/queries';
 import { useSettingsCommands } from './useSettingsCommands';
-import { SettingRow, SettingsBlock, SectionHeading } from './SettingsLayout';
+import { SettingRow, SettingsBlock, SectionHeading } from './SettingsComponents';
 import { Appearance } from './Appearance';
 import { modLabel, shortcutGroups } from '../search/commands';
 import { MemberIdentity } from '../people/MemberIdentity';

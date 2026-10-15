@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
@@ -25,7 +26,7 @@ import {
 } from '@studio/ui';
 import { EntityIdSchema } from '@studio/contracts/api';
 import type { SavedViewDto } from '@studio/contracts/api';
-import type { TaskViewState } from '@studio/domain';
+import type { TaskViewState } from '../tasks/task-view.ts';
 import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace-context';
 import { ProjectContext } from '../../app/shell/project-context';
 import { AccessDeniedBoundary, NotFoundBoundary } from '../../app/shell/Boundaries';
@@ -33,7 +34,7 @@ import { useStudioQuery } from '../../data/queries';
 import { useProjectCommands } from './useProjectCommands';
 import { decodeCurrentTaskView } from '../tasks/current-view';
 import { links } from '../../app/navigation';
-import { useProjectMotion } from './project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { ProjectHeader } from './ProjectHeader';
 import { projectTabItems } from './tabs';
 import {
@@ -42,7 +43,6 @@ import {
   projectViewStorageKey,
   readProjectView,
 } from './project-view';
-import { useProjectIntents } from './project-intents';
 export function ProjectLayout() {
   useTranslation();
   const data = useWorkspaceBootstrap().data!.data,
@@ -77,7 +77,7 @@ function AllowedProjectLayout({ projectId }: AllowedProjectLayoutProps) {
     params = useParams({ strict: false }),
     savedViews = useStudioQuery('listSavedViews', { workspaceId, projectId }),
     commands = useProjectCommands(workspaceId),
-    intents = useProjectIntents(),
+    intents = useAppServices(),
     [personal, setPersonal] = useState<Record<string, TaskViewState>>({}),
     [dialog, setDialog] = useState<'save' | 'rename' | null>(null),
     [name, setName] = useState(''),
@@ -121,11 +121,11 @@ function AllowedProjectLayout({ projectId }: AllowedProjectLayoutProps) {
   const fixedView =
     personal[projectViewKey(projectId)] ??
     readProjectView(workspaceId, data.currentMember.id, projectId);
-  const { hostRef, onAnimationEnd } = useProjectMotion(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion(
     route.pathname,
     `${JSON.stringify(item)}/${JSON.stringify(savedViews.data?.data)}/${route.searchStr}`,
     'project',
-    `${dialog ?? ''}/${!!menu}/${intents.overlayState}`,
+    `${dialog ?? ''}/${!!menu}/${intents.surfaceRevision}`,
   );
   useLayoutEffect(() => {
     if (tabsRef.current) tabsRef.current.scrollLeft = 0;

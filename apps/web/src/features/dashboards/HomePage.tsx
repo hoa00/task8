@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t, locale } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useState } from 'react';
@@ -15,7 +16,8 @@ import {
   ToastViewport,
 } from '@studio/ui';
 import type { ToastMessage } from '@studio/ui';
-import { homeDeadlines, homeTaskTabs, normalizeTaskView } from '@studio/domain';
+import { homeDeadlines, homeTaskTabs } from '@studio/domain';
+import { normalizeTaskView } from '../tasks/task-view.ts';
 import type { HomeTaskTab } from '@studio/domain';
 import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace-context';
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
@@ -30,7 +32,7 @@ import { ActivityFeed } from '../activity/ActivityFeed';
 import { usePeopleIntents } from '../people/people-intents';
 import { MemberIdentity } from '../people/MemberIdentity';
 import { useProjectIntents } from '../projects/project-intents';
-import { useProjectMotion } from '../projects/project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { ProjectProgressTable } from './ProjectProgressTable';
 import { StatGroup, StatItem } from './metrics';
 import './dashboards.css';
@@ -44,6 +46,7 @@ export function HomePage() {
     people = usePeopleIntents(),
     intents = useWorkspaceIntents(),
     projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     navigate = useNavigate(),
     route = useLocation(),
     commands = useTaskListCommands(workspaceId),
@@ -52,18 +55,18 @@ export function HomePage() {
   const dataset = useTaskListDataset(workspaceId, normalizeTaskView().query),
     home = result.data?.data,
     stats = overview.data?.data.taskSummary,
-    { hostRef, onAnimationEnd } = useProjectMotion(
+    { hostRef, onAnimationEnd } = useSurfaceMotion(
       route.pathname,
       `${JSON.stringify(home)}/${JSON.stringify(stats)}/${JSON.stringify(dataset.data)}/${tab}`,
       'page',
-      projects.overlayState,
+      projectsServices.surfaceRevision,
     );
   const openTask = (id: string) => {
-      projects.projectSurfaceOpened();
+      projectsServices.surfaceOpened();
       intents.openTask(id);
     },
     newTask = () => {
-      projects.projectSurfaceOpened();
+      projectsServices.surfaceOpened();
       intents.openTaskForm();
     };
   const go = (page: Parameters<typeof links.workspace>[1]) => {

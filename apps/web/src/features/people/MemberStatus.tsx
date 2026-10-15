@@ -1,7 +1,7 @@
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { Badge, ColorDot } from '@studio/ui';
-import type { DirectoryMember } from '../../data/people-demo';
+import type { DirectoryMember } from './types';
 export interface MemberStatusProps {
   status: DirectoryMember['status'];
   profile?: boolean;

@@ -1,8 +1,9 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { Alert, Button, Icon, Panel, PanelBody, PanelHeader, StackedBar } from '@studio/ui';
-import { normalizeTaskView } from '@studio/domain';
+import { normalizeTaskView } from '../tasks/task-view.ts';
 import type { OverviewDto, TaskDto } from '@studio/contracts/api';
 import { taskStatuses } from '@studio/contracts/api';
 import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace-context';
@@ -14,8 +15,8 @@ import { TaskStatusIcon } from '../tasks/atoms';
 import { formatTaskDate } from '../tasks/date-display';
 import { MemberIdentity } from '../people/MemberIdentity';
 import { useProjectIntents } from '../projects/project-intents';
-import { useProjectMotion } from '../projects/project-motion';
-import { useCompleteMembers } from '../projects/catalogue';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
+import { useCompleteMembers } from '../people/catalogue';
 import { ProjectProgressTable } from './ProjectProgressTable';
 import { StatGroup, StatItem } from './metrics';
 import './dashboards.css';
@@ -124,14 +125,15 @@ export function WorkspaceOverview() {
     dataset = useTaskListDataset(workspaceId, normalizeTaskView().query),
     members = useCompleteMembers(workspaceId),
     projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     route = useLocation(),
     navigate = useNavigate(),
     overview = result.data?.data,
-    { hostRef, onAnimationEnd } = useProjectMotion(
+    { hostRef, onAnimationEnd } = useSurfaceMotion(
       route.pathname,
       `${JSON.stringify(overview)}/${JSON.stringify(dataset.data)}/${JSON.stringify(members.data)}`,
       'page',
-      projects.overlayState,
+      projectsServices.surfaceRevision,
     );
   if (result.error || dataset.error || members.error)
     return <Alert tone="danger">{(result.error ?? dataset.error ?? members.error)!.message}</Alert>;

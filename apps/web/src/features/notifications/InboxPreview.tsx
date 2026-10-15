@@ -1,3 +1,5 @@
+import { useAppServices } from '../../app/services/app-services';
+import { taskFieldPatch } from '../tasks/date-patch';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useEffect, useState } from 'react';
@@ -11,7 +13,6 @@ import { useTaskListCommands } from '../tasks/useTaskListCommands';
 import { useTaskFieldCommands } from '../tasks/useTaskFieldCommands';
 import { AssigneeField, TaskDateField, TaskPriorityField, TaskStatusField } from '../tasks/fields';
 import type { TaskFieldValues } from '../tasks/field-types';
-import { useProjectIntents } from '../projects/project-intents';
 import { notificationProject } from './presentation';
 
 export interface InboxPreviewProps {
@@ -69,7 +70,7 @@ function TaskInboxPreview({
     [field, setField] = useState<keyof TaskFieldValues | null>(null),
     fields = useTaskFieldCommands(task),
     commands = useTaskListCommands(task.workspaceId),
-    notices = useProjectIntents();
+    notices = useAppServices();
   const members =
     useStudioQuery('listMembers', { workspaceId: task.workspaceId, query: { limit: 200 } }).data
       ?.data.items ?? data.members;
@@ -83,14 +84,7 @@ function TaskInboxPreview({
     return {
       value: task[key],
       onChange: (value: TaskFieldValues[K]) =>
-        fields.patch(
-          key === 'dueDate' &&
-            typeof value === 'string' &&
-            task.startDate &&
-            String(task.startDate) > String(value)
-            ? { dueDate: value as TaskDto['dueDate'], startDate: value as TaskDto['startDate'] }
-            : { [key]: value },
-        ),
+        fields.patch(taskFieldPatch(task, key, value, 'record')),
       open: field === key,
       onOpenChange: (open: boolean) => setField(open ? key : null),
       disabled: fields.pending,

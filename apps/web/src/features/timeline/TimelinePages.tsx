@@ -8,16 +8,17 @@ import type { ToastMessage } from '@studio/ui';
 import {
   addDateDays,
   buildTimelineGeometry,
-  normalizeTaskView,
   rescheduleDateOnly,
   timelineRange,
 } from '@studio/domain';
-import type { TaskViewState, TimelineGrouping, TimelineZoom, WeekStart } from '@studio/domain';
+import { normalizeTaskView } from '../tasks/task-view.ts';
+import type { TimelineGrouping, TimelineZoom, WeekStart } from '@studio/domain';
+import type { TaskViewState } from '../tasks/task-view.ts';
 import type { DateOnly, TaskQuery } from '@studio/contracts/api';
 import { useWorkspaceId } from '../../app/shell/workspace-context';
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
 import { useDataRuntime } from '../../data/context';
-import { useProjectMotion } from '../projects/project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { useStudioQuery } from '../../data/queries';
 import { queryKeys } from '../../data/query-keys';
 import { invalidateOperation } from '../../data/invalidation';
@@ -196,7 +197,7 @@ export function TimelinePage({
       initialGrouping ?? (props.scope.kind === 'workspace' ? 'project' : 'status'),
     ),
     [todayRequest, setTodayRequest] = useState(0);
-  const { hostRef, onAnimationEnd } = useProjectMotion<HTMLElement>(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion<HTMLElement>(
     `${props.workspaceId}/${props.scope.kind}`,
     `${JSON.stringify(controlledView ?? localView)}/${JSON.stringify(bootstrap.data)}`,
     'page',

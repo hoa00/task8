@@ -19,7 +19,7 @@ import {
 } from '@studio/ui';
 import type { OverlayPoint, ToastMessage } from '@studio/ui';
 import type { BootstrapDto, FileDto, TaskDto, UndoDescriptorDto } from '@studio/contracts/api';
-import { normalizeTaskView } from '@studio/domain';
+import { normalizeTaskView } from '../task-view.ts';
 import { links } from '../../../app/navigation';
 import { useDataRuntime } from '../../../data/context';
 import { studioQueryOptions, useStudioQuery } from '../../../data/queries';
@@ -30,7 +30,7 @@ import { useTaskCommentDraftStore } from '../../comments/draft-context';
 import type { AttachmentUpload, TaskDrawerDraft } from './TaskDrawer';
 import { TaskFormDialog } from './TaskFormDialog';
 import { FileIntentContext } from '../../files/file-intents';
-import { FilePreviewDialog } from '../../files/FileFoundation';
+import { FilePreviewDialog } from '../../files/FilePreviewDialog';
 import { useTaskListDataset } from '../useTaskListDataset';
 import { useTaskListCommands } from '../useTaskListCommands';
 import type { TaskFieldValues, TaskFormDefaults } from '../field-types';
@@ -87,8 +87,7 @@ export function TaskOverlayHost({
     workspaceId = data.workspace.id,
     { client } = useDataRuntime(),
     cache = useQueryClient(),
-    commands = useTaskListCommands(workspaceId),
-    dataset = useTaskListDataset(workspaceId, normalizeTaskView({ query: { limit: 200 } }).query);
+    commands = useTaskListCommands(workspaceId);
   const [view, setView] = useState<{ taskId: string | undefined; full: boolean }>({
       taskId,
       full: data.preferences.openTasks === 'full',
@@ -103,6 +102,11 @@ export function TaskOverlayHost({
   const setFull = (full: boolean) => setView({ taskId, full });
   const drafts = useRef(new Map<string, TaskDrawerDraft>()),
     activeJobs = useRef(new Set<string>());
+  const dataset = useTaskListDataset(
+    workspaceId,
+    normalizeTaskView({ query: { limit: 200 } }).query,
+    form.open || openField === 'dependencyIds',
+  );
   const tasks = dataset.data ?? [];
   function toast(
     message: string,

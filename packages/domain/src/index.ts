@@ -9,3 +9,4 @@ export type { NormalizedDescription } from './description.ts';
 export { sourceFileType, displayFileSize } from './files.ts';
 export { normalizeTaskQuery, normalizeTaskEvaluation } from './task-query.ts';
 export type { TaskEvaluation } from './task-query.ts';
+export { validateInvite } from './invitation.ts';

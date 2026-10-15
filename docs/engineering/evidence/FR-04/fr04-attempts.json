@@ -1,0 +1,17 @@
+{
+  "cancelled": [
+    {
+      "command": "node tests/frontend/controllers.mjs --output=test-results/fr04-browser-third",
+      "exit": 130,
+      "reason": "Harness awaited held Router navigation; cancelled and changed to observe pending route before releasing definition."
+    }
+  ],
+  "killed": [
+    {
+      "command": "node tests/frontend/smoke.mjs --baseline=test-results/fr01-baseline/dist --output=test-results/fr04-target-comparison",
+      "exit": 137,
+      "reason": "Concurrent Chromium processes exceeded available memory; final comparison ran sequentially and passed."
+    }
+  ],
+  "regression": "Initial URL suite caught loading wrapper replacement; stable main wrapper now preserves route DOM and marks coverage pending."
+}

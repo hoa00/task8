@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
@@ -22,7 +23,6 @@ import type { BootstrapDto } from '@studio/contracts/api';
 import { useDataRuntime } from '../../data/context';
 import type { PeopleDemoCommand } from '../../data/people-demo';
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
-import { useProjectIntents } from '../projects/project-intents';
 import { PeopleIntentContext } from './people-intents';
 import { usePeopleDirectory, canAdministerMember } from './people-query';
 import { InviteDialog } from './InviteDialog';
@@ -38,7 +38,7 @@ export function PeopleOverlayHost({ data, children }: PeopleOverlayHostProps) {
     cache = useQueryClient(),
     navigate = useNavigate(),
     tasks = useWorkspaceIntents(),
-    projects = useProjectIntents(),
+    projects = useAppServices(),
     opener = useRef<HTMLElement | null>(null),
     cancel = useRef<HTMLButtonElement>(null),
     [invite, setInvite] = useState(false),
@@ -62,7 +62,7 @@ export function PeopleOverlayHost({ data, children }: PeopleOverlayHostProps) {
         ...rows,
       ]);
   const prepare = () => {
-    projects.projectSurfaceOpened();
+    projects.surfaceOpened();
     opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setError('');
   };

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chromium, expect } from '@playwright/test';
-import { normalizeTaskView } from '../../packages/domain/src/index.ts';
+import { normalizeTaskView } from '../../apps/web/src/features/tasks/task-view.ts';
 import { newPage } from '../visual/reference/environment.mjs';
 import { claimOutput } from './output.mjs';
 import { startBrowserServer } from './browser-server.mjs';

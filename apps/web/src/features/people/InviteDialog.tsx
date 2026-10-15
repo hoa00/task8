@@ -15,8 +15,13 @@ import {
   Textarea,
 } from '@studio/ui';
 import type { BootstrapDto } from '@studio/contracts/api';
-import type { PeopleDemoCommand } from '../../data/people-demo';
-import { validateInvite } from '../../data/people-demo';
+interface InviteIntent {
+  kind: 'invite';
+  emails: string;
+  role: 'Admin' | 'Member' | 'Guest';
+  teamId: string | null;
+}
+import { validateInvite } from './invite-validation';
 export interface InviteDialogProps {
   data: BootstrapDto;
   enabled: boolean;
@@ -24,7 +29,7 @@ export interface InviteDialogProps {
   pending: boolean;
   returnFocus: RefObject<HTMLElement | null>;
   onClose: () => void;
-  onSubmit: (command: Extract<PeopleDemoCommand, { kind: 'invite' }>) => Promise<boolean>;
+  onSubmit: (command: InviteIntent) => Promise<boolean>;
   onCopy: () => void;
 }
 export function InviteDialog({

@@ -48,6 +48,8 @@ export function inspectFrontend(edges, policy) {
           /^(?:@studio\/ui|@tanstack\/react-router|react-dom)(?:\/|$)/.test(specifier))
       )
         rules.push('data-presentation');
+      if (views.has(from) && !edge.typeOnly && policy.roles[to] === 'controller')
+        rules.push('view-controller');
       if (
         views.has(from) &&
         (to?.startsWith('apps/web/src/data/') ||

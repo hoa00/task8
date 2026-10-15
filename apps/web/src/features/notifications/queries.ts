@@ -40,12 +40,12 @@ export function useNotifications(workspaceId: string) {
       studioQueryOptions(client, 'getTask', { workspaceId, taskId }),
     ),
   });
-  const error = query.error ?? tasks.find((row) => row.error)?.error;
+  const error = query.error;
   return {
     query,
     records: query.data?.records ?? [],
-    tasks: tasks.flatMap((row) => (row.data ? [row.data.data.task] : [])),
-    pending: query.isPending || tasks.some((row) => row.isPending),
+    tasks: tasks.flatMap((row) => (row.data && !row.error ? [row.data.data.task] : [])),
+    pending: query.isPending,
     error,
     retry: () => {
       void query.refetch();

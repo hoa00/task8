@@ -24,9 +24,9 @@ import {
   AttachmentCard,
   Dropzone,
   FilePreviewArt,
-  FilePreviewDialog,
   UploadProgress,
 } from './features/files/FileFoundation';
+import { FilePreviewDialog } from './features/files/FilePreviewDialog';
 import './styles/app.css';
 applyRootPreferences(readThemePreferences());
 const params = new URLSearchParams(location.search),

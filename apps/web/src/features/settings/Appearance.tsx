@@ -3,7 +3,7 @@ import { useTranslation } from '../../i18n/useTranslation';
 import { Icon, SegmentedControl, Select } from '@studio/ui';
 import type { CSSProperties } from 'react';
 import type { MemberPreferencesDto, UpdatePreferencesInput } from '@studio/contracts/api';
-import { SettingRow, SettingsBlock } from './SettingsLayout';
+import { SettingRow, SettingsBlock } from './SettingsComponents';
 const accentColors = [
   ['indigo', '#4B5BD6'],
   ['blue', '#2F6CD4'],

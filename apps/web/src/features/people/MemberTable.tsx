@@ -3,7 +3,7 @@ import { useTranslation } from '../../i18n/useTranslation';
 import { EmptyState, Icon, IconButton, Panel } from '@studio/ui';
 import type { IconName } from '@studio/ui';
 import type { BootstrapDto, TaskDto } from '@studio/contracts/api';
-import type { DirectoryMember } from '../../data/people-demo';
+import type { DirectoryMember } from './types';
 import { MemberIdentity } from './MemberIdentity';
 import { MemberStatus } from './MemberStatus';
 import { RolePicker } from './RolePicker';

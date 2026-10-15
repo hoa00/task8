@@ -6,14 +6,16 @@ import { useQuery } from '@tanstack/react-query';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { Alert, Button, Icon, ToastViewport } from '@studio/ui';
 import type { ToastMessage } from '@studio/ui';
-import { buildCalendarCells, normalizeTaskView, rescheduleDateOnly } from '@studio/domain';
-import type { CalendarMode, TaskViewState, WeekStart } from '@studio/domain';
+import { buildCalendarCells, rescheduleDateOnly } from '@studio/domain';
+import { normalizeTaskView } from '../tasks/task-view.ts';
+import type { CalendarMode, WeekStart } from '@studio/domain';
+import type { TaskViewState } from '../tasks/task-view.ts';
 import type { DateOnly, TaskQuery } from '@studio/contracts/api';
 import { useWorkspaceId } from '../../app/shell/workspace-context';
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
 import { links } from '../../app/navigation';
 import { useDataRuntime } from '../../data/context';
-import { useProjectMotion } from '../projects/project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { useStudioQuery } from '../../data/queries';
 import { queryKeys } from '../../data/query-keys';
 import { loadTaskViewDataset } from '../tasks/loadTaskViewDataset';
@@ -216,7 +218,7 @@ export function CalendarPage({
   useTranslation();
   const bootstrap = useStudioQuery('getBootstrap', { workspaceId: props.workspaceId }),
     [localView, setView] = useState(initialView ?? normalizeTaskView());
-  const { hostRef, onAnimationEnd } = useProjectMotion<HTMLElement>(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion<HTMLElement>(
     `${props.workspaceId}/${props.scope.kind}/${'projectId' in props.scope ? props.scope.projectId : ''}`,
     `${JSON.stringify(controlledView ?? localView)}/${JSON.stringify(bootstrap.data)}`,
     'page',

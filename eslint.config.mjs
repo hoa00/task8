@@ -26,6 +26,7 @@ export default tseslint.config(
     files: [
       'tests/frontend/smoke.mjs',
       'tests/frontend/url-scope.mjs',
+      'tests/frontend/controllers.mjs',
       'tests/i18n/**/*.mjs',
       'tests/visual/reference/**/*.mjs',
       'tests/visual/foundation/**/*.mjs',

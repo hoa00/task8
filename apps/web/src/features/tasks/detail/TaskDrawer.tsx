@@ -321,6 +321,7 @@ export function TaskDetailsBody({
     >
       {subtask ? (
         <SubtaskDetail
+          today={clock.today()}
           {...(draft.subtaskDrafts?.[subtask.id]
             ? { draft: draft.subtaskDrafts[subtask.id]! }
             : {})}
@@ -392,6 +393,7 @@ export function TaskDetailsBody({
             }}
           />
           <TaskPropertyGrid
+            today={clock.today()}
             value={{ ...task, ...commands.attempt }}
             data={data}
             tasks={tasks}
@@ -426,6 +428,7 @@ export function TaskDetailsBody({
                 onCommit={commitDescription}
               />
               <SubtaskList
+                today={clock.today()}
                 task={task}
                 subtasks={detail.subtasks}
                 data={data}

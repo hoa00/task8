@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useLocation, useNavigate } from '@tanstack/react-router';
@@ -6,8 +7,7 @@ import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace
 import { useStudioQuery } from '../../data/queries';
 import { useTeamIntents } from './team-intents';
 import { TeamGrid } from './TeamGrid';
-import { useProjectMotion } from '../projects/project-motion';
-import { useProjectIntents } from '../projects/project-intents';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 export interface TeamDirectoryProps {
   membersTab?: boolean;
 }
@@ -79,12 +79,12 @@ export function TeamsPage() {
   const data = useWorkspaceBootstrap(),
     intents = useTeamIntents(),
     location = useLocation(),
-    projects = useProjectIntents(),
-    { hostRef, onAnimationEnd } = useProjectMotion(
+    projects = useAppServices(),
+    { hostRef, onAnimationEnd } = useSurfaceMotion(
       location.pathname,
       String(data.dataUpdatedAt),
       'page',
-      projects.overlayState,
+      projects.surfaceRevision,
     );
   return (
     <div

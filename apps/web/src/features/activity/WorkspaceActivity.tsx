@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useQuery } from '@tanstack/react-query';
@@ -12,8 +13,7 @@ import { useDataRuntime } from '../../data/context';
 import { links, validateRouteSearch } from '../../app/navigation';
 import { queryKeys } from '../../data/query-keys';
 import { loadTaskViewDataset } from '../tasks/loadTaskViewDataset';
-import { useProjectMotion } from '../projects/project-motion';
-import { useProjectIntents } from '../projects/project-intents';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { matchesActivity } from './format';
 import { ActivityFeed } from './ActivityFeed';
 export type ActivityFilter = 'all' | 'status' | 'comments' | 'projects';
@@ -24,14 +24,14 @@ export function WorkspaceActivity() {
     data = useWorkspaceBootstrap().data!.data,
     { client, clock } = useDataRuntime(),
     { openTask } = useWorkspaceIntents(),
-    projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     navigate = useNavigate(),
     location = useLocation();
   const [filter, setFilter] = useState<ActivityFilter>('all'),
     [actor, setActor] = useState('all');
   const scope = validateRouteSearch(location.search).activityProjectId ?? 'all',
     setScope = (id: string) => {
-      projects.projectSurfaceOpened();
+      projectsServices.surfaceOpened();
       void navigate({
         to: location.pathname,
         search: (previous) => {
@@ -88,11 +88,11 @@ export function WorkspaceActivity() {
       return { records: [...records.values()], tasks };
     },
   });
-  const { hostRef, onAnimationEnd } = useProjectMotion(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion(
       location.pathname,
       `${filter}/${actor}/${scope}/${result.dataUpdatedAt}`,
       'page',
-      projects.overlayState,
+      projectsServices.surfaceRevision,
     ),
     records = result.data?.records.filter((row) => matchesActivity(row, filter)) ?? [];
   return (
@@ -126,7 +126,7 @@ export function WorkspaceActivity() {
             { value: 'projects', label: t('Projects') },
           ]}
           onValueChange={(value) => {
-            projects.projectSurfaceOpened();
+            projectsServices.surfaceOpened();
             setFilter(value as ActivityFilter);
           }}
         />
@@ -139,7 +139,7 @@ export function WorkspaceActivity() {
             ...data.members.map((member) => ({ value: member.id, label: member.name })),
           ]}
           onValueChange={(value) => {
-            projects.projectSurfaceOpened();
+            projectsServices.surfaceOpened();
             setActor(value);
           }}
         />
@@ -173,7 +173,7 @@ export function WorkspaceActivity() {
           lined
           showProject
           onTaskOpen={(id) => {
-            projects.projectSurfaceOpened();
+            projectsServices.surfaceOpened();
             openTask(id);
           }}
           onProjectOpen={(id) => {

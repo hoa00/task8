@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useLayoutEffect, useRef } from 'react';
@@ -6,8 +7,7 @@ import { Alert, Badge, Button, EmptyState, Icon, Input, Panel, Tabs } from '@stu
 import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace-context';
 import { validateRouteSearch } from '../../app/navigation';
 import { useDataRuntime } from '../../data/context';
-import { useProjectMotion } from '../projects/project-motion';
-import { useProjectIntents } from '../projects/project-intents';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { searchCategories, searchLabel, searchResultId, useWorkspaceSearch } from './search-query';
 import type { SearchCategory } from './search-query';
 import { useRecentSearches } from './recent-searches';
@@ -21,7 +21,7 @@ export function SearchPage() {
     location = useLocation(),
     navigate = useNavigate(),
     intents = useSearchIntents(),
-    projectIntents = useProjectIntents();
+    projectIntents = useAppServices();
   const route = validateRouteSearch(location.search),
     q = route.q ?? '',
     category = route.category ?? 'all',
@@ -33,7 +33,7 @@ export function SearchPage() {
   }, [q, category]);
   const consumeSearchAction = () => {
     if (tabsRef.current) tabsRef.current.scrollLeft = 0;
-    projectIntents.projectSurfaceOpened();
+    projectIntents.surfaceOpened();
   };
   const change = (text: string) => {
     void navigate({
@@ -42,11 +42,11 @@ export function SearchPage() {
       replace: true,
     });
   };
-  const { hostRef, onAnimationEnd } = useProjectMotion(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion(
     location.pathname,
     `${q}/${category}/${result.dataUpdatedAt}`,
     'page',
-    projectIntents.overlayState,
+    projectIntents.surfaceRevision,
   );
   const totals = result.data?.totals ?? { tasks: 0, projects: 0, people: 0, files: 0, comments: 0 },
     total = Object.values(totals).reduce((a, b) => a + b, 0);

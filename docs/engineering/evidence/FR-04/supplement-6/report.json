@@ -1,0 +1,48 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "settings-no-catalogue-home-one-complete-loader",
+      "pass": true
+    },
+    {
+      "id": "drawer-by-id-catalogue-only-for-dependency-editor",
+      "pass": true
+    },
+    {
+      "id": "notifications-linked-task-forbidden",
+      "pass": true
+    },
+    {
+      "id": "notifications-linked-task-not_found",
+      "pass": true
+    },
+    {
+      "id": "notifications-linked-task-internal_error",
+      "pass": true
+    },
+    {
+      "id": "project-render-is-read-only-and-late-saved-view-keeps-url-preference",
+      "pass": false,
+      "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('Loading view…', { exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"to.be.visible\" with timeout 5000ms\n  - waiting for getByText('Loading view…', { exact: true })\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/controllers.mjs:137:67\n    at async probe (file:///workspace/task8/tests/frontend/controllers.mjs:26:11)\n    at async file:///workspace/task8/tests/frontend/controllers.mjs:97:3"
+    },
+    {
+      "id": "date-policy-list",
+      "pass": true
+    },
+    {
+      "id": "date-policy-table",
+      "pass": true
+    },
+    {
+      "id": "date-policy-drawer",
+      "pass": true
+    },
+    {
+      "id": "draft-date-policy-preserves-independent-inputs",
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "browser": "145.0.7632.6"
+}

@@ -42,7 +42,7 @@ import type {
 } from '../../data/security-billing-demo';
 import { links } from '../../app/navigation';
 import { formatAbsoluteDate } from '../tasks/date-display';
-import { SectionHeading, SettingRow, SettingsBlock } from './SettingsLayout';
+import { SectionHeading, SettingRow, SettingsBlock } from './SettingsComponents';
 import type { SecurityBillingSection } from './security-billing-sections';
 
 const headings: Record<SecurityBillingSection, [string, string]> = {

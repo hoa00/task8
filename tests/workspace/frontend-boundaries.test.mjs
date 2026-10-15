@@ -21,6 +21,7 @@ const edge = (from, to, symbols = ['Thing']) => ({
   typeOnly: false,
 });
 const policy = {
+  roles: { 'apps/web/src/features/tasks/Row.tsx': 'view' },
   views: ['apps/web/src/features/tasks/Row.tsx'],
   publicSurfaces: [{ path: 'apps/web/src/features/people/index.ts', symbols: ['MemberIdentity'] }],
 };
@@ -182,4 +183,11 @@ test('mock owners cannot reopen compatibility imports or make primitives depend 
     )[0].rule,
     'mock-primitive-direction',
   );
+});
+
+test('controlled views cannot import a component controller as an indirect data shortcut', () => {
+  const p = { ...policy, roles: { ...policy.roles, 'apps/web/src/features/tasks/Rows.tsx': 'controller' } };
+  const link = edge('apps/web/src/features/tasks/Row.tsx', 'apps/web/src/features/tasks/Rows.tsx');
+  assert.equal(inspectFrontend([link], p)[0].rule, 'view-controller');
+  assert.deepEqual(inspectFrontend([{ ...link, typeOnly: true }], p), []);
 });

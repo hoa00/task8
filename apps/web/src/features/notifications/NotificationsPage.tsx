@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { Fragment, useState } from 'react';
@@ -17,8 +18,7 @@ import { useWorkspaceBootstrap, useWorkspaceId } from '../../app/shell/workspace
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
 import { useDataRuntime } from '../../data/context';
 import { links } from '../../app/navigation';
-import { useProjectIntents } from '../projects/project-intents';
-import { useProjectMotion } from '../projects/project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { activityDay } from '../activity/format';
 import { ago } from '../tasks/date-display';
 import {
@@ -39,7 +39,7 @@ export function NotificationsPage() {
     model = useNotifications(workspaceId),
     commands = useNotificationCommands(workspaceId),
     { clock } = useDataRuntime(),
-    intents = useProjectIntents(),
+    intents = useAppServices(),
     { openTask } = useWorkspaceIntents(),
     navigate = useNavigate(),
     location = useLocation(),
@@ -51,21 +51,21 @@ export function NotificationsPage() {
     const day = activityDay(row.createdAt, clock.today());
     groups.set(day, [...(groups.get(day) ?? []), row]);
   });
-  const { hostRef, onAnimationEnd } = useProjectMotion(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion(
     location.pathname,
     `${filter}/${model.query.dataUpdatedAt}`,
     'page',
-    intents.overlayState,
+    intents.surfaceRevision,
   );
   async function open(notification: NotificationDto) {
-    intents.projectSurfaceOpened();
+    intents.surfaceOpened();
     if (!notification.readAt && !(await commands.read(notification, true))) return;
     if (notification.taskId) openTask(notification.taskId);
     else if (notification.projectId)
       void navigate({ to: links.project(workspaceId, notification.projectId, 'overview') });
   }
   async function markAll() {
-    intents.projectSurfaceOpened();
+    intents.surfaceOpened();
     if ((await commands.readAll()) && unreadCount) intents.notice("You're all caught up.");
   }
   return (
@@ -102,7 +102,7 @@ export function NotificationsPage() {
               { value: 'unread', label: t('Unread') },
             ]}
             onValueChange={(value) => {
-              intents.projectSurfaceOpened();
+              intents.surfaceOpened();
               setFilter(value);
             }}
           />
@@ -192,7 +192,7 @@ export function NotificationsPage() {
                       layout="notifications"
                       pending={commands.pending}
                       onToggle={() => {
-                        intents.projectSurfaceOpened();
+                        intents.surfaceOpened();
                         void commands.read(notification, !notification.readAt);
                       }}
                     />
@@ -213,7 +213,7 @@ export function NotificationsPage() {
                 variant="secondary"
                 size="sm"
                 onClick={() => {
-                  intents.projectSurfaceOpened();
+                  intents.surfaceOpened();
                   setFilter('all');
                 }}
               >

@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useState } from 'react';
@@ -32,10 +33,10 @@ import { canAdministerMember, usePeopleDirectory } from '../people/people-query'
 import { usePeopleIntents } from '../people/people-intents';
 import { TeamGrid } from '../teams/TeamGrid';
 import { ProjectIcon } from '../projects/ProjectComponents';
-import { loadProjectCatalogue } from '../projects/catalogue';
+import { loadProjectCatalogue } from '../projects/loadProjectCatalogue';
 import { useProjectCommands } from '../projects/useProjectCommands';
 import { useProjectIntents } from '../projects/project-intents';
-import { SectionHeading, SettingRow, SettingsBlock } from './SettingsLayout';
+import { SectionHeading, SettingRow, SettingsBlock } from './SettingsComponents';
 import { useSettingsCommands } from './useSettingsCommands';
 import '../people/people.css';
 
@@ -209,6 +210,7 @@ function SettingsProjects({ data }: { data: BootstrapDto }) {
     { client } = useDataRuntime(),
     navigate = useNavigate(),
     intents = useProjectIntents(),
+    intentsServices = useAppServices(),
     commands = useProjectCommands(workspaceId),
     settings = useSettingsCommands(),
     preferences = useStudioQuery('getPreferences', { workspaceId }),
@@ -313,7 +315,7 @@ function SettingsProjects({ data }: { data: BootstrapDto }) {
                             body: { expectedVersion: item.project.version },
                           });
                           if (result)
-                            intents.notice(
+                            intentsServices.notice(
                               `Restored ${item.project.name}`,
                               result.data.undo ?? undefined,
                             );

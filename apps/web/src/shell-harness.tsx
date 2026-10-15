@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider } from '@tanstack/react-router';
 import { EntityIdSchema } from '@studio/contracts/api';
 import { createMockClient } from './data/adapters/mock';
-import { StudioTransportError } from './data/errors';
+import { StudioTransportError, StudioApiError } from './data/errors';
 import { createStudioClient } from './data/operations';
 import { createEmptyDataset, fixtureClock } from './data/mock/seed';
 import { readHome, readOverview } from './data/mock/dashboards';
@@ -51,7 +51,21 @@ let delayOld = false,
   aborted = false;
 let bootstrapScenario: 'ready' | 'loading' | 'error' = 'ready',
   releaseBootstrap: (() => void) | undefined;
+let holdSavedViews = false;
+const savedViewWaiters: (() => void)[] = [];
+const requests: { id: string; workspaceId: unknown }[] = [];
+let linkedTaskFailure: {
+  taskId: string;
+  code: 'FORBIDDEN' | 'NOT_FOUND' | 'INTERNAL_ERROR';
+} | null = null;
 const client = createStudioClient(async (id, input, options) => {
+  requests.push({ id, workspaceId: input.workspaceId });
+  if (id === 'listSavedViews' && holdSavedViews)
+    await new Promise<void>((resolve) => savedViewWaiters.push(resolve));
+  if (id === 'getTask' && linkedTaskFailure && linkedTaskFailure.taskId === input.taskId)
+    throw new StudioApiError({
+      error: { code: linkedTaskFailure.code, message: 'QA linked task unavailable' },
+    });
   if (id === 'createTask' && holdCreate) {
     holdCreate = false;
     await new Promise<void>((resolve) => {
@@ -95,6 +109,32 @@ const client = createStudioClient(async (id, input, options) => {
 });
 const router = createStudioRouter({ runtime: { client, clock: fixtureClock }, queryClient });
 const controls = {
+  setLocale: async (lang: 'vi' | 'en') => {
+    await client.api.updatePreferences({ workspaceId: workspaceA, body: { lang } });
+    queryClient.setQueryData(
+      studioQueryOptions(client, 'getBootstrap', { workspaceId: workspaceA }).queryKey,
+      await client.api.getBootstrap({ workspaceId: workspaceA }),
+    );
+  },
+  holdSavedViews: () => {
+    holdSavedViews = true;
+  },
+  releaseSavedViews: () => {
+    holdSavedViews = false;
+    savedViewWaiters.splice(0).forEach((resolve) => resolve());
+  },
+  today: fixtureClock.today(),
+  requests: () => structuredClone(requests),
+  clearRequests: () => {
+    requests.length = 0;
+  },
+  failLinkedTask: (taskId: string, code: 'FORBIDDEN' | 'NOT_FOUND' | 'INTERNAL_ERROR') => {
+    linkedTaskFailure = { taskId, code };
+    queryClient.removeQueries({ queryKey: ['workspace', workspaceA, 'task', taskId] });
+  },
+  clearTaskFailure: () => {
+    linkedTaskFailure = null;
+  },
   client,
   workspaceA,
   workspaceB,

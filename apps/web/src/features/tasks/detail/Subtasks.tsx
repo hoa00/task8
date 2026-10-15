@@ -2,23 +2,22 @@ import { translate as t } from '../../../i18n/i18n';
 import { useTranslation } from '../../../i18n/useTranslation';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { Button, Checkbox, Icon, IconButton, Textarea, useOverlayInitialState } from '@studio/ui';
-import type { BootstrapDto, SubtaskDto, TaskDto } from '@studio/contracts/api';
-import { useDataRuntime } from '../../../data/context';
+import type { DateOnly, BootstrapDto, SubtaskDto, TaskDto } from '@studio/contracts/api';
 import { MemberIdentity } from '../../people/MemberIdentity';
 import { AssigneeField, TaskDateField } from '../fields';
 import { formatTaskDate } from '../date-display';
 import type { useSubtaskCommands } from './useSubtaskCommands';
 export interface SubtaskListProps {
+  today: DateOnly;
   task: TaskDto;
   subtasks: readonly SubtaskDto[];
   data: BootstrapDto;
   commands: ReturnType<typeof useSubtaskCommands>;
   onOpen: (id: string) => void;
 }
-export function SubtaskList({ subtasks, data, commands, onOpen }: SubtaskListProps) {
+export function SubtaskList({ today, subtasks, data, commands, onOpen }: SubtaskListProps) {
   useTranslation();
   const [title, setTitle] = useState(''),
-    { clock } = useDataRuntime(),
     completed = subtasks.filter((row) => row.done).length;
   async function add() {
     const value = title.trim();
@@ -72,10 +71,10 @@ export function SubtaskList({ subtasks, data, commands, onOpen }: SubtaskListPro
           </button>
           {child.dueDate && (
             <span
-              className={`flex shrink-0 items-center gap-1 text-[11.5px] ${!child.done && child.dueDate < clock.today() ? 'text-red' : 'text-muted'}`}
+              className={`flex shrink-0 items-center gap-1 text-[11.5px] ${!child.done && child.dueDate < today ? 'text-red' : 'text-muted'}`}
             >
               <Icon name="calendar" size={12} />
-              {formatTaskDate(child.dueDate, clock.today())}
+              {formatTaskDate(child.dueDate, today)}
             </span>
           )}
           {child.assigneeId && (
@@ -129,6 +128,7 @@ export interface SubtaskDetailProps extends SubtaskListProps {
   onPromoted: (task: TaskDto) => void;
 }
 export function SubtaskDetail({
+  today,
   task,
   subtask,
   subtasks,
@@ -147,7 +147,6 @@ export function SubtaskDetail({
     [field, setField] = useState<'assignee' | 'due' | null>(null),
     [validation, setValidation] = useState(''),
     ref = useRef<HTMLTextAreaElement>(null),
-    { clock } = useDataRuntime(),
     index = subtasks.findIndex((row) => row.id === subtask.id);
   useLayoutEffect(() => {
     if (overlayState === 'default') ref.current?.focus({ preventScroll: true });
@@ -247,7 +246,7 @@ export function SubtaskDetail({
           <TaskDateField
             value={subtask.dueDate}
             field="dueDate"
-            today={clock.today()}
+            today={today}
             weekStart={data.preferences.weekStart}
             disabled={commands.pending}
             open={field === 'due'}

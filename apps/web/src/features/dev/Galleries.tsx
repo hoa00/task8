@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -186,7 +187,7 @@ export function DesignSystemGallery() {
     tasks = taskQuery.data?.items ?? [],
     task = tasks.find((row) => row.title === 'Create homepage wireframes') ?? tasks[2] ?? tasks[0];
   const intents = useWorkspaceIntents(),
-    projects = useProjectIntents(),
+    galleryServices = useAppServices(),
     search = useSearchIntents(),
     dev = useDevScenario(),
     theme = useTheme(),
@@ -206,7 +207,7 @@ export function DesignSystemGallery() {
       body: { expectedVersion: value.version, completed: value.status !== 'done' },
     });
     if (result)
-      projects.notice(
+      galleryServices.notice(
         value.status === 'done' ? 'Task reopened' : 'Task completed',
         result.data.undo ?? undefined,
       );
@@ -862,6 +863,7 @@ export function SystemStatesGallery() {
     taskQuery = useGalleryTasks(),
     tasks = useWorkspaceIntents(),
     projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     people = usePeopleIntents(),
     dev = useDevScenario(),
     navigate = useNavigate();
@@ -1175,7 +1177,7 @@ export function SystemStatesGallery() {
           onClose={() => setDeleteTaskId(null)}
           onDeleted={(undo) => {
             setDeleteTaskId(null);
-            projects.notice('Task deleted', undo);
+            projectsServices.notice('Task deleted', undo);
           }}
         />
       )}{' '}

@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useState } from 'react';
@@ -13,7 +14,7 @@ import { useTaskListDataset } from '../tasks/useTaskListDataset';
 import { useTaskListCommands } from '../tasks/useTaskListCommands';
 import { TaskMiniRow } from '../tasks/TaskMiniRow';
 import { ProjectCard } from './ProjectComponents';
-import { useProjectMotion } from './project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { useProjectIntents } from './project-intents';
 export function Favorites() {
   useTranslation();
@@ -22,6 +23,7 @@ export function Favorites() {
     { clock } = useDataRuntime(),
     intents = useWorkspaceIntents(),
     projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     navigate = useNavigate(),
     dataset = useTaskListDataset(workspaceId, TaskQuerySchema.parse({ favoriteOnly: true })),
     commands = useTaskListCommands(workspaceId),
@@ -31,11 +33,11 @@ export function Favorites() {
     ),
     tasks = dataset.data ?? [],
     route = useLocation();
-  const { hostRef, onAnimationEnd } = useProjectMotion(
+  const { hostRef, onAnimationEnd } = useSurfaceMotion(
     route.pathname,
     `${JSON.stringify(favorites)}/${JSON.stringify(tasks)}`,
     'page',
-    projects.overlayState,
+    projectsServices.surfaceRevision,
   );
   return (
     <div
@@ -122,7 +124,7 @@ export function Favorites() {
                     today={clock.today()}
                     member={data.members.find((member) => member.id === task.assigneeId) ?? null}
                     onOpen={(id) => {
-                      projects.projectSurfaceOpened();
+                      projectsServices.surfaceOpened();
                       intents.openTask(id);
                     }}
                     onComplete={async (task) => {

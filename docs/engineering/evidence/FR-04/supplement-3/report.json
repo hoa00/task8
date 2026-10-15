@@ -1,0 +1,33 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "tasks-same-route-view-back-forward-reload",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('[data-list-scope]')\nExpected: \"yes\"\nReceived: \"\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('[data-list-scope]')\n    9 × locator resolved to <main class=\"task-page\" aria-busy=\"false\" data-list-scope=\"workspace\" data-query-coverage=\"complete\" data-project-page-motion=\"true\">…</main>\n      - unexpected value \"null\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/url-scope.mjs:49:52\n    at async probe (file:///workspace/task8/tests/frontend/url-scope.mjs:25:5)\n    at async file:///workspace/task8/tests/frontend/url-scope.mjs:41:5"
+    },
+    {
+      "id": "my-tasks-same-route-view-back-forward-reload",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('[data-list-scope]')\nExpected: \"yes\"\nReceived: \"\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('[data-list-scope]')\n    9 × locator resolved to <main class=\"task-page\" aria-busy=\"false\" data-list-scope=\"mine\" data-query-coverage=\"complete\" data-project-page-motion=\"true\">…</main>\n      - unexpected value \"null\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/url-scope.mjs:49:52\n    at async probe (file:///workspace/task8/tests/frontend/url-scope.mjs:25:5)\n    at async file:///workspace/task8/tests/frontend/url-scope.mjs:41:5"
+    },
+    {
+      "id": "calendar-url-view-date-mode",
+      "pass": true
+    },
+    {
+      "id": "project-create-default-and-menu-cannot-cross-workspace",
+      "pass": true
+    },
+    {
+      "id": "Search-Overdue-same-route",
+      "pass": true
+    },
+    {
+      "id": "late-create-cannot-close-or-navigate-new-workspace-draft",
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "browser": "145.0.7632.6"
+}

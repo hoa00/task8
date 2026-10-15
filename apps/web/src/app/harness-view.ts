@@ -1,6 +1,6 @@
 // Standalone QA entry adapter. Production route state uses TanStack Router.
 import { useSyncExternalStore } from 'react';
-import type { TaskViewState } from '@studio/domain';
+import type { TaskViewState } from '../features/tasks/task-view.ts';
 import { decodeCurrentTaskView, encodeCurrentTaskView } from '../features/tasks/current-view';
 const subscribe = (change: () => void) => {
   window.addEventListener('popstate', change);

@@ -2,7 +2,7 @@ import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
 import { Icon, Menu, MenuItem } from '@studio/ui';
-import type { DirectoryMember } from '../../data/people-demo';
+import type { DirectoryMember } from './types';
 export interface RolePickerProps {
   member: DirectoryMember;
   readonly?: boolean;

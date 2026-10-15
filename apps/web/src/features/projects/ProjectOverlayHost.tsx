@@ -1,9 +1,10 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useQuery } from '@tanstack/react-query';
 import { useDataRuntime } from '../../data/context';
 import { studioQueryOptions } from '../../data/queries';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import {
@@ -18,9 +19,8 @@ import {
   Menu,
   MenuItem,
   MenuSeparator,
-  ToastViewport,
 } from '@studio/ui';
-import type { ToastInput, ToastMessage } from '@studio/ui';
+import type { ToastInput } from '@studio/ui';
 import type { BootstrapDto, ProjectDto, UndoDescriptorDto } from '@studio/contracts/api';
 import { useProjectCommands } from './useProjectCommands';
 import { ProjectIntentContext } from './project-intents';
@@ -40,7 +40,8 @@ export interface ProjectOverlayHostProps {
 }
 export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOverlayHostProps) {
   useTranslation();
-  const workspaceId = data.workspace.id,
+  const services = useAppServices(),
+    workspaceId = data.workspace.id,
     navigate = useNavigate(),
     commands = useProjectCommands(workspaceId),
     overlayOpener = useRef<HTMLElement | null>(null),
@@ -59,9 +60,7 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
       project: ProjectDto;
       kind: 'archive' | 'delete';
     } | null>(null),
-    [typedName, setTypedName] = useState(''),
-    [toasts, setToasts] = useState<ToastMessage[]>([]),
-    [surfaceRevision, setSurfaceRevision] = useState(0);
+    [typedName, setTypedName] = useState('');
   useEffect(() => {
     active.current = true;
     return () => {
@@ -89,32 +88,27 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
     action?: () => void,
     options?: Pick<ToastInput, 'kind' | 'duration' | 'action'>,
   ) {
-    setToasts((rows) => [
-      {
-        id: crypto.randomUUID(),
-        message,
-        ...(action ? { action: { label: t('Undo'), onAction: action } } : {}),
-        duration: action ? 5000 : 2200,
-        ...options,
-      },
-      ...rows,
-    ]);
+    services.notice(message, undefined, {
+      ...(action ? { action: { label: t('Undo'), onAction: action }, duration: 5000 } : {}),
+      ...options,
+    });
   }
   function undoNotice(
     message: string,
     undo: UndoDescriptorDto | null,
     options?: Pick<ToastInput, 'kind' | 'duration' | 'action'>,
   ) {
-    notice(
-      message,
-      undo
-        ? () => {
-            void commands.undo(undo);
-          }
-        : undefined,
-      options,
-    );
+    services.notice(message, undo ?? undefined, options);
   }
+  const overlayRevision = `${form?.generation ?? ''}/${shareId ?? ''}/${menu?.projectId ?? ''}/${confirmation?.kind ?? ''}`;
+  const previousOverlay = useRef(overlayRevision);
+  const { surfaceOpened } = services;
+  useLayoutEffect(() => {
+    if (previousOverlay.current !== overlayRevision) {
+      previousOverlay.current = overlayRevision;
+      surfaceOpened();
+    }
+  }, [overlayRevision, surfaceOpened]);
   async function reorderProjects(projectIds: readonly string[]) {
     await commands.run('updateProjectOrder', {
       workspaceId,
@@ -138,11 +132,15 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
       });
   }
   const prepareOverlay = () => {
+    services.surfaceOpened();
     overlayOpener.current =
       onOpenOverlay?.() ??
       (document.activeElement instanceof HTMLElement ? document.activeElement : null);
   };
-  const closeMenu = () => setMenu(null);
+  const closeMenu = () => {
+    services.surfaceOpened();
+    setMenu(null);
+  };
   const openForm = (projectId?: string) => {
     prepareOverlay();
     commands.clearError();
@@ -152,8 +150,6 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
   return (
     <ProjectIntentContext
       value={{
-        overlayState: `${form?.generation ?? ''}/${shareId ?? ''}/${menu?.projectId ?? ''}/${confirmation?.kind ?? ''}/${surfaceRevision}`,
-        projectSurfaceOpened: () => setSurfaceRevision((current) => current + 1),
         newProject: () => openForm(),
         archiveProject: (project) => {
           prepareOverlay();
@@ -175,12 +171,12 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
           closeMenu();
         },
         projectMenu: (projectId, anchor, point) => {
+          services.surfaceOpened();
           commands.clearError();
           setMenu({ projectId, anchor, ...(point ? { point } : {}) });
         },
         favoriteProject,
         reorderProjects,
-        notice: (message, undo, options) => undoNotice(message, undo ?? null, options),
       }}
     >
       {children}
@@ -333,10 +329,10 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
                   },
                 });
                 if (result)
-                  setToasts((rows) => [
+                  services.notice(
+                    t('Duplicated {{value1}}', { value1: String(menuProject.name) }),
+                    undefined,
                     {
-                      id: crypto.randomUUID(),
-                      message: t('Duplicated {{value1}}', { value1: String(menuProject.name) }),
                       action: {
                         label: t('Open'),
                         onAction: () => {
@@ -345,8 +341,7 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
                       },
                       duration: 5000,
                     },
-                    ...rows,
-                  ]);
+                  );
               }}
             >
               {t('Duplicate')}
@@ -552,10 +547,6 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
           <Alert tone="danger">{commands.error}</Alert>
         </div>
       )}
-      <ToastViewport
-        items={toasts}
-        onDismiss={(id) => setToasts((rows) => rows.filter((row) => row.id !== id))}
-      />
     </ProjectIntentContext>
   );
 }

@@ -1,9 +1,9 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { TeamDirectory } from '../teams/TeamsPage';
 import { useLocation } from '@tanstack/react-router';
-import { useProjectIntents } from '../projects/project-intents';
-import { useProjectMotion } from '../projects/project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { useState } from 'react';
 import { TaskQuerySchema } from '@studio/contracts/api';
 import { Alert, Button, Icon, Input, SegmentedControl, Tabs } from '@studio/ui';
@@ -28,12 +28,12 @@ export function MembersPage() {
     [q, setQ] = useState(''),
     [role, setRole] = useState('all');
   const location = useLocation(),
-    projects = useProjectIntents(),
-    { hostRef, onAnimationEnd } = useProjectMotion(
+    projects = useAppServices(),
+    { hostRef, onAnimationEnd } = useSurfaceMotion(
       location.pathname,
       `${directory.ready}/${tasks.dataUpdatedAt}/${directory.demo.dataUpdatedAt}/${tab}/${q}/${role}`,
       'page',
-      projects.overlayState,
+      projects.surfaceRevision,
     );
   const members = directory.members.filter(
     (member) =>
@@ -81,7 +81,7 @@ export function MembersPage() {
           { value: 'roles', label: t('Roles & permissions') },
         ]}
         onValueChange={(value) => {
-          projects.projectSurfaceOpened();
+          projects.surfaceOpened();
           setTab(value);
         }}
       />
@@ -121,7 +121,7 @@ export function MembersPage() {
                 aria-label={t('Search members')}
                 value={q}
                 onChange={(event) => {
-                  projects.projectSurfaceOpened();
+                  projects.surfaceOpened();
                   setQ(event.target.value);
                 }}
               />
@@ -134,7 +134,7 @@ export function MembersPage() {
                 label: t(value === 'all' ? 'All' : value),
               }))}
               onValueChange={(value) => {
-                projects.projectSurfaceOpened();
+                projects.surfaceOpened();
                 setRole(value);
               }}
             />

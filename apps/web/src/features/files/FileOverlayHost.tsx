@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
@@ -12,11 +13,10 @@ import { links, validateRouteSearch } from '../../app/navigation';
 import { useDataRuntime } from '../../data/context';
 import { studioQueryOptions } from '../../data/queries';
 import { useWorkspaceIntents } from '../../app/shell/transient-context';
-import { useProjectIntents } from '../projects/project-intents';
 import { useTaskListCommands } from '../tasks/useTaskListCommands';
 import { useCompleteMembers } from '../people/catalogue';
 import { useTheme } from '../../theme/theme-context';
-import { FilePreviewDialog } from './FileFoundation';
+import { FilePreviewDialog } from './FilePreviewDialog';
 import { FileIntentContext } from './file-intents';
 export interface FileOverlayHostProps {
   data: BootstrapDto;
@@ -63,7 +63,7 @@ export function FileOverlayHost({ data, children }: FileOverlayHostProps) {
     location = useLocation(),
     navigate = useNavigate(),
     tasks = useWorkspaceIntents(),
-    projects = useProjectIntents(),
+    projects = useAppServices(),
     search = validateRouteSearch(location.search);
   const route = location.pathname.match(/^\/w\/([^/]+)\/projects\/([^/]+)\/files$/),
     projectId = route?.[2],
@@ -120,7 +120,7 @@ export function FileOverlayHost({ data, children }: FileOverlayHostProps) {
     enabled: !!file?.taskId,
   });
   const close = () => {
-    projects.projectSurfaceOpened();
+    projects.surfaceOpened();
     void navigate({
       to: location.pathname,
       resetScroll: false,
@@ -133,7 +133,7 @@ export function FileOverlayHost({ data, children }: FileOverlayHostProps) {
     });
   };
   const copy = (url: string) => {
-    projects.projectSurfaceOpened();
+    projects.surfaceOpened();
     if (file)
       setCopyMotion((previous) => ({ fileId: file.id, revision: (previous?.revision ?? 0) + 1 }));
     void navigator.clipboard.writeText(url).then(
@@ -179,7 +179,7 @@ export function FileOverlayHost({ data, children }: FileOverlayHostProps) {
           ]);
         },
         openFile: (file) => {
-          projects.projectSurfaceOpened();
+          projects.surfaceOpened();
           if (file.workspaceId === data.workspace.id) {
             const target = links.project(file.workspaceId, file.projectId, 'files');
             void navigate({
@@ -204,7 +204,7 @@ export function FileOverlayHost({ data, children }: FileOverlayHostProps) {
         <FilePreviewDialog
           previewRef={previewRef}
           file={file}
-          entryRevision={`${file.id}/${projects.overlayState}`}
+          entryRevision={`${file.id}/${projects.surfaceRevision}`}
           now={clock.now()}
           author={
             members.data?.items.find((member) => member.id === file.createdBy)?.name ??

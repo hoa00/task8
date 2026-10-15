@@ -1,6 +1,7 @@
 import type { BootstrapDto, EntityId, OperationInput, TaskDto } from '@studio/contracts/api';
 import type { OverlayPoint } from '@studio/ui';
-import type { TaskGroup, TaskViewState } from '@studio/domain';
+import type { TaskGroup } from '@studio/domain';
+import type { TaskViewState } from './task-view.ts';
 export type TaskListScope =
   | { kind: 'workspace' }
   | { kind: 'mine' }

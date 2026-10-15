@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import type { AnimationEvent } from 'react';
-import { useInitialRouteEntry } from '../../app/shell/route-entry-context';
+import { useInitialRouteEntry } from '../shell/route-entry-context';
 
 // An embedded renderer can expose multiple visual siblings through display:
 // contents. Only boxes that really animate own completion; hidden/table and
@@ -17,7 +17,7 @@ function animatedBoxes(parent: Element | null): HTMLElement[] {
 
 // Source go()/render() consumes a route/tab flag once. Its original animation
 // remains on that DOM until the next render; canonical updates never replay it.
-export function useProjectMotion<T extends HTMLElement = HTMLDivElement>(
+export function useSurfaceMotion<T extends HTMLElement = HTMLDivElement>(
   pathname: string,
   revision: string,
   scope: 'project' | 'page' = 'project',

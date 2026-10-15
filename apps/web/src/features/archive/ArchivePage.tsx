@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
@@ -111,6 +112,7 @@ export function ArchivePage() {
     { client, clock } = useDataRuntime(),
     tasks = useWorkspaceIntents(),
     projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     commands = useProjectCommands(workspaceId);
   const [tab, setTab] = useState('tasks'),
     [deleteTask, setDeleteTask] = useState<TaskDto | null>(null),
@@ -135,7 +137,7 @@ export function ArchivePage() {
           body: { expectedVersion: item.task.version },
         });
         if (result)
-          projects.notice(`Restored “${result.data.task.title}”`, undefined, {
+          projectsServices.notice(`Restored “${result.data.task.title}”`, undefined, {
             action: { label: t('Open'), onAction: () => tasks.openTask(result.data.task.id) },
           });
       } else {
@@ -145,7 +147,8 @@ export function ArchivePage() {
           projectId: project.id,
           body: { expectedVersion: project.version },
         });
-        if (result) projects.notice(t('Restored {{name}}', { name: result.data.project.name }));
+        if (result)
+          projectsServices.notice(t('Restored {{name}}', { name: result.data.project.name }));
       }
     } finally {
       busy.current = false;
@@ -288,7 +291,7 @@ export function ArchivePage() {
                   });
                   if (result) {
                     setDeleteTask(null);
-                    projects.notice(t('Deleted “{{name}}”', { name: deleteTask.title }));
+                    projectsServices.notice(t('Deleted “{{name}}”', { name: deleteTask.title }));
                   }
                 } finally {
                   busy.current = false;

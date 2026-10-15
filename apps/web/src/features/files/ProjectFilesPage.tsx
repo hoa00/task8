@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { captureIntent } from '../../data/operations';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -32,7 +33,6 @@ import { studioQueryOptions, useStudioQuery } from '../../data/queries';
 import { operationQueryKey } from '../../data/query-keys';
 import { invalidateOperation } from '../../data/invalidation';
 import { useProjectView } from '../projects/project-view';
-import { useProjectIntents } from '../projects/project-intents';
 import { useTaskListDataset } from '../tasks/useTaskListDataset';
 import { useCompleteMembers } from '../people/catalogue';
 import { useTaskListCommands } from '../tasks/useTaskListCommands';
@@ -56,7 +56,7 @@ export function ProjectFilesPage() {
     cache = useQueryClient(),
     fileIntents = useFileIntents(),
     tasks = useWorkspaceIntents(),
-    projects = useProjectIntents(),
+    projects = useAppServices(),
     commands = useTaskListCommands(workspaceId),
     session = useStudioQuery('getSession', {});
   const location = useLocation(),
@@ -112,7 +112,7 @@ export function ProjectFilesPage() {
     }),
     enabled: !!form,
   });
-  const consume = () => projects.projectSurfaceOpened(),
+  const consume = () => projects.surfaceOpened(),
     currentMenu =
       menu && !files.isError ? files.data?.find((file) => file.id === menu.file.id) : null,
     currentForm = form && !formQuery.isError ? formQuery.data?.data : null;

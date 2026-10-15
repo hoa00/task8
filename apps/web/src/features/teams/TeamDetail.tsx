@@ -1,3 +1,4 @@
+import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import './teams.css';
@@ -14,8 +15,7 @@ import { useCompleteMembers } from '../people/catalogue';
 import { usePeopleIntents } from '../people/people-intents';
 import { MemberIdentity } from '../people/MemberIdentity';
 import { CompactProjectRow } from '../projects/ProjectComponents';
-import { useProjectIntents } from '../projects/project-intents';
-import { useProjectMotion } from '../projects/project-motion';
+import { useSurfaceMotion } from '../../app/services/surface-motion';
 import { TaskMiniRow } from '../tasks/TaskMiniRow';
 import { useTaskListDataset } from '../tasks/useTaskListDataset';
 import { useTaskListCommands } from '../tasks/useTaskListCommands';
@@ -36,16 +36,16 @@ export function TeamDetail({ teamId }: TeamDetailProps) {
     intents = useTeamIntents(),
     people = usePeopleIntents(),
     taskIntents = useWorkspaceIntents(),
-    projects = useProjectIntents(),
+    projectsServices = useAppServices(),
     commands = useTaskListCommands(workspaceId),
     navigate = useNavigate(),
     { clock } = useDataRuntime(),
     location = useLocation(),
-    { hostRef, onAnimationEnd } = useProjectMotion(
+    { hostRef, onAnimationEnd } = useSurfaceMotion(
       location.pathname,
       `${team.dataUpdatedAt}/${summary.dataUpdatedAt}/${catalog.dataUpdatedAt}/${tasks.dataUpdatedAt}`,
       'page',
-      projects.overlayState,
+      projectsServices.surfaceRevision,
     );
   const error = team.error ?? summary.error ?? catalog.error ?? tasks.error;
   if (
@@ -170,7 +170,7 @@ export function TeamDetail({ teamId }: TeamDetailProps) {
                       body: { expectedVersion: task.version, completed: task.status !== 'done' },
                     });
                     if (result?.data.undo)
-                      projects.notice(
+                      projectsServices.notice(
                         t('Completed {{name}}', { name: task.title }),
                         result.data.undo,
                       );

@@ -21,8 +21,10 @@ import {
 import type { IconName } from '@studio/ui';
 import { TaskFilterSchema, labels, priorities, taskStatuses } from '@studio/contracts/api';
 import type { MemberDisplayDto, ProjectDto, TaskFilter, TaskQuery } from '@studio/contracts/api';
-import { dueBuckets, taskColumns } from '@studio/domain';
-import type { TaskColumnId, TaskGroupBy, TaskViewState } from '@studio/domain';
+import { dueBuckets } from '@studio/domain';
+import { taskColumns } from './task-view.ts';
+import type { TaskGroupBy } from '@studio/domain';
+import type { TaskColumnId, TaskViewState } from './task-view.ts';
 import { MemberIdentity } from '../people/MemberIdentity';
 import { PriorityIcon, TaskStatusIcon } from './atoms';
 export interface FilterLookups {
