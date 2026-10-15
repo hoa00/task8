@@ -1,3 +1,4 @@
+import { useCalendarRouteState } from '../../app/useCalendarRouteState';
 import { ProjectFilesPage } from '../files/ProjectFilesPage';
 import { useParams, useNavigate } from '@tanstack/react-router';
 import { useWorkspaceId } from '../../app/shell/workspace-context';
@@ -11,7 +12,8 @@ import { ProjectOverview, ProjectActivity } from './ProjectOverview';
 import { useProjectView } from './project-view';
 import { useProjectIntents } from './project-intents';
 export function ProjectPage() {
-  const workspaceId = useWorkspaceId(),
+  const calendarState = useCalendarRouteState(),
+    workspaceId = useWorkspaceId(),
     params = useParams({ strict: false }),
     intents = useWorkspaceIntents(),
     navigate = useNavigate(),
@@ -34,6 +36,7 @@ export function ProjectPage() {
   if (type === 'calendar')
     return (
       <CalendarPage
+        {...calendarState}
         showHeading={false}
         controlledView={view}
         onCurrentViewChange={onViewChange}

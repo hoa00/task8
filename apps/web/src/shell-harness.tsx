@@ -1,3 +1,5 @@
+import type { BootstrapDto } from '@studio/contracts/api';
+import { summarizeTasks } from '@studio/domain';
 // WU-07-only browser test fixture. Never part of the main or HTTP production graph.
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -24,7 +26,7 @@ const workspaceA = EntityIdSchema.parse(session.currentWorkspaceId),
   workspaceB = catalog[1]!.id;
 const a = (await original.api.getBootstrap({ workspaceId: workspaceA })).data;
 const memberId = EntityIdSchema.parse('019f4800-0000-7000-8000-000000000001');
-const b = {
+const b: BootstrapDto = {
   ...a,
   workspace: catalog[1]!,
   currentMember: { ...a.currentMember, id: memberId, workspaceId: workspaceB },
@@ -41,12 +43,25 @@ const empty = createEmptyDataset();
 empty.workspaceId = workspaceB;
 empty.currentMemberId = memberId;
 empty.members = { [memberId]: { ...b.currentMember, teamId: null } };
+let holdCreate = false,
+  releaseCreate: (() => void) | undefined,
+  completedCreates = 0;
 let delayOld = false,
   releaseOld: (() => void) | undefined,
   aborted = false;
 let bootstrapScenario: 'ready' | 'loading' | 'error' = 'ready',
   releaseBootstrap: (() => void) | undefined;
 const client = createStudioClient(async (id, input, options) => {
+  if (id === 'createTask' && holdCreate) {
+    holdCreate = false;
+    await new Promise<void>((resolve) => {
+      releaseCreate = resolve;
+    });
+    releaseCreate = undefined;
+    const result = await original.execute(id, input as never, options);
+    completedCreates++;
+    return result;
+  }
   if (id === 'getBootstrap' && input.workspaceId === workspaceB) {
     if (bootstrapScenario === 'loading')
       await new Promise<void>((resolve) => {
@@ -80,8 +95,47 @@ const client = createStudioClient(async (id, input, options) => {
 });
 const router = createStudioRouter({ runtime: { client, clock: fixtureClock }, queryClient });
 const controls = {
+  client,
   workspaceA,
   workspaceB,
+  enableWritableB: () => {
+    const originalProject = a.projects.find((row) => row.access === 'allowed')!;
+    if (originalProject.access !== 'allowed') throw Error('Missing QA project');
+    const id = EntityIdSchema.parse('019f4800-0000-7000-8000-000000000002');
+    const project = {
+      ...originalProject.project,
+      id,
+      workspaceId: workspaceB,
+      name: 'Workspace B QA',
+      key: 'BQA',
+      teamId: null,
+      leadId: memberId,
+      memberIds: [memberId],
+      milestones: [],
+    };
+    empty.projects[id] = project;
+    empty.projectOrder = [id];
+    b.projects = [
+      {
+        access: 'allowed',
+        project,
+        summary: {
+          projectId: id,
+          taskSummary: summarizeTasks([], fixtureClock.today()),
+          progress: 0,
+        },
+      },
+    ];
+    queryClient.removeQueries({
+      queryKey: studioQueryOptions(client, 'getBootstrap', { workspaceId: workspaceB }).queryKey,
+    });
+  },
+  holdNextCreate: () => {
+    holdCreate = true;
+  },
+  createIsHeld: () => !!releaseCreate,
+  releaseCreate: () => releaseCreate?.(),
+  completedCreates: () => completedCreates,
   setBootstrapScenario: (scenario: 'ready' | 'loading' | 'error') => {
     bootstrapScenario = scenario;
     queryClient.removeQueries({

@@ -1,3 +1,4 @@
+import { useHarnessView } from './app/harness-view';
 import type { EntityId } from '@studio/contracts/api';
 import { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -53,6 +54,7 @@ export function Harness() {
   return workspaceId ? <WorkspaceHarness workspaceId={workspaceId} /> : <div>Loading…</div>;
 }
 function WorkspaceHarness({ workspaceId }: { workspaceId: EntityId }) {
+  const harnessView = useHarnessView();
   const [selected, setSelected] = useState<readonly string[]>(
       () => JSON.parse(new URLSearchParams(location.search).get('selectedIds') ?? '[]') as string[],
     ),
@@ -113,6 +115,14 @@ function WorkspaceHarness({ workspaceId }: { workspaceId: EntityId }) {
         </Button>
       )}
       <TaskListPage
+        {...harnessView}
+        initialMode={
+          params.get('mode') === 'table'
+            ? 'table'
+            : params.get('mode') === 'board'
+              ? 'board'
+              : 'list'
+        }
         initialListState={JSON.parse(params.get('listState') ?? '{}') as TaskListUiState}
         showHeading={
           !(params.get('visual') === '1' && (scope.kind === 'project' || scope.kind === 'saved'))

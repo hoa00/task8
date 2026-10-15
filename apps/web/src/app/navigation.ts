@@ -1,4 +1,5 @@
-import { EntityIdSchema } from '@studio/contracts/api';
+import type { DateOnly } from '@studio/contracts/api';
+import { DateOnlySchema, EntityIdSchema } from '@studio/contracts/api';
 
 export const projectTabs = [
   'overview',
@@ -152,6 +153,8 @@ export function legacyDestination(hash: string, workspaceId: string): string | u
   return auth[alias] ?? links.workspace(workspaceId, alias as WorkspacePage);
 }
 export interface RouteSearch {
+  calendarDate?: DateOnly;
+  calendarMode?: 'month' | 'week';
   fileType?: string;
   fileSort?: 'recent' | 'name' | 'type';
   activityProjectId?: string;
@@ -167,6 +170,10 @@ export interface RouteSearch {
 }
 export function validateRouteSearch(input: Record<string, unknown>): RouteSearch {
   const output: RouteSearch = {};
+  const date = DateOnlySchema.safeParse(input.calendarDate);
+  if (date.success) output.calendarDate = date.data;
+  if (input.calendarMode === 'month' || input.calendarMode === 'week')
+    output.calendarMode = input.calendarMode;
   for (const key of ['taskId', 'fileId', 'workspaceId', 'activityProjectId'] as const)
     if (EntityIdSchema.safeParse(input[key]).success) output[key] = input[key] as string;
   if (typeof input.view === 'string' && input.view.length <= 16384) output.view = input.view;

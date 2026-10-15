@@ -24,7 +24,7 @@ import { invalidateOperation } from '../../data/invalidation';
 import { loadTaskViewDataset } from '../tasks/loadTaskViewDataset';
 import { useTaskListCommands } from '../tasks/useTaskListCommands';
 import { TaskViewToolbar } from '../tasks/TaskViewToolbar';
-import { decodeCurrentTaskView, encodeCurrentTaskView } from '../tasks/current-view';
+import { decodeCurrentTaskView } from '../tasks/current-view';
 import { TimelineView } from './TimelineView';
 import type { TimelineModel, TimelineScope } from './types';
 
@@ -190,14 +190,14 @@ export function TimelinePage({
 }: TimelinePageProps) {
   useTranslation();
   const bootstrap = useStudioQuery('getBootstrap', { workspaceId: props.workspaceId }),
-    [localView, setView] = useState(initialView ?? decodeCurrentTaskView(location.search)),
+    [localView, setView] = useState(initialView ?? normalizeTaskView()),
     [zoom, setZoom] = useState(initialZoom),
     [grouping, setGrouping] = useState<TimelineGrouping>(
       initialGrouping ?? (props.scope.kind === 'workspace' ? 'project' : 'status'),
     ),
     [todayRequest, setTodayRequest] = useState(0);
   const { hostRef, onAnimationEnd } = useProjectMotion<HTMLElement>(
-    location.pathname,
+    `${props.workspaceId}/${props.scope.kind}`,
     `${JSON.stringify(controlledView ?? localView)}/${JSON.stringify(bootstrap.data)}`,
     'page',
     `${JSON.stringify(controlledView ?? localView)}/${zoom}/${grouping}/${todayRequest}`,
@@ -220,9 +220,6 @@ export function TimelinePage({
       onCurrentViewChange(next);
       return;
     }
-    const url = new URL(location.href);
-    url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!);
-    history.replaceState(history.state, '', url);
   }
   const controls = (
     <>

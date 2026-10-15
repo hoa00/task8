@@ -1,3 +1,4 @@
+import { useCalendarRouteState } from '../../app/useCalendarRouteState';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
@@ -23,8 +24,23 @@ import type { TaskBoardComposerHandle } from './TaskBoard';
 import type { TaskBoardUiState } from './board-types';
 import type { TaskListComposerHandle } from './TaskList';
 import { TaskViewToolbar } from './TaskViewToolbar';
-import { decodeCurrentTaskView, encodeCurrentTaskView } from './current-view';
+import { decodeCurrentTaskView } from './current-view';
 import type { ListGroup, TaskListScope, TaskListUiState, TaskListModel } from './list-types';
+function useTaskRouteView(workspaceId: string, kind: 'workspace' | 'mine') {
+  const route = useLocation(),
+    view = decodeCurrentTaskView(route.searchStr);
+  if (new URLSearchParams(route.searchStr).has('view')) return view;
+  try {
+    return restoreTaskColumns(
+      view,
+      taskTablePreferenceKey(workspaceId, { kind }),
+      false,
+      localStorage,
+    );
+  } catch {
+    return view;
+  }
+}
 function useCurrentViewChange() {
   const location = useLocation(),
     navigate = useNavigate();
@@ -65,7 +81,9 @@ export function WorkspaceTasks() {
   const currentMode = useCurrentMode();
   const workspaceId = useWorkspaceId(),
     intents = useWorkspaceIntents(),
-    onCurrentViewChange = useCurrentViewChange();
+    onCurrentViewChange = useCurrentViewChange(),
+    controlledView = useTaskRouteView(workspaceId, 'workspace'),
+    calendarState = useCalendarRouteState();
   return (
     <TaskListPage
       workspaceId={workspaceId}
@@ -78,6 +96,8 @@ export function WorkspaceTasks() {
       onCalendarNewTask={(defaults) => intents.openTaskForm(undefined, defaults)}
       onTaskMenu={intents.openTaskMenu}
       onTaskEdit={(id) => intents.openTaskForm(id)}
+      controlledView={controlledView}
+      calendarState={calendarState}
       onCurrentViewChange={onCurrentViewChange}
       {...currentMode}
     />
@@ -88,7 +108,9 @@ export function MyTasksList() {
   const currentMode = useCurrentMode(true);
   const workspaceId = useWorkspaceId(),
     intents = useWorkspaceIntents(),
-    onCurrentViewChange = useCurrentViewChange();
+    onCurrentViewChange = useCurrentViewChange(),
+    controlledView = useTaskRouteView(workspaceId, 'mine'),
+    calendarState = useCalendarRouteState();
   return (
     <TaskListPage
       workspaceId={workspaceId}
@@ -101,6 +123,8 @@ export function MyTasksList() {
       onCalendarNewTask={(defaults) => intents.openTaskForm(undefined, defaults)}
       onTaskMenu={intents.openTaskMenu}
       onTaskEdit={(id) => intents.openTaskForm(id)}
+      controlledView={controlledView}
+      calendarState={calendarState}
       onCurrentViewChange={onCurrentViewChange}
       {...currentMode}
     />
@@ -126,6 +150,10 @@ export interface TaskListPageProps {
   controlledMode?: 'list' | 'board' | 'table' | 'calendar';
   initialMode?: 'list' | 'board' | 'table' | 'calendar';
   initialBoardState?: TaskBoardUiState;
+  calendarState?: Pick<
+    CalendarPanelProps,
+    'controlledDate' | 'controlledCalendarMode' | 'onDateChange' | 'onCalendarModeChange'
+  >;
   initialCalendarState?: Pick<CalendarPanelProps, 'initialDate' | 'initialMode' | 'weekStart'>;
 }
 export function TaskListPage({
@@ -149,6 +177,7 @@ export function TaskListPage({
   initialMode,
   initialBoardState,
   initialCalendarState,
+  calendarState,
 }: TaskListPageProps) {
   useTranslation();
   const { clock } = useDataRuntime(),
@@ -156,20 +185,12 @@ export function TaskListPage({
   const composer = useRef<TaskListComposerHandle>(null),
     boardComposer = useRef<TaskBoardComposerHandle>(null);
   const [localMode, setMode] = useState<'list' | 'board' | 'table' | 'calendar'>(
-    () =>
-      initialMode ??
-      (new URLSearchParams(location.search).get('mode') === 'calendar'
-        ? 'calendar'
-        : new URLSearchParams(location.search).get('mode') === 'table'
-          ? 'table'
-          : new URLSearchParams(location.search).get('mode') === 'board'
-            ? 'board'
-            : 'list'),
+    initialMode ?? 'list',
   );
   const preferenceKey = taskTablePreferenceKey(workspaceId, scope);
   const [localView, setView] = useState(() =>
     restoreTaskColumns(
-      initialView ?? decodeCurrentTaskView(location.search),
+      initialView ?? normalizeTaskView(),
       preferenceKey,
       scope.kind === 'project' || scope.kind === 'saved',
       (() => {
@@ -215,7 +236,7 @@ export function TaskListPage({
     mode === 'board' || mode === 'table',
   );
   const { hostRef, onAnimationEnd } = useProjectMotion<HTMLElement>(
-    location.pathname,
+    `${workspaceId}/${scope.kind}/${'projectId' in scope ? scope.projectId : ''}`,
     JSON.stringify(dataset.data),
     'page',
     `${JSON.stringify(view)}/${mode}/${selectedIds.join(',')}`,
@@ -291,11 +312,6 @@ export function TaskListPage({
     if (mine ? next !== 'list' && next !== 'calendar' : next === 'calendar') return;
     setMode(next);
     if (onModeChange) onModeChange(next);
-    else {
-      const url = new URL(location.href);
-      url.searchParams.set('mode', next);
-      history.replaceState(history.state, '', url);
-    }
   }
   function change(next: TaskViewState) {
     setView(next);
@@ -304,9 +320,6 @@ export function TaskListPage({
       onCurrentViewChange(next);
       return;
     }
-    const url = new URL(location.href);
-    url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!);
-    history.replaceState(history.state, '', url);
   }
   const title = mine
     ? 'My Tasks'
@@ -416,6 +429,7 @@ export function TaskListPage({
       {mode === 'calendar' ? (
         <CalendarPanel
           {...initialCalendarState}
+          {...calendarState}
           workspaceId={workspaceId}
           scope={{ kind: 'mine' }}
           query={query}

@@ -1,3 +1,4 @@
+import { useHarnessView } from './app/harness-view';
 import type { EntityId } from '@studio/contracts/api';
 import { StrictMode, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -82,6 +83,7 @@ export function Harness() {
   return workspaceId ? <WorkspaceHarness workspaceId={workspaceId} /> : <div>Loading…</div>;
 }
 function WorkspaceHarness({ workspaceId }: { workspaceId: EntityId }) {
+  const harnessView = useHarnessView();
   const opener = useRef<HTMLElement | null>(null),
     [form, setForm] = useState<TaskFormIntent>({ open: false, generation: 0 }),
     [menu, setMenu] = useState<TaskMenuIntent | null>(null);
@@ -126,6 +128,7 @@ function WorkspaceHarness({ workspaceId }: { workspaceId: EntityId }) {
       )}
       {scope.kind === 'mine' ? (
         <TaskListPage
+          {...harnessView}
           initialMode="calendar"
           initialCalendarState={state}
           workspaceId={workspaceId}
@@ -141,6 +144,7 @@ function WorkspaceHarness({ workspaceId }: { workspaceId: EntityId }) {
         />
       ) : (
         <CalendarPage
+          {...harnessView}
           {...state}
           showHeading={scope.kind !== 'project'}
           workspaceId={workspaceId}

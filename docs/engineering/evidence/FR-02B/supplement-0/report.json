@@ -1,0 +1,27 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "tasks-same-route-view-back-forward-reload",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('[data-task-row]')\nExpected: 0\nReceived: 48\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.count\" with timeout 5000ms\n  - waiting for locator('[data-task-row]')\n    9 × locator resolved to 48 elements\n      - unexpected value \"48\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/url-scope.mjs:20:46\n    at async probe (file:///workspace/task8/tests/frontend/url-scope.mjs:12:378)\n    at async file:///workspace/task8/tests/frontend/url-scope.mjs:16:42"
+    },
+    {
+      "id": "my-tasks-same-route-view-back-forward-reload",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('[data-task-row]')\nExpected: 0\nReceived: 7\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.count\" with timeout 5000ms\n  - waiting for locator('[data-task-row]')\n    9 × locator resolved to 7 elements\n      - unexpected value \"7\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/url-scope.mjs:20:46\n    at async probe (file:///workspace/task8/tests/frontend/url-scope.mjs:12:378)\n    at async file:///workspace/task8/tests/frontend/url-scope.mjs:16:42"
+    },
+    {
+      "id": "calendar-url-view-date-mode",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('[data-calendar-mode]')\nExpected: \"week\"\nReceived: \"month\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('[data-calendar-mode]')\n    9 × locator resolved to <div class=\"calendar-view\" data-calendar-mode=\"month\" data-calendar-scope=\"workspace\" data-calendar-date=\"2026-10-08\">…</div>\n      - unexpected value \"month\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/url-scope.mjs:27:51\n    at async probe (file:///workspace/task8/tests/frontend/url-scope.mjs:12:378)\n    at async file:///workspace/task8/tests/frontend/url-scope.mjs:24:2"
+    },
+    {
+      "id": "project-create-default-and-menu-cannot-cross-workspace",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('[data-task-form]')\nExpected: 0\nReceived: 1\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.count\" with timeout 5000ms\n  - waiting for locator('[data-task-form]')\n    9 × locator resolved to 1 element\n      - unexpected value \"1\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/url-scope.mjs:33:81\n    at async probe (file:///workspace/task8/tests/frontend/url-scope.mjs:12:378)\n    at async file:///workspace/task8/tests/frontend/url-scope.mjs:30:2"
+    }
+  ],
+  "pageErrors": [],
+  "browser": "145.0.7632.6"
+}

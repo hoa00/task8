@@ -56,7 +56,7 @@ export function AppShell({ workspaceId }: AppShellProps) {
   useTranslation();
   return (
     <WorkspaceContext value={workspaceId}>
-      <WorkspaceShell workspaceId={workspaceId} />
+      <WorkspaceShell key={workspaceId} workspaceId={workspaceId} />
     </WorkspaceContext>
   );
 }
@@ -97,6 +97,14 @@ function WorkspaceShell({ workspaceId }: AppShellProps) {
     () => false,
   );
   const location = useLocation();
+  const activeScope = useRef(true);
+  useLayoutEffect(() => {
+    activeScope.current = true;
+    return () => {
+      activeScope.current = false;
+      void cancelWorkspaceQueries(queryClient, workspaceId);
+    };
+  }, [queryClient, workspaceId]);
   const [initialRouteEntry, setInitialRouteEntry] = useState(true);
   const loading = useRouterState({ select: (state) => state.isLoading });
   const notFound = useRouterState({
@@ -146,6 +154,7 @@ function WorkspaceShell({ workspaceId }: AppShellProps) {
     [form, setForm] = useState<TaskFormIntent>({ open: false, generation: 0 }),
     [taskMenu, setTaskMenu] = useState<TaskMenuIntent | null>(null);
   const closeTask = () => {
+    if (!activeScope.current) return;
     void navigate({
       to: location.pathname,
       resetScroll: false,
@@ -158,6 +167,7 @@ function WorkspaceShell({ workspaceId }: AppShellProps) {
     });
   };
   const openTask = (taskId: string) => {
+    if (!activeScope.current) return;
     EntityIdSchema.parse(taskId);
     if (!search.taskId) {
       const focused = document.activeElement;
@@ -268,7 +278,7 @@ function WorkspaceShell({ workspaceId }: AppShellProps) {
                   ? { open: true, taskId, generation: current.generation + 1 }
                   : {
                       open: true,
-                      generation: current.generation,
+                      generation: current.generation + 1,
                       ...(defaults ? { defaults } : {}),
                     },
               ),
@@ -370,6 +380,7 @@ function WorkspaceShell({ workspaceId }: AppShellProps) {
                           menu={taskMenu}
                           onMenuChange={setTaskMenu}
                           onProjectOpen={(projectId) => {
+                            if (!activeScope.current) return;
                             closeTask();
                             void navigate({ to: links.project(workspaceId, projectId) });
                           }}

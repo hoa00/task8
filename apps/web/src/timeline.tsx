@@ -1,3 +1,4 @@
+import { useHarnessView } from './app/harness-view';
 import type { EntityId } from '@studio/contracts/api';
 import { StrictMode, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -115,6 +116,7 @@ export function Harness() {
   return workspaceId ? <WorkspaceHarness workspaceId={workspaceId} /> : <div>Loading…</div>;
 }
 function WorkspaceHarness({ workspaceId }: { workspaceId: EntityId }) {
+  const harnessView = useHarnessView();
   const opener = useRef<HTMLElement | null>(null),
     [opened, setOpened] = useState(''),
     [form, setForm] = useState<TaskFormIntent>({ open: false, generation: 0 }),
@@ -130,6 +132,7 @@ function WorkspaceHarness({ workspaceId }: { workspaceId: EntityId }) {
   return (
     <>
       <TimelinePage
+        {...harnessView}
         workspaceId={workspaceId}
         scope={projectScope ? { kind: 'project', projectId: project.id } : { kind: 'workspace' }}
         showHeading={!projectScope}

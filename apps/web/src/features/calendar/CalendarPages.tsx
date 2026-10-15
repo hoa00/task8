@@ -1,3 +1,4 @@
+import { useCalendarRouteState } from '../../app/useCalendarRouteState';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useState } from 'react';
@@ -18,7 +19,7 @@ import { queryKeys } from '../../data/query-keys';
 import { loadTaskViewDataset } from '../tasks/loadTaskViewDataset';
 import { useTaskListCommands } from '../tasks/useTaskListCommands';
 import { TaskViewToolbar } from '../tasks/TaskViewToolbar';
-import { decodeCurrentTaskView, encodeCurrentTaskView } from '../tasks/current-view';
+import { decodeCurrentTaskView } from '../tasks/current-view';
 import { calendarDateLabel } from './date-format';
 import { CalendarView } from './CalendarView';
 import type { CalendarModel, CalendarScope } from './types';
@@ -31,6 +32,10 @@ export interface CalendarPanelProps {
   onTaskMenu?: CalendarModel['onTaskMenu'];
   onNewTask: CalendarModel['onNewTask'];
   onProjectOpen: CalendarModel['onProjectOpen'];
+  controlledDate?: DateOnly;
+  controlledCalendarMode?: CalendarMode;
+  onDateChange?: (date: DateOnly) => void;
+  onCalendarModeChange?: (mode: CalendarMode) => void;
   initialDate?: DateOnly;
   initialMode?: CalendarMode;
   weekStart?: WeekStart;
@@ -44,6 +49,10 @@ export function CalendarPanel({
   onNewTask,
   onProjectOpen,
   initialDate,
+  controlledDate,
+  controlledCalendarMode,
+  onDateChange,
+  onCalendarModeChange,
   initialMode = 'month',
   weekStart,
 }: CalendarPanelProps) {
@@ -51,9 +60,11 @@ export function CalendarPanel({
   const { client, clock } = useDataRuntime(),
     bootstrap = useStudioQuery('getBootstrap', { workspaceId }),
     commands = useTaskListCommands(workspaceId);
-  const [date, setDate] = useState(initialDate ?? clock.today()),
-    [mode, setMode] = useState<CalendarMode>(initialMode),
+  const [localDate, setDate] = useState(initialDate ?? clock.today()),
+    [localMode, setMode] = useState<CalendarMode>(initialMode),
     [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const date = controlledDate ?? localDate,
+    mode = controlledCalendarMode ?? localMode;
   const cells = buildCalendarCells(
     date,
     mode,
@@ -143,8 +154,14 @@ export function CalendarPanel({
             mode,
             weekStart: weekStart ?? data.preferences.weekStart,
             pending: commands.pending,
-            onDateChange: setDate,
-            onModeChange: setMode,
+            onDateChange: (value) => {
+              if (onDateChange) onDateChange(value);
+              else setDate(value);
+            },
+            onModeChange: (value) => {
+              if (onCalendarModeChange) onCalendarModeChange(value);
+              else setMode(value);
+            },
             onTaskOpen,
             ...(onTaskMenu ? { onTaskMenu } : {}),
             onNewTask,
@@ -198,9 +215,9 @@ export function CalendarPage({
 }: CalendarPageProps) {
   useTranslation();
   const bootstrap = useStudioQuery('getBootstrap', { workspaceId: props.workspaceId }),
-    [localView, setView] = useState(initialView ?? decodeCurrentTaskView(location.search));
+    [localView, setView] = useState(initialView ?? normalizeTaskView());
   const { hostRef, onAnimationEnd } = useProjectMotion<HTMLElement>(
-    location.pathname,
+    `${props.workspaceId}/${props.scope.kind}/${'projectId' in props.scope ? props.scope.projectId : ''}`,
     `${JSON.stringify(controlledView ?? localView)}/${JSON.stringify(bootstrap.data)}`,
     'page',
     JSON.stringify(controlledView ?? localView),
@@ -223,9 +240,6 @@ export function CalendarPage({
       onCurrentViewChange(next);
       return;
     }
-    const url = new URL(location.href);
-    url.searchParams.set('view', new URLSearchParams(encodeCurrentTaskView(next)).get('view')!);
-    history.replaceState(history.state, '', url);
   }
   return (
     <main
@@ -275,9 +289,12 @@ export function WorkspaceCalendar() {
   const workspaceId = useWorkspaceId(),
     intents = useWorkspaceIntents(),
     navigate = useNavigate(),
-    route = useLocation();
+    route = useLocation(),
+    calendarState = useCalendarRouteState();
   return (
     <CalendarPage
+      {...calendarState}
+      controlledView={decodeCurrentTaskView(route.searchStr)}
       workspaceId={workspaceId}
       scope={{ kind: 'workspace' }}
       onCurrentViewChange={(view) => {
