@@ -2,10 +2,252 @@ import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useId, useRef, useState } from 'react';
 import type { RefObject } from 'react';
-import { Alert, AppearanceFields, Button, Checkbox, Dialog, DialogBody, DialogFooter, DialogHeader, Field, Icon, Input } from '@studio/ui';
+import {
+  Alert,
+  AppearanceFields,
+  Button,
+  Checkbox,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
+  Field,
+  Icon,
+  Input,
+} from '@studio/ui';
 import type { BootstrapDto, CreateTeamInput, MemberDto, TeamDto } from '@studio/contracts/api';
 import { TeamIdentity } from './TeamIdentity';
 import { MemberIdentity } from '../people/MemberIdentity';
-export interface TeamFormDialogProps { data: BootstrapDto; team?: TeamDto; edit?: boolean; members: readonly MemberDto[]; returnFocus: RefObject<HTMLElement | null>; pending: boolean; error: string; unavailable?: boolean; disabledReason?: string; onRetry?: () => void; onClose: () => void; onDelete: () => void; onSubmit: (body: CreateTeamInput) => Promise<void> }
-export function TeamFormDialog({ data, team, edit = !!team, members, returnFocus, pending, error, unavailable = false, disabledReason, onRetry, onClose, onDelete, onSubmit }: TeamFormDialogProps) { useTranslation(); const nameRef = useRef<HTMLInputElement>(null), formId = useId(), [body, setBody] = useState<CreateTeamInput>({ name: team?.name ?? '', description: team?.description ?? '', icon: team?.icon ?? 'users', color: team?.color ?? '#23918A', memberIds: [...(team?.memberIds ?? [])] }), [validation, setValidation] = useState(''), [revision, setRevision] = useState(0), disabled = pending || unavailable || !!disabledReason; const change = <K extends keyof CreateTeamInput>(key: K, value: CreateTeamInput[K]) => setBody(current => ({ ...current, [key]: value })); const submit = () => { if (disabled) return; const name = body.name.trim(); if (!name) { setValidation(t("Give the team a name")); nameRef.current?.focus(); return; } if (data.teams.some(existing => existing.id !== team?.id && existing.name.toLowerCase() === name.toLowerCase())) { setValidation(t("A team called “{{value1}}” already exists", { value1: String(name) })); nameRef.current?.focus(); return; } setValidation(''); void onSubmit({ ...body, name, description: body.description.trim() }); };
-return <Dialog open returnFocus={returnFocus} initialFocus={nameRef} entryRevision={`${revision}/${validation}/${error}/${unavailable}`} aria-labelledby="team-form-title" onOpenChange={open => { if (!open && !pending) onClose(); }} onKeyDown={event => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); submit(); } }} data-team-form><DialogHeader title={edit ? t("Edit team") : t("New team")} titleId="team-form-title" description={edit ? '' : t("Teams group the people who work on projects together.")} onClose={() => { if (!pending) onClose(); }}/><DialogBody as="form" id={formId} onSubmit={event => { event.preventDefault(); submit(); }}><div className="flex items-start gap-[10px]"><TeamIdentity team={body} iconOnly large className="mt-[22px]"/><Field label={t("Team name")} controlId="tm-name" className="min-w-0 flex-1" error={validation}><Input id="tm-name" aria-describedby={validation ? 'tm-name-description' : undefined} ref={nameRef} placeholder={t("e.g. Growth")} disabled={disabled} value={body.name} error={!!validation} onChange={event => { change('name', event.target.value); if (event.target.value.trim()) setValidation(''); }}/></Field></div><Field label={t("What does this team own?")} controlId="tm-desc"><Input id="tm-desc" placeholder={t("e.g. Acquisition experiments and lifecycle email")} disabled={disabled} value={body.description} onChange={event => change('description', event.target.value)}/></Field><AppearanceFields icons={data.catalogs.projectIcons} colors={data.catalogs.projectColors} icon={body.icon} color={body.color} disabled={disabled} onIconChange={icon => { setRevision(current => current + 1); change('icon', icon); }} onColorChange={color => { setRevision(current => current + 1); change('color', color); }}/><fieldset className="m-0 flex flex-col gap-[6px] border-0 p-0"><legend className="mb-[6px] text-sm font-medium">{t("Members")} <span className="font-normal text-muted">· {body.memberIds.length}  {t("selected")}</span></legend><div className="max-h-[220px] overflow-y-auto rounded-lg border border-solid border-border bg-surface p-1">{members.map(member => <label key={member.id} className="flex min-h-9 cursor-pointer items-center gap-[9px] rounded-sm px-2 py-0 text-left text-body source-hover:bg-surface-2"><Checkbox aria-label={member.name} disabled={disabled} checked={body.memberIds.includes(member.id)} onCheckedChange={checked => { setRevision(current => current + 1); change('memberIds', checked ? [...body.memberIds, member.id] : body.memberIds.filter(id => id !== member.id)); }}/><MemberIdentity member={member} avatarOnly/><span className="min-w-0 flex-1 truncate">{member.name}</span><span className="ml-auto text-xs text-muted">{member.teamId && member.teamId !== team?.id ? data.teams.find(existing => existing.id === member.teamId)?.name : ''}</span></label>)}</div><span className="text-xs text-muted">{t("Everyone belongs to one primary team. Adding someone here moves them from their current team.")}</span></fieldset>{unavailable && <Alert tone="danger">{t("This team is no longer available. Close this form and return to Teams.")}</Alert>}{disabledReason && <Alert tone="info">{disabledReason}</Alert>}{error && <Alert tone="danger">{error}{onRetry && <Button size="sm" onClick={onRetry}>{t("Retry")}</Button>}</Alert>}</DialogBody><DialogFooter>{edit && <Button variant="ghost" className="text-red! source-hover:bg-red-soft!" disabled={disabled} onClick={onDelete}><Icon name="trash-2" size={14}/>{t("Delete team")}</Button>}<span className="flex-1"/><Button variant="secondary" disabled={pending} onClick={onClose}>{t("Cancel")}</Button><Button variant="primary" type="submit" form={formId} disabled={disabled} loading={pending}>{edit ? t("Save changes") : t("Create team")}</Button></DialogFooter></Dialog>; }
+export interface TeamFormDialogProps {
+  data: BootstrapDto;
+  team?: TeamDto;
+  edit?: boolean;
+  members: readonly MemberDto[];
+  returnFocus: RefObject<HTMLElement | null>;
+  pending: boolean;
+  error: string;
+  unavailable?: boolean;
+  disabledReason?: string;
+  onRetry?: () => void;
+  onClose: () => void;
+  onDelete: () => void;
+  onSubmit: (body: CreateTeamInput) => Promise<void>;
+}
+export function TeamFormDialog({
+  data,
+  team,
+  edit = !!team,
+  members,
+  returnFocus,
+  pending,
+  error,
+  unavailable = false,
+  disabledReason,
+  onRetry,
+  onClose,
+  onDelete,
+  onSubmit,
+}: TeamFormDialogProps) {
+  useTranslation();
+  const nameRef = useRef<HTMLInputElement>(null),
+    formId = useId(),
+    [body, setBody] = useState<CreateTeamInput>({
+      name: team?.name ?? '',
+      description: team?.description ?? '',
+      icon: team?.icon ?? 'users',
+      color: team?.color ?? '#23918A',
+      memberIds: [...(team?.memberIds ?? [])],
+    }),
+    [validation, setValidation] = useState(''),
+    [revision, setRevision] = useState(0),
+    disabled = pending || unavailable || !!disabledReason;
+  const change = <K extends keyof CreateTeamInput>(key: K, value: CreateTeamInput[K]) =>
+    setBody((current) => ({ ...current, [key]: value }));
+  const submit = () => {
+    if (disabled) return;
+    const name = body.name.trim();
+    if (!name) {
+      setValidation(t('Give the team a name'));
+      nameRef.current?.focus();
+      return;
+    }
+    if (
+      data.teams.some(
+        (existing) =>
+          existing.id !== team?.id && existing.name.toLowerCase() === name.toLowerCase(),
+      )
+    ) {
+      setValidation(t('A team called “{{value1}}” already exists', { value1: String(name) }));
+      nameRef.current?.focus();
+      return;
+    }
+    setValidation('');
+    void onSubmit({ ...body, name, description: body.description.trim() });
+  };
+  return (
+    <Dialog
+      open
+      returnFocus={returnFocus}
+      initialFocus={nameRef}
+      entryRevision={`${revision}/${validation}/${error}/${unavailable}`}
+      aria-labelledby="team-form-title"
+      onOpenChange={(open) => {
+        if (!open && !pending) onClose();
+      }}
+      onKeyDown={(event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+          event.preventDefault();
+          submit();
+        }
+      }}
+      data-team-form
+    >
+      <DialogHeader
+        title={edit ? t('Edit team') : t('New team')}
+        titleId="team-form-title"
+        description={edit ? '' : t('Teams group the people who work on projects together.')}
+        onClose={() => {
+          if (!pending) onClose();
+        }}
+      />
+      <DialogBody
+        as="form"
+        id={formId}
+        onSubmit={(event) => {
+          event.preventDefault();
+          submit();
+        }}
+      >
+        <div className="flex items-start gap-[10px]">
+          <TeamIdentity team={body} iconOnly large className="mt-[22px]" />
+          <Field
+            label={t('Team name')}
+            controlId="tm-name"
+            className="min-w-0 flex-1"
+            error={validation}
+          >
+            <Input
+              id="tm-name"
+              aria-describedby={validation ? 'tm-name-description' : undefined}
+              ref={nameRef}
+              placeholder={t('e.g. Growth')}
+              disabled={disabled}
+              value={body.name}
+              error={!!validation}
+              onChange={(event) => {
+                change('name', event.target.value);
+                if (event.target.value.trim()) setValidation('');
+              }}
+            />
+          </Field>
+        </div>
+        <Field label={t('What does this team own?')} controlId="tm-desc">
+          <Input
+            id="tm-desc"
+            placeholder={t('e.g. Acquisition experiments and lifecycle email')}
+            disabled={disabled}
+            value={body.description}
+            onChange={(event) => change('description', event.target.value)}
+          />
+        </Field>
+        <AppearanceFields
+          icons={data.catalogs.projectIcons}
+          colors={data.catalogs.projectColors}
+          icon={body.icon}
+          color={body.color}
+          disabled={disabled}
+          onIconChange={(icon) => {
+            setRevision((current) => current + 1);
+            change('icon', icon);
+          }}
+          onColorChange={(color) => {
+            setRevision((current) => current + 1);
+            change('color', color);
+          }}
+        />
+        <fieldset className="m-0 flex flex-col gap-[6px] border-0 p-0">
+          <legend className="mb-[6px] text-sm font-medium">
+            {t('Members')}{' '}
+            <span className="font-normal text-muted">
+              {'· '}
+              {body.memberIds.length}
+              {'  '}
+              {t('selected')}
+            </span>
+          </legend>
+          <div className="max-h-[220px] overflow-y-auto rounded-lg border border-solid border-border bg-surface p-1">
+            {members.map((member) => (
+              <label
+                key={member.id}
+                className="flex min-h-9 cursor-pointer items-center gap-[9px] rounded-sm px-2 py-0 text-left text-body source-hover:bg-surface-2"
+              >
+                <Checkbox
+                  aria-label={member.name}
+                  disabled={disabled}
+                  checked={body.memberIds.includes(member.id)}
+                  onCheckedChange={(checked) => {
+                    setRevision((current) => current + 1);
+                    change(
+                      'memberIds',
+                      checked
+                        ? [...body.memberIds, member.id]
+                        : body.memberIds.filter((id) => id !== member.id),
+                    );
+                  }}
+                />
+                <MemberIdentity member={member} avatarOnly />
+                <span className="min-w-0 flex-1 truncate">{member.name}</span>
+                <span className="ml-auto text-xs text-muted">
+                  {member.teamId && member.teamId !== team?.id
+                    ? data.teams.find((existing) => existing.id === member.teamId)?.name
+                    : ''}
+                </span>
+              </label>
+            ))}
+          </div>
+          <span className="text-xs text-muted">
+            {t(
+              'Everyone belongs to one primary team. Adding someone here moves them from their current team.',
+            )}
+          </span>
+        </fieldset>
+        {unavailable && (
+          <Alert tone="danger">
+            {t('This team is no longer available. Close this form and return to Teams.')}
+          </Alert>
+        )}
+        {disabledReason && <Alert tone="info">{disabledReason}</Alert>}
+        {error && (
+          <Alert tone="danger">
+            {error}
+            {onRetry && (
+              <Button size="sm" onClick={onRetry}>
+                {t('Retry')}
+              </Button>
+            )}
+          </Alert>
+        )}
+      </DialogBody>
+      <DialogFooter>
+        {edit && (
+          <Button
+            variant="ghost"
+            className="text-red! source-hover:bg-red-soft!"
+            disabled={disabled}
+            onClick={onDelete}
+          >
+            <Icon name="trash-2" size={14} />
+            {t('Delete team')}
+          </Button>
+        )}
+        <span className="flex-1" />
+        <Button variant="secondary" disabled={pending} onClick={onClose}>
+          {t('Cancel')}
+        </Button>
+        <Button variant="primary" type="submit" form={formId} disabled={disabled} loading={pending}>
+          {edit ? t('Save changes') : t('Create team')}
+        </Button>
+      </DialogFooter>
+    </Dialog>
+  );
+}
