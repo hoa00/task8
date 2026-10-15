@@ -1,0 +1,26 @@
+[
+  {
+    "web": "apps/web/tests/data/calendar.test.ts",
+    "domain": "packages/domain/tests/calendar.test.ts",
+    "before": 6,
+    "kept": 3,
+    "moved": [
+      "calendar DateOnly is invariant across UTC, DST transitions and fractional-offset timezones",
+      "month geometry uses source minimum35 or42, leap boundaries and every weekStart",
+      "previous/next reset month to first, week crosses year and Today retains fixture day"
+    ],
+    "caseSyntaxPreserved": true,
+    "duplicateCases": false
+  },
+  {
+    "web": "apps/web/tests/data/timeline.test.ts",
+    "domain": "packages/domain/tests/timeline.test.ts",
+    "before": 7,
+    "kept": 6,
+    "moved": [
+      "Timeline date ranges retain source91/238 days and UTC weekStart across DST/leap/year"
+    ],
+    "caseSyntaxPreserved": true,
+    "duplicateCases": false
+  }
+]

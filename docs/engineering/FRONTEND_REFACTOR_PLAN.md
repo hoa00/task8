@@ -70,7 +70,7 @@ Phải bảo toàn: canonical DTO/errors/null-versus-omission/date-only/UTC; ses
 | FR-03 | FR-02A | Mock module ownership, semantic query boundary | **DONE**; [verification](evidence/FR-03/verification.json) |
 | FR-04 | FR-02B + FR-03 | Controller/dataset/date/UI services/persistence | **DONE**; [verification](evidence/FR-04/verification.json) |
 | FR-05 | FR-04 | Field/keyboard/focus và translation ownership | **DONE**; [verification](evidence/FR-05/verification.json) |
-| FR-06 | FR-03 + FR-04 + FR-05 | Active test ownership/harness migration và documentation commands | **NOT_STARTED** |
+| FR-06 | FR-03 + FR-04 + FR-05 | Active test ownership/harness migration và documentation commands | **DONE**; [verification](evidence/FR-06/verification.json) |
 | FR-07 | FR-06 | Audit cuối, gỡ allowlist/seams, current docs và regression | **NOT_STARTED** |
 
 FR-02A và FR-02B có thể giao song song ở workspace/file ownership tách biệt sau baseline; integration có một owner kiểm lại shared client/keys. Các phase còn lại đi tuần tự prerequisite. Không chạy phase kế tiếp chỉ vì phase trước đã format/build. Không cam kết ngày công khi chưa có baseline và số consumer thực tế.

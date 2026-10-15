@@ -4,6 +4,7 @@ import { createWriteStream, readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 import { frontendChecks, selectChecks } from './manifest.mjs';
+import { browserResults } from './browser-report.mjs';
 import { claimOutput, root } from './output.mjs';
 
 export function parseOptions(args) {
@@ -112,6 +113,18 @@ async function runChild(check, output, options) {
     (entry.totals.skipped > 0 || entry.totals.todo > 0)
   )
     entry.status = 'partial';
+  if (check.browserReport && entry.status === 'passed') {
+    try {
+      const browser = browserResults(
+        JSON.parse(readFileSync(join(output, check.browserReport), 'utf8')),
+      );
+      entry.scenarios = browser.scenarios;
+      entry.status = browser.status;
+    } catch (error) {
+      entry.status = 'failed';
+      entry.error = String(error.message);
+    }
+  }
   return entry;
 }
 export async function runChecks(checks, options = {}) {

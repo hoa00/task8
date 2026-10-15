@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.tests.json",
+    "test": "node --experimental-strip-types --test --test-isolation=none --test-reporter=tap tests/*.test.ts"
   },
   "dependencies": {
     "@studio/contracts": "workspace:*",

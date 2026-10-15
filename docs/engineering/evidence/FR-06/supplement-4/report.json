@@ -1,0 +1,79 @@
+{
+  "requests": [
+    {
+      "operation": "getSession",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "getBootstrap",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e"
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listWorkspaces",
+      "input": {},
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listMembers",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "limit": 200,
+          "q": ""
+        }
+      },
+      "outcome": "pending"
+    },
+    {
+      "operation": "getTaskSummary",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due"
+        }
+      },
+      "outcome": "fulfilled"
+    },
+    {
+      "operation": "listTasks",
+      "input": {
+        "workspaceId": "01a11abd-aa80-72ea-8b87-b31ad015a24e",
+        "query": {
+          "favoriteOnly": false,
+          "archived": false,
+          "q": "",
+          "filters": [],
+          "sortField": "manual",
+          "sortDirection": "asc",
+          "rangeBasis": "due",
+          "limit": 200
+        }
+      },
+      "outcome": "fulfilled"
+    }
+  ],
+  "runtime": {
+    "node": "v24.13.0",
+    "browser": "145.0.7632.6"
+  },
+  "scope": "Actual HTTP-built adapter, typed intercepted responses backed by canonical mock operations. Directory/profile/session failures, local explicit demo storage fault/draft/retry; no real backend/D1/R2/email/account delivery or live fallback.",
+  "status": "failed",
+  "probes": [
+    {
+      "id": "H20-01-loading-directory-read-before-response",
+      "status": "failed",
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('status').filter({ hasText: 'Loading members…' }) to be visible\u001b[22m\n\n    at /workspace/task8/tests/visual/people/http.mjs:91:80\n    at async probe (/workspace/task8/tests/frontend/browser-report.mjs:17:54)\n    at async file:///workspace/task8/tests/visual/people/http.mjs:87:7\n    at async withBrowserSession (/workspace/task8/tests/frontend/browser-session.mjs:33:12)\n    at async file:///workspace/task8/tests/visual/people/http.mjs:45:3"
+    }
+  ],
+  "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('status').filter({ hasText: 'Loading members…' }) to be visible\u001b[22m\n\n    at /workspace/task8/tests/visual/people/http.mjs:91:80\n    at async probe (/workspace/task8/tests/frontend/browser-report.mjs:17:54)\n    at async file:///workspace/task8/tests/visual/people/http.mjs:87:7\n    at async withBrowserSession (/workspace/task8/tests/frontend/browser-session.mjs:33:12)\n    at async file:///workspace/task8/tests/visual/people/http.mjs:45:3"
+}

@@ -157,3 +157,48 @@ test('formatter accepts associative short-circuit regrouping but preserves order
     semanticSyntax('a.ts', 'const result = (a + b) + c;'),
   );
 });
+
+test('runner aggregates actual browser scenarios and fails missing/incomplete child reports', async () => {
+  const workspace = mkdtempSync(join(tmpdir(), 'browser-run-report-'));
+  const check = (body) => ({
+    id: 'browser',
+    owner: 'fixture',
+    mode: 'browser',
+    browserReport: 'browser.json',
+    command: process.execPath,
+    args: (output) => [
+      '-e',
+      'require("node:fs").writeFileSync(process.argv[1], process.argv[2])',
+      join(output, 'browser.json'),
+      JSON.stringify(body),
+    ],
+  });
+  try {
+    const passed = await runChecks(
+      [check({ status: 'passed', probes: [{ id: 'actual-case', pass: true }] })],
+      { cwd: workspace },
+    );
+    assert.deepEqual(passed.commands[0].scenarios, [{ id: 'actual-case', status: 'passed' }]);
+    const partial = await runChecks(
+      [
+        check({
+          status: 'partial',
+          probes: [{ id: 'unselected', status: 'skipped', reason: 'selection' }],
+        }),
+      ],
+      { cwd: workspace },
+    );
+    assert.equal(partial.status, 'partial');
+    const failed = await runChecks(
+      [check({ status: 'passed', probes: [{ id: 'actual-failure', pass: false }] })],
+      { cwd: workspace },
+    );
+    assert.equal(failed.status, 'failed');
+    const incomplete = await runChecks([check({ status: 'running', probes: [] })], {
+      cwd: workspace,
+    });
+    assert.equal(incomplete.status, 'failed');
+  } finally {
+    rmSync(workspace, { recursive: true, force: true });
+  }
+});

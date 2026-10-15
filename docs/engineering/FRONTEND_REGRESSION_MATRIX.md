@@ -31,3 +31,17 @@ FR-04 checkpoint: F06…F12 có owner và regression thực tại [verification]
 
 
 FR-05 checkpoint: F13 Field→`frontend/accessibility.mjs` actual Project/Onboarding label/error/focus; F14→same entry overlay Tab/roving/nested Escape/missing opener/reduced motion; F15→live vi/en/toast lifetime and `tests/i18n/dynamic.test.mjs`. Source controls8pairs threshold0/repeatability0 in FR-05 supplements; not a claim about untouched historical visual debt. Full non-API330Node tests pass.
+
+
+FR-06 active selection theo risk:
+
+| Phạm vi thay đổi | Check IDs bắt buộc theo scope | Browser/visual cần chọn thêm |
+| --- | --- | --- |
+| Domain pure policy | domain-tests, web-tests, typecheck, boundaries | controller/URL nếu consumer semantics đổi |
+| Task/date/query/controller | web-tests, contract-tests, consumers, typecheck, boundaries | browser-controllers, browser-url, browser-smoke |
+| UI/form/focus/i18n | i18n-tests, web-tests, typecheck, lint, boundaries | browser-accessibility; independent controls-visual khi presentation đổi |
+| People/Teams | web-tests, contract-tests, consumers, typecheck | people-http / teams-http; both nếu shared support đổi |
+| HTTP/bootstrap/import graph | typecheck, boundaries, build, http-build, http-bundle | affected HTTP browser |
+| Runner/support/selection | tooling-tests, workspace-tests, lint | actual migrated consumers + negative startup/timeout/cancel |
+
+Foundation còn gồm identities/build; reference integrity khi thay UI/capture. Full checkpoint chọn tất cả active IDs trong manifest. Browser scenario IDs/skips được aggregate từ report child, counts Node từ TAP thực. Historical aliases không tự trở thành active chỉ vì package script còn tồn tại.

@@ -1,0 +1,141 @@
+{
+  "status": "failed",
+  "startedAt": "2026-10-15T12:18:12.123Z",
+  "head": "082f800bb27d97a2327c68f60cdb1ea9cb096427",
+  "branch": "work",
+  "dirty": "M apps/web/tests/data/calendar.test.ts\n M apps/web/tests/data/timeline.test.ts\n M packages/domain/package.json\n M tests/frontend/accessibility.mjs\n M tests/frontend/check.mjs\n M tests/frontend/manifest.mjs\n M tests/visual/people/http.mjs\n M tests/visual/teams/http.mjs\n?? packages/domain/tests/\n?? packages/domain/tsconfig.tests.json\n?? tests/frontend/browser-report.mjs\n?? tests/frontend/browser-session.mjs\n?? tests/frontend/browser-support.test.mjs\n?? tests/frontend/http-intercept.mjs",
+  "node": "v24.13.0",
+  "pnpm": "11.19.0",
+  "scope": "non-API",
+  "output": "/workspace/task8/test-results/fr06-integration",
+  "commands": [
+    {
+      "id": "typecheck",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "consumers",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "lint",
+      "owner": "non-API source and active harness",
+      "mode": "static",
+      "command": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/web",
+        "packages",
+        "tests/workspace",
+        "tests/frontend",
+        "tests/data",
+        "tests/i18n",
+        "tests/contracts",
+        "tests/visual",
+        "eslint.config.mjs"
+      ],
+      "log": "/workspace/task8/test-results/fr06-integration/lint.log",
+      "exit": 1,
+      "signal": null,
+      "timedOut": false,
+      "sha256": "59cbfbff5f622ba15de55a9b9b72918b2757cfdd7f42d80e3ac52ada52a81436",
+      "totals": null,
+      "scenarios": [],
+      "status": "failed"
+    },
+    {
+      "id": "boundaries",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "web-tests",
+      "status": "skipped",
+      "reason": "earlier-failure"
+    },
+    {
+      "id": "domain-tests",
+      "status": "skipped",
+      "reason": "earlier-failure"
+    },
+    {
+      "id": "contract-tests",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "identities",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "workspace-tests",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "tooling-tests",
+      "status": "skipped",
+      "reason": "earlier-failure"
+    },
+    {
+      "id": "i18n-tests",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "build",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "http-build",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "http-bundle",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "browser-smoke",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "browser-url",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "browser-controllers",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "browser-accessibility",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "people-http",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "teams-http",
+      "status": "skipped",
+      "reason": "not-selected"
+    },
+    {
+      "id": "reference",
+      "status": "skipped",
+      "reason": "not-selected"
+    }
+  ],
+  "finishedAt": "2026-10-15T12:18:32.416Z"
+}
