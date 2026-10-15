@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs';
 import os from 'node:os';
-import { artifacts, root, reference, readJson, sha256, checkSource } from './source-check.mjs';
+import { artifacts, root, readJson, sha256, checkSource } from './source-check.mjs';
 import { environment, origin, launch, newPage } from './environment.mjs';
 import { scenarios } from './scenarios.mjs';
 import { setupScenario, readiness } from './source-driver.mjs';

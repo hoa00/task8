@@ -10,7 +10,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
-    "lint": "eslint apps packages tests/workspace tests/i18n tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search tests/visual/notifications tests/visual/people tests/visual/teams tests/visual/files tests/visual/settings tests/visual/auth tests/visual/onboarding tests/visual/archive tests/visual/m2 eslint.config.mjs && node tests/workspace/boundaries.mjs",
+    "lint": "eslint apps packages tests/workspace tests/frontend tests/i18n tests/contracts tests/data tests/visual/foundation tests/visual/controls tests/visual/overlays tests/visual/shell tests/visual/tasks tests/visual/task-list tests/visual/task-detail tests/visual/task-board tests/visual/calendar tests/visual/timeline tests/visual/task-table tests/visual/task-collaboration tests/visual/projects tests/visual/dashboards tests/visual/search tests/visual/notifications tests/visual/people tests/visual/teams tests/visual/files tests/visual/settings tests/visual/auth tests/visual/onboarding tests/visual/archive tests/visual/m2 eslint.config.mjs && node tests/workspace/boundaries.mjs && node tests/workspace/frontend-boundaries.mjs",
     "test": "turbo run test && pnpm test:reference && pnpm test:workspace && pnpm test:i18n",
     "test:reference": "node --test tests/visual/reference/*.test.mjs",
     "test:workspace": "node --test tests/workspace/*.test.mjs",
@@ -94,7 +94,11 @@
     "test:auth:interactions": "node tests/visual/auth/interactions.mjs",
     "verify:auth": "node tests/visual/auth/gates.mjs",
     "test:i18n": "node --experimental-strip-types --test --test-isolation=none tests/i18n/*.test.mjs",
-    "test:i18n:browser": "node tests/i18n/browser.mjs"
+    "test:i18n:browser": "node tests/i18n/browser.mjs",
+    "frontend:check": "node tests/frontend/check.mjs",
+    "frontend:format": "node tests/frontend/format.mjs",
+    "frontend:boundaries": "node tests/workspace/boundaries.mjs && node tests/workspace/frontend-boundaries.mjs",
+    "contracts:consumers:web": "tsc -p tests/contracts/tsconfig.web.json --noEmit"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",
@@ -108,6 +112,7 @@
     "globals": "17.13.0",
     "turbo": "2.11.7",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.71.1"
+    "typescript-eslint": "8.71.1",
+    "prettier": "3.6.2"
   }
 }

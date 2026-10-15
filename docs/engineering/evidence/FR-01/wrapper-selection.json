@@ -1,0 +1,834 @@
+[
+  {
+    "owner": "people",
+    "affected": false,
+    "skipTests": false,
+    "command": [
+      "node",
+      "tests/visual/people/gates.mjs",
+      "--list"
+    ],
+    "exit": 0,
+    "checks": [
+      {
+        "id": "typecheck",
+        "owner": "web/ui/contracts/domain",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "consumers",
+        "owner": "contracts/web",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "lint",
+        "owner": "non-API source and active harness",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "boundaries",
+        "owner": "shared packages and web",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "web-tests",
+        "owner": "web/env/adapter and feature tests",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "contract-tests",
+        "owner": "contracts",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "identities",
+        "owner": "contracts/fixture",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "workspace-tests",
+        "owner": "workspace/tooling",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "tooling-tests",
+        "owner": "frontend/tooling",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "i18n-tests",
+        "owner": "i18n",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "build",
+        "owner": "web/ui/contracts/domain",
+        "mode": "mock",
+        "skip": null
+      },
+      {
+        "id": "http-build",
+        "owner": "web",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "http-bundle",
+        "owner": "web/adapter graph",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "browser-smoke",
+        "owner": "web/shell/tasks/calendar",
+        "mode": "mock-browser",
+        "skip": "not-selected"
+      },
+      {
+        "id": "reference",
+        "owner": "pinned source",
+        "mode": "reference",
+        "skip": "not-selected"
+      }
+    ]
+  },
+  {
+    "owner": "people",
+    "affected": false,
+    "skipTests": true,
+    "command": [
+      "node",
+      "tests/visual/people/gates.mjs",
+      "--list",
+      "--skip-tests"
+    ],
+    "exit": 0,
+    "checks": [
+      {
+        "id": "typecheck",
+        "owner": "web/ui/contracts/domain",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "consumers",
+        "owner": "contracts/web",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "lint",
+        "owner": "non-API source and active harness",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "boundaries",
+        "owner": "shared packages and web",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "web-tests",
+        "owner": "web/env/adapter and feature tests",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "contract-tests",
+        "owner": "contracts",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "identities",
+        "owner": "contracts/fixture",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "workspace-tests",
+        "owner": "workspace/tooling",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "tooling-tests",
+        "owner": "frontend/tooling",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "i18n-tests",
+        "owner": "i18n",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "build",
+        "owner": "web/ui/contracts/domain",
+        "mode": "mock",
+        "skip": null
+      },
+      {
+        "id": "http-build",
+        "owner": "web",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "http-bundle",
+        "owner": "web/adapter graph",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "browser-smoke",
+        "owner": "web/shell/tasks/calendar",
+        "mode": "mock-browser",
+        "skip": "not-selected"
+      },
+      {
+        "id": "reference",
+        "owner": "pinned source",
+        "mode": "reference",
+        "skip": "not-selected"
+      }
+    ]
+  },
+  {
+    "owner": "people",
+    "affected": true,
+    "skipTests": false,
+    "command": [
+      "node",
+      "tests/visual/people/gates.mjs",
+      "--list",
+      "--affected"
+    ],
+    "exit": 0,
+    "checks": [
+      {
+        "id": "typecheck",
+        "owner": "web/ui/contracts/domain",
+        "mode": "types",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "consumers",
+        "owner": "contracts/web",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "lint",
+        "owner": "non-API source and active harness",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "boundaries",
+        "owner": "shared packages and web",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "web-tests",
+        "owner": "web/env/adapter and feature tests",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "contract-tests",
+        "owner": "contracts",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "identities",
+        "owner": "contracts/fixture",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "workspace-tests",
+        "owner": "workspace/tooling",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "tooling-tests",
+        "owner": "frontend/tooling",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "i18n-tests",
+        "owner": "i18n",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "build",
+        "owner": "web/ui/contracts/domain",
+        "mode": "mock",
+        "skip": null
+      },
+      {
+        "id": "http-build",
+        "owner": "web",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "http-bundle",
+        "owner": "web/adapter graph",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "browser-smoke",
+        "owner": "web/shell/tasks/calendar",
+        "mode": "mock-browser",
+        "skip": "not-selected"
+      },
+      {
+        "id": "reference",
+        "owner": "pinned source",
+        "mode": "reference",
+        "skip": "not-selected"
+      }
+    ]
+  },
+  {
+    "owner": "people",
+    "affected": true,
+    "skipTests": true,
+    "command": [
+      "node",
+      "tests/visual/people/gates.mjs",
+      "--list",
+      "--affected",
+      "--skip-tests"
+    ],
+    "exit": 0,
+    "checks": [
+      {
+        "id": "typecheck",
+        "owner": "web/ui/contracts/domain",
+        "mode": "types",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "consumers",
+        "owner": "contracts/web",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "lint",
+        "owner": "non-API source and active harness",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "boundaries",
+        "owner": "shared packages and web",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "web-tests",
+        "owner": "web/env/adapter and feature tests",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "contract-tests",
+        "owner": "contracts",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "identities",
+        "owner": "contracts/fixture",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "workspace-tests",
+        "owner": "workspace/tooling",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "tooling-tests",
+        "owner": "frontend/tooling",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "i18n-tests",
+        "owner": "i18n",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "build",
+        "owner": "web/ui/contracts/domain",
+        "mode": "mock",
+        "skip": null
+      },
+      {
+        "id": "http-build",
+        "owner": "web",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "http-bundle",
+        "owner": "web/adapter graph",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "browser-smoke",
+        "owner": "web/shell/tasks/calendar",
+        "mode": "mock-browser",
+        "skip": "not-selected"
+      },
+      {
+        "id": "reference",
+        "owner": "pinned source",
+        "mode": "reference",
+        "skip": "not-selected"
+      }
+    ]
+  },
+  {
+    "owner": "teams",
+    "affected": false,
+    "skipTests": false,
+    "command": [
+      "node",
+      "tests/visual/teams/gates.mjs",
+      "--list"
+    ],
+    "exit": 0,
+    "checks": [
+      {
+        "id": "typecheck",
+        "owner": "web/ui/contracts/domain",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "consumers",
+        "owner": "contracts/web",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "lint",
+        "owner": "non-API source and active harness",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "boundaries",
+        "owner": "shared packages and web",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "web-tests",
+        "owner": "web/env/adapter and feature tests",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "contract-tests",
+        "owner": "contracts",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "identities",
+        "owner": "contracts/fixture",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "workspace-tests",
+        "owner": "workspace/tooling",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "tooling-tests",
+        "owner": "frontend/tooling",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "i18n-tests",
+        "owner": "i18n",
+        "mode": "unit",
+        "skip": null
+      },
+      {
+        "id": "build",
+        "owner": "web/ui/contracts/domain",
+        "mode": "mock",
+        "skip": null
+      },
+      {
+        "id": "http-build",
+        "owner": "web",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "http-bundle",
+        "owner": "web/adapter graph",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "browser-smoke",
+        "owner": "web/shell/tasks/calendar",
+        "mode": "mock-browser",
+        "skip": "not-selected"
+      },
+      {
+        "id": "reference",
+        "owner": "pinned source",
+        "mode": "reference",
+        "skip": "not-selected"
+      }
+    ]
+  },
+  {
+    "owner": "teams",
+    "affected": false,
+    "skipTests": true,
+    "command": [
+      "node",
+      "tests/visual/teams/gates.mjs",
+      "--list",
+      "--skip-tests"
+    ],
+    "exit": 0,
+    "checks": [
+      {
+        "id": "typecheck",
+        "owner": "web/ui/contracts/domain",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "consumers",
+        "owner": "contracts/web",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "lint",
+        "owner": "non-API source and active harness",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "boundaries",
+        "owner": "shared packages and web",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "web-tests",
+        "owner": "web/env/adapter and feature tests",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "contract-tests",
+        "owner": "contracts",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "identities",
+        "owner": "contracts/fixture",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "workspace-tests",
+        "owner": "workspace/tooling",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "tooling-tests",
+        "owner": "frontend/tooling",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "i18n-tests",
+        "owner": "i18n",
+        "mode": "unit",
+        "skip": "skip-tests"
+      },
+      {
+        "id": "build",
+        "owner": "web/ui/contracts/domain",
+        "mode": "mock",
+        "skip": null
+      },
+      {
+        "id": "http-build",
+        "owner": "web",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "http-bundle",
+        "owner": "web/adapter graph",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "browser-smoke",
+        "owner": "web/shell/tasks/calendar",
+        "mode": "mock-browser",
+        "skip": "not-selected"
+      },
+      {
+        "id": "reference",
+        "owner": "pinned source",
+        "mode": "reference",
+        "skip": "not-selected"
+      }
+    ]
+  },
+  {
+    "owner": "teams",
+    "affected": true,
+    "skipTests": false,
+    "command": [
+      "node",
+      "tests/visual/teams/gates.mjs",
+      "--list",
+      "--affected"
+    ],
+    "exit": 0,
+    "checks": [
+      {
+        "id": "typecheck",
+        "owner": "web/ui/contracts/domain",
+        "mode": "types",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "consumers",
+        "owner": "contracts/web",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "lint",
+        "owner": "non-API source and active harness",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "boundaries",
+        "owner": "shared packages and web",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "web-tests",
+        "owner": "web/env/adapter and feature tests",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "contract-tests",
+        "owner": "contracts",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "identities",
+        "owner": "contracts/fixture",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "workspace-tests",
+        "owner": "workspace/tooling",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "tooling-tests",
+        "owner": "frontend/tooling",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "i18n-tests",
+        "owner": "i18n",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "build",
+        "owner": "web/ui/contracts/domain",
+        "mode": "mock",
+        "skip": null
+      },
+      {
+        "id": "http-build",
+        "owner": "web",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "http-bundle",
+        "owner": "web/adapter graph",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "browser-smoke",
+        "owner": "web/shell/tasks/calendar",
+        "mode": "mock-browser",
+        "skip": "not-selected"
+      },
+      {
+        "id": "reference",
+        "owner": "pinned source",
+        "mode": "reference",
+        "skip": "not-selected"
+      }
+    ]
+  },
+  {
+    "owner": "teams",
+    "affected": true,
+    "skipTests": true,
+    "command": [
+      "node",
+      "tests/visual/teams/gates.mjs",
+      "--list",
+      "--affected",
+      "--skip-tests"
+    ],
+    "exit": 0,
+    "checks": [
+      {
+        "id": "typecheck",
+        "owner": "web/ui/contracts/domain",
+        "mode": "types",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "consumers",
+        "owner": "contracts/web",
+        "mode": "types",
+        "skip": null
+      },
+      {
+        "id": "lint",
+        "owner": "non-API source and active harness",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "boundaries",
+        "owner": "shared packages and web",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "web-tests",
+        "owner": "web/env/adapter and feature tests",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "contract-tests",
+        "owner": "contracts",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "identities",
+        "owner": "contracts/fixture",
+        "mode": "static",
+        "skip": null
+      },
+      {
+        "id": "workspace-tests",
+        "owner": "workspace/tooling",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "tooling-tests",
+        "owner": "frontend/tooling",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "i18n-tests",
+        "owner": "i18n",
+        "mode": "unit",
+        "skip": "affected-selection"
+      },
+      {
+        "id": "build",
+        "owner": "web/ui/contracts/domain",
+        "mode": "mock",
+        "skip": null
+      },
+      {
+        "id": "http-build",
+        "owner": "web",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "http-bundle",
+        "owner": "web/adapter graph",
+        "mode": "http",
+        "skip": null
+      },
+      {
+        "id": "browser-smoke",
+        "owner": "web/shell/tasks/calendar",
+        "mode": "mock-browser",
+        "skip": "not-selected"
+      },
+      {
+        "id": "reference",
+        "owner": "pinned source",
+        "mode": "reference",
+        "skip": "not-selected"
+      }
+    ]
+  }
+]

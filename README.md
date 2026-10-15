@@ -27,7 +27,9 @@ Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương t
 
 **Thiết kế component:** [ARCHITECTURE.md](docs/poc/ARCHITECTURE.md), [COMPONENT_CATALOG.md](docs/poc/COMPONENT_CATALOG.md), [SCREEN_INVENTORY.md](docs/poc/SCREEN_INVENTORY.md), [TOOLCHAIN.md](docs/poc/TOOLCHAIN.md).
 
-**Chuẩn bắt buộc cho frontend/package dùng chung:** [FRONTEND_STANDARDS.md](docs/engineering/FRONTEND_STANDARDS.md), [apps/web/AGENTS.md](apps/web/AGENTS.md). [FRONTEND_REFACTOR_PLAN.md](docs/engineering/FRONTEND_REFACTOR_PLAN.md) lưu review ngoài `apps/api` ngày 15/10/2026, các vấn đề có dẫn chứng và phase FR-01…07 với prerequisites/gates. FR-00 chỉ hoàn tất tài liệu; runtime refactor chưa bắt đầu. Mọi tính năng/sửa lỗi mới phải theo chuẩn này; POC không phải ngoại lệ về chất lượng code.
+**Chuẩn bắt buộc cho frontend/package dùng chung:** [FRONTEND_STANDARDS.md](docs/engineering/FRONTEND_STANDARDS.md), [apps/web/AGENTS.md](apps/web/AGENTS.md). [FRONTEND_REFACTOR_PLAN.md](docs/engineering/FRONTEND_REFACTOR_PLAN.md) lưu review ngoài `apps/api` ngày 15/10/2026, các vấn đề có dẫn chứng và phase FR-01…07 với prerequisites/gates. FR-00 hoàn tất tài liệu; FR-01 đã mở baseline/guardrails và entry kiểm tra hiện hành. Behavior refactor FR-02…07 theo trạng thái trong kế hoạch. Mọi tính năng/sửa lỗi mới phải theo chuẩn này; POC không phải ngoại lệ về chất lượng code.
+
+Frontend hiện hành: [entry checks ngoài API](tests/frontend/README.md), [ma trận regression F01…F19](docs/engineering/FRONTEND_REGRESSION_MATRIX.md).
 
 **Backend và dữ liệu:** [API_CONTRACT.md](docs/poc/API_CONTRACT.md), [DATA_MODEL.md](docs/poc/DATA_MODEL.md), [BACKEND_SCOPE.md](docs/poc/BACKEND_SCOPE.md).
 

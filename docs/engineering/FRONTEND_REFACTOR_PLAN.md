@@ -64,7 +64,7 @@ Phải bảo toàn: canonical DTO/errors/null-versus-omission/date-only/UTC; ses
 | Phase | Prerequisite | Deliverable | Trạng thái |
 | --- | --- | --- | --- |
 | FR-00 | Yêu cầu review/kế hoạch của Hòa | Review, chuẩn, plan, AGENTS và liên kết docs | **DONE_DOCS**; verification ở mục 8/PROGRESS; không có runtime refactor |
-| FR-01 | FR-00 | Baseline non-API, guardrails/format/readability và safe check runner nền | **NOT_STARTED** |
+| FR-01 | FR-00 | Baseline non-API, guardrails/format/readability và safe check runner nền | **DONE**; [acceptance](evidence/FR-01/verification.json), [entry](../../tests/frontend/README.md), [case matrix](FRONTEND_REGRESSION_MATRIX.md) |
 | FR-02A | FR-01 | Sửa transaction/cursor/notification invalidation | **NOT_STARTED** |
 | FR-02B | FR-01 | URL ownership và workspace transient intent | **NOT_STARTED** |
 | FR-03 | FR-02A | Mock module ownership, semantic query boundary | **NOT_STARTED** |
@@ -208,4 +208,14 @@ Các probe read-only chạy bằng Node24.19.0, exit0:
 
 `node --test tests/workspace/boundaries.test.mjs` bị chặn trước khi tests chạy bởi **ERR_MODULE_NOT_FOUND: typescript**. Probe full adapter cũng không resolve `@studio/contracts` do workspace dependencies thiếu. Không suy lỗi ứng dụng từ thiếu môi trường và không ghi chúng là PASS.
 
-Docs verification cần đủ trước kết thúc: relative links của các file sửa/tạo tồn tại, diff không whitespace error, scope chỉ docs/instructions và không chạm historical evidence/source/API. Kết quả thực tế cùng Git checkpoint ghi tại entry FR-00 trong [PROGRESS](../poc/PROGRESS.md). Toàn bộ runtime phases FR-01…07 còn **NOT_STARTED**.
+Docs verification cần đủ trước kết thúc: relative links của các file sửa/tạo tồn tại, diff không whitespace error, scope chỉ docs/instructions và không chạm historical evidence/source/API. Kết quả thực tế cùng Git checkpoint ghi tại entry FR-00 trong [PROGRESS](../poc/PROGRESS.md). Tại checkpoint FR-00, toàn bộ runtime phases FR-01…07 còn **NOT_STARTED**. Trạng thái triển khai mới xem bảng mục 4 và entry PROGRESS riêng.
+
+## 9. Checkpoint triển khai FR-01 — 15/10/2026
+
+FR-01 **DONE** trên baseline actual `edda6111`; format-only commit `204822a3` tách khỏi guardrails. [Verification](evidence/FR-01/verification.json) và [ma trận F01…F19](FRONTEND_REGRESSION_MATRIX.md) giữ command/exit/scenario/gaps thật. Active entry `pnpm frontend:check` có output unique, types/consumer/lint/import/unit/build/HTTP graph; browser-smoke/reference chọn bằng ID. Các flag selection báo skips/partial, không còn splice làm mất build; legacy visual harness khác chưa migrate không được chạy vào WU evidence.
+
+Actual acceptance: Node24.13.0/pnpm11.19.0, 305Node tests + 8browser probes, 6target-before/after-format screenshot pairs byte-equal, scoped types/lint/consumer/build/HTTP/reference đều exit0. Import graph2157edges/cycles0, 33public surfaces, 91feature roles; ceiling91exact legacy entries chỉ giảm, 2gỡ FR-03 và89gỡ FR-04. Không gọi guardrails là resolution của behavior findings còn lại.
+
+Full install vẫn gặp401 ở policy metadata package auth API dù filter frontend; các dependencies frontend đã linked và chạy toàn bộ checks thật. Không bypass trust policy, đổi package versions hoặc dùng credential khác. Root thêm direct Prettier3.6.2 đã có trong lock (importer3lines), không thay resolution/API importer. Backend/source/fixture/historical evidence không đổi; chưa có source pixel acceptance mới.
+
+Next permitted: FR-02A hoặc FR-02B sau đọc đúng read-set; session này dừng tại FR-01 theo AGENTS. Rollback: revert tooling/config commit và format-only commit, giữ persisted state và evidence.

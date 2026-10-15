@@ -1,0 +1,548 @@
+[
+  {
+    "rule": "data-presentation",
+    "edge": "apps/web/src/data/adapters/http-entry.ts|apps/web/src/app/env.ts|import|PublicEnv",
+    "removeIn": "FR-03",
+    "reason": "Move bootstrap environment type to the runtime input owner."
+  },
+  {
+    "rule": "data-presentation",
+    "edge": "apps/web/src/data/adapters/mock-entry.ts|apps/web/src/app/env.ts|import|PublicEnv",
+    "removeIn": "FR-03",
+    "reason": "Move bootstrap environment type to the runtime input owner."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/activity/WorkspaceActivity.tsx|apps/web/src/features/tasks/loadTaskViewDataset.ts|import|loadTaskViewDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/activity/WorkspaceActivity.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/activity/WorkspaceActivity.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/activity/project-feed.ts|apps/web/src/features/tasks/loadTaskViewDataset.ts|import|loadTaskViewDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/archive/ArchivePage.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/calendar/CalendarPages.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/calendar/CalendarPages.tsx|apps/web/src/features/tasks/loadTaskViewDataset.ts|import|loadTaskViewDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dashboards/HomePage.tsx|apps/web/src/features/tasks/useTaskListDataset.ts|import|useTaskListDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dashboards/HomePage.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dashboards/HomePage.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dashboards/WorkspaceOverview.tsx|apps/web/src/features/tasks/useTaskListDataset.ts|import|useTaskListDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dashboards/WorkspaceOverview.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dashboards/WorkspaceOverview.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dashboards/WorkspaceOverview.tsx|apps/web/src/features/projects/catalogue.ts|import|useCompleteMembers",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dev/Galleries.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dev/Galleries.tsx|apps/web/src/features/settings/useSettingsCommands.ts|import|useSettingsCommands",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dev/Galleries.tsx|apps/web/src/features/tasks/detail/TaskOverlayHost.tsx|import|DeleteController",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/dev/Galleries.tsx|apps/web/src/features/tasks/loadTaskViewDataset.ts|import|loadTaskViewDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/files/FileFoundation.tsx|@tanstack/react-query|import|useQuery",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/files/FileFoundation.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/files/FileFoundation.tsx|apps/web/src/data/queries.ts|import|studioQueryOptions",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/files/FileOverlayHost.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/files/ProjectFilesPage.tsx|apps/web/src/features/projects/project-view.ts|import|useProjectView",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/files/ProjectFilesPage.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/files/ProjectFilesPage.tsx|apps/web/src/features/tasks/useTaskListDataset.ts|import|useTaskListDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/notifications/InboxPage.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/notifications/InboxPage.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/notifications/InboxPreview.tsx|apps/web/src/data/queries.ts|import|useStudioQuery",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/notifications/InboxPreview.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/notifications/InboxPreview.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/notifications/NotificationsPage.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/notifications/NotificationsPage.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/people/InviteDialog.tsx|apps/web/src/data/people-demo.ts|import|PeopleDemoCommand",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/people/InviteDialog.tsx|apps/web/src/data/people-demo.ts|import|validateInvite",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/people/MemberDetail.tsx|apps/web/src/features/tasks/useTaskListDataset.ts|import|useTaskListDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/people/MemberDetail.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/people/MemberDetail.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/people/MemberStatus.tsx|apps/web/src/data/people-demo.ts|import|DirectoryMember",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/people/MemberTable.tsx|apps/web/src/data/people-demo.ts|import|DirectoryMember",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/people/MembersPage.tsx|apps/web/src/features/teams/TeamsPage.tsx|import|TeamDirectory",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/people/MembersPage.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/people/MembersPage.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/people/MembersPage.tsx|apps/web/src/features/tasks/useTaskListDataset.ts|import|useTaskListDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/people/PeopleOverlayHost.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/people/RolePicker.tsx|apps/web/src/data/people-demo.ts|import|DirectoryMember",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/projects/Favorites.tsx|apps/web/src/features/tasks/useTaskListDataset.ts|import|useTaskListDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/projects/ProjectFormDialog.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/projects/ProjectOverview.tsx|apps/web/src/features/tasks/useTaskListDataset.ts|import|useTaskListDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/projects/ProjectPage.tsx|apps/web/src/features/files/ProjectFilesPage.tsx|import|ProjectFilesPage",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/projects/ProjectPage.tsx|apps/web/src/features/tasks/TaskListPages.tsx|import|TaskListPage",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/projects/ProjectPage.tsx|apps/web/src/features/calendar/CalendarPages.tsx|import|CalendarPage",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/projects/ProjectPage.tsx|apps/web/src/features/timeline/TimelinePages.tsx|import|TimelinePage",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/projects/ShareDialog.tsx|@tanstack/react-query|import|useQueryClient",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/projects/ShareDialog.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/projects/ShareDialog.tsx|apps/web/src/data/sharing-demo.ts|import|sharingPermissions",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/projects/ShareDialog.tsx|apps/web/src/data/sharing-demo.ts|import|SharingDemoState,SharingPermission",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/projects/project-view.ts|apps/web/src/features/tasks/table-view.ts|import|restoreTaskColumns,taskTablePreferenceKey",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/search/CommandPalette.tsx|apps/web/src/features/tasks/loadTaskViewDataset.ts|import|loadTaskViewDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/search/SearchOverlayHost.tsx|apps/web/src/features/settings/useSettingsCommands.ts|import|useSettingsCommands",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/search/SearchOverlayHost.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/search/SearchPage.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/search/SearchPage.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/settings/WorkspaceNotifications.tsx|apps/web/src/features/teams/TeamGrid.tsx|import|TeamGrid",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/settings/WorkspaceNotifications.tsx|apps/web/src/features/projects/catalogue.ts|import|loadProjectCatalogue",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/settings/WorkspaceNotifications.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/TaskBoardCard.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/tasks/TaskListPages.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/tasks/TaskListPages.tsx|apps/web/src/features/calendar/CalendarPages.tsx|import|CalendarPanel",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/tasks/TaskListPages.tsx|apps/web/src/features/calendar/CalendarPages.tsx|import|CalendarPanelProps",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/TaskListRow.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/TaskListRow.tsx|apps/web/src/data/queries.ts|import|useStudioQuery",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/TaskTableCell.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/Subtasks.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/TaskConversation.tsx|apps/web/src/data/queries.ts|import|useStudioQuery",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/TaskConversation.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/TaskDrawer.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/TaskFormDialog.tsx|apps/web/src/data/operations.ts|import|captureIntent",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/TaskFormDialog.tsx|@tanstack/react-query|import|useQueryClient",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/TaskFormDialog.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/TaskFormDialog.tsx|apps/web/src/data/query-keys.ts|import|queryKeys",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "view-data",
+    "edge": "apps/web/src/features/tasks/detail/TaskPropertyGrid.tsx|apps/web/src/data/context.ts|import|useDataRuntime",
+    "removeIn": "FR-04",
+    "reason": "Separate data/controller responsibilities from this controlled view."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/teams/TeamDetail.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/teams/TeamDetail.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/teams/TeamDetail.tsx|apps/web/src/features/tasks/useTaskListDataset.ts|import|useTaskListDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/teams/TeamOverlayHost.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/teams/TeamsPage.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/teams/TeamsPage.tsx|apps/web/src/features/projects/project-intents.ts|import|useProjectIntents",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/timeline/TimelinePages.tsx|apps/web/src/features/projects/project-motion.ts|import|useProjectMotion",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  },
+  {
+    "rule": "feature-private",
+    "edge": "apps/web/src/features/timeline/TimelinePages.tsx|apps/web/src/features/tasks/loadTaskViewDataset.ts|import|loadTaskViewDataset",
+    "removeIn": "FR-04",
+    "reason": "Migrate private feature dependency to its public owner during controller and dataset consolidation."
+  }
+]

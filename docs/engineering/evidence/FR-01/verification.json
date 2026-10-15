@@ -1,0 +1,98 @@
+{
+  "phase": "FR-01",
+  "status": "DONE",
+  "baseline": {
+    "typecheck": 0,
+    "build": 0,
+    "webAndContractPackageTests": 0,
+    "i18nTests": 9,
+    "lint": "FAILED unused reference import; removed and current full lint passes",
+    "workspace": "initial sandbox EPERM from Node git subprocess; network-enabled execution passes unchanged assertions"
+  },
+  "formatCommit": "204822a376933f1459748afe83b0c3a2b0dfc6d6",
+  "scope": "non-API baseline, import guardrails, safe runner and formatting only",
+  "toolchain": {
+    "node": "v24.13.0",
+    "pnpm": "11.19.0",
+    "typescript": "6.0.3",
+    "prettier": "3.6.2",
+    "browser": "145.0.7632.6"
+  },
+  "acceptance": {
+    "report": "commands.json",
+    "commandCount": 15,
+    "failed": 0,
+    "skipped": 0,
+    "tests": {
+      "web-tests": 177,
+      "contract-tests": 99,
+      "workspace-tests": 11,
+      "tooling-tests": 9,
+      "i18n-tests": 9
+    },
+    "nodeTestTotal": 305,
+    "browserProbes": 8,
+    "formatTargetComparisonPairs": 6,
+    "formatTargetComparisonByteEqual": true,
+    "wrapperSelectionCombinations": 8,
+    "runtimeImportEdges": 2157,
+    "runtimeCycles": 0,
+    "sharedImportEdges": 135,
+    "featureRoles": 91,
+    "controlledViews": 51,
+    "publicSurfaces": 33,
+    "legacyEntries": 91,
+    "legacyRemoval": {
+      "FR-03": 2,
+      "FR-04": 89
+    }
+  },
+  "environmentObservations": [
+    {
+      "command": "pnpm install --frozen-lockfile --ignore-scripts --store-dir /tmp/task8-pnpm-store",
+      "exit": 1,
+      "observation": "Initial non-TTY purge refused; no successful install claimed."
+    },
+    {
+      "command": "CI=true pnpm install --frozen-lockfile --ignore-scripts --store-dir /tmp/task8-pnpm-store",
+      "exit": 1,
+      "observation": "Public packages downloaded; private @hoa00/i24h-auth-honojs policy metadata fetch401; no authorization header set. Original tool output, no full saved install log."
+    },
+    {
+      "command": "Node24.13 pnpm --filter task8 --filter @studio/web... install --frozen-lockfile --ignore-scripts --store-dir /tmp/task8-pnpm-store",
+      "exit": 1,
+      "observation": "214 selected frontend packages linked before whole-lockfile private API metadata check401. Existing frontend dependencies run all actual gates. Trust policy/authentication not bypassed."
+    },
+    {
+      "command": "pnpm --filter task8 add -D --save-exact prettier@3.8.1 --ignore-scripts",
+      "exit": 1,
+      "observation": "Same private metadata401; did not change manifests/lockfile. Chose existing locked Prettier3.6.2, root direct importer recorded; versions/resolutions unchanged."
+    }
+  ],
+  "retainedFailures": [
+    "baseline lint import",
+    "initial sandbox Git subprocess",
+    "first new-tests14pass/1fail during allowlist metadata construction; fixed, final workspace11/tooling9pass",
+    "consumer file inventory first omitted --noEmit and got TS5096; corrected command passes"
+  ],
+  "limitations": [
+    "No API implementation/test/build or native/live acceptance executed.",
+    "Clean workspace installation still needs existing API registry metadata access; runtime frontend dependencies and all scoped gates are operational.",
+    "Historical source pixel debt unchanged; screenshot proof is target before/after formatting.",
+    "FR-02A/02B behavior fixes and FR-03…07 ownership/accessibility/harness migrations are not implemented here.",
+    "Other visual WU harnesses remain reproduction-only until scoped migration; do not run them into historical paths."
+  ],
+  "next": [
+    "FR-02A",
+    "FR-02B"
+  ],
+  "rollback": "Revert FR-01 tooling/config commit and format-only commit; no persistence/schema reset or evidence overwrite.",
+  "baselineCommit": "edda61113d4170e4cde9bc1b319dbf820d006efd",
+  "commandEnvironment": {
+    "nodeBin": "/workspace/.cloud-setup/task8/tools/node-v24.13.0-linux-x64/bin",
+    "pnpmConfigStoreDir": "/tmp/task8-pnpm-store",
+    "pnpmConfigVerifyDepsBeforeRun": "never (use linked filtered dependencies; do not re-install whole API workspace before every script)",
+    "playwrightBrowsersPath": "/workspace/.cloud-setup/task8/browsers",
+    "trustPolicyOverrides": []
+  }
+}
