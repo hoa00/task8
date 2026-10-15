@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -78,7 +79,7 @@ export function MemberDetail({ memberId }: MemberDetailProps) {
     return (
       <div className="p-6">
         <Alert tone="danger">
-          {error.message}
+          {translateErrorMessage(error.message)}
           <Button
             size="sm"
             onClick={() => {
@@ -174,7 +175,7 @@ export function MemberDetail({ memberId }: MemberDetailProps) {
             onClick={async () => {
               try {
                 await navigator.clipboard.writeText(member.email);
-                projectsServices.notice('Copied to clipboard', undefined, { duration: 4200 });
+                projectsServices.notice(t('Copied to clipboard'), undefined, { duration: 4200 });
               } catch {
                 projectsServices.notice("Copy isn't available here — " + member.email, undefined, {
                   kind: 'info',

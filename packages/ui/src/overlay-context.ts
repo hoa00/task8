@@ -36,12 +36,31 @@ export function useOverlayController() {
 export function useOverlayInitialState(): 'settled' | 'default' {
   return useOverlayController().initiallySettled ? 'settled' : 'default';
 }
-export const focusables = (node: HTMLElement) =>
+function visibleAndEnabled(el: HTMLElement): boolean {
+  return (
+    el.isConnected &&
+    !!el.getClientRects().length &&
+    !el.closest('[hidden],[inert]') &&
+    !el.matches(':disabled') &&
+    !['hidden', 'collapse'].includes(getComputedStyle(el).visibility)
+  );
+}
+export function isProgrammaticFocusTarget(el: HTMLElement): boolean {
+  return (
+    visibleAndEnabled(el) &&
+    (el.tabIndex >= 0 || el.hasAttribute('tabindex') || el.isContentEditable)
+  );
+}
+export const tabbables = (node: HTMLElement) =>
   [
     ...node.querySelectorAll<HTMLElement>(
-      'a[href],button:not(:disabled),input:not(:disabled):not([type="hidden"]),select:not(:disabled),textarea:not(:disabled),[tabindex]:not([tabindex="-1"]),[contenteditable="true"]',
+      'a[href],button,input:not([type="hidden"]),select,textarea,[tabindex],[contenteditable="true"]',
     ),
-  ].filter((el) => el.getClientRects().length && !el.closest('[inert]'));
+  ].filter(
+    (el) =>
+      visibleAndEnabled(el) &&
+      (el.tabIndex >= 0 || (el.isContentEditable && !el.hasAttribute('tabindex'))),
+  );
 export function useOverlayLayer({
   open,
   node,

@@ -5,10 +5,10 @@ import type { TaskDto } from '@studio/contracts/api';
 import {
   buildCalendarCells,
   navigateCalendar,
-  normalizeTaskView,
   rescheduleDateOnly,
   startOfCalendarWeek,
 } from '@studio/domain';
+import { normalizeTaskView } from '../../src/features/tasks/task-view.ts';
 import { sourceId } from '@studio/contracts/source-identities';
 import { createStudioClient } from '../../src/data/operations.ts';
 import { createMockClient } from '../../src/data/adapters/mock.ts';

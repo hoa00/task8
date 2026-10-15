@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -50,7 +51,11 @@ export function ProjectOverview() {
     feed = useProjectFeed(workspaceId, projectId, false),
     commands = useTaskListCommands(workspaceId);
   if (dataset.error || summary.error || feed.error)
-    return <Alert tone="danger">{(dataset.error ?? summary.error ?? feed.error)!.message}</Alert>;
+    return (
+      <Alert tone="danger">
+        {translateErrorMessage((dataset.error ?? summary.error ?? feed.error)!.message)}
+      </Alert>
+    );
   if (!dataset.data || !summary.data || !feed.data)
     return (
       <div className="p-6" role="status">
@@ -385,7 +390,7 @@ export function ProjectActivity() {
       data-activity-coverage={feed.data?.coverage ?? 'pending'}
     >
       {feed.error ? (
-        <Alert tone="danger">{feed.error.message}</Alert>
+        <Alert tone="danger">{translateErrorMessage(feed.error.message)}</Alert>
       ) : !feed.data ? (
         <div role="status">{t('Loading activity…')}</div>
       ) : feed.data.records.length ? (

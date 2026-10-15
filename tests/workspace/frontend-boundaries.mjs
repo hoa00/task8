@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { fieldBindingViolations } from './frontend-fields.mjs';
 import { buildImportGraph, cyclicEdges, sourceFiles } from './import-graph.mjs';
 
 const LEGACY_CEILING_HASH = '309a039f859db8ebb4b27a8163cfe3a6c738f557db90642abe6b8579a1ad3bcf';
@@ -102,6 +103,10 @@ export function checkFrontend() {
     .filter((file) => file.endsWith('.tsx'))
     .map((file) => file.slice(root.length));
   validateRoles(files, policy);
+  const bindingErrors = sourceFiles(`${root}apps/web/src`)
+    .filter((file) => file.endsWith('.tsx'))
+    .flatMap((file) => fieldBindingViolations(file.slice(root.length), readFileSync(file, 'utf8')));
+  assert.deepEqual(bindingErrors, [], 'Every Field must forward its generated control bindings');
   const edges = buildImportGraph(root);
   return {
     ...enforceAllowlist(inspectFrontend(edges, policy), allowlist, JSON.parse(baseline)),

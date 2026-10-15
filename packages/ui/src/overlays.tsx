@@ -13,7 +13,8 @@ import type { ComponentPropsWithRef, ReactNode, RefObject } from 'react';
 import {
   OverlayContext,
   OverlayScopeContext,
-  focusables,
+  tabbables,
+  isProgrammaticFocusTarget,
   useOverlayController,
   useOverlayLayer,
 } from './overlay-context';
@@ -56,13 +57,16 @@ function createController(host: HTMLElement | null, initiallySettled: boolean): 
       if (childIndex === -1) layers.push(layer);
       else layers.splice(childIndex, 0, layer);
       lock();
+      const restoreAncestors: HTMLElement[] = [];
+      for (let parent = restore?.parentElement; parent; parent = parent.parentElement)
+        restoreAncestors.push(parent);
       if (focus && !initiallySettled && layers.at(-1) === layer)
         (
-          initial ??
-          layer.node.querySelector<HTMLElement>(
-            '[autofocus],[aria-checked="true"]:not(:disabled)',
-          ) ??
-          focusables(layer.node)[0] ??
+          [
+            initial,
+            ...layer.node.querySelectorAll<HTMLElement>('[autofocus],[aria-checked="true"]'),
+          ].find((node): node is HTMLElement => !!node && isProgrammaticFocusTarget(node)) ??
+          tabbables(layer.node)[0] ??
           layer.node
         ).focus({ preventScroll: true });
       return () => {
@@ -83,7 +87,17 @@ function createController(host: HTMLElement | null, initiallySettled: boolean): 
                 active !== document.body &&
                 active !== document.documentElement &&
                 !layer.node.contains(active);
-              if (!hasNewFocus && restore.isConnected) restore.focus({ preventScroll: true });
+              if (!hasNewFocus) {
+                const remaining = layers.at(-1);
+                const fallback = remaining
+                  ? (tabbables(remaining.node)[0] ?? remaining.node)
+                  : restoreAncestors
+                      .filter((node) => node.isConnected)
+                      .flatMap((node) => tabbables(node))[0];
+                (isProgrammaticFocusTarget(restore) ? restore : fallback)?.focus({
+                  preventScroll: true,
+                });
+              }
             }),
           );
       };
@@ -127,7 +141,7 @@ export function OverlayProvider({ children, initialState }: OverlayProviderProps
       if (event.key !== 'Tab') return;
       const scope = modalScope();
       if (!scope.length) return;
-      const items = scope.flatMap((layer) => focusables(layer.node));
+      const items = scope.flatMap((layer) => tabbables(layer.node));
       const index = items.indexOf(document.activeElement as HTMLElement);
       if (!items.length) {
         event.preventDefault();
@@ -159,7 +173,7 @@ export function OverlayProvider({ children, initialState }: OverlayProviderProps
         event.target instanceof Node &&
         !scope.some((layer) => layer.node.contains(event.target as Node))
       )
-        (focusables(scope[0]!.node)[0] ?? scope[0]!.node).focus({ preventScroll: true });
+        (tabbables(scope[0]!.node)[0] ?? scope[0]!.node).focus({ preventScroll: true });
     };
     document.addEventListener('keydown', keydown);
     document.addEventListener('pointerdown', outside, true);

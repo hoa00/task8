@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -150,7 +151,7 @@ export function ProjectCatalogue() {
         />
       </div>
       {catalogue.error ? (
-        <Alert tone="danger">{catalogue.error.message}</Alert>
+        <Alert tone="danger">{translateErrorMessage(catalogue.error.message)}</Alert>
       ) : catalogue.isPending ? (
         <div role="status">{t('Loading projects…')}</div>
       ) : !rows.length ? (

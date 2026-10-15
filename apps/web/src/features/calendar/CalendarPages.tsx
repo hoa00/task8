@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useCalendarRouteState } from '../../app/useCalendarRouteState';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -117,7 +118,9 @@ export function CalendarPanel({
   if (bootstrap.error || dataset.error || legend.error || events.error)
     return (
       <Alert tone="danger">
-        {(bootstrap.error ?? dataset.error ?? legend.error ?? events.error)!.message}
+        {translateErrorMessage(
+          (bootstrap.error ?? dataset.error ?? legend.error ?? events.error)!.message,
+        )}
       </Alert>
     );
   if (!bootstrap.data || !dataset.data || !legend.data || (scope.kind !== 'mine' && !events.data))
@@ -227,7 +230,7 @@ export function CalendarPage({
   );
   if (!bootstrap.data)
     return bootstrap.error ? (
-      <Alert tone="danger">{bootstrap.error.message}</Alert>
+      <Alert tone="danger">{translateErrorMessage(bootstrap.error.message)}</Alert>
     ) : (
       <div className="p-6" role="status">
         {t('Loading calendar…')}

@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -76,7 +77,11 @@ export function PeopleOverlayHost({ data, children }: PeopleOverlayHostProps) {
       setError('');
       return result;
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : t('Members could not be updated'));
+      setError(
+        cause instanceof Error
+          ? translateErrorMessage(cause.message)
+          : t('Members could not be updated'),
+      );
       return undefined;
     } finally {
       setPending(false);

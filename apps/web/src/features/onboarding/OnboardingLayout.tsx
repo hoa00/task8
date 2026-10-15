@@ -1,3 +1,4 @@
+import type { ChoiceItemInteraction } from '@studio/ui';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import type { ReactNode } from 'react';
@@ -35,21 +36,20 @@ export interface ChoiceCardProps {
   title: string;
   subtitle: string;
   selected: boolean;
-  onSelect: () => void;
+  interaction: ChoiceItemInteraction;
 }
-export function ChoiceCard({ icon, title, subtitle, selected, onSelect }: ChoiceCardProps) {
-  useTranslation();
+export function ChoiceCard({ icon, title, subtitle, selected, interaction }: ChoiceCardProps) {
   return (
     <button
       type="button"
       role="radio"
       aria-checked={selected}
-      onClick={onSelect}
+      {...interaction}
       className={`flex flex-col gap-2 rounded-lg border border-solid bg-surface px-3 py-[14px] text-left transition-[border-color,box-shadow,background] source-hover:border-border-strong ${selected ? 'border-accent [box-shadow:0_0_0_3px_var(--accent-soft)]' : 'border-border'}`}
     >
       <Icon name={icon} size={18} className={selected ? 'text-accent' : 'text-secondary'} />
-      <b className="text-body font-medium">{t(title)}</b>
-      <span className="text-xs text-muted">{t(subtitle)}</span>
+      <b className="text-body font-medium">{title}</b>
+      <span className="text-xs text-muted">{subtitle}</span>
     </button>
   );
 }
@@ -105,7 +105,6 @@ export function SummaryRow({
   title: string;
   subtitle: string;
 }) {
-  useTranslation();
   return (
     <div
       data-summary-row
@@ -115,8 +114,8 @@ export function SummaryRow({
         <Icon name={icon} size={14} />
       </span>
       <div className="flex-1">
-        <div className="font-medium">{t(title)}</div>
-        <div className="text-[12px] text-muted">{t(subtitle)}</div>
+        <div className="font-medium">{title}</div>
+        <div className="text-[12px] text-muted">{subtitle}</div>
       </div>
       <span data-ready-check className="inline-flex text-green">
         <Icon name="check" size={15} />

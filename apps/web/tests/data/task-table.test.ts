@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { sourceId } from '@studio/contracts/source-identities';
-import { normalizeTaskView } from '@studio/domain';
+import { normalizeTaskView } from '../../src/features/tasks/task-view.ts';
 import { restoreTaskColumns, taskTablePreferenceKey } from '../../src/features/tasks/table-view.ts';
 test('Table preferences isolate Workspace/Project/saved and initialize Project column once', () => {
   const projectId = sourceId('projects', 'p1'),

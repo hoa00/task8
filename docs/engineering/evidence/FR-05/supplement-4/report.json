@@ -1,0 +1,27 @@
+{
+  "status": "failed",
+  "probes": [
+    {
+      "id": "project-form-field-relations-keyboard-template-and-error-focus",
+      "pass": false,
+      "error": "AssertionError [ERR_ASSERTION]: [{\"label\":\"Project name\",\"id\":\"project-name\",\"exists\":true,\"named\":true},{\"label\":\"Description\",\"id\":\"project-description\",\"exists\":true,\"named\":true},{\"label\":\"Team\",\"id\":\"_r_1j_\",\"exists\":false,\"named\":false},{\"label\":\"Lead\",\"id\":\"_r_1l_\",\"exists\":false,\"named\":false},{\"label\":\"Target date\",\"id\":\"project-due\",\"exists\":true,\"named\":true}]\n    at file:///workspace/task8/tests/frontend/accessibility.mjs:54:293\n    at async probe (file:///workspace/task8/tests/frontend/accessibility.mjs:16:17)\n    at async file:///workspace/task8/tests/frontend/accessibility.mjs:52:2"
+    },
+    {
+      "id": "appearance-choice-keyboard-and-locale-message-lifetime",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio').nth(1)\nExpected: \"true\"\nReceived: \"false\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for getByRole('radiogroup', { name: 'Theme', exact: true }).getByRole('radio').nth(1)\n    9 × locator resolved to <button role=\"radio\" type=\"button\" aria-checked=\"false\" class=\"flex flex-col gap-2 rounded-lg border border-solid p-2 text-left transition-[border-color,box-shadow] source-hover:border-border-strong border-border\">…</button>\n      - unexpected value \"false\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/accessibility.mjs:59:335\n    at async probe (file:///workspace/task8/tests/frontend/accessibility.mjs:16:17)\n    at async file:///workspace/task8/tests/frontend/accessibility.mjs:58:2"
+    },
+    {
+      "id": "vietnamese-form-binding-and-mobile-layout",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('[data-project-form]')\nExpected: \"\"\nReceived: serializes to the same string\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('[data-project-form]')\n    9 × locator resolved to <section role=\"dialog\" tabindex=\"-1\" aria-modal=\"true\" data-project-form=\"true\" data-overlay-kind=\"modal\" aria-labelledby=\"project-form-title\" class=\"ui-dialog flex max-h-[80vh] w-full flex-col rounded-[12px] bg-surface [box-shadow:var(--shadow-pop)] max-w-[560px] \">…</section>\n      - unexpected value \"null\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/accessibility.mjs:66:268\n    at async probe (file:///workspace/task8/tests/frontend/accessibility.mjs:16:17)\n    at async file:///workspace/task8/tests/frontend/accessibility.mjs:65:2"
+    },
+    {
+      "id": "onboarding-card-keyboard-field-error-and-focus",
+      "pass": false,
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByRole('radiogroup', { name: 'Use case', exact: true }).getByRole('radio').last()\nExpected: \"true\"\nReceived: \"false\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for getByRole('radiogroup', { name: 'Use case', exact: true }).getByRole('radio').last()\n    9 × locator resolved to <button role=\"radio\" type=\"button\" aria-checked=\"false\" class=\"flex flex-col gap-2 rounded-lg border border-solid bg-surface px-3 py-[14px] text-left transition-[border-color,box-shadow,background] source-hover:border-border-strong border-border\">…</button>\n      - unexpected value \"false\"\n\n    at Proxy.<anonymous> (/workspace/task8/node_modules/.pnpm/playwright@1.58.2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at file:///workspace/task8/tests/frontend/accessibility.mjs:72:328\n    at async probe (file:///workspace/task8/tests/frontend/accessibility.mjs:16:17)\n    at async file:///workspace/task8/tests/frontend/accessibility.mjs:69:2"
+    }
+  ],
+  "pageErrors": [],
+  "browser": "145.0.7632.6"
+}

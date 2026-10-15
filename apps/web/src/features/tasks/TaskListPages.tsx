@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useCalendarRouteState } from '../../app/useCalendarRouteState';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -255,7 +256,9 @@ export function TaskListPage({
     return (
       <main {...pageProps} data-query-coverage="failed">
         <Alert tone="danger">
-          {(bootstrap.error ?? dataset.error ?? columnsDataset.error)!.message}
+          {translateErrorMessage(
+            (bootstrap.error ?? dataset.error ?? columnsDataset.error)!.message,
+          )}
         </Alert>
       </main>
     );

@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -87,7 +88,8 @@ export function MembersPage() {
       />
       {directory.error || tasks.error ? (
         <Alert tone="danger">
-          {directory.error?.message ?? tasks.error?.message}
+          {translateErrorMessage(directory.error?.message) ??
+            translateErrorMessage(tasks.error?.message)}
           <Button
             size="sm"
             onClick={() => {

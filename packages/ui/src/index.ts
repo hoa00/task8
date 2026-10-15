@@ -19,6 +19,7 @@ export {
   Input,
   Textarea,
   Field,
+  FieldGroup,
   PasswordInput,
   Checkbox,
   Toggle,
@@ -34,6 +35,7 @@ export type {
   InputProps,
   TextareaProps,
   FieldProps,
+  FieldGroupProps,
   FieldControlProps,
   PasswordInputProps,
   CheckboxProps,
@@ -115,3 +117,5 @@ export { useToastQueue } from './toast-queue';
 export type { ToastAction, ToastMessage, ToastInput, ToastQueue } from './toast-queue';
 export { UiTranslationContext, useUiTranslation } from './translation-context';
 export type { UiTranslator } from './translation-context';
+export { useChoiceGroup } from './choice-group';
+export type { KeyboardChoice, ChoiceGroupOptions, ChoiceItemInteraction } from './choice-group';

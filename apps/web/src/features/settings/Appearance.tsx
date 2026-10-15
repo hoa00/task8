@@ -1,6 +1,7 @@
+import type { ChoiceItemInteraction } from '@studio/ui';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
-import { Icon, SegmentedControl, Select } from '@studio/ui';
+import { Icon, SegmentedControl, Select, useChoiceGroup } from '@studio/ui';
 import type { CSSProperties } from 'react';
 import type { MemberPreferencesDto, UpdatePreferencesInput } from '@studio/contracts/api';
 import { SettingRow, SettingsBlock } from './SettingsComponents';
@@ -48,18 +49,16 @@ function Preview({ colors }: { colors: typeof light }) {
 export interface ThemePreviewCardProps {
   value: MemberPreferencesDto['theme'];
   selected: boolean;
-  disabled?: boolean;
-  onSelect: () => void;
+  interaction: ChoiceItemInteraction;
 }
-export function ThemePreviewCard({ value, selected, disabled, onSelect }: ThemePreviewCardProps) {
+export function ThemePreviewCard({ value, selected, interaction }: ThemePreviewCardProps) {
   useTranslation();
   return (
     <button
       type="button"
       role="radio"
       aria-checked={selected}
-      disabled={disabled}
-      onClick={onSelect}
+      {...interaction}
       className={`flex flex-col gap-2 rounded-lg border border-solid p-2 text-left transition-[border-color,box-shadow] source-hover:border-border-strong ${selected ? 'border-accent! [box-shadow:0_0_0_3px_var(--accent-soft)]' : 'border-border'}`}
     >
       <div
@@ -98,8 +97,18 @@ export interface AccentSwatchesProps {
 }
 export function AccentSwatches({ value, disabled, onSelect }: AccentSwatchesProps) {
   useTranslation();
+  const { rootRef: choicesRef, getItemProps: choicesItemProps } = useChoiceGroup({
+    items: accentColors.map(([value]) => ({ value, disabled: !!disabled })),
+    value,
+    onValueChange: onSelect,
+  });
   return (
-    <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={t('Accent color')}>
+    <div
+      ref={choicesRef}
+      className="flex flex-wrap gap-2"
+      role="radiogroup"
+      aria-label={t('Accent color')}
+    >
       {accentColors.map(([accent, color]) => (
         <button
           key={accent}
@@ -107,8 +116,7 @@ export function AccentSwatches({ value, disabled, onSelect }: AccentSwatchesProp
           role="radio"
           aria-label={accent}
           aria-checked={value === accent}
-          disabled={disabled}
-          onClick={() => onSelect(accent)}
+          {...choicesItemProps(accent)}
           style={{ '--swatch-color': color } as CSSProperties}
           className={`grid size-[26px] place-items-center rounded-full bg-[var(--swatch-color)] text-[#fff] transition-transform source-hover:scale-[1.08] ${value === accent ? '[box-shadow:0_0_0_2px_var(--surface),0_0_0_4px_var(--swatch-color)]' : '[box-shadow:0_0_0_1px_rgba(0,0,0,.08)]'}`}
         >
@@ -125,10 +133,16 @@ export interface AppearanceProps {
 }
 export function Appearance({ preferences, pending, onChange }: AppearanceProps) {
   useTranslation();
+  const { rootRef: themesRef, getItemProps: themesItemProps } = useChoiceGroup({
+    items: (['light', 'dark', 'system'] as const).map((value) => ({ value, disabled: pending })),
+    value: preferences.theme,
+    onValueChange: (theme) => onChange({ theme }),
+  });
   return (
     <>
       <SettingsBlock title={t('Theme')} className="mt-0!">
         <div
+          ref={themesRef}
           role="radiogroup"
           aria-label={t('Theme')}
           className="mt-3 grid grid-cols-3 gap-3 source-mobile:grid-cols-[minmax(0,1fr)]"
@@ -138,8 +152,7 @@ export function Appearance({ preferences, pending, onChange }: AppearanceProps) 
               key={value}
               value={value}
               selected={preferences.theme === value}
-              disabled={pending}
-              onSelect={() => onChange({ theme: value })}
+              interaction={themesItemProps(value)}
             />
           ))}
         </div>

@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -58,7 +59,7 @@ export function Favorites() {
         </div>
       </div>
       {dataset.error ? (
-        <Alert tone="danger">{dataset.error.message}</Alert>
+        <Alert tone="danger">{translateErrorMessage(dataset.error.message)}</Alert>
       ) : !dataset.data ? (
         <div role="status">{t('Loading favorites…')}</div>
       ) : !favorites.length && !tasks.length ? (

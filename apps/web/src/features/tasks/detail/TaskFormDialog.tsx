@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../../i18n/error-message';
 import { captureIntent } from '../../../data/operations';
 import { translate as t } from '../../../i18n/i18n';
 import { useTranslation } from '../../../i18n/useTranslation';
@@ -226,7 +227,9 @@ export function TaskFormDialog({
           )
             return;
           setError(
-            cause instanceof Error ? cause.message : t('The selected file could not be read'),
+            cause instanceof Error
+              ? translateErrorMessage(cause.message)
+              : t('The selected file could not be read'),
           );
         }
       }
@@ -317,7 +320,11 @@ export function TaskFormDialog({
           if (opened.current) onClose();
         }
       } catch (cause) {
-        setError(cause instanceof Error ? cause.message : t('The task could not be saved'));
+        setError(
+          cause instanceof Error
+            ? translateErrorMessage(cause.message)
+            : t('The task could not be saved'),
+        );
       } finally {
         setPending(false);
       }

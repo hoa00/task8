@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { captureIntent } from '../../data/operations';
 import { translate as t } from '../../i18n/i18n';
@@ -178,7 +179,10 @@ export function ProjectFilesPage() {
               ? {
                   ...row,
                   status: 'failed',
-                  error: error instanceof Error ? error.message : t('Upload failed'),
+                  error:
+                    error instanceof Error
+                      ? translateErrorMessage(error.message)
+                      : t('Upload failed'),
                 }
               : row,
           ),
@@ -483,7 +487,7 @@ export function ProjectFilesPage() {
                     .then((result) => {
                       if (result) {
                         setMenu(null);
-                        projects.notice('File duplicated');
+                        projects.notice(t('File duplicated'));
                       }
                     });
                 }}
@@ -542,14 +546,18 @@ export function ProjectFilesPage() {
             {currentForm ? (
               form.kind === 'rename' ? (
                 <Field label={t('File name')} controlId="file-name">
-                  <Input
-                    id="file-name"
-                    value={name}
-                    required
-                    maxLength={200}
-                    disabled={commands.pending}
-                    onChange={(event) => setName(event.target.value)}
-                  />
+                  {(control) => (
+                    <>
+                      <Input
+                        value={name}
+                        required
+                        maxLength={200}
+                        disabled={commands.pending}
+                        onChange={(event) => setName(event.target.value)}
+                        {...control}
+                      />
+                    </>
+                  )}
                 </Field>
               ) : (
                 <div className="flex items-start gap-3">

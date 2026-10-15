@@ -158,7 +158,7 @@ function TaskInboxPreview({
                 commentId: comment.id,
                 body: { expectedVersion: comment.version },
               });
-              if (result?.data.undo) notices.notice('Comment deleted', result.data.undo);
+              if (result?.data.undo) notices.notice(t('Comment deleted'), result.data.undo);
             }}
             onReaction={async (comment, key, active) =>
               !!(await commands.run(active ? 'removeCommentReaction' : 'addCommentReaction', {
@@ -187,7 +187,7 @@ function TaskInboxPreview({
               taskId: task.id,
               body,
             });
-            if (result) notices.notice('Reply posted');
+            if (result) notices.notice(t('Reply posted'));
             return !!result;
           }}
         />

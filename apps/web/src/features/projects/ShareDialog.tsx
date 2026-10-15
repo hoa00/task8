@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import type { RefObject } from 'react';
@@ -66,7 +67,11 @@ export function ShareDialog({ project, data, returnFocus, onClose, onNotice }: S
       setError('');
       return result;
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : t('Sharing could not be updated'));
+      setError(
+        cause instanceof Error
+          ? translateErrorMessage(cause.message)
+          : t('Sharing could not be updated'),
+      );
       return null;
     }
   }
@@ -292,8 +297,8 @@ export function ShareDialog({ project, data, returnFocus, onClose, onNotice }: S
                               } catch (cause) {
                                 const message =
                                   cause instanceof Error
-                                    ? cause.message
-                                    : 'Sharing could not be restored.';
+                                    ? translateErrorMessage(cause.message)
+                                    : t('Sharing could not be restored.');
                                 setError(message);
                                 onNotice(message);
                               }
@@ -356,7 +361,11 @@ export function ShareDialog({ project, data, returnFocus, onClose, onNotice }: S
           </div>
         </div>
         {(error || members.error || catalog.error) && (
-          <Alert tone="danger">{error || members.error?.message || catalog.error?.message}</Alert>
+          <Alert tone="danger">
+            {error ||
+              translateErrorMessage(members.error?.message) ||
+              translateErrorMessage(catalog.error?.message)}
+          </Alert>
         )}
       </DialogBody>
       <DialogFooter>

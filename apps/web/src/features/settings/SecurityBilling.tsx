@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useEffect, useRef, useState } from 'react';
@@ -137,7 +138,11 @@ function SecurityBillingOwner({ section }: SecurityBillingProps) {
       return true;
     } catch (failure) {
       if (mounted.current)
-        setError(failure instanceof Error ? failure.message : t('Demo operation failed.'));
+        setError(
+          failure instanceof Error
+            ? translateErrorMessage(failure.message)
+            : t('Demo operation failed.'),
+        );
       return false;
     } finally {
       busy.current = false;
@@ -160,10 +165,10 @@ function SecurityBillingOwner({ section }: SecurityBillingProps) {
       data-security-billing-mode={explicitDemo ? 'explicit-demo' : capability?.dataMode}
       className="max-w-[720px] px-10 pb-20 pt-8 source-tablet:px-4 source-tablet:pb-24 source-tablet:pt-5"
     >
-      <SectionHeading title={headings[section][0]} lead={headings[section][1]} />
+      <SectionHeading title={t(headings[section][0])} lead={t(headings[section][1])} />
       {session.error ? (
         <Alert tone="danger">
-          {session.error.message}
+          {translateErrorMessage(session.error.message)}
           <Button
             size="sm"
             onClick={() => {
@@ -419,7 +424,11 @@ function PasswordSettings({
     if (disabled) return;
     setDone(false);
     const validation = validateDemoPassword(current, next, confirmation);
-    setErrors(validation);
+    setErrors({
+      ...(validation.current ? { current: t(validation.current) } : {}),
+      ...(validation.next ? { next: t(validation.next) } : {}),
+      ...(validation.confirmation ? { confirmation: t(validation.confirmation) } : {}),
+    });
     if (Object.keys(validation).length) {
       setCurrent('');
       setConfirmation('');

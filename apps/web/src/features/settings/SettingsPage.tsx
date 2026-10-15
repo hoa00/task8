@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
@@ -96,10 +97,10 @@ function GeneralPersonal({ section }: { section: GeneralPersonalSection }) {
       data-settings-ready={required.data ? '' : undefined}
       className="max-w-[720px] px-10 pb-20 pt-8 source-tablet:px-4 source-tablet:pb-24 source-tablet:pt-5"
     >
-      <SectionHeading title={headings[section][0]} lead={headings[section][1]} />
+      <SectionHeading title={t(headings[section][0])} lead={t(headings[section][1])} />
       {required.error ? (
         <Alert tone="danger">
-          {required.error.message}
+          {translateErrorMessage(required.error.message)}
           <Button
             size="sm"
             onClick={() => {
@@ -240,30 +241,38 @@ function WorkspaceSettings({ workspace, canEdit, onNotice }: WorkspaceSettingsPr
           </div>
           <div className="flex max-w-[440px] flex-col gap-[14px]">
             <Field label={t('Workspace name')} controlId="ws-name">
-              <Input
-                id="ws-name"
-                value={name}
-                disabled={disabled}
-                onChange={(event) => setName(event.target.value)}
-              />
+              {(control) => (
+                <>
+                  <Input
+                    value={name}
+                    disabled={disabled}
+                    onChange={(event) => setName(event.target.value)}
+                    {...control}
+                  />
+                </>
+              )}
             </Field>
             <Field
               label={t('Workspace URL')}
               controlId="ws-url"
               hint={t('Changing the URL will break existing links.')}
             >
-              <div className="flex items-center">
-                <span className="flex h-control-md w-auto items-center rounded-l-[6px] border border-r-0 border-solid border-border-strong bg-surface-2 px-[10px] text-body text-secondary">
-                  {'gr8rstudio.com/'}
-                </span>
-                <Input
-                  id="ws-url"
-                  value={slug}
-                  disabled={disabled}
-                  className="rounded-l-none! rounded-r-[6px]!"
-                  onChange={(event) => setSlug(event.target.value)}
-                />
-              </div>
+              {(control) => (
+                <>
+                  <div className="flex items-center">
+                    <span className="flex h-control-md w-auto items-center rounded-l-[6px] border border-r-0 border-solid border-border-strong bg-surface-2 px-[10px] text-body text-secondary">
+                      {'gr8rstudio.com/'}
+                    </span>
+                    <Input
+                      value={slug}
+                      disabled={disabled}
+                      className="rounded-l-none! rounded-r-[6px]!"
+                      onChange={(event) => setSlug(event.target.value)}
+                      {...control}
+                    />
+                  </div>
+                </>
+              )}
             </Field>
             <div>
               <Button
@@ -378,16 +387,20 @@ function WorkspaceConfirmation({
           controlId="confirm-type"
           className="mt-[6px] [&>label]:font-normal [&>label]:text-secondary"
         >
-          <Input
-            id="confirm-type"
-            ref={input}
-            value={text}
-            onChange={(event) => setText(event.target.value)}
-          />
+          {(control) => (
+            <>
+              <Input
+                ref={input}
+                value={text}
+                onChange={(event) => setText(event.target.value)}
+                {...control}
+              />
+            </>
+          )}
         </Field>
         {session.error && (
           <Alert tone="danger">
-            {session.error.message}
+            {translateErrorMessage(session.error.message)}
             <Button
               size="sm"
               onClick={() => {
@@ -493,32 +506,44 @@ function ProfileSettings({ profile, onNotice }: ProfileSettingsProps) {
           </div>
         </div>
         <Field label={t('Full name')} controlId="pf-name" error={validation}>
-          <Input
-            id="pf-name"
-            ref={nameRef}
-            value={name}
-            disabled={commands.pending}
-            error={!!validation}
-            onChange={(event) => {
-              setName(event.target.value);
-              if (validation) setValidation('');
-            }}
-          />
+          {(control) => (
+            <>
+              <Input
+                ref={nameRef}
+                value={name}
+                disabled={commands.pending}
+                error={!!validation}
+                onChange={(event) => {
+                  setName(event.target.value);
+                  if (validation) setValidation('');
+                }}
+                {...control}
+              />
+            </>
+          )}
         </Field>
         <Field label={t('Job title')} controlId="pf-title">
-          <Input
-            id="pf-title"
-            value={title}
-            disabled={commands.pending}
-            onChange={(event) => setTitle(event.target.value)}
-          />
+          {(control) => (
+            <>
+              <Input
+                value={title}
+                disabled={commands.pending}
+                onChange={(event) => setTitle(event.target.value)}
+                {...control}
+              />
+            </>
+          )}
         </Field>
         <Field
           label={t('Email')}
           controlId="pf-email"
           hint={t('Contact a workspace owner to change your sign-in email.')}
         >
-          <Input id="pf-email" value={profile.email} disabled />
+          {(control) => (
+            <>
+              <Input value={profile.email} disabled {...control} />
+            </>
+          )}
         </Field>
         <div>
           <Button type="submit" variant="primary" loading={commands.pending}>

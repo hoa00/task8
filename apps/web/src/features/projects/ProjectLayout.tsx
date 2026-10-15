@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -167,12 +168,12 @@ function AllowedProjectLayout({ projectId }: AllowedProjectLayoutProps) {
       if (result && active.current) {
         setDialog(null);
         if (dialog === 'save') {
-          intents.notice(`Saved view “${result.data.name}”`);
+          intents.notice(t('Saved view “{{value1}}”', { value1: String(result.data.name) }));
           void navigate({
             to: links.savedView(workspaceId, projectId, result.data.id),
             search: {},
           });
-        } else intents.notice('View renamed');
+        } else intents.notice(t('View renamed'));
       }
     } finally {
       submitLock.current = false;
@@ -250,7 +251,7 @@ function AllowedProjectLayout({ projectId }: AllowedProjectLayoutProps) {
         </ProjectHeader>
         <div className="project-body flex min-h-0 flex-1 flex-col" data-project-body>
           {savedViews.error ? (
-            <Alert tone="danger">{savedViews.error.message}</Alert>
+            <Alert tone="danger">{translateErrorMessage(savedViews.error.message)}</Alert>
           ) : params.savedViewId && savedViews.data && !saved ? (
             <NotFoundBoundary />
           ) : params.savedViewId && !savedViews.data ? (
@@ -337,28 +338,37 @@ function AllowedProjectLayout({ projectId }: AllowedProjectLayoutProps) {
             }}
           >
             <Field label={t('View name')} controlId="saved-view-name">
-              <Input
-                ref={nameRef}
-                id="saved-view-name"
-                value={name}
-                disabled={commands.pending}
-                placeholder={t('e.g. Design review queue')}
-                onChange={(event) => setName(event.target.value)}
-              />
+              {(control) => (
+                <>
+                  <Input
+                    ref={nameRef}
+                    value={name}
+                    disabled={commands.pending}
+                    placeholder={t('e.g. Design review queue')}
+                    onChange={(event) => setName(event.target.value)}
+                    {...control}
+                  />
+                </>
+              )}
             </Field>
             {dialog === 'save' && (
               <>
                 <Field label={t('Layout')}>
-                  <Select
-                    label={t('Layout')}
-                    value={layout}
-                    disabled={commands.pending}
-                    options={['list', 'board', 'table'].map((value) => ({
-                      value,
-                      label: t(value[0]!.toUpperCase() + value.slice(1)),
-                    }))}
-                    onValueChange={(value) => setLayout(value as SavedViewDto['type'])}
-                  />
+                  {(control) => (
+                    <>
+                      <Select
+                        label={t('Layout')}
+                        value={layout}
+                        disabled={commands.pending}
+                        options={['list', 'board', 'table'].map((value) => ({
+                          value,
+                          label: t(value[0]!.toUpperCase() + value.slice(1)),
+                        }))}
+                        onValueChange={(value) => setLayout(value as SavedViewDto['type'])}
+                        {...control}
+                      />
+                    </>
+                  )}
                 </Field>
                 {view.query.filters.length ? (
                   <div className="text-xs text-muted">

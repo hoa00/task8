@@ -1,6 +1,6 @@
 # @studio/ui foundation
 
-Mandatory maintenance rules: [FRONTEND_STANDARDS](../../docs/engineering/FRONTEND_STANDARDS.md). [FRONTEND_REFACTOR_PLAN](../../docs/engineering/FRONTEND_REFACTOR_PLAN.md) records current Field/keyboard/focus/i18n gaps and their FR-05 migration gates; publishing the plan does not mean those gaps are fixed. Reuse controlled primitives, keep app/business imports out, bind labels/errors to real controls and preserve source geometry. Caller-provided content has one translation owner; the target rule is to render it unchanged and translate only internal primitive labels, with consumer migration performed together in FR-05.
+Mandatory maintenance rules: [FRONTEND_STANDARDS](../../docs/engineering/FRONTEND_STANDARDS.md). [FRONTEND_REFACTOR_PLAN](../../docs/engineering/FRONTEND_REFACTOR_PLAN.md) records phase gates and evidence. FR-05 implements the Field, keyboard/focus and translation boundaries described below. Reuse controlled primitives, keep app/business imports out, bind labels/errors to real controls and preserve source geometry. Caller-provided content is rendered unchanged. The UI translator handles only internal labels such as Close, Dismiss and password visibility; features own business labels and messages.
 
 Public React icons use locked Lucide0.460.0 paths, viewBox24, stroke1.8 and source custom status/priority glyphs. Static geometry uses Tailwind; props contain values and callbacks, with no app/router/data imports.
 
@@ -12,7 +12,7 @@ Font descriptors remain fixed400/500/600 for Geist and400 for Mono with exact lo
 
 WU-04 adds generic controlled primitives. `Button`/`IconButton` have `xs/sm/md/lg` heights22/26/30/36; Button visual variants are primary/secondary/ghost/danger/dangerGhost. Loading buttons retain the source spinner appearance and use native disabled plus aria-busy to prevent keyboard activation. Standard refs and native input attributes reach their controls.
 
-`Input`/`Textarea` accept a string value and native onChange. `Checkbox`/`Toggle` use checked/onCheckedChange; Checkbox also accepts controlled indeterminate/round. `PasswordInput` uses revealed/onRevealedChange and retains source wrapped-input30px left padding. `Field` provides id/aria-invalid/aria-describedby through a render child, so labels and error/hint text connect without a DOM enhancer:
+`Input`/`Textarea` accept a string value and native onChange. `Checkbox`/`Toggle` use checked/onCheckedChange; Checkbox also accepts controlled indeterminate/round. `PasswordInput` uses revealed/onRevealedChange and retains source wrapped-input30px left padding. `Field` requires a render child and provides id/aria-labelledby/aria-invalid/aria-describedby/aria-errormessage. Its label, visible hint or error and control remain associated without a DOM enhancer. Put a stable explicit ID on Field through controlId, and forward the bindings to the actual input/Select trigger:
 
 ```tsx
 <Field label="Email" error={error}>
@@ -37,3 +37,12 @@ WU-05 adds `OverlayProvider` and `Portal`; mount one provider above the controll
 Overlay motion is one-shot per mount; scrim/dialog/popover/drawer clear the completed entering animation after animationend and keep their DOM/focus/draft. Full/system retain source timings260/160/340ms, Toast200ms; reduced motion uses the original fadeOnly120ms. Mobile<=640 uses bottom-sheet92vh/radius14, full-width drawer, and Toast bottom76px. Original overlay CSS has no env safe-area offset; do not invent one. The source bottom navigation safe-area expression belongs to the later shell unit.
 
 WU-05 reopened only Button active motion from WU-04: source uses transform:scale(.97) and its transform140ms/default ease transition, with transform:none in reduce mode. Literal individual scale was corrected; affected Button visuals and timing are reverified. Select remains unchanged. Toast Dismiss preserves the source inline color:inherit override; generic IconButton color stays unchanged.
+
+
+FR-05: `FieldGroup` labels a collection with group semantics; it does not pretend a collection is a single input. The web boundary guard rejects Field consumers that omit the render callback or generated control bindings. `useChoiceGroup` is the keyboard owner for tabs, radio/swatch/icon/theme/template cards: one enabled Tab stop, wrapping arrows, Home/End, native single Enter/Space activation, and focus retained through pending controlled changes. Callers keep their own presentation and destructure rootRef/getItemProps.
+
+Overlay tabbables exclude explicit negative tabIndex across every selector branch, hidden/inert/disabled controls and disabled fieldsets. Explicit initial focus may be programmatic-only; return focus checks visibility/availability, preserves newer focus, and uses the remaining overlay or nearest surviving opener region when the opener leaves the DOM.
+
+Field/Alert/EmptyState/choice labels and Toast message/action text are values, never guessed translation keys. Business toasts and form/command errors deliberately keep the language at event creation; internal Close/Dismiss labels and current view labels follow live locale changes. Features translate canonical transport errors at the web presentation boundary, leaving data envelopes unchanged.
+
+Active checks: `pnpm frontend:check`; after a mock build, `node tests/frontend/accessibility.mjs --output=test-results/<new-run>` covers primitive and real Project/Appearance/Onboarding consumers, vi/en and mobile layout. `node tests/frontend/controls-visual.mjs --output=test-results/<new-run>` compares affected fields/choices/feedback/select with the pinned source in light/dark. Shimmer is sampled at its real650ms animation frame for deterministic comparison; source/tokens/tolerance/masks are unchanged. The older WU aliases remain historical reproduction entry points until their active wrappers are selected in the frontend manifest.

@@ -153,7 +153,7 @@ export function SearchOverlayHost({
         })
         .then((result) => {
           if (result)
-            projectsServices.notice(dark ? 'Light mode on' : 'Dark mode on', undefined, {
+            projectsServices.notice(dark ? t('Light mode on') : t('Dark mode on'), undefined, {
               kind: 'info',
               duration: 1800,
             });

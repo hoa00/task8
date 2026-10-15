@@ -58,7 +58,7 @@ export function Toast({ toast, onDismiss }: ToastProps) {
         size={15}
         className={kind === 'error' ? 'text-red' : kind === 'success' ? 'text-green' : ''}
       />
-      <span className="grow">{t(toast.message)}</span>
+      <span className="grow">{toast.message}</span>
       {toast.action && (
         <button
           type="button"
@@ -70,7 +70,7 @@ export function Toast({ toast, onDismiss }: ToastProps) {
             toast.action?.onAction();
           }}
         >
-          {t(toast.action.label)}
+          {toast.action.label}
         </button>
       )}
       <IconButton

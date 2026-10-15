@@ -1,3 +1,4 @@
+import { AccessibilityGallery } from './AccessibilityGallery';
 import { useRef, useState } from 'react';
 import {
   Alert,
@@ -29,7 +30,7 @@ import {
 } from '@studio/ui';
 import type { ButtonVariant, ControlSize, Tone } from '@studio/ui';
 import { useTheme } from './theme/theme-context';
-const groups = ['buttons', 'fields', 'choices', 'display', 'feedback', 'select'];
+const groups = ['buttons', 'fields', 'choices', 'display', 'feedback', 'select', 'accessibility'];
 const variants: ButtonVariant[] = ['primary', 'secondary', 'ghost', 'danger', 'dangerGhost'];
 const sizes: ControlSize[] = ['xs', 'sm', 'md', 'lg'];
 export function ControlsGallery() {
@@ -61,6 +62,7 @@ export function ControlsGallery() {
         className="flex w-[802px] flex-col gap-4 bg-canvas p-6 text-foreground"
         data-group={group}
       >
+        {group === 'accessibility' && <AccessibilityGallery />}
         {group === 'buttons' && (
           <>
             {variants.map((variant) => (

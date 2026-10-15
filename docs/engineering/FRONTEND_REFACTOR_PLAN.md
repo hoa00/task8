@@ -69,7 +69,7 @@ Phải bảo toàn: canonical DTO/errors/null-versus-omission/date-only/UTC; ses
 | FR-02B | FR-01 | URL ownership và workspace transient intent | **DONE**; [verification](evidence/FR-02B/verification.json) |
 | FR-03 | FR-02A | Mock module ownership, semantic query boundary | **DONE**; [verification](evidence/FR-03/verification.json) |
 | FR-04 | FR-02B + FR-03 | Controller/dataset/date/UI services/persistence | **DONE**; [verification](evidence/FR-04/verification.json) |
-| FR-05 | FR-04 | Field/keyboard/focus và translation ownership | **NOT_STARTED** |
+| FR-05 | FR-04 | Field/keyboard/focus và translation ownership | **DONE**; [verification](evidence/FR-05/verification.json) |
 | FR-06 | FR-03 + FR-04 + FR-05 | Active test ownership/harness migration và documentation commands | **NOT_STARTED** |
 | FR-07 | FR-06 | Audit cuối, gỡ allowlist/seams, current docs và regression | **NOT_STARTED** |
 

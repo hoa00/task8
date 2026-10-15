@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -30,11 +31,11 @@ function subscribeMobile(callback: () => void) {
   return () => media.removeEventListener('change', callback);
 }
 const categories = [
-  { value: 'all', label: t('All') },
-  { value: 'mention', label: t('Mentions') },
-  { value: 'assign', label: t('Assignments') },
-  { value: 'comment', label: t('Comments') },
-  { value: 'update', label: t('Updates') },
+  { value: 'all', label: 'All' },
+  { value: 'mention', label: 'Mentions' },
+  { value: 'assign', label: 'Assignments' },
+  { value: 'comment', label: 'Comments' },
+  { value: 'update', label: 'Updates' },
 ] as const;
 export function InboxPage() {
   useTranslation();
@@ -99,7 +100,7 @@ export function InboxPage() {
   async function markAll() {
     consume();
     const hadUnread = model.records.some((row) => !row.readAt);
-    if ((await commands.readAll()) && hadUnread) intents.notice("You're all caught up.");
+    if ((await commands.readAll()) && hadUnread) intents.notice(t("You're all caught up."));
   }
   return (
     <div
@@ -152,6 +153,7 @@ export function InboxPage() {
             }}
             items={categories.map((row) => ({
               ...row,
+              label: t(row.label),
               ...(model.records.filter(
                 (notification) =>
                   (row.value === 'all' || notification.type === row.value) && !notification.readAt,
@@ -174,7 +176,7 @@ export function InboxPage() {
           >
             {model.error ? (
               <Alert tone="danger">
-                {model.error.message}{' '}
+                {translateErrorMessage(model.error.message)}{' '}
                 <Button size="sm" onClick={model.retry}>
                   {t('Retry')}
                 </Button>

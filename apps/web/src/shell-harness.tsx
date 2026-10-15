@@ -1,3 +1,4 @@
+import { TranslationProvider } from './i18n/TranslationProvider';
 import type { BootstrapDto } from '@studio/contracts/api';
 import { summarizeTasks } from '@studio/domain';
 // WU-07-only browser test fixture. Never part of the main or HTTP production graph.
@@ -213,10 +214,12 @@ const root = document.getElementById('root');
 if (!root) throw Error('Missing shell test root');
 createRoot(root).render(
   <StrictMode>
-    <ThemeProvider>
-      <StudioDataProvider runtime={{ client, clock: fixtureClock }} queryClient={queryClient}>
-        <RouterProvider router={router} />
-      </StudioDataProvider>
-    </ThemeProvider>
+    <TranslationProvider>
+      <ThemeProvider>
+        <StudioDataProvider runtime={{ client, clock: fixtureClock }} queryClient={queryClient}>
+          <RouterProvider router={router} />
+        </StudioDataProvider>
+      </ThemeProvider>
+    </TranslationProvider>
   </StrictMode>,
 );

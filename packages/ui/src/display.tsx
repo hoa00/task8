@@ -1,4 +1,3 @@
-import { useUiTranslation } from './translation-context';
 import { createElement, Fragment } from 'react';
 import type { ComponentPropsWithRef, CSSProperties, ReactNode } from 'react';
 import { Icon } from './icons';
@@ -249,7 +248,6 @@ export function Alert({
   role,
   ...props
 }: AlertProps) {
-  const t = useUiTranslation();
   return (
     <div
       {...props}
@@ -257,11 +255,7 @@ export function Alert({
       className={`flex items-start gap-[10px] rounded-default border border-solid px-3 py-[10px] text-sm [&_b]:font-semibold ${alertTones[tone]} ${className}`}
     >
       {icon && <Icon name={icon} size={15} className="mt-px" />}
-      {Array.isArray(children)
-        ? children.map((child) => (typeof child === 'string' ? t(child) : child))
-        : typeof children === 'string'
-          ? t(children)
-          : children}
+      {children}
     </div>
   );
 }
@@ -285,7 +279,6 @@ export function EmptyState({
   className = '',
   ...props
 }: EmptyStateProps) {
-  const t = useUiTranslation();
   return (
     <div
       {...props}
@@ -294,10 +287,8 @@ export function EmptyState({
       <div className={`mb-1 grid place-items-center ${error ? 'text-red' : 'text-faint'}`}>
         <Icon name={icon} size={22} />
       </div>
-      {createElement(`h${headingLevel}`, { className: 'm-0 text-md font-semibold' }, t(heading))}
-      <p className="m-0 mb-[10px] max-w-[340px] text-sm text-secondary">
-        {typeof description === 'string' ? t(description) : description}
-      </p>
+      {createElement(`h${headingLevel}`, { className: 'm-0 text-md font-semibold' }, heading)}
+      <p className="m-0 mb-[10px] max-w-[340px] text-sm text-secondary">{description}</p>
       {action}
     </div>
   );

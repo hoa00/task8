@@ -1,3 +1,7 @@
+import { translateErrorMessage } from '../../i18n/error-message';
+import type { FieldControlProps } from '@studio/ui';
+import { useTranslation } from '../../i18n/useTranslation';
+import { translate as t } from '../../i18n/i18n';
 import { useAppServices } from '../../app/services/app-services';
 import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
@@ -12,6 +16,7 @@ import {
   Checkbox,
   EmptyState,
   Field,
+  FieldGroup,
   Icon,
   IconButton,
   Input,
@@ -75,10 +80,15 @@ function GalleryToggle({ initial = false, label }: { initial?: boolean; label: s
   const [checked, setChecked] = useState(initial);
   return <Toggle checked={checked} onCheckedChange={setChecked} aria-label={label} />;
 }
-function GalleryTextarea() {
+function GalleryTextarea(props: FieldControlProps) {
   const [value, setValue] = useState('Add a description…');
   return (
-    <Textarea id="ds-9" rows={2} value={value} onChange={(event) => setValue(event.target.value)} />
+    <Textarea
+      {...props}
+      rows={2}
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+    />
   );
 }
 function GallerySection({
@@ -180,6 +190,7 @@ const sampleStates = {
 };
 
 export function DesignSystemGallery() {
+  useTranslation();
   const workspaceId = useWorkspaceId(),
     data = useWorkspaceBootstrap().data!.data,
     { clock } = useDataRuntime(),
@@ -208,7 +219,7 @@ export function DesignSystemGallery() {
     });
     if (result)
       galleryServices.notice(
-        value.status === 'done' ? 'Task reopened' : 'Task completed',
+        value.status === 'done' ? t('Task reopened') : t('Task completed'),
         result.data.undo ?? undefined,
       );
   };
@@ -434,76 +445,108 @@ export function DesignSystemGallery() {
       </GallerySection>
       <GallerySection title="Inputs">
         <Panel className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-[14px]">
-          <Field className="p-[14px]" label="Text" controlId="ds-1">
-            <GalleryInput id="ds-1" placeholder="Task name" />
+          <Field className="p-[14px]" label={t('Text')} controlId="ds-1">
+            {(control) => (
+              <>
+                <GalleryInput placeholder="Task name" {...control} />
+              </>
+            )}
           </Field>
-          <Field className="p-[14px]" label="Focus" controlId="ds-2">
-            <GalleryInput
-              id="ds-2"
-              initial="Homepage wireframes"
-              className="border-accent! [box-shadow:0_0_0_3px_var(--accent-soft)]!"
-            />
+          <Field className="p-[14px]" label={t('Focus')} controlId="ds-2">
+            {(control) => (
+              <>
+                <GalleryInput
+                  initial="Homepage wireframes"
+                  className="border-accent! [box-shadow:0_0_0_3px_var(--accent-soft)]!"
+                  {...control}
+                />
+              </>
+            )}
           </Field>
           <Field
             className="p-[14px]"
-            label="Error"
+            label={t('Error')}
             controlId="ds-3"
-            error={!/^\S+@\S+\.\S+$/.test(email) ? 'Enter a valid email address' : undefined}
+            error={!/^\S+@\S+\.\S+$/.test(email) ? t('Enter a valid email address') : undefined}
           >
-            <Input
-              id="ds-3"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              error={!/^\S+@\S+\.\S+$/.test(email)}
-            />
+            {(control) => (
+              <>
+                <Input
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  error={!/^\S+@\S+\.\S+$/.test(email)}
+                  {...control}
+                />
+              </>
+            )}
           </Field>
-          <Field className="p-[14px]" label="Disabled" controlId="ds-4">
-            <Input id="ds-4" disabled value="hello@gr8rstudio.com" />
+          <Field className="p-[14px]" label={t('Disabled')} controlId="ds-4">
+            {(control) => (
+              <>
+                <Input disabled value="hello@gr8rstudio.com" {...control} />
+              </>
+            )}
           </Field>
-          <Field className="p-[14px]" label="Search" controlId="ds-5">
-            <div className="relative flex items-center">
-              <Icon
-                name="search"
-                size={13}
-                className="pointer-events-none absolute left-[9px] text-faint"
-              />
-              <GalleryInput id="ds-5" placeholder="Search tasks" className="pl-[30px]!" />
-              <KeyHint className="absolute right-[7px]">{'/'}</KeyHint>
-            </div>
+          <Field className="p-[14px]" label={t('Search')} controlId="ds-5">
+            {(control) => (
+              <>
+                <div className="relative flex items-center">
+                  <Icon
+                    name="search"
+                    size={13}
+                    className="pointer-events-none absolute left-[9px] text-faint"
+                  />
+                  <GalleryInput placeholder="Search tasks" className="pl-[30px]!" {...control} />
+                  <KeyHint className="absolute right-[7px]">{'/'}</KeyHint>
+                </div>
+              </>
+            )}
           </Field>
-          <Field className="p-[14px]" label="Select" controlId="ds-6">
-            <Select
-              label="Select"
-              id="ds-6"
-              value={status}
-              onValueChange={setStatus}
-              options={[
-                { value: 'progress', label: 'In Progress' },
-                { value: 'review', label: 'Review' },
-              ]}
-            />
+          <Field className="p-[14px]" label={t('Select')} controlId="ds-6">
+            {(control) => (
+              <>
+                <Select
+                  label="Select"
+                  value={status}
+                  onValueChange={setStatus}
+                  options={[
+                    { value: 'progress', label: t('In Progress') },
+                    { value: 'review', label: t('Review') },
+                  ]}
+                  {...control}
+                />
+              </>
+            )}
           </Field>
-          <Field className="p-[14px]" label="Multi-select">
+          <FieldGroup className="p-[14px]" label={t('Multi-select')}>
             <div className="flex min-h-[30px] flex-wrap gap-1 rounded-sm border border-solid border-border-strong p-1">
               {(['design', 'frontend', 'qa'] as const).map((id) => (
                 <TaskLabel key={id} id={id} />
               ))}
               <span className="px-1 py-[2px] text-xs text-muted">{'Add…'}</span>
             </div>
+          </FieldGroup>
+          <Field className="p-[14px]" label={t('Date')} controlId="ds-7">
+            {(control) => (
+              <>
+                <GalleryInput
+                  type="date"
+                  initial={new Date(Date.parse(clock.today()) + 3 * 86400000)
+                    .toISOString()
+                    .slice(0, 10)}
+                  {...control}
+                />
+              </>
+            )}
           </Field>
-          <Field className="p-[14px]" label="Date" controlId="ds-7">
-            <GalleryInput
-              type="date"
-              id="ds-7"
-              initial={new Date(Date.parse(clock.today()) + 3 * 86400000)
-                .toISOString()
-                .slice(0, 10)}
-            />
+          <Field className="p-[14px]" label={t('Time')} controlId="ds-8">
+            {(control) => (
+              <>
+                <GalleryInput type="time" initial="14:30" {...control} />
+              </>
+            )}
           </Field>
-          <Field className="p-[14px]" label="Time" controlId="ds-8">
-            <GalleryInput type="time" id="ds-8" initial="14:30" />
-          </Field>
-          <Field className="p-[14px]" label="Checkbox · Radio · Toggle">
+          <FieldGroup className="p-[14px]" label={t('Checkbox · Radio · Toggle')}>
             <div className="flex items-center gap-[14px]">
               <GalleryCheckbox initial label="c1" />
               <GalleryCheckbox label="c2" />
@@ -524,11 +567,15 @@ export function DesignSystemGallery() {
               <GalleryToggle initial label="t1" />
               <GalleryToggle label="t2" />
             </div>
+          </FieldGroup>
+          <Field className="p-[14px]" label={t('Textarea')} controlId="ds-9">
+            {(control) => (
+              <>
+                <GalleryTextarea {...control} />
+              </>
+            )}
           </Field>
-          <Field className="p-[14px]" label="Textarea" controlId="ds-9">
-            <GalleryTextarea />
-          </Field>
-          <Field className="p-[14px]" label="Rich text">
+          <FieldGroup className="p-[14px]" label={t('Rich text')}>
             <div className="rounded-default border border-solid border-border">
               <div className="flex gap-px">
                 {(['bold', 'italic', 'list', 'list-ordered', 'heading', 'link'] as const).map(
@@ -549,7 +596,7 @@ export function DesignSystemGallery() {
                 {', and lists.'}
               </div>
             </div>
-          </Field>
+          </FieldGroup>
         </Panel>
       </GallerySection>
       <GallerySection title="Navigation">
@@ -744,7 +791,7 @@ export function DesignSystemGallery() {
             </Panel>
             {taskQuery.error && (
               <Alert tone="danger">
-                {taskQuery.error.message}
+                {translateErrorMessage(taskQuery.error.message)}
                 <Button
                   onClick={() => {
                     void taskQuery.refetch();
@@ -773,7 +820,7 @@ export function DesignSystemGallery() {
             </span>
           </Alert>
           <Alert tone="warn" icon="triangle-alert">
-            {'3 tasks due this week are not started.'}
+            {t('3 tasks due this week are not started.')}
           </Alert>
           <Alert tone="danger" icon="circle-alert">
             <span>
@@ -858,6 +905,7 @@ export function DesignSystemGallery() {
 }
 
 export function SystemStatesGallery() {
+  useTranslation();
   const data = useWorkspaceBootstrap().data!.data,
     workspaceId = useWorkspaceId(),
     taskQuery = useGalleryTasks(),
@@ -914,8 +962,8 @@ export function SystemStatesGallery() {
           <EmptyState
             headingLevel={3}
             icon="folder-kanban"
-            heading="No projects yet"
-            description="Create your first project to start organizing your work."
+            heading={t('No projects yet')}
+            description={t('Create your first project to start organizing your work.')}
             action={
               <Button size="sm" variant="primary" onClick={projects.newProject}>
                 <Icon name="plus" size={14} />
@@ -928,8 +976,8 @@ export function SystemStatesGallery() {
           <EmptyState
             headingLevel={3}
             icon="list-checks"
-            heading="No tasks here"
-            description="Add a task to get things moving."
+            heading={t('No tasks here')}
+            description={t('Add a task to get things moving.')}
             action={
               <Button size="sm" variant="primary" onClick={() => tasks.openTaskForm()}>
                 <Icon name="plus" size={14} />
@@ -942,16 +990,18 @@ export function SystemStatesGallery() {
           <EmptyState
             headingLevel={3}
             icon="bell-off"
-            heading="You're all caught up."
-            description="New mentions and assignments will show up here."
+            heading={t("You're all caught up.")}
+            description={t('New mentions and assignments will show up here.')}
           />
         </StateCard>
         <StateCard title="No search results" icon="search">
           <EmptyState
             headingLevel={3}
             icon="search-x"
-            heading="No results found"
-            description="Nothing matches “brand guidlines”. Check the spelling or try a broader term."
+            heading={t('No results found')}
+            description={t(
+              'Nothing matches “brand guidlines”. Check the spelling or try a broader term.',
+            )}
             action={
               <Button
                 size="sm"
@@ -1023,8 +1073,8 @@ export function SystemStatesGallery() {
             headingLevel={3}
             error
             icon="wifi-off"
-            heading="You're offline"
-            description="Check your connection. This preview does not queue or sync changes."
+            heading={t("You're offline")}
+            description={t('Check your connection. This preview does not queue or sync changes.')}
             action={
               <Button size="sm" onClick={() => dev.demoToast('retry')}>
                 <Icon name="refresh-cw" size={13} />
@@ -1039,8 +1089,8 @@ export function SystemStatesGallery() {
             headingLevel={3}
             error
             icon="cloud-alert"
-            heading="Something went wrong."
-            description="This view failed to load. Your data is safe."
+            heading={t('Something went wrong.')}
+            description={t('This view failed to load. Your data is safe.')}
             action={
               <Button size="sm" onClick={() => dev.demoToast('retry')}>
                 {'Try again'}
@@ -1066,8 +1116,8 @@ export function SystemStatesGallery() {
             size="sm"
             headingLevel={3}
             icon="lock"
-            heading="You don't have access"
-            description="Customer Portal is private. Request access from Marcus Lee."
+            heading={t("You don't have access")}
+            description={t('Customer Portal is private. Request access from Marcus Lee.')}
             action={
               <Button
                 size="sm"
@@ -1087,8 +1137,8 @@ export function SystemStatesGallery() {
             size="sm"
             headingLevel={3}
             icon="file-question"
-            heading="Page not found"
-            description="The page was moved, deleted, or never existed."
+            heading={t('Page not found')}
+            description={t('The page was moved, deleted, or never existed.')}
             action={
               <Button
                 size="sm"
@@ -1104,20 +1154,24 @@ export function SystemStatesGallery() {
         <StateCard title="Form validation" icon="text-cursor-input">
           <div className="p-[18px]">
             <Field
-              label="Email"
+              label={t('Email')}
               controlId="st-e"
               error={
                 !/^\S+@\S+\.\S+$/.test(email)
-                  ? 'Enter a valid email, like name@company.com'
+                  ? t('Enter a valid email, like name@company.com')
                   : undefined
               }
             >
-              <Input
-                id="st-e"
-                value={email}
-                error={!/^\S+@\S+\.\S+$/.test(email)}
-                onChange={(event) => setEmail(event.target.value)}
-              />
+              {(control) => (
+                <>
+                  <Input
+                    value={email}
+                    error={!/^\S+@\S+\.\S+$/.test(email)}
+                    onChange={(event) => setEmail(event.target.value)}
+                    {...control}
+                  />
+                </>
+              )}
             </Field>
           </div>
         </StateCard>
@@ -1177,13 +1231,13 @@ export function SystemStatesGallery() {
           onClose={() => setDeleteTaskId(null)}
           onDeleted={(undo) => {
             setDeleteTaskId(null);
-            projectsServices.notice('Task deleted', undo);
+            projectsServices.notice(t('Task deleted'), undo);
           }}
         />
       )}{' '}
       {taskQuery.error && (
         <Alert tone="danger">
-          {taskQuery.error.message}
+          {translateErrorMessage(taskQuery.error.message)}
           <Button
             onClick={() => {
               void taskQuery.refetch();

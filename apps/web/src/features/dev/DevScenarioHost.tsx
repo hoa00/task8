@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useEffect, useRef, useState } from 'react';
@@ -206,7 +207,7 @@ export function DevScenarioHost({ data, children }: DevScenarioHostProps) {
                     if (active.current)
                       setError(
                         cause instanceof Error
-                          ? cause.message
+                          ? translateErrorMessage(cause.message)
                           : t('Demo data could not be restored'),
                       );
                   } finally {

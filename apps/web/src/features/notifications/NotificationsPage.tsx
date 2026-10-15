@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -66,7 +67,7 @@ export function NotificationsPage() {
   }
   async function markAll() {
     intents.surfaceOpened();
-    if ((await commands.readAll()) && unreadCount) intents.notice("You're all caught up.");
+    if ((await commands.readAll()) && unreadCount) intents.notice(t("You're all caught up."));
   }
   return (
     <div
@@ -130,7 +131,7 @@ export function NotificationsPage() {
       {commands.error && <Alert tone="danger">{commands.error}</Alert>}
       {model.error ? (
         <Alert tone="danger">
-          {model.error.message}{' '}
+          {translateErrorMessage(model.error.message)}{' '}
           <Button size="sm" onClick={model.retry}>
             {t('Retry')}
           </Button>

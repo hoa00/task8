@@ -319,8 +319,8 @@ function AuthController({
         setErrors({
           login:
             error instanceof Error && error.message === authLoginError
-              ? authLoginError
-              : 'Demo operation failed. No identity or email delivery was created.',
+              ? t(authLoginError)
+              : t('Demo operation failed. No identity or email delivery was created.'),
         });
       }
     } finally {
@@ -332,6 +332,10 @@ function AuthController({
     if (pending || busy.current || !enabled) return;
     const draft = { email: email.trim(), name: name.trim() },
       nextErrors = validateAuth(screen, draft, password, confirmation);
+    for (const field of Object.keys(nextErrors) as (keyof AuthErrors)[]) {
+      const message = nextErrors[field];
+      if (message) nextErrors[field] = t(message);
+    }
     if (realAuth && screen === 'login') {
       const parsed = AuthLoginInputSchema.safeParse({ email: draft.email, password, remember });
       if (!parsed.success) {
@@ -377,17 +381,21 @@ function AuthController({
   );
   const emailField = (id: string, label = 'Email', placeholder?: string) => (
     <Field label={label} controlId={id} error={errors.email}>
-      <Input
-        id={id}
-        type="email"
-        size="lg"
-        autoComplete="email"
-        value={email}
-        placeholder={placeholder}
-        error={!!errors.email}
-        disabled={!enabled}
-        onChange={(event) => setEmail(event.target.value)}
-      />
+      {(control) => (
+        <>
+          <Input
+            type="email"
+            size="lg"
+            autoComplete="email"
+            value={email}
+            placeholder={placeholder}
+            error={!!errors.email}
+            disabled={!enabled}
+            onChange={(event) => setEmail(event.target.value)}
+            {...control}
+          />
+        </>
+      )}
     </Field>
   );
   const passwordField = (id: string, label: string, strength = false) => (
@@ -397,17 +405,21 @@ function AuthController({
       error={errors.pw}
       hint={screen === 'signup' ? t('At least 10 characters with a number or symbol.') : undefined}
     >
-      <PasswordInput
-        id={id}
-        size="lg"
-        revealControl={false}
-        autoComplete="new-password"
-        value={password}
-        error={!!errors.pw}
-        disabled={!enabled}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      {strength && <PasswordStrength value={password} />}
+      {(control) => (
+        <>
+          <PasswordInput
+            size="lg"
+            revealControl={false}
+            autoComplete="new-password"
+            value={password}
+            error={!!errors.pw}
+            disabled={!enabled}
+            onChange={(event) => setPassword(event.target.value)}
+            {...control}
+          />
+          {strength && <PasswordStrength value={password} />}
+        </>
+      )}
     </Field>
   );
   let content: ReactNode;
@@ -482,16 +494,20 @@ function AuthController({
         {social}
         <AuthDivider>{t('or sign up with email')}</AuthDivider>
         <Field label={t('Full name')} controlId="s-name" error={errors.name}>
-          <Input
-            id="s-name"
-            size="lg"
-            autoComplete="name"
-            placeholder={t('Tanjim Islam')}
-            value={name}
-            error={!!errors.name}
-            disabled={!enabled}
-            onChange={(event) => setName(event.target.value)}
-          />
+          {(control) => (
+            <>
+              <Input
+                size="lg"
+                autoComplete="name"
+                placeholder={t('Tanjim Islam')}
+                value={name}
+                error={!!errors.name}
+                disabled={!enabled}
+                onChange={(event) => setName(event.target.value)}
+                {...control}
+              />
+            </>
+          )}
         </Field>
         {emailField('s-email', 'Work email', 'you@company.com')}
         {passwordField('s-pw', 'Password', true)}
@@ -589,16 +605,20 @@ function AuthController({
         />
         {passwordField('r-pw', 'New password', true)}
         <Field label={t('Confirm password')} controlId="r-pw2" error={errors.pw2}>
-          <PasswordInput
-            id="r-pw2"
-            size="lg"
-            revealControl={false}
-            autoComplete="new-password"
-            value={confirmation}
-            error={!!errors.pw2}
-            disabled={!enabled}
-            onChange={(event) => setConfirmation(event.target.value)}
-          />
+          {(control) => (
+            <>
+              <PasswordInput
+                size="lg"
+                revealControl={false}
+                autoComplete="new-password"
+                value={confirmation}
+                error={!!errors.pw2}
+                disabled={!enabled}
+                onChange={(event) => setConfirmation(event.target.value)}
+                {...control}
+              />
+            </>
+          )}
         </Field>
         <AuthAction kind="reset" enabled={enabled} pending={pending} onNavigate={go}>
           {t('Reset password')}

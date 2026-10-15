@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t, locale } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -95,7 +96,9 @@ export function HomePage() {
   };
   if (result.error || overview.error || dataset.error)
     return (
-      <Alert tone="danger">{(result.error ?? overview.error ?? dataset.error)!.message}</Alert>
+      <Alert tone="danger">
+        {translateErrorMessage((result.error ?? overview.error ?? dataset.error)!.message)}
+      </Alert>
     );
   if (!home || !stats || !dataset.data)
     return (

@@ -1,6 +1,6 @@
 import { DateOnlySchema } from '@studio/contracts/api';
 import type { DateOnly, MemberPreferencesDto } from '@studio/contracts/api';
-import { locale } from '../../i18n/i18n';
+import { locale } from '../../i18n/i18n.ts';
 export const calendarWeekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as const;
 export const calendarMonths = [
   'January',

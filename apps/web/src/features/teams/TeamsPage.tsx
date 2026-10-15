@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -36,7 +37,7 @@ export function TeamDirectory({ membersTab = false }: TeamDirectoryProps) {
       )}
       {teams.error ? (
         <Alert tone="danger">
-          {teams.error.message}
+          {translateErrorMessage(teams.error.message)}
           <Button
             size="sm"
             onClick={() => {

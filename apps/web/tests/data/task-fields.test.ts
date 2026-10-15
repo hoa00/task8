@@ -9,12 +9,12 @@ import {
   groupTasks,
   matchesTaskFilter,
   nextRecurrenceDate,
-  normalizeTaskView,
   sortTasks,
   summarizeTasks,
   TaskRelationError,
   validateTaskRelations,
 } from '@studio/domain';
+import { normalizeTaskView } from '../../src/features/tasks/task-view.ts';
 import { createMockApi } from '../../src/data/adapters/mock.ts';
 import { createSeedDataset, fixtureClock } from '../../src/data/mock/seed.ts';
 import { runTaskFieldOperation } from '../../src/data/mock/task-fields.ts';

@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -59,7 +60,7 @@ export function TeamDetail({ teamId }: TeamDetailProps) {
     return (
       <div className="p-6">
         <Alert tone="danger">
-          {error.message}
+          {translateErrorMessage(error.message)}
           <Button
             size="sm"
             onClick={() => {

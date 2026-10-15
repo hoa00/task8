@@ -126,29 +126,37 @@ export function TeamFormDialog({
             className="min-w-0 flex-1"
             error={validation}
           >
-            <Input
-              id="tm-name"
-              aria-describedby={validation ? 'tm-name-description' : undefined}
-              ref={nameRef}
-              placeholder={t('e.g. Growth')}
-              disabled={disabled}
-              value={body.name}
-              error={!!validation}
-              onChange={(event) => {
-                change('name', event.target.value);
-                if (event.target.value.trim()) setValidation('');
-              }}
-            />
+            {(control) => (
+              <>
+                <Input
+                  aria-describedby={validation ? 'tm-name-description' : undefined}
+                  ref={nameRef}
+                  placeholder={t('e.g. Growth')}
+                  disabled={disabled}
+                  value={body.name}
+                  error={!!validation}
+                  onChange={(event) => {
+                    change('name', event.target.value);
+                    if (event.target.value.trim()) setValidation('');
+                  }}
+                  {...control}
+                />
+              </>
+            )}
           </Field>
         </div>
         <Field label={t('What does this team own?')} controlId="tm-desc">
-          <Input
-            id="tm-desc"
-            placeholder={t('e.g. Acquisition experiments and lifecycle email')}
-            disabled={disabled}
-            value={body.description}
-            onChange={(event) => change('description', event.target.value)}
-          />
+          {(control) => (
+            <>
+              <Input
+                placeholder={t('e.g. Acquisition experiments and lifecycle email')}
+                disabled={disabled}
+                value={body.description}
+                onChange={(event) => change('description', event.target.value)}
+                {...control}
+              />
+            </>
+          )}
         </Field>
         <AppearanceFields
           icons={data.catalogs.projectIcons}

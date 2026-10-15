@@ -137,7 +137,7 @@ export function FileOverlayHost({ data, children }: FileOverlayHostProps) {
     if (file)
       setCopyMotion((previous) => ({ fileId: file.id, revision: (previous?.revision ?? 0) + 1 }));
     void navigator.clipboard.writeText(url).then(
-      () => projects.notice('Link copied', undefined, { duration: 4200 }),
+      () => projects.notice(t('Link copied'), undefined, { duration: 4200 }),
       () =>
         projects.notice("Copy isn't available here — " + url, undefined, {
           kind: 'info',

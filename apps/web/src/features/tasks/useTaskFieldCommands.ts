@@ -1,3 +1,5 @@
+import { translate as t } from '../../i18n/i18n.ts';
+import { translateErrorMessage } from '../../i18n/error-message.ts';
 import { captureIntent } from '../../data/operations';
 import type { StudioClient } from '../../data/operations';
 import { useState } from 'react';
@@ -133,7 +135,10 @@ export function useTaskFieldCommands(task: TaskDto) {
         current.taskId === baseline.id
           ? {
               ...current,
-              error: cause instanceof Error ? cause.message : 'Changes could not be saved',
+              error:
+                cause instanceof Error
+                  ? translateErrorMessage(cause.message)
+                  : t('Changes could not be saved'),
             }
           : current,
       );
@@ -156,7 +161,10 @@ export function useTaskFieldCommands(task: TaskDto) {
         current.taskId === baseline.id
           ? {
               ...current,
-              error: cause instanceof Error ? cause.message : 'Changes could not be saved',
+              error:
+                cause instanceof Error
+                  ? translateErrorMessage(cause.message)
+                  : t('Changes could not be saved'),
             }
           : current,
       );
@@ -176,7 +184,10 @@ export function useTaskFieldCommands(task: TaskDto) {
         current.taskId === baseline.id
           ? {
               ...current,
-              error: cause instanceof Error ? cause.message : 'Undo could not be applied',
+              error:
+                cause instanceof Error
+                  ? translateErrorMessage(cause.message)
+                  : t('Undo could not be applied'),
             }
           : current,
       );

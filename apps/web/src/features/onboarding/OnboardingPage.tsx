@@ -11,6 +11,7 @@ import {
   SegmentedControl,
   ToastViewport,
   useToastQueue,
+  useChoiceGroup,
 } from '@studio/ui';
 import type { IconName } from '@studio/ui';
 import { catalogs } from '@studio/contracts/api';
@@ -113,7 +114,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
     if (!enabled || busy.current) return;
     if (step === 1 && !draft.ws.trim()) {
       setAnimatedStep(null);
-      setWorkspaceError('Name your workspace to continue');
+      setWorkspaceError(t('Name your workspace to continue'));
       document.getElementById('o-ws')?.focus();
       return;
     }
@@ -185,6 +186,21 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
       toasts.enqueue({ message: t('Unable to copy the demo link'), kind: 'error' });
     }
   }
+  const { rootRef: caseChoiceRef, getItemProps: caseItemProps } = useChoiceGroup({
+    items: useCases.map(([value]) => ({ value })),
+    value: draft.use,
+    onValueChange: (use) => update({ use }),
+  });
+  const { rootRef: workChoicesRef, getItemProps: workChoicesItemProps } = useChoiceGroup({
+    items: workstyles.map(([value]) => ({ value })),
+    value: draft.team,
+    onValueChange: (team) => update({ team }),
+  });
+  const { rootRef: templateChoicesRef, getItemProps: templateChoicesItemProps } = useChoiceGroup({
+    items: catalogs.templates.filter((row) => row.id !== 'blank').map((row) => ({ value: row.id })),
+    value: draft.tmpl,
+    onValueChange: (tmpl) => update({ tmpl }),
+  });
   const template = catalogs.templates.find((row) => row.id === draft.tmpl)!,
     invites = draft.invites.filter((email) => /^\S+@\S+\.\S+$/.test(email)).length;
   return (
@@ -225,7 +241,12 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
               title={t('What are you working on?')}
               subtitle={t("We'll tailor templates and views to fit. You can change this later.")}
             />
-            <div role="radiogroup" aria-label={t('Use case')} className={gridClass}>
+            <div
+              ref={caseChoiceRef}
+              role="radiogroup"
+              aria-label={t('Use case')}
+              className={gridClass}
+            >
               {useCases.map(([value, icon, title, subtitle]) => (
                 <ChoiceCard
                   key={value}
@@ -233,7 +254,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
                   title={t(title)}
                   subtitle={t(subtitle)}
                   selected={draft.use === value}
-                  onSelect={() => update({ use: value })}
+                  interaction={caseItemProps(value)}
                 />
               ))}
             </div>
@@ -246,39 +267,47 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
               subtitle={t("A workspace is where your team's projects live.")}
             />
             <Field label={t('Workspace name')} controlId="o-ws" error={workspaceError || undefined}>
-              <Input
-                autoFocus
-                id="o-ws"
-                size="lg"
-                value={draft.ws}
-                maxLength={120}
-                placeholder={t('e.g. Gr8r Studio')}
-                onChange={(event) => update({ ws: event.target.value })}
-                error={!!workspaceError}
-                aria-invalid={!!workspaceError}
-              />
+              {(control) => (
+                <>
+                  <Input
+                    autoFocus
+                    size="lg"
+                    value={draft.ws}
+                    maxLength={120}
+                    placeholder={t('e.g. Gr8r Studio')}
+                    onChange={(event) => update({ ws: event.target.value })}
+                    error={!!workspaceError}
+                    aria-invalid={!!workspaceError}
+                    {...control}
+                  />
+                </>
+              )}
             </Field>
             <Field label={t('Workspace URL')} controlId="o-url">
-              <div className="flex items-center">
-                <span className="flex h-control-lg w-auto items-center rounded-l-sm border border-r-0 border-solid border-border-strong bg-surface-2 px-[10px] text-secondary">
-                  {t('gr8rstudio.com/')}
-                </span>
-                <Input
-                  id="o-url"
-                  size="lg"
-                  value={draft.url}
-                  maxLength={120}
-                  className="rounded-l-none"
-                  placeholder="gr8rstudio"
-                  onChange={(event) => update({ url: event.target.value })}
-                />
-              </div>
-              {draft.url && (
-                <span className="flex items-center gap-1 text-xs text-green">
-                  <Icon name="check" size={12} />
-                  {t('Demo URL: gr8rstudio.com/')}
-                  {draft.url}
-                </span>
+              {(control) => (
+                <>
+                  <div className="flex items-center">
+                    <span className="flex h-control-lg w-auto items-center rounded-l-sm border border-r-0 border-solid border-border-strong bg-surface-2 px-[10px] text-secondary">
+                      {t('gr8rstudio.com/')}
+                    </span>
+                    <Input
+                      size="lg"
+                      value={draft.url}
+                      maxLength={120}
+                      className="rounded-l-none"
+                      placeholder="gr8rstudio"
+                      onChange={(event) => update({ url: event.target.value })}
+                      {...control}
+                    />
+                  </div>
+                  {draft.url && (
+                    <span className="flex items-center gap-1 text-xs text-green">
+                      <Icon name="check" size={12} />
+                      {t('Demo URL: gr8rstudio.com/')}
+                      {draft.url}
+                    </span>
+                  )}
+                </>
               )}
             </Field>
           </>
@@ -290,6 +319,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
               subtitle={t("We'll set your default project view.")}
             />
             <div
+              ref={workChoicesRef}
               role="radiogroup"
               aria-label={t('Default project view')}
               className="grid grid-cols-2 gap-2"
@@ -301,7 +331,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
                   title={t(title)}
                   subtitle={t(subtitle)}
                   selected={draft.team === value}
-                  onSelect={() => update({ team: value })}
+                  interaction={workChoicesItemProps(value)}
                 />
               ))}
             </div>
@@ -324,26 +354,35 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
               subtitle={t('Start from a template or a blank project.')}
             />
             <Field label={t('Project name')} controlId="o-proj">
-              <Input
-                autoFocus
-                id="o-proj"
-                size="lg"
-                maxLength={200}
-                value={draft.proj}
-                onChange={(event) => update({ proj: event.target.value })}
-              />
+              {(control) => (
+                <>
+                  <Input
+                    autoFocus
+                    size="lg"
+                    maxLength={200}
+                    value={draft.proj}
+                    onChange={(event) => update({ proj: event.target.value })}
+                    {...control}
+                  />
+                </>
+              )}
             </Field>
-            <div role="radiogroup" aria-label={t('Project template')} className={gridClass}>
+            <div
+              ref={templateChoicesRef}
+              role="radiogroup"
+              aria-label={t('Project template')}
+              className={gridClass}
+            >
               {catalogs.templates
                 .filter((row) => row.id !== 'blank')
                 .map((row) => (
                   <ChoiceCard
                     key={row.id}
                     icon={row.icon as IconName}
-                    title={row.name}
+                    title={t(row.name)}
                     subtitle={t('{{value1}} starter tasks', { value1: String(row.tasks.length) })}
                     selected={draft.tmpl === row.id}
-                    onSelect={() => update({ tmpl: row.id })}
+                    interaction={templateChoicesItemProps(row.id)}
                   />
                 ))}
             </div>

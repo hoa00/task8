@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -123,7 +124,7 @@ export function SearchPage() {
         </div>
       ) : result.error ? (
         <Alert tone="danger">
-          {result.error.message}
+          {translateErrorMessage(result.error.message)}
           <Button
             size="sm"
             onClick={() => {

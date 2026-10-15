@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -455,20 +456,24 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
                 }
                 controlId="delete-project-name"
               >
-                <Input
-                  ref={deleteNameRef}
-                  autoComplete="off"
-                  id="delete-project-name"
-                  value={typedName}
-                  onChange={(event) => setTypedName(event.target.value)}
-                  disabled={commands.pending}
-                />
+                {(control) => (
+                  <>
+                    <Input
+                      ref={deleteNameRef}
+                      autoComplete="off"
+                      value={typedName}
+                      onChange={(event) => setTypedName(event.target.value)}
+                      disabled={commands.pending}
+                      {...control}
+                    />
+                  </>
+                )}
               </Field>
             )}
             {commands.error && <Alert tone="danger">{commands.error}</Alert>}
             {confirmationRecord.error && (
               <Alert tone="danger">
-                {confirmationRecord.error.message}
+                {translateErrorMessage(confirmationRecord.error.message)}
                 <Button
                   size="sm"
                   onClick={() => {
@@ -526,7 +531,12 @@ export function ProjectOverlayHost({ data, children, onOpenOverlay }: ProjectOve
                   if (result && active.current) {
                     setConfirmation(null);
                     undoNotice(
-                      `${confirmation.kind === 'archive' ? 'Archived' : 'Deleted'} ${confirmationProject?.name}`,
+                      t(
+                        confirmation.kind === 'archive'
+                          ? 'Archived {{value1}}'
+                          : 'Deleted {{value1}}',
+                        { value1: String(confirmationProject?.name) },
+                      ),
                       result.data.undo,
                     );
                     if (location.pathname.includes(confirmation.project.id))

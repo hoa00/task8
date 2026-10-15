@@ -15,6 +15,7 @@ import {
   Input,
   Select,
   Textarea,
+  useChoiceGroup,
 } from '@studio/ui';
 import type { IconName } from '@studio/ui';
 import { EntityIdSchema, DateOnlySchema } from '@studio/contracts/api';
@@ -67,6 +68,22 @@ export function ProjectFormDialog({
     setBody((current) => ({ ...current, [key]: value }));
   const effectiveTeamId =
     body.teamId && data.teams.some((team) => team.id === body.teamId) ? body.teamId : null;
+  const { rootRef: templatesRef, getItemProps: templatesItemProps } = useChoiceGroup({
+    items: data.catalogs.templates.map((template) => ({ value: template.id, disabled })),
+    value: body.templateId,
+    onValueChange: (templateId) => {
+      const template = data.catalogs.templates.find((template) => template.id === templateId)!;
+      setActionRevision((current) => current + 1);
+      setBody((current) => ({
+        ...current,
+        templateId,
+        icon:
+          current.icon === 'folder' && template.icon !== 'file'
+            ? (template.icon as CreateProjectInput['icon'])
+            : current.icon,
+      }));
+    },
+  });
   const submit = () => {
     if (pending || unavailable) return;
     if (!body.name.trim()) {
@@ -121,29 +138,37 @@ export function ProjectFormDialog({
             className="min-w-0 flex-1"
             error={validation}
           >
-            <Input
-              disabled={disabled}
-              ref={nameRef}
-              id="project-name"
-              placeholder={t('e.g. Website Redesign')}
-              value={body.name}
-              error={!!validation}
-              onChange={(event) => {
-                change('name', event.target.value);
-                if (event.target.value.trim()) setValidation('');
-              }}
-            />
+            {(control) => (
+              <>
+                <Input
+                  disabled={disabled}
+                  ref={nameRef}
+                  placeholder={t('e.g. Website Redesign')}
+                  value={body.name}
+                  error={!!validation}
+                  onChange={(event) => {
+                    change('name', event.target.value);
+                    if (event.target.value.trim()) setValidation('');
+                  }}
+                  {...control}
+                />
+              </>
+            )}
           </Field>
         </div>
         <Field label={t('Description')} controlId="project-description">
-          <Textarea
-            disabled={disabled}
-            id="project-description"
-            rows={2}
-            placeholder={t('What is this project about?')}
-            value={body.description}
-            onChange={(event) => change('description', event.target.value)}
-          />
+          {(control) => (
+            <>
+              <Textarea
+                disabled={disabled}
+                rows={2}
+                placeholder={t('What is this project about?')}
+                value={body.description}
+                onChange={(event) => change('description', event.target.value)}
+                {...control}
+              />
+            </>
+          )}
         </Field>
         <AppearanceFields
           icons={data.catalogs.projectIcons}
@@ -162,68 +187,76 @@ export function ProjectFormDialog({
         />
         <div className="flex flex-wrap items-center gap-3">
           <Field label={t('Team')} className="min-w-[150px] flex-1">
-            <Select
-              disabled={disabled}
-              label={t('Team')}
-              value={effectiveTeamId ?? ''}
-              options={[
-                { value: '', label: t('No team') },
-                ...data.teams.map((team) => ({ value: team.id, label: team.name })),
-              ]}
-              onValueChange={(value) =>
-                change('teamId', value ? EntityIdSchema.parse(value) : null)
-              }
-            />
+            {(control) => (
+              <>
+                <Select
+                  disabled={disabled}
+                  label={t('Team')}
+                  value={effectiveTeamId ?? ''}
+                  options={[
+                    { value: '', label: t('No team') },
+                    ...data.teams.map((team) => ({ value: team.id, label: team.name })),
+                  ]}
+                  onValueChange={(value) =>
+                    change('teamId', value ? EntityIdSchema.parse(value) : null)
+                  }
+                  {...control}
+                />
+              </>
+            )}
           </Field>
           <Field label={t('Lead')} className="min-w-[150px] flex-1">
-            <Select
-              disabled={disabled}
-              label={t('Lead')}
-              value={body.leadId}
-              options={(members.data?.items ?? [])
-                .filter((member) => member.status === 'active')
-                .map((member) => ({ value: member.id, label: member.name }))}
-              onValueChange={(value) => change('leadId', EntityIdSchema.parse(value))}
-            />
+            {(control) => (
+              <>
+                <Select
+                  disabled={disabled}
+                  label={t('Lead')}
+                  value={body.leadId}
+                  options={(members.data?.items ?? [])
+                    .filter((member) => member.status === 'active')
+                    .map((member) => ({ value: member.id, label: member.name }))}
+                  onValueChange={(value) => change('leadId', EntityIdSchema.parse(value))}
+                  {...control}
+                />
+              </>
+            )}
           </Field>
           <Field label={t('Target date')} controlId="project-due" className="min-w-[150px] flex-1">
-            <Input
-              disabled={disabled}
-              type="date"
-              id="project-due"
-              value={body.dueDate ?? ''}
-              onChange={(event) =>
-                change(
-                  'dueDate',
-                  event.target.value ? DateOnlySchema.parse(event.target.value) : null,
-                )
-              }
-            />
+            {(control) => (
+              <>
+                <Input
+                  disabled={disabled}
+                  type="date"
+                  value={body.dueDate ?? ''}
+                  onChange={(event) =>
+                    change(
+                      'dueDate',
+                      event.target.value ? DateOnlySchema.parse(event.target.value) : null,
+                    )
+                  }
+                  {...control}
+                />
+              </>
+            )}
           </Field>
         </div>
         {!edit && (
           <div className="flex flex-col gap-[6px]">
             <span className="text-sm font-medium">{t('Template')}</span>
-            <div className="project-templates" role="radiogroup" aria-label={t('Template')}>
+            <div
+              ref={templatesRef}
+              className="project-templates"
+              role="radiogroup"
+              aria-label={t('Template')}
+            >
               {data.catalogs.templates.map((template) => (
                 <button
                   key={template.id}
-                  disabled={disabled}
                   type="button"
                   role="radio"
                   aria-checked={body.templateId === template.id}
                   className={`flex flex-col items-start gap-2 rounded-lg border border-solid bg-surface p-[10px] text-left ${body.templateId === template.id ? 'border-accent shadow-[0_0_0_3px_var(--accent-soft)]' : 'border-border source-hover:border-border-strong'}`}
-                  onClick={() => {
-                    setActionRevision((current) => current + 1);
-                    setBody((current) => ({
-                      ...current,
-                      templateId: template.id,
-                      icon:
-                        current.icon === 'folder' && template.icon !== 'file'
-                          ? (template.icon as CreateProjectInput['icon'])
-                          : current.icon,
-                    }));
-                  }}
+                  {...templatesItemProps(template.id)}
                 >
                   <Icon
                     name={template.icon as IconName}

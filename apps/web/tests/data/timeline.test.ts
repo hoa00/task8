@@ -5,11 +5,11 @@ import { DateOnlySchema } from '@studio/contracts/api';
 import {
   addDateDays,
   buildTimelineGeometry,
-  normalizeTaskView,
   rescheduleDateOnly,
   timelineDayOffset,
   timelineRange,
 } from '@studio/domain';
+import { normalizeTaskView } from '../../src/features/tasks/task-view.ts';
 import type { TimelineGrouping } from '@studio/domain';
 import { sourceId } from '@studio/contracts/source-identities';
 import { createSeedDataset, fixtureClock } from '../../src/data/mock/seed.ts';

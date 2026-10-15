@@ -55,7 +55,7 @@ export function InviteDialog({
       setValidation('');
       await onSubmit({ kind: 'invite', emails, role, teamId: effectiveTeamId });
     } catch (cause) {
-      setValidation(cause instanceof Error ? cause.message : t('Check the email addresses'));
+      setValidation(cause instanceof Error ? t(cause.message) : t('Check the email addresses'));
     }
   };
   return (
@@ -98,45 +98,61 @@ export function InviteDialog({
               ? { error: validation }
               : { hint: t('Separate multiple addresses with commas.') })}
           >
-            <Textarea
-              className={
-                validation
-                  ? 'border-border-strong! shadow-none! focus:border-accent! focus:[box-shadow:0_0_0_3px_var(--accent-soft)]!'
-                  : ''
-              }
-              error={!!validation}
-              aria-describedby="inv-emails-description"
-              ref={input}
-              id="inv-emails"
-              rows={3}
-              placeholder="name@company.com, another@company.com"
-              value={emails}
-              disabled={pending}
-              onChange={(event) => setEmails(event.target.value)}
-            />
+            {(control) => (
+              <>
+                <Textarea
+                  className={
+                    validation
+                      ? 'border-border-strong! shadow-none! focus:border-accent! focus:[box-shadow:0_0_0_3px_var(--accent-soft)]!'
+                      : ''
+                  }
+                  error={!!validation}
+                  ref={input}
+                  rows={3}
+                  placeholder="name@company.com, another@company.com"
+                  value={emails}
+                  disabled={pending}
+                  onChange={(event) => setEmails(event.target.value)}
+                  {...control}
+                />
+              </>
+            )}
           </Field>
           <div className="flex gap-3">
             <Field label={t('Role')} className="flex-1">
-              <Select
-                label={t('Role')}
-                value={role}
-                disabled={pending}
-                options={['Member', 'Admin', 'Guest'].map((value) => ({ value, label: t(value) }))}
-                onValueChange={(value) => setRole(value as typeof role)}
-              />
+              {(control) => (
+                <>
+                  <Select
+                    label={t('Role')}
+                    value={role}
+                    disabled={pending}
+                    options={['Member', 'Admin', 'Guest'].map((value) => ({
+                      value,
+                      label: t(value),
+                    }))}
+                    onValueChange={(value) => setRole(value as typeof role)}
+                    {...control}
+                  />
+                </>
+              )}
             </Field>
             <Field label={t('Team')} className="flex-1">
-              <Select
-                label={t('Team')}
-                value={effectiveTeamId ?? ''}
-                disabled={pending}
-                options={
-                  data.teams.length
-                    ? data.teams.map((team) => ({ value: team.id, label: team.name }))
-                    : [{ value: '', label: t('No team') }]
-                }
-                onValueChange={setTeamId}
-              />
+              {(control) => (
+                <>
+                  <Select
+                    label={t('Team')}
+                    value={effectiveTeamId ?? ''}
+                    disabled={pending}
+                    options={
+                      data.teams.length
+                        ? data.teams.map((team) => ({ value: team.id, label: team.name }))
+                        : [{ value: '', label: t('No team') }]
+                    }
+                    onValueChange={setTeamId}
+                    {...control}
+                  />
+                </>
+              )}
             </Field>
           </div>
           <Alert tone="info">

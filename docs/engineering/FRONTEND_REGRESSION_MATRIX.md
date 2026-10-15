@@ -28,3 +28,6 @@ F01/F02 có cơ chế tái hiện tại FR-00; FR-01 không gọi đó là adapt
 
 
 FR-04 checkpoint: F06…F12 có owner và regression thực tại [verification](evidence/FR-04/verification.json), [decisions/rollback](evidence/FR-04/fr04-ownership.md). 4policy tests mới; List/Board/Table controlled views tách khỏi command/draft/drag lifecycle, thêm negative view→controller test. Catalogue key/coverage chung và lazy overlay, notifications per-item failure isolation, app notice/Undo/motion, read-only preference restore và web column ownership đều đã migrate. 11controller browser cases +6URL cases đạt; 6target screenshot pairs byte-equal. Legacy entries0; không coi source pixel debt hoặc F13…F15 là đã giải quyết.
+
+
+FR-05 checkpoint: F13 Field→`frontend/accessibility.mjs` actual Project/Onboarding label/error/focus; F14→same entry overlay Tab/roving/nested Escape/missing opener/reduced motion; F15→live vi/en/toast lifetime and `tests/i18n/dynamic.test.mjs`. Source controls8pairs threshold0/repeatability0 in FR-05 supplements; not a claim about untouched historical visual debt. Full non-API330Node tests pass.

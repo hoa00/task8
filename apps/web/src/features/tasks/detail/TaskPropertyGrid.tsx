@@ -302,7 +302,7 @@ export function TaskPropertyGrid({
         <Fragment key={row.key}>
           <dt className="m-0 flex h-[30px] items-center gap-[7px] text-secondary">
             <Icon name={row.icon as IconName} size={14} className="text-faint" />
-            {t(row.label)}
+            {row.label}
           </dt>
           <dd className="m-0 flex min-h-[30px] min-w-0 flex-wrap items-center gap-1">
             {row.field}

@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -65,7 +66,7 @@ function Surface({ section, title, lead, ready, children }: SurfaceProps) {
       data-settings-ready={ready ? '' : undefined}
       className="max-w-[720px] px-10 pb-20 pt-8 source-tablet:px-4 source-tablet:pb-24 source-tablet:pt-5"
     >
-      <SectionHeading title={title} lead={lead} />
+      <SectionHeading title={t(title)} lead={t(lead)} />
       {children}
     </div>
   );
@@ -74,7 +75,7 @@ function ReadError({ error, retry }: { error: Error; retry: () => void }) {
   useTranslation();
   return (
     <Alert tone="danger">
-      {error.message}
+      {translateErrorMessage(error.message)}
       <Button size="sm" onClick={retry}>
         {t('Retry')}
       </Button>
@@ -316,7 +317,7 @@ function SettingsProjects({ data }: { data: BootstrapDto }) {
                           });
                           if (result)
                             intentsServices.notice(
-                              `Restored ${item.project.name}`,
+                              t('Restored {{value1}}', { value1: String(item.project.name) }),
                               result.data.undo ?? undefined,
                             );
                         }}
@@ -389,7 +390,11 @@ function SettingsPermissions({ data }: { data: BootstrapDto }) {
         },
       ]);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : t('Demo preferences could not be saved'));
+      setError(
+        cause instanceof Error
+          ? translateErrorMessage(cause.message)
+          : t('Demo preferences could not be saved'),
+      );
     }
   }
   return (
@@ -427,7 +432,7 @@ function SettingsPermissions({ data }: { data: BootstrapDto }) {
               ],
             ] as const
           ).map(([key, title, description]) => (
-            <SettingRow key={key} title={title} description={description}>
+            <SettingRow key={key} title={t(title)} description={t(description)}>
               <Toggle
                 aria-label={key}
                 checked={directory.state.permissionPreferences[key]}
@@ -523,7 +528,7 @@ function NotificationSettings({ section }: { section: NotificationSection }) {
       ) : (
         <>
           {notificationRows[section].map(([key, title, description]) => (
-            <SettingRow key={key} title={title} description={description}>
+            <SettingRow key={key} title={t(title)} description={t(description)}>
               <Toggle
                 aria-label={key}
                 aria-describedby="notification-delivery"

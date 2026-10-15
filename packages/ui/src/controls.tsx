@@ -1,3 +1,4 @@
+import { useChoiceGroup } from './choice-group';
 import { useUiTranslation } from './translation-context';
 import { useId, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import type { ComponentPropsWithRef, ReactNode } from 'react';
@@ -118,13 +119,15 @@ export interface FieldControlProps {
   id: string;
   'aria-invalid'?: true | undefined;
   'aria-describedby'?: string | undefined;
+  'aria-labelledby': string;
+  'aria-errormessage'?: string | undefined;
 }
 export interface FieldProps extends Omit<ComponentPropsWithRef<'div'>, 'children'> {
   label: ReactNode;
   hint?: ReactNode;
   error?: ReactNode;
   controlId?: string;
-  children: ReactNode | ((props: FieldControlProps) => ReactNode);
+  children: (props: FieldControlProps) => ReactNode;
 }
 export function Field({
   label,
@@ -135,32 +138,68 @@ export function Field({
   className = '',
   ...props
 }: FieldProps) {
-  const t = useUiTranslation();
   const generatedId = useId();
   const id = controlId ?? generatedId;
-  const descriptionId = `${id}-description`;
+  const descriptionId = `${id}-description`,
+    labelId = `${id}-label`;
   return (
     <div {...props} className={`flex flex-col gap-[6px] ${className}`}>
-      <label htmlFor={id} className="text-sm font-medium text-foreground">
-        {typeof label === 'string' ? t(label) : label}
+      <label id={labelId} htmlFor={id} className="text-sm font-medium text-foreground">
+        {label}
       </label>
-      {typeof children === 'function'
-        ? children({
-            id,
-            'aria-invalid': error ? true : undefined,
-            'aria-describedby': error || hint ? descriptionId : undefined,
-          })
-        : children}
+      {children({
+        id,
+        'aria-labelledby': labelId,
+        'aria-invalid': error ? true : undefined,
+        'aria-describedby': error || hint ? descriptionId : undefined,
+        'aria-errormessage': error ? descriptionId : undefined,
+      })}
       {error ? (
         <span id={descriptionId} className="flex items-center gap-1 text-xs text-red">
           <Icon name="circle-alert" size={12} />
-          {typeof error === 'string' ? t(error) : error}
+          {error}
         </span>
       ) : hint ? (
         <span id={descriptionId} className="text-xs text-muted">
-          {typeof hint === 'string' ? t(hint) : hint}
+          {hint}
         </span>
       ) : null}
+    </div>
+  );
+}
+export interface FieldGroupProps extends Omit<ComponentPropsWithRef<'div'>, 'children'> {
+  label: ReactNode;
+  children: ReactNode;
+  hint?: ReactNode;
+  error?: ReactNode;
+}
+export function FieldGroup({
+  label,
+  children,
+  hint,
+  error,
+  className = '',
+  ...props
+}: FieldGroupProps) {
+  const id = useId(),
+    descriptionId = `${id}-description`;
+  return (
+    <div
+      {...props}
+      role="group"
+      aria-labelledby={id}
+      aria-describedby={error || hint ? descriptionId : undefined}
+      className={`flex flex-col gap-[6px] ${className}`}
+    >
+      <span id={id} className="text-sm font-medium text-foreground">
+        {label}
+      </span>
+      {children}
+      {(error || hint) && (
+        <span id={descriptionId} className={error ? 'text-xs text-red' : 'text-xs text-muted'}>
+          {error || hint}
+        </span>
+      )}
     </div>
   );
 }
@@ -282,10 +321,9 @@ function Choices({
   className = '',
   ...props
 }: SegmentedControlProps & { segmented: boolean }) {
-  const t = useUiTranslation();
   const tabs = !segmented || semantics === 'tabs';
-  const root = useRef<HTMLDivElement>(null);
-  useImperativeHandle(ref, () => root.current!, []);
+  const { rootRef: root, getItemProps } = useChoiceGroup({ items, value, onValueChange });
+  useImperativeHandle(ref, () => root.current!, [root]);
   return (
     <div
       {...props}
@@ -303,33 +341,11 @@ function Choices({
           aria-checked={!tabs ? value === item.value : undefined}
           aria-selected={tabs ? value === item.value : undefined}
           aria-controls={item.panelId}
-          disabled={item.disabled}
-          tabIndex={item.value === value ? 0 : -1}
-          onClick={() => onValueChange(item.value)}
-          onKeyDown={(event) => {
-            if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-            event.preventDefault();
-            const enabled = items.filter((choice) => !choice.disabled);
-            const current = enabled.findIndex((choice) => choice.value === item.value);
-            const next =
-              event.key === 'Home'
-                ? 0
-                : event.key === 'End'
-                  ? enabled.length - 1
-                  : (current + (event.key === 'ArrowRight' ? 1 : -1) + enabled.length) %
-                    enabled.length;
-            const choice = enabled[next];
-            if (choice) {
-              onValueChange(choice.value);
-              root.current
-                ?.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')
-                [next]?.focus();
-            }
-          }}
+          {...getItemProps(item.value)}
           className={`${segmented ? 'h-[calc(var(--h-sm)-2px)] gap-[5px] rounded-[5px] px-[9px] text-xs transition-[background,color] aria-checked:bg-surface aria-checked:text-foreground aria-checked:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)] aria-selected:bg-surface aria-selected:text-foreground aria-selected:[box-shadow:0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_var(--border)]' : 'relative h-9 gap-[6px] whitespace-nowrap px-[10px] text-sm transition-colors aria-selected:text-foreground ui-tab'} inline-flex items-center font-medium text-secondary source-hover:text-foreground`}
         >
           {item.icon}
-          {typeof item.label === 'string' ? t(item.label) : item.label}
+          {item.label}
           {item.count !== undefined && (
             <span className="text-2xs font-medium text-muted">{item.count}</span>
           )}

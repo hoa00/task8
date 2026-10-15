@@ -1,3 +1,4 @@
+import { fieldBindingViolations } from './frontend-fields.mjs';
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -193,4 +194,28 @@ test('controlled views cannot import a component controller as an indirect data 
   const link = edge('apps/web/src/features/tasks/Row.tsx', 'apps/web/src/features/tasks/Rows.tsx');
   assert.equal(inspectFrontend([link], p)[0].rule, 'view-controller');
   assert.deepEqual(inspectFrontend([{ ...link, typeOnly: true }], p), []);
+});
+
+test('Field requires a render callback that forwards label and error bindings', () => {
+  assert.equal(
+    fieldBindingViolations(
+      'Form.tsx',
+      'const form = <Field label="Name"><Input value=""/></Field>;',
+    )[0].rule,
+    'field-control-binding',
+  );
+  assert.equal(
+    fieldBindingViolations(
+      'Form.tsx',
+      'const form = <Field label="Name">{() => <Input value=""/>}</Field>;',
+    )[0].rule,
+    'field-control-binding',
+  );
+  assert.deepEqual(
+    fieldBindingViolations(
+      'Form.tsx',
+      'const form = <Field label="Name">{control => <Input {...control} value=""/>}</Field>;',
+    ),
+    [],
+  );
 });

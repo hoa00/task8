@@ -1,3 +1,5 @@
+import { translate as t } from '../../i18n/i18n.ts';
+import { translateErrorMessage } from '../../i18n/error-message.ts';
 import { captureIntent } from '../../data/operations';
 import type { StudioClient } from '../../data/operations';
 import { useState } from 'react';
@@ -22,7 +24,11 @@ export function useTaskListCommands(workspaceId: string) {
       await invalidateOperation(cache, id, input);
       return result;
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : 'Changes could not be saved');
+      setError(
+        cause instanceof Error
+          ? translateErrorMessage(cause.message)
+          : t('Changes could not be saved'),
+      );
       return null;
     } finally {
       setPending((value) => value - 1);

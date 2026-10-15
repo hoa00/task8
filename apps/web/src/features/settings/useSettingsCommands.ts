@@ -1,4 +1,6 @@
-import { setLanguage } from '../../i18n/i18n';
+import { translate as t } from '../../i18n/i18n.ts';
+import { translateErrorMessage } from '../../i18n/error-message.ts';
+import { setLanguage } from '../../i18n/i18n.ts';
 import { useEffect, useRef, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import type { OperationInput, OperationOutput } from '@studio/contracts/api';
@@ -54,7 +56,11 @@ export function useSettingsCommands() {
       return result;
     } catch (cause) {
       if (active.current)
-        setError(cause instanceof Error ? cause.message : 'Settings could not be saved');
+        setError(
+          cause instanceof Error
+            ? translateErrorMessage(cause.message)
+            : t('Settings could not be saved'),
+        );
       if (cause instanceof StudioApiError && cause.detail.code === 'CONFLICT')
         await invalidateOperation(cache, id, input);
       return null;

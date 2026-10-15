@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../../i18n/error-message';
 import { captureIntent } from '../../../data/operations';
 import { translate as t } from '../../../i18n/i18n';
 import { useTranslation } from '../../../i18n/useTranslation';
@@ -145,7 +146,7 @@ export function TaskOverlayHost({
     );
     if (result?.data.undo) {
       if (taskId === id) closeTask();
-      undo(result.data.undo, 'Task deleted');
+      undo(result.data.undo, t('Task deleted'));
     }
   }
   function closeTask() {
@@ -192,7 +193,10 @@ export function TaskOverlayHost({
             ? {
                 ...row,
                 status: 'failed',
-                error: cause instanceof Error ? cause.message : t('Attachment upload failed'),
+                error:
+                  cause instanceof Error
+                    ? translateErrorMessage(cause.message)
+                    : t('Attachment upload failed'),
               }
             : row,
         ),
@@ -234,7 +238,7 @@ export function TaskOverlayHost({
   }
   function saved(id: string, key: string, more: boolean) {
     toast(
-      form.taskId ? 'Changes saved' : t('Created {{name}}', { name: key }),
+      form.taskId ? t('Changes saved') : t('Created {{name}}', { name: key }),
       more ? undefined : { label: t('Open'), onAction: () => onTaskOpen(id) },
     );
   }
@@ -347,7 +351,7 @@ export function TaskOverlayHost({
           onDeleted={(descriptor) => {
             setDeleteId(null);
             if (taskId === deleteId) closeTask();
-            undo(descriptor, 'Task deleted');
+            undo(descriptor, t('Task deleted'));
           }}
         />
       )}
@@ -432,7 +436,10 @@ function DrawerController(props: DrawerControllerProps) {
       >
         <div className="p-6">
           {query.error || parentQuery.error ? (
-            <Alert tone="danger">{query.error?.message ?? parentQuery.error?.message}</Alert>
+            <Alert tone="danger">
+              {translateErrorMessage(query.error?.message) ??
+                translateErrorMessage(parentQuery.error?.message)}
+            </Alert>
           ) : detail ? (
             t('Loading project…')
           ) : (
@@ -643,7 +650,11 @@ function TaskContextController(props: TaskContextControllerProps) {
               .then((result) => {
                 if (result) {
                   props.onArchived(task.id);
-                  if (result.data.undo) props.onUndo(result.data.undo, `Archived “${task.title}”`);
+                  if (result.data.undo)
+                    props.onUndo(
+                      result.data.undo,
+                      t('Archived “{{value1}}”', { value1: String(task.title) }),
+                    );
                 }
               });
           })}

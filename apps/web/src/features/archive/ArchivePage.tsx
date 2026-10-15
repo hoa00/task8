@@ -137,9 +137,13 @@ export function ArchivePage() {
           body: { expectedVersion: item.task.version },
         });
         if (result)
-          projectsServices.notice(`Restored “${result.data.task.title}”`, undefined, {
-            action: { label: t('Open'), onAction: () => tasks.openTask(result.data.task.id) },
-          });
+          projectsServices.notice(
+            t('Restored “{{value1}}”', { value1: String(result.data.task.title) }),
+            undefined,
+            {
+              action: { label: t('Open'), onAction: () => tasks.openTask(result.data.task.id) },
+            },
+          );
       } else {
         const project = item.project.project as ProjectDto;
         const result = await commands.run('restoreProject', {
@@ -228,7 +232,7 @@ export function ArchivePage() {
           ) : (
             <EmptyState
               icon="archive"
-              heading={`No archived ${tab}`}
+              heading={t(tab === 'tasks' ? 'No archived tasks' : 'No archived projects')}
               description={
                 tab === 'tasks'
                   ? t(

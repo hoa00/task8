@@ -1,3 +1,4 @@
+import { translate as t } from '../../i18n/i18n';
 import { useState } from 'react';
 import { Alert, Button, Select, ToastViewport } from '@studio/ui';
 import type { ToastMessage } from '@studio/ui';
@@ -149,10 +150,10 @@ function RecordEditor({
             setToasts([
               {
                 id: undo.id,
-                message: `Completed “${task.title}”`,
+                message: t('Completed “{{value1}}”', { value1: String(task.title) }),
                 duration: 0,
                 action: {
-                  label: 'Undo',
+                  label: t('Undo'),
                   onAction: () => {
                     void commands.undo(undo);
                   },

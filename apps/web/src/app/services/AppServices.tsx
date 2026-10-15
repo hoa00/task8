@@ -29,9 +29,13 @@ export function AppServicesProvider({
         await intent.execute('undoCommand', input);
         await invalidateOperation(cache, 'undoCommand', input);
       } catch (error) {
-        notice(error instanceof Error ? error.message : t('Undo could not be applied'), undefined, {
-          kind: 'error',
-        });
+        notice(
+          error instanceof Error ? t(error.message) : t('Undo could not be applied'),
+          undefined,
+          {
+            kind: 'error',
+          },
+        );
       }
     };
     setToasts((rows) => [

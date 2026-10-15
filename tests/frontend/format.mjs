@@ -26,6 +26,28 @@ export function semanticSyntax(file, text) {
   );
   function visit(node) {
     if (ts.isParenthesizedExpression(node)) return visit(node.expression);
+    // Prettier may regroup associative short-circuit chains without changing
+    // operand order. Keep other binary operators and mixed precedence intact.
+    if (
+      ts.isBinaryExpression(node) &&
+      [
+        ts.SyntaxKind.BarBarToken,
+        ts.SyntaxKind.AmpersandAmpersandToken,
+        ts.SyntaxKind.QuestionQuestionToken,
+      ].includes(node.operatorToken.kind)
+    ) {
+      const operator = node.operatorToken.kind,
+        operands = [];
+      function collect(current) {
+        if (ts.isParenthesizedExpression(current)) return collect(current.expression);
+        if (ts.isBinaryExpression(current) && current.operatorToken.kind === operator) {
+          collect(current.left);
+          collect(current.right);
+        } else operands.push(visit(current));
+      }
+      collect(node);
+      return ['logical-chain', operator, operands];
+    }
     const children = [];
     ts.forEachChild(node, (child) => {
       children.push(visit(child));

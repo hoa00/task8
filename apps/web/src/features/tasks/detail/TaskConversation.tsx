@@ -119,7 +119,7 @@ export function TaskConversation({
                 commentId: comment.id,
                 body: { expectedVersion: comment.version },
               });
-              if (result?.data.undo) onUndo(result.data.undo, 'Comment deleted');
+              if (result?.data.undo) onUndo(result.data.undo, t('Comment deleted'));
             }}
             onReaction={async (comment, key, active) =>
               !!(await commands.run(active ? 'removeCommentReaction' : 'addCommentReaction', {

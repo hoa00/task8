@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useEffect, useRef, useState } from 'react';
@@ -402,7 +403,7 @@ export function CommandPalette({
       >
         {search.error ? (
           <Alert tone="danger">
-            {search.error.message}
+            {translateErrorMessage(search.error.message)}
             <button
               onClick={() => {
                 void search.retrySearch();

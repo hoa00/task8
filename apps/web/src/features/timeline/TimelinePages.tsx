@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useRef, useState } from 'react';
@@ -80,7 +81,11 @@ export function TimelinePanel({
     queryFn: ({ signal }) => loadTaskViewDataset(client, workspaceId, scopeQuery, signal),
   });
   if (bootstrap.error || dataset.error)
-    return <Alert tone="danger">{(bootstrap.error ?? dataset.error)!.message}</Alert>;
+    return (
+      <Alert tone="danger">
+        {translateErrorMessage((bootstrap.error ?? dataset.error)!.message)}
+      </Alert>
+    );
   if (!bootstrap.data || !dataset.data)
     return (
       <div className="p-6" role="status">
@@ -206,7 +211,7 @@ export function TimelinePage({
   );
   if (!bootstrap.data)
     return bootstrap.error ? (
-      <Alert tone="danger">{bootstrap.error.message}</Alert>
+      <Alert tone="danger">{translateErrorMessage(bootstrap.error.message)}</Alert>
     ) : (
       <div className="p-6" role="status">
         {t('Loading timeline…')}

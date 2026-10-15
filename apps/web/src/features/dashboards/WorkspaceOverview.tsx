@@ -1,3 +1,4 @@
+import { translateErrorMessage } from '../../i18n/error-message';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -136,7 +137,11 @@ export function WorkspaceOverview() {
       projectsServices.surfaceRevision,
     );
   if (result.error || dataset.error || members.error)
-    return <Alert tone="danger">{(result.error ?? dataset.error ?? members.error)!.message}</Alert>;
+    return (
+      <Alert tone="danger">
+        {translateErrorMessage((result.error ?? dataset.error ?? members.error)!.message)}
+      </Alert>
+    );
   if (!overview || !dataset.data || !members.data)
     return (
       <div className="p-6" role="status">

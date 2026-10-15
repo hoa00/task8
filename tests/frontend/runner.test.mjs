@@ -137,3 +137,23 @@ test('TAP totals come from runner output and formatting comparison detects behav
   );
   assert.notDeepEqual(semanticSyntax('a.ts', 'const f=1'), semanticSyntax('a.ts', 'const f=2'));
 });
+
+test('formatter accepts associative short-circuit regrouping but preserves order, mixed precedence and arithmetic', () => {
+  for (const operator of ['||', '&&', '??'])
+    assert.deepEqual(
+      semanticSyntax('a.ts', `const result = a() ${operator} (b() ${operator} c());`),
+      semanticSyntax('a.ts', `const result = (a() ${operator} b()) ${operator} c();`),
+    );
+  assert.notDeepEqual(
+    semanticSyntax('a.ts', 'const result = a() || b();'),
+    semanticSyntax('a.ts', 'const result = b() || a();'),
+  );
+  assert.notDeepEqual(
+    semanticSyntax('a.ts', 'const result = a ?? (b || c);'),
+    semanticSyntax('a.ts', 'const result = (a ?? b) || c;'),
+  );
+  assert.notDeepEqual(
+    semanticSyntax('a.ts', 'const result = a + (b + c);'),
+    semanticSyntax('a.ts', 'const result = (a + b) + c;'),
+  );
+});

@@ -1,3 +1,5 @@
+import { translate as t } from '../../../i18n/i18n.ts';
+import { translateErrorMessage } from '../../../i18n/error-message.ts';
 import {
   CreateTaskInputSchema,
   EntityIdSchema,
@@ -240,7 +242,9 @@ export class TaskSubmission {
         } catch (cause) {
           intent.status = 'failed';
           intent.error =
-            cause instanceof Error ? cause.message : 'Attachment could not be confirmed';
+            cause instanceof Error
+              ? translateErrorMessage(cause.message)
+              : t('Attachment could not be confirmed');
         }
         if (this.state === state) this.save();
         changed();
