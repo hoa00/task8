@@ -79,7 +79,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
     sequence = useRef(0),
     busy = useRef(false);
   useEffect(() => {
-    document.title = 'Gr8r Studio';
+    document.title = 'HoaDev';
     active.current = true;
     return () => {
       active.current = false;
@@ -274,7 +274,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
                     size="lg"
                     value={draft.ws}
                     maxLength={120}
-                    placeholder={t('e.g. Gr8r Studio')}
+                    placeholder={t('e.g. HoaDev')}
                     onChange={(event) => update({ ws: event.target.value })}
                     error={!!workspaceError}
                     aria-invalid={!!workspaceError}
@@ -288,14 +288,14 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
                 <>
                   <div className="flex items-center">
                     <span className="flex h-control-lg w-auto items-center rounded-l-sm border border-r-0 border-solid border-border-strong bg-surface-2 px-[10px] text-secondary">
-                      {t('gr8rstudio.com/')}
+                      {t('hoadev.com/')}
                     </span>
                     <Input
                       size="lg"
                       value={draft.url}
                       maxLength={120}
                       className="rounded-l-none"
-                      placeholder="gr8rstudio"
+                      placeholder="hoadev"
                       onChange={(event) => update({ url: event.target.value })}
                       {...control}
                     />
@@ -303,7 +303,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
                   {draft.url && (
                     <span className="flex items-center gap-1 text-xs text-green">
                       <Icon name="check" size={12} />
-                      {t('Demo URL: gr8rstudio.com/')}
+                      {t('Demo URL: hoadev.com/')}
                       {draft.url}
                     </span>
                   )}
@@ -444,7 +444,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
               <SummaryRow
                 icon="building-2"
                 title={t('Workspace “{{value1}}”', { value1: String(draft.ws || 'My Workspace') })}
-                subtitle={`gr8rstudio.com/${draft.url || 'workspace'}`}
+                subtitle={`hoadev.com/${draft.url || 'workspace'}`}
               />
               <SummaryRow
                 icon={template.icon as IconName}

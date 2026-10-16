@@ -54,7 +54,7 @@ const generalPersonalSections = [
 export type GeneralPersonalSection = (typeof generalPersonalSections)[number];
 const headings: Record<GeneralPersonalSection, [string, string]> = {
   workspace: ['Workspace', 'Your workspace name, address, and identity.'],
-  appearance: ['Appearance', 'Customize how Gr8r looks on this device.'],
+  appearance: ['Appearance', 'Customize how HoaDev looks on this device.'],
   language: ['Language', 'Language and regional formats.'],
   datetime: ['Date & time', 'How dates and times appear across the workspace.'],
   profile: ['Profile', 'How you appear to others in the workspace.'],
@@ -261,7 +261,7 @@ function WorkspaceSettings({ workspace, canEdit, onNotice }: WorkspaceSettingsPr
                 <>
                   <div className="flex items-center">
                     <span className="flex h-control-md w-auto items-center rounded-l-[6px] border border-r-0 border-solid border-border-strong bg-surface-2 px-[10px] text-body text-secondary">
-                      {'gr8rstudio.com/'}
+                      {'hoadev.com/'}
                     </span>
                     <Input
                       value={slug}
@@ -753,7 +753,7 @@ function PreferenceSettings({ section, preferences, onNotice }: PreferenceSettin
       <>
         <SettingRow
           title={t('Open on launch')}
-          description={t('The page you see when Gr8r opens.')}
+          description={t('The page you see when HoaDev opens.')}
         >
           {select('home', [
             ['home', 'Home'],

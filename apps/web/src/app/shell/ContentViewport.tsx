@@ -10,6 +10,6 @@ export function ContentViewport({children}:ContentViewportProps) {
  const previousSurfaceView=useRef<string|null>(null);
  const entry=useElementScrollRestoration({id:'main-content'});
  useEffect(()=>{const preserveSurface=surfaceView===previousSurfaceView.current;previousSurfaceView.current=surfaceView;if(ref.current&&!preserveSurface)ref.current.scrollTop=entry?.scrollY??0;},[key,entry?.scrollY,surfaceView]);
- useEffect(()=>router.subscribe('onResolved',()=>{document.getElementById('sr-live')!.textContent=document.title.replace(' · Gr8r Studio','');}),[router]);
+ useEffect(()=>router.subscribe('onResolved',()=>{document.getElementById('sr-live')!.textContent=document.title.replace(' · HoaDev','');}),[router]);
  return <div ref={ref} className="relative min-h-0 flex-1 overflow-auto focus:outline-none" id="main-content" tabIndex={-1} data-scroll-restoration-id="main-content">{children}</div>;
 }

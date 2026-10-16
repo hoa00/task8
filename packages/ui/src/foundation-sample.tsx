@@ -14,7 +14,7 @@ export function FoundationSample() {
       {['bg-sidebar', 'bg-surface', 'bg-surface-2', 'bg-surface-3', 'bg-sunken', 'bg-accent', 'bg-accent-soft', 'bg-green', 'bg-amber', 'bg-red'].map((className, index) => <div key={className} data-swatch={index} className={`h-8 w-8 rounded-xs border border-solid border-border ${className}`} />)}
     </div>
     <div data-sample="types" className="flex flex-col gap-1">
-      {typeSamples.map(([name, className]) => <div key={name} data-type={name} className={className}>Gr8r Studio — Typography 012345</div>)}
+      {typeSamples.map(([name, className]) => <div key={name} data-type={name} className={className}>HoaDev — Typography 012345</div>)}
       {[400, 450, 500, 600].map(weight => <div key={weight} data-weight={weight} className={{ 400: 'font-normal', 450: 'font-[450]', 500: 'font-medium', 600: 'font-semibold' }[weight]}>Geist weight {weight} — Workspace navigation</div>)}
       <div data-mono="" className="font-mono text-[0.92em] tracking-[-0.01em] tabular-nums">GR8-103 0123456789</div>
     </div>

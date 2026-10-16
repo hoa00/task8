@@ -8,7 +8,7 @@ export const authUnavailableMessage = 'Authentication services are unavailable i
 // No storage, password, identity, API client or email provider enters this facade.
 // Drafts last only for this browser runtime; reload creates the Source defaults.
 export function createAuthDemo(wait: (milliseconds: number) => Promise<void> = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds)), scenario: 'normal' | 'login-error' = 'normal'): AuthDemoAdapter {
-  return { draft: { email: 'hello@gr8rstudio.com', name: '' }, resendUntil: 0, demoEnabled: false, generation: 0, scenario, setDraft(draft) { this.draft = { ...draft }; }, setDemoEnabled(enabled) { this.demoEnabled = enabled; }, startResend(now) { this.resendUntil = now + 30000; }, reset() { this.draft = { email: 'hello@gr8rstudio.com', name: '' }; this.resendUntil = 0; this.demoEnabled = false; this.generation++; }, async execute(command, enabled) {
+  return { draft: { email: 'hello@hoadev.com', name: '' }, resendUntil: 0, demoEnabled: false, generation: 0, scenario, setDraft(draft) { this.draft = { ...draft }; }, setDemoEnabled(enabled) { this.demoEnabled = enabled; }, startResend(now) { this.resendUntil = now + 30000; }, reset() { this.draft = { email: 'hello@hoadev.com', name: '' }; this.resendUntil = 0; this.demoEnabled = false; this.generation++; }, async execute(command, enabled) {
     if (!enabled) throw Error(authUnavailableMessage);
     const durations = { login: 750, signup: 800, social: 800, forgot: 700, reset: 700, verify: 0, resend: 0 };
     await wait(durations[command.kind]);

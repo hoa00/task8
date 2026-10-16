@@ -94,7 +94,7 @@ export function AuthPage({ screen }: AuthPageProps) {
       !!session.data && session.data.data.capabilities.features.authentication === 'unavailable';
   const [demoOptIn, setDemoOptIn] = useState(facade?.demoEnabled ?? false);
   const mockMode = document.getElementById('root')?.dataset.dataMode === 'mock';
-  const title = 'Gr8r Studio';
+  const title = 'HoaDev';
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -162,7 +162,7 @@ function AuthController({
     sequence = useRef(0),
     busy = useRef(false);
   const [email, setEmail] = useState(
-    screen === 'signup' ? '' : (facade?.draft.email ?? (realAuth ? '' : 'hello@gr8rstudio.com')),
+    screen === 'signup' ? '' : (facade?.draft.email ?? (realAuth ? '' : 'hello@hoadev.com')),
   );
   const [name, setName] = useState(facade?.draft.name ?? ''),
     [password, setPassword] = useState(''),
@@ -426,7 +426,7 @@ function AuthController({
   if (screen === 'login')
     content = (
       <>
-        <AuthHeading title={t('Welcome back')} subtitle={t('Sign in to Gr8r Studio')} />
+        <AuthHeading title={t('Welcome back')} subtitle={t('Sign in to HoaDev')} />
         {errors.login && <AuthMessage error>{errors.login}</AuthMessage>}
         {emailField('l-email')}
         <div className="flex flex-col gap-[6px]">
@@ -449,7 +449,7 @@ function AuthController({
               refreshPresentation('l-pw');
               if (!realAuth) {
                 setRemember(true);
-                setEmail(facade?.draft.email ?? 'hello@gr8rstudio.com');
+                setEmail(facade?.draft.email ?? 'hello@hoadev.com');
               }
               setRevealed(value);
               root.current?.querySelector<HTMLInputElement>('#l-pw')?.focus();

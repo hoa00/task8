@@ -1,10 +1,17 @@
-# task8 — Gr8r Studio → React
+# HoaDev
+
+**HoaDev** — Quản lý công việc, dự án và cộng tác nhóm.
+
+- Website: [hoadev.com](https://hoadev.com)
+- GitHub: [hoa00](https://github.com/hoa00)
+
+Ứng dụng hiện dùng thương hiệu HoaDev cho logo, tiêu đề, nội dung Việt/Anh và dữ liệu demo. Bản chụp nguồn, tài liệu/evidence lịch sử và ghi nhận upstream được giữ nguyên để đối chiếu. Email `@hoadev.com` trong demo chỉ là dữ liệu minh họa. Dữ liệu workspace đã lưu không bị ghi đè; có thể sửa tên/URL tại Workspace settings.
 
 Tên package là `task8`; repository đích là [hoa00/task8](https://github.com/hoa00/task8) (private). Tiến độ triển khai và evidence hiện tại nằm trong [PROGRESS.md](docs/poc/PROGRESS.md).
 
 **Cập nhật frontend:** 15/10/2026; checkpoint POC bên dưới ngày 10/10/2026. React UI và backend Hono/Drizzle/D1/R2 local đã triển khai đến WU-35; các gate HTTP local WU-36 đã PASS. Checkpoint kỹ thuật và Git thực tế xem PROGRESS. Phạm vi visual được chấp nhận có giới hạn; các khoản nợ M2 lịch sử vẫn chưa được nghiệm thu. Kết quả cuối và bằng chứng thật nằm trong [M3 acceptance](docs/poc/evidence/WU-36/ACCEPTANCE_REPORT.md) và [PROGRESS](docs/poc/PROGRESS.md).
 
-Mục tiêu là chuyển toàn bộ giao diện và các trạng thái tương tác của Gr8r Studio sang **React + TypeScript + Vite + TanStack Router + Tailwind CSS**, tổ chức component dùng lại theo chức năng, và chuẩn bị contract để backend **Hono + Drizzle ORM + Cloudflare D1** thay mock mà không phải viết lại màn hình.
+HoaDev kế thừa giao diện tham chiếu và các trạng thái tương tác, triển khai bằng **React + TypeScript + Vite + TanStack Router + Tailwind CSS**, tổ chức component dùng lại theo chức năng, và chuẩn bị contract để backend **Hono + Drizzle ORM + Cloudflare D1** thay mock mà không phải viết lại màn hình.
 
 ## Các quyết định đã chốt
 

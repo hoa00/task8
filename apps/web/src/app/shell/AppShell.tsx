@@ -212,9 +212,9 @@ function WorkspaceShell({ workspaceId }: AppShellProps) {
       segment === 'projects'
         ? data?.projects.find((item) => location.pathname.includes(item.project.id))
         : undefined;
-    const title = `${notFound ? t('Not found') : (project?.project.name ?? t(pageNames[segment] ?? 'Not found'))} · Gr8r Studio`;
+    const title = `${notFound ? t('Not found') : (project?.project.name ?? t(pageNames[segment] ?? 'Not found'))} · HoaDev`;
     document.title = title;
-    document.getElementById('sr-live')!.textContent = title.replace(' · Gr8r Studio', '');
+    document.getElementById('sr-live')!.textContent = title.replace(' · HoaDev', '');
   }, [location.pathname, data, notFound, language]);
   useEffect(() => {
     if (!mobileOpen) return;

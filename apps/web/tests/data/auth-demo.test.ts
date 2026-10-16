@@ -6,7 +6,7 @@ test('Auth facade keeps exact Source command delays and accepts no credentials',
   for (const kind of ['login', 'signup', 'forgot', 'reset', 'verify', 'resend'] as const) await adapter.execute({ kind }, true);
   await adapter.execute({ kind: 'social', provider: 'Google' }, true);
   assert.deepEqual(durations, [750, 800, 700, 700, 0, 0, 800]);
-  assert.deepEqual(adapter.draft, { email: 'hello@gr8rstudio.com', name: '' });
+  assert.deepEqual(adapter.draft, { email: 'hello@hoadev.com', name: '' });
 });
 test('Unavailable never invokes delay; error scenario never creates identity', async () => {
   let waits = 0; const adapter = createAuthDemo(async () => { waits++; }, 'login-error');
@@ -19,7 +19,7 @@ test('Unavailable never invokes delay; error scenario never creates identity', a
 test('Auth reset invalidates pending flow and only retains memory drafts', () => {
   const adapter = createAuthDemo(); adapter.draft.email = 'sample@example.com'; adapter.demoEnabled = true; adapter.resendUntil = 99999;
   adapter.reset(); assert.equal(adapter.generation, 1); assert.equal(adapter.demoEnabled, false); assert.equal(adapter.resendUntil, 0);
-  assert.deepEqual(adapter.draft, { email: 'hello@gr8rstudio.com', name: '' });
+  assert.deepEqual(adapter.draft, { email: 'hello@hoadev.com', name: '' });
 });
 test('Validation preserves Source email, strength and confirmation quirks', () => {
   assert.deepEqual(validateAuth('login', { email: 'x', name: '' }, '', ''), { email: 'Enter a valid email, like name@company.com', pw: 'Enter your password' });

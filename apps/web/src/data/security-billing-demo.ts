@@ -14,7 +14,7 @@ export interface SecurityBillingDemoAdapter { read(context: SecurityBillingDemoC
 export interface DemoStorage { getItem(key: string): string | null; setItem(key: string, value: string): void }
 export const demoSessions: readonly DemoSession[] = [
   { id: 'se1', device: 'MacBook Pro · Chrome', location: 'San Francisco, US', activity: 'Active now', current: true },
-  { id: 'se2', device: 'iPhone 15 · Gr8r app', location: 'San Francisco, US', activity: '2 hours ago', current: false },
+  { id: 'se2', device: 'iPhone 15 · HoaDev app', location: 'San Francisco, US', activity: '2 hours ago', current: false },
   { id: 'se3', device: 'Windows · Edge', location: 'Oakland, US', activity: 'Sep 12', current: false },
 ];
 // This fixed demo clock never supplies HTTP identity, authentication or billing time.

@@ -68,7 +68,23 @@ export const seedProvenance = sourceFixtureProvenance;
 const rowsById = <T extends { id: string }>(rows: T[]) =>
   Object.fromEntries(rows.map((row) => [row.id, row]));
 const instant = (epoch: number) => new Date(epoch).toISOString();
-const source = sourceFixture.data;
+// Product demo branding is applied here; the upstream fixture remains immutable.
+const source = {
+  ...sourceFixture.data,
+  ws: { ...sourceFixture.data.ws, name: 'HoaDev', url: 'hoadev' },
+  workspaces: sourceFixture.data.workspaces.map((workspace) => ({
+    ...workspace,
+    name: workspace.brand ? 'HoaDev' : workspace.name,
+  })),
+  members: sourceFixture.data.members.map((member) => ({
+    ...member,
+    email: member.email.replace('@gr8rstudio.com', '@hoadev.com'),
+  })),
+  projects: sourceFixture.data.projects.map((project) => ({
+    ...project,
+    desc: project.desc.replaceAll('gr8rstudio.com', 'hoadev.com'),
+  })),
+};
 
 // Only this mapper knows legacy IDs/sentinels. Fixture dates/instants remain pinned;
 // the injected clock supplies missing source timestamps and derived read calculations.

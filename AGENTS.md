@@ -1,4 +1,4 @@
-# Quy tắc thực hiện Gr8r React POC
+# Quy tắc thực hiện HoaDev
 
 ## Mục tiêu và thứ tự ưu tiên
 

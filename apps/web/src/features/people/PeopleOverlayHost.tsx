@@ -157,7 +157,7 @@ export function PeopleOverlayHost({ data, children }: PeopleOverlayHostProps) {
           onClose={() => setInvite(false)}
           onCopy={() => {
             void copy(
-              `https://gr8rstudio.com/join/${data.workspace.slug}-7f3k2`,
+              `https://hoadev.com/join/${data.workspace.slug}-7f3k2`,
               'Demo invite link copied',
             );
           }}

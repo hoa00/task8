@@ -882,7 +882,7 @@ function PaymentSettings({ disabled, onUpdate, onEdit }: PaymentSettingsProps) {
         title={t('Billing email')}
         description={t('Invoices and receipts are sent here.')}
       >
-        <span className="select-all text-secondary">{'hello@gr8rstudio.com'}</span>
+        <span className="select-all text-secondary">{'hello@hoadev.com'}</span>
       </SettingRow>
       <SettingRow
         title={t('Billing address')}

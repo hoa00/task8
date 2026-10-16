@@ -1,7 +1,7 @@
 import { createElement } from 'react';
+import { logoPath } from './logo-path';
 import { iconPaths } from './icon-paths';
 import type { IconName } from './icon-paths';
-import { logoPath } from './logo-path';
 
 export interface IconProps { name: IconName; size?: number; className?: string }
 export function Icon({ name, size = 16, className = '' }: IconProps) {
@@ -31,9 +31,9 @@ export function PriorityIcon({ priority, size = 14 }: PriorityIconProps) {
 }
 export interface LogoProps { height?: number }
 export function Logo({ height = 22 }: LogoProps) {
-  return <svg className="block shrink-0" height={height} width={Math.round(height * 241.47 / 102.27)} viewBox="45.53 114.5 241.47 102.27" role="img" aria-label="Gr8r"><path d={logoPath} fill="currentColor" /></svg>;
+  return <span className="block shrink-0 font-semibold tracking-[-0.04em]" style={{ fontSize: height, lineHeight: 1 }} role="img" aria-label="HoaDev">HoaDev</span>;
 }
 export interface BrandMarkProps { size?: number }
 export function BrandMark({ size = 22 }: BrandMarkProps) {
-  return <svg width={size} height={size} viewBox="0 0 332 332" aria-hidden="true"><rect width="332" height="332" fill="#000" /><path d={logoPath} fill="#fff" /></svg>;
+  return <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#000" /><path d={logoPath} fill="#fff" /></svg>;
 }

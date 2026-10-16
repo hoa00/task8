@@ -1,0 +1,1144 @@
+TAP version 13
+# Subtest: public env defaults and explicit HTTP mode are stable
+ok 1 - public env defaults and explicit HTTP mode are stable
+  ---
+  duration_ms: 2.744791
+  type: 'test'
+  ...
+# Subtest: public env rejects unknown modes, external URLs and exposed secrets
+ok 2 - public env rejects unknown modes, external URLs and exposed secrets
+  ---
+  duration_ms: 0.93715
+  type: 'test'
+  ...
+# Subtest: Archive excludes deleted/private/foreign/missing parents; task rows hide archived parents, project counts include archived children
+ok 3 - Archive excludes deleted/private/foreign/missing parents; task rows hide archived parents, project counts include archived children
+  ---
+  duration_ms: 22.167159
+  type: 'test'
+  ...
+# Subtest: Archive consumes more than200 canonical identities, scoped stable cursor survives restoring anchor and rejects kind/principal/query mismatch
+ok 4 - Archive consumes more than200 canonical identities, scoped stable cursor survives restoring anchor and rejects kind/principal/query mismatch
+  ---
+  duration_ms: 16.934254
+  type: 'test'
+  ...
+# Subtest: Project archive follows entity insertion order after creation and sidebar reorder, rather than archive-time or personal sidebar order
+ok 5 - Project archive follows entity insertion order after creation and sidebar reorder, rather than archive-time or personal sidebar order
+  ---
+  duration_ms: 8.417384
+  type: 'test'
+  ...
+# Subtest: Restore keeps same task ID/children; archived delete is a tombstone with Source purge no UI Undo; contract Undo and conflict remain bounded
+ok 6 - Restore keeps same task ID/children; archived delete is a tombstone with Source purge no UI Undo; contract Undo and conflict remain bounded
+  ---
+  duration_ms: 20.045534
+  type: 'test'
+  ...
+# Subtest: Actual offline mutations and failed storage preserve entities; retry restores once and project error remains atomic
+ok 7 - Actual offline mutations and failed storage preserve entities; retry restores once and project error remains atomic
+  ---
+  duration_ms: 18.356298
+  type: 'test'
+  ...
+# Subtest: Auth facade keeps exact Source command delays and accepts no credentials
+ok 8 - Auth facade keeps exact Source command delays and accepts no credentials
+  ---
+  duration_ms: 0.312891
+  type: 'test'
+  ...
+# Subtest: Unavailable never invokes delay; error scenario never creates identity
+ok 9 - Unavailable never invokes delay; error scenario never creates identity
+  ---
+  duration_ms: 0.330176
+  type: 'test'
+  ...
+# Subtest: Auth reset invalidates pending flow and only retains memory drafts
+ok 10 - Auth reset invalidates pending flow and only retains memory drafts
+  ---
+  duration_ms: 0.207665
+  type: 'test'
+  ...
+# Subtest: Validation preserves Source email, strength and confirmation quirks
+ok 11 - Validation preserves Source email, strength and confirmation quirks
+  ---
+  duration_ms: 0.31229
+  type: 'test'
+  ...
+# Subtest: expired-access startup refreshes once before GET retry; concurrent reads share the same refresh
+ok 12 - expired-access startup refreshes once before GET retry; concurrent reads share the same refresh
+  ---
+  duration_ms: 28.635918
+  type: 'test'
+  ...
+# Subtest: refresh503 is not automatically retried by Query and never clears the active session
+ok 13 - refresh503 is not automatically retried by Query and never clears the active session
+  ---
+  duration_ms: 6.843337
+  type: 'test'
+  ...
+# Subtest: business mutation401 is never refreshed or replayed and preserves its original input
+ok 14 - business mutation401 is never refreshed or replayed and preserves its original input
+  ---
+  duration_ms: 5.933126
+  type: 'test'
+  ...
+# Subtest: old uncooperative GET and captured upload intent cannot enter a new account or cache after logout
+ok 15 - old uncooperative GET and captured upload intent cannot enter a new account or cache after logout
+  ---
+  duration_ms: 5.773241
+  type: 'test'
+  ...
+# Subtest: return paths reject external/backslash/protocol URLs and allow scoped internal navigation
+ok 16 - return paths reject external/backslash/protocol URLs and allow scoped internal navigation
+  ---
+  duration_ms: 0.202337
+  type: 'test'
+  ...
+# Subtest: late unauthorized GET cannot refresh the new generation after logout
+ok 17 - late unauthorized GET cannot refresh the new generation after logout
+  ---
+  duration_ms: 3.815348
+  type: 'test'
+  ...
+# Subtest: reschedule preserves duration including zero, omits absent start and validates canonical PATCH atomically
+ok 18 - reschedule preserves duration including zero, omits absent start and validates canonical PATCH atomically
+  ---
+  duration_ms: 7.8579
+  type: 'test'
+  ...
+# Subtest: complete canonical due-range loader consumes >200 records, summary, abort and changed scope guards
+ok 19 - complete canonical due-range loader consumes >200 records, summary, abort and changed scope guards
+  ---
+  duration_ms: 28.441738
+  type: 'test'
+  ...
+# Subtest: read-only events enforce range/project/authorization
+ok 20 - read-only events enforce range/project/authorization
+  ---
+  duration_ms: 4.469071
+  type: 'test'
+  ...
+# Subtest: full authorized counters, per-project progress and workload agree with canonical summary, not previews
+ok 21 - full authorized counters, per-project progress and workload agree with canonical summary, not previews
+  ---
+  duration_ms: 13.079648
+  type: 'test'
+  ...
+# Subtest: Home previews/tabs and Overview full totals survive >200 tasks and archived/deleted/private parents
+ok 22 - Home previews/tabs and Overview full totals survive >200 tasks and archived/deleted/private parents
+  ---
+  duration_ms: 44.644695
+  type: 'test'
+  ...
+# Subtest: elapsed seven-day boundary, completedAt rather than updatedAt, future source predicate and inclusive deadline dates
+ok 23 - elapsed seven-day boundary, completedAt rather than updatedAt, future source predicate and inclusive deadline dates
+  ---
+  duration_ms: 3.198269
+  type: 'test'
+  ...
+# Subtest: Recent newest seven/total authorize task parent with nullable project; history retains archived task but excludes missing/private/deleted/archived parents
+ok 24 - Recent newest seven/total authorize task parent with nullable project; history retains archived task but excludes missing/private/deleted/archived parents
+  ---
+  duration_ms: 14.337661
+  type: 'test'
+  ...
+# Subtest: real create/reschedule/complete/reopen update Home tabs/deadlines and Overview progress/workload without counters storage
+ok 25 - real create/reschedule/complete/reopen update Home tabs/deadlines and Overview progress/workload without counters storage
+  ---
+  duration_ms: 14.864577
+  type: 'test'
+  ...
+# Subtest: empty aggregate is truthful with zero division and no preview limits
+ok 26 - empty aggregate is truthful with zero division and no preview limits
+  ---
+  duration_ms: 3.492483
+  type: 'test'
+  ...
+# Subtest: Home task DTOs reuse actor favorites and visible dependency projection from canonical task reads
+ok 27 - Home task DTOs reuse actor favorites and visible dependency projection from canonical task reads
+  ---
+  duration_ms: 12.493295
+  type: 'test'
+  ...
+# Subtest: Files list/Drawer share exact ID; same-name rename/delete/Undo never touches other file
+ok 28 - Files list/Drawer share exact ID; same-name rename/delete/Undo never touches other file
+  ---
+  duration_ms: 9.504225
+  type: 'test'
+  ...
+# Subtest: Project-only upload replay persists sample provenance and duplicate gets independent ID/intent
+ok 29 - Project-only upload replay persists sample provenance and duplicate gets independent ID/intent
+  ---
+  duration_ms: 10.71698
+  type: 'test'
+  ...
+# Subtest: Canonical guard hides foreign workspace/project, missing/mismatched task, inactive actor and lifecycle in every projection
+ok 30 - Canonical guard hides foreign workspace/project, missing/mismatched task, inactive actor and lifecycle in every projection
+  ---
+  duration_ms: 72.451958
+  type: 'test'
+  ...
+# Subtest: File CAS/shared queue and parent loss reject all partial effects including stale Undo ABA
+ok 31 - File CAS/shared queue and parent loss reject all partial effects including stale Undo ABA
+  ---
+  duration_ms: 12.139304
+  type: 'test'
+  ...
+# Subtest: File Undo replay keeps actor/current parent guards before returning idempotent result
+ok 32 - File Undo replay keeps actor/current parent guards before returning idempotent result
+  ---
+  duration_ms: 5.452839
+  type: 'test'
+  ...
+# Subtest: Metadata commands and file Undo storage failures leave memory/storage unchanged
+ok 33 - Metadata commands and file Undo storage failures leave memory/storage unchanged
+  ---
+  duration_ms: 24.587262
+  type: 'test'
+  ...
+# Subtest: Catalogue query/type/sort pagination beyond200 rejects cursor mismatch and includes eight types
+ok 34 - Catalogue query/type/sort pagination beyond200 rejects cursor mismatch and includes eight types
+  ---
+  duration_ms: 45.529393
+  type: 'test'
+  ...
+# Subtest: All file operations invalidate catalogue/preview/Drawer/Search; HTTP byte capability remains unavailable
+ok 35 - All file operations invalidate catalogue/preview/Drawer/Search; HTTP byte capability remains unavailable
+  ---
+  duration_ms: 4.211641
+  type: 'test'
+  ...
+# Subtest: normalized seed preserves all canonical identities, task content and relationships
+ok 36 - normalized seed preserves all canonical identities, task content and relationships
+  ---
+  duration_ms: 4.505574
+  type: 'test'
+  ...
+# Subtest: clock seam is UTC, stable and does not mutate the locked fixture
+ok 37 - clock seam is UTC, stable and does not mutate the locked fixture
+  ---
+  duration_ms: 7.250165
+  type: 'test'
+  ...
+# Subtest: all foundation responses parse and private project catalog excludes protected details
+ok 38 - all foundation responses parse and private project catalog excludes protected details
+  ---
+  duration_ms: 5.787481
+  type: 'test'
+  ...
+# Subtest: same 83-method StudioApi and truthful capabilities reject unimplemented mock mutations
+ok 39 - same 83-method StudioApi and truthful capabilities reject unimplemented mock mutations
+  ---
+  duration_ms: 2.869485
+  type: 'test'
+  ...
+# Subtest: input validation and unavailable workspace fail through contract errors
+ok 40 - input validation and unavailable workspace fail through contract errors
+  ---
+  duration_ms: 4.233103
+  type: 'test'
+  ...
+# Subtest: mock persistence, reload and reset are reproducible and namespace-isolated
+ok 41 - mock persistence, reload and reset are reproducible and namespace-isolated
+  ---
+  duration_ms: 28.892441
+  type: 'test'
+  ...
+# Subtest: production reset is forbidden; corrupt and foreign persisted state cannot enter mock reads
+ok 42 - production reset is forbidden; corrupt and foreign persisted state cannot enter mock reads
+  ---
+  duration_ms: 6.922313
+  type: 'test'
+  ...
+# Subtest: blocked storage stays operational in memory without changing other namespaces
+ok 43 - blocked storage stays operational in memory without changing other namespaces
+  ---
+  duration_ms: 8.37389
+  type: 'test'
+  ...
+# Subtest: empty, error and offline scenarios produce explicit data states without persistence leaks
+ok 44 - empty, error and offline scenarios produce explicit data states without persistence leaks
+  ---
+  duration_ms: 10.830647
+  type: 'test'
+  ...
+# Subtest: loading exposes real pending Query state then resolves; cancellation clears the timer
+ok 45 - loading exposes real pending Query state then resolves; cancellation clears the timer
+  ---
+  duration_ms: 7.39639
+  type: 'test'
+  ...
+# Subtest: HTTP uses typed JSON responses and advertises HTTP mode only from HTTP session
+ok 46 - HTTP uses typed JSON responses and advertises HTTP mode only from HTTP session
+  ---
+  duration_ms: 3.630956
+  type: 'test'
+  ...
+# Subtest: HTTP errors, network failures and malformed success never fall back to mock
+ok 47 - HTTP errors, network failures and malformed success never fall back to mock
+  ---
+  duration_ms: 6.628791
+  type: 'test'
+  ...
+# Subtest: HTTP normalizes validated filters with URLSearchParams and forwards abort signals
+ok 48 - HTTP normalizes validated filters with URLSearchParams and forwards abort signals
+  ---
+  duration_ms: 0.698929
+  type: 'test'
+  ...
+# Subtest: query keys canonicalize schema defaults and isolate every workspace read
+ok 49 - query keys canonicalize schema defaults and isolate every workspace read
+  ---
+  duration_ms: 0.362043
+  type: 'test'
+  ...
+# Subtest: mutation invalidation stays in its workspace and includes cross-view task projections
+ok 50 - mutation invalidation stays in its workspace and includes cross-view task projections
+  ---
+  duration_ms: 1.116564
+  type: 'test'
+  ...
+# Subtest: workspace query cancellation prevents a late old-workspace response entering cache
+ok 51 - workspace query cancellation prevents a late old-workspace response entering cache
+  ---
+  duration_ms: 4.114999
+  type: 'test'
+  ...
+# Subtest: dev/test mock reset clears Query cache while production denial leaves cache untouched
+ok 52 - dev/test mock reset clears Query cache while production denial leaves cache untouched
+  ---
+  duration_ms: 10.338062
+  type: 'test'
+  ...
+# Subtest: notification read shares pending create transaction and persists both effects
+ok 53 - notification read shares pending create transaction and persists both effects
+  ---
+  duration_ms: 21.341954
+  type: 'test'
+  ...
+# Subtest: notification unread shares pending create transaction and persists both effects
+ok 54 - notification unread shares pending create transaction and persists both effects
+  ---
+  duration_ms: 17.284971
+  type: 'test'
+  ...
+# Subtest: notification readAll shares pending create transaction and persists both effects
+ok 55 - notification readAll shares pending create transaction and persists both effects
+  ---
+  duration_ms: 14.523164
+  type: 'test'
+  ...
+# Subtest: rejected persistence/handler commits nothing and the next command drains the queue
+ok 56 - rejected persistence/handler commits nothing and the next command drains the queue
+  ---
+  duration_ms: 16.050472
+  type: 'test'
+  ...
+# Subtest: Unicode task/member/project sort and file anchors traverse >200 rows without loss or duplication
+ok 57 - Unicode task/member/project sort and file anchors traverse >200 rows without loss or duplication
+  ---
+  duration_ms: 40.724833
+  type: 'test'
+  ...
+# Subtest: task cursors reject principal, operation, query and malformed shape mismatches
+ok 58 - task cursors reject principal, operation, query and malformed shape mismatches
+  ---
+  duration_ms: 19.761386
+  type: 'test'
+  ...
+# Subtest: lifecycle/move/Undo invalidation covers notification visibility with exhaustive write mapping
+ok 59 - lifecycle/move/Undo invalidation covers notification visibility with exhaustive write mapping
+  ---
+  duration_ms: 0.390665
+  type: 'test'
+  ...
+# Subtest: feed and bootstrap refetch together after delete/Undo without invalidating a foreign workspace
+ok 60 - feed and bootstrap refetch together after delete/Undo without invalidating a foreign workspace
+  ---
+  duration_ms: 7.821617
+  type: 'test'
+  ...
+# Subtest: record date edits clamp crossing endpoints consistently; draft, null and omitted fields remain distinct
+ok 61 - record date edits clamp crossing endpoints consistently; draft, null and omitted fields remain distinct
+  ---
+  duration_ms: 0.340541
+  type: 'test'
+  ...
+# Subtest: column preferences belong to web while complete dataset keys ignore page cursor and limit
+ok 62 - column preferences belong to web while complete dataset keys ignore page cursor and limit
+  ---
+  duration_ms: 0.25812
+  type: 'test'
+  ...
+# Subtest: project preference reads never write and malformed values retain scoped saved defaults
+ok 63 - project preference reads never write and malformed values retain scoped saved defaults
+  ---
+  duration_ms: 4.489561
+  type: 'test'
+  ...
+# Subtest: one complete loader rejects repeated cursors and concurrent coverage changes
+ok 64 - one complete loader rejects repeated cursors and concurrent coverage changes
+  ---
+  duration_ms: 7.519481
+  type: 'test'
+  ...
+# Subtest: HTTP auth uses typed operations, tags session intent from Query and never caches credentials; failed logout remains retryable
+ok 65 - HTTP auth uses typed operations, tags session intent from Query and never caches credentials; failed logout remains retryable
+  ---
+  duration_ms: 5.58307
+  type: 'test'
+  ...
+# Subtest: task query semantics normalize without any column metadata and reject presentation fields as query
+ok 66 - task query semantics normalize without any column metadata and reject presentation fields as query
+  ---
+  duration_ms: 0.593123
+  type: 'test'
+  ...
+# Subtest: every declared mock task operation has a handler and an unsupported command leaves the aggregate unchanged
+ok 67 - every declared mock task operation has a handler and an unsupported command leaves the aggregate unchanged
+  ---
+  duration_ms: 6.461819
+  type: 'test'
+  ...
+# Subtest: canonical profile synchronization queues behind a workspace task transaction without losing either projection
+ok 68 - canonical profile synchronization queues behind a workspace task transaction without losing either projection
+  ---
+  duration_ms: 9.599474
+  type: 'test'
+  ...
+# Subtest: one notification table supplies Source categories and distinct Inbox/Notifications badges
+ok 69 - one notification table supplies Source categories and distinct Inbox/Notifications badges
+  ---
+  duration_ms: 4.890936
+  type: 'test'
+  ...
+# Subtest: read/unread/read-all persist across reload; idempotent reads preserve server readAt; no foreign state touched
+ok 70 - read/unread/read-all persist across reload; idempotent reads preserve server readAt; no foreign state touched
+  ---
+  duration_ms: 46.852385
+  type: 'test'
+  ...
+# Subtest: private/missing/deleted/cross-workspace/mismatched parents and other recipients are excluded from every count
+ok 71 - private/missing/deleted/cross-workspace/mismatched parents and other recipients are excluded from every count
+  ---
+  duration_ms: 5.420792
+  type: 'test'
+  ...
+# Subtest: keyset cursor covers >200 records and remains stable after the anchor is marked read; scope mismatch rejects
+ok 72 - keyset cursor covers >200 records and remains stable after the anchor is marked read; scope mismatch rejects
+  ---
+  duration_ms: 5.337288
+  type: 'test'
+  ...
+# Subtest: invalid/foreign requests are zero-write; cancellation and error scenarios never return successful empty results
+ok 73 - invalid/foreign requests are zero-write; cancellation and error scenarios never return successful empty results
+  ---
+  duration_ms: 10.874783
+  type: 'test'
+  ...
+# Subtest: Inbox reply uses existing createComment/listComments task owner and shared task count/mention/reaction operations
+ok 74 - Inbox reply uses existing createComment/listComments task owner and shared task count/mention/reaction operations
+  ---
+  duration_ms: 12.295634
+  type: 'test'
+  ...
+# Subtest: notification mutations invalidate shared notifications and bootstrap; comments invalidate the same notification owner
+ok 75 - notification mutations invalidate shared notifications and bootstrap; comments invalidate the same notification owner
+  ---
+  duration_ms: 0.242778
+  type: 'test'
+  ...
+# Subtest: Direct steps normalize missing prerequisites, including reload and invalid range
+ok 76 - Direct steps normalize missing prerequisites, including reload and invalid range
+  ---
+  duration_ms: 0.207175
+  type: 'test'
+  ...
+# Subtest: Slug and template naming preserve Source touched semantics
+ok 77 - Slug and template naming preserve Source touched semantics
+  ---
+  duration_ms: 1.33105
+  type: 'test'
+  ...
+# Subtest: Draft and receipt persist; double submit/retry/reload complete exactly once
+ok 78 - Draft and receipt persist; double submit/retry/reload complete exactly once
+  ---
+  duration_ms: 15.209244
+  type: 'test'
+  ...
+# Subtest: Port itself serializes same-flow completion across independent facades
+ok 79 - Port itself serializes same-flow completion across independent facades
+  ---
+  duration_ms: 4.415121
+  type: 'test'
+  ...
+# Subtest: Original onboarding project survives creation, reorder and reload without extra entities
+ok 80 - Original onboarding project survives creation, reorder and reload without extra entities
+  ---
+  duration_ms: 12.797433
+  type: 'test'
+  ...
+# Subtest: Receipt storage failure retries existing durable dataset; draft is frozen after finish
+ok 81 - Receipt storage failure retries existing durable dataset; draft is frozen after finish
+  ---
+  duration_ms: 4.930539
+  type: 'test'
+  ...
+# Subtest: Unavailable completion performs no work, and HTTP explicit demo retains fixed seed context
+ok 82 - Unavailable completion performs no work, and HTTP explicit demo retains fixed seed context
+  ---
+  duration_ms: 2.659365
+  type: 'test'
+  ...
+# Subtest: HTTP receipts always revalidate current configured seed; late reads never select a workspace
+ok 83 - HTTP receipts always revalidate current configured seed; late reads never select a workspace
+  ---
+  duration_ms: 9.461571
+  type: 'test'
+  ...
+# Subtest: Edited global principal survives finish and profile changes from either scope
+ok 84 - Edited global principal survives finish and profile changes from either scope
+  ---
+  duration_ms: 16.086746
+  type: 'test'
+  ...
+# Subtest: Concurrent seed/scoped profile writes share CAS and failed storage preserves both scopes after reload
+ok 85 - Concurrent seed/scoped profile writes share CAS and failed storage preserves both scopes after reload
+  ---
+  duration_ms: 17.831445
+  type: 'test'
+  ...
+# Subtest: Development reset clears only registered demo scopes and their receipts
+ok 86 - Development reset clears only registered demo scopes and their receipts
+  ---
+  duration_ms: 11.846023
+  type: 'test'
+  ...
+# Subtest: member ID is membership, profile/user identity remains distinct and summary matches authorized task ownership
+ok 87 - member ID is membership, profile/user identity remains distinct and summary matches authorized task ownership
+  ---
+  duration_ms: 5.456424
+  type: 'test'
+  ...
+# Subtest: profile summary guards private/archive/deletion/workspace/current actor and active canonical parents
+ok 88 - profile summary guards private/archive/deletion/workspace/current actor and active canonical parents
+  ---
+  duration_ms: 2.808695
+  type: 'test'
+  ...
+# Subtest: directory searches email and binds cursor to actor/query; inactive actor and foreign membership are rejected
+ok 89 - directory searches email and binds cursor to actor/query; inactive actor and foreign membership are rejected
+  ---
+  duration_ms: 6.532208
+  type: 'test'
+  ...
+# Subtest: member activity has canonical parent/privacy/actor guards and DESC ordering
+ok 90 - member activity has canonical parent/privacy/actor guards and DESC ordering
+  ---
+  duration_ms: 7.32184
+  type: 'test'
+  ...
+# Subtest: demo invitations validate/dedupe/persist pending projection without canonical users/principal/grants/tasks writes
+ok 91 - demo invitations validate/dedupe/persist pending projection without canonical users/principal/grants/tasks writes
+  ---
+  duration_ms: 5.814501
+  type: 'test'
+  ...
+# Subtest: demo role/Owner/current/Guest/capability/version guards, invited resend and remove Undo conflict
+ok 92 - demo role/Owner/current/Guest/capability/version guards, invited resend and remove Undo conflict
+  ---
+  duration_ms: 4.172624
+  type: 'test'
+  ...
+# Subtest: demo storage failure does not commit and deactivated presentation preserves canonical active status
+ok 93 - demo storage failure does not commit and deactivated presentation preserves canonical active status
+  ---
+  duration_ms: 3.923106
+  type: 'test'
+  ...
+# Subtest: demo validates team against canonical workspace teams; forged foreign team produces zero writes
+ok 94 - demo validates team against canonical workspace teams; forged foreign team produces zero writes
+  ---
+  duration_ms: 3.209787
+  type: 'test'
+  ...
+# Subtest: Project create all seven templates atomic IDs/keys/global append/activity; edit CAS preserves grants, failed merged date range zero writes
+ok 95 - Project create all seven templates atomic IDs/keys/global append/activity; edit CAS preserves grants, failed merged date range zero writes
+  ---
+  duration_ms: 25.203449
+  type: 'test'
+  ...
+# Subtest: Duplicate remaps only internal dependencies/new children, resets metadata/favorites, creates fresh history and source201 keys
+ok 96 - Duplicate remaps only internal dependencies/new children, resets metadata/favorites, creates fresh history and source201 keys
+  ---
+  duration_ms: 5.788463
+  type: 'test'
+  ...
+# Subtest: Project lifecycle/Undo bounds, consumed replay reauthorizes, deleting actor restore, independent child tombstones survive; shared task/project staging races
+ok 97 - Project lifecycle/Undo bounds, consumed replay reauthorizes, deleting actor restore, independent child tombstones survive; shared task/project staging races
+  ---
+  duration_ms: 15.218257
+  type: 'test'
+  ...
+# Subtest: Deleted project is absent from every implemented child projection; restricted catalog has only allowed DTO fields and all private child reads fail
+ok 98 - Deleted project is absent from every implemented child projection; restricted catalog has only allowed DTO fields and all private child reads fail
+  ---
+  duration_ms: 8.961284
+  type: 'test'
+  ...
+# Subtest: Favorites and personal order persist per member/reload; catalogue complete pages/filter/count and saved three-layout explicit definitions/CAS
+ok 99 - Favorites and personal order persist per member/reload; catalogue complete pages/filter/count and saved three-layout explicit definitions/CAS
+  ---
+  duration_ms: 45.111042
+  type: 'test'
+  ...
+# Subtest: Sharing demo is separate persistent state, guarded local inverses cannot overwrite later changes or grant real private access
+ok 100 - Sharing demo is separate persistent state, guarded local inverses cannot overwrite later changes or grant real private access
+  ---
+  duration_ms: 4.113086
+  type: 'test'
+  ...
+# Subtest: global literal normalized search has five typed categories and full totals before category/page
+ok 101 - global literal normalized search has five typed categories and full totals before category/page
+  ---
+  duration_ms: 6.77128
+  type: 'test'
+  ...
+# Subtest: descriptions use canonical normalized text; title/key/member/email/file/comment participate
+ok 102 - descriptions use canonical normalized text; title/key/member/email/file/comment participate
+  ---
+  duration_ms: 5.070156
+  type: 'test'
+  ...
+# Subtest: private/missing/archived/deleted/cross-workspace/mismatched parents never leak children
+ok 103 - private/missing/archived/deleted/cross-workspace/mismatched parents never leak children
+  ---
+  duration_ms: 4.696044
+  type: 'test'
+  ...
+# Subtest: deleted comments/files omitted; member scope enforced; >200 complete pages without source30 cap
+ok 104 - deleted comments/files omitted; member scope enforced; >200 complete pages without source30 cap
+  ---
+  duration_ms: 9.663439
+  type: 'test'
+  ...
+# Subtest: mock operation is typed and cancels both before and after wait; errors are not successful empty search
+ok 105 - mock operation is typed and cancels both before and after wait; errors are not successful empty search
+  ---
+  duration_ms: 11.772584
+  type: 'test'
+  ...
+# Subtest: activity authorizes nullable/mismatched canonical task parents and keeps archived task history
+ok 106 - activity authorizes nullable/mismatched canonical task parents and keeps archived task history
+  ---
+  duration_ms: 29.426858
+  type: 'test'
+  ...
+# Subtest: real rename/date updates stay outside Status changes while completion/reopen remain in the filter
+ok 107 - real rename/date updates stay outside Status changes while completion/reopen remain in the filter
+  ---
+  duration_ms: 6.380775
+  type: 'test'
+  ...
+# Subtest: source password validation preserves exact boundaries and copy
+ok 108 - source password validation preserves exact boundaries and copy
+  ---
+  duration_ms: 0.301374
+  type: 'test'
+  ...
+# Subtest: six-digit prototype code is format only; any six digits accepted
+ok 109 - six-digit prototype code is format only; any six digits accepted
+  ---
+  duration_ms: 0.175569
+  type: 'test'
+  ...
+# Subtest: sample sessions/invoices and renewal use source fixed demo clock
+ok 110 - sample sessions/invoices and renewal use source fixed demo clock
+  ---
+  duration_ms: 0.308574
+  type: 'test'
+  ...
+# Subtest: unavailable rejects every mutation before wait/storage and leaves sample state
+ok 111 - unavailable rejects every mutation before wait/storage and leaves sample state
+  ---
+  duration_ms: 0.53659
+  type: 'test'
+  ...
+# Subtest: password completion waits 800ms and stores no credentials or state
+ok 112 - password completion waits 800ms and stores no credentials or state
+  ---
+  duration_ms: 0.188617
+  type: 'test'
+  ...
+# Subtest: session revocation is scoped sample state, current device cannot be revoked
+ok 113 - session revocation is scoped sample state, current device cannot be revoked
+  ---
+  duration_ms: 0.602467
+  type: 'test'
+  ...
+# Subtest: 2FA and plan demo transitions persist only bounded fields and reload
+ok 114 - 2FA and plan demo transitions persist only bounded fields and reload
+  ---
+  duration_ms: 0.3803
+  type: 'test'
+  ...
+# Subtest: payment responses cannot mutate card, plan, sessions or payment records
+ok 115 - payment responses cannot mutate card, plan, sessions or payment records
+  ---
+  duration_ms: 0.157652
+  type: 'test'
+  ...
+# Subtest: explicit error scenario and storage failures retain prior state
+ok 116 - explicit error scenario and storage failures retain prior state
+  ---
+  duration_ms: 0.231751
+  type: 'test'
+  ...
+# Subtest: deterministic scenarios are separate scopes and loading holds mutation
+ok 117 - deterministic scenarios are separate scopes and loading holds mutation
+  ---
+  duration_ms: 0.256168
+  type: 'test'
+  ...
+# Subtest: corrupt/foreign stored state cannot change demo or canonical state
+ok 118 - corrupt/foreign stored state cannot change demo or canonical state
+  ---
+  duration_ms: 0.459467
+  type: 'test'
+  ...
+# Subtest: scenario selection is explicit and safely defaults on invalid/blocked storage
+ok 119 - scenario selection is explicit and safely defaults on invalid/blocked storage
+  ---
+  duration_ms: 0.130482
+  type: 'test'
+  ...
+# Subtest: closing demo shows fresh disabled samples; a held operation remains in its old scope
+ok 120 - closing demo shows fresh disabled samples; a held operation remains in its old scope
+  ---
+  duration_ms: 0.158603
+  type: 'test'
+  ...
+# Subtest: Settings six Source accents are independent of project color catalog; strict validation excludes empty/unknown fields
+ok 121 - Settings six Source accents are independent of project color catalog; strict validation excludes empty/unknown fields
+  ---
+  duration_ms: 1.654947
+  type: 'test'
+  ...
+# Subtest: Canonical workspace fields CAS and current profile map to session/member/bootstrap/search, survive actual persistence/reload
+ok 122 - Canonical workspace fields CAS and current profile map to session/member/bootstrap/search, survive actual persistence/reload
+  ---
+  duration_ms: 17.748944
+  type: 'test'
+  ...
+# Subtest: Preferences canonical full patch/reload retains language selections and profile fields remain separate
+ok 123 - Preferences canonical full patch/reload retains language selections and profile fields remain separate
+  ---
+  duration_ms: 10.725793
+  type: 'test'
+  ...
+# Subtest: Workspace/Profile stale CAS and concurrent staged writes reject with zero partial changes
+ok 124 - Workspace/Profile stale CAS and concurrent staged writes reject with zero partial changes
+  ---
+  duration_ms: 4.970048
+  type: 'test'
+  ...
+# Subtest: Storage failure precedes all profile/member/workspace/preference writes and keeps saved reads exact
+ok 125 - Storage failure precedes all profile/member/workspace/preference writes and keeps saved reads exact
+  ---
+  duration_ms: 16.391756
+  type: 'test'
+  ...
+# Subtest: Settings actor/workspace/role guards and profile identity cannot be supplied by a client
+ok 126 - Settings actor/workspace/role guards and profile identity cannot be supplied by a client
+  ---
+  duration_ms: 19.782869
+  type: 'test'
+  ...
+# Subtest: Settings invalidation includes canonical cross-screen profile/workspace/preference consumers
+ok 127 - Settings invalidation includes canonical cross-screen profile/workspace/preference consumers
+  ---
+  duration_ms: 0.281634
+  type: 'test'
+  ...
+# Subtest: Date-only formatting respects language and preserves explicit formats without timezone conversion
+ok 128 - Date-only formatting respects language and preserves explicit formats without timezone conversion
+  ---
+  duration_ms: 12.539754
+  type: 'test'
+  ...
+# Subtest: Notification fourteen booleans persist independently; old DTO defaults never materialize omitted PATCH keys
+ok 129 - Notification fourteen booleans persist independently; old DTO defaults never materialize omitted PATCH keys
+  ---
+  duration_ms: 14.306575
+  type: 'test'
+  ...
+# Subtest: Notification preference storage rejection and actor/scope guards preserve reads; queue merges disjoint writes
+ok 130 - Notification preference storage rejection and actor/scope guards preserve reads; queue merges disjoint writes
+  ---
+  duration_ms: 16.201685
+  type: 'test'
+  ...
+# Subtest: shell aggregates are actual bootstrap data, empty counts and saved view ownership are truthful
+ok 131 - shell aggregates are actual bootstrap data, empty counts and saved view ownership are truthful
+  ---
+  duration_ms: 6.458679
+  type: 'test'
+  ...
+# Subtest: legacy whitelist excludes prototype/project aliases and canonical links retain full prefix
+ok 132 - legacy whitelist excludes prototype/project aliases and canonical links retain full prefix
+  ---
+  duration_ms: 0.79475
+  type: 'test'
+  ...
+# Subtest: navigation aggregates apply project authorization, archive and internal tombstone predicates
+ok 133 - navigation aggregates apply project authorization, archive and internal tombstone predicates
+  ---
+  duration_ms: 8.489941
+  type: 'test'
+  ...
+# Subtest: complete/archive/sortPriority validate the whole unfiltered ID/version set, oversized and stale fail atomically
+ok 134 - complete/archive/sortPriority validate the whole unfiltered ID/version set, oversized and stale fail atomically
+  ---
+  duration_ms: 24.417132
+  type: 'test'
+  ...
+# Subtest: column sortPriority computes canonical positions, preserves scope and returns no Undo
+ok 135 - column sortPriority computes canonical positions, preserves scope and returns no Undo
+  ---
+  duration_ms: 3.214073
+  type: 'test'
+  ...
+# Subtest: column complete Undo cancels only new unchanged recurrence successors, releases slot, preserves parent fields, idempotent replay
+ok 136 - column complete Undo cancels only new unchanged recurrence successors, releases slot, preserves parent fields, idempotent replay
+  ---
+  duration_ms: 7.265508
+  type: 'test'
+  ...
+# Subtest: any changed successor aggregate blocks whole column Undo; archive Undo, empty command feedback and actor guard
+ok 137 - any changed successor aggregate blocks whole column Undo; archive Undo, empty command feedback and actor guard
+  ---
+  duration_ms: 7.097761
+  type: 'test'
+  ...
+# Subtest: move rejects contradictory status group, outside-scope neighbor and reversed pairs without writes
+ok 138 - move rejects contradictory status group, outside-scope neighbor and reversed pairs without writes
+  ---
+  duration_ms: 6.450177
+  type: 'test'
+  ...
+# Subtest: canonical child CRUD, omitted fields, parent versions, progress and promotion inheritance are atomic
+ok 139 - canonical child CRUD, omitted fields, parent versions, progress and promotion inheritance are atomic
+  ---
+  duration_ms: 13.863733
+  type: 'test'
+  ...
+# Subtest: child identity/scope validation and tombstones perform zero writes; every child command guards stale Undo
+ok 140 - child identity/scope validation and tombstones perform zero writes; every child command guards stale Undo
+  ---
+  duration_ms: 10.413383
+  type: 'test'
+  ...
+# Subtest: comments, mentions, reactions, delete and idempotent bounded Undo survive reload
+ok 141 - comments, mentions, reactions, delete and idempotent bounded Undo survive reload
+  ---
+  duration_ms: 35.404299
+  type: 'test'
+  ...
+# Subtest: comment deletion ownership, reaction/comment parent touches and stale inverse are enforced atomically
+ok 142 - comment deletion ownership, reaction/comment parent touches and stale inverse are enforced atomically
+  ---
+  duration_ms: 6.70355
+  type: 'test'
+  ...
+# Subtest: stable comments/activity pagination validates cursor scope and hidden task access
+ok 143 - stable comments/activity pagination validates cursor scope and hidden task access
+  ---
+  duration_ms: 11.553662
+  type: 'test'
+  ...
+# Subtest: sanitizer serializes nested six-command content idempotently and rejects encoded/whitespace protocols
+ok 144 - sanitizer serializes nested six-command content idempotently and rejects encoded/whitespace protocols
+  ---
+  duration_ms: 2.034606
+  type: 'test'
+  ...
+# Subtest: Worker-compatible tree sanitizer allowlist, entities, protocols, discarded namespaces and canonical sanitized text
+ok 145 - Worker-compatible tree sanitizer allowlist, entities, protocols, discarded namespaces and canonical sanitized text
+  ---
+  duration_ms: 1.254828
+  type: 'test'
+  ...
+# Subtest: atomic draft child create, canonical text, normalized actor/key replay and relations before writes
+ok 146 - atomic draft child create, canonical text, normalized actor/key replay and relations before writes
+  ---
+  duration_ms: 9.661566
+  type: 'test'
+  ...
+# Subtest: single lifecycle Undo bounded guards, child/file touches block completion inverse, duplicate clean IDs
+ok 147 - single lifecycle Undo bounded guards, child/file touches block completion inverse, duplicate clean IDs
+  ---
+  duration_ms: 10.994389
+  type: 'test'
+  ...
+# Subtest: upload content hash identity, concurrent replay, duplicate names, scope/size checks, file tombstone Undo
+ok 148 - upload content hash identity, concurrent replay, duplicate names, scope/size checks, file tombstone Undo
+  ---
+  duration_ms: 7.599119
+  type: 'test'
+  ...
+# Subtest: form lost create/upload response, shared pending promise, partial retry and session reload retain identities
+ok 149 - form lost create/upload response, shared pending promise, partial retry and session reload retain identities
+  ---
+  duration_ms: 10.928981
+  type: 'test'
+  ...
+# Subtest: failed file hashing leaves draft editable and never creates a task without its intended files
+ok 150 - failed file hashing leaves draft editable and never creates a task without its intended files
+  ---
+  duration_ms: 4.00701
+  type: 'test'
+  ...
+# Subtest: edit move succeeds, PATCH fails, retry preserves confirmed phase and does not move twice
+ok 151 - edit move succeeds, PATCH fails, retry preserves confirmed phase and does not move twice
+  ---
+  duration_ms: 6.708838
+  type: 'test'
+  ...
+# Subtest: reset during a late attachment preserves original target and cannot redirect into the new submission
+ok 152 - reset during a late attachment preserves original target and cannot redirect into the new submission
+  ---
+  duration_ms: 8.194916
+  type: 'test'
+  ...
+# Subtest: late file reselection cannot clear a newer same-file failure after reset
+ok 153 - late file reselection cannot clear a newer same-file failure after reset
+  ---
+  duration_ms: 5.773861
+  type: 'test'
+  ...
+# Subtest: source DATA-08 due overlap, done past date, unassigned and AND/OR/NOT empty semantics
+ok 154 - source DATA-08 due overlap, done past date, unassigned and AND/OR/NOT empty semantics
+  ---
+  duration_ms: 0.691678
+  type: 'test'
+  ...
+# Subtest: source null/string/date/priority sort rules with explicit canonical stable ID correction
+ok 155 - source null/string/date/priority sort rules with explicit canonical stable ID correction
+  ---
+  duration_ms: 0.334413
+  type: 'test'
+  ...
+# Subtest: normalization validates inputs, unique columns/values, current URL independent from saved filters
+ok 156 - normalization validates inputs, unique columns/values, current URL independent from saved filters
+  ---
+  duration_ms: 0.962948
+  type: 'test'
+  ...
+# Subtest: pure relation guard rejects foreign workspace/project/member/dependency, self and cycles
+ok 157 - pure relation guard rejects foreign workspace/project/member/dependency, self and cycles
+  ---
+  duration_ms: 3.684926
+  type: 'test'
+  ...
+# Subtest: mock fields validate nullable/date/status/relation atomically and omitted fields stay unchanged
+ok 158 - mock fields validate nullable/date/status/relation atomically and omitted fields stay unchanged
+  ---
+  duration_ms: 5.404397
+  type: 'test'
+  ...
+# Subtest: actual command cycle returns409 and keeps versions, tasks, recurrence slots unchanged; incoming links bump targets
+ok 159 - actual command cycle returns409 and keeps versions, tasks, recurrence slots unchanged; incoming links bump targets
+  ---
+  duration_ms: 5.892046
+  type: 'test'
+  ...
+# Subtest: completion Undo is bounded, replay stable and stale parent all-or-nothing
+ok 160 - completion Undo is bounded, replay stable and stale parent all-or-nothing
+  ---
+  duration_ms: 5.799449
+  type: 'test'
+  ...
+# Subtest: recurrence calendar correction, one slot and single Undo preserves successor with new subtask IDs
+ok 161 - recurrence calendar correction, one slot and single Undo preserves successor with new subtask IDs
+  ---
+  duration_ms: 4.952352
+  type: 'test'
+  ...
+# Subtest: project field command scope/neighbor guards, move key+file integrity, full counts+opaque query cursors
+ok 162 - project field command scope/neighbor guards, move key+file integrity, full counts+opaque query cursors
+  ---
+  duration_ms: 7.087566
+  type: 'test'
+  ...
+# Subtest: command handlers reject actual foreign relation rows with zero writes and persist canonical Undo/sequence state
+ok 163 - command handlers reject actual foreign relation rows with zero writes and persist canonical Undo/sequence state
+  ---
+  duration_ms: 18.484827
+  type: 'test'
+  ...
+# Subtest: plain status PATCH recurrence has no Undo and project task sequence never reuses keys
+ok 164 - plain status PATCH recurrence has no Undo and project task sequence never reuses keys
+  ---
+  duration_ms: 5.804988
+  type: 'test'
+  ...
+# Subtest: new mock clients own independent mutable command metadata
+ok 165 - new mock clients own independent mutable command metadata
+  ---
+  duration_ms: 11.659057
+  type: 'test'
+  ...
+# Subtest: inline create IDs/key sequence, request replay, title edit and atomic invalid relation
+ok 166 - inline create IDs/key sequence, request replay, title edit and atomic invalid relation
+  ---
+  duration_ms: 7.347889
+  type: 'test'
+  ...
+# Subtest: bulk patch all targets CAS, ordinary status recurrence no Undo, stale zero effects
+ok 167 - bulk patch all targets CAS, ordinary status recurrence no Undo, stale zero effects
+  ---
+  duration_ms: 5.868751
+  type: 'test'
+  ...
+# Subtest: retained Delete tombstones: hide reads/counts, preserve children/history, atomic Undo/replay/stale guard
+ok 168 - retained Delete tombstones: hide reads/counts, preserve children/history, atomic Undo/replay/stale guard
+  ---
+  duration_ms: 5.779309
+  type: 'test'
+  ...
+# Subtest: subtask done aggregate increments parent and rejects stale/cross parent without writes
+ok 169 - subtask done aggregate increments parent and rejects stale/cross parent without writes
+  ---
+  duration_ms: 3.427717
+  type: 'test'
+  ...
+# Subtest: deleted dependency targets reject explicit replacement; retained associations project out, scalar edit preserves, removal guards Undo
+ok 170 - deleted dependency targets reject explicit replacement; retained associations project out, scalar edit preserves, removal guards Undo
+  ---
+  duration_ms: 6.986226
+  type: 'test'
+  ...
+# Subtest: create request dedupe is actor scoped and bulk recurrence preserves every incoming target version bump
+ok 171 - create request dedupe is actor scoped and bulk recurrence preserves every incoming target version bump
+  ---
+  duration_ms: 5.884204
+  type: 'test'
+  ...
+# Subtest: bulk over the POC limit returns canonical413 with zero task/count writes
+ok 172 - bulk over the POC limit returns canonical413 with zero task/count writes
+  ---
+  duration_ms: 4.503921
+  type: 'test'
+  ...
+# Subtest: Table preferences isolate Workspace/Project/saved and initialize Project column once
+ok 173 - Table preferences isolate Workspace/Project/saved and initialize Project column once
+  ---
+  duration_ms: 0.513195
+  type: 'test'
+  ...
+# Subtest: Table widths follow source64 minimum and preserve large finite resize in URL state
+ok 174 - Table widths follow source64 minimum and preserve large finite resize in URL state
+  ---
+  duration_ms: 0.262517
+  type: 'test'
+  ...
+# Subtest: Team canonical create/default users/transfer/update and persisted bootstrap agree on one primary team
+ok 175 - Team canonical create/default users/transfer/update and persisted bootstrap agree on one primary team
+  ---
+  duration_ms: 15.300789
+  type: 'test'
+  ...
+# Subtest: Team delete restores exact private/archived/deleted associations, preserves lifecycle, monotonic versions and replay
+ok 176 - Team delete restores exact private/archived/deleted associations, preserves lifecycle, monotonic versions and replay
+  ---
+  duration_ms: 5.769925
+  type: 'test'
+  ...
+# Subtest: Undo refuses member null→teamB→null ABA with zero partial effects and pending record intact
+ok 177 - Undo refuses member null→teamB→null ABA with zero partial effects and pending record intact
+  ---
+  duration_ms: 4.765818
+  type: 'test'
+  ...
+# Subtest: Undo rejects normalized name reuse and project association ABA; deleting lifecycle cannot be overwritten
+ok 178 - Undo rejects normalized name reuse and project association ABA; deleting lifecycle cannot be overwritten
+  ---
+  duration_ms: 13.800379
+  type: 'test'
+  ...
+# Subtest: Team CAS/name/foreign member/actor/foreign workspace guards reject atomically; deleted teams reject new project associations
+ok 179 - Team CAS/name/foreign member/actor/foreign workspace guards reject atomically; deleted teams reject new project associations
+  ---
+  duration_ms: 8.683646
+  type: 'test'
+  ...
+# Subtest: Team delete bounded targets and persistence failure reject before all writes
+ok 180 - Team delete bounded targets and persistence failure reject before all writes
+  ---
+  duration_ms: 14.434533
+  type: 'test'
+  ...
+# Subtest: Team summary excludes private/tombstoned/archived tasks and projects; counts follow current canonical ownership
+ok 181 - Team summary excludes private/tombstoned/archived tasks and projects; counts follow current canonical ownership
+  ---
+  duration_ms: 14.510756
+  type: 'test'
+  ...
+# Subtest: Team transfer and project update share queue; stale former-team CAS and cache consumers invalidate
+ok 182 - Team transfer and project update share queue; stale former-team CAS and cache consumers invalidate
+  ---
+  duration_ms: 4.124523
+  type: 'test'
+  ...
+# Subtest: bar inclusive duration, 110px label threshold, progress and undated/empty rows are deterministic
+ok 183 - bar inclusive duration, 110px label threshold, progress and undated/empty rows are deterministic
+  ---
+  duration_ms: 2.705404
+  type: 'test'
+  ...
+# Subtest: shared grouping keeps task set and source reverse-input date ties; project requested group falls back to status
+ok 184 - shared grouping keeps task set and source reverse-input date ties; project requested group falls back to status
+  ---
+  duration_ms: 5.358399
+  type: 'test'
+  ...
+# Subtest: dependency cubic/arrow coordinates preserve forward/backward dash and omit hidden endpoints
+ok 185 - dependency cubic/arrow coordinates preserve forward/backward dash and omit hidden endpoints
+  ---
+  duration_ms: 1.644691
+  type: 'test'
+  ...
+# Subtest: milestone same-day merge, room threshold, final unbounded label and empty-task lane preserve source geometry
+ok 186 - milestone same-day merge, room threshold, final unbounded label and empty-task lane preserve source geometry
+  ---
+  duration_ms: 1.274006
+  type: 'test'
+  ...
+# Subtest: pointer rounding includes signed half-days and scroll delta; shared PATCH preserves duration/no-start omission
+ok 187 - pointer rounding includes signed half-days and scroll delta; shared PATCH preserves duration/no-start omission
+  ---
+  duration_ms: 0.201497
+  type: 'test'
+  ...
+# Subtest: complete canonical overlap consumes231 records/two pages, excludes outside-range and keeps start-only without bar
+ok 188 - complete canonical overlap consumes231 records/two pages, excludes outside-range and keeps start-only without bar
+  ---
+  duration_ms: 305.552942
+  type: 'test'
+  ...
+# Subtest: calendar URL fields normalize DateOnly/mode without changing task presentation mode
+ok 189 - calendar URL fields normalize DateOnly/mode without changing task presentation mode
+  ---
+  duration_ms: 0.381251
+  type: 'test'
+  ...
+1..189
+# tests 189
+# suites 0
+# pass 189
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2336.636723
