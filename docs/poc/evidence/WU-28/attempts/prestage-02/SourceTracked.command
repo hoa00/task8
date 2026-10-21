@@ -1,1 +1,0 @@
-'git' '-C' '.reference/gr8r-studio' 'ls-files' '-z'
