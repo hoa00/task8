@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "datamaker-task",
+  "account_id": "b1e942cb84b7b20c31ebc5f472f03af5",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "send_metrics": false,
+  "assets": {
+    "directory": "../web/dist-http",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api", "/api/*"],
+  },
+  "vars": {
+    "AUTH_MODE": "ict24h",
+    "STUDIO_ENV": "production",
+    "AUTH_PROVIDER_KEY": "ict24h-identity",
+    "AUTH_PROVIDER_BASE_URL": "https://hrm-api-v2.cwr.i24h.app",
+    "AUTH_TENANT_ID": "ict24h-rdn-dev",
+    "AUTH_APP_ORIGIN": "https://datamaker-task.hoa.workers.dev",
+  },
+  "r2_buckets": [{ "binding": "FILES", "bucket_name": "datamaker-task-production-files" }],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "datamaker-task-production",
+      "database_id": "f16db040-c46b-4a12-ad5d-9282dfd3cdde",
+      "migrations_dir": "src/db/migrations",
+    },
+  ],
+}

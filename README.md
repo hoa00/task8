@@ -83,6 +83,10 @@ Dùng một session mới cho unit kế tiếp. Nếu unit chưa đạt, tiếp 
 
 WU-00…WU-35 có checkpoint thực tế; WU-36 là unit cuối của backend POC. Theo dõi trạng thái trong [PROGRESS.md](docs/poc/PROGRESS.md).
 
+## Production
+
+[Hướng dẫn triển khai](docs/engineering/PRODUCTION_DEPLOYMENT.md) là nơi tra đích Cloudflare, quyền, backup và rollback.
+
 ## Chạy workspace local
 
 Dùng Node `24.13.0` trong `.node-version` và pnpm `11.19.0` trong `packageManager`:
@@ -148,4 +152,4 @@ pnpm verify:data:http-bundle
 pnpm reference:check
 ```
 
-Các Worker fault/clock/SQL hooks chỉ ở test entry; restart production dùng `apps/api/src/index.ts` không có các hook đó. M3 kiểm chứng local CRUD, privacy, version/rollback/Undo, cache và bytes persistence. Auth/provider/email/ACL provisioning/payment, production deploy, CI/CD, realtime, antivirus/transcoding và purge thật chưa có. Các failed/missing-byte/SVG/default/Darwin/whole-shell/device/full-project visual debts lịch sử vẫn chưa được chấp nhận; không tuyên bố đã phục hồi chúng.
+Các Worker fault/clock/SQL hooks chỉ ở test entry; restart production dùng `apps/api/src/index.ts` không có các hook đó. M3 kiểm chứng local CRUD, privacy, version/rollback/Undo, cache và bytes persistence. Auth hiện hành xem [ICT24H runbook](docs/engineering/ICT24H_AUTH_RUNBOOK.md); production xem [hướng dẫn triển khai](docs/engineering/PRODUCTION_DEPLOYMENT.md). Email/payment, tự cấp workspace, CI/CD, realtime, antivirus/transcoding và purge thật chưa có. Các failed/missing-byte/SVG/default/Darwin/whole-shell/device/full-project visual debts lịch sử vẫn chưa được chấp nhận; không tuyên bố đã phục hồi chúng.

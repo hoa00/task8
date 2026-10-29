@@ -85,6 +85,8 @@ Không chỉ `export AUTH_MODE=ict24h` rồi kỳ vọng tự thành Worker bind
 
 ### Khi operator cấu hình deployment
 
+[Hướng dẫn production](PRODUCTION_DEPLOYMENT.md) sở hữu đích deploy/backup/rollback; cấu hình riêng nằm ở `apps/api/wrangler.production.jsonc`. Các ví dụ vars bên dưới minh họa trường cấu hình, không thay thế file production đã chốt.
+
 `.dev.vars` chỉ cho local development, không được upload bằng deploy. Nonsecret `vars` phải nằm trong Wrangler config của Worker đích; ví dụ dưới đây là **phần vars**, không phải full deployment config và không thay D1/R2 bindings bằng placeholder local:
 
 ```json

@@ -50,6 +50,8 @@ pnpm --filter @studio/api db:backfill:local --persist-to /absolute/path/to/stora
 
 Backfill chỉ đổi derived fields bằng bounded source-byte CAS; rerun idempotent, giữ mutations/ledger. Missing key version trả internal read failure cho đến khi backfill xong, không fallback full-load. Seed provisioning owner ở `scripts/fixture.ts`/`seed-data.mjs` dùng locked source JSON/ID map; production runtime không import fixture. Seed giữ visible keys/content, positions `order*100` và sequence max(200,seed number); `ON CONFLICT DO NOTHING` giữ mutations.
 
+[Triển khai production](../../docs/engineering/PRODUCTION_DEPLOYMENT.md) sở hữu đường deploy, quyền, backup và rollback; các lệnh build mặc định dưới đây chỉ dry-run local.
+
 ## Commands hiện hành
 
 Node24.13.0/pnpm11.19.0; dùng `pnpm install --frozen-lockfile`, build dependencies sau cài. Cài Chromium bằng `pnpm exec playwright install chromium` trong môi trường có Linux libraries tương ứng. Từ root:
