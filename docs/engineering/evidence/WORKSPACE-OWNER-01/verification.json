@@ -1,0 +1,93 @@
+{
+  "status": "COMPLETED_VERIFIED",
+  "date": "2026-10-29",
+  "scope": "One explicitly authorized first production workspace plus Owner membership for an existing mapped principal; names, email and personal IDs redacted from Git.",
+  "environment": "Production configuration in apps/api/wrangler.production.jsonc",
+  "backup": {
+    "path": "test-results/workspace-owner-261029/before-grant.sql",
+    "sha256": "d57562cb74bf51004e9b0ea8f1c39b9bb7c0dd5cff87920875964c46f5fdaa0e",
+    "bytes": 33982,
+    "mode": "0600 inside0700 directory",
+    "contents": "Private production SQL; not committed. Export log with expiring signed URL remains private."
+  },
+  "preflight": {
+    "matchingMappedPrincipals": 1,
+    "provider": "ict24h-identity",
+    "tenant": "ict24h-rdn-dev",
+    "existingMemberships": 0,
+    "slugAvailable": true,
+    "noCredentialValuesRead": true
+  },
+  "write": {
+    "method": "Temporary loopback-only operator Worker with remote D1 binding; native DB.batch of prepared/bound SQL",
+    "changes": [
+      1,
+      1,
+      1
+    ],
+    "tables": [
+      "workspaces",
+      "workspaceMembers",
+      "memberPreferences"
+    ],
+    "guards": [
+      "Existing mapped user ID, user version, explicit email target, identity ID/provider/tenant",
+      "Unique fresh UUIDv7 workspace/member IDs and slug",
+      "Fresh mutation marker gates dependent inserts; no copy or update of other memberships/preferences"
+    ],
+    "role": "Owner",
+    "memberStatus": "active",
+    "schemaValidation": [
+      "WorkspaceSchema",
+      "MemberPreferencesSchema",
+      "NotificationPreferencesSchema"
+    ],
+    "seedOrLocalImport": false,
+    "publicEndpointAdded": false,
+    "applicationRedeployed": false
+  },
+  "verification": {
+    "probes": [
+      {
+        "id": "loopback-operator-requires-token",
+        "pass": true
+      },
+      {
+        "id": "native-remote-batch-created-exactly-three-records",
+        "pass": true
+      },
+      {
+        "id": "canonical-membership-and-bootstrap-validated",
+        "pass": true
+      },
+      {
+        "id": "repeat-grant-rejected-without-overwrite",
+        "pass": true
+      }
+    ],
+    "independentRemoteRead": {
+      "workspaceVersion": 1,
+      "memberVersion": 1,
+      "userVersion": 1,
+      "role": "Owner",
+      "status": "active",
+      "membershipCount": 1,
+      "preferencesValid": true,
+      "notificationsValid": true
+    },
+    "canonicalBootstrap": "Production application readBootstrap and membership executed against remote D1; workspace and both preference documents verified.",
+    "browserSession": "No user cookie/token read; user can press Check again on waiting screen."
+  },
+  "cleanup": {
+    "operatorProcessGroup": "Stopped by harness in finally",
+    "temporaryWorkerConfigAndSource": "Removed",
+    "temporaryOperatorToken": "Removed from private input after shutdown",
+    "sharedPortlessAndProductWorker": "Unchanged"
+  },
+  "rollback": "Before any rollback, re-read current versions and references and make a new backup. A first-workspace rollback must only remove the exact newly created preference/membership/workspace records when unchanged and unused; do not restore the whole production DB or remove profile/auth/session data.",
+  "limits": [
+    "One-time authorized administration; no permanent public workspace creation/grant API, generic provisioning framework or role-policy change.",
+    "No source or schema change; no build/redeploy required. Four targeted operational probes plus independent D1 read are the verification for this data change.",
+    "Private local receipt/input/backup contain the exact target for operator reconciliation; never stage these files."
+  ]
+}

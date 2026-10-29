@@ -162,6 +162,14 @@ WHERE EXISTS(SELECT 1 FROM workspaceMembers WHERE id=:memberId AND workspaceId=:
 
 Đây là template operator có named parameters để đọc; D1 prepared binding phải chuyển chúng thành positional `?`/`.bind(...)` theo tooling hiện hành. Không nhận raw SQL/docs qua route production. Không provision workspace mới. Waiting “Kiểm tra lại” đọc session+workspaces; ready chọn active/nonremoved membership đầu theo workspace ID ASC, same profile ID. Bootstrap cần cả prefs documents. Invited/removed/private grants tiếp tục do D1/policy/final SQL quyết định; Owner không bypass private grant. Người waiting được GET profile nhưng PATCH profile403.
 
+### Workspace đầu tiên trên môi trường mới
+
+Procedure grant ở trên chỉ thêm membership vào workspace đã có. Khởi tạo workspace đầu tiên là thao tác operator riêng, cần yêu cầu trực tiếp xác định tên workspace, principal đã mapping và vai trò; không suy Owner từ lần đăng nhập đầu hoặc central role.
+
+Validate workspace và hai preference documents bằng schemas ở [contracts](../../packages/contracts/src/models.ts); dùng UUIDv7 mới và guard user/identity/provider/tenant hiện tại. Tạo workspace, membership và preferences trong một native `DB.batch` với marker mới gate các INSERT phụ thuộc. Không chạy ba lệnh ghi độc lập hoặc lấy preferences của người khác. Xác minh chính xác ba changes và đọc lại bằng canonical membership/bootstrap; zero-row guard không được báo success, unknown ACK phải reconcile IDs cũ trước khi retry.
+
+Một operator Worker tạm chỉ bind loopback, có token riêng và D1 `remote:true` có thể thực hiện native batch mà không thêm public endpoint hoặc đổi deployment sản phẩm. Backup trước effects, dừng/xóa Worker và token trong cleanup; giữ input/backup/receipt có PII ngoài Git với quyền private. Nếu cần đảo thao tác, kiểm lại versions/references và backup mới trước khi gỡ đúng bản ghi còn nguyên/chưa được dùng; không restore toàn DB hoặc xóa profile/auth/session.
+
 ## Phiên, lỗi và rotation
 
 Tenant của identity lấy từ JWT đã được package xác minh chữ ký và kiểm `tenant` bằng AUTH_TENANT_ID. Identity Service đánh dấu entity `srv_t` bằng `@Exclude({ toPlainOnly: true })`, nên JSON profile login/whoami có thể không chứa field này. Adapter chấp nhận field bị bỏ qua, nhưng field được trả phải là string đúng tenant; null/empty/malformed hoặc tenant khác vẫn bị từ chối. Subject JWT phải khớp cả login user ID và whoami ID trước mapping/session writes; không dùng email hoặc tenant header của browser làm principal. Follow-up live response metadata và native regression xem [AUTH-PROFILE-TENANT-FIX](evidence/AUTH-PROFILE-TENANT-FIX/verification.json); original Identity snapshot và source revision giữ nguyên.
