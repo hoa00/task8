@@ -1,0 +1,112 @@
+{
+  "status": "COMPLETED_VERIFIED",
+  "date": "2026-10-29",
+  "scope": "User-authorized fictional import/export company demo dataset in one existing production workspace; user approved8invited demo staff with no email or login. Exact target IDs and content remain in private local plan/checkpoint.",
+  "backup": {
+    "path": "test-results/sen-viet-demo-261029/before-demo.sql",
+    "sha256": "75fb0156815c5aedd266e9bd05e15eb44e4500dd06e69ceb1dbef5410ac8473e",
+    "bytes": 39629,
+    "permissions": "SQL0600 inside directory0700",
+    "committed": false
+  },
+  "preflight": {
+    "authorizedActor": "Existing active Owner",
+    "existingWorkspaceMatched": true,
+    "existingProjects": 0,
+    "existingTasks": 0,
+    "existingTeams": 0,
+    "existingOwnerTeamChanged": false
+  },
+  "created": {
+    "teams": 5,
+    "demoStaff": 8,
+    "projects": 5,
+    "tasks": 60,
+    "subtasks": 40,
+    "taskDependencies": 15,
+    "projectThemes": [
+      "Coffee export to Germany",
+      "Packaging import",
+      "ASEAN market development",
+      "Trade documents and international payments",
+      "Supplier quality pilot"
+    ],
+    "byStatus": {
+      "done": 24,
+      "progress": 8,
+      "review": 8,
+      "todo": 12,
+      "backlog": 8
+    }
+  },
+  "dataPolicy": {
+    "people": "Fictional profiles using reserved .example emails, Member/invited, full preferences, no authIdentities/session rows or messages",
+    "businessContent": "Fictional partners/orders described as demo in project descriptions; no real customer facts or third-party contact",
+    "existingRecords": "No reset/local import; real Owner profile/role/preferences and membership team preserved",
+    "runtimeCodeOrDeploymentChanged": false,
+    "schemaChanged": false
+  },
+  "execution": {
+    "staff": "One native D1 batch of24guarded prepared statements; all changes1. Canonical UserProfile/preference validation and production Unicode read-key encoder.",
+    "teamsProjectsTasks": "Production mutateTeam/createProject/updateProject/createTask use-cases with current Owner, per-request repository budgets, native guarded batch, schemas/UUIDv7, stable task request IDs and checkpoints.",
+    "creationCheckpoints": 76,
+    "rawFixtureOrLegacySeedUsed": false
+  },
+  "verification": {
+    "bootstrapValidated": true,
+    "teams": 5,
+    "teamMembers": [
+      2,
+      1,
+      2,
+      1,
+      2
+    ],
+    "demoPeople": 8,
+    "allDemoPeopleInvited": true,
+    "demoAuthIdentities": 0,
+    "projects": 5,
+    "projectTaskTotals": [
+      12,
+      12,
+      12,
+      12,
+      12
+    ],
+    "tasks": 60,
+    "byStatus": {
+      "done": 24,
+      "progress": 8,
+      "review": 8,
+      "todo": 12,
+      "backlog": 8
+    },
+    "subtasks": 40,
+    "dependencies": 15,
+    "assigneeCount": 9,
+    "unicodeSearchMatches": 1,
+    "detailSubtasks": 2,
+    "readKeysAndRelationsValidated": true
+  },
+  "attempts": [
+    {
+      "stage": "Temporary operator build",
+      "outcome": "FAILED_BEFORE_WRITE;0checkpoints. Fixed quoting for JSON-path SQL generation, regenerated the private operator with the unchanged validated dataset IDs, then successful run.",
+      "productionEffects": false
+    }
+  ],
+  "cleanup": {
+    "temporaryOperatorSourceConfig": "Removed in finally",
+    "operatorProcessGroup": "Stopped by harness",
+    "operatorToken": "Private runtime file removed; source removed",
+    "productWorkerAndSharedProxy": "Unchanged"
+  },
+  "rollback": "Keep the private exact-ID checkpoint and backup. Before any removal, re-read current versions/references and make a new backup. Use canonical lifecycle/Undo/permission semantics on the created scope; preserve later user edits and incoming links. Do not restore/reset the whole DB or delete unrelated profiles/auth/sessions.",
+  "limits": [
+    "No public provisioning feature or permanent generic operator framework was added.",
+    "Data-only change; canonical production reads and independent D1 aggregates verify the result, no unrelated build/redeploy needed.",
+    "Demo staff do not authenticate or receive mail. Only the existing real Owner remains the authenticated principal.",
+    "No customer credentials, real profile/email/IDs, backupSQL or private operator inputs are committed."
+  ],
+  "privateOutput": "test-results/sen-viet-demo-261029"
+}
