@@ -1,6 +1,6 @@
 # DataMaker Task production deployment
 
-Status: in progress. Owner: current session. Scope: first production rollout; no runtime business changes.
+Status: deployed and verified. Owner: current session. Scope: first production rollout; no runtime business changes.
 
 ## Outcome and constraints
 
@@ -12,7 +12,7 @@ Status: in progress. Owner: current session. Scope: first production rollout; no
 
 ## Execution and acceptance
 
-1. Configure [production Wrangler](../../../apps/api/wrangler.production.jsonc), production deploy command and HTTP-only assets.
+1. Configure [production Wrangler](../../apps/api/wrangler.production.jsonc), production deploy command and HTTP-only assets.
 2. Create isolated D1/R2. Export D1 before applying the existing migrations; preserve the Wrangler ledger.
 3. Verify types/lint/unit checks, HTTP bundle isolation and native auth/HTTP checks appropriate to configuration-only rollout.
 4. Review configuration, deploy with secrets through private temporary input, verify public HTTPS/assets/deep links/API/auth rejection without real credentials or mutations.
@@ -21,3 +21,5 @@ Status: in progress. Owner: current session. Scope: first production rollout; no
 Rollback: this is the first deployment, so no prior version exists. Disable the new Worker subdomain if verification fails; preserve D1/R2 and backup for investigation. Later code rollbacks use the recorded prior Worker version; never use code rollback to reset data.
 
 Evidence: unique `test-results/datamaker-production-261029-*`; sanitized final receipt under `docs/engineering/evidence/DEPLOY-01/`.
+
+Result: [deployment receipt](../../docs/engineering/evidence/DEPLOY-01/verification.json) records the live revision, resource metadata, backup hash, checks and limitations.

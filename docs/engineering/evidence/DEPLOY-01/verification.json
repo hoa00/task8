@@ -1,0 +1,111 @@
+{
+  "status": "DEPLOYED_VERIFIED",
+  "date": "2026-10-29",
+  "sourceRevision": "c54ea367c8fb1edb92331abb1f70f8f923b204cb",
+  "url": "https://datamaker-task.hoa.workers.dev",
+  "deployment": {
+    "id": "30f4c70c-2f43-40b6-9c2d-6a910a1a69e0",
+    "versionId": "11083b4a-c43b-4bfa-a09e-668ab11c1121",
+    "trafficPercent": 100,
+    "createdOn": "2026-10-29T03:37:18.868088Z",
+    "tag": "c54ea367c8fb"
+  },
+  "resources": {
+    "accountId": "b1e942cb84b7b20c31ebc5f472f03af5",
+    "worker": "datamaker-task",
+    "database": "datamaker-task-production",
+    "databaseId": "f16db040-c46b-4a12-ad5d-9282dfd3cdde",
+    "bucket": "datamaker-task-production-files",
+    "region": "APAC",
+    "tenant": "ict24h-rdn-dev"
+  },
+  "remoteMetadata": {
+    "workersDevEnabled": true,
+    "previewUrls": false,
+    "authMode": "ict24h",
+    "studioEnv": "production",
+    "secretNames": [
+      "AUTH_PUBLIC_KEY",
+      "AUTH_SESSION_ENCRYPTION_KEY"
+    ],
+    "apiAndWebSameOrigin": true
+  },
+  "databaseVerification": {
+    "appliedMigrations": 5,
+    "users": 0,
+    "workspaces": 0,
+    "sessions": 0,
+    "query": "Aggregate metadata only, no user rows/credentials read."
+  },
+  "backup": {
+    "path": "test-results/datamaker-production-261029-checks/before-migrations.sql",
+    "sha256": "309d1516f5d4f4f792b17106f7b761312f848c634e3028d70e6eb8ed39df7398",
+    "stage": "Before all migration effects; empty newly created production database.",
+    "containsLocalData": false,
+    "retention": "Ignored local test-results on operator machine; not committed. Future data-bearing backups require private operator backup storage."
+  },
+  "verification": {
+    "apiTypecheck": "passed",
+    "apiLint": "passed",
+    "apiUnitTests": 68,
+    "nativeAuthSessionProbes": 74,
+    "httpOnlyBuild": "passed",
+    "httpBundleIsolation": "passed",
+    "wranglerProductionDryRun": "passed",
+    "migrations": "passed",
+    "liveHttpProbes": 43,
+    "browserScenarios": 4,
+    "browserPageErrors": [],
+    "tlsBypass": false,
+    "visualInspection": [
+      "browser-login-390-vi.png",
+      "browser-login-1440-en.png"
+    ],
+    "formatAndDiff": "passed"
+  },
+  "commands": [
+    "pnpm --filter @studio/api typecheck",
+    "pnpm --filter @studio/api lint",
+    "pnpm --filter @studio/api test:unit",
+    "pnpm --filter @studio/api test:integration --feature auth-session",
+    "pnpm --filter @studio/web build:http",
+    "node tests/data/http-bundle.mjs --output=test-results/datamaker-production-261029-bundle",
+    "pnpm --filter @studio/api exec wrangler deploy --config wrangler.production.jsonc --dry-run",
+    "pnpm --filter @studio/api exec wrangler d1 export DB --remote --config wrangler.production.jsonc --output PRIVATE_BACKUP_PATH",
+    "pnpm --filter @studio/api exec wrangler d1 migrations apply DB --remote --config wrangler.production.jsonc",
+    "pnpm --filter @studio/api exec wrangler deploy --config wrangler.production.jsonc --tag c54ea367c8fb --message INITIAL_ROLLOUT --secrets-file PRIVATE_TEMP_INPUT"
+  ],
+  "secretHandling": "Validated the existing trusted provider RSA public key without printing it. Created a separate random32-byte production encryption key. Passed only the two bindings through private temporary mode0600 input, removed in finally. Never uploaded .dev.vars, reused local encryption key, or retrieved remote secret values.",
+  "review": {
+    "skill": "ak-code-review",
+    "scope": "Complete config/command/assets-ignore/documentation diff; account/bindings/TLS/Origin/static routing and data isolation checked against live state.",
+    "findings": []
+  },
+  "attempts": [
+    "Initial API unit run was denied loopback socket EPERM in sandbox; rerun outside sandbox passed68/68.",
+    "Optional dotenv helper was unavailable; used Node native --env-file to validate provider public key without adding dependencies."
+  ],
+  "limits": [
+    "No real ICT24H account was provided; successful live login/provider credentials are NOT_VERIFIED. Native auth/session suite uses controlled provider on actual local Workerd/D1.",
+    "Fresh production has no workspace/membership. First login enters existing waiting flow; no role grants or local data copy.",
+    "No application/business/schema source changes; existing5 migrations applied. No full regression suite or new CI/CD/custom DNS/platform expansion.",
+    "Node24.22.1 used; pin remains24.13.0. Wrangler4.148.0 and pnpm11.19.0 unchanged.",
+    "First deployment has no prior code version. Disable only the new workers.dev subdomain to interrupt public access; preserve D1/R2/backups. Future rollbacks select an existing Worker version and never restore data implicitly."
+  ],
+  "cleanup": "Owned web/API dev stopped; native test harness exited and cleaned owned processes; shared Portless proxy/unrelated apps preserved. No new local daemon left.",
+  "hashes": {
+    "dry-run.log": "13c97cdded454a7dee0804fc0602c20286be694543474293f75cca3beaef8f44",
+    "api-typecheck.log": "4ff10cf63588a4fa3dd6479e76c137ae08a70e46ab34c2a2475754e28556f68c",
+    "api-unit.log": "59fd6d9c6acce756f33639002b91248233d5c9d871c0f151f5dfcac3f14b0433",
+    "browser-login-1440-en.png": "d330be5898ea978a8ef505c4f9d979106030f97b00925a6d5e84097bb07aee57",
+    "live-http.json": "1582e57b55dc74f8e405ee3eb7dd3f66733e1c81fe1d27b35cc9e2eea7d1af20",
+    "auth-session.log": "be2a772b5e047be790e4a4e79b4cc2b55d8c57c70e242cff427569711ff815cf",
+    "deploy.log": "86455645426aaf316fbd276fb15afb8c81afd685ac3bebb52aa729c0d078be3e",
+    "migrations.log": "ffa4301dde6ec677ca0f0a3652c3038d4df46b16dc6574823d0ce53742f207ec",
+    "api-unit-rerun.log": "f83f34cb3b398aa7c1ce3988f052f2a7963a602f31f60d452e715052b4068ab9",
+    "http-build.log": "8532c5b589785f4afdc6661fe688a165c480ec545080e6a75e869506c6ecee1b",
+    "browser-report.json": "eb97c7e104ee13f12f900b6c8922464791ea45b928e6cd4307203b9c7f65adff",
+    "browser-login-390-vi.png": "1b8bff239aeb6db89539acb475331375daed1d379a87cd65eb83af7212b3b1b4",
+    "api-lint.log": "72d93a7f8e1d6c1f73355d9326173735e3ac8304796c268ea50b453a188bcdda"
+  }
+}

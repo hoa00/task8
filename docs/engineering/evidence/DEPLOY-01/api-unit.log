@@ -1,0 +1,167 @@
+.                                        | [WARN] Unsupported engine: wanted: {"node":"24.13.0"} (current: {"node":"v24.22.1","pnpm":"11.19.0"})
+$ node --import ./tests/support/wasm-loader.mjs --experimental-transform-types --test tests/unit/*.test.mjs
+(node:1648) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ AES-GCM authenticates nonce/session/kind/version and uses fresh nonce and opaque hashed SID (44.616666ms)
+✔ Origin and cookies use exact trusted configuration; HTTP only loopback local and no refresh cookie policy (159.152791ms)
+(node:1649) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ profile mapper uses bounded Unicode names and rejects malformed surrogate before persistence (6.53525ms)
+(node:1650) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ provider keeps distinct login, refresh and whoami envelopes and paths (73.700208ms)
+✔ HTTP201 with body400 is rejected for both credential routes (0.841375ms)
+✔ provider accepts serialized profiles without tenant while rejecting a supplied mismatch (4.217417ms)
+✔ provider calls injected fetch without a dependency-object receiver (1.568125ms)
+✔ malformed success, contradictory errors and wrong envelope are service failures (45.266292ms)
+✔ provider outage, throttling and network exceptions never become bad passwords (0.480917ms)
+✔ deadline aborts the upstream request once without a retry (0.855625ms)
+✔ token expiries, byte bounds, central identity shape and tenant fail closed (2.263958ms)
+✔ response bytes are capped on the stream even without Content-Length (1.732334ms)
+✔ provider config rejects unsafe setup and preserves tenant matching (1.114917ms)
+✔ HTTP maps auth errors without leaking upstream details or logging payloads (63.264042ms)
+✔ provider rejects manual redirects before decoding or forwarding credentials (21.994333ms)
+(node:1651) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ preview formats require matching signatures and unsafe media stays attachment-only (4.592209ms)
+✔ file diagnostic logs correlate attempts without payload, hash, object key or error message (0.553ms)
+✔ feature runner selects known suites and rejects typos (3.639708ms)
+✖ isolated run IDs, storage and ephemeral ports (10.323541ms)
+✖ startup timeout terminates owned process even before launch returns (2.768167ms)
+✖ early exit records real code and command failure cannot pass (0.838ms)
+✖ spawn failure preserves ENOENT without trying to kill an unowned PID (2.064167ms)
+API request failed {
+  requestId: undefined,
+  operation: undefined,
+  errorCode: 'INTERNAL_ERROR',
+  errorType: 'ZodError',
+  phase: 'request',
+  durationMs: 0
+}
+(node:1653) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ internal DTO ZodError returns500 with no internal message (103.380041ms)
+(node:1654) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ request schema failures are400, with valid null/omitted input intact (114.070125ms)
+✔ all route groups use decimal limit, strict bool/null/filter decoding (27.931209ms)
+✔ actual streamed bytes are bounded without trusting Content-Length (6.025958ms)
+✔ server log has correlation fields and never logs the error payload (0.922167ms)
+✔ current API has zero legacy exemptions (875.453375ms)
+✔ reject application importing public HTTP factory (0.402292ms)
+✔ reject library outside auth adapter (0.08525ms)
+✔ reject auth application importing library (0.088208ms)
+✔ reject flat compatibility feature owner (0.089584ms)
+✔ reject domain importing request context (0.077ms)
+✔ reject domain importing Hono (0.07225ms)
+✔ reject domain importing D1 rows (0.067708ms)
+✔ reject mapper importing persistence (0.079375ms)
+✔ reject route importing DB (0.134958ms)
+✔ reject application importing Hono (2.7235ms)
+✔ reject shared importing business public API (0.531041ms)
+✔ reject cross-feature deep import (0.242ms)
+✔ reject frontend relative import (0.654625ms)
+✔ reject frontend package alias (0.200166ms)
+✔ reject computed dynamic import (2.970542ms)
+✔ reject reexport internal business API (1.76375ms)
+✔ allow cross-feature public API and pure domain imports (0.765791ms)
+✔ AST ignores comments and strings, detects static dynamic imports (0.617417ms)
+✔ reject new cycle and reject new edge inside a legacy cycle (11.789625ms)
+✔ reject stale, wildcard and reopening exact legacy exemptions (7.342542ms)
+✔ named public persistence predicate preserves its leaf layer (0.2625ms)
+✔ public facade cannot hide application dependency from persistence (0.16825ms)
+✔ only listed cross-aggregate fragment facade is public (0.168625ms)
+✔ immutable local Wasm resources resolve through the same owner boundary (0.154584ms)
+(node:1658) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ read page retains full total and cursor tuple without depending on an anchor lookup (19.05675ms)
+✔ seek directions distinguish archive ascending ID ties from descending history ties (7.132333ms)
+(node:1659) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ canonical limits match contracts and existing manifest (0.881166ms)
+✔ actor active/admin/creator matrix includes removed and invited states (0.162833ms)
+✔ private view differs from edit, and owner role never bypasses absent grant (0.112542ms)
+(node:1660) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ dedicated completion preserves noop, restores previous status and falls back to todo (0.89475ms)
+✔ status transition preserves original completion timestamp and records previous status only on entering done (1.188958ms)
+✔ internal status corruption is rejected by projection mapper (1.209334ms)
+(node:1661) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ ordering checks adjacent neighbors, endpoints and insertion position (2.895ms)
+✔ exhausted gap produces complete deterministic rebalance without mutating snapshots (1.958125ms)
+✔ rebalance bounds and unsafe integer positions reject before writes (0.269458ms)
+(node:1662) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ pinned collation handles canonical equality, accent/case and unpaired cursor values (2.425ms)
+✔ UTF16 keys retain supplementary and prefix order independently of locale (0.179125ms)
+✔ derived fields keep literal Unicode folding and JavaScript numeric conversion (1.528292ms)
+✔ derived D1 keys match the native WTF8 read projection while cursor keys keep lone units (0.623875ms)
+(node:1663) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ every canonical Undo kind has an owned handler and registry construction performs no I/O (2.688958ms)
+ℹ tests 68
+ℹ suites 0
+ℹ pass 64
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2938.66
+
+✖ failing tests:
+
+test at tests/unit/harness.test.mjs:12:1
+✖ isolated run IDs, storage and ephemeral ports (10.323541ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2368:21)
+      at listenInCluster (node:net:2499:12)
+      at node:net:2728:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/unit/harness.test.mjs:24:1
+✖ startup timeout terminates owned process even before launch returns (2.768167ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2368:21)
+      at listenInCluster (node:net:2499:12)
+      at node:net:2728:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/unit/harness.test.mjs:46:1
+✖ early exit records real code and command failure cannot pass (0.838ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2368:21)
+      at listenInCluster (node:net:2499:12)
+      at node:net:2728:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+
+test at tests/unit/harness.test.mjs:64:1
+✖ spawn failure preserves ENOENT without trying to kill an unowned PID (2.064167ms)
+  Error: listen EPERM: operation not permitted 127.0.0.1
+      at Server.setupListenHandle [as _listen2] (node:net:2368:21)
+      at listenInCluster (node:net:2499:12)
+      at node:net:2728:7
+      at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+    code: 'EPERM',
+    errno: -1,
+    syscall: 'listen',
+    address: '127.0.0.1'
+  }
+/Users/hoadev/Projects/ai-v3/task8-react/apps/api:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @studio/api@0.0.0 test:unit: `node --import ./tests/support/wasm-loader.mjs --experimental-transform-types --test tests/unit/*.test.mjs`
+Exit status 1
