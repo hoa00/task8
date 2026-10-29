@@ -6,7 +6,7 @@
 
 Production dùng tenant ICT24H hiện tại theo lựa chọn của Hòa. D1/R2 mới, tách local; không sao chép dữ liệu local, không seed demo hoặc tự cấp workspace/Owner. Khi tài khoản đăng nhập lần đầu chưa có membership, làm theo [quy trình cấp workspace](ICT24H_AUTH_RUNBOOK.md#cấp-workspace-và-kiểm-waitingready); deploy không thay thế bước cấp quyền này.
 
-URL public: <https://datamaker-task.hoa.workers.dev>. Không dùng miền Portless `.test` cho production. Cấu hình local tiếp tục ở `apps/api/wrangler.jsonc`; không dùng lệnh deploy mặc định của API với cấu hình local để publish.
+URL public: <https://task-demo-datamaker.i24h.app>. Custom Domain và AUTH_APP_ORIGIN cùng được quản lý trong cấu hình production để lần deploy sau giữ đúng origin. Miền workers.dev vẫn bật theo trạng thái hiện có, nhưng origin đăng nhập chính thức là Custom Domain. Khi đổi hostname, cookie __Host- không dùng chung giữa hai miền: đăng nhập lại trên URL mới; D1/R2 và quyền workspace vẫn giữ nguyên. Không dùng miền Portless `.test` cho production. Cấu hình local tiếp tục ở `apps/api/wrangler.jsonc`; không dùng lệnh deploy mặc định của API với cấu hình local để publish.
 
 ## Quyền và nguồn cấu hình
 
@@ -38,6 +38,6 @@ pnpm --filter @studio/api exec wrangler d1 migrations apply DB --remote --config
 
 Backup SQL và receipt của lần đầu nằm trong output private được ghi ở [PROGRESS](../poc/PROGRESS.md). Trong các lần sau, lưu backup ngoài repo qua kho backup đã được operator chọn. Không reset/seed để sửa lỗi production; với derived read keys hoặc membership, dùng đúng procedure của owner và backup trước effects.
 
-Tra phiên bản trước bằng `deployments list`, rồi `pnpm --filter @studio/api exec wrangler rollback VERSION_ID --config wrangler.production.jsonc`. Code rollback không rollback D1/R2 hay đổi keys. Lần triển khai đầu chưa có phiên bản trước: nếu cần ngắt public access, tắt workers.dev subdomain của đúng Worker trong Cloudflare Dashboard, giữ D1/R2/backup để điều tra.
+Tra phiên bản trước bằng `deployments list`, rồi `pnpm --filter @studio/api exec wrangler rollback VERSION_ID --config wrangler.production.jsonc`. Code rollback không rollback D1/R2 hay đổi keys. Khi rollback qua một lần đổi domain, kiểm lại Custom Domain và AUTH_APP_ORIGIN của phiên bản đích; routing và origin phải thống nhất. Nếu cần ngắt public access, xử lý cả Custom Domain và workers.dev theo cấu hình hiện hành: tắt một hostname không ngắt hostname còn lại. Giữ D1/R2/backup để điều tra.
 
 Build/deploy output thuộc phiên chạy Wrangler. Để xem application logs, dùng Workers → Worker đúng tên trong config → Logs/Live hoặc `wrangler tail --config wrangler.production.jsonc` từ package API, giới hạn theo request/time window và dừng tail sau điều tra. Không ghi password, cookie, token hoặc response profile vào evidence. Chưa thiết lập persistent log retention hay CI/CD trong nhiệm vụ này.

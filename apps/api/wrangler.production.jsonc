@@ -7,6 +7,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "preview_urls": false,
+  "routes": [{ "pattern": "task-demo-datamaker.i24h.app", "custom_domain": true }],
   "send_metrics": false,
   "assets": {
     "directory": "../web/dist-http",
@@ -19,7 +20,7 @@
     "AUTH_PROVIDER_KEY": "ict24h-identity",
     "AUTH_PROVIDER_BASE_URL": "https://hrm-api-v2.cwr.i24h.app",
     "AUTH_TENANT_ID": "ict24h-rdn-dev",
-    "AUTH_APP_ORIGIN": "https://datamaker-task.hoa.workers.dev",
+    "AUTH_APP_ORIGIN": "https://task-demo-datamaker.i24h.app",
   },
   "r2_buckets": [{ "binding": "FILES", "bucket_name": "datamaker-task-production-files" }],
   "d1_databases": [
