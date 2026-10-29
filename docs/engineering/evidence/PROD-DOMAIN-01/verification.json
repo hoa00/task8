@@ -1,0 +1,92 @@
+{
+  "status": "DEPLOYED_VERIFIED",
+  "date": "2026-10-29",
+  "sourceRevision": "12be604199f12de70d99d4f804b99efc9f589691",
+  "url": "https://task-demo-datamaker.i24h.app",
+  "before": {
+    "customDomainAlreadyEnabled": true,
+    "targetWorker": "datamaker-task",
+    "authAppOrigin": "https://datamaker-task.hoa.workers.dev",
+    "loginHttpsStatus": 200,
+    "sessionStatus": 401,
+    "refreshWithNewOriginStatus": 403,
+    "refreshError": "FORBIDDEN"
+  },
+  "after": {
+    "authAppOrigin": "https://task-demo-datamaker.i24h.app",
+    "customDomainId": "0d71b40da965f52c894de1404bfde99ff346213d",
+    "customDomainEnabled": true,
+    "customDomainTarget": "datamaker-task",
+    "deploymentId": "61d39f0f-d5a3-4aab-9a6f-c6c237bb7986",
+    "versionId": "aa20dde0-e052-4d78-8e29-4d66aa540af2",
+    "trafficPercent": 100,
+    "createdOn": "2026-10-29T04:20:55.939616Z",
+    "tag": "12be604199f1",
+    "workersDevKeptEnabled": true
+  },
+  "configDelta": "Only AUTH_APP_ORIGIN and an explicit managed custom_domain route changed. Parsed JSONC remainder equals prior config exactly.",
+  "preserved": {
+    "databaseId": "f16db040-c46b-4a12-ad5d-9282dfd3cdde",
+    "bucket": "datamaker-task-production-files",
+    "tenant": "ict24h-rdn-dev",
+    "secretNames": [
+      "AUTH_PUBLIC_KEY",
+      "AUTH_SESSION_ENCRYPTION_KEY"
+    ],
+    "secretsReadOrRotated": false,
+    "databaseQueriesOrWrites": false,
+    "schemaOrMembershipChanges": false,
+    "localPortlessChanged": false,
+    "runtimeCodeChanged": false
+  },
+  "verification": {
+    "authOriginCookieUnitTests": 2,
+    "configDeltaAssertion": "passed",
+    "httpBuild": "passed",
+    "httpBundleIsolation": "passed; test-results/prod-domain-261029-bundle",
+    "productionWranglerDryRun": "passed",
+    "liveHttpProbes": 11,
+    "newOriginWithoutSession": "401 UNAUTHENTICATED",
+    "oldAndUntrustedOrigins": "403 FORBIDDEN",
+    "browserScenarios": 4,
+    "browserPageErrors": [],
+    "tlsBypass": false,
+    "formatAndDiff": "passed"
+  },
+  "commands": [
+    "node --experimental-transform-types --test apps/api/tests/unit/auth-crypto.test.mjs",
+    "pnpm --filter @studio/web build:http",
+    "node tests/data/http-bundle.mjs --output=test-results/prod-domain-261029-bundle",
+    "pnpm --filter @studio/api exec wrangler deploy --config wrangler.production.jsonc --dry-run",
+    "pnpm --filter @studio/api exec wrangler deploy --config wrangler.production.jsonc --tag 12be604199f1"
+  ],
+  "review": {
+    "skill": "ak-code-review",
+    "scope": "Config delta, preserved remote bindings/secrets, exact Origin guard, future deploy routing ownership and changed operational guide",
+    "findings": []
+  },
+  "limits": [
+    "Successful real login is not claimed; live checks use anonymous requests and existing native auth/cookie tests.",
+    "__Host- session cookies are hostname-scoped; users must log in on the new domain. Existing data/roles remain in the same D1.",
+    "No DB backup needed for this operation because no DB queries/writes/migrations were performed.",
+    "Unchanged application code was not subjected to unrelated full regression; scoped policy/build/routing checks passed.",
+    "Node24.22.1 differs from repository pin24.13.0; no runtime/dependency pin was changed."
+  ],
+  "rollback": {
+    "priorVersion": "11083b4a-c43b-4bfa-a09e-668ab11c1121",
+    "note": "Check route and AUTH_APP_ORIGIN together before rollback across this hostname change; never reset D1/R2 or rotate keys for rollback."
+  },
+  "references": [
+    "https://developers.cloudflare.com/workers/configuration/routing/custom-domains/",
+    "https://developers.cloudflare.com/workers/wrangler/configuration/"
+  ],
+  "hashes": {
+    "login-390-vi.png": "1b8bff239aeb6db89539acb475331375daed1d379a87cd65eb83af7212b3b1b4",
+    "dry-run.log": "0bffe5c049915b78457d9f78ee117e0757dc050cb7c4c3f136b134e7c455f8a4",
+    "live-http.json": "5705118825f1c3acce253ceb1585130da33dbc4d312597e3dda82e7855e249a4",
+    "deploy.log": "693670c46ba3414c748265fc3c9e15bb2e28636d600058afd3b488d52796328e",
+    "auth-origin-tests.log": "f85a0cea3b1909278bee23a484e440376cb583df4bcb4c0bc947241eb29e66ab",
+    "http-build.log": "0dd288e7623268e2c4d675cf79dc9efc0b526e531f8cef6095c11130512f8240",
+    "browser-report.json": "39d8d828091291e55e99755f94e1f3130a69b0e15e66f09604da8de2be70d922"
+  }
+}

@@ -1,0 +1,41 @@
+.                                        | [WARN] Unsupported engine: wanted: {"node":"24.13.0"} (current: {"node":"v24.22.1","pnpm":"11.19.0"})
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mFailed to write to log file Error: EPERM: operation not permitted, open '/Users/hoadev/Library/Preferences/.wrangler/logs/wrangler-2026-10-29_04-18-19_277.log'[0m
+
+      at async open (node:internal/fs/promises:1345:25)
+      at async writeFile (node:internal/fs/promises:1972:14)
+      at async /Users/hoadev/Projects/ai-v3/task8-react/node_modules/.pnpm/wrangler@4.148.0_@cloudflare+workers-types@5.20261006.1_@types+node@24.19.1/node_modules/wrangler/wrangler-dist/cli.js:65089:7
+      at async Mutex.runWith (/Users/hoadev/Projects/ai-v3/task8-react/node_modules/.pnpm/miniflare@5.20261006.0-alpha_@types+node@24.19.1/node_modules/miniflare/dist/src/index.js:70213:16)
+      at async appendToDebugLogFile (/Users/hoadev/Projects/ai-v3/task8-react/node_modules/.pnpm/wrangler@4.148.0_@cloudflare+workers-types@5.20261006.1_@types+node@24.19.1/node_modules/wrangler/wrangler-dist/cli.js:65086:3) {
+    errno: -1,
+    code: 'EPERM',
+    syscall: 'open',
+    path: '/Users/hoadev/Library/Preferences/.wrangler/logs/wrangler-2026-10-29_04-18-19_277.log'
+  }
+
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mWould have written: [0m
+
+  --- 2026-10-29T04:18:19.602Z debug
+  🪵  Writing logs to "/Users/hoadev/Library/Preferences/.wrangler/logs/wrangler-2026-10-29_04-18-19_277.log"
+  ---
+
+
+
+
+ ⛅️ wrangler 4.148.0
+────────────────────
+✨ Read 155 files from the assets directory /Users/hoadev/Projects/ai-v3/task8-react/apps/web/dist-http
+Total Upload: 2587.44 KiB / gzip: 633.15 KiB
+Your Worker has access to the following bindings:
+Binding                                                                  Resource
+env.DB (datamaker-task-production)                                       D1 Database
+env.FILES (datamaker-task-production-files)                              R2 Bucket
+env.AUTH_MODE ("ict24h")                                                 Environment Variable
+env.STUDIO_ENV ("production")                                            Environment Variable
+env.AUTH_PROVIDER_KEY ("ict24h-identity")                                Environment Variable
+env.AUTH_PROVIDER_BASE_URL ("https://hrm-api-v2.cwr.i24h.app")           Environment Variable
+env.AUTH_TENANT_ID ("ict24h-rdn-dev")                                    Environment Variable
+env.AUTH_APP_ORIGIN ("https://task-demo-datamaker.i24h.app")             Environment Variable
+
+--dry-run: exiting now.
+🪵  Logs were written to "/Users/hoadev/Library/Preferences/.wrangler/logs/wrangler-2026-10-29_04-18-19_277.log"
