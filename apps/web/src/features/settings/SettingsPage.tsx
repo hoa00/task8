@@ -54,7 +54,7 @@ const generalPersonalSections = [
 export type GeneralPersonalSection = (typeof generalPersonalSections)[number];
 const headings: Record<GeneralPersonalSection, [string, string]> = {
   workspace: ['Workspace', 'Your workspace name, address, and identity.'],
-  appearance: ['Appearance', 'Customize how HoaDev looks on this device.'],
+  appearance: ['Appearance', 'Customize how DataMaker Task looks on this device.'],
   language: ['Language', 'Language and regional formats.'],
   datetime: ['Date & time', 'How dates and times appear across the workspace.'],
   profile: ['Profile', 'How you appear to others in the workspace.'],
@@ -753,7 +753,7 @@ function PreferenceSettings({ section, preferences, onNotice }: PreferenceSettin
       <>
         <SettingRow
           title={t('Open on launch')}
-          description={t('The page you see when HoaDev opens.')}
+          description={t('The page you see when DataMaker Task opens.')}
         >
           {select('home', [
             ['home', 'Home'],

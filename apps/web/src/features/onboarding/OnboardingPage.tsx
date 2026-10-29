@@ -79,7 +79,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
     sequence = useRef(0),
     busy = useRef(false);
   useEffect(() => {
-    document.title = 'HoaDev';
+    document.title = 'DataMaker Task';
     active.current = true;
     return () => {
       active.current = false;
@@ -274,7 +274,7 @@ function OnboardingController({ step: requestedStep }: { step: number }) {
                     size="lg"
                     value={draft.ws}
                     maxLength={120}
-                    placeholder={t('e.g. HoaDev')}
+                    placeholder={t('e.g. DataMaker Task')}
                     onChange={(event) => update({ ws: event.target.value })}
                     error={!!workspaceError}
                     aria-invalid={!!workspaceError}

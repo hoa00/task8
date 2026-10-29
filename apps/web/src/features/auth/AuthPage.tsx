@@ -94,7 +94,7 @@ export function AuthPage({ screen }: AuthPageProps) {
       !!session.data && session.data.data.capabilities.features.authentication === 'unavailable';
   const [demoOptIn, setDemoOptIn] = useState(facade?.demoEnabled ?? false);
   const mockMode = document.getElementById('root')?.dataset.dataMode === 'mock';
-  const title = 'HoaDev';
+  const title = 'DataMaker Task';
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -426,7 +426,7 @@ function AuthController({
   if (screen === 'login')
     content = (
       <>
-        <AuthHeading title={t('Welcome back')} subtitle={t('Sign in to HoaDev')} />
+        <AuthHeading title={t('Welcome back')} subtitle={t('Sign in to DataMaker Task')} />
         {errors.login && <AuthMessage error>{errors.login}</AuthMessage>}
         {emailField('l-email')}
         <div className="flex flex-col gap-[6px]">

@@ -61,6 +61,8 @@ pnpm --filter @studio/api db:seed:local
 pnpm --filter @studio/api dev
 ```
 
+`dev` chạy Wrangler qua Portless tại `https://api.datamaker-task.test:1355`, dùng chung proxy với web `https://datamaker-task.test:1355`; xem [setup root](../../README.md#chạy-workspace-local). `dev:direct` giữ HTTP loopback8787 khi cần chạy trực tiếp và cổng đang rảnh.
+
 Wrangler local dùng placeholder DB ID, storage mặc định `apps/api/.wrangler/state`; restart giữ D1/R2. Seed nhận optional `--persist-to PATH`, luôn local. `db:reset:local` xóa default local D1 storage một cách explicit; không dùng để upgrade/preservation. Principal lấy `STUDIO_ENV`, `LOCAL_USER_ID`, `LOCAL_WORKSPACE_ID` từ trusted server config; missing/malformed/invited/removed/nonlocal trả401. Browser identity headers không chọn actor. Named future operations501, unknown route404. Dry-run build không deploy.
 
 ```sh

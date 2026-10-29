@@ -1,17 +1,17 @@
-# HoaDev
+# DataMaker Task
 
-**HoaDev** — Quản lý công việc, dự án và cộng tác nhóm.
+**DataMaker Task** — Quản lý công việc, dự án và cộng tác nhóm.
 
 - Website: [hoadev.com](https://hoadev.com)
 - GitHub: [hoa00](https://github.com/hoa00)
 
-Ứng dụng hiện dùng thương hiệu HoaDev cho logo, tiêu đề, nội dung Việt/Anh và dữ liệu demo. Bản chụp nguồn, tài liệu/evidence lịch sử và ghi nhận upstream được giữ nguyên để đối chiếu. Email `@hoadev.com` trong demo chỉ là dữ liệu minh họa. Dữ liệu workspace đã lưu không bị ghi đè; có thể sửa tên/URL tại Workspace settings.
+Tên ứng dụng là **DataMaker Task**; `task8` chỉ là mã dự án nội bộ. Logo, tiêu đề và nội dung sản phẩm Việt/Anh dùng tên DataMaker Task. HoaDev vẫn là tác giả và tên tổ chức/workspace demo. Bản chụp nguồn, tài liệu/evidence lịch sử và ghi nhận upstream được giữ nguyên để đối chiếu. Email `@hoadev.com` trong demo chỉ là dữ liệu minh họa. Dữ liệu workspace đã lưu không bị ghi đè; có thể sửa tên/URL tại Workspace settings.
 
-Tên package là `task8`; repository đích là [hoa00/task8](https://github.com/hoa00/task8) (private). Tiến độ triển khai và evidence hiện tại nằm trong [PROGRESS.md](docs/poc/PROGRESS.md).
+Tên package nội bộ là `task8`; repository đích là [hoa00/task8](https://github.com/hoa00/task8) (private). Tiến độ triển khai và evidence hiện tại nằm trong [PROGRESS.md](docs/poc/PROGRESS.md).
 
 **Cập nhật frontend:** 15/10/2026; checkpoint POC bên dưới ngày 10/10/2026. React UI và backend Hono/Drizzle/D1/R2 local đã triển khai đến WU-35; các gate HTTP local WU-36 đã PASS. Checkpoint kỹ thuật và Git thực tế xem PROGRESS. Phạm vi visual được chấp nhận có giới hạn; các khoản nợ M2 lịch sử vẫn chưa được nghiệm thu. Kết quả cuối và bằng chứng thật nằm trong [M3 acceptance](docs/poc/evidence/WU-36/ACCEPTANCE_REPORT.md) và [PROGRESS](docs/poc/PROGRESS.md).
 
-HoaDev kế thừa giao diện tham chiếu và các trạng thái tương tác, triển khai bằng **React + TypeScript + Vite + TanStack Router + Tailwind CSS**, tổ chức component dùng lại theo chức năng, và chuẩn bị contract để backend **Hono + Drizzle ORM + Cloudflare D1** thay mock mà không phải viết lại màn hình.
+DataMaker Task kế thừa giao diện tham chiếu và các trạng thái tương tác, triển khai bằng **React + TypeScript + Vite + TanStack Router + Tailwind CSS**, tổ chức component dùng lại theo chức năng, và chuẩn bị contract để backend **Hono + Drizzle ORM + Cloudflare D1** thay mock mà không phải viết lại màn hình.
 
 ## Các quyết định đã chốt
 
@@ -88,12 +88,15 @@ WU-00…WU-35 có checkpoint thực tế; WU-36 là unit cuối của backend PO
 Dùng Node `24.13.0` trong `.node-version` và pnpm `11.19.0` trong `packageManager`:
 
 ```sh
+pnpm add --global portless@0.15.12
 pnpm install --frozen-lockfile
 cp apps/web/.env.example apps/web/.env.local
 pnpm dev
 ```
 
-Turbo chạy Vite tại `http://127.0.0.1:5173` và Wrangler local tại `http://127.0.0.1:8787`. Vite dev/preview proxy `/api` sang Worker; mọi URL API của web phải là đường dẫn tương đối cùng origin. `VITE_DATA_MODE=mock|http`, `VITE_API_BASE_URL=/api/v1`; bootstrap validate một lần, không tự fallback khi HTTP lỗi. API hiện có các operation nghiệp vụ đã kiểm chứng; HTTP lỗi được trả đúng contract, không fallback mock.
+Turbo chạy web/API qua [Portless](https://github.com/vercel-labs/portless). Máy mới khởi tạo proxy một lần bằng `portless proxy start --port 1355 --tld test`; máy Hòa dùng chung proxy HTTPS hiện có ở cổng1355 với `.test` là TLD đầu tiên. Mở **https://datamaker-task.test:1355**; Worker có route `https://api.datamaker-task.test:1355`. Portless cấp cổng riêng cho từng process và đồng bộ hostname qua `/etc/hosts`; không chiếm cổng5173/8787 của dự án khác. Nếu hệ thống yêu cầu quyền ghi hosts/trust CA, chạy setup Portless từ terminal tương tác. Không stop/reconfigure proxy dùng chung khi app kết thúc.
+
+Vite dev proxy `/api` sang named Worker, derive từ `PORTLESS_URL`, giữ port/protocol và rewrite Host (`changeOrigin`). `TASK8_API_PROXY_TARGET` vẫn có thể override upstream. Chạy trực tiếp bằng `pnpm --filter @studio/api dev:direct` và `pnpm --filter @studio/web dev:direct` khi cổng8787/5173 đang rảnh; preview vẫn dùng upstream8787 mặc định. Mọi URL API của web phải là đường dẫn tương đối cùng origin; `VITE_DATA_MODE=mock|http`, `VITE_API_BASE_URL=/api/v1`; bootstrap validate một lần, không tự fallback khi HTTP lỗi. API hiện có các operation nghiệp vụ đã kiểm chứng; HTTP lỗi được trả đúng contract, không fallback mock.
 
 Biến `VITE_*` được gửi vào browser, chỉ dùng hai biến công khai trong `.env.example`. Biến Worker riêng nằm trong `wrangler.jsonc`/`.dev.vars` hoặc binding phía server; không đưa secrets vào `VITE_*`. File `.env.local` và `.dev.vars` được ignore.
 
@@ -130,7 +133,7 @@ pnpm --filter @studio/api dev
 VITE_DATA_MODE=http VITE_API_BASE_URL=/api/v1 pnpm --filter @studio/web dev
 ```
 
-Mở `http://127.0.0.1:5173`. Vite proxy `/api` đến Worker `8787`; chọn adapter chỉ ở bootstrap. Wrangler mặc định lưu D1/R2 tại `apps/api/.wrangler/state`, nên restart giữ dữ liệu. Principal từ `LOCAL_USER_ID`/`LOCAL_WORKSPACE_ID` trong config server; browser không đặt user header để đăng nhập. File thực có cap10MiB, MIME allowlist, download kiểm tra quyền; file seed chỉ có artwork và `contentAvailable:false`.
+Mở `https://datamaker-task.test:1355`. Vite proxy `/api` đến `https://api.datamaker-task.test:1355`; chọn adapter chỉ ở bootstrap. Với ICT24H, đặt `AUTH_APP_ORIGIN=https://datamaker-task.test:1355` trong `apps/api/.dev.vars` rồi restart API; xem [runbook](docs/engineering/ICT24H_AUTH_RUNBOOK.md#cấu-hình-local-từ-root-repo). Wrangler mặc định lưu D1/R2 tại `apps/api/.wrangler/state`, nên restart giữ dữ liệu. Principal từ `LOCAL_USER_ID`/`LOCAL_WORKSPACE_ID` trong config server; browser không đặt user header để đăng nhập. File thực có cap10MiB, MIME allowlist, download kiểm tra quyền; file seed chỉ có artwork và `contentAvailable:false`.
 
 WU-36 và các lệnh `test:m3:*` là lịch sử nghiệm thu tại SHA trong reports; aliases đã gỡ khỏi package hiện hành. Tái tạo lịch sử bằng checkout SHA đó, không thêm runtime wrapper trở lại hoặc overwrite evidence. Kiểm thử backend hiện tại dùng [API README](apps/api/README.md), active feature runner và `pnpm test` (unique owned storage/ports). Các checks hiện hành còn lại:
 

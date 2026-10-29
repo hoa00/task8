@@ -1,4 +1,4 @@
-# Vận hành tích hợp ICT24H của task8
+# Vận hành tích hợp ICT24H của DataMaker Task (mã nội bộ task8)
 
 Phạm vi đã triển khai: email/password, refresh, phiên cookie task8 và logout. [Kế hoạch](ICT24H_AUTH_INTEGRATION_PLAN.md), [package proof](ICT24H_AUTH_SETUP.md), [acceptance](evidence/AUTH-06/acceptance/verification.json) và [PROGRESS](../poc/PROGRESS.md) ghi kết quả thực tế. **LOCAL_VERIFIED_LIVE_PENDING**: package/Worker/D1/R2/browser đã kiểm local; chưa có public key/test account/revision/TTL của deployment để nghiệm thu live. Tài liệu này là procedure cho operator; session triển khai không deploy, cấu hình remote secrets hay cấp workspace thật.
 
@@ -79,7 +79,7 @@ Repo đang giữ `AUTH_MODE=local` trong [wrangler.jsonc](../../apps/api/wrangle
    VITE_DATA_MODE=http pnpm --filter @studio/web dev
    ```
 
-   Mở `http://127.0.0.1:5173`, khớp AUTH_APP_ORIGIN. `http://localhost:5173` là origin khác; đổi cấu hình cùng URL nếu muốn dùng localhost. Frontend chỉ cần public VITE_DATA_MODE=http và VITE_API_BASE_URL=/api/v1, không nhận AUTH_PUBLIC_KEY/encryption key/token. Thay giá trị `.dev.vars` xong restart API; khi thay frontend mode phải restart Vite.
+   Mở `https://datamaker-task.test:1355` qua [Portless](../../README.md#chạy-workspace-local), đặt `AUTH_APP_ORIGIN=https://datamaker-task.test:1355` trong `.dev.vars` để khớp exact frontend origin. Proxy web chuyển `/api` tới named API, giữ browser Origin và xác thực TLS bằng CA Portless. Với `.dev.vars` đã tồn tại, chỉ đổi AUTH_APP_ORIGIN, giữ keys và các bindings khác. `dev:direct` vẫn hỗ trợ HTTP loopback5173/8787 khi cổng rảnh; khi đó cần origin loopback tương ứng. Frontend chỉ cần public VITE_DATA_MODE=http và VITE_API_BASE_URL=/api/v1, không nhận AUTH_PUBLIC_KEY/encryption key/token. Thay giá trị `.dev.vars` xong restart API; khi thay frontend mode phải restart Vite.
 
 Không chỉ `export AUTH_MODE=ict24h` rồi kỳ vọng tự thành Worker binding; procedure này dùng file `.dev.vars` rõ ràng và không cần bật import toàn bộ process env. Nếu dùng `--env NAME`, Wrangler chọn `.dev.vars.NAME` khi file đó tồn tại thay vì merge với `.dev.vars`: file riêng phải có đủ auth bindings. Repo hiện không khai báo named deployment environment; không giả định `--env production` đã cấu hình sẵn.
 

@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev --local --ip 127.0.0.1 --port 8787",
+    "dev": "portless api.datamaker-task wrangler dev --local --ip 127.0.0.1",
+    "dev:direct": "wrangler dev --local --ip 127.0.0.1 --port 8787",
     "build": "wrangler deploy --dry-run --outdir dist",
     "typecheck": "tsc --noEmit",
     "types": "wrangler types --include-runtime=false --env-interface CloudflareBindings",

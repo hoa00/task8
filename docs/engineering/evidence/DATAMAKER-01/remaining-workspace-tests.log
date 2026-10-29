@@ -1,0 +1,112 @@
+TAP version 13
+# Subtest: shared packages accept only their own dependency direction
+ok 1 - shared packages accept only their own dependency direction
+  ---
+  duration_ms: 189.593083
+  type: 'test'
+  ...
+# Subtest: one parser and resolver protect static/re-export/dynamic/require/import-type paths
+ok 2 - one parser and resolver protect static/re-export/dynamic/require/import-type paths
+  ---
+  duration_ms: 24.429042
+  type: 'test'
+  ...
+# Subtest: frontend layers reject data to router/view and controlled view to data
+ok 3 - frontend layers reject data to router/view and controlled view to data
+  ---
+  duration_ms: 1.109333
+  type: 'test'
+  ...
+# Subtest: cross-feature public symbols are allowed; deep files and extra symbols are rejected
+ok 4 - cross-feature public symbols are allowed; deep files and extra symbols are rejected
+  ---
+  duration_ms: 0.224292
+  type: 'test'
+  ...
+# Subtest: web imports shared packages through declared exports, including dynamic imports
+ok 5 - web imports shared packages through declared exports, including dynamic imports
+  ---
+  duration_ms: 0.293791
+  type: 'test'
+  ...
+# Subtest: runtime cycle detection includes dynamic edges and ignores type-only references
+ok 6 - runtime cycle detection includes dynamic edges and ignores type-only references
+  ---
+  duration_ms: 0.130666
+  type: 'test'
+  ...
+# Subtest: completed migrations reject every dependency violation without legacy exemptions
+ok 7 - completed migrations reject every dependency violation without legacy exemptions
+  ---
+  duration_ms: 2.537291
+  type: 'test'
+  ...
+# Subtest: every feature JSX file must declare its role and current real graph passes
+ok 8 - every feature JSX file must declare its role and current real graph passes
+  ---
+  duration_ms: 872.214041
+  type: 'test'
+  ...
+# Subtest: mock owners cannot reopen compatibility imports or make primitives depend on business handlers
+ok 9 - mock owners cannot reopen compatibility imports or make primitives depend on business handlers
+  ---
+  duration_ms: 0.154542
+  type: 'test'
+  ...
+# Subtest: controlled views cannot import a component controller as an indirect data shortcut
+ok 10 - controlled views cannot import a component controller as an indirect data shortcut
+  ---
+  duration_ms: 0.137625
+  type: 'test'
+  ...
+# Subtest: Field requires a render callback that forwards label and error bindings
+ok 11 - Field requires a render callback that forwards label and error bindings
+  ---
+  duration_ms: 0.484084
+  type: 'test'
+  ...
+# Subtest: portable paths reject case and Unicode collisions including parent directories
+ok 12 - portable paths reject case and Unicode collisions including parent directories
+  ---
+  duration_ms: 0.674208
+  type: 'test'
+  ...
+# Subtest: repository paths can coexist in a case-insensitive checkout
+ok 13 - repository paths can coexist in a case-insensitive checkout
+  ---
+  duration_ms: 950.264833
+  type: 'test'
+  ...
+# Subtest: relocated evidence preserves Git blobs and both distinct historical probe responses
+ok 14 - relocated evidence preserves Git blobs and both distinct historical probe responses
+  ---
+  duration_ms: 141.523667
+  type: 'test'
+  ...
+# Subtest: Portless web forwards API to its named sibling with the same TLS origin port
+ok 15 - Portless web forwards API to its named sibling with the same TLS origin port
+  ---
+  duration_ms: 4.661292
+  type: 'test'
+  ...
+# Subtest: An explicit API proxy target takes precedence over Portless discovery
+ok 16 - An explicit API proxy target takes precedence over Portless discovery
+  ---
+  duration_ms: 0.721167
+  type: 'test'
+  ...
+# Subtest: Direct development and preview retain their loopback API target
+ok 17 - Direct development and preview retain their loopback API target
+  ---
+  duration_ms: 0.594042
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3379.621292

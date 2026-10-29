@@ -232,7 +232,7 @@ export function DesignSystemGallery() {
       <div className="mb-5 flex flex-wrap items-start gap-3 [&_h1]:m-0 [&_h1]:text-2xl [&_h1]:font-semibold [&_h1]:leading-[1.2] [&_h1]:tracking-[-.022em] [&_h1]:[text-wrap:balance] [&_p]:mb-0 [&_p]:mt-1 [&_p]:text-body [&_p]:text-secondary max-[900px]:[&_h1]:text-xl [&>button]:ml-auto [&>[role=radiogroup]]:ml-auto max-[900px]:[&>button]:ml-0 max-[900px]:[&>[role=radiogroup]]:ml-0">
         <div>
           <h1>{'Design system'}</h1>
-          <p>{'Tokens and components that make up HoaDev. Switch themes to see both palettes.'}</p>
+          <p>{'Tokens and components that make up DataMaker Task. Switch themes to see both palettes.'}</p>
         </div>
         <SegmentedControl
           label="Theme"
@@ -635,7 +635,7 @@ export function DesignSystemGallery() {
           </Panel>
           <div className="flex flex-col gap-[14px]">
             <nav className="flex min-w-0 items-center gap-2 rounded-default border border-solid border-border p-[6px] text-sm text-secondary">
-              <span className="py-[3px] max-[900px]:hidden">{'HoaDev'}</span>
+              <span className="py-[3px] max-[900px]:hidden">{'DataMaker Task'}</span>
               <span className="text-xs text-faint max-[900px]:hidden">{'/'}</span>
               <span className="py-[3px] max-[900px]:hidden">{'Projects'}</span>
               <span className="text-xs text-faint max-[900px]:hidden">{'/'}</span>
@@ -949,7 +949,7 @@ export function SystemStatesGallery() {
       <div className="mb-5 flex flex-wrap items-start gap-3 [&_h1]:m-0 [&_h1]:text-2xl [&_h1]:font-semibold [&_h1]:leading-[1.2] [&_h1]:tracking-[-.022em] [&_h1]:[text-wrap:balance] [&_p]:mb-0 [&_p]:mt-1 [&_p]:text-body [&_p]:text-secondary max-[900px]:[&_h1]:text-xl [&>button]:ml-auto [&>[role=radiogroup]]:ml-auto max-[900px]:[&>button]:ml-0 max-[900px]:[&>[role=radiogroup]]:ml-0">
         <div>
           <h1>{'System states'}</h1>
-          <p>{'Empty, loading, error, and confirmation states used throughout HoaDev.'}</p>
+          <p>{'Empty, loading, error, and confirmation states used throughout DataMaker Task.'}</p>
         </div>
         <Button onClick={dev.toggleOffline}>
           <Icon name={dev.offline ? 'wifi' : 'wifi-off'} size={14} />

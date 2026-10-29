@@ -1,0 +1,10 @@
+.                                        | [WARN] Unsupported engine: wanted: {"node":"24.13.0"} (current: {"node":"v24.22.1","pnpm":"11.19.0"})
+Scope: 4 of 6 workspace projects
+packages/ui typecheck$ tsc --noEmit
+packages/contracts typecheck$ tsc --noEmit
+packages/contracts typecheck: Done
+packages/ui typecheck: Done
+packages/domain typecheck$ tsc --noEmit && tsc --noEmit -p tsconfig.tests.json
+packages/domain typecheck: Done
+apps/web typecheck$ tsc --noEmit
+apps/web typecheck: Done

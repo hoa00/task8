@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: Both catalogs have the same messages; Vietnamese is complete and translated interpolations retain valid inputs
+ok 1 - Both catalogs have the same messages; Vietnamese is complete and translated interpolations retain valid inputs
+  ---
+  duration_ms: 2.707208
+  type: 'test'
+  ...
+# Subtest: Every literal translation call in the app and shared UI exists in both catalogs
+ok 2 - Every literal translation call in the app and shared UI exists in both catalogs
+  ---
+  duration_ms: 194.650292
+  type: 'test'
+  ...
+# Subtest: dynamic catalog enums, web column names and choice labels exist in both locales
+ok 3 - dynamic catalog enums, web column names and choice labels exist in both locales
+  ---
+  duration_ms: 0.261042
+  type: 'test'
+  ...
+# Subtest: finite auth and password validation paths are translated at the feature boundary
+ok 4 - finite auth and password validation paths are translated at the feature boundary
+  ---
+  duration_ms: 0.302333
+  type: 'test'
+  ...
+# Subtest: both locales retain plural counts and interpolate user content without translating it
+ok 5 - both locales retain plural counts and interpolate user content without translating it
+  ---
+  duration_ms: 5.174375
+  type: 'test'
+  ...
+# Subtest: settings headings and onboarding choice metadata have complete dynamic text keys
+ok 6 - settings headings and onboarding choice metadata have complete dynamic text keys
+  ---
+  duration_ms: 8.396708
+  type: 'test'
+  ...
+# Subtest: notification category labels remain keys until render so live locale switches cannot freeze them
+ok 7 - notification category labels remain keys until render so live locale switches cannot freeze them
+  ---
+  duration_ms: 0.893167
+  type: 'test'
+  ...
+# Subtest: Vietnamese is the fresh default, only vi/en can be written, and both selections survive saved mock reloads
+ok 8 - Vietnamese is the fresh default, only vi/en can be written, and both selections survive saved mock reloads
+  ---
+  duration_ms: 39.954542
+  type: 'test'
+  ...
+# Subtest: Legacy language preferences migrate without discarding tasks, profile, other preferences or persisted workspace data
+ok 9 - Legacy language preferences migrate without discarding tasks, profile, other preferences or persisted workspace data
+  ---
+  duration_ms: 22.109167
+  type: 'test'
+  ...
+# Subtest: A failed save leaves the canonical language and workspace data unchanged
+ok 10 - A failed save leaves the canonical language and workspace data unchanged
+  ---
+  duration_ms: 13.620666
+  type: 'test'
+  ...
+# Subtest: Translations react to language changes, interpolate literal user text, and use proper English plurals
+ok 11 - Translations react to language changes, interpolate literal user text, and use proper English plurals
+  ---
+  duration_ms: 1.596917
+  type: 'test'
+  ...
+# Subtest: Unknown or inaccessible browser preferences keep Vietnamese as default
+ok 12 - Unknown or inaccessible browser preferences keep Vietnamese as default
+  ---
+  duration_ms: 0.064417
+  type: 'test'
+  ...
+# Subtest: System activity wording localizes catalog values and keeps assignee names literal
+ok 13 - System activity wording localizes catalog values and keeps assignee names literal
+  ---
+  duration_ms: 0.950041
+  type: 'test'
+  ...
+# Subtest: Generated notification text localizes but comment snippets and entity names remain literal
+ok 14 - Generated notification text localizes but comment snippets and entity names remain literal
+  ---
+  duration_ms: 1.31425
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 585.608791

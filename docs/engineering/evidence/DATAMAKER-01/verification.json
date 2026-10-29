@@ -1,0 +1,438 @@
+{
+  "status": "passed-selected-checks",
+  "date": "2026-10-29",
+  "request": "DataMaker Task is the app name; task8 remains internal. Use shared Portless HTTPS proxy on port 1355 with datamaker-task.test.",
+  "baseline": "55dcc6e6edf37acb617d5bf1ce48f79ccd34d1cf",
+  "runtime": {
+    "node": "24.22.1",
+    "pinnedNode": "24.13.0",
+    "pnpm": "11.19.0",
+    "portlessGlobal": "0.15.12",
+    "sharedProxyVersion": "0.15.11"
+  },
+  "runs": {
+    "foundation": {
+      "output": "test-results/datamaker-task-261029-foundation",
+      "status": "failed",
+      "node": "v24.22.1",
+      "commands": [
+        {
+          "id": "typecheck",
+          "status": "passed",
+          "command": [
+            "pnpm",
+            "--filter",
+            "@studio/web",
+            "--filter",
+            "@studio/ui",
+            "--filter",
+            "@studio/contracts",
+            "--filter",
+            "@studio/domain",
+            "typecheck"
+          ],
+          "exit": 0,
+          "sha256": "575d280c0627f9096d4828802cd85814ce84b377a7b1c516ca8829487eef646c",
+          "totals": null,
+          "log": "foundation-typecheck.log"
+        },
+        {
+          "id": "lint",
+          "status": "passed",
+          "command": [
+            "pnpm",
+            "exec",
+            "eslint",
+            "apps/web",
+            "packages",
+            "tests/workspace",
+            "tests/frontend",
+            "tests/data",
+            "tests/i18n",
+            "tests/contracts",
+            "tests/visual",
+            "eslint.config.mjs"
+          ],
+          "exit": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "totals": null,
+          "log": "foundation-lint.log"
+        },
+        {
+          "id": "boundaries",
+          "status": "passed",
+          "command": [
+            "pnpm",
+            "frontend:boundaries"
+          ],
+          "exit": 0,
+          "sha256": "ab06a2acdd0f1d3b7edd17a2a34c201fc1c32e0457e9537edef00aa806411d2a",
+          "totals": null,
+          "log": "foundation-boundaries.log"
+        },
+        {
+          "id": "web-tests",
+          "status": "passed",
+          "command": [
+            "/Users/hoadev/.nvm/versions/node/v24.22.1/bin/node",
+            "--experimental-strip-types",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=tap",
+            "apps/web/src/app/env.test.ts",
+            "apps/web/tests/data/archive.test.ts",
+            "apps/web/tests/data/auth-demo.test.ts",
+            "apps/web/tests/data/auth-lifecycle.test.ts",
+            "apps/web/tests/data/calendar.test.ts",
+            "apps/web/tests/data/dashboards.test.ts",
+            "apps/web/tests/data/files.test.ts",
+            "apps/web/tests/data/foundation.test.ts",
+            "apps/web/tests/data/frontend-correctness.test.ts",
+            "apps/web/tests/data/frontend-policies.test.ts",
+            "apps/web/tests/data/http-auth.test.ts",
+            "apps/web/tests/data/mock-owners.test.ts",
+            "apps/web/tests/data/notifications.test.ts",
+            "apps/web/tests/data/onboarding-demo.test.ts",
+            "apps/web/tests/data/people.test.ts",
+            "apps/web/tests/data/projects.test.ts",
+            "apps/web/tests/data/search.test.ts",
+            "apps/web/tests/data/security-billing-demo.test.ts",
+            "apps/web/tests/data/settings.test.ts",
+            "apps/web/tests/data/shell.test.ts",
+            "apps/web/tests/data/task-board.test.ts",
+            "apps/web/tests/data/task-collaboration.test.ts",
+            "apps/web/tests/data/task-detail.test.ts",
+            "apps/web/tests/data/task-fields.test.ts",
+            "apps/web/tests/data/task-list.test.ts",
+            "apps/web/tests/data/task-table.test.ts",
+            "apps/web/tests/data/teams.test.ts",
+            "apps/web/tests/data/timeline.test.ts",
+            "apps/web/tests/data/url-state.test.ts"
+          ],
+          "exit": 0,
+          "sha256": "b469221953f055c349f812b97c1814d449a4c3f52a0441ba08502e9ed79855c0",
+          "totals": {
+            "tests": 189,
+            "pass": 189,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "log": "foundation-web-tests.log"
+        },
+        {
+          "id": "workspace-tests",
+          "status": "failed",
+          "command": [
+            "/Users/hoadev/.nvm/versions/node/v24.22.1/bin/node",
+            "--experimental-strip-types",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=tap",
+            "tests/workspace/boundaries.test.mjs",
+            "tests/workspace/frontend-boundaries.test.mjs",
+            "tests/workspace/portable-paths.test.mjs",
+            "tests/workspace/portless-dev.test.mjs"
+          ],
+          "exit": 1,
+          "sha256": "3bc6c67cd49bd663436aa29c7246f3f789d2bd67333b95560dde693ece407e77",
+          "totals": {
+            "tests": 17,
+            "pass": 16,
+            "fail": 1,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "log": "foundation-workspace-tests.log",
+          "rawSha256": "b04bbd7aec8b0fbd13e962cf8a5aa38bb3e71b7b5d1882e383f6296f5c5f547a",
+          "logNormalization": "Trailing whitespace only; raw log remains at original test-results output."
+        }
+      ]
+    },
+    "remaining": {
+      "output": "test-results/datamaker-task-261029-remaining",
+      "status": "partial",
+      "node": "v24.22.1",
+      "commands": [
+        {
+          "id": "workspace-tests",
+          "status": "passed",
+          "command": [
+            "/Users/hoadev/.nvm/versions/node/v24.22.1/bin/node",
+            "--experimental-strip-types",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=tap",
+            "tests/workspace/boundaries.test.mjs",
+            "tests/workspace/frontend-boundaries.test.mjs",
+            "tests/workspace/portable-paths.test.mjs",
+            "tests/workspace/portless-dev.test.mjs"
+          ],
+          "exit": 0,
+          "sha256": "e5cecb0d95480187a9346308ae60ed2819062cd986718f44b3aad0d4efb62bc0",
+          "totals": {
+            "tests": 17,
+            "pass": 17,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "log": "remaining-workspace-tests.log"
+        },
+        {
+          "id": "i18n-tests",
+          "status": "passed",
+          "command": [
+            "/Users/hoadev/.nvm/versions/node/v24.22.1/bin/node",
+            "--experimental-strip-types",
+            "--test",
+            "--test-isolation=none",
+            "--test-reporter=tap",
+            "tests/i18n/catalog.test.mjs",
+            "tests/i18n/dynamic.test.mjs",
+            "tests/i18n/language.test.mjs"
+          ],
+          "exit": 0,
+          "sha256": "e99ba2c6fc48ff034814b21a2c69880cbad36029b7ac8b5b9f04ad182dcc340d",
+          "totals": {
+            "tests": 14,
+            "pass": 14,
+            "fail": 0,
+            "cancelled": 0,
+            "skipped": 0,
+            "todo": 0
+          },
+          "log": "remaining-i18n-tests.log"
+        },
+        {
+          "id": "build",
+          "status": "passed",
+          "command": [
+            "pnpm",
+            "--filter",
+            "@studio/web",
+            "--filter",
+            "@studio/ui",
+            "--filter",
+            "@studio/contracts",
+            "--filter",
+            "@studio/domain",
+            "build"
+          ],
+          "exit": 0,
+          "sha256": "cef8345fd586ca650826c2c364631077a16d0eef903a294c088b47d865b3a398",
+          "totals": null,
+          "log": "remaining-build.log"
+        },
+        {
+          "id": "http-build",
+          "status": "passed",
+          "command": [
+            "pnpm",
+            "--filter",
+            "@studio/web",
+            "build:http"
+          ],
+          "exit": 0,
+          "sha256": "e37642fb10e7d6793bc7b4a100876fdeb704e23ea7b8c20d16b87c6ca86c108a",
+          "totals": null,
+          "log": "remaining-http-build.log"
+        },
+        {
+          "id": "http-bundle",
+          "status": "passed",
+          "command": [
+            "/Users/hoadev/.nvm/versions/node/v24.22.1/bin/node",
+            "tests/data/http-bundle.mjs",
+            "--output=/Users/hoadev/Projects/ai-v3/task8-react/test-results/datamaker-task-261029-remaining/bundle"
+          ],
+          "exit": 0,
+          "sha256": "3e35d48acb936dc4689fb9561ea478a42f643da51c01b0073c9cfa1ea4ac450c",
+          "totals": null,
+          "log": "remaining-http-bundle.log"
+        },
+        {
+          "id": "reference",
+          "status": "passed",
+          "command": [
+            "pnpm",
+            "reference:check"
+          ],
+          "exit": 0,
+          "sha256": "c36d614a215c52586bc2bfa48075ed7e0bd13df2eae657dc0f5f6f1d717fa5db",
+          "totals": null,
+          "log": "remaining-reference.log"
+        }
+      ]
+    },
+    "mockBrowser": {
+      "output": "test-results/datamaker-task-261029-mock-browser",
+      "status": "partial",
+      "node": "v24.22.1",
+      "commands": [
+        {
+          "id": "build",
+          "status": "passed",
+          "command": [
+            "pnpm",
+            "--filter",
+            "@studio/web",
+            "--filter",
+            "@studio/ui",
+            "--filter",
+            "@studio/contracts",
+            "--filter",
+            "@studio/domain",
+            "build"
+          ],
+          "exit": 0,
+          "sha256": "deb4f2462f1132df0f7484dfdef4370fe60d6358fcd4a53dcdc54213f0ca3a40",
+          "totals": null,
+          "log": "mockBrowser-build.log"
+        },
+        {
+          "id": "browser-smoke",
+          "status": "passed",
+          "command": [
+            "/Users/hoadev/.nvm/versions/node/v24.22.1/bin/node",
+            "tests/frontend/smoke.mjs",
+            "--output=/Users/hoadev/Projects/ai-v3/task8-react/test-results/datamaker-task-261029-mock-browser/browser"
+          ],
+          "exit": 0,
+          "sha256": "5e6362219944f33b4a07dced542fac65ac1342486f1a3e9539bb54b4fedb68ef",
+          "totals": null,
+          "log": "mockBrowser-browser-smoke.log"
+        },
+        {
+          "id": "browser-accessibility",
+          "status": "passed",
+          "command": [
+            "/Users/hoadev/.nvm/versions/node/v24.22.1/bin/node",
+            "tests/frontend/accessibility.mjs",
+            "--output=/Users/hoadev/Projects/ai-v3/task8-react/test-results/datamaker-task-261029-mock-browser/browser-accessibility"
+          ],
+          "exit": 0,
+          "sha256": "41d7d3f7541cae2136d9df656799587707a4c3c275740816160b756bbcf70300",
+          "totals": null,
+          "log": "mockBrowser-browser-accessibility.log"
+        }
+      ]
+    }
+  },
+  "devBrowser": {
+    "status": "passed",
+    "origin": "https://datamaker-task.test:1355",
+    "ignoreHTTPSErrors": false,
+    "probes": [
+      {
+        "id": "login-brand-locale-tls-hmr-1440-vi",
+        "pass": true
+      },
+      {
+        "id": "onboarding-brand-1440-vi",
+        "pass": true
+      },
+      {
+        "id": "login-brand-locale-tls-hmr-1440-en",
+        "pass": true
+      },
+      {
+        "id": "onboarding-brand-1440-en",
+        "pass": true
+      },
+      {
+        "id": "login-brand-locale-tls-hmr-390-vi",
+        "pass": true
+      },
+      {
+        "id": "onboarding-brand-390-vi",
+        "pass": true
+      },
+      {
+        "id": "login-brand-locale-tls-hmr-390-en",
+        "pass": true
+      },
+      {
+        "id": "onboarding-brand-390-en",
+        "pass": true
+      }
+    ],
+    "pageErrors": [],
+    "browser": "145.0.7632.6"
+  },
+  "devTransport": {
+    "url": "https://datamaker-task.test:1355/api/v1/session",
+    "httpStatus": 401,
+    "errorCode": "UNAUTHENTICATED",
+    "tlsVerifiedUsing": "Portless CA; curl --cacert, browser OS trust; no TLS bypass",
+    "dns": "Real hostname after user ran portless hosts sync",
+    "apiUpstream": "https://api.datamaker-task.test:1355",
+    "hmr": "Vite connected on all four width/locale combinations"
+  },
+  "review": {
+    "skill": "ak-code-review",
+    "scope": "Full pending diff; base/web/API checklists, config precedence, TLS, Origin, package metadata, user-data preservation",
+    "findings": []
+  },
+  "decisions": [
+    "task8/package scope/cookie/storage namespaces remain internal; no migration/reset.",
+    "HoaDev remains author/copyright/workspace demo name.",
+    "Use globally installed Portless as upstream recommends; no dependency or lockfile changes.",
+    "Reuse shared proxy with .test primary and .demo alias; preserve other project processes on 5173/8787.",
+    "Updated only AUTH_APP_ORIGIN in ignored local .dev.vars; no credentials printed or committed.",
+    "Formatted Vite configuration with frontend formatter emitted-syntax/idempotence checks; literals elsewhere preserve existing layout."
+  ],
+  "attemptsAndLimits": [
+    "Sandbox registry DNS blocked optional local dependency install; cancelled, removed only generated .pnpm-store. Global Portless was already installed.",
+    "First workspace suite failed an existing macOS temp symlink case; reproduced with existing standalone test. TMPDIR=/private/tmp rerun passed without test/source edits.",
+    "First browser launch lacked Chromium; installed exact Playwright Chromium145.0.7632.6.",
+    "First custom onboarding probe used a nonexistent selector; corrected to data-onboarding-step.",
+    "Local public .env selects HTTP; initial mock smoke instead loaded HTTP and redirected unauthenticated Home to login. Explicit VITE_DATA_MODE=mock rebuild + browser smoke/accessibility passed; actual dev browser checks stay in HTTP mode.",
+    "Initial API probe before hosts sync got502/ENOTFOUND; real DNS/TLS probe passed after user completed sudo hosts sync.",
+    "Selected runners report partial when optional/unrelated checks are excluded. No full-suite/native backend/live-provider login/source-pixel parity claim.",
+    "Explicit product wordmark/favicon change is user-authorized; pinned source/fixtures/baselines and historical evidence untouched.",
+    "No database schema/data changes; no migrations/seeding/login writes. Dev processes started for verification are stopped at completion; shared Portless proxy remains."
+  ],
+  "visualInspection": [
+    "dev-login-1440-vi.png",
+    "dev-login-390-en.png"
+  ],
+  "hashes": {
+    "remaining-http-bundle.log": "3e35d48acb936dc4689fb9561ea478a42f643da51c01b0073c9cfa1ea4ac450c",
+    "dev-attempt-selector-failure.json": "5ae4a858dd0e92e98a9091a23ec228945350dde4545e8c55dd1cb05f44999893",
+    "dev-attempt-http-home-redirect.json": "d4f83440242933773186c669b23008acbc3205e7228aed5b9cf42a3db5775ebe",
+    "mockBrowser-build.log": "deb4f2462f1132df0f7484dfdef4370fe60d6358fcd4a53dcdc54213f0ca3a40",
+    "remaining-workspace-tests.log": "e5cecb0d95480187a9346308ae60ed2819062cd986718f44b3aad0d4efb62bc0",
+    "dev-login-1440-vi.png": "8db4b828dc0a3fcbcc182c90c09a900741b6b0d5865beefb0ff986bc9827bbcf",
+    "dev-verify.mjs": "3d4425a108476923aa4ebef1957c73824f60c94cb631ff1a09a314e150c508cd",
+    "foundation-typecheck.log": "575d280c0627f9096d4828802cd85814ce84b377a7b1c516ca8829487eef646c",
+    "mockBrowser-browser-accessibility.log": "41d7d3f7541cae2136d9df656799587707a4c3c275740816160b756bbcf70300",
+    "dev-login-390-en.png": "5aad27bcdb485764fe1a651ee1fb968949446a39c8193d1559094d7e053af28d",
+    "remaining-i18n-tests.log": "e99ba2c6fc48ff034814b21a2c69880cbad36029b7ac8b5b9f04ad182dcc340d",
+    "foundation-boundaries.log": "ab06a2acdd0f1d3b7edd17a2a34c201fc1c32e0457e9537edef00aa806411d2a",
+    "dev-report.json": "e074dc44104a1bb55554bca92dc0447832648637cb6272678530912b321a586c",
+    "remaining-http-build.log": "e37642fb10e7d6793bc7b4a100876fdeb704e23ea7b8c20d16b87c6ca86c108a",
+    "foundation-web-tests.log": "b469221953f055c349f812b97c1814d449a4c3f52a0441ba08502e9ed79855c0",
+    "remaining-reference.log": "c36d614a215c52586bc2bfa48075ed7e0bd13df2eae657dc0f5f6f1d717fa5db",
+    "foundation-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mock-smoke.json": "d643e847f55cd3f1e65ef7ffc9c410af9814d88b5b29e4b0409cee65ba5597d7",
+    "foundation-workspace-tests.log": "3bc6c67cd49bd663436aa29c7246f3f789d2bd67333b95560dde693ece407e77",
+    "remaining-build.log": "cef8345fd586ca650826c2c364631077a16d0eef903a294c088b47d865b3a398",
+    "accessibility.json": "3711d0ced98120c8efa262421b93e6da6960b1d1495db1cff64aab69ca07f3b2",
+    "mockBrowser-browser-smoke.log": "5e6362219944f33b4a07dced542fac65ac1342486f1a3e9539bb54b4fedb68ef"
+  },
+  "reproduceDevBrowser": "With pnpm dev running: node docs/engineering/evidence/DATAMAKER-01/dev-verify.mjs; claims a new test-results output.",
+  "processes": {
+    "started": {
+      "command": "pnpm dev (Turbo)",
+      "webPortlessPid": 55836,
+      "webPort": 4690,
+      "apiPortlessPid": 55810,
+      "apiPort": 4071
+    },
+    "cleanup": "SIGINT to owned Turbo session; no routes and no listeners on4690/4071 after exit. Shared proxy21173 on1355 and other-project5173/8787 remain."
+  }
+}

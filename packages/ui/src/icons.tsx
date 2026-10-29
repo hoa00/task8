@@ -31,7 +31,7 @@ export function PriorityIcon({ priority, size = 14 }: PriorityIconProps) {
 }
 export interface LogoProps { height?: number }
 export function Logo({ height = 22 }: LogoProps) {
-  return <span className="block shrink-0 font-semibold tracking-[-0.04em]" style={{ fontSize: height, lineHeight: 1 }} role="img" aria-label="HoaDev">HoaDev</span>;
+  return <span className="block shrink-0 font-semibold tracking-[-0.04em]" style={{ fontSize: height, lineHeight: 1 }} role="img" aria-label="DataMaker Task">DataMaker Task</span>;
 }
 export interface BrandMarkProps { size?: number }
 export function BrandMark({ size = 22 }: BrandMarkProps) {
