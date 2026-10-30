@@ -5,7 +5,7 @@ import type { DiagnosticReporter } from './shared/diagnostics.ts';
 import type { FileStorage } from './storage/r2.ts';
 export type { AuthenticatedPrincipal as Principal } from './modules/members/index.ts';
 export type ApiEnvironment = {
-  Bindings: CloudflareBindings & AuthBindings;
+  Bindings: CloudflareBindings & AuthBindings & OidcBindings;
   Variables: {
     requestId: string;
     requestStartedAt: number;
@@ -27,5 +27,14 @@ export interface AuthBindings {
   AUTH_PUBLIC_KEY?: string;
   AUTH_SESSION_ENCRYPTION_KEY?: string;
   AUTH_SESSION_MAX_AGE_SECONDS?: string;
+  AUTH_APP_ORIGIN?: string;
+}
+
+export interface OidcBindings {
+  OIDC_ISSUER?: string;
+  OIDC_CLIENT_ID?: string;
+  OIDC_CLIENT_SECRET?: string;
+  RP_ENVIRONMENT?: string;
+  RP_TOKEN_ENCRYPTION_KEYSET?: string;
   AUTH_APP_ORIGIN?: string;
 }

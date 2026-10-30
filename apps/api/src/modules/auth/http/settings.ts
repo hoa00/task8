@@ -49,11 +49,14 @@ export function authSettings(env: AuthBindings & { STUDIO_ENV?: string }): AuthS
     throw new ApiFailure('AUTH_SERVICE_UNAVAILABLE', 'Authentication configuration is unavailable');
   }
 }
-export function requireOrigin(request: Request, settings: AuthSettings): void {
+export function requireOrigin(request: Request, settings: Pick<AuthSettings, 'appOrigin'>): void {
   if (request.headers.get('origin') !== settings.appOrigin)
     throw new ApiFailure('FORBIDDEN', 'Request origin is not allowed');
 }
-export function requestSid(request: Request, settings: AuthSettings): string | undefined {
+export function requestSid(
+  request: Request,
+  settings: Pick<AuthSettings, 'cookieName'>,
+): string | undefined {
   const values = (request.headers.get('cookie') ?? '')
     .split(';')
     .map((part) => part.trim())

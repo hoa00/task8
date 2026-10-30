@@ -1,5 +1,5 @@
 import type { EntityId } from '@studio/contracts/api';
-import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
+import type { RequestRepository, SqlValue, WorkspaceContext } from '../../../db/client.ts';
 import { matchedBatch } from '../../../db/commands.ts';
 import { actorSql, writeAccessSql } from '../access.ts';
 import type { ViewRow } from './saved-views-model.ts';
@@ -18,7 +18,7 @@ export function listSavedViewsReadSavedViews(
 }
 export function createSavedViewCommitSavedViews(
   r: RequestRepository,
-  g: { sql: string; parameters: string[] },
+  g: { sql: string; parameters: SqlValue[] },
   viewId: EntityId,
   s: WorkspaceContext,
   id: EntityId,
@@ -106,7 +106,7 @@ export function changeSavedViewPredicateSavedViewsResult(fields: Record<string, 
 export function changeSavedViewPrepare(
   r: RequestRepository,
   sql: string,
-  g: { sql: string; parameters: string[] },
+  g: { sql: string; parameters: SqlValue[] },
   remove: boolean,
   fields: Record<string, string | number>,
   s: WorkspaceContext,

@@ -20,7 +20,11 @@
     "format:check": "prettier --check src tests/unit tests/integration tests/support tests/run.mjs tooling scripts drizzle.config.ts tsconfig.json package.json .prettierrc.json",
     "lint": "eslint src tests/unit tests/integration tests/support tests/run.mjs tooling scripts drizzle.config.ts && node tooling/import-boundaries.mjs",
     "db:backfill:local": "node scripts/backfill-read-keys.mjs",
-    "auth:link:local": "node --experimental-transform-types scripts/link-identity.mjs"
+    "auth:link:local": "node --experimental-transform-types scripts/link-identity.mjs",
+    "test:oidc:migration": "node --experimental-transform-types tests/integration/oidc-migration.mjs",
+    "test:oidc:session": "node --experimental-transform-types tests/integration/oidc-session.mjs",
+    "test:oidc": "pnpm test:oidc:migration && pnpm test:oidc:legacy && pnpm test:oidc:session",
+    "test:oidc:legacy": "node --experimental-transform-types tests/integration/oidc-legacy.mjs"
   },
   "dependencies": {
     "@hoa00/i24h-auth-honojs": "0.1.1",
@@ -28,6 +32,8 @@
     "@studio/domain": "workspace:*",
     "drizzle-orm": "0.45.3",
     "hono": "4.13.13",
+    "jose": "6.2.13",
+    "openid-client": "6.8.8",
     "zod": "4.6.5"
   },
   "devDependencies": {

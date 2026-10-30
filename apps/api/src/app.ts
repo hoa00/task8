@@ -1,14 +1,20 @@
 import { ApiErrorSchema, operations } from '@studio/contracts/api';
 import { Hono } from 'hono';
 import { RequestRepository } from './db/client.ts';
-import { createSessionService, type IdentityProvider } from './modules/auth/index.ts';
+import {
+  createSessionService,
+  createOidcSessionService,
+  type IdentityProvider,
+} from './modules/auth/index.ts';
 import { createAuthRoutes } from './modules/auth/routes.ts';
 import {
   createAccessVerifier,
+  createOidcProvider,
+  oidcSettings,
   createIdentityProvider,
   type AuthSettings,
 } from './modules/auth/http/index.ts';
-import { createSessionCrypto } from './modules/auth/storage/index.ts';
+import { createSessionCrypto, createOidcCrypto } from './modules/auth/storage/index.ts';
 import { serverClock } from './shared/clock.ts';
 import { newId } from './shared/ids.ts';
 import { ApiFailure } from './shared/errors.ts';
@@ -48,6 +54,18 @@ export function createAuthService(
     throw new ApiFailure('AUTH_SERVICE_UNAVAILABLE', 'Authentication configuration is unavailable');
   }
 }
+export function createOidcService(env: ApiEnvironment['Bindings'], repository: RequestRepository) {
+  const settings = oidcSettings(env);
+  return createOidcSessionService({
+    repository,
+    clock: serverClock,
+    generateId: newId,
+    provider: createOidcProvider(settings),
+    crypto: createOidcCrypto(settings),
+    issuer: settings.issuer,
+    clientId: settings.clientId,
+  });
+}
 export function authRepository(env: ApiEnvironment['Bindings']) {
   return new RequestRepository(env.DB, { primary: true });
 }
@@ -66,10 +84,11 @@ export function createApp(deps: AppDependencies = {}) {
     '/api/v1/*',
     createPrincipalMiddleware(
       (bindings) =>
-        bindings.AUTH_MODE === 'ict24h'
+        ['ict24h', 'oidc'].includes(bindings.AUTH_MODE ?? '')
           ? authRepository(bindings)
           : new RequestRepository(bindings.DB),
       (env, repository, settings) => createAuthService(env, repository, settings, deps),
+      createOidcService,
     ),
   );
   app.use('/api/v1/*', async (c, next) => {

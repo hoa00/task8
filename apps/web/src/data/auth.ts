@@ -1,24 +1,21 @@
-import type { QueryClient } from "@tanstack/react-query";
-import { Ict24hSessionSchema } from "@studio/contracts/api";
+import type { QueryClient } from '@tanstack/react-query';
+import { Ict24hSessionSchema } from '@studio/contracts/api';
 import type {
   AuthLoginInput,
+  CapabilitiesDto,
   Ict24hSessionDto,
   OperationOutput,
-} from "@studio/contracts/api";
-import type { RequestIntent, StudioClient } from "./operations.ts";
-import { queryKeys } from "./query-keys.ts";
-import { StudioApiError, StudioTransportError } from "./errors.ts";
+} from '@studio/contracts/api';
+import type { RequestIntent, StudioClient } from './operations.ts';
+import { queryKeys } from './query-keys.ts';
+import { StudioApiError, StudioTransportError } from './errors.ts';
 
 export interface AuthSnapshot extends RequestIntent {
   accessExpiresAt: string | undefined;
-  identityMode: "development" | "ict24h" | undefined;
+  identityMode: CapabilitiesDto['identityMode'] | undefined;
   signal: AbortSignal;
 }
-export type AuthEvent =
-  | "signed-in"
-  | "signed-out"
-  | "session-changed"
-  | "unavailable";
+export type AuthEvent = 'signed-in' | 'signed-out' | 'session-changed' | 'unavailable';
 export interface AuthFacade {
   readonly generation: number;
   connect(cache: QueryClient): void;
@@ -26,19 +23,19 @@ export interface AuthFacade {
   snapshot(): AuthSnapshot;
   beforeMutation(): Promise<void>;
   changed(expectedGeneration: number): Promise<void>;
-  observeSession(value: OperationOutput<"getSession">): Promise<void>;
+  observeSession(value: OperationOutput<'getSession'>): Promise<void>;
   subscribe(listener: (event: AuthEvent) => void): () => void;
   start(): () => void;
   login(input: AuthLoginInput): Promise<Ict24hSessionDto>;
   refresh(): Promise<Ict24hSessionDto>;
   logout(): Promise<void>;
-  check(): Promise<OperationOutput<"getSession">>;
+  check(): Promise<OperationOutput<'getSession'>>;
 }
 const sessionChanged = () =>
   new StudioApiError({
     error: {
-      code: "SESSION_CHANGED",
-      message: "The browser session has changed. Please try again.",
+      code: 'SESSION_CHANGED',
+      message: 'The browser session has changed. Please try again.',
     },
   });
 export function createHttpAuth(client: StudioClient): AuthFacade {
@@ -49,8 +46,7 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
   let intentPending = false,
     channel: BroadcastChannel | undefined;
   const listeners = new Set<(event: AuthEvent) => void>();
-  const current = () =>
-    cache?.getQueryData<OperationOutput<"getSession">>(queryKeys.session());
+  const current = () => cache?.getQueryData<OperationOutput<'getSession'>>(queryKeys.session());
   const expectedSessionId = () => current()?.data.authSession?.id;
   const notify = (event: AuthEvent) => {
     for (const listener of listeners) listener(event);
@@ -67,7 +63,7 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
   const assertGeneration = (expected: number) => {
     if (expected !== generation) throw sessionChanged();
   };
-  const announce = () => channel?.postMessage({ type: "session-changed" });
+  const announce = () => channel?.postMessage({ type: 'session-changed' });
   async function resync() {
     const before = generation,
       previous = expectedSessionId();
@@ -76,19 +72,14 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       if (generation === before && previous !== result.data.authSession?.id) {
         await advance(true);
         cache?.setQueryData(queryKeys.session(), result);
-        notify("session-changed");
+        notify('session-changed');
       }
     } catch (error) {
       if (error instanceof StudioApiError && error.status === 401) {
         await advance(true);
-        notify("signed-out");
-      } else if (
-        !(
-          error instanceof StudioApiError &&
-          error.detail.code === "SESSION_CHANGED"
-        )
-      )
-        notify("unavailable");
+        notify('signed-out');
+      } else if (!(error instanceof StudioApiError && error.detail.code === 'SESSION_CHANGED'))
+        notify('unavailable');
     }
   }
   const facade: AuthFacade = {
@@ -115,8 +106,8 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       if (!session)
         throw new StudioApiError({
           error: {
-            code: "UNAUTHENTICATED",
-            message: "Please sign in before continuing.",
+            code: 'UNAUTHENTICATED',
+            message: 'Please sign in before continuing.',
           },
         });
       if (
@@ -128,7 +119,7 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
     async changed(expected) {
       if (expected !== generation) return;
       await advance(true);
-      notify("session-changed");
+      notify('session-changed');
       announce();
       void resync();
     },
@@ -136,13 +127,10 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       const previous = current();
       const oldId = previous?.data.authSession?.id,
         newId = value.data.authSession?.id;
-      if (
-        previous &&
-        (oldId !== newId || previous.data.user.id !== value.data.user.id)
-      ) {
+      if (previous && (oldId !== newId || previous.data.user.id !== value.data.user.id)) {
         await advance(true);
         cache?.setQueryData(queryKeys.session(), value);
-        notify("session-changed");
+        notify('session-changed');
       }
     },
     subscribe(listener) {
@@ -150,26 +138,25 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       return () => listeners.delete(listener);
     },
     start() {
-      if (typeof window === "undefined") return () => {};
+      if (typeof window === 'undefined') return () => {};
       const focus = () => {
-        if (!intentPending && document.visibilityState === "visible")
-          void resync();
+        if (!intentPending && document.visibilityState === 'visible') void resync();
       };
-      window.addEventListener("focus", focus);
-      if (typeof BroadcastChannel !== "undefined") {
-        channel = new BroadcastChannel("task8-auth-v1");
+      window.addEventListener('focus', focus);
+      if (typeof BroadcastChannel !== 'undefined') {
+        channel = new BroadcastChannel('task8-auth-v1');
         channel.onmessage = (event: MessageEvent<unknown>) => {
           if (
             event.data &&
-            typeof event.data === "object" &&
-            "type" in event.data &&
-            event.data.type === "session-changed"
+            typeof event.data === 'object' &&
+            'type' in event.data &&
+            event.data.type === 'session-changed'
           )
             void resync();
         };
       }
       return () => {
-        window.removeEventListener("focus", focus);
+        window.removeEventListener('focus', focus);
         channel?.close();
         channel = undefined;
       };
@@ -180,16 +167,16 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       const attempt = await advance(false);
       try {
         assertGeneration(attempt);
-        const result = await client.execute("authLogin", { body: input });
+        const result = await client.execute('authLogin', { body: input });
         assertGeneration(attempt);
         await cache?.cancelQueries();
         cache?.clear();
         cache?.setQueryData(queryKeys.session(), result);
-        const fresh = await client.execute("getSession", {});
+        const fresh = await client.execute('getSession', {});
         assertGeneration(attempt);
         const session = Ict24hSessionSchema.parse(fresh.data);
         cache?.setQueryData(queryKeys.session(), { data: session });
-        notify("signed-in");
+        notify('signed-in');
         announce();
         return session;
       } finally {
@@ -200,7 +187,7 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       if (refreshing) return refreshing;
       const attempt = generation;
       const work = (async () => {
-        const result = await client.execute("authRefresh", {});
+        const result = await client.execute('authRefresh', {});
         assertGeneration(attempt);
         cache?.setQueryData(queryKeys.session(), result);
         return result.data;
@@ -208,8 +195,8 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
         if (error instanceof StudioTransportError)
           throw new StudioApiError({
             error: {
-              code: "AUTH_SERVICE_UNAVAILABLE",
-              message: "Sign-in is temporarily unavailable. Please try again.",
+              code: 'AUTH_SERVICE_UNAVAILABLE',
+              message: 'Sign-in is temporarily unavailable. Please try again.',
             },
           });
         throw error;
@@ -227,20 +214,20 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       const attempt = await advance(false);
       try {
         assertGeneration(attempt);
-        await client.execute("authLogout", {});
+        await client.execute('authLogout', {});
         assertGeneration(attempt);
         await cache?.cancelQueries();
         cache?.clear();
-        notify("signed-out");
+        notify('signed-out');
         announce();
       } finally {
         intentPending = false;
       }
     },
     async check() {
-      const result = await client.execute("getSession", {});
+      const result = await client.execute('getSession', {});
       cache?.setQueryData(queryKeys.session(), result);
-      const workspaces = await client.execute("listWorkspaces", {});
+      const workspaces = await client.execute('listWorkspaces', {});
       cache?.setQueryData(queryKeys.workspaces(), workspaces);
       return result;
     },

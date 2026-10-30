@@ -12,7 +12,7 @@ import { sourceId } from '@studio/contracts/source-identities';
 // Independent consumer canonical mapping used only by verification, never an API import.
 
 import { createSeedDataset } from '../../../web/src/data/mock/seed.ts';
-import { runTaskFieldOperation } from '../../../web/src/data/mock/task-fields.ts';
+import { runTaskOperation as runTaskFieldOperation } from '../../../web/src/data/mock/operation-registry.ts';
 import { createFixedClock } from '@studio/domain';
 const report = {
   status: 'RUNNING',

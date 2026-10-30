@@ -25,13 +25,20 @@ routes.get('/session', (c) => {
   const advertised = principal.authSession
     ? {
         ...capabilities,
-        identityMode: 'ict24h',
+        identityMode: principal.authentication?.mechanism ?? 'ict24h',
         features: { ...capabilities.features, authentication: 'implemented' },
       }
     : capabilities;
   c.header('cache-control', 'no-store');
   return c.json(
-    operations.getSession.response.parse({ data: { ...principal, capabilities: advertised } }),
+    operations.getSession.response.parse({
+      data: {
+        user: principal.user,
+        currentWorkspaceId: principal.currentWorkspaceId,
+        authSession: principal.authSession,
+        capabilities: advertised,
+      },
+    }),
   );
 });
 routes.get('/workspaces', async (c) => {

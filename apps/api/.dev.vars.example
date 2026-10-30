@@ -16,3 +16,12 @@ AUTH_PUBLIC_KEY="REPLACE_WITH_COMPLETE_DEPLOYMENT_RSA_PUBLIC_PEM"
 # Generate once: exactly 32 random bytes encoded as canonical base64url.
 # Keep this key stable across restarts; rotating it invalidates old sessions.
 AUTH_SESSION_ENCRYPTION_KEY=REPLACE_WITH_32_BYTE_BASE64URL_SECRET
+
+# Optional isolated OIDC deployment: choose AUTH_MODE=oidc explicitly.
+# Preserve legacy values for rollback; OIDC never uses them as fallback.
+# AUTH_APP_ORIGIN=https://datamaker-task.demo
+# OIDC_ISSUER=https://identity-service.demo/api/auth
+# OIDC_CLIENT_ID=REPLACE_WITH_REGISTERED_TASK8_CLIENT_ID
+# OIDC_CLIENT_SECRET=REPLACE_WITH_PRIVATE_CLIENT_SECRET
+# RP_ENVIRONMENT=local-if01
+# RP_TOKEN_ENCRYPTION_KEYSET={"active":"key-1","keys":{"key-1":"REPLACE_WITH_CANONICAL_32_BYTE_BASE64URL_KEY"}}

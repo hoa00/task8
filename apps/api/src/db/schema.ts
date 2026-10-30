@@ -92,6 +92,76 @@ export const authSessions = sqliteTable(
   ],
 );
 
+export const oidcIdentityLinks = sqliteTable(
+  'oidcIdentityLinks',
+  {
+    id: text('id').primaryKey(),
+    issuer: text('issuer').notNull(),
+    subject: text('subject').notNull(),
+    userId: text('userId')
+      .notNull()
+      .references(() => users.id),
+    status: text('status').notNull().default('active'),
+    createdAt: integer('createdAt').notNull(),
+    createdBy: text('createdBy').notNull(),
+    migrationBatchId: text('migrationBatchId').notNull(),
+    revision: integer('revision').notNull().default(1),
+  },
+  (t): SQLiteTableExtraConfigValue[] => [
+    uniqueIndex('oidcIdentityLinks_external').on(t.issuer, t.subject),
+    uniqueIndex('oidcIdentityLinks_user_issuer').on(t.issuer, t.userId),
+    uniqueIndex('oidcIdentityLinks_binding').on(t.id, t.userId, t.issuer, t.subject),
+    check('oidcIdentityLinks_status', sql`${t.status} IN ('active','revoked')`),
+    check('oidcIdentityLinks_subject', sql`length(${t.subject}) BETWEEN 1 AND 255`),
+    check('oidcIdentityLinks_revision', sql`${t.revision}>0`),
+  ],
+);
+export const oidcAppSessions = sqliteTable(
+  'oidcAppSessions',
+  {
+    id: text('id').primaryKey(),
+    sidHash: text('sidHash').notNull(),
+    linkId: text('linkId').notNull(),
+    userId: text('userId').notNull(),
+    issuer: text('issuer').notNull(),
+    subject: text('subject').notNull(),
+    clientId: text('clientId').notNull(),
+    providerSid: text('providerSid').notNull(),
+    bundle: text('bundle').notNull(),
+    createdAt: integer('createdAt').notNull(),
+    expiresAt: integer('expiresAt').notNull(),
+    authorityValidatedAt: integer('authorityValidatedAt').notNull(),
+    accessExpiresAt: integer('accessExpiresAt').notNull(),
+    revokedAt: integer('revokedAt'),
+    revision: integer('revision').notNull().default(1),
+    leaseOwner: text('leaseOwner'),
+    leaseUntil: integer('leaseUntil').notNull().default(0),
+    refreshInput: text('refreshInput'),
+    refreshAttemptAt: integer('refreshAttemptAt').notNull().default(0),
+  },
+  (t): SQLiteTableExtraConfigValue[] => [
+    uniqueIndex('oidcAppSessions_sidHash').on(t.sidHash),
+    index('oidcAppSessions_expiry').on(t.expiresAt, t.id),
+    foreignKey({
+      columns: [t.linkId, t.userId, t.issuer, t.subject],
+      foreignColumns: [
+        oidcIdentityLinks.id,
+        oidcIdentityLinks.userId,
+        oidcIdentityLinks.issuer,
+        oidcIdentityLinks.subject,
+      ],
+    }),
+    check(
+      'oidcAppSessions_lifetime',
+      sql`${t.expiresAt}=${t.createdAt}+28800000 AND ${t.revision}>0`,
+    ),
+    check(
+      'oidcAppSessions_refresh',
+      sql`(${t.refreshInput} IS NULL AND ${t.refreshAttemptAt}=0) OR (${t.refreshInput} IS NOT NULL AND ${t.refreshAttemptAt}>0)`,
+    ),
+  ],
+);
+
 export const workspaces = sqliteTable(
   'workspaces',
   {

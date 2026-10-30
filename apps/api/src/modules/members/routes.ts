@@ -4,6 +4,7 @@ import { Hono } from 'hono';
 import { jsonBody, noInput, parseRequest, readQuery } from '../../http/request.ts';
 import type { ApiEnvironment } from '../../runtime.ts';
 import { ApiFailure } from '../../shared/errors.ts';
+import { commandAuthority } from '../auth/index.ts';
 import { serverClock } from '../../shared/clock.ts';
 import { listMembers, member, memberSummary, updateProfile } from './index.ts';
 type C = Context<ApiEnvironment>;
@@ -28,6 +29,7 @@ memberRoutes.patch('/me/profile', async (c) => {
         principal.currentWorkspaceId,
         input.body,
         serverClock.now(),
+        commandAuthority(c.env.AUTH_MODE, principal),
       ),
     }),
   );

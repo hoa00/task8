@@ -1,3 +1,4 @@
+import { createWorkspaceContext } from '../../src/shared/scope.ts';
 import { Hono } from 'hono';
 import { z } from 'zod';
 import { RequestRepository } from '../../src/db/client.ts';
@@ -61,10 +62,11 @@ app.get('/members/:workspaceId', async (context) => {
   return context.json(
     await listMembers(
       repository,
-      {
-        workspaceId: EntityIdSchema.parse(context.req.param('workspaceId')),
-        memberId: EntityIdSchema.parse(context.env.TEST_MEMBER_ID),
-      },
+      createWorkspaceContext(
+        EntityIdSchema.parse(context.req.param('workspaceId')),
+        EntityIdSchema.parse(context.env.TEST_MEMBER_ID),
+        { kind: 'local' },
+      ),
       MemberQuerySchema.parse({ limit: 200 }),
     ),
   );

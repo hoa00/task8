@@ -6,11 +6,11 @@ import * as q from './queries.ts';
 export const DataModeSchema = z.enum(['mock', 'http']);
 export const CapabilityStateSchema = z.enum(['implemented', 'demoOnly', 'unavailable']);
 const externalCapability = z.enum(['demoOnly', 'unavailable']);
-export const CapabilitiesSchema = z.strictObject({ dataMode: DataModeSchema, identityMode: z.enum(['development','ict24h']),
+export const CapabilitiesSchema = z.strictObject({ dataMode: DataModeSchema, identityMode: z.enum(['development','ict24h','oidc']),
   features: z.strictObject({ projects: CapabilityStateSchema, tasks: CapabilityStateSchema, teams: CapabilityStateSchema, comments: CapabilityStateSchema, notificationState: CapabilityStateSchema, fileMetadata: CapabilityStateSchema, fileBytes: CapabilityStateSchema, workspaceProvisioning: externalCapability, invitations: externalCapability, projectSharing: externalCapability, authentication: CapabilityStateSchema, accountSecurity: externalCapability, billing: externalCapability }),
   limits: z.strictObject({ taskPageSize: z.literal(50), maxTaskPageSize: z.literal(200), maxBulkItems: z.literal(20), maxUndoTargets: z.literal(128), maxUndoPayloadBytes: z.literal(65536), maxUploadBytes: z.literal(10485760) }),
 }).superRefine((value,ctx)=>{
-  if(value.identityMode==='ict24h' ? value.dataMode!=='http'||value.features.authentication!=='implemented' : value.features.authentication==='implemented')ctx.addIssue({code:'custom',message:'Authentication capability must match identity mode'});
+  if(value.identityMode!=='development' ? value.dataMode!=='http'||value.features.authentication!=='implemented' : value.features.authentication==='implemented')ctx.addIssue({code:'custom',message:'Authentication capability must match identity mode'});
 });
 export const WorkspaceSchema = z.strictObject({ planLabel: z.string().min(1).max(80).optional(), id: p.EntityIdSchema, name: p.NameSchema, slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).max(100), iconColor: p.ColorSchema, brand: z.boolean(), timezone: z.string().min(1).max(100), createdAt: p.InstantSchema, updatedAt: p.InstantSchema, version: p.VersionSchema });
 export const UserProfileSchema = z.strictObject({ id: p.EntityIdSchema, name: p.NameSchema, email: z.email(), title: z.string().max(240), avatarColor: p.ColorSchema, timezone: z.string().min(1).max(100), version: p.VersionSchema });
@@ -60,7 +60,7 @@ export const CalendarEventSchema = z.strictObject({ id: p.EntityIdSchema, worksp
 export const AuthSessionMetadataSchema = z.strictObject({ id:p.EntityIdSchema,accessExpiresAt:p.InstantSchema,expiresAt:p.InstantSchema });
 export type AuthSessionMetadata = z.infer<typeof AuthSessionMetadataSchema>;
 export const SessionSchema = z.strictObject({ user: UserProfileSchema, currentWorkspaceId: p.EntityIdSchema.nullable(), capabilities: CapabilitiesSchema,authSession:AuthSessionMetadataSchema.nullable() }).superRefine((value,ctx)=>{
-  if(value.capabilities.identityMode==='ict24h' ? value.authSession===null : value.authSession!==null||value.currentWorkspaceId===null)ctx.addIssue({code:'custom',message:'Session metadata must match identity mode'});
+  if(value.capabilities.identityMode!=='development' ? value.authSession===null : value.authSession!==null||value.currentWorkspaceId===null)ctx.addIssue({code:'custom',message:'Session metadata must match identity mode'});
 });
 export const BootstrapSchema = z.strictObject({ workspace: WorkspaceSchema, currentMember: MemberSchema, members: z.array(MemberDisplaySchema), teams: z.array(TeamSchema), projects: z.array(ProjectListItemSchema), catalogs: c.CatalogsSchema, preferences: MemberPreferencesSchema, notificationPreferences: NotificationPreferencesSchema, unreadCount: p.CountSchema, navigationCounts: z.strictObject({ inbox: p.CountSchema, myTasks: p.CountSchema, archive: p.CountSchema }) });
 const taskPreview = z.strictObject({ items: z.array(TaskSchema), total: p.CountSchema }).refine(value => value.items.length <= value.total);

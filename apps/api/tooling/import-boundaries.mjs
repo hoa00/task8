@@ -7,6 +7,7 @@ const api = fileURLToPath(new URL('../', import.meta.url));
 // Public facades are explicit contracts; deeper implementation paths remain private.
 const publicFacades = new Set([
   'src/modules/auth/http/index.ts',
+  'src/modules/auth/authority.ts',
   'src/modules/auth/storage/index.ts',
   'src/modules/tasks/subtask-routes.ts',
   'src/modules/projects/personal-routes.ts',
@@ -178,10 +179,14 @@ export function inspectBoundaries(files) {
             'zod',
             'drizzle-orm',
             '@hoa00/i24h-auth-honojs',
+            'openid-client',
+            'jose',
           ].includes(dependency)
         )
           add(from, specifier, 'external-dependency');
         if (
+          (['openid-client', 'jose'].includes(dependency) &&
+            from !== 'src/modules/auth/http/oidc-provider.ts') ||
           (pureLayers.has(source.layer) && ['hono', 'drizzle-orm'].includes(dependency)) ||
           (source.layer !== 'http' &&
             source.layer !== 'composition' &&

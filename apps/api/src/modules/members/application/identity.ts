@@ -8,6 +8,16 @@ export interface AuthenticatedPrincipal {
   user: UserProfileDto;
   currentWorkspaceId: EntityId | null;
   authSession: AuthSessionMetadata | null;
+  authentication?: {
+    mechanism: 'oidc';
+    issuer: string;
+    clientId: string;
+    subject: string;
+    linkId: EntityId;
+    sessionId: EntityId;
+    authenticatedAt: number;
+    authorityValidatedAt: number;
+  };
 }
 export interface LocalPrincipal extends AuthenticatedPrincipal {
   currentWorkspaceId: EntityId;

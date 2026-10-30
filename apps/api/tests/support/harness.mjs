@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
@@ -40,6 +40,13 @@ export async function createHarness(feature, report) {
   const out = mkdtempSync(resolve(outputRoot, feature + '-'));
   const runtime = mkdtempSync(resolve(tmpdir(), 'task8-api-' + feature + '-'));
   const persist = resolve(runtime, 'storage');
+  mkdirSync(persist, { mode: 0o700 });
+  const backup = resolve(runtime, 'backup-empty');
+  cpSync(persist, backup, { recursive: true, errorOnExist: true });
+  report.preSchemaBackup = {
+    path: backup,
+    kind: 'empty isolated persist before first schema/data mutation',
+  };
   const port = await freePort();
   const baseUrl = `http://127.0.0.1:${port}`;
   const children = new Map();

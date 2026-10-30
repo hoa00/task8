@@ -1,5 +1,5 @@
 import type { EntityId } from '@studio/contracts/api';
-import type { RequestRepository, WorkspaceContext } from '../../../db/client.ts';
+import type { RequestRepository, SqlValue, WorkspaceContext } from '../../../db/client.ts';
 import type { SqlPredicate } from '../../../db/commands.ts';
 import { exactSet, gatedInsert, markerSql, matchedBatch } from '../../../db/commands.ts';
 import { readAccessSql as accessSql, actorParameters, actorSql } from '../access.ts';
@@ -13,7 +13,7 @@ export function favoriteProjectPrepare(
   s: WorkspaceContext,
   id: EntityId,
   now: number,
-  parameters: EntityId[],
+  parameters: SqlValue[],
 ) {
   return r.prepare(
     `INSERT OR IGNORE INTO projectFavorites(workspaceId,memberId,projectId,createdAt) SELECT ?,?,?,? WHERE ${permitted}`,
@@ -25,7 +25,7 @@ export function favoriteProjectPrepareProjectFavorites(
   permitted: string,
   s: WorkspaceContext,
   id: EntityId,
-  parameters: EntityId[],
+  parameters: SqlValue[],
 ) {
   return r.prepare(
     `DELETE FROM projectFavorites WHERE workspaceId=? AND memberId=? AND projectId=? AND ${permitted}`,
@@ -96,7 +96,7 @@ export function projectOrderPrepareWorkspaces(
 }
 export function projectOrderPrepareMemberProjectOrder(
   r: RequestRepository,
-  gate: { sql: string; parameters: EntityId[] },
+  gate: { sql: string; parameters: SqlValue[] },
   s: WorkspaceContext,
 ) {
   return r.prepare(
@@ -107,7 +107,7 @@ export function projectOrderPrepareMemberProjectOrder(
 export function projectOrderInsertMemberProjectOrder(
   r: RequestRepository,
   rows: { workspaceId: EntityId; memberId: EntityId; projectId: string; position: number }[],
-  gate: { sql: string; parameters: EntityId[] },
+  gate: { sql: string; parameters: SqlValue[] },
 ) {
   return gatedInsert(r, 'memberProjectOrder', rows, gate);
 }

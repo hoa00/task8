@@ -4,7 +4,14 @@ import { parseRequest } from './http/request.ts';
 import { membership, principal } from './modules/members/index.ts';
 import type { ApiEnvironment } from './runtime.ts';
 import { ApiFailure } from './shared/errors.ts';
-import { authSettings, requireOrigin, requestSid } from './modules/auth/http/index.ts';
+import {
+  authSettings,
+  oidcSettings,
+  requireOrigin,
+  requestSid,
+} from './modules/auth/http/index.ts';
+import { commandAuthority, type OidcSessionService } from './modules/auth/index.ts';
+import { createWorkspaceContext } from './shared/scope.ts';
 import type { AuthServiceFactory } from './modules/auth/routes.ts';
 
 export function createPrincipalMiddleware(
@@ -12,8 +19,36 @@ export function createPrincipalMiddleware(
     bindings: ApiEnvironment['Bindings'],
   ) => ApiEnvironment['Variables']['repository'],
   authFactory: AuthServiceFactory,
+  oidcFactory?: (
+    bindings: ApiEnvironment['Bindings'],
+    repository: ApiEnvironment['Variables']['repository'],
+  ) => OidcSessionService,
 ) {
   return createMiddleware<ApiEnvironment>(async (context, next) => {
+    if (context.env.AUTH_MODE === 'oidc') {
+      const settings = oidcSettings(context.env);
+      if (!oidcFactory)
+        throw new ApiFailure(
+          'AUTH_SERVICE_UNAVAILABLE',
+          'Authentication configuration is unavailable',
+        );
+      const repository = createRepository(context.env);
+      context.set('repository', repository);
+      const { principal } = await oidcFactory(context.env, repository).authenticate(
+        requestSid(context.req.raw, settings),
+      );
+      if (!['GET', 'HEAD', 'OPTIONS'].includes(context.req.method)) {
+        requireOrigin(context.req.raw, { appOrigin: settings.origin });
+        const expected = context.req.header('X-Task8-Session-Id');
+        if (expected === undefined || expected !== principal.authSession.id)
+          throw new ApiFailure('SESSION_CHANGED', 'The browser session has changed');
+        parseRequest(EntityIdSchema, expected);
+      }
+      context.set('principal', principal);
+      context.header('cache-control', 'no-store');
+      await next();
+      return;
+    }
     if (context.env.AUTH_MODE === 'ict24h') {
       const settings = authSettings(context.env);
       const repository = createRepository(context.env);
@@ -59,7 +94,14 @@ export const workspaceMiddleware = createMiddleware<ApiEnvironment>(async (conte
     workspaceId,
     context.get('principal').user.id,
   );
-  context.set('workspace', { workspaceId, memberId: member.id });
+  context.set(
+    'workspace',
+    createWorkspaceContext(
+      workspaceId,
+      member.id,
+      commandAuthority(context.env.AUTH_MODE, context.get('principal')),
+    ),
+  );
   context.set('currentMember', member);
   await next();
 });

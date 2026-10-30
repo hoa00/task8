@@ -1,3 +1,4 @@
+import { createWorkspaceContext } from '../../src/shared/scope.ts';
 import { and, eq } from 'drizzle-orm';
 import { projects as projectTable } from '../../src/db/schema.ts';
 import { readAccessExpression } from '../../src/modules/projects/access.ts';
@@ -169,7 +170,7 @@ export default {
           'administrator',
           'creator',
         ] as const satisfies readonly ActorMode[]) {
-          const scope = { workspaceId: wid, memberId: row.id };
+          const scope = createWorkspaceContext(wid, row.id, { kind: 'local' });
           const [result] = await r.all<{ allowed: number }>(
             `SELECT ${actorSql(mode)} allowed`,
             actorParameters(scope),
@@ -188,7 +189,7 @@ export default {
     if (path === '/__db/project-policy') {
       const r = new RequestRepository(env.DB),
         memberId = sourceId('members', 'm1'),
-        scope = { workspaceId: wid, memberId };
+        scope = createWorkspaceContext(wid, memberId, { kind: 'local' });
       let cases = 0;
       for (const grant of [null, 'view', 'edit'] as const) {
         await env.DB.prepare(

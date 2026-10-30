@@ -1,3 +1,5 @@
+import { principalAuthoritySql, principalAuthorityParameters } from '../../auth/authority.ts';
+import type { CommandAuthority } from '../../../shared/scope.ts';
 import { textKeyEncoder } from '../../../shared/collation/encoder.ts';
 import { encodedTextPatch } from '../../../shared/text-key-encoder.ts';
 import type { EntityId } from '@studio/contracts/api';
@@ -38,11 +40,18 @@ export function updateProfileCommitUsers(
   workspaceId: EntityId,
   now: number,
   marker: EntityId,
+  authority: CommandAuthority,
 ) {
   return matchedBatch(r, [
     r.prepare(
-      `UPDATE users SET ${fields.sql},version=version+1 WHERE id=? AND version=? AND EXISTS (SELECT 1 FROM workspaceMembers m WHERE m.userId=users.id AND m.workspaceId=? AND m.status='active' AND m.removedAt IS NULL)`,
-      [...fields.parameters, userId, expectedVersion, workspaceId],
+      `UPDATE users SET ${fields.sql},version=version+1 WHERE id=? AND version=? AND EXISTS (SELECT 1 FROM workspaceMembers m WHERE m.userId=users.id AND m.workspaceId=? AND m.status='active' AND m.removedAt IS NULL) AND ${principalAuthoritySql('users.id')}`,
+      [
+        ...fields.parameters,
+        userId,
+        expectedVersion,
+        workspaceId,
+        ...principalAuthorityParameters(authority),
+      ],
     ),
     r.prepare(
       `UPDATE workspaceMembers SET version=version+1,updatedAt=?,lastMutationId=? WHERE userId=? AND ${markerSql('users')}`,

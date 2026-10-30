@@ -1,3 +1,4 @@
+import { createWorkspaceContext } from '../../src/shared/scope.ts';
 import {
   archiveRead,
   archiveReadProjects,
@@ -70,7 +71,7 @@ export default {
         EntityIdSchema.parse(env.LOCAL_WORKSPACE_ID),
       );
       const member = await membership(repository, user.currentWorkspaceId, user.user.id),
-        scope = { workspaceId: user.currentWorkspaceId, memberId: member.id };
+        scope = createWorkspaceContext(user.currentWorkspaceId, member.id, { kind: 'local' });
       const q = input.query;
       if (input.kind === 'search') {
         const query = SearchQuerySchema.parse(q),
