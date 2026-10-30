@@ -20,3 +20,5 @@ export { oidcPolicy } from './domain/oidc.ts';
 export type { OidcProvider, InitialOidcTokens, OidcTokens } from './domain/oidc.ts';
 
 export { commandAuthority, commandAuthorityStatus } from './application/command-authority.ts';
+
+export { createOidcBrowserService } from './application/oidc-browser.ts';

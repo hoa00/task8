@@ -1,3 +1,4 @@
+import { submitIdentityLogout } from '../../app/auth-navigation';
 import { useAppServices } from '../../app/services/app-services';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
@@ -101,11 +102,15 @@ export function SearchOverlayHost({
   const session = useStudioQuery('getSession', {});
   const [signingOut, setSigningOut] = useState(false),
     [signOutError, setSignOutError] = useState('');
-  async function performSignOut() {
+  async function performSignOut(provider = false) {
     if (signingOut || !auth) return;
     setSigningOut(true);
     setSignOutError('');
     try {
+      if (provider) {
+        submitIdentityLogout(await auth.prepareProviderLogout());
+        return;
+      }
       await auth.logout();
       setSignOutDialog(false);
       await navigate({ to: '/login', search: {}, replace: true });
@@ -125,7 +130,8 @@ export function SearchOverlayHost({
     if (session.data?.data.capabilities.dataMode === 'mock') enterSignIn();
     else if (auth && session.data?.data.capabilities.features.authentication === 'implemented') {
       setPalette(null);
-      void performSignOut();
+      if (session.data.data.capabilities.identityMode === 'oidc') setSignOutDialog(true);
+      else void performSignOut();
     } else {
       setPalette(null);
       setSignOutDialog(true);
@@ -266,13 +272,28 @@ export function SearchOverlayHost({
           }}
         >
           <DialogBody>
-            {signOutError || t('This option is not available. Contact your administrator.')}
+            {signOutError ||
+              (session.data?.data.capabilities.identityMode === 'oidc'
+                ? t(
+                    'Sign out of this application, or also end your current Identity session. Other applications check their sessions separately.',
+                  )
+                : t('This option is not available. Contact your administrator.'))}
           </DialogBody>
           <DialogFooter>
             <Button disabled={signingOut} onClick={() => setSignOutDialog(false)}>
               {t('Cancel')}
             </Button>
-            {signOutError && (
+            {session.data?.data.capabilities.identityMode === 'oidc' && (
+              <>
+                <Button loading={signingOut} onClick={() => void performSignOut()}>
+                  {t('Sign out of application')}
+                </Button>
+                <Button disabled={signingOut} onClick={() => void performSignOut(true)}>
+                  {t('Sign out of Identity account')}
+                </Button>
+              </>
+            )}
+            {signOutError && session.data?.data.capabilities.identityMode !== 'oidc' && (
               <Button loading={signingOut} onClick={() => void performSignOut()}>
                 {t('Try again')}
               </Button>

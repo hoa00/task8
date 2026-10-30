@@ -1,3 +1,5 @@
+import { verifiedProxyProfile } from '../support/oidc-proxy-profile.mjs';
+import { runWebCases } from './oidc-web-cases.mjs';
 import assert from 'node:assert/strict';
 import { randomBytes, createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile, readdir, cp } from 'node:fs/promises';
@@ -22,22 +24,16 @@ const { Miniflare, convertV4MiniflareOptions } = await import(wranglerRequire.re
 const hash = (value) => createHash('sha256').update(value).digest('hex');
 assert.equal(process.version, 'v24.13.0', 'Task8 exact engine');
 assert.equal((await run('pnpm', ['--version'], { cwd: root })).stdout.trim(), '11.19.0');
-const evidence = resolve(
-  process.env.TASK8_OIDC_EVIDENCE ??
-    resolve(primary, 'docs/identity-foundation/evidence/WU-06/attempt-01/native-run-01.json'),
-);
-const dir = resolve(
-  primary,
-  '.artifacts/task8-identity-tests',
-  new Date().toISOString().replaceAll(':', '-'),
-);
+const runTag = new Date().toISOString().replaceAll(':', '-');
+const dir = resolve(primary, '.artifacts/task8-identity-tests', runTag);
+const evidence = resolve(process.env.TASK8_OIDC_EVIDENCE ?? resolve(dir, 'results.json'));
 const report = {
   startedAt: new Date().toISOString(),
   pid: process.pid,
   node: process.version,
   namespace: dir,
   layer:
-    'Task8 native Workerd/D1 + real accepted Identity Workerd/D1; controlled D1 ages and HTTP faults distinguished',
+    'Task8 native Workerd/D1 + unchanged accepted Identity product with explicit operational test-helper candidate; controlled D1 ages and HTTP faults distinguished',
   transport:
     'Async Fetcher.fetch test dispatcher; SDK and crypto in Workerd; Node TLS outbound transport uses actual OS DNS and existing CA',
   cases: [],
@@ -57,7 +53,7 @@ const save = async () => {
   await (await import('node:fs/promises')).rename(temp, evidence);
 };
 const selection = process.env.TASK8_OIDC_TEST_GROUP ?? 'all';
-assert(['all', 'protocol'].includes(selection));
+assert(['all', 'protocol', 'browser'].includes(selection));
 report.selection = selection;
 const setupCases = new Set([
   'integer-sql-clock-preserves-exact-boundaries',
@@ -67,12 +63,14 @@ const setupCases = new Set([
   'encrypted-digest-only-session-and-public-dto',
 ]);
 const check = async (name, work) => {
-  if (selection === 'protocol' && !setupCases.has(name) && !name.startsWith('protocol-')) {
+  if (
+    (selection === 'protocol' && !setupCases.has(name) && !name.startsWith('protocol-')) ||
+    (selection === 'browser' && !setupCases.has(name) && !name.startsWith('browser-'))
+  ) {
     (report.notRunCases ??= []).push({
       name,
       status: 'NOT_RUN',
-      reason:
-        'explicit protocol-only selection; native20 carries unchanged production source cases',
+      reason: 'explicit selected group; unselected cases are NOT_RUN',
     });
     return;
   }
@@ -94,7 +92,7 @@ const check = async (name, work) => {
         causePath: error.causePath ?? null,
         location: error.stack
           ?.split('\n')
-          .filter((x) => x.includes('oidc-session.mjs:'))
+          .filter((x) => x.includes('oidc-session.mjs:') || x.includes('oidc-web-cases.mjs:'))
           .slice(0, 3),
       },
     });
@@ -354,7 +352,12 @@ async function app(path, { sid, method = 'GET', body, headers = {} } = {}) {
       method,
       headers: {
         origin,
-        ...(sid ? { cookie: '__Host-task8_oidc_session=' + sid } : {}),
+        ...(sid
+          ? {
+              cookie: '__Host-task8_oidc_session=' + sid,
+              ...(method !== 'GET' ? { 'x-csrf-token': hash('task8:csrf:' + sid) } : {}),
+            }
+          : {}),
         ...headers,
       },
       ...(body ? { body: JSON.stringify(body) } : {}),
@@ -392,6 +395,9 @@ async function boot() {
   task8 = new Miniflare(options());
   await task8.ready;
   db = await task8.getD1Database('DB', 'task8-main');
+  await captureProcesses();
+}
+async function captureProcesses() {
   const rows = (await run('ps', ['-ax', '-o', 'pid=,ppid=,comm='])).stdout
     .trim()
     .split('\n')
@@ -417,24 +423,80 @@ try {
   await mkdir(dir, { recursive: true, mode: 0o700 });
   await mkdir(dirname(evidence), { recursive: true });
   report.defaultBefore = await snapshot();
+  const inheritedSource = JSON.parse(
+    await readFile(
+      resolve(
+        primary,
+        'docs/identity-foundation/evidence/WU-06/attempt-01/SOURCE_FINGERPRINTS.json',
+      ),
+      'utf8',
+    ),
+  );
   const sourceNames = [
-    ...(await run('git', ['diff', '--name-only'], { cwd: root })).stdout.trim().split('\n'),
-    ...(await run('git', ['ls-files', '--others', '--exclude-standard'], { cwd: root })).stdout
-      .trim()
-      .split('\n'),
-  ]
-    .filter(Boolean)
-    .sort();
+    ...new Set(
+      [
+        ...inheritedSource.files.map((file) => file.path),
+        'apps/api/src/db/client.ts',
+        'apps/api/wrangler.jsonc',
+        ...(
+          await run('git', ['diff', '--name-only', '1282fefe8e6caf0518a0d7f8a5314f4d8c52bd31'], {
+            cwd: root,
+          })
+        ).stdout
+          .trim()
+          .split('\n'),
+        ...(await run('git', ['ls-files', '--others', '--exclude-standard'], { cwd: root })).stdout
+          .trim()
+          .split('\n'),
+      ].filter(Boolean),
+    ),
+  ].sort();
+  report.baseHead = '1282fefe8e6caf0518a0d7f8a5314f4d8c52bd31';
+  report.head = (await run('git', ['rev-parse', 'HEAD'], { cwd: root })).stdout.trim();
+  await run('git', ['merge-base', '--is-ancestor', report.baseHead, report.head], { cwd: root });
   report.source = [];
   for (const path of sourceNames) {
     const bytes = await readFile(resolve(root, path));
     report.source.push({ path, bytes: bytes.length, sha256: hash(bytes) });
   }
+  report.sourceAggregateSha256 = hash(
+    report.source.map((file) => file.sha256 + '  ' + file.path + '\n').join(''),
+  );
+  report.primarySource = [];
+  for (const path of [
+    'tests/support/oidc-http-runtime.mjs',
+    'tests/dev/oidc-profile-preflight.test.mjs',
+    'scripts/lib/jsonc-config.mjs',
+  ]) {
+    const bytes = await readFile(resolve(primary, path));
+    report.primarySource.push({ path, bytes: bytes.length, sha256: hash(bytes) });
+  }
   await save();
   const { verifyIdentitySource } = await import(
     resolve(primary, 'tests/support/oidc-http-runtime.mjs')
   );
-  Object.assign(report, await verifyIdentitySource(identity, process.env.IDENTITY_SOURCE_MANIFEST));
+  report.phase = 'identity-source-preflight';
+  const candidate =
+    process.env.IDENTITY_OPERATIONAL_CANDIDATE_BASELINE !== undefined ||
+    process.env.IDENTITY_OPERATIONAL_CANDIDATE_SHA256 !== undefined
+      ? {
+          operationalCandidate: {
+            baselineManifestPath: process.env.IDENTITY_OPERATIONAL_CANDIDATE_BASELINE,
+            expectedManifestSha256: process.env.IDENTITY_OPERATIONAL_CANDIDATE_SHA256,
+          },
+        }
+      : {};
+  Object.assign(
+    report,
+    await verifyIdentitySource(identity, process.env.IDENTITY_SOURCE_MANIFEST, candidate),
+  );
+  report.phase = 'verified-proxy-profile';
+  const proxy = await verifiedProxyProfile(
+    process.env.TASK8_OIDC_PROXY_MANIFEST,
+    process.env.TASK8_OIDC_PROXY_MANIFEST_SHA256,
+  );
+  report.proxyBinding = proxy.summary;
+  await save();
   const identityRequire = createRequire(resolve(identity, 'package.json')),
     {
       Miniflare: NativeProvider,
@@ -442,7 +504,7 @@ try {
       LogLevel,
     } = await import(identityRequire.resolve('miniflare'));
   const { environment } = await import(resolve(identity, 'apps/web/tests/environment.mjs'));
-  for (const port of [4310, 4316]) {
+  for (const port of selection === 'browser' ? [4310, 4316, 4317] : [4310, 4316]) {
     const listener = createServer();
     await new Promise((accept, reject) => {
       listener.once('error', reject);
@@ -450,7 +512,8 @@ try {
     });
     await new Promise((r) => listener.close(r));
   }
-  owner = await environment(resolve(dir, 'environment-backup'));
+  report.phase = 'environment-backup';
+  owner = await environment(resolve(dir, 'environment-backup'), proxy.pid);
   report.environment = { before: owner.before };
   const { readJsoncConfig } = await import(resolve(primary, 'scripts/lib/jsonc-config.mjs'));
   const taskConfig = await readJsoncConfig(resolve(api, 'wrangler.jsonc')),
@@ -680,7 +743,26 @@ try {
     }
     return result;
   };
+  if (selection === 'browser') {
+    await sql('UPDATE workspaceMembers SET userId=? WHERE id=?', [
+      localUserId,
+      fixture.isolation.memberId,
+    ]);
+    const privateProject = fixture.rows.projects.find((p) => p.visibility === 'private');
+    assert(privateProject);
+    await sql('DELETE FROM projectMembers WHERE workspaceId=? AND projectId=? AND memberId=?', [
+      workspaceId,
+      privateProject.id,
+      fixture.primary.memberId,
+    ]);
+    report.fixture.browserConstruction = {
+      sameExistingUserHasTwoExistingMembershipIds: true,
+      privateProjectGrantAbsentBeforeAuth: true,
+    };
+  }
+  report.phase = 'native-cases';
   report.businessBefore = await businessSnapshot();
+  let browserBusinessExpected;
   await check('integer-sql-clock-preserves-exact-boundaries', async () => {
     assert(report.sqlClockSamples.some((sample) => sample.exactClock - sample.floatingClock === 1));
     for (let i = 0; i < 12; i++) {
@@ -742,7 +824,11 @@ try {
     const resolved = await probe('authenticate', session, {});
     assert.equal(resolved.status, 200);
     assert.equal(resolved.userId, localUserId);
-    assert.equal(resolved.currentWorkspaceId, workspaceId);
+    const expectedWorkspace =
+      selection === 'browser'
+        ? [workspaceId, fixture.isolation.workspaceId].sort()[0]
+        : workspaceId;
+    assert.equal(resolved.currentWorkspaceId, expectedWorkspace);
     assert.equal(resolved.mechanism, 'oidc');
     return { expectedUserId: localUserId, actualUserId: resolved.userId };
   });
@@ -769,6 +855,38 @@ try {
       assert(!JSON.stringify(data).includes('"' + forbidden + '":'));
     return { status: response.status, absoluteMilliseconds: 28800000 };
   });
+  if (selection === 'browser')
+    browserBusinessExpected = await runWebCases({
+      root,
+      dir,
+      origin,
+      issuer,
+      report,
+      check,
+      app,
+      sql,
+      task8,
+      owner,
+      budget,
+      account,
+      client,
+      operator,
+      credentials: { email, password, operatorEmail, operatorPassword },
+      fixture,
+      businessSnapshot,
+      hash,
+      providerCookie: () => cookie,
+      tokenCalls: () => tokenCalls,
+      setFault: (value) => {
+        fault = value;
+      },
+      barrier,
+      waitFor,
+      setBarrier: (value) => {
+        barrierWait = value;
+      },
+      captureProcesses,
+    });
   await check('protocol-initial-native-nonce-and-signature-rejection', async () => {
     const g = await grant();
     assert.equal((await probe('create', g.tokens, g.nonce + 'wrong')).status, 401);
@@ -1444,13 +1562,14 @@ try {
     return { duplicateRejected: true, revoked: 401 };
   });
   report.businessAfter = await businessSnapshot();
-  assert.deepEqual(report.businessAfter, report.businessBefore);
+  assert.deepEqual(report.businessAfter, browserBusinessExpected ?? report.businessBefore);
   report.status = 'PASS';
 } catch (error) {
   report.status = 'FAIL';
   report.failure = {
     name: error.name,
     code: error.code ?? null,
+    phase: report.phase ?? null,
     categories: {
       sql: /SQL|sqlite|D1/iu.test(error.message ?? ''),
       length: /too (?:big|long|large)|length/iu.test(error.message ?? ''),
@@ -1494,6 +1613,10 @@ try {
   report.defaultAfter = await snapshot();
   report.defaultUnchanged =
     JSON.stringify(report.defaultBefore) === JSON.stringify(report.defaultAfter);
+  if (!report.defaultUnchanged || report.cleanupErrors?.length) {
+    report.status = 'FAIL';
+    process.exitCode = 1;
+  }
   report.completedAt = new Date().toISOString();
   await save();
   console.log(

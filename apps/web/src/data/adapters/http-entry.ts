@@ -10,7 +10,7 @@ import { createOnboardingDemo, onboardingFlowId } from '../onboarding-demo.ts';
 export function createDataRuntime(env: PublicEnv): DataRuntime {
   if (env.dataMode !== 'http') throw new Error('Data mode differs from the built adapter');
   const client = createHttpClient({ baseUrl: env.apiBaseUrl, auth: () => auth });
-  const auth = createHttpAuth(client);
+  const auth = createHttpAuth(client, undefined, env.apiBaseUrl);
   return {
     client,
     clock: systemClock,

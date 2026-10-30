@@ -9,6 +9,8 @@ import {
   authSettings,
   requireOrigin,
   requestSid,
+  requireCookieCsrf,
+  preauthCookieName,
   sessionCookie,
   type AuthSettings,
 } from './http/index.ts';
@@ -27,7 +29,14 @@ export function createAuthRoutes(
   routes.use('*', async (context, next) => {
     if (context.env.AUTH_MODE !== 'ict24h')
       throw new ApiFailure('CAPABILITY_UNAVAILABLE', 'Authentication is not available');
-    requireOrigin(context.req.raw, authSettings(context.env));
+    const settings = authSettings(context.env);
+    requireOrigin(context.req.raw, settings);
+    await requireCookieCsrf(
+      context.req.raw,
+      requestSid(context.req.raw, settings)
+        ? settings.cookieName
+        : preauthCookieName(settings.secureCookie),
+    );
     context.set('repository', createRepository(context.env));
     await next();
   });
@@ -75,8 +84,14 @@ export function createAuthRoutes(
       requestSid(context.req.raw, settings),
       expected,
     );
+    context.header(
+      'set-cookie',
+      `${settings.cookieName}=; Path=/; HttpOnly; SameSite=Lax${settings.secureCookie ? '; Secure' : ''}; Max-Age=0`,
+    );
     context.header('cache-control', 'no-store');
     return context.json(authOperations.authLogout.response.parse({ data: result }));
   });
   return routes;
 }
+
+export { createBrowserAuthRoutes, createAuthMetadataRoutes } from './browser-routes.ts';

@@ -1,7 +1,13 @@
 import type { QueryClient } from '@tanstack/react-query';
-import { Ict24hSessionSchema } from '@studio/contracts/api';
+import {
+  Ict24hSessionSchema,
+  AuthMetadataSchema,
+  ApiErrorSchema,
+  OidcLogoutResultSchema,
+} from '@studio/contracts/api';
 import type {
   AuthLoginInput,
+  AuthMetadata,
   CapabilitiesDto,
   Ict24hSessionDto,
   OperationOutput,
@@ -27,7 +33,10 @@ export interface AuthFacade {
   subscribe(listener: (event: AuthEvent) => void): () => void;
   start(): () => void;
   login(input: AuthLoginInput): Promise<Ict24hSessionDto>;
-  refresh(): Promise<Ict24hSessionDto>;
+  refresh(): Promise<OperationOutput<'getSession'>['data']>;
+  metadata(): Promise<AuthMetadata>;
+  csrf(): Promise<string | null>;
+  prepareProviderLogout(): Promise<string>;
   logout(): Promise<void>;
   check(): Promise<OperationOutput<'getSession'>>;
 }
@@ -38,11 +47,43 @@ const sessionChanged = () =>
       message: 'The browser session has changed. Please try again.',
     },
   });
-export function createHttpAuth(client: StudioClient): AuthFacade {
+export function createHttpAuth(
+  client: StudioClient,
+  fetcher: typeof globalThis.fetch = globalThis.fetch,
+  apiBaseUrl='/api/v1',
+): AuthFacade {
+  let selected: AuthMetadata | undefined, selecting: Promise<AuthMetadata> | undefined;
+  async function request(path: string, init: RequestInit = {}) {
+    let response: Response;
+    try {
+      response = await fetcher(path, {
+        ...init,
+        credentials: 'same-origin',
+        headers: { Accept: 'application/json', ...init.headers },
+      });
+    } catch {
+      throw new StudioApiError(
+        {
+          error: {
+            code: 'AUTH_SERVICE_UNAVAILABLE',
+            message: 'Sign-in is temporarily unavailable. Please try again.',
+          },
+        },
+        503,
+      );
+    }
+    const result: unknown = await response.json().catch(() => null);
+    if (!response.ok) {
+      const parsed = ApiErrorSchema.safeParse(result);
+      if (parsed.success) throw new StudioApiError(parsed.data, response.status);
+      throw new StudioTransportError('invalidResponse', 'Invalid authentication response');
+    }
+    return result;
+  }
   let cache: QueryClient | undefined;
   let generation = 0,
     controller = new AbortController();
-  let refreshing: Promise<Ict24hSessionDto> | undefined;
+  let refreshing: Promise<OperationOutput<'getSession'>['data']> | undefined;
   let intentPending = false,
     channel: BroadcastChannel | undefined;
   const listeners = new Set<(event: AuthEvent) => void>();
@@ -111,6 +152,7 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
           },
         });
       if (
+        (await facade.metadata()).mode === 'ict24h' &&
         session.authSession &&
         Date.parse(session.authSession.accessExpiresAt) <= Date.now() + 5000
       )
@@ -161,7 +203,45 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
         channel = undefined;
       };
     },
+    async metadata() {
+      if (selected) return selected;
+      if (!selecting)
+        selecting = request(apiBaseUrl+'/auth-metadata')
+          .then((value) => {
+            selected = AuthMetadataSchema.parse(value);
+            return selected;
+          })
+          .finally(() => {
+            selecting = undefined;
+          });
+      return selecting;
+    },
+    async csrf() {
+      const mode = (await facade.metadata()).mode;
+      const context = AuthMetadataSchema.parse(await request('/auth/context'));
+      if (context.mode !== mode) throw sessionChanged();
+      return context.csrf;
+    },
+    async prepareProviderLogout() {
+      const attempt = generation;
+      if (intentPending || (await facade.metadata()).mode !== 'oidc') throw sessionChanged();
+      const proof = await facade.csrf();
+      if (!proof) throw sessionChanged();
+      assertGeneration(attempt);
+      await advance(true);
+      return proof;
+    },
     async login(input) {
+      if ((await facade.metadata()).mode !== 'ict24h')
+        throw new StudioApiError(
+          {
+            error: {
+              code: 'CAPABILITY_UNAVAILABLE',
+              message: 'Password sign-in is not available.',
+            },
+          },
+          501,
+        );
       if (intentPending) throw sessionChanged();
       intentPending = true;
       const attempt = await advance(false);
@@ -187,6 +267,13 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       if (refreshing) return refreshing;
       const attempt = generation;
       const work = (async () => {
+        const mode = (await facade.metadata()).mode;
+        if (mode === 'oidc') return (await client.execute('getSession', {})).data;
+        if (mode !== 'ict24h')
+          throw new StudioApiError(
+            { error: { code: 'CAPABILITY_UNAVAILABLE', message: 'Refresh is not available.' } },
+            501,
+          );
         const result = await client.execute('authRefresh', {});
         assertGeneration(attempt);
         cache?.setQueryData(queryKeys.session(), result);
@@ -214,7 +301,27 @@ export function createHttpAuth(client: StudioClient): AuthFacade {
       const attempt = await advance(false);
       try {
         assertGeneration(attempt);
-        await client.execute('authLogout', {});
+        const mode = (await facade.metadata()).mode;
+        assertGeneration(attempt);
+        if (mode === 'oidc') {
+          const proof = await facade.csrf();
+          assertGeneration(attempt);
+          OidcLogoutResultSchema.parse(
+            await request('/auth/logout', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                ...(proof ? { 'X-CSRF-Token': proof } : {}),
+              },
+              body: JSON.stringify({ provider: false }),
+            }),
+          );
+        } else if (mode === 'ict24h') await client.execute('authLogout', {});
+        else
+          throw new StudioApiError(
+            { error: { code: 'CAPABILITY_UNAVAILABLE', message: 'Sign-out is not available.' } },
+            501,
+          );
         assertGeneration(attempt);
         await cache?.cancelQueries();
         cache?.clear();

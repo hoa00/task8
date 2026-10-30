@@ -1,3 +1,4 @@
+import type { OidcBrowserProvider } from '../application/oidc-browser.ts';
 import * as oidc from 'openid-client';
 import { createRemoteJWKSet, jwtVerify, errors as jwtErrors } from 'jose';
 import {
@@ -193,6 +194,75 @@ export function createOidcProvider(settings: OidcSettings): OidcProvider {
       } catch {
         throw unavailable();
       }
+    },
+  };
+}
+
+export function createOidcBrowserProvider(settings: OidcSettings): OidcBrowserProvider {
+  return {
+    async authorization(secret, state) {
+      return oidc.buildAuthorizationUrl(await oidcConfiguration(settings), {
+        redirect_uri: settings.origin + '/auth/callback',
+        scope: 'openid profile email offline_access',
+        state,
+        nonce: secret.nonce,
+        code_challenge: await oidc.calculatePKCECodeChallenge(secret.verifier),
+        code_challenge_method: 'S256',
+      }).href;
+    },
+    async exchange(search, secret, state, ensureClaimed) {
+      try {
+        const config = await oidcConfiguration(settings);
+        await ensureClaimed();
+        const tokens = await oidc.authorizationCodeGrant(
+          config,
+          new URL(settings.origin + '/auth/callback' + search),
+          {
+            pkceCodeVerifier: secret.verifier,
+            expectedState: state,
+            expectedNonce: secret.nonce,
+            idTokenExpected: true,
+          },
+          { redirect_uri: settings.origin + '/auth/callback' },
+        );
+        if (!tokens.id_token || !tokens.refresh_token || !tokens.expires_in) throw invalid();
+        return {
+          access_token: tokens.access_token,
+          refresh_token: tokens.refresh_token,
+          id_token: tokens.id_token,
+          expires_in: tokens.expires_in,
+        };
+      } catch (error) {
+        if (error instanceof ApiFailure) throw error;
+        if (
+          error instanceof oidc.AuthorizationResponseError ||
+          (error instanceof oidc.ResponseBodyError &&
+            error.status >= 400 &&
+            error.status < 500 &&
+            error.error !== 'invalid_client') ||
+          (error instanceof oidc.ClientError &&
+            [
+              'OAUTH_INVALID_RESPONSE',
+              'OAUTH_JWT_CLAIM_COMPARISON_FAILED',
+              'OAUTH_JWT_TIMESTAMP_CHECK_FAILED',
+              'OAUTH_INVALID_REQUEST',
+            ].includes(error.code ?? ''))
+        )
+          throw invalid();
+        throw unavailable();
+      }
+    },
+    async logout(state) {
+      return oidc.buildEndSessionUrl(await oidcConfiguration(settings), {
+        client_id: settings.clientId,
+        post_logout_redirect_uri: settings.origin + '/auth/logged-out',
+        state,
+      }).href;
+    },
+    async revoke(refreshToken) {
+      await oidc.tokenRevocation(await oidcConfiguration(settings), refreshToken, {
+        token_type_hint: 'refresh_token',
+      });
     },
   };
 }

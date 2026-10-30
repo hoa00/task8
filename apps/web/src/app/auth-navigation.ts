@@ -1,52 +1,73 @@
-import { EntityIdSchema } from "@studio/contracts/api";
-import type { StudioClient } from "../data/operations.ts";
-import { StudioApiError } from "../data/errors.ts";
+import { EntityIdSchema } from '@studio/contracts/api';
+import type { StudioClient } from '../data/operations.ts';
+import { StudioApiError } from '../data/errors.ts';
 
 export function safeReturnPath(input: unknown): string | undefined {
   if (
-    typeof input !== "string" ||
+    typeof input !== 'string' ||
     input.length > 2048 ||
-    !input.startsWith("/") ||
-    input.startsWith("//") ||
-    input.includes("\\")
+    !input.startsWith('/') ||
+    input.startsWith('//') ||
+    input.includes('\\') ||
+    /[%#]/u.test(input) ||
+    [...input].some((character) => character.charCodeAt(0) <= 32 || character.charCodeAt(0) === 127)
   )
     return undefined;
-  const url = new URL(input, "https://task8.internal");
+  const url = new URL(input, 'https://task8.internal');
   if (
-    url.origin !== "https://task8.internal" ||
-    (url.pathname !== "/" && !url.pathname.startsWith("/w/"))
+    url.origin !== 'https://task8.internal' ||
+    (url.pathname !== '/' && !url.pathname.startsWith('/w/'))
   )
     return undefined;
   return url.pathname + url.search + url.hash;
 }
-export async function allowedReturnPath(
-  client: StudioClient,
-  input: unknown,
-): Promise<string> {
+export async function allowedReturnPath(client: StudioClient, input: unknown): Promise<string> {
   const path = safeReturnPath(input);
-  if (!path || path === "/") return "/";
-  const url = new URL(path, "https://task8.internal");
+  if (!path || path === '/') return '/';
+  const url = new URL(path, 'https://task8.internal');
   const workspace = url.pathname.match(/^\/w\/([^/]+)(?:\/|$)/u)?.[1];
-  if (!EntityIdSchema.safeParse(workspace).success) return "/";
+  if (!EntityIdSchema.safeParse(workspace).success) return '/';
   try {
-    await client.execute("getBootstrap", {
+    await client.execute('getBootstrap', {
       workspaceId: EntityIdSchema.parse(workspace),
     });
-    const project = url.pathname.match(
-      /^\/w\/[^/]+\/projects\/([^/]+)(?:\/|$)/u,
-    )?.[1];
+    const project = url.pathname.match(/^\/w\/[^/]+\/projects\/([^/]+)(?:\/|$)/u)?.[1];
     if (project && EntityIdSchema.safeParse(project).success)
-      await client.execute("getProject", {
+      await client.execute('getProject', {
         workspaceId: EntityIdSchema.parse(workspace),
         projectId: EntityIdSchema.parse(project),
       });
     return path;
   } catch (error) {
-    if (
-      error instanceof StudioApiError &&
-      (error.status === 403 || error.status === 404)
-    )
-      return "/";
+    if (error instanceof StudioApiError && (error.status === 403 || error.status === 404))
+      return '/';
     throw error;
   }
+}
+
+export function oidcLoginHref(input: unknown): string {
+  const path = safeReturnPath(input) ?? '/';
+  return '/auth/login?' + new URLSearchParams({ returnTo: path });
+}
+export function navigateToIdentity(href: string): void {
+  if (!href.startsWith('/auth/login?')) throw new TypeError('Invalid sign-in navigation');
+  window.location.assign(href);
+}
+export function submitIdentityLogout(csrf: string): void {
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = '/auth/logout';
+  for (const [name, value] of [
+    ['provider', 'true'],
+    ['csrf', csrf],
+  ] as const) {
+    const field = document.createElement('input');
+    field.type = 'hidden';
+    field.name = name;
+    field.value = value;
+    form.append(field);
+  }
+  document.body.append(form);
+  form.submit();
+  form.remove();
 }

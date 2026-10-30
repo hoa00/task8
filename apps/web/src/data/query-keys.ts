@@ -3,6 +3,8 @@ import type { OperationId, OperationInput } from '@studio/contracts/api';
 
 export const queryKeys = {
   session: () => ['session'] as const,
+  authMetadata: () => ['auth-metadata'] as const,
+  authContext: () => ['auth-context'] as const,
   workspaces: () => ['workspaces'] as const,
   profile: () => ['profile'] as const,
   workspace: (workspaceId: string) => ['workspace', EntityIdSchema.parse(workspaceId)] as const,

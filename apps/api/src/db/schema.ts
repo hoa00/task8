@@ -162,6 +162,43 @@ export const oidcAppSessions = sqliteTable(
   ],
 );
 
+export const oidcLoginTransactions = sqliteTable(
+  'oidcLoginTransactions',
+  {
+    id: text('id').primaryKey(),
+    stateHash: text('stateHash').notNull(),
+    bindingHash: text('bindingHash').notNull(),
+    secret: text('secret').notNull(),
+    issuer: text('issuer').notNull(),
+    clientId: text('clientId').notNull(),
+    redirectUri: text('redirectUri').notNull(),
+    returnTo: text('returnTo').notNull(),
+    priorHash: text('priorHash'),
+    createdAt: integer('createdAt').notNull(),
+    expiresAt: integer('expiresAt').notNull(),
+    status: text('status').notNull().default('pending'),
+  },
+  (t): SQLiteTableExtraConfigValue[] => [
+    uniqueIndex('oidcLoginTransactions_state').on(t.stateHash),
+    index('oidcLoginTransactions_expiry').on(t.expiresAt),
+    check(
+      'oidcLoginTransactions_status',
+      sql`${t.status} IN ('pending','claimed','succeeded','failed')`,
+    ),
+    check('oidcLoginTransactions_lifetime', sql`${t.expiresAt}=${t.createdAt}+600000`),
+  ],
+);
+export const oidcLogoutTransactions = sqliteTable(
+  'oidcLogoutTransactions',
+  {
+    stateHash: text('stateHash').primaryKey(),
+    bindingHash: text('bindingHash').notNull(),
+    expiresAt: integer('expiresAt').notNull(),
+    consumedAt: integer('consumedAt'),
+  },
+  (t): SQLiteTableExtraConfigValue[] => [index('oidcLogoutTransactions_expiry').on(t.expiresAt)],
+);
+
 export const workspaces = sqliteTable(
   'workspaces',
   {

@@ -34,6 +34,26 @@ export async function freePort() {
   return port;
 }
 
+// Literal dotenv quoting preserves server-only JSON and multiline PEM fixture values.
+export function privateVarsText(secrets) {
+  return (
+    Object.entries(secrets)
+      .map(([key, value]) => {
+        if (
+          !/^[A-Z][A-Z0-9_]*$/u.test(key) ||
+          typeof value !== 'string' ||
+          value.includes('\r') ||
+          value.includes('\0')
+        )
+          throw new TypeError('Invalid private fixture variable');
+        const quote = !value.includes("'") ? "'" : !value.includes('`') ? '`' : undefined;
+        if (!quote) throw new TypeError('Unsupported private fixture secret encoding');
+        return key + '=' + quote + value + quote;
+      })
+      .join('\n') + '\n'
+  );
+}
+
 export async function createHarness(feature, report) {
   const outputRoot = resolve(process.env.API_TEST_OUTPUT_DIR ?? resolve(root, 'test-results/api'));
   mkdirSync(outputRoot, { recursive: true });
@@ -184,13 +204,7 @@ export async function createHarness(feature, report) {
     }));
     const file = resolve(runtime, name + '.json');
     writeFileSync(file, JSON.stringify(config));
-    writeFileSync(
-      resolve(runtime, '.dev.vars'),
-      Object.entries(secrets)
-        .map(([key, value]) => `${key}=${JSON.stringify(value)}`)
-        .join('\n') + '\n',
-      { mode: 0o600 },
-    );
+    writeFileSync(resolve(runtime, '.dev.vars'), privateVarsText(secrets), { mode: 0o600 });
     worker = await launch(name, [
       'pnpm',
       'exec',

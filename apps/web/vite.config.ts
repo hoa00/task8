@@ -7,8 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 const workspaceRoot = fileURLToPath(new URL('../../', import.meta.url)).replace(/\/$/, '');
 
 export default defineConfig(({ mode }) => {
+  const isolated = process.env.TASK8_ISOLATED_PROFILE === '1';
   const env = {
-    ...loadEnv(mode, fileURLToPath(new URL('./', import.meta.url)), 'VITE_'),
+    ...(isolated ? {} : loadEnv(mode, fileURLToPath(new URL('./', import.meta.url)), 'VITE_')),
     ...process.env,
   };
   const dataMode = env.VITE_DATA_MODE ?? 'mock';
@@ -20,6 +21,7 @@ export default defineConfig(({ mode }) => {
   if (httpOnly && dataMode !== 'http')
     throw new TypeError('HTTP-only bundle must use HTTP data mode');
   return {
+    ...(isolated ? { envDir: false as const } : {}),
     resolve: {
       alias: {
         '#studio-adapter': fileURLToPath(
@@ -69,7 +71,17 @@ export default defineConfig(({ mode }) => {
             },
       },
     },
-    server: { host: '127.0.0.1', port: 5173, strictPort: true, proxy: { '/api': apiProxy } },
-    preview: { host: '127.0.0.1', port: 5173, strictPort: true, proxy: { '/api': apiProxy } },
+    server: {
+      host: '127.0.0.1',
+      port: 5173,
+      strictPort: true,
+      proxy: { '/auth': apiProxy, '/api': apiProxy },
+    },
+    preview: {
+      host: '127.0.0.1',
+      port: 5173,
+      strictPort: true,
+      proxy: { '/auth': apiProxy, '/api': apiProxy },
+    },
   };
 });

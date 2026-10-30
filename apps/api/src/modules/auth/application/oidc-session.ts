@@ -1,3 +1,4 @@
+import { UnlinkedIdentityFailure, type LoginCommit } from '../domain/oidc-browser.ts';
 import {
   AuthSessionMetadataSchema,
   type EntityId,
@@ -45,7 +46,11 @@ export interface OidcPrincipal extends AuthenticatedPrincipal {
   };
 }
 export interface OidcSessionService {
-  create(tokens: InitialOidcTokens, nonce: string): Promise<{ sid: string; expiresAt: number }>;
+  create(
+    tokens: InitialOidcTokens,
+    nonce: string,
+    commit?: LoginCommit,
+  ): Promise<{ sid: string; expiresAt: number }>;
   authenticate(
     sid: string | undefined,
   ): Promise<{ record: OidcSessionRecord; principal: OidcPrincipal }>;
@@ -154,11 +159,11 @@ export function createOidcSessionService(deps: OidcSessionDependencies): OidcSes
     };
   }
   return {
-    async create(tokens, nonce) {
+    async create(tokens, nonce, commit) {
       const started = deps.clock.now(),
         identity = await deps.provider.initial(tokens, nonce),
         link = await store.link(identity.subject);
-      if (!link) throw new ApiFailure('FORBIDDEN', 'Identity is not linked to a local account');
+      if (!link) throw new UnlinkedIdentityFailure();
       const now = deps.clock.now();
       if (now < started || now - started >= oidcPolicy.freshness * 1000) throw unavailable();
       const sid = deps.crypto.newSid();
@@ -188,7 +193,7 @@ export function createOidcSessionService(deps: OidcSessionDependencies): OidcSes
         refresh_token: tokens.refresh_token,
         id_token: tokens.id_token,
       });
-      if (!(await store.insert(row))) throw invalid();
+      if (!(await store.insert(row, commit))) throw invalid();
       return { sid, expiresAt: row.expiresAt };
     },
     async authenticate(sid) {

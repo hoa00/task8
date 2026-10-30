@@ -1,3 +1,4 @@
+import { seedRows, seedSql } from '../../scripts/seed-data.mjs';
 import assert from 'node:assert/strict';
 import { randomBytes } from 'node:crypto';
 import { mkdir, readFile, writeFile, readdir, cp, rm } from 'node:fs/promises';
@@ -6,6 +7,7 @@ import { createHarness, localFetch, hash, api } from '../support/harness.mjs';
 const report = { status: 'RUNNING', commands: [], probes: [], backups: [] },
   h = await createHarness('oidc-session', report),
   key = randomBytes(32).toString('base64url');
+const migrationConfig = resolve(h.runtime, 'current-migrations.json');
 const oldMigrations = resolve(h.runtime, 'old-migrations'),
   baseConfig = resolve(h.runtime, 'baseline.json'),
   config = JSON.parse(await readFile(resolve(api, 'wrangler.jsonc'), 'utf8'));
@@ -49,6 +51,13 @@ async function start(name) {
   await h.start(name, { AUTH_MODE: 'local', STUDIO_ENV: 'local' }, false, { DRIVER_KEY: key });
 }
 try {
+  const current = structuredClone(config);
+  current.main = resolve(api, 'src/index.ts');
+  current.d1_databases = current.d1_databases.map((binding) => ({
+    ...binding,
+    migrations_dir: resolve(api, binding.migrations_dir),
+  }));
+  await writeFile(migrationConfig, JSON.stringify(current), { mode: 0o600 });
   await mkdir(oldMigrations, { recursive: true, mode: 0o700 });
   for (const name of (await readdir(resolve(api, 'src/db/migrations'))).filter((name) =>
     /^000[0-4]_.*\.sql$/u.test(name),
@@ -86,7 +95,23 @@ try {
     phase: 'before-fixture-data',
     path: resolve(h.runtime, 'before-fixture-data'),
   });
-  h.run('baseline-seed', ['node', 'scripts/seed-local.mjs', '--persist-to', h.persist]);
+  const seedFile = resolve(h.runtime, 'fixture-seed.sql');
+  await writeFile(seedFile, seedSql(seedRows()), { mode: 0o600 });
+  h.run('baseline-seed', [
+    'pnpm',
+    'exec',
+    'wrangler',
+    'd1',
+    'execute',
+    'DB',
+    '--local',
+    '--file',
+    seedFile,
+    '--persist-to',
+    h.persist,
+    '--config',
+    baseConfig,
+  ]);
   await start('baseline');
   const userIds = (await sql('SELECT id FROM users ORDER BY id LIMIT 2')).map((row) => row.id),
     now = Date.now(),
@@ -137,6 +162,8 @@ try {
     '--local',
     '--persist-to',
     h.persist,
+    '--config',
+    migrationConfig,
   ]);
   h.run('oidc-upgrade-rerun', [
     'pnpm',
@@ -149,6 +176,8 @@ try {
     '--local',
     '--persist-to',
     h.persist,
+    '--config',
+    migrationConfig,
   ]);
   await start('upgraded');
   const after = await snapshot();
@@ -160,7 +189,7 @@ try {
         "SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'oidc%' ORDER BY name",
       )
     ).map((row) => row.name),
-    ['oidcAppSessions', 'oidcIdentityLinks'],
+    ['oidcAppSessions', 'oidcIdentityLinks', 'oidcLoginTransactions', 'oidcLogoutTransactions'],
   );
   const ledger = await sql('SELECT name FROM d1_migrations ORDER BY id');
   assert.equal(ledger.filter((row) => row.name === '0005_oidc-identity-sessions.sql').length, 1);
@@ -202,6 +231,8 @@ try {
     '--local',
     '--persist-to',
     h.persist,
+    '--config',
+    migrationConfig,
   ]);
   await start('reupgraded');
   assert.deepEqual(await snapshot(), before);

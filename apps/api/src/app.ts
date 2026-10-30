@@ -4,17 +4,27 @@ import { RequestRepository } from './db/client.ts';
 import {
   createSessionService,
   createOidcSessionService,
+  createOidcBrowserService,
   type IdentityProvider,
 } from './modules/auth/index.ts';
-import { createAuthRoutes } from './modules/auth/routes.ts';
+import {
+  createAuthRoutes,
+  createBrowserAuthRoutes,
+  createAuthMetadataRoutes,
+} from './modules/auth/routes.ts';
 import {
   createAccessVerifier,
   createOidcProvider,
+  createOidcBrowserProvider,
   oidcSettings,
   createIdentityProvider,
   type AuthSettings,
 } from './modules/auth/http/index.ts';
-import { createSessionCrypto, createOidcCrypto } from './modules/auth/storage/index.ts';
+import {
+  createSessionCrypto,
+  createOidcCrypto,
+  createLoginCrypto,
+} from './modules/auth/storage/index.ts';
 import { serverClock } from './shared/clock.ts';
 import { newId } from './shared/ids.ts';
 import { ApiFailure } from './shared/errors.ts';
@@ -66,6 +76,22 @@ export function createOidcService(env: ApiEnvironment['Bindings'], repository: R
     clientId: settings.clientId,
   });
 }
+export function createOidcBrowser(env: ApiEnvironment['Bindings']) {
+  const settings = oidcSettings(env),
+    repository = authRepository(env);
+  return createOidcBrowserService({
+    repository,
+    clock: serverClock,
+    generateId: newId,
+    crypto: createOidcCrypto(settings),
+    loginCrypto: createLoginCrypto(settings),
+    provider: createOidcBrowserProvider(settings),
+    sessions: createOidcService(env, repository),
+    issuer: settings.issuer,
+    clientId: settings.clientId,
+    origin: settings.origin,
+  });
+}
 export function authRepository(env: ApiEnvironment['Bindings']) {
   return new RequestRepository(env.DB, { primary: true });
 }
@@ -73,6 +99,8 @@ export function createApp(deps: AppDependencies = {}) {
   const app = new Hono<ApiEnvironment>();
   app.onError(mapError);
   app.use('*', correlationMiddleware);
+  app.route('/auth', createBrowserAuthRoutes(createOidcBrowser));
+  app.route('/api/v1', createAuthMetadataRoutes());
   app.route(
     '/api/v1/auth',
     createAuthRoutes(

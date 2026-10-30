@@ -9,6 +9,7 @@ import {
   oidcSettings,
   requireOrigin,
   requestSid,
+  requireCookieCsrf,
 } from './modules/auth/http/index.ts';
 import { commandAuthority, type OidcSessionService } from './modules/auth/index.ts';
 import { createWorkspaceContext } from './shared/scope.ts';
@@ -34,11 +35,14 @@ export function createPrincipalMiddleware(
         );
       const repository = createRepository(context.env);
       context.set('repository', repository);
+      if (!['GET', 'HEAD', 'OPTIONS'].includes(context.req.method)) {
+        requireOrigin(context.req.raw, { appOrigin: settings.origin });
+        await requireCookieCsrf(context.req.raw, settings.cookieName);
+      }
       const { principal } = await oidcFactory(context.env, repository).authenticate(
         requestSid(context.req.raw, settings),
       );
       if (!['GET', 'HEAD', 'OPTIONS'].includes(context.req.method)) {
-        requireOrigin(context.req.raw, { appOrigin: settings.origin });
         const expected = context.req.header('X-Task8-Session-Id');
         if (expected === undefined || expected !== principal.authSession.id)
           throw new ApiFailure('SESSION_CHANGED', 'The browser session has changed');
@@ -53,11 +57,14 @@ export function createPrincipalMiddleware(
       const settings = authSettings(context.env);
       const repository = createRepository(context.env);
       context.set('repository', repository);
+      if (!['GET', 'HEAD', 'OPTIONS'].includes(context.req.method)) {
+        requireOrigin(context.req.raw, settings);
+        await requireCookieCsrf(context.req.raw, settings.cookieName);
+      }
       const { session } = await authFactory(context.env, repository, settings).authenticate(
         requestSid(context.req.raw, settings),
       );
       if (!['GET', 'HEAD', 'OPTIONS'].includes(context.req.method)) {
-        requireOrigin(context.req.raw, settings);
         const expected = context.req.header('X-Task8-Session-Id');
         if (expected === undefined || expected !== session.authSession.id)
           throw new ApiFailure('SESSION_CHANGED', 'The browser session has changed');

@@ -1,3 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
+import { useSearch } from '@tanstack/react-router';
+import { queryKeys } from '../../data/query-keys';
+import { AuthModeView } from './AuthModeView';
 import { translate as t } from '../../i18n/i18n';
 import { useTranslation } from '../../i18n/useTranslation';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
@@ -19,7 +23,7 @@ import {
 import { AuthLoginInputSchema } from '@studio/contracts/api';
 import type { AuthFacade } from '../../data/auth';
 import { StudioApiError } from '../../data/errors';
-import { allowedReturnPath } from '../../app/auth-navigation';
+import { allowedReturnPath, oidcLoginHref, navigateToIdentity } from '../../app/auth-navigation';
 import { captureIntent } from '../../data/operations';
 import { useStudioQuery } from '../../data/queries';
 import { useDataRuntime } from '../../data/context';
@@ -89,15 +93,59 @@ export function AuthPage({ screen }: AuthPageProps) {
     navigate = useNavigate(),
     facade = runtime.authDemo;
   const session = useStudioQuery('getSession', {});
+  const search = useSearch({ strict: false });
+  const metadata = useQuery({
+    queryKey: queryKeys.authMetadata(),
+    queryFn: () => {
+      if (!runtime.auth) throw new Error('Authentication is unavailable');
+      return runtime.auth.metadata();
+    },
+    enabled: !!runtime.auth,
+    retry: false,
+  });
   const realAuth = runtime.auth,
     unavailable =
       !!session.data && session.data.data.capabilities.features.authentication === 'unavailable';
+  const context = useQuery({
+    queryKey: queryKeys.authContext(),
+    queryFn: () => runtime.auth?.csrf() ?? Promise.resolve(null),
+    enabled: !!runtime.auth && metadata.data?.mode === 'oidc',
+    retry: false,
+  });
+  const [loggingOut, setLoggingOut] = useState(false),
+    [logoutUnavailable, setLogoutUnavailable] = useState(false);
   const [demoOptIn, setDemoOptIn] = useState(facade?.demoEnabled ?? false);
   const mockMode = document.getElementById('root')?.dataset.dataMode === 'mock';
   const title = 'DataMaker Task';
   useEffect(() => {
     document.title = title;
   }, [title]);
+  if (realAuth && metadata.data?.mode !== 'ict24h')
+    return (
+      <AuthModeView
+        loading={metadata.isPending}
+        unavailable={metadata.isError || logoutUnavailable}
+        oidc={metadata.data?.mode === 'oidc'}
+        error={search.authError}
+        canLogout={!!context.data}
+        logoutPending={loggingOut}
+        onLogout={() => {
+          if (!runtime.auth || loggingOut) return;
+          setLoggingOut(true);
+          setLogoutUnavailable(false);
+          void runtime.auth
+            .logout()
+            .then(() => navigate({ to: '/login', search: {}, replace: true }))
+            .catch(() => setLogoutUnavailable(true))
+            .finally(() => setLoggingOut(false));
+        }}
+        onRetry={() => {
+          setLogoutUnavailable(false);
+          void metadata.refetch();
+        }}
+        onLogin={() => navigateToIdentity(oidcLoginHref(search.returnTo))}
+      />
+    );
   return (
     <OverlayProvider>
       <AuthController
@@ -435,9 +483,11 @@ function AuthController({
               {t('Password')}
             </label>
             <span className="flex-1" />
-            <AuthLink next="forgot" onNavigate={go} className="text-[12.5px]">
-              {t('Forgot password?')}
-            </AuthLink>
+            {!realAuth && (
+              <AuthLink next="forgot" onNavigate={go} className="text-[12.5px]">
+                {t('Forgot password?')}
+              </AuthLink>
+            )}
           </div>
           <PasswordInput
             id="l-pw"
@@ -472,16 +522,17 @@ function AuthController({
         <AuthAction kind="login" enabled={enabled} pending={pending} onNavigate={go}>
           {t('Sign in')}
         </AuthAction>
-        <AuthDivider />
-        {social}
-        {footer(
-          <>
-            {t("Don't have an account?")}{' '}
-            <AuthLink next="signup" onNavigate={go}>
-              {t('Sign up')}
-            </AuthLink>
-          </>,
-        )}
+        {!realAuth && <AuthDivider />}
+        {!realAuth && social}
+        {!realAuth &&
+          footer(
+            <>
+              {t("Don't have an account?")}{' '}
+              <AuthLink next="signup" onNavigate={go}>
+                {t('Sign up')}
+              </AuthLink>
+            </>,
+          )}
       </>
     );
   else if (screen === 'signup')
@@ -744,7 +795,7 @@ function AuthController({
       <AuthLayout
         key={presentationRevision}
         topRight={
-          screen === 'login' ? (
+          screen === 'login' && !realAuth ? (
             <Button variant="ghost" size="sm" onClick={() => void go('signup')}>
               {t('Sign up')}
             </Button>

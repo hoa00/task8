@@ -157,6 +157,8 @@ export interface RouteSearch {
   calendarMode?: 'month' | 'week';
   fileType?: string;
   fileSort?: 'recent' | 'name' | 'type';
+  authError?: 'transaction' | 'unlinked' | 'unavailable';
+  returnTo?: string;
   activityProjectId?: string;
   taskId?: string;
   fileId?: string;
@@ -170,6 +172,14 @@ export interface RouteSearch {
 }
 export function validateRouteSearch(input: Record<string, unknown>): RouteSearch {
   const output: RouteSearch = {};
+  if (
+    input.authError === 'transaction' ||
+    input.authError === 'unlinked' ||
+    input.authError === 'unavailable'
+  )
+    output.authError = input.authError;
+  if (typeof input.returnTo === 'string' && input.returnTo.length <= 2048)
+    output.returnTo = input.returnTo;
   const date = DateOnlySchema.safeParse(input.calendarDate);
   if (date.success) output.calendarDate = date.data;
   if (input.calendarMode === 'month' || input.calendarMode === 'week')

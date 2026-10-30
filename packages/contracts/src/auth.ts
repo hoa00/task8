@@ -15,7 +15,11 @@ function passwordWithinByteLimit(value: string): boolean {
 }
 export const AuthLoginInputSchema = z.strictObject({
   email: z.email().max(254),
-  password: z.string().min(6).max(1024).refine(passwordWithinByteLimit, 'Expected valid Unicode within password byte limit'),
+  password: z
+    .string()
+    .min(6)
+    .max(1024)
+    .refine(passwordWithinByteLimit, 'Expected valid Unicode within password byte limit'),
   remember: z.boolean(),
 });
 export { AuthSessionMetadataSchema } from './models.ts';
@@ -34,3 +38,10 @@ export const Ict24hSessionSchema = z.strictObject({
 export const AuthLogoutResultSchema = z.strictObject({ signedOut: z.literal(true) });
 export type AuthLoginInput = z.infer<typeof AuthLoginInputSchema>;
 export type Ict24hSessionDto = z.infer<typeof Ict24hSessionSchema>;
+
+export const AuthMetadataSchema = z.strictObject({
+  mode: z.enum(['local', 'ict24h', 'oidc', 'disabled']),
+  csrf: z.string().min(1).max(256).nullable(),
+});
+export type AuthMetadata = z.infer<typeof AuthMetadataSchema>;
+export const OidcLogoutResultSchema = z.strictObject({ redirect: z.null() });
