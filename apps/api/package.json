@@ -25,7 +25,8 @@
     "test:oidc:session": "node --experimental-transform-types tests/integration/oidc-session.mjs",
     "test:oidc": "pnpm test:oidc:migration && pnpm test:oidc:legacy && pnpm test:oidc:session",
     "test:oidc:legacy": "node --experimental-transform-types tests/integration/oidc-legacy.mjs",
-    "test:oidc:web": "TASK8_OIDC_TEST_GROUP=browser node --experimental-transform-types tests/integration/oidc-session.mjs"
+    "test:oidc:web": "TASK8_OIDC_TEST_GROUP=browser node --experimental-transform-types tests/integration/oidc-session.mjs",
+    "test:auth:links": "node --experimental-transform-types tests/integration/account-links-native.mjs"
   },
   "dependencies": {
     "@hoa00/i24h-auth-honojs": "0.1.1",

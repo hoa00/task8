@@ -189,10 +189,46 @@ try {
         "SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'oidc%' ORDER BY name",
       )
     ).map((row) => row.name),
-    ['oidcAppSessions', 'oidcIdentityLinks', 'oidcLoginTransactions', 'oidcLogoutTransactions'],
+    [
+      'oidcAppSessions',
+      'oidcIdentityLinks',
+      'oidcLinkAudit',
+      'oidcLinkOperations',
+      'oidcLoginTransactions',
+      'oidcLogoutTransactions',
+    ],
   );
   const ledger = await sql('SELECT name FROM d1_migrations ORDER BY id');
   assert.equal(ledger.filter((row) => row.name === '0005_oidc-identity-sessions.sql').length, 1);
+  assert.equal(ledger.filter((row) => row.name === '0006_oidc-browser-transactions.sql').length, 1);
+  assert.equal(ledger.filter((row) => row.name === '0007_motionless_blue_shield.sql').length, 1);
+  await assert.rejects(
+    sql(
+      "INSERT INTO oidcLinkOperations(manifestId,manifestDigest,entryId,linkId,issuer,subject,localUserId,outcome,revision,actor,correlation,createdAt,marker) VALUES('fixture','digest','entry','missing-link','issuer','subject','user','created-by-this-operation',1,'actor','correlation',1,'marker')",
+    ),
+  );
+  await sql(
+    'INSERT INTO oidcIdentityLinks(id,issuer,subject,userId,createdAt,createdBy,migrationBatchId,revision) VALUES(?,?,?,?,?,?,?,1)',
+    [
+      '01a11abd-aa80-7000-8000-000000000095',
+      'migration-fixture',
+      'opaque-subject',
+      userIds[0],
+      now,
+      'fixture',
+      'fixture',
+    ],
+  );
+  await assert.rejects(
+    sql(
+      "INSERT INTO oidcLinkAudit(id,manifestId,entryId,linkId,kind,actor,correlation,beforeRevision,afterRevision,createdAt) VALUES('audit','fixture','entry','01a11abd-aa80-7000-8000-000000000095','reactivate','actor','correlation',1,2,1)",
+    ),
+  );
+  await assert.rejects(
+    sql(
+      "INSERT INTO oidcLinkOperations(manifestId,manifestDigest,entryId,linkId,issuer,subject,localUserId,outcome,revision,actor,correlation,createdAt,marker) VALUES('fixture','digest','entry','01a11abd-aa80-7000-8000-000000000095','issuer','subject','user','force',1,'actor','correlation',1,'marker')",
+    ),
+  );
   await assert.rejects(
     sql(
       'INSERT INTO authIdentities(id,providerKey,tenant,subject,userId,createdAt) VALUES(?,?,?,?,?,?)',

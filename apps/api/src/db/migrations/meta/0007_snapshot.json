@@ -1,0 +1,4707 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "c36d61e0-eb79-44ab-a4bc-8b1bd96cdaf9",
+  "prevId": "fdd85093-281a-4ecb-8242-282c0a09e8b8",
+  "tables": {
+    "activity": {
+      "name": "activity",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "taskId": {
+          "name": "taskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "actorId": {
+          "name": "actorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "eventType": {
+          "name": "eventType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "payloadJson": {
+          "name": "payloadJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "commandId": {
+          "name": "commandId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "revertedAt": {
+          "name": "revertedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "activity_visible_history": {
+          "name": "activity_visible_history",
+          "columns": [
+            "workspaceId",
+            "revertedAt",
+            "createdAt",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "activity_workspace_id": {
+          "name": "activity_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "activity_project": {
+          "name": "activity_project",
+          "columns": [
+            "workspaceId",
+            "projectId",
+            "createdAt",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "activity_task": {
+          "name": "activity_task",
+          "columns": [
+            "workspaceId",
+            "taskId",
+            "createdAt",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "activity_workspaceId_workspaces_id_fk": {
+          "name": "activity_workspaceId_workspaces_id_fk",
+          "tableFrom": "activity",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "activity_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "activity_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "activity",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "activity_workspaceId_taskId_tasks_workspaceId_id_fk": {
+          "name": "activity_workspaceId_taskId_tasks_workspaceId_id_fk",
+          "tableFrom": "activity",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "taskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "activity_workspaceId_actorId_workspaceMembers_workspaceId_id_fk": {
+          "name": "activity_workspaceId_actorId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "activity",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "actorId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "activity_payload": {
+          "name": "activity_payload",
+          "value": "json_valid(\"activity\".\"payloadJson\")"
+        }
+      }
+    },
+    "authIdentities": {
+      "name": "authIdentities",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "providerKey": {
+          "name": "providerKey",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tenant": {
+          "name": "tenant",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "subject": {
+          "name": "subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "authIdentities_external": {
+          "name": "authIdentities_external",
+          "columns": [
+            "providerKey",
+            "tenant",
+            "subject"
+          ],
+          "isUnique": true
+        },
+        "authIdentities_id_user": {
+          "name": "authIdentities_id_user",
+          "columns": [
+            "id",
+            "userId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "authIdentities_userId_users_id_fk": {
+          "name": "authIdentities_userId_users_id_fk",
+          "tableFrom": "authIdentities",
+          "tableTo": "users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "authIdentities_provider": {
+          "name": "authIdentities_provider",
+          "value": "\"authIdentities\".\"providerKey\" = 'ict24h-identity'"
+        }
+      }
+    },
+    "authSessions": {
+      "name": "authSessions",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sidHash": {
+          "name": "sidHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "identityId": {
+          "name": "identityId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "accessCiphertext": {
+          "name": "accessCiphertext",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "refreshCiphertext": {
+          "name": "refreshCiphertext",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "accessExpiresAt": {
+          "name": "accessExpiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "refreshExpiresAt": {
+          "name": "refreshExpiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tokenVersion": {
+          "name": "tokenVersion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "authGeneration": {
+          "name": "authGeneration",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revokedAt": {
+          "name": "revokedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "authSessions_sidHash": {
+          "name": "authSessions_sidHash",
+          "columns": [
+            "sidHash"
+          ],
+          "isUnique": true
+        },
+        "authSessions_expiry": {
+          "name": "authSessions_expiry",
+          "columns": [
+            "expiresAt",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "authSessions_identityId_userId_authIdentities_id_userId_fk": {
+          "name": "authSessions_identityId_userId_authIdentities_id_userId_fk",
+          "tableFrom": "authSessions",
+          "tableTo": "authIdentities",
+          "columnsFrom": [
+            "identityId",
+            "userId"
+          ],
+          "columnsTo": [
+            "id",
+            "userId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "authSessions_version": {
+          "name": "authSessions_version",
+          "value": "\"authSessions\".\"tokenVersion\" > 0 AND \"authSessions\".\"authGeneration\" > 0"
+        },
+        "authSessions_credential_state": {
+          "name": "authSessions_credential_state",
+          "value": "(\"authSessions\".\"revokedAt\" IS NULL AND \"authSessions\".\"accessCiphertext\" IS NOT NULL AND \"authSessions\".\"refreshCiphertext\" IS NOT NULL) OR (\"authSessions\".\"revokedAt\" IS NOT NULL AND \"authSessions\".\"accessCiphertext\" IS NULL AND \"authSessions\".\"refreshCiphertext\" IS NULL)"
+        }
+      }
+    },
+    "calendarEvents": {
+      "name": "calendarEvents",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "date": {
+          "name": "date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "localTime": {
+          "name": "localTime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "timezone": {
+          "name": "timezone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "calendarEvents_workspace_id": {
+          "name": "calendarEvents_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "calendarEvents_workspaceId_workspaces_id_fk": {
+          "name": "calendarEvents_workspaceId_workspaces_id_fk",
+          "tableFrom": "calendarEvents",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "calendarEvents_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "calendarEvents_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "calendarEvents",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "commandUndoRecords": {
+      "name": "commandUndoRecords",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "actorMemberId": {
+          "name": "actorMemberId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kind": {
+          "name": "kind",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "payloadVersion": {
+          "name": "payloadVersion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "payloadJson": {
+          "name": "payloadJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "consumedAt": {
+          "name": "consumedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "resultJson": {
+          "name": "resultJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "commandUndoRecords_workspace_id": {
+          "name": "commandUndoRecords_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "undo_actor": {
+          "name": "undo_actor",
+          "columns": [
+            "workspaceId",
+            "actorMemberId",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "commandUndoRecords_workspaceId_workspaces_id_fk": {
+          "name": "commandUndoRecords_workspaceId_workspaces_id_fk",
+          "tableFrom": "commandUndoRecords",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "commandUndoRecords_workspaceId_actorMemberId_workspaceMembers_workspaceId_id_fk": {
+          "name": "commandUndoRecords_workspaceId_actorMemberId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "commandUndoRecords",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "actorMemberId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "kind_enum": {
+          "name": "kind_enum",
+          "value": "\"commandUndoRecords\".\"kind\" IN ('task.complete','task.archive','task.delete','project.archive','project.delete','comment.delete','file.delete','tasks.bulkDelete','tasks.completeColumn','tasks.archiveCompletedColumn','team.delete')"
+        },
+        "undo_payload": {
+          "name": "undo_payload",
+          "value": "\"commandUndoRecords\".\"payloadVersion\" = 1 AND json_valid(\"commandUndoRecords\".\"payloadJson\") AND length(CAST(\"commandUndoRecords\".\"payloadJson\" AS BLOB)) <= 65536 AND coalesce(json_type(\"commandUndoRecords\".\"payloadJson\", '$.targets'), '') = 'array' AND coalesce(json_array_length(\"commandUndoRecords\".\"payloadJson\", '$.targets'), -1) BETWEEN CASE WHEN \"commandUndoRecords\".\"kind\" = 'tasks.archiveCompletedColumn' THEN 0 ELSE 1 END AND 128 AND coalesce(json_extract(\"commandUndoRecords\".\"payloadJson\", '$.kind'), '') = \"commandUndoRecords\".\"kind\""
+        },
+        "undo_consumed": {
+          "name": "undo_consumed",
+          "value": "(\"commandUndoRecords\".\"consumedAt\" IS NULL) = (\"commandUndoRecords\".\"resultJson\" IS NULL)"
+        },
+        "undo_result": {
+          "name": "undo_result",
+          "value": "\"commandUndoRecords\".\"resultJson\" IS NULL OR json_valid(\"commandUndoRecords\".\"resultJson\")"
+        }
+      }
+    },
+    "commentReactions": {
+      "name": "commentReactions",
+      "columns": {
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "commentId": {
+          "name": "commentId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "memberId": {
+          "name": "memberId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reactionKey": {
+          "name": "reactionKey",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "commentReactions_workspaceId_workspaces_id_fk": {
+          "name": "commentReactions_workspaceId_workspaces_id_fk",
+          "tableFrom": "commentReactions",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "commentReactions_workspaceId_commentId_comments_workspaceId_id_fk": {
+          "name": "commentReactions_workspaceId_commentId_comments_workspaceId_id_fk",
+          "tableFrom": "commentReactions",
+          "tableTo": "comments",
+          "columnsFrom": [
+            "workspaceId",
+            "commentId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "commentReactions_workspaceId_memberId_workspaceMembers_workspaceId_id_fk": {
+          "name": "commentReactions_workspaceId_memberId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "commentReactions",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "memberId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "commentReactions_commentId_memberId_reactionKey_pk": {
+          "columns": [
+            "commentId",
+            "memberId",
+            "reactionKey"
+          ],
+          "name": "commentReactions_commentId_memberId_reactionKey_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "reactionKey_enum": {
+          "name": "reactionKey_enum",
+          "value": "\"commentReactions\".\"reactionKey\" IN ('👍','🎉','❤️','👀','🚀','✅')"
+        }
+      }
+    },
+    "comments": {
+      "name": "comments",
+      "columns": {
+        "readKeys": {
+          "name": "readKeys",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "taskId": {
+          "name": "taskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "authorId": {
+          "name": "authorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "bodyText": {
+          "name": "bodyText",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "mentionedMemberIdsJson": {
+          "name": "mentionedMemberIdsJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "deletedAt": {
+          "name": "deletedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "deletedBy": {
+          "name": "deletedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "comments_visible_history": {
+          "name": "comments_visible_history",
+          "columns": [
+            "workspaceId",
+            "taskId",
+            "deletedAt",
+            "createdAt",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "comments_workspace_id": {
+          "name": "comments_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "comments_task": {
+          "name": "comments_task",
+          "columns": [
+            "workspaceId",
+            "taskId",
+            "createdAt",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "comments_workspaceId_workspaces_id_fk": {
+          "name": "comments_workspaceId_workspaces_id_fk",
+          "tableFrom": "comments",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "comments_workspaceId_taskId_tasks_workspaceId_id_fk": {
+          "name": "comments_workspaceId_taskId_tasks_workspaceId_id_fk",
+          "tableFrom": "comments",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "taskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "comments_workspaceId_authorId_workspaceMembers_workspaceId_id_fk": {
+          "name": "comments_workspaceId_authorId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "comments",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "authorId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "comments_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk": {
+          "name": "comments_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "comments",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "deletedBy"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "comments_readKeys": {
+          "name": "comments_readKeys",
+          "value": "json_valid(\"comments\".\"readKeys\")"
+        },
+        "comments_mentions": {
+          "name": "comments_mentions",
+          "value": "json_valid(\"comments\".\"mentionedMemberIdsJson\") AND json_type(\"comments\".\"mentionedMemberIdsJson\") = 'array'"
+        },
+        "comments_tombstone": {
+          "name": "comments_tombstone",
+          "value": "(\"comments\".\"deletedAt\" IS NULL) = (\"comments\".\"deletedBy\" IS NULL)"
+        },
+        "comments_version": {
+          "name": "comments_version",
+          "value": "\"comments\".\"version\" > 0"
+        }
+      }
+    },
+    "files": {
+      "name": "files",
+      "columns": {
+        "readKeys": {
+          "name": "readKeys",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "taskId": {
+          "name": "taskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fileType": {
+          "name": "fileType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "mimeType": {
+          "name": "mimeType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "sizeBytes": {
+          "name": "sizeBytes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "displaySize": {
+          "name": "displaySize",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "storageMode": {
+          "name": "storageMode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "objectKey": {
+          "name": "objectKey",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "contentSha256": {
+          "name": "contentSha256",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "uploadRequestId": {
+          "name": "uploadRequestId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "uploadRequestHash": {
+          "name": "uploadRequestHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdBy": {
+          "name": "createdBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "deletedAt": {
+          "name": "deletedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "deletedBy": {
+          "name": "deletedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "files_page_name": {
+          "name": "files_page_name",
+          "columns": [
+            "workspaceId",
+            "projectId",
+            "deletedAt",
+            "(\"readKeys\" ->> '$.name.locale')",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "files_page_type": {
+          "name": "files_page_type",
+          "columns": [
+            "workspaceId",
+            "projectId",
+            "deletedAt",
+            "(\"readKeys\" ->> '$.fileType.locale')",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "files_page_recent": {
+          "name": "files_page_recent",
+          "columns": [
+            "workspaceId",
+            "projectId",
+            "deletedAt",
+            "(-\"createdAt\")",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "files_page_size": {
+          "name": "files_page_size",
+          "columns": [
+            "workspaceId",
+            "projectId",
+            "deletedAt",
+            "(CASE WHEN \"sizeBytes\" IS NULL THEN 1 ELSE -\"sizeBytes\" END)",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "files_workspace_id": {
+          "name": "files_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "files_upload_request": {
+          "name": "files_upload_request",
+          "columns": [
+            "workspaceId",
+            "createdBy",
+            "uploadRequestId"
+          ],
+          "isUnique": true
+        },
+        "files_project": {
+          "name": "files_project",
+          "columns": [
+            "workspaceId",
+            "projectId",
+            "deletedAt",
+            "createdAt",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "files_workspaceId_workspaces_id_fk": {
+          "name": "files_workspaceId_workspaces_id_fk",
+          "tableFrom": "files",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "files_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "files_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "files",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "files_workspaceId_taskId_tasks_workspaceId_id_fk": {
+          "name": "files_workspaceId_taskId_tasks_workspaceId_id_fk",
+          "tableFrom": "files",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "taskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "files_workspaceId_createdBy_workspaceMembers_workspaceId_id_fk": {
+          "name": "files_workspaceId_createdBy_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "files",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "createdBy"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "files_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk": {
+          "name": "files_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "files",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "deletedBy"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "files_readKeys": {
+          "name": "files_readKeys",
+          "value": "json_valid(\"files\".\"readKeys\")"
+        },
+        "storageMode_enum": {
+          "name": "storageMode_enum",
+          "value": "\"files\".\"storageMode\" IN ('sample','r2')"
+        },
+        "files_request": {
+          "name": "files_request",
+          "value": "(\"files\".\"uploadRequestId\" IS NULL) = (\"files\".\"uploadRequestHash\" IS NULL)"
+        },
+        "files_r2": {
+          "name": "files_r2",
+          "value": "\"files\".\"storageMode\" != 'r2' OR (\"files\".\"objectKey\" IS NOT NULL AND \"files\".\"contentSha256\" IS NOT NULL AND \"files\".\"mimeType\" IS NOT NULL AND \"files\".\"sizeBytes\" IS NOT NULL AND \"files\".\"sizeBytes\" BETWEEN 0 AND 10485760)"
+        },
+        "files_size": {
+          "name": "files_size",
+          "value": "\"files\".\"sizeBytes\" IS NULL OR \"files\".\"sizeBytes\" >= 0"
+        },
+        "files_tombstone": {
+          "name": "files_tombstone",
+          "value": "(\"files\".\"deletedAt\" IS NULL) = (\"files\".\"deletedBy\" IS NULL)"
+        },
+        "files_version": {
+          "name": "files_version",
+          "value": "\"files\".\"version\" > 0"
+        }
+      }
+    },
+    "memberPreferences": {
+      "name": "memberPreferences",
+      "columns": {
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "memberId": {
+          "name": "memberId",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "preferencesJson": {
+          "name": "preferencesJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "notificationPreferencesJson": {
+          "name": "notificationPreferencesJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "memberPreferences_workspaceId_workspaces_id_fk": {
+          "name": "memberPreferences_workspaceId_workspaces_id_fk",
+          "tableFrom": "memberPreferences",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "memberPreferences_workspaceId_memberId_workspaceMembers_workspaceId_id_fk": {
+          "name": "memberPreferences_workspaceId_memberId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "memberPreferences",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "memberId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "preferences_json": {
+          "name": "preferences_json",
+          "value": "json_valid(\"memberPreferences\".\"preferencesJson\") AND json_valid(\"memberPreferences\".\"notificationPreferencesJson\")"
+        }
+      }
+    },
+    "memberProjectOrder": {
+      "name": "memberProjectOrder",
+      "columns": {
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "memberId": {
+          "name": "memberId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "position": {
+          "name": "position",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "memberProjectOrder_workspaceId_workspaces_id_fk": {
+          "name": "memberProjectOrder_workspaceId_workspaces_id_fk",
+          "tableFrom": "memberProjectOrder",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "memberProjectOrder_workspaceId_memberId_workspaceMembers_workspaceId_id_fk": {
+          "name": "memberProjectOrder_workspaceId_memberId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "memberProjectOrder",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "memberId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "memberProjectOrder_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "memberProjectOrder_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "memberProjectOrder",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "memberProjectOrder_memberId_projectId_pk": {
+          "columns": [
+            "memberId",
+            "projectId"
+          ],
+          "name": "memberProjectOrder_memberId_projectId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "notifications": {
+      "name": "notifications",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "recipientId": {
+          "name": "recipientId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "actorId": {
+          "name": "actorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "taskId": {
+          "name": "taskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "text": {
+          "name": "text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "snippet": {
+          "name": "snippet",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "readAt": {
+          "name": "readAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "notifications_recipient_history": {
+          "name": "notifications_recipient_history",
+          "columns": [
+            "workspaceId",
+            "recipientId",
+            "createdAt",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "notifications_workspace_id": {
+          "name": "notifications_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "notifications_recipient": {
+          "name": "notifications_recipient",
+          "columns": [
+            "workspaceId",
+            "recipientId",
+            "readAt",
+            "createdAt",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "notifications_workspaceId_workspaces_id_fk": {
+          "name": "notifications_workspaceId_workspaces_id_fk",
+          "tableFrom": "notifications",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "notifications_workspaceId_recipientId_workspaceMembers_workspaceId_id_fk": {
+          "name": "notifications_workspaceId_recipientId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "notifications",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "recipientId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "notifications_workspaceId_actorId_workspaceMembers_workspaceId_id_fk": {
+          "name": "notifications_workspaceId_actorId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "notifications",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "actorId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "notifications_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "notifications_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "notifications",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "notifications_workspaceId_taskId_tasks_workspaceId_id_fk": {
+          "name": "notifications_workspaceId_taskId_tasks_workspaceId_id_fk",
+          "tableFrom": "notifications",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "taskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "type_enum": {
+          "name": "type_enum",
+          "value": "\"notifications\".\"type\" IN ('mention','assign','comment','due','update')"
+        }
+      }
+    },
+    "oidcAppSessions": {
+      "name": "oidcAppSessions",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sidHash": {
+          "name": "sidHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "linkId": {
+          "name": "linkId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "issuer": {
+          "name": "issuer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "subject": {
+          "name": "subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "clientId": {
+          "name": "clientId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "providerSid": {
+          "name": "providerSid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "bundle": {
+          "name": "bundle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "authorityValidatedAt": {
+          "name": "authorityValidatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "accessExpiresAt": {
+          "name": "accessExpiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revokedAt": {
+          "name": "revokedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "leaseOwner": {
+          "name": "leaseOwner",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "leaseUntil": {
+          "name": "leaseUntil",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "refreshInput": {
+          "name": "refreshInput",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "refreshAttemptAt": {
+          "name": "refreshAttemptAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "oidcAppSessions_sidHash": {
+          "name": "oidcAppSessions_sidHash",
+          "columns": [
+            "sidHash"
+          ],
+          "isUnique": true
+        },
+        "oidcAppSessions_expiry": {
+          "name": "oidcAppSessions_expiry",
+          "columns": [
+            "expiresAt",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "oidcAppSessions_linkId_userId_issuer_subject_oidcIdentityLinks_id_userId_issuer_subject_fk": {
+          "name": "oidcAppSessions_linkId_userId_issuer_subject_oidcIdentityLinks_id_userId_issuer_subject_fk",
+          "tableFrom": "oidcAppSessions",
+          "tableTo": "oidcIdentityLinks",
+          "columnsFrom": [
+            "linkId",
+            "userId",
+            "issuer",
+            "subject"
+          ],
+          "columnsTo": [
+            "id",
+            "userId",
+            "issuer",
+            "subject"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "oidcAppSessions_lifetime": {
+          "name": "oidcAppSessions_lifetime",
+          "value": "\"oidcAppSessions\".\"expiresAt\"=\"oidcAppSessions\".\"createdAt\"+28800000 AND \"oidcAppSessions\".\"revision\">0"
+        },
+        "oidcAppSessions_refresh": {
+          "name": "oidcAppSessions_refresh",
+          "value": "(\"oidcAppSessions\".\"refreshInput\" IS NULL AND \"oidcAppSessions\".\"refreshAttemptAt\"=0) OR (\"oidcAppSessions\".\"refreshInput\" IS NOT NULL AND \"oidcAppSessions\".\"refreshAttemptAt\">0)"
+        }
+      }
+    },
+    "oidcIdentityLinks": {
+      "name": "oidcIdentityLinks",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "issuer": {
+          "name": "issuer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "subject": {
+          "name": "subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'active'"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdBy": {
+          "name": "createdBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "migrationBatchId": {
+          "name": "migrationBatchId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "oidcIdentityLinks_external": {
+          "name": "oidcIdentityLinks_external",
+          "columns": [
+            "issuer",
+            "subject"
+          ],
+          "isUnique": true
+        },
+        "oidcIdentityLinks_user_issuer": {
+          "name": "oidcIdentityLinks_user_issuer",
+          "columns": [
+            "issuer",
+            "userId"
+          ],
+          "isUnique": true
+        },
+        "oidcIdentityLinks_binding": {
+          "name": "oidcIdentityLinks_binding",
+          "columns": [
+            "id",
+            "userId",
+            "issuer",
+            "subject"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "oidcIdentityLinks_userId_users_id_fk": {
+          "name": "oidcIdentityLinks_userId_users_id_fk",
+          "tableFrom": "oidcIdentityLinks",
+          "tableTo": "users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "oidcIdentityLinks_status": {
+          "name": "oidcIdentityLinks_status",
+          "value": "\"oidcIdentityLinks\".\"status\" IN ('active','revoked')"
+        },
+        "oidcIdentityLinks_subject": {
+          "name": "oidcIdentityLinks_subject",
+          "value": "length(\"oidcIdentityLinks\".\"subject\") BETWEEN 1 AND 255"
+        },
+        "oidcIdentityLinks_revision": {
+          "name": "oidcIdentityLinks_revision",
+          "value": "\"oidcIdentityLinks\".\"revision\">0"
+        }
+      }
+    },
+    "oidcLinkAudit": {
+      "name": "oidcLinkAudit",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "manifestId": {
+          "name": "manifestId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "entryId": {
+          "name": "entryId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "linkId": {
+          "name": "linkId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kind": {
+          "name": "kind",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "actor": {
+          "name": "actor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "correlation": {
+          "name": "correlation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "beforeRevision": {
+          "name": "beforeRevision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "afterRevision": {
+          "name": "afterRevision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "oidcLinkAudit_linkId_oidcIdentityLinks_id_fk": {
+          "name": "oidcLinkAudit_linkId_oidcIdentityLinks_id_fk",
+          "tableFrom": "oidcLinkAudit",
+          "tableTo": "oidcIdentityLinks",
+          "columnsFrom": [
+            "linkId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "oidcLinkAudit_kind": {
+          "name": "oidcLinkAudit_kind",
+          "value": "\"oidcLinkAudit\".\"kind\" IN ('apply','revoke','rollback')"
+        }
+      }
+    },
+    "oidcLinkOperations": {
+      "name": "oidcLinkOperations",
+      "columns": {
+        "manifestId": {
+          "name": "manifestId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "manifestDigest": {
+          "name": "manifestDigest",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "entryId": {
+          "name": "entryId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "linkId": {
+          "name": "linkId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "issuer": {
+          "name": "issuer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "subject": {
+          "name": "subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "localUserId": {
+          "name": "localUserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "outcome": {
+          "name": "outcome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "actor": {
+          "name": "actor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "correlation": {
+          "name": "correlation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "marker": {
+          "name": "marker",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revokedAt": {
+          "name": "revokedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "revokedRevision": {
+          "name": "revokedRevision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "revokeKind": {
+          "name": "revokeKind",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "revokeActor": {
+          "name": "revokeActor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "revokeCorrelation": {
+          "name": "revokeCorrelation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "revokeMarker": {
+          "name": "revokeMarker",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "oidc_link_operation_marker": {
+          "name": "oidc_link_operation_marker",
+          "columns": [
+            "marker"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "oidcLinkOperations_linkId_oidcIdentityLinks_id_fk": {
+          "name": "oidcLinkOperations_linkId_oidcIdentityLinks_id_fk",
+          "tableFrom": "oidcLinkOperations",
+          "tableTo": "oidcIdentityLinks",
+          "columnsFrom": [
+            "linkId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "oidcLinkOperations_manifestId_entryId_pk": {
+          "columns": [
+            "manifestId",
+            "entryId"
+          ],
+          "name": "oidcLinkOperations_manifestId_entryId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "oidc_link_operation_revision": {
+          "name": "oidc_link_operation_revision",
+          "value": "\"oidcLinkOperations\".\"revision\" >= 1"
+        },
+        "oidc_link_operation_outcome": {
+          "name": "oidc_link_operation_outcome",
+          "value": "\"oidcLinkOperations\".\"outcome\" IN ('created-by-this-operation','already-linked')"
+        }
+      }
+    },
+    "oidcLoginTransactions": {
+      "name": "oidcLoginTransactions",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "stateHash": {
+          "name": "stateHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "bindingHash": {
+          "name": "bindingHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "secret": {
+          "name": "secret",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "issuer": {
+          "name": "issuer",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "clientId": {
+          "name": "clientId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "redirectUri": {
+          "name": "redirectUri",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "returnTo": {
+          "name": "returnTo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "priorHash": {
+          "name": "priorHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'pending'"
+        }
+      },
+      "indexes": {
+        "oidcLoginTransactions_state": {
+          "name": "oidcLoginTransactions_state",
+          "columns": [
+            "stateHash"
+          ],
+          "isUnique": true
+        },
+        "oidcLoginTransactions_expiry": {
+          "name": "oidcLoginTransactions_expiry",
+          "columns": [
+            "expiresAt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "oidcLoginTransactions_status": {
+          "name": "oidcLoginTransactions_status",
+          "value": "\"oidcLoginTransactions\".\"status\" IN ('pending','claimed','succeeded','failed')"
+        },
+        "oidcLoginTransactions_lifetime": {
+          "name": "oidcLoginTransactions_lifetime",
+          "value": "\"oidcLoginTransactions\".\"expiresAt\"=\"oidcLoginTransactions\".\"createdAt\"+600000"
+        }
+      }
+    },
+    "oidcLogoutTransactions": {
+      "name": "oidcLogoutTransactions",
+      "columns": {
+        "stateHash": {
+          "name": "stateHash",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "bindingHash": {
+          "name": "bindingHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "consumedAt": {
+          "name": "consumedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "oidcLogoutTransactions_expiry": {
+          "name": "oidcLogoutTransactions_expiry",
+          "columns": [
+            "expiresAt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "projectFavorites": {
+      "name": "projectFavorites",
+      "columns": {
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "memberId": {
+          "name": "memberId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "projectFavorites_workspaceId_workspaces_id_fk": {
+          "name": "projectFavorites_workspaceId_workspaces_id_fk",
+          "tableFrom": "projectFavorites",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "projectFavorites_workspaceId_memberId_workspaceMembers_workspaceId_id_fk": {
+          "name": "projectFavorites_workspaceId_memberId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "projectFavorites",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "memberId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "projectFavorites_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "projectFavorites_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "projectFavorites",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "projectFavorites_memberId_projectId_pk": {
+          "columns": [
+            "memberId",
+            "projectId"
+          ],
+          "name": "projectFavorites_memberId_projectId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "projectMembers": {
+      "name": "projectMembers",
+      "columns": {
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "memberId": {
+          "name": "memberId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "permission": {
+          "name": "permission",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "projectMembers_workspaceId_workspaces_id_fk": {
+          "name": "projectMembers_workspaceId_workspaces_id_fk",
+          "tableFrom": "projectMembers",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "projectMembers_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "projectMembers_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "projectMembers",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "projectMembers_workspaceId_memberId_workspaceMembers_workspaceId_id_fk": {
+          "name": "projectMembers_workspaceId_memberId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "projectMembers",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "memberId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "projectMembers_projectId_memberId_pk": {
+          "columns": [
+            "projectId",
+            "memberId"
+          ],
+          "name": "projectMembers_projectId_memberId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "permission_enum": {
+          "name": "permission_enum",
+          "value": "\"projectMembers\".\"permission\" IN ('edit','view')"
+        }
+      }
+    },
+    "projectMilestones": {
+      "name": "projectMilestones",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "date": {
+          "name": "date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "position": {
+          "name": "position",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "projectMilestones_workspace_id": {
+          "name": "projectMilestones_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "projectMilestones_workspaceId_workspaces_id_fk": {
+          "name": "projectMilestones_workspaceId_workspaces_id_fk",
+          "tableFrom": "projectMilestones",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "projectMilestones_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "projectMilestones_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "projectMilestones",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "projects": {
+      "name": "projects",
+      "columns": {
+        "readKeys": {
+          "name": "readKeys",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "key": {
+          "name": "key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "taskSequence": {
+          "name": "taskSequence",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "icon": {
+          "name": "icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "color": {
+          "name": "color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "teamId": {
+          "name": "teamId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "leadId": {
+          "name": "leadId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "startDate": {
+          "name": "startDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "dueDate": {
+          "name": "dueDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "visibility": {
+          "name": "visibility",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "lastActivityAt": {
+          "name": "lastActivityAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "archivedAt": {
+          "name": "archivedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "deletedAt": {
+          "name": "deletedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "deletedBy": {
+          "name": "deletedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "projects_catalog_name": {
+          "name": "projects_catalog_name",
+          "columns": [
+            "workspaceId",
+            "deletedAt",
+            "(\"readKeys\" ->> '$.name.locale')",
+            "id"
+          ],
+          "isUnique": false,
+          "where": "\"projects\".\"archivedAt\" IS NULL OR \"projects\".\"archivedAt\"=0"
+        },
+        "projects_workspace_id": {
+          "name": "projects_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "projects_key": {
+          "name": "projects_key",
+          "columns": [
+            "workspaceId",
+            "key"
+          ],
+          "isUnique": true
+        },
+        "projects_navigation": {
+          "name": "projects_navigation",
+          "columns": [
+            "workspaceId",
+            "archivedAt",
+            "deletedAt",
+            "lastActivityAt",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "projects_team": {
+          "name": "projects_team",
+          "columns": [
+            "workspaceId",
+            "teamId",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "projects_workspaceId_workspaces_id_fk": {
+          "name": "projects_workspaceId_workspaces_id_fk",
+          "tableFrom": "projects",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "projects_workspaceId_teamId_teams_workspaceId_id_fk": {
+          "name": "projects_workspaceId_teamId_teams_workspaceId_id_fk",
+          "tableFrom": "projects",
+          "tableTo": "teams",
+          "columnsFrom": [
+            "workspaceId",
+            "teamId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "projects_workspaceId_leadId_workspaceMembers_workspaceId_id_fk": {
+          "name": "projects_workspaceId_leadId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "projects",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "leadId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "projects_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk": {
+          "name": "projects_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "projects",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "deletedBy"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "projects_readKeys": {
+          "name": "projects_readKeys",
+          "value": "json_valid(\"projects\".\"readKeys\")"
+        },
+        "status_enum": {
+          "name": "status_enum",
+          "value": "\"projects\".\"status\" IN ('planning','active','risk','hold','complete')"
+        },
+        "visibility_enum": {
+          "name": "visibility_enum",
+          "value": "\"projects\".\"visibility\" IN ('workspace','private')"
+        },
+        "projects_dates": {
+          "name": "projects_dates",
+          "value": "\"projects\".\"startDate\" IS NULL OR \"projects\".\"dueDate\" IS NULL OR \"projects\".\"startDate\" <= \"projects\".\"dueDate\""
+        },
+        "projects_sequence": {
+          "name": "projects_sequence",
+          "value": "\"projects\".\"taskSequence\" >= 0"
+        },
+        "projects_tombstone": {
+          "name": "projects_tombstone",
+          "value": "(\"projects\".\"deletedAt\" IS NULL) = (\"projects\".\"deletedBy\" IS NULL)"
+        },
+        "projects_version": {
+          "name": "projects_version",
+          "value": "\"projects\".\"version\" > 0"
+        }
+      }
+    },
+    "savedViews": {
+      "name": "savedViews",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "filtersJson": {
+          "name": "filtersJson",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdBy": {
+          "name": "createdBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "position": {
+          "name": "position",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "savedViews_workspace_id": {
+          "name": "savedViews_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "savedViews_project": {
+          "name": "savedViews_project",
+          "columns": [
+            "workspaceId",
+            "projectId",
+            "position",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "savedViews_workspaceId_workspaces_id_fk": {
+          "name": "savedViews_workspaceId_workspaces_id_fk",
+          "tableFrom": "savedViews",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "savedViews_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "savedViews_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "savedViews",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "savedViews_workspaceId_createdBy_workspaceMembers_workspaceId_id_fk": {
+          "name": "savedViews_workspaceId_createdBy_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "savedViews",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "createdBy"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "type_enum": {
+          "name": "type_enum",
+          "value": "\"savedViews\".\"type\" IN ('list','board','table')"
+        },
+        "views_filters": {
+          "name": "views_filters",
+          "value": "json_valid(\"savedViews\".\"filtersJson\")"
+        },
+        "savedViews_version": {
+          "name": "savedViews_version",
+          "value": "\"savedViews\".\"version\" > 0"
+        }
+      }
+    },
+    "subtasks": {
+      "name": "subtasks",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "taskId": {
+          "name": "taskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "done": {
+          "name": "done",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "assigneeId": {
+          "name": "assigneeId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "dueDate": {
+          "name": "dueDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "note": {
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "position": {
+          "name": "position",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "subtasks_workspace_id": {
+          "name": "subtasks_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "subtasks_task": {
+          "name": "subtasks_task",
+          "columns": [
+            "workspaceId",
+            "taskId",
+            "position",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "subtasks_workspaceId_workspaces_id_fk": {
+          "name": "subtasks_workspaceId_workspaces_id_fk",
+          "tableFrom": "subtasks",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "subtasks_workspaceId_taskId_tasks_workspaceId_id_fk": {
+          "name": "subtasks_workspaceId_taskId_tasks_workspaceId_id_fk",
+          "tableFrom": "subtasks",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "taskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "subtasks_workspaceId_assigneeId_workspaceMembers_workspaceId_id_fk": {
+          "name": "subtasks_workspaceId_assigneeId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "subtasks",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "assigneeId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "subtasks_done": {
+          "name": "subtasks_done",
+          "value": "\"subtasks\".\"done\" IN (0,1)"
+        }
+      }
+    },
+    "taskDependencies": {
+      "name": "taskDependencies",
+      "columns": {
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "taskId": {
+          "name": "taskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "dependsOnTaskId": {
+          "name": "dependsOnTaskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "dependency_incoming": {
+          "name": "dependency_incoming",
+          "columns": [
+            "workspaceId",
+            "dependsOnTaskId",
+            "taskId"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "taskDependencies_workspaceId_workspaces_id_fk": {
+          "name": "taskDependencies_workspaceId_workspaces_id_fk",
+          "tableFrom": "taskDependencies",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "taskDependencies_workspaceId_taskId_tasks_workspaceId_id_fk": {
+          "name": "taskDependencies_workspaceId_taskId_tasks_workspaceId_id_fk",
+          "tableFrom": "taskDependencies",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "taskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "taskDependencies_workspaceId_dependsOnTaskId_tasks_workspaceId_id_fk": {
+          "name": "taskDependencies_workspaceId_dependsOnTaskId_tasks_workspaceId_id_fk",
+          "tableFrom": "taskDependencies",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "dependsOnTaskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "taskDependencies_taskId_dependsOnTaskId_pk": {
+          "columns": [
+            "taskId",
+            "dependsOnTaskId"
+          ],
+          "name": "taskDependencies_taskId_dependsOnTaskId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "dependency_self": {
+          "name": "dependency_self",
+          "value": "\"taskDependencies\".\"taskId\" != \"taskDependencies\".\"dependsOnTaskId\""
+        }
+      }
+    },
+    "taskFavorites": {
+      "name": "taskFavorites",
+      "columns": {
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "memberId": {
+          "name": "memberId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "taskId": {
+          "name": "taskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "taskFavorites_workspaceId_workspaces_id_fk": {
+          "name": "taskFavorites_workspaceId_workspaces_id_fk",
+          "tableFrom": "taskFavorites",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "taskFavorites_workspaceId_memberId_workspaceMembers_workspaceId_id_fk": {
+          "name": "taskFavorites_workspaceId_memberId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "taskFavorites",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "memberId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "taskFavorites_workspaceId_taskId_tasks_workspaceId_id_fk": {
+          "name": "taskFavorites_workspaceId_taskId_tasks_workspaceId_id_fk",
+          "tableFrom": "taskFavorites",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "taskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "taskFavorites_memberId_taskId_pk": {
+          "columns": [
+            "memberId",
+            "taskId"
+          ],
+          "name": "taskFavorites_memberId_taskId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "taskLabels": {
+      "name": "taskLabels",
+      "columns": {
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "taskId": {
+          "name": "taskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "labelId": {
+          "name": "labelId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "taskLabels_workspaceId_workspaces_id_fk": {
+          "name": "taskLabels_workspaceId_workspaces_id_fk",
+          "tableFrom": "taskLabels",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "taskLabels_workspaceId_taskId_tasks_workspaceId_id_fk": {
+          "name": "taskLabels_workspaceId_taskId_tasks_workspaceId_id_fk",
+          "tableFrom": "taskLabels",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "taskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "taskLabels_taskId_labelId_pk": {
+          "columns": [
+            "taskId",
+            "labelId"
+          ],
+          "name": "taskLabels_taskId_labelId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "labelId_enum": {
+          "name": "labelId_enum",
+          "value": "\"taskLabels\".\"labelId\" IN ('design','frontend','backend','research','content','bug','qa','growth')"
+        }
+      }
+    },
+    "tasks": {
+      "name": "tasks",
+      "columns": {
+        "readKeys": {
+          "name": "readKeys",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "number": {
+          "name": "number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "descriptionHtml": {
+          "name": "descriptionHtml",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "descriptionText": {
+          "name": "descriptionText",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "priority": {
+          "name": "priority",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "assigneeId": {
+          "name": "assigneeId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "startDate": {
+          "name": "startDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "dueDate": {
+          "name": "dueDate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "estimate": {
+          "name": "estimate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "recurrence": {
+          "name": "recurrence",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "position": {
+          "name": "position",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "completedAt": {
+          "name": "completedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "previousStatus": {
+          "name": "previousStatus",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "recurrenceSourceTaskId": {
+          "name": "recurrenceSourceTaskId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cancelledByUndoId": {
+          "name": "cancelledByUndoId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdBy": {
+          "name": "createdBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createRequestId": {
+          "name": "createRequestId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createRequestHash": {
+          "name": "createRequestHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "archivedAt": {
+          "name": "archivedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "deletedAt": {
+          "name": "deletedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "deletedBy": {
+          "name": "deletedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "tasks_active_manual": {
+          "name": "tasks_active_manual",
+          "columns": [
+            "workspaceId",
+            "deletedAt",
+            "archivedAt",
+            "position",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "tasks_active_title": {
+          "name": "tasks_active_title",
+          "columns": [
+            "workspaceId",
+            "deletedAt",
+            "archivedAt",
+            "(\"readKeys\" ->> '$.title.foldedUtf16')",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "tasks_workspace_id": {
+          "name": "tasks_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "tasks_number": {
+          "name": "tasks_number",
+          "columns": [
+            "projectId",
+            "number"
+          ],
+          "isUnique": true
+        },
+        "tasks_recurrence": {
+          "name": "tasks_recurrence",
+          "columns": [
+            "workspaceId",
+            "recurrenceSourceTaskId"
+          ],
+          "isUnique": true
+        },
+        "tasks_create_request": {
+          "name": "tasks_create_request",
+          "columns": [
+            "workspaceId",
+            "createdBy",
+            "createRequestId"
+          ],
+          "isUnique": true
+        },
+        "tasks_project": {
+          "name": "tasks_project",
+          "columns": [
+            "workspaceId",
+            "projectId",
+            "archivedAt",
+            "deletedAt",
+            "position",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "tasks_assignee": {
+          "name": "tasks_assignee",
+          "columns": [
+            "workspaceId",
+            "assigneeId",
+            "archivedAt",
+            "deletedAt",
+            "dueDate",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "tasks_due": {
+          "name": "tasks_due",
+          "columns": [
+            "workspaceId",
+            "dueDate",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "tasks_workspaceId_workspaces_id_fk": {
+          "name": "tasks_workspaceId_workspaces_id_fk",
+          "tableFrom": "tasks",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tasks_recurrenceSourceTaskId_tasks_id_fk": {
+          "name": "tasks_recurrenceSourceTaskId_tasks_id_fk",
+          "tableFrom": "tasks",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "recurrenceSourceTaskId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tasks_workspaceId_projectId_projects_workspaceId_id_fk": {
+          "name": "tasks_workspaceId_projectId_projects_workspaceId_id_fk",
+          "tableFrom": "tasks",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "workspaceId",
+            "projectId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tasks_workspaceId_assigneeId_workspaceMembers_workspaceId_id_fk": {
+          "name": "tasks_workspaceId_assigneeId_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "tasks",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "assigneeId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tasks_workspaceId_createdBy_workspaceMembers_workspaceId_id_fk": {
+          "name": "tasks_workspaceId_createdBy_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "tasks",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "createdBy"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tasks_workspaceId_recurrenceSourceTaskId_tasks_workspaceId_id_fk": {
+          "name": "tasks_workspaceId_recurrenceSourceTaskId_tasks_workspaceId_id_fk",
+          "tableFrom": "tasks",
+          "tableTo": "tasks",
+          "columnsFrom": [
+            "workspaceId",
+            "recurrenceSourceTaskId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tasks_workspaceId_cancelledByUndoId_commandUndoRecords_workspaceId_id_fk": {
+          "name": "tasks_workspaceId_cancelledByUndoId_commandUndoRecords_workspaceId_id_fk",
+          "tableFrom": "tasks",
+          "tableTo": "commandUndoRecords",
+          "columnsFrom": [
+            "workspaceId",
+            "cancelledByUndoId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "tasks_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk": {
+          "name": "tasks_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "tasks",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "deletedBy"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "tasks_readKeys": {
+          "name": "tasks_readKeys",
+          "value": "json_valid(\"tasks\".\"readKeys\")"
+        },
+        "status_enum": {
+          "name": "status_enum",
+          "value": "\"tasks\".\"status\" IN ('backlog','todo','progress','review','done')"
+        },
+        "priority_enum": {
+          "name": "priority_enum",
+          "value": "\"tasks\".\"priority\" IN ('urgent','high','medium','low','none')"
+        },
+        "tasks_dates": {
+          "name": "tasks_dates",
+          "value": "\"tasks\".\"startDate\" IS NULL OR \"tasks\".\"dueDate\" IS NULL OR \"tasks\".\"startDate\" <= \"tasks\".\"dueDate\""
+        },
+        "tasks_completed": {
+          "name": "tasks_completed",
+          "value": "(\"tasks\".\"status\" = 'done') = (\"tasks\".\"completedAt\" IS NOT NULL)"
+        },
+        "tasks_request": {
+          "name": "tasks_request",
+          "value": "(\"tasks\".\"createRequestId\" IS NULL) = (\"tasks\".\"createRequestHash\" IS NULL)"
+        },
+        "tasks_cancelled": {
+          "name": "tasks_cancelled",
+          "value": "\"tasks\".\"cancelledByUndoId\" IS NULL OR (\"tasks\".\"deletedAt\" IS NOT NULL AND \"tasks\".\"deletedBy\" IS NOT NULL AND \"tasks\".\"recurrenceSourceTaskId\" IS NULL)"
+        },
+        "recurrence_enum": {
+          "name": "recurrence_enum",
+          "value": "\"tasks\".\"recurrence\" IN ('daily','weekly','biweekly','monthly')"
+        },
+        "estimate_enum": {
+          "name": "estimate_enum",
+          "value": "\"tasks\".\"estimate\" IN ('30m','1h','2h','4h','1d','2d','3d','5d','8d')"
+        },
+        "previousStatus_enum": {
+          "name": "previousStatus_enum",
+          "value": "\"tasks\".\"previousStatus\" IN ('backlog','todo','progress','review','done')"
+        },
+        "tasks_tombstone": {
+          "name": "tasks_tombstone",
+          "value": "(\"tasks\".\"deletedAt\" IS NULL) = (\"tasks\".\"deletedBy\" IS NULL)"
+        },
+        "tasks_version": {
+          "name": "tasks_version",
+          "value": "\"tasks\".\"version\" > 0"
+        }
+      }
+    },
+    "teams": {
+      "name": "teams",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nameNormalized": {
+          "name": "nameNormalized",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "icon": {
+          "name": "icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "color": {
+          "name": "color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "deletedAt": {
+          "name": "deletedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "deletedBy": {
+          "name": "deletedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "teams_workspace_id": {
+          "name": "teams_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "teams_active_name": {
+          "name": "teams_active_name",
+          "columns": [
+            "workspaceId",
+            "nameNormalized"
+          ],
+          "isUnique": true,
+          "where": "\"teams\".\"deletedAt\" IS NULL"
+        }
+      },
+      "foreignKeys": {
+        "teams_workspaceId_workspaces_id_fk": {
+          "name": "teams_workspaceId_workspaces_id_fk",
+          "tableFrom": "teams",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "teams_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk": {
+          "name": "teams_workspaceId_deletedBy_workspaceMembers_workspaceId_id_fk",
+          "tableFrom": "teams",
+          "tableTo": "workspaceMembers",
+          "columnsFrom": [
+            "workspaceId",
+            "deletedBy"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "teams_tombstone": {
+          "name": "teams_tombstone",
+          "value": "(\"teams\".\"deletedAt\" IS NULL) = (\"teams\".\"deletedBy\" IS NULL)"
+        },
+        "teams_version": {
+          "name": "teams_version",
+          "value": "\"teams\".\"version\" > 0"
+        }
+      }
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "readKeys": {
+          "name": "readKeys",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'{}'"
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "emailNormalized": {
+          "name": "emailNormalized",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "displayEmail": {
+          "name": "displayEmail",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "avatarColor": {
+          "name": "avatarColor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "timezone": {
+          "name": "timezone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "users_email": {
+          "name": "users_email",
+          "columns": [
+            "emailNormalized"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "users_readKeys": {
+          "name": "users_readKeys",
+          "value": "json_valid(\"users\".\"readKeys\")"
+        },
+        "users_version": {
+          "name": "users_version",
+          "value": "\"users\".\"version\" > 0"
+        }
+      }
+    },
+    "workspaceMembers": {
+      "name": "workspaceMembers",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "teamId": {
+          "name": "teamId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "lastSeenAt": {
+          "name": "lastSeenAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "removedAt": {
+          "name": "removedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "workspaceMembers_workspace_id": {
+          "name": "workspaceMembers_workspace_id",
+          "columns": [
+            "workspaceId",
+            "id"
+          ],
+          "isUnique": true
+        },
+        "members_workspace_user": {
+          "name": "members_workspace_user",
+          "columns": [
+            "workspaceId",
+            "userId"
+          ],
+          "isUnique": true
+        },
+        "members_team": {
+          "name": "members_team",
+          "columns": [
+            "workspaceId",
+            "teamId",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "workspaceMembers_workspaceId_workspaces_id_fk": {
+          "name": "workspaceMembers_workspaceId_workspaces_id_fk",
+          "tableFrom": "workspaceMembers",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "workspaceMembers_userId_users_id_fk": {
+          "name": "workspaceMembers_userId_users_id_fk",
+          "tableFrom": "workspaceMembers",
+          "tableTo": "users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "workspaceMembers_teamId_teams_id_fk": {
+          "name": "workspaceMembers_teamId_teams_id_fk",
+          "tableFrom": "workspaceMembers",
+          "tableTo": "teams",
+          "columnsFrom": [
+            "teamId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "workspaceMembers_workspaceId_teamId_teams_workspaceId_id_fk": {
+          "name": "workspaceMembers_workspaceId_teamId_teams_workspaceId_id_fk",
+          "tableFrom": "workspaceMembers",
+          "tableTo": "teams",
+          "columnsFrom": [
+            "workspaceId",
+            "teamId"
+          ],
+          "columnsTo": [
+            "workspaceId",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "role_enum": {
+          "name": "role_enum",
+          "value": "\"workspaceMembers\".\"role\" IN ('Owner','Admin','Member','Guest')"
+        },
+        "status_enum": {
+          "name": "status_enum",
+          "value": "\"workspaceMembers\".\"status\" IN ('active','invited')"
+        },
+        "workspaceMembers_version": {
+          "name": "workspaceMembers_version",
+          "value": "\"workspaceMembers\".\"version\" > 0"
+        }
+      }
+    },
+    "workspaces": {
+      "name": "workspaces",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "iconColor": {
+          "name": "iconColor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "brand": {
+          "name": "brand",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "timezone": {
+          "name": "timezone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "planLabel": {
+          "name": "planLabel",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "lastMutationId": {
+          "name": "lastMutationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "workspaces_slug": {
+          "name": "workspaces_slug",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "workspaces_brand": {
+          "name": "workspaces_brand",
+          "value": "\"workspaces\".\"brand\" IN (0,1)"
+        },
+        "workspaces_version": {
+          "name": "workspaces_version",
+          "value": "\"workspaces\".\"version\" > 0"
+        }
+      }
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {
+      "files_page_name": {
+        "columns": {
+          "(\"readKeys\" ->> '$.name.locale')": {
+            "isExpression": true
+          }
+        }
+      },
+      "files_page_type": {
+        "columns": {
+          "(\"readKeys\" ->> '$.fileType.locale')": {
+            "isExpression": true
+          }
+        }
+      },
+      "files_page_recent": {
+        "columns": {
+          "(-\"createdAt\")": {
+            "isExpression": true
+          }
+        }
+      },
+      "files_page_size": {
+        "columns": {
+          "(CASE WHEN \"sizeBytes\" IS NULL THEN 1 ELSE -\"sizeBytes\" END)": {
+            "isExpression": true
+          }
+        }
+      },
+      "projects_catalog_name": {
+        "columns": {
+          "(\"readKeys\" ->> '$.name.locale')": {
+            "isExpression": true
+          }
+        }
+      },
+      "tasks_active_title": {
+        "columns": {
+          "(\"readKeys\" ->> '$.title.foldedUtf16')": {
+            "isExpression": true
+          }
+        }
+      }
+    }
+  }
+}

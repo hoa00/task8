@@ -997,3 +997,21 @@ export const projectMilestones = sqliteTable(
     }),
   ],
 );
+
+// Local operator receipts and audit retain link provenance through soft revoke.
+export const oidcLinkOperations = sqliteTable("oidcLinkOperations", {
+  manifestId: text("manifestId").notNull(), manifestDigest: text("manifestDigest").notNull(),
+  entryId: text("entryId").notNull(), linkId: text("linkId").notNull().references(() => oidcIdentityLinks.id),
+  issuer: text("issuer").notNull(), subject: text("subject").notNull(), localUserId: text("localUserId").notNull(),
+  outcome: text("outcome", { enum: ["created-by-this-operation", "already-linked"] }).notNull(),
+  revision: integer("revision").notNull(), actor: text("actor").notNull(), correlation: text("correlation").notNull(),
+  createdAt: integer("createdAt").notNull(), marker: text("marker").notNull(), revokedAt: integer("revokedAt"),
+  revokedRevision: integer("revokedRevision"), revokeKind: text("revokeKind"), revokeActor: text("revokeActor"),
+  revokeCorrelation: text("revokeCorrelation"), revokeMarker: text("revokeMarker"),
+}, (t) => [primaryKey({ columns: [t.manifestId, t.entryId] }), uniqueIndex("oidc_link_operation_marker").on(t.marker), check("oidc_link_operation_revision", sql`${t.revision} >= 1`), check("oidc_link_operation_outcome", sql`${t.outcome} IN ('created-by-this-operation','already-linked')`)]);
+export const oidcLinkAudit = sqliteTable("oidcLinkAudit", {
+  id: text("id").primaryKey(), manifestId: text("manifestId").notNull(), entryId: text("entryId").notNull(),
+  linkId: text("linkId").notNull().references(() => oidcIdentityLinks.id), kind: text("kind").notNull(),
+  actor: text("actor").notNull(), correlation: text("correlation").notNull(), beforeRevision: integer("beforeRevision").notNull(),
+  afterRevision: integer("afterRevision").notNull(), createdAt: integer("createdAt").notNull(),
+}, (t) => [check("oidcLinkAudit_kind", sql`${t.kind} IN ('apply','revoke','rollback')`)]);
