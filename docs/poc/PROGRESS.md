@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện tại
 
-- **OIDC local1355 companion — 04/11/2026:** `PREPARED_VERIFIED`, chờ commit/push cùng đợt xuất bản Work Suite. Profile server chọn rõ ràng, không thay task/workspace behavior; 9 unit tests OIDC và API static gates PASS. Full native SSO hiện tại chưa chạy lại; xem entry mới cuối file và [runbook](../engineering/ICT24H_AUTH_RUNBOOK.md#oidc-local-đi-kèm-work-suite).
+- **OIDC local1355 companion — 04/11/2026:** `PUBLISHED_VERIFIED` tại [commit 84aa0322](https://github.com/hoa00/task8/commit/84aa03224eb996a39fcde4faf1db9511bbe41c40), nhánh `codex/identity-foundation`; GitHub xác nhận chữ ký hợp lệ. Profile server chọn rõ ràng, không thay task/workspace behavior; 9 unit tests OIDC và API static gates PASS. Full native SSO hiện tại chưa chạy lại; xem receipt cuối file và [runbook](../engineering/ICT24H_AUTH_RUNBOOK.md#oidc-local-đi-kèm-work-suite).
 
 - **Frontend/shared quality follow-up — 15/10/2026:** review ngoài `apps/api` và FR-00 **DONE_DOCS**, theo [FRONTEND_STANDARDS](../engineering/FRONTEND_STANDARDS.md) và [FRONTEND_REFACTOR_PLAN](../engineering/FRONTEND_REFACTOR_PLAN.md). Code mới/phần sửa phải theo chuẩn; FR-01…07 runtime **NOT_STARTED**. Nhiệm vụ hiện tại chỉ review/lập kế hoạch/lưu chỉ dẫn; không tự bắt đầu refactor runtime hoặc mở WU-37. Entry FR-00 cuối file ghi verification và giới hạn môi trường; các trạng thái WU/BR/AUTH bên dưới giữ lịch sử, đối chiếu entry cuối của từng luồng khi tiếp tục.
 
@@ -1813,3 +1813,10 @@ Current status DONE_BOUNDED_ROOT_PASS(localM3/qualifiedLinuxselectedvisual); ful
 - **Verification:** API `tsc --noEmit` với Node 24.22.1 PASS; ESLint đúng năm file PASS; `node tooling/import-boundaries.mjs` PASS (259 source files, 0 legacy imports/cycles). `node --import ./tests/support/wasm-loader.mjs --experimental-transform-types --test tests/unit/oidc-authority.test.mjs tests/unit/oidc-browser.test.mjs tests/unit/oidc-session.test.mjs` với Node 24.22.1 đạt **9/9**, không skips. Format/diff và links mới được kiểm riêng. Logs/initial patch/checksums ở scratch ignored `.artifacts/publication-261104` của Suite; không ghi đè historical evidence.
 - **Limits/decisions:** không chạy native network/DB/browser trong bước chuẩn bị; full SSO hiện tại chờ proxy HTTPS1355 và DNS Identity/Task8. Suite kiểm bổ sung origin settings và pre-DB operator guard trong lượt QA riêng. Reviewed historical source pins vẫn chặt chẽ; interactive snapshot mới không thay nghiệm thu cũ. Không mutate dữ liệu/proxy/hosts/CA hoặc cài dependency.
 - **Commit/Push:** chưa thực hiện; chỉ push đúng bảy file khi gate xuất bản cho phép. **Next:** hoàn tất xuất bản companion này, không tự mở phase/backend refactor hoặc production rollout.
+
+
+### Publication receipt — 04/11/2026
+
+- Companion đã commit/push thường lên `hoa00/task8`, nhánh `codex/identity-foundation`, tại [84aa03224eb996a39fcde4faf1db9511bbe41c40](https://github.com/hoa00/task8/commit/84aa03224eb996a39fcde4faf1db9511bbe41c40). GitHub xác nhận `verified=true`, reason `valid`; parent `8538bd0a83755aa40e9ee014b45cf2c2fb13d0d2`, tree `091bdeb60749a64affb186af88e450097c3331cc` khớp local.
+- Đúng bảy file đã duyệt, hash nội dung không đổi sau QA; local/tracking/remote cùng SHA và tracked worktree/index sạch sau push. Không merge `main`, force-push, thay signing/hook configuration hoặc publish file ngoài phạm vi. Checkpoint chuẩn bị phía trên được giữ như lịch sử; receipt này cập nhật trạng thái xuất bản thực tế.
+- Đây là cập nhật tài liệu sau push; kiểm link/metadata và diff, không chạy lại runtime QA. Full native SSO vẫn chưa chạy lại trong môi trường hiện tại; không thay các giới hạn nghiệm thu đã nêu.
