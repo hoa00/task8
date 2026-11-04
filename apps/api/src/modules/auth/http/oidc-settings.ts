@@ -15,12 +15,27 @@ const Keyset = z.strictObject({
   active: z.string().min(1).max(80),
   keys: z.record(z.string().min(1).max(80), z.string().regex(/^[A-Za-z0-9_-]{43}$/u)),
 });
+// A trusted server binding selects one complete local origin set, never a request value.
+export function oidcOrigins(profile?: string) {
+  if (profile === undefined)
+    return {
+      issuer: 'https://identity-service.demo/api/auth',
+      origin: 'https://datamaker-task.demo',
+    };
+  if (profile === 'dev1355')
+    return {
+      issuer: 'https://identity-service.demo:1355/api/auth',
+      origin: 'https://datamaker-task.demo:1355',
+    };
+  throw new ApiFailure('AUTH_SERVICE_UNAVAILABLE', 'Authentication configuration is unavailable');
+}
 export function oidcSettings(env: OidcBindings & { AUTH_MODE?: string }): OidcSettings {
   try {
+    const expected = oidcOrigins(env.OIDC_LOCAL_PROFILE);
     if (
       env.AUTH_MODE !== 'oidc' ||
-      env.OIDC_ISSUER !== 'https://identity-service.demo/api/auth' ||
-      env.AUTH_APP_ORIGIN !== 'https://datamaker-task.demo'
+      env.OIDC_ISSUER !== expected.issuer ||
+      env.AUTH_APP_ORIGIN !== expected.origin
     )
       throw new Error();
     const keyset = Keyset.parse(JSON.parse(z.string().parse(env.RP_TOKEN_ENCRYPTION_KEYSET)));

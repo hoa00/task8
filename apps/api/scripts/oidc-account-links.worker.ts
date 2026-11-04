@@ -1,3 +1,4 @@
+import { oidcOrigins } from '../src/modules/auth/http/oidc-settings.ts';
 import {
   AccountLinkError,
   applyLink,
@@ -79,7 +80,10 @@ const commandSchema = z
     manifestId: text,
     manifestDigest: z.string().regex(/^[a-f0-9]{64}$/u),
     entryId: text,
-    issuer: z.literal('https://identity-service.demo/api/auth'),
+    issuer: z.enum([
+      'https://identity-service.demo/api/auth',
+      'https://identity-service.demo:1355/api/auth',
+    ]),
     subject: text,
     target: targetSchema,
     snapshot: snapshotSchema,
@@ -122,7 +126,14 @@ const operatorInput = z.discriminatedUnion('method', [
   z
     .object({
       method: z.literal('inspect'),
-      args: z.tuple([z.literal('https://identity-service.demo/api/auth'), text, targetSchema]),
+      args: z.tuple([
+        z.enum([
+          'https://identity-service.demo/api/auth',
+          'https://identity-service.demo:1355/api/auth',
+        ]),
+        text,
+        targetSchema,
+      ]),
     })
     .strict(),
   z.object({ method: z.literal('apply'), args: z.tuple([commandSchema]) }).strict(),
@@ -130,9 +141,30 @@ const operatorInput = z.discriminatedUnion('method', [
   z.object({ method: z.literal('lookup'), args: z.tuple([commandSchema]) }).strict(),
   z.object({ method: z.literal('profile'), args: z.tuple([]) }).strict(),
 ]);
+// Validate the complete local issuer profile before any database access.
+export function parseAccountLinkInput(payload: unknown, profile?: string) {
+  const parsed = operatorInput.safeParse(payload);
+  if (!parsed.success) return null;
+  let expectedIssuer: string;
+  try {
+    expectedIssuer = oidcOrigins(profile).issuer;
+  } catch {
+    return null;
+  }
+  const input = parsed.data;
+  const issuer =
+    input.method === 'inspect'
+      ? input.args[0]
+      : input.method === 'apply' || input.method === 'lookup'
+        ? input.args[0].issuer
+        : undefined;
+  if (issuer !== undefined && issuer !== expectedIssuer) return null;
+  return input;
+}
 interface OperatorEnv {
   DB: D1Database;
   OPERATOR_KEY: string;
+  OIDC_LOCAL_PROFILE?: string;
 }
 export default {
   async fetch(request: Request, env: OperatorEnv) {
@@ -150,10 +182,9 @@ export default {
     } catch {
       return new Response(null, { status: 400 });
     }
-    const parsed = operatorInput.safeParse(payload);
-    if (!parsed.success)
+    const input = parseAccountLinkInput(payload, env.OIDC_LOCAL_PROFILE);
+    if (!input)
       return Response.json({ ok: false, code: 'LINK_INPUT_INVALID', known: true }, { status: 400 });
-    const input = parsed.data;
     try {
       let result: string;
       if (input.method === 'inspect' && input.args.length === 3)

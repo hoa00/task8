@@ -233,3 +233,21 @@ Live checklist **NOT_RUN**, cần operator cung cấp public PEM, test account b
 6. App logout acknowledged, subsequent session/protected read401, retry idempotent; record sanitized evidence + actual source/deployment revision rồi mới mark live PASS.
 
 Tài khoản live, grant live và deployment chưa có trong session này; không dùng controlled provider fixture, endpoint lỗi rỗng hoặc registry credential để thay bằng chứng live.
+
+
+## OIDC local đi kèm Work Suite
+
+Phần này dành riêng cho `AUTH_MODE=oidc` và launcher local của [Work Suite](https://github.com/hoa00/work-management-suite); các procedure ICT24H và production phía trên giữ nguyên phạm vi. Trusted Worker binding `OIDC_LOCAL_PROFILE` chọn **cả bộ** issuer/origin, không nhận profile từ query, header, cookie hoặc frontend:
+
+| Binding profile | `OIDC_ISSUER` | `AUTH_APP_ORIGIN` |
+| --- | --- | --- |
+| Không đặt `OIDC_LOCAL_PROFILE` | `https://identity-service.demo/api/auth` | `https://datamaker-task.demo` |
+| `OIDC_LOCAL_PROFILE=dev1355` | `https://identity-service.demo:1355/api/auth` | `https://datamaker-task.demo:1355` |
+
+Giá trị mặc định dùng HTTPS 443, không tự đổi sang 1355. Profile lạ hoặc issuer/origin lệch bộ cấu hình bị từ chối; không fallback sang ICT24H/local/mock. Client ID/secret, RP environment và token encryption keyset vẫn phải được cung cấp qua trusted backend configuration hiện có; không đưa chúng vào VITE variables hoặc Git.
+
+Suite `pnpm dev:oidc` sở hữu synthetic configuration/state, bindings và topology HTTPS1355. Task8 chỉ nhận profile local rõ ràng từ launcher/operator; thay đổi này không dựng production, đổi production bindings hoặc tự khởi tạo/migrate dữ liệu. Account-link adapter nhận `oidcLocalProfile` từ caller tin cậy; operator kiểm cấu trúc input và issuer khớp profile trước truy cập D1. Các ràng buộc quyền hiện tại, user IDs, membership, CAS và rollback giữ nguyên.
+
+Profile reviewed lịch sử vẫn giữ source fingerprints chặt chẽ; source Task8 mới không tự kế thừa chứng nhận tại baseline cũ. Interactive profile của Suite chụp working tree hiện hành. Không thay evidence hoặc nới guard để biến snapshot mới thành nghiệm thu lịch sử.
+
+Kiểm chuẩn bị hiện tại gồm API typecheck, lint năm file thay đổi, import boundaries và 9 unit tests OIDC authority/browser/session; xem [PROGRESS](../poc/PROGRESS.md). Full native SSO của môi trường hiện tại vẫn chờ proxy HTTPS1355 và DNS cho Identity/Task8; chưa chạy lại và không suy PASS từ unit/typecheck. Việc chuẩn bị này không tự sửa hosts/CA, khởi động proxy, gửi thông báo hoặc sửa dữ liệu ứng dụng.

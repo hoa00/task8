@@ -14,7 +14,20 @@ const require = createRequire(resolve(api, 'package.json')),
 const { build } = await import(wranglerRequire.resolve('esbuild'));
 const { Miniflare, convertV4MiniflareOptions } = await import(wranglerRequire.resolve('miniflare'));
 const hash = (value) => createHash('sha256').update(value).digest('hex');
-export async function createAccountLinkRuntime({ dir, client, report }) {
+export async function createAccountLinkRuntime({
+  dir,
+  client,
+  report,
+  appOrigin = 'https://datamaker-task.demo',
+  issuer = 'https://identity-service.demo/api/auth',
+}) {
+  if (
+    !['https://datamaker-task.demo', 'https://datamaker-task.demo:1355'].includes(appOrigin) ||
+    issuer !==
+      new URL(appOrigin).origin.replace('datamaker-task.demo', 'identity-service.demo') +
+        '/api/auth'
+  )
+    throw new Error('INVALID_ISOLATED_ORIGINS');
   let mf, legacy;
   try {
     legacy = await createControlledIdentityProvider();
@@ -78,8 +91,9 @@ export async function createAccountLinkRuntime({ dir, client, report }) {
       STUDIO_ENV: 'local',
       LOCAL_USER_ID: fixture.rows.users[0].id,
       LOCAL_WORKSPACE_ID: fixture.rows.workspaces[0].id,
-      AUTH_APP_ORIGIN: 'https://datamaker-task.demo',
-      OIDC_ISSUER: 'https://identity-service.demo/api/auth',
+      AUTH_APP_ORIGIN: appOrigin,
+      OIDC_ISSUER: issuer,
+      ...(appOrigin.endsWith(':1355') ? { OIDC_LOCAL_PROFILE: 'dev1355' } : {}),
       OIDC_CLIENT_ID: client.client_id,
       OIDC_CLIENT_SECRET: client.client_secret,
       RP_ENVIRONMENT: 'account-link-rehearsal',
@@ -98,7 +112,7 @@ export async function createAccountLinkRuntime({ dir, client, report }) {
           {
             name: 'task8-main',
             modulesRoot: dir,
-            routes: ['https://datamaker-task.demo/*'],
+            routes: [appOrigin + '/*'],
             compatibilityDate: '2026-10-08',
             compatibilityFlags: ['nodejs_compat'],
             modules: [
@@ -226,7 +240,7 @@ export async function createAccountLinkRuntime({ dir, client, report }) {
     };
     const http = async (path, { method = 'GET', cookie, body, headers = {} } = {}) =>
       (await mf.getWorker('task8-main')).fetch(
-        new Request('https://datamaker-task.demo' + path, {
+        new Request(appOrigin + path, {
           method,
           redirect: 'manual',
           headers: { ...headers, ...(cookie ? { cookie } : {}) },
@@ -244,7 +258,7 @@ export async function createAccountLinkRuntime({ dir, client, report }) {
       method: 'POST',
       cookie: preauthCookie,
       headers: {
-        origin: 'https://datamaker-task.demo',
+        origin: appOrigin,
         'content-type': 'application/json',
         'x-csrf-token': csrf,
       },

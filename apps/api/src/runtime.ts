@@ -32,6 +32,7 @@ export interface AuthBindings {
 
 export interface OidcBindings {
   OIDC_ISSUER?: string;
+  OIDC_LOCAL_PROFILE?: string;
   OIDC_CLIENT_ID?: string;
   OIDC_CLIENT_SECRET?: string;
   RP_ENVIRONMENT?: string;

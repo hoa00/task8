@@ -10,7 +10,15 @@ const { Miniflare, convertV4MiniflareOptions } = await import(wranglerRequire.re
 
 const root = resolve(import.meta.dirname, '../../..');
 const sha = (value) => createHash('sha256').update(value).digest('hex');
-export async function openAccountLinks({ persist, scratch, storageAlias, environment }) {
+export async function openAccountLinks({
+  persist,
+  scratch,
+  storageAlias,
+  environment,
+  oidcLocalProfile,
+}) {
+  if (oidcLocalProfile !== undefined && oidcLocalProfile !== 'dev1355')
+    throw new Error('INVALID_LOCAL_OIDC_PROFILE');
   if (environment !== 'local' || !/^[a-zA-Z0-9._-]{1,100}$/u.test(storageAlias ?? ''))
     throw new Error('LOCAL_STORAGE_REQUIRED');
   const storage = await realpath(persist),
@@ -22,10 +30,19 @@ export async function openAccountLinks({ persist, scratch, storageAlias, environ
   if (!metadata.isDirectory() || metadata.mode & 0o077 || !(await stat(output)).isDirectory())
     throw new Error('PRIVATE_STORAGE_REQUIRED');
   // Exact native storage object for the pinned local D1 binding; no root fallback or blank database creation.
-  const databaseFile = resolve(storage, 'd1/miniflare-D1DatabaseObject/5e1cca6ab1f3efc1b3f355b1a36ee1d5d097f17907ac670e2709efa0e992fb0d.sqlite');
+  const databaseFile = resolve(
+    storage,
+    'd1/miniflare-D1DatabaseObject/5e1cca6ab1f3efc1b3f355b1a36ee1d5d097f17907ac670e2709efa0e992fb0d.sqlite',
+  );
   const databaseMetadata = await stat(databaseFile).catch(() => null);
-  if (!databaseMetadata?.isFile() || !databaseMetadata.size || await realpath(databaseFile) !== databaseFile)
-    throw Object.assign(new Error('LOCAL_D1_STORAGE_MISSING'), {code:'LOCAL_D1_STORAGE_MISSING'});
+  if (
+    !databaseMetadata?.isFile() ||
+    !databaseMetadata.size ||
+    (await realpath(databaseFile)) !== databaseFile
+  )
+    throw Object.assign(new Error('LOCAL_D1_STORAGE_MISSING'), {
+      code: 'LOCAL_D1_STORAGE_MISSING',
+    });
   const fingerprint = sha(
     JSON.stringify({
       storage,
@@ -54,7 +71,10 @@ export async function openAccountLinks({ persist, scratch, storageAlias, environ
         {
           name: 'operator',
           modulesRoot: output,
-          bindings: { OPERATOR_KEY: operatorKey },
+          bindings: {
+            OPERATOR_KEY: operatorKey,
+            ...(oidcLocalProfile ? { OIDC_LOCAL_PROFILE: oidcLocalProfile } : {}),
+          },
           compatibilityDate: '2026-10-08',
           compatibilityFlags: ['nodejs_compat'],
           modules: [{ type: 'ESModule', path: outfile }],
